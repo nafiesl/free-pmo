@@ -27,14 +27,16 @@ class PaymentsController extends Controller {
 
 	public function create()
 	{
-		return view('payments.create');
+		$projects = $this->repo->getProjectsList();
+		$customers = $this->repo->getCustomersList();
+		return view('payments.create',compact('projects','customers'));
 	}
 
 	public function store(CreateRequest $req)
 	{
 		$payment = $this->repo->create($req->except('_token'));
 		flash()->success(trans('payment.created'));
-		return redirect()->route('payments.edit', $payment->id);
+		return redirect()->route('payments.show', $payment->id);
 	}
 
 	public function show($paymentId)
@@ -46,8 +48,9 @@ class PaymentsController extends Controller {
 	public function edit($paymentId)
 	{
 		$payment = $this->repo->requireById($paymentId);
+		$projects = $this->repo->getProjectsList();
 		$customers = $this->repo->getCustomersList();
-		return view('payments.edit',compact('payment','customers'));
+		return view('payments.edit',compact('payment','projects','customers'));
 	}
 
 	public function update(UpdateRequest $req, $paymentId)

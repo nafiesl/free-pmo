@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Masters;
+namespace App\Http\Requests\Payments;
 
 use App\Http\Requests\Request;
 
@@ -13,7 +13,7 @@ class DeleteRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return auth()->user()->can('manage_masters');
+		return auth()->user()->can('manage_payments');
 	}
 
 	/**
@@ -24,7 +24,7 @@ class DeleteRequest extends Request {
 	public function rules()
 	{
 		return [
-			'master_id' => 'required'
+			'payment_id' => 'required'
 		];
 	}
 

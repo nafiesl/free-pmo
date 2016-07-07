@@ -101,7 +101,10 @@ class FormField
         if (isset($options['disabled']) && $options['disabled'] == true) { $fieldParams += ['disabled']; }
         if (isset($options['required']) && $options['required'] == true) { $fieldParams += ['required']; }
         if (isset($options['multiple']) && $options['multiple'] == true) { $fieldParams += ['multiple', 'name' => $name . '[]']; }
-        if (isset($options['placeholder'])) { $fieldParams += ['placeholder' => $options['placeholder']]; }
+        if (isset($options['placeholder']))
+            $fieldParams += ['placeholder' => $options['placeholder']];
+        else
+            $fieldParams += ['placeholder' => '-- Pilih ' . str_split_ucwords(str_replace('_id', '', $name)) . ' --'];
 
         $htmlForm .= $this->setFormFieldLabel($name, $options);
 

@@ -9,9 +9,17 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('payment.create') }}</h3></div>
             <div class="panel-body">
-                {!! FormField::text('date',['label'=> trans('payment.date')]) !!}
                 {!! FormField::radios('type',['Pengeluaran','Pemasukan'],['label'=> trans('payment.type'),'value' => 1]) !!}
-                {!! FormField::price('amount', ['label'=> trans('payment.amount')]) !!}
+                <div class="row">
+                    <div class="col-md-6">
+                        {!! FormField::text('date',['label'=> trans('payment.date')]) !!}
+                    </div>
+                    <div class="col-md-6">
+                        {!! FormField::price('amount', ['label'=> trans('payment.amount')]) !!}
+                    </div>
+                </div>
+                {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project')]) !!}
+                {!! FormField::select('customer_id', $customers, ['label'=> trans('payment.customer')]) !!}
                 {!! FormField::textarea('description',['label'=> trans('payment.description')]) !!}
             </div>
 

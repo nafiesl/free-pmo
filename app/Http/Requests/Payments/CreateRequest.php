@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Masters;
+namespace App\Http\Requests\Payments;
 
 use App\Http\Requests\Request;
 
@@ -13,7 +13,7 @@ class CreateRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return auth()->user()->can('manage_masters');
+		return auth()->user()->can('manage_payments');
 	}
 
 	/**
@@ -24,8 +24,12 @@ class CreateRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'required|max:60|unique:masters,name',
-			'description' => 'max:255'
+			'date' => 'required|date|date_format:Y-m-d',
+			'type' => 'required|numeric',
+			'amount' => 'required|numeric',
+			'project_id' => 'required|numeric',
+			'customer_id' => 'required|numeric',
+			'description' => 'required|max:255',
 		];
 	}
 

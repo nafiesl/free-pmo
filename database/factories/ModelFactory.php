@@ -1,5 +1,6 @@
 <?php
 
+use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
 
@@ -41,5 +42,22 @@ $factory->define(Project::class, function (Faker\Generator $faker) {
         'proposal_value' => $projectValue,
         'status_id' => rand(1,6),
         'customer_id' => $customer->id
+    ];
+});
+
+$factory->define(Payment::class, function (Faker\Generator $faker) {
+    $projectId = factory(Project::class)->create()->id;
+
+    $customer = factory(User::class)->create();
+    $customer->assignRole('customer');
+    $customerId = $customer->id;
+
+    return [
+        'project_id' => $projectId,
+        'amount' => rand(1,5) * 500000,
+        'type' => rand(0,1),
+        'date' => $faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'),
+        'description' => $faker->paragraph,
+        'customer_id' => $customerId,
     ];
 });

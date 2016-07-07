@@ -24,11 +24,12 @@ class UpdateRequest extends Request {
 	public function rules()
 	{
 		return [
+			'date' => 'required|date|date_format:Y-m-d',
 			'type' => 'required|numeric',
 			'amount' => 'required|numeric',
-			'date' => 'required|date|date_format:Y-m-d',
+			'project_id' => 'required|numeric',
 			'customer_id' => 'required|numeric',
-			'description' => 'required|max:255'
+			'description' => 'required|max:255',
 		];
 	}
 

@@ -1,0 +1,176 @@
+@import "bootstrap";
+@import "bootstrap-theme";
+@import "font-awesome";
+@import "sb-admin-2";
+
+/*!
+ * Custom css for SB Admin 2
+ * By Nafies Luthfi
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    // font-family: "trebuchet ms", Helvetica, serif;
+}
+
+ul, ol {
+    margin-bottom: 0;
+}
+
+#wrapper {
+    // border-top: 2px solid #e7e7e7;
+}
+
+.breadcrumb {
+    margin-top: 15px;
+}
+
+.login-panel {
+    margin-top: 10vh;
+}
+
+.radio, .checkbox {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+h1.page-header {
+    margin: 20px 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.sidebar-logo {
+    width: 150px;
+    margin: auto;
+}
+
+.nav > li > a {
+    padding: 6px 10px;
+}
+
+.navbar-right > li > a {
+    padding: 15px;
+}
+
+.navbar-brand {
+    float: none;
+    border-bottom: 1px solid #e7e7e7;
+    display: block;
+    height: auto;
+}
+
+label.control-label {
+    color: #428bca;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        margin-left: 220px;
+        padding: 0;
+    }
+/*
+    .hidden-xs {
+        display: block;
+    }*/
+
+    nav.hidden-md {
+        display: none;
+    }
+
+    #page-wrapper.page-no-sidebar {
+        margin-left: 0;
+    }
+
+    .sidebar {
+        margin-top: 0px;
+        width: 220px;
+        box-shadow: none;
+    }
+
+    .index-search-form {
+        width: 50%;
+    }
+
+    /*.dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    .navbar-default .navbar-nav>li>a:hover {
+        color: #555;
+        background-color: #eee;
+    }*/
+}
+
+.form-error {
+    color: #d9534f;
+    /*font-weight: 700;*/
+}
+
+div.notifier {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+#footer {
+    padding:15px 10px;
+}
+
+#copy {
+    text-align: center;
+}
+
+#map-canvas-0 {
+    min-height: 400px;
+}
+
+h1.site-tilte {
+    font-size: 30px;
+}
+
+h3.site-description {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.guest-header {
+    padding: 0 10px;
+}
+
+.panel .table {
+    margin-bottom: 0;
+}
+
+@media (max-width: 480px) {
+    .guest-header {
+        text-align: center;
+    }
+}
+
+.nav .nav-second-level>li.active {
+    text-decoration: none;
+    background-color: #eee;
+}
+
+.form-control {
+    height: 30px;
+    padding: 3px 6px;
+}
+/*
+.btn {
+    padding: 3px 6px;
+}
+
+.btn-xs {
+    padding: 1px 5px;
+}*/
+
+
+@media print {
+    #page-wrapper {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'payment'       => 'Pembayaran',
+    'payments'      => 'Daftar Pembayaran',
+    'name'          => 'Nama Pembayaran',
+    'create'        => 'Input Pembayaran Baru',
+    'created'       => 'Input Pembayaran baru telah berhasil.',
+    'show'          => 'Detail Pembayaran',
+    'edit'          => 'Edit Pembayaran',
+    'update'        => 'Update Pembayaran',
+    'updated'       => 'Update data Pembayaran telah berhasil.',
+    'delete'        => 'Hapus Pembayaran',
+    'deleted'       => 'Hapus data Pembayaran telah berhasil.',
+    'undeleted'     => 'Data Pembayaran gagal dihapus.',
+    'search'        => 'Cari Pembayaran',
+    'found'         => 'Pembayaran ditemukan',
+    'not_found'     => 'Pembayaran tidak ditemukan',
+    'empty'         => 'Belum ada Pembayaran',
+    'back_to_index' => 'Kembali ke daftar Pembayaran',
+    'description'   => 'Deskripsi',
+    'date'          => 'Tanggal Pembayaran',
+    'type'          => 'Jenis Transaksi',
+    'project'       => 'Project',
+    'customer'      => 'Dari/Kepada',
+    'amount'        => 'Jumlah',
+    'payer'         => 'Pembayar',
+];

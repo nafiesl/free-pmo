@@ -1,0 +1,67 @@
+<?php
+
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+class MemberResetPasswordTest extends TestCase
+{
+    use DatabaseTransactions;
+
+    /** @test */
+    public function member_can_reset_password_by_their_email()
+    {
+        $user = factory(App\Entities\Users\User::class)->create();
+
+        // Reset Request
+        $this->visit('auth/forgot-password');
+        $this->notSeeInDatabase('password_resets', [
+            'email' => $user->email
+        ]);
+        $this->see('Reset Password');
+        $this->type($user->email,'email');
+        $this->press('Kirim Link Reset Password');
+        $this->seePageIs('auth/forgot-password');
+        $this->see('Kami sudah mengirim email');
+        $this->seeInDatabase('password_resets', [
+            'email' => $user->email
+        ]);
+
+        // Reset Action
+        $resetData = DB::table('password_resets')->where('email', $user->email)->first();
+        $token = $resetData->token;
+
+        $this->visit('auth/reset/' . $token);
+        $this->see('Reset Password');
+        $this->see('Password Baru');
+
+        // Enter an invalid email
+        $this->type('mail@mail.com','email');
+        $this->type('rahasia','password');
+        $this->type('rahasia','password_confirmation');
+        $this->press('Reset Password');
+        $this->see('Kami tidak dapat menemukan pengguna dengan email tersebut');
+
+        // Enter a valid email
+        $this->type($user->email,'email');
+        $this->type('rahasia','password');
+        $this->type('rahasia','password_confirmation');
+        $this->press('Reset Password');
+
+
+        $this->seePageIs('home');
+
+        $this->notSeeInDatabase('password_resets', [
+            'email' => $user->email
+        ]);
+
+        // Logout and login using new Password
+        $this->click('Keluar');
+        $this->seePageIs('auth/login');
+        $this->type($user->username,'username');
+        $this->type('rahasia','password');
+        $this->press('Login');
+        $this->seePageIs('home');
+    }
+
+}

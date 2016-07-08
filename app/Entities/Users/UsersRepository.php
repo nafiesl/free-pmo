@@ -29,6 +29,7 @@ class UsersRepository extends BaseRepository
                 $query->whereIn('name', explode('|', $rolesString));
             }
         })
+        ->with('roles')
         ->paginate($this->_paginate);
     }
 

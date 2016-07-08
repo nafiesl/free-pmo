@@ -21,6 +21,9 @@
                 </ul>
             </li>
             @endcan
+            @can('manage_subscriptions')
+            <li>{!! html_link_to_route('subscriptions.index', trans('subscription.subscription'), [], ['icon' => 'retweet']) !!}</li>
+            @endcan
             @can('manage_payments')
             <li>
                 {!! html_link_to_route('payments.index', trans('payment.payments') . ' <span class="fa arrow"></span>', [], ['icon' => 'money']) !!}

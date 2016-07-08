@@ -2,6 +2,7 @@
 
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
+use App\Entities\Subscriptions\Subscription;
 use App\Entities\Users\User;
 
 /*
@@ -58,6 +59,28 @@ $factory->define(Payment::class, function (Faker\Generator $faker) {
         'type' => rand(0,1),
         'date' => $faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'),
         'description' => $faker->paragraph,
+        'customer_id' => $customerId,
+    ];
+});
+
+$factory->define(Subscription::class, function (Faker\Generator $faker) {
+    $projectId = factory(Project::class)->create()->id;
+
+    $customer = factory(User::class)->create();
+    $customer->assignRole('customer');
+    $customerId = $customer->id;
+    $startDate = Carbon::parse($faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'));
+
+    return [
+        'project_id' => $projectId,
+        'domain_name' => 'www.' . str_random(10) . '.com',
+        'domain_price' => 125000,
+        'epp_code' => str_random(10),
+        'hosting_capacity' => rand(1,3) . ' GB',
+        'hosting_price' => rand(1,5) * 100000,
+        'start_date' => $startDate->format('Y-m-d'),
+        'due_date' => $startDate->addYears(1)->format('Y-m-d'),
+        'remark' => $faker->paragraph,
         'customer_id' => $customerId,
     ];
 });

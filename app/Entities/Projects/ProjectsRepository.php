@@ -77,4 +77,9 @@ class ProjectsRepository extends BaseRepository
 
         return $project->delete();
     }
+
+    public function getProjectFeatures($projectId)
+    {
+        return Feature::whereProjectId($projectId)->with('worker')->get();
+    }
 }

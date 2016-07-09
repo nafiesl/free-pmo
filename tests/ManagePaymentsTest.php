@@ -87,4 +87,42 @@ class ManagePaymentsTest extends TestCase
         $this->seePageIs('payments');
         $this->see(trans('payment.deleted'));
     }
+
+    /** @test */
+    public function admin_can_see_a_payment()
+    {
+        $user = factory(User::class)->create();
+        $user->assignRole('admin');
+        $this->actingAs($user);
+
+        $project = factory(Project::class)->create(['owner_id' => $user->id]);
+        $payment = factory(Payment::class)->create(['project_id' => $project->id]);
+
+        $this->visit('/payments');
+        $this->click('Lihat');
+        $this->seePageIs('payments/' . $payment->id);
+        $this->see(trans('payment.show'));
+        $this->see($payment->date);
+        $this->see(formatRp($payment->amount));
+        $this->see($payment->description);
+        $this->see($payment->customer->name);
+    }
+
+    /** @test */
+    public function admin_can_see_all_payments()
+    {
+        $user = factory(User::class)->create();
+        $user->assignRole('admin');
+        $this->actingAs($user);
+
+        $payments = factory(Payment::class, 10)->create();
+        $this->assertEquals(10, $payments->count());
+
+        $this->visit('/payments');
+        $this->see($payments[9]->project->name);
+        $this->see($payments[9]->date);
+        $this->see(formatRp($payments[9]->amount));
+        $this->see($payments[9]->description);
+        $this->see($payments[9]->customer->name);
+    }
 }

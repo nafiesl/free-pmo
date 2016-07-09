@@ -6,7 +6,7 @@ return [
     'name'          => 'Nama Fitur',
     'create'        => 'Input Fitur Baru',
     'created'       => 'Input Fitur baru telah berhasil.',
-    'show'          => 'Edit Fitur',
+    'show'          => 'Detail Fitur',
     'edit'          => 'Edit Fitur',
     'update'        => 'Update Fitur',
     'updated'       => 'Update data Fitur telah berhasil.',
@@ -21,6 +21,7 @@ return [
     'progress'      => 'Progress',
     'worker'        => 'Pekerja',
     'price'         => 'Nilai Fitur',
+    'price_total'   => 'Nilai Fitur Total',
     'empty'         => 'Belum ada Fitur',
     'back_to_index' => 'Kembali ke daftar Fitur',
 ];

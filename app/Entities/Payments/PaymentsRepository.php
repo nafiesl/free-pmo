@@ -18,7 +18,7 @@ class PaymentsRepository extends BaseRepository
 
     public function getAll($q)
     {
-        return $this->model->latest()
+        return $this->model->orderBy('date','desc')
             ->paginate($this->_paginate);
     }
 }

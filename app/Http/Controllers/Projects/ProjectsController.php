@@ -87,7 +87,8 @@ class ProjectsController extends Controller {
 	public function features($projectId)
 	{
 	    $project = $this->repo->requireById($projectId);
-		return view('projects.features', compact('project'));
+	    $features = $this->repo->getProjectFeatures($projectId);
+		return view('projects.features', compact('project','features'));
 	}
 
 	public function payments($projectId)

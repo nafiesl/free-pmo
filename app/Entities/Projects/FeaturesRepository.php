@@ -3,6 +3,7 @@
 namespace App\Entities\Projects;
 
 use App\Entities\BaseRepository;
+use App\Entities\Projects\Project;
 
 /**
 * Features Repository Class
@@ -21,10 +22,9 @@ class FeaturesRepository extends BaseRepository
         return Project::findOrFail($projectId);
     }
 
-    public function create($featureData)
+    public function createFeature($featureData, $projectId)
     {
-        dd($featureData);
-        $featureData['feature_value'] = $featureData['proposal_value'];
+        $featureData['project_id'] = $projectId;
         return $this->storeArray($featureData);
     }
 }

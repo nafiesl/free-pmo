@@ -26,11 +26,11 @@ class FeaturesController extends Controller {
 		return view('features.create',compact('project','workers'));
 	}
 
-	public function store(CreateRequest $req)
+	public function store(CreateRequest $req, $projectId)
 	{
-		$feature = $this->repo->create($req->except('_token'));
+		$feature = $this->repo->createFeature($req->except('_token'), $projectId);
 		flash()->success(trans('feature.created'));
-		return redirect()->route('features.show', $feature->id);
+		return redirect()->route('projects.features', $feature->project_id);
 	}
 
 	public function show($featureId)
@@ -42,14 +42,15 @@ class FeaturesController extends Controller {
 	public function edit($featureId)
 	{
 		$feature = $this->repo->requireById($featureId);
-		return view('features.edit',compact('feature'));
+		$workers = $this->repo->getWorkersList();
+		return view('features.edit',compact('feature','workers'));
 	}
 
 	public function update(UpdateRequest $req, $featureId)
 	{
 		$feature = $this->repo->update($req->except(['_method','_token']), $featureId);
 		flash()->success(trans('feature.updated'));
-		return redirect()->route('features.edit', $featureId);
+		return redirect()->route('projects.features', $feature->project_id);
 	}
 
 	public function delete($featureId)
@@ -60,15 +61,18 @@ class FeaturesController extends Controller {
 
 	public function destroy(DeleteRequest $req, $featureId)
 	{
+	    $feature = $this->repo->requireById($featureId);
+	    $projectId = $feature->project_id;
 		if ($featureId == $req->get('feature_id'))
 		{
-			$this->repo->delete($featureId);
+			// $feature->tasks()->delete();
+			$feature->delete();
 	        flash()->success(trans('feature.deleted'));
 		}
 		else
 			flash()->error(trans('feature.undeleted'));
 
-		return redirect()->route('features.index');
+		return redirect()->route('projects.features', $projectId);
 	}
 
 	public function tasks($featureId)

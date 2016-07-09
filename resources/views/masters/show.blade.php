@@ -11,7 +11,7 @@
             <div class="panel-body">
                 <table class="table table-condensed">
                     <tbody>
-                        <tr><th>{{ trans('app.name') }}</th><td>{{ $master->name }}</td></tr>
+                        <tr><th>{{ trans('master.name') }}</th><td>{{ $master->name }}</td></tr>
                         <tr><th>{{ trans('app.description') }}</th><td>{{ $master->description }}</td></tr>
                     </tbody>
                 </table>

@@ -24,6 +24,6 @@
     </div>
     <div class="panel-footer">
         {!! link_to_route('projects.edit', trans('project.edit'), [$project->id], ['class' => 'btn btn-warning']) !!}
-        {!! link_to_route('projects.index', trans('project.back_to_index'), [], ['class' => 'btn btn-default']) !!}
+        {!! link_to_route('projects.index', trans('project.back_to_index'), ['status' => $project->status_id], ['class' => 'btn btn-default']) !!}
     </div>
 </div>

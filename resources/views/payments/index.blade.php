@@ -20,8 +20,9 @@
         <th class="col-md-3">{{ trans('payment.project') }}</th>
         <th class="col-md-1 text-center">{{ trans('app.date') }}</th>
         <th class="col-md-2 text-right">{{ trans('payment.amount') }}</th>
-        <th class="col-md-4">{{ trans('payment.description') }}</th>
-        <th class="col-md-2">{{ trans('app.action') }}</th>
+        <th class="col-md-3">{{ trans('payment.description') }}</th>
+        <th class="col-md-2">{{ trans('payment.customer') }}</th>
+        <th class="col-md-1">{{ trans('app.action') }}</th>
     </thead>
     <tbody>
         @forelse($payments as $key => $payment)
@@ -31,8 +32,9 @@
             <td class="text-center">{{ $payment->date }}</td>
             <td class="text-right">{{ formatRp($payment->amount) }}</td>
             <td>{{ $payment->description }}</td>
+            <td>{{ $payment->customer->name }}</td>
             <td>
-                {!! link_to_route('payments.show',trans('app.show'),[$payment->id],['class'=>'btn btn-info btn-xs']) !!}
+                {!! link_to_route('payments.show','Lihat',[$payment->id],['class'=>'btn btn-info btn-xs']) !!}
                 {!! link_to_route('payments.edit',trans('app.edit'),[$payment->id],['class'=>'btn btn-warning btn-xs']) !!}
             </td>
         </tr>

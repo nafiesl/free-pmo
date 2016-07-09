@@ -1,6 +1,7 @@
 <?php
 
 use App\Entities\Payments\Payment;
+use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
 use App\Entities\Users\User;
@@ -27,14 +28,17 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Project::class, function (Faker\Generator $faker) {
+
     $proposalDate = $faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d');
     $startDate = Carbon::parse($proposalDate)->addDays(10);
     $endDate = $startDate->addDays(rand(1,13) * 7);
+    $owner = factory(User::class)->create();
+    $owner->assignRole('admin');
     $customer = factory(User::class)->create();
     $customer->assignRole('customer');
 
     return [
-        'name' => $faker->sentence,
+        'name' => $faker->sentence(3),
         'description' => $faker->paragraph,
         'proposal_date' => $proposalDate,
         'start_date' => $startDate->format('Y-m-d'),
@@ -42,29 +46,28 @@ $factory->define(Project::class, function (Faker\Generator $faker) {
         'project_value' => $projectValue = rand(1,10) * 500000,
         'proposal_value' => $projectValue,
         'status_id' => rand(1,6),
+        'owner_id' => $owner->id,
         'customer_id' => $customer->id
     ];
 });
 
 $factory->define(Payment::class, function (Faker\Generator $faker) {
-    $projectId = factory(Project::class)->create()->id;
-
-    $customer = factory(User::class)->create();
-    $customer->assignRole('customer');
-    $customerId = $customer->id;
 
     return [
-        'project_id' => $projectId,
+        'project_id' => function() {
+            return factory(Project::class)->create()->id;
+        },
         'amount' => rand(1,5) * 500000,
         'type' => rand(0,1),
         'date' => $faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'),
         'description' => $faker->paragraph,
-        'customer_id' => $customerId,
+        'customer_id' => function() {
+            return factory(User::class)->create()->id;
+        },
     ];
 });
 
 $factory->define(Subscription::class, function (Faker\Generator $faker) {
-    $projectId = factory(Project::class)->create()->id;
 
     $customer = factory(User::class)->create();
     $customer->assignRole('customer');
@@ -72,7 +75,9 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
     $startDate = Carbon::parse($faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'));
 
     return [
-        'project_id' => $projectId,
+        'project_id' => function() {
+            return factory(Project::class)->create()->id;
+        },
         'domain_name' => 'www.' . str_random(10) . '.com',
         'domain_price' => 125000,
         'epp_code' => str_random(10),
@@ -82,5 +87,20 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
         'due_date' => $startDate->addYears(1)->format('Y-m-d'),
         'remark' => $faker->paragraph,
         'customer_id' => $customerId,
+    ];
+});
+
+$factory->define(Feature::class, function (Faker\Generator $faker) {
+
+    return [
+        'project_id' => function() {
+            return factory(Project::class)->create()->id;
+        },
+        'name' => $faker->sentence(3),
+        'price' => rand(1,10) * 100000,
+        'description' => $faker->paragraph,
+        'worker_id' => function() {
+            return factory(User::class)->create()->id;
+        },
     ];
 });

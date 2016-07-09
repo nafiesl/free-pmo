@@ -21,6 +21,21 @@
                 </ul>
             </li>
             @endcan
+            @can('see_reports')
+            <li>
+                {!! html_link_to_route('reports.payments.index', 'Laporan <span class="fa arrow"></span>', [], ['icon' => 'line-chart']) !!}
+                <ul class="nav nav-second-level">
+                    <li>
+                        {!! html_link_to_route('reports.payments.index', 'Pembayaran <span class="fa arrow"></span>') !!}
+                        <ul class="nav nav-third-level">
+                            <li>{!! link_to_route('reports.payments.yearly', 'Tahunan') !!}</li>
+                            <li>{!! link_to_route('reports.payments.monthly', 'Bulanan') !!}</li>
+                            <li>{!! link_to_route('reports.payments.daily', 'Harian') !!}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            @endcan
             @can('manage_subscriptions')
             <li>{!! html_link_to_route('subscriptions.index', trans('subscription.subscription'), [], ['icon' => 'retweet']) !!}</li>
             @endcan

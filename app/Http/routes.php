@@ -9,3 +9,4 @@ require __DIR__ . '/routes/backup.php';
 require __DIR__ . '/routes/projects.php';
 require __DIR__ . '/routes/payments.php';
 require __DIR__ . '/routes/subscriptions.php';
+require __DIR__ . '/routes/reports.php';

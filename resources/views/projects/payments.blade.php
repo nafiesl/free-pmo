@@ -41,7 +41,11 @@
                 <th class="text-right">{{ formatRp($total) }}</th>
                 <th colspan="5"></th>
             </tr>
-            <tr><td colspan="6">{!! html_link_to_route('payments.create', trans('payment.create'), [$project->id], ['class' => 'btn btn-primary','icon' => 'plus']) !!}</td></tr>
+            <tr>
+                <td colspan="6">
+                    {!! html_link_to_route('payments.create', trans('payment.create'), ['project_id' => $project->id,'customer_id' => $project->customer_id], ['class' => 'btn btn-primary','icon' => 'plus']) !!}
+                </td>
+            </tr>
         </tfoot>
     </table>
 </div>

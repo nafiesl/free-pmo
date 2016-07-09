@@ -3,12 +3,14 @@
 @section('title', trans('payment.edit'))
 
 @section('content')
-<div class="row"><br>
-    <div class="col-md-4">
+@include('payments.partials.breadcrumb',['title' => trans('payment.edit')])
+
+<div class="row">
+    <div class="col-md-6">
         {!! Form::model($payment, ['route'=>['payments.update', $payment->id], 'method' => 'patch']) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('payment.edit') }}</h3></div>
-        <div class="panel-body">
+            <div class="panel-body">
                 {!! FormField::radios('type', ['Pengeluaran','Pemasukan'], ['label'=> trans('payment.type')]) !!}
                 <div class="row">
                     <div class="col-md-6">
@@ -18,8 +20,14 @@
                         {!! FormField::text('amount',['label'=> trans('payment.amount'),'addon' => ['before'=>'Rp'],'type' => 'number','class' => 'text-right']) !!}
                     </div>
                 </div>
-                {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project')]) !!}
-                {!! FormField::select('customer_id', $customers, ['label'=> trans('payment.customer')]) !!}
+                <div class="row">
+                    <div class="col-sm-6">
+                        {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project')]) !!}
+                    </div>
+                    <div class="col-sm-6">
+                        {!! FormField::select('customer_id', $customers, ['label'=> trans('payment.customer')]) !!}
+                    </div>
+                </div>
                 {!! FormField::textarea('description',['label'=> trans('payment.description')]) !!}
             </div>
 

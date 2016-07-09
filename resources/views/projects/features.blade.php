@@ -24,9 +24,18 @@
             @forelse($features as $key => $feature)
             <tr>
                 <td>{{ 1 + $key }}</td>
-                <td>{{ $feature->name }}</td>
-                <td class="text-center">{{ $feature->tasks_count = rand(3, 7) }}</td>
-                <td class="text-center">{{ $feature->progress = rand(70, 100) }} %</td>
+                <td>
+                    {{ $feature->name }}
+                    @if ($feature->tasks->isEmpty() == false)
+                    <ul>
+                        @foreach($feature->tasks as $task)
+                        <li style="cursor:pointer" title="{{ $task->description }}">{{ $task->name }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
+                </td>
+                <td class="text-center">{{ $feature->tasks_count = $feature->tasks->count() }}</td>
+                <td class="text-center">{{ formatDecimal($feature->progress = $feature->tasks->avg('progress')) }} %</td>
                 <td class="text-right">{{ formatRp($feature->price) }}</td>
                 <td>{{ $feature->worker->name }}</td>
                 <td>{!! link_to_route('features.show', trans('app.show'),[$feature->id],['class' => 'btn btn-info btn-xs']) !!}</td>

@@ -3,6 +3,7 @@
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
+use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
 use App\Entities\Users\User;
 
@@ -102,5 +103,17 @@ $factory->define(Feature::class, function (Faker\Generator $faker) {
         'worker_id' => function() {
             return factory(User::class)->create()->id;
         },
+    ];
+});
+
+$factory->define(Task::class, function (Faker\Generator $faker) {
+
+    return [
+        'feature_id' => function() {
+            return factory(Feature::class)->create()->id;
+        },
+        'name' => $faker->sentence(3),
+        'description' => $faker->paragraph,
+        'progress' => rand(40,100),
     ];
 });

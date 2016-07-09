@@ -27,4 +27,14 @@ class FeaturesRepository extends BaseRepository
         $featureData['project_id'] = $projectId;
         return $this->storeArray($featureData);
     }
+
+    public function getTasksByFeatureId($featureId)
+    {
+        return Task::whereFeatureId($featureId)->get();
+    }
+
+    public function requireTaskById($taskId)
+    {
+        return Task::findOrFail($taskId);
+    }
 }

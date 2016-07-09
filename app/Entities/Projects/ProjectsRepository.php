@@ -80,6 +80,6 @@ class ProjectsRepository extends BaseRepository
 
     public function getProjectFeatures($projectId)
     {
-        return Feature::whereProjectId($projectId)->with('worker')->get();
+        return Feature::whereProjectId($projectId)->with('worker','tasks')->get();
     }
 }

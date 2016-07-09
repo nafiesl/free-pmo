@@ -33,10 +33,20 @@ class FeaturesController extends Controller {
 		return redirect()->route('projects.features', $feature->project_id);
 	}
 
-	public function show($featureId)
+	public function show(Request $req, $featureId)
 	{
+		$editableTask = null;
 		$feature = $this->repo->requireById($featureId);
-		return view('features.show', compact('feature'));
+
+		if ($req->get('action') == 'task_edit' && $req->has('task_id')) {
+			$editableTask = $this->repo->requireTaskById($req->get('task_id'));
+		}
+
+		if ($req->get('action') == 'task_delete' && $req->has('task_id')) {
+			$editableTask = $this->repo->requireTaskById($req->get('task_id'));
+		}
+
+		return view('features.show', compact('feature','editableTask'));
 	}
 
 	public function edit($featureId)
@@ -73,12 +83,6 @@ class FeaturesController extends Controller {
 			flash()->error(trans('feature.undeleted'));
 
 		return redirect()->route('projects.features', $projectId);
-	}
-
-	public function tasks($featureId)
-	{
-	    $feature = $this->repo->requireById($featureId);
-		return view('features.features', compact('feature'));
 	}
 
 }

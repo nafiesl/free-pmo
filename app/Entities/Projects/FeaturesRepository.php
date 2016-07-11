@@ -25,6 +25,7 @@ class FeaturesRepository extends BaseRepository
     public function createFeature($featureData, $projectId)
     {
         $featureData['project_id'] = $projectId;
+        $featureData['price'] = str_replace('.', '', $featureData['price']);
         return $this->storeArray($featureData);
     }
 
@@ -36,5 +37,17 @@ class FeaturesRepository extends BaseRepository
     public function requireTaskById($taskId)
     {
         return Task::findOrFail($taskId);
+    }
+
+    public function update($featureData = [], $featureId)
+    {
+        foreach ($featureData as $key => $value) {
+            if (!$featureData[$key]) $featureData[$key] = null;
+        }
+
+        $featureData['price'] = str_replace('.', '', $featureData['price']);
+        $feature = $this->requireById($featureId);
+        $feature->update($featureData);
+        return $feature;
     }
 }

@@ -28,7 +28,7 @@ class CreateRequest extends Request {
 		return [
 			'name' => 'required|max:60',
 			'worker_id' => 'required|numeric',
-			'price' => 'required|numeric',
+			'price' => 'required',
 			'description' => 'max:255',
 		];
 	}

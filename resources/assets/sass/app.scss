@@ -20,7 +20,6 @@ ul, ol {
 }
 
 #wrapper {
-    // border-top: 2px solid #e7e7e7;
 }
 
 .breadcrumb {
@@ -45,7 +44,7 @@ h1.page-header {
 }
 
 .sidebar-logo {
-    width: 150px;
+    width: 100px;
     margin: auto;
 }
 
@@ -70,7 +69,7 @@ label.control-label {
 
 @media(min-width:768px) {
     #page-wrapper {
-        margin-left: 220px;
+        margin-left: 200px;
         padding: 0;
     }
 /*
@@ -88,7 +87,7 @@ label.control-label {
 
     .sidebar {
         margin-top: 0px;
-        width: 220px;
+        width: 200px;
         box-shadow: none;
     }
 
@@ -141,8 +140,13 @@ h3.site-description {
     padding: 0 10px;
 }
 
-.panel .table {
-    margin-bottom: 0;
+.panel {
+    .table {
+        margin-bottom: 0;
+    }
+    .lead {
+        margin-bottom: 0;
+    }
 }
 
 @media (max-width: 480px) {
@@ -151,9 +155,12 @@ h3.site-description {
     }
 }
 
-.nav .nav-second-level>li.active {
-    text-decoration: none;
-    background-color: #eee;
+.nav {
+    .nav-second-level {
+        li.active {
+            text-decoration: none;
+        }
+    }
 }
 
 .form-control {

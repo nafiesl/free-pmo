@@ -59,7 +59,6 @@
 </table>
 @endsection
 
-
 @section('ext_css')
     {!! Html::style(url('assets/css/plugins/jquery.datetimepicker.css')) !!}
 @endsection

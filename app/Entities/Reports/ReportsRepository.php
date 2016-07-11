@@ -4,6 +4,7 @@ namespace App\Entities\Reports;
 
 use App\Entities\BaseRepository;
 use App\Entities\Payments\Payment;
+use App\Entities\Projects\Project;
 use DB;
 
 /**
@@ -44,6 +45,14 @@ class ReportsRepository extends BaseRepository
             ->groupBy(DB::raw('MONTH(date)'))
             ->orderBy('date','asc')
             ->get();
+    }
+
+    public function getCurrentCredits()
+    {
+        $projects = Project::whereIn('status_id',[3,6])->with('payments')->get();
+        return $projects->filter(function($project) {
+            return $project->cashInTotal() < $project->project_value;
+        })->values();
     }
 
 }

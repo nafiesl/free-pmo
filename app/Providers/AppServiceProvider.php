@@ -16,11 +16,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         require_once app_path() . '/helpers.php';
-        $projectCounts = Project::select(DB::raw('status_id, count(id) as count'))
+        $projectsCount = Project::select(DB::raw('status_id, count(id) as count'))
                             ->groupBy('status_id')
                             ->lists('count','status_id')
                             ->all();
-        view()->share('projectCounts', $projectCounts);
+        view()->share('projectsCount', $projectsCount);
     }
 
     /**

@@ -3,6 +3,7 @@
     <table class="table table-condensed">
         <tbody>
             <tr><th>{{ trans('payment.date') }}</th><td>{{ $payment->date }}</td></tr>
+            <tr><th>{{ trans('payment.type') }}</th><td>{{ $payment->type ? trans('payment.cash_in') : trans('payment.cash_out') }}</td></tr>
             <tr><th>{{ trans('payment.amount') }}</th><td class="text-right">{{ $payment->present()->amount }}</td></tr>
             <tr><th>{{ trans('payment.description') }}</th><td>{{ $payment->description }}</td></tr>
             <tr><th>{{ trans('payment.customer') }}</th><td>{{ $payment->customer->name }}</td></tr>
@@ -10,6 +11,6 @@
     </table>
     <div class="panel-footer">
         {!! link_to_route('payments.edit', trans('payment.edit'), [$payment->id], ['class' => 'btn btn-warning']) !!}
-        {!! link_to_route('payments.index', trans('payment.back_to_index'), [], ['class' => 'btn btn-default']) !!}
+        {!! link_to_route('projects.payments', 'Kembali ke Daftar Pembayaran Project', [$payment->project_id], ['class' => 'btn btn-default']) !!}
     </div>
 </div>

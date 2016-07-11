@@ -124,8 +124,8 @@ class ManageFeaturesTest extends TestCase
         $this->actingAs($user);
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
-        $features = factory(Feature::class, 10)->create(['project_id' => $project->id]);
-        $this->assertEquals(10, $features->count());
+        $features = factory(Feature::class, 5)->create(['project_id' => $project->id]);
+        $this->assertEquals(5, $features->count());
 
         $this->visit('projects/' . $project->id . '/features');
         $this->see($features[1]->name);

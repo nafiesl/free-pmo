@@ -77,7 +77,7 @@ class ManageProjectsTest extends TestCase
         $this->actingAs($user);
 
         $project = factory(Project::class)->create();
-        $this->visit('/projects');
+        $this->visit('/projects?status=' . $project->status_id);
         $this->click(trans('app.edit'));
         $this->click(trans('app.delete'));
         $this->press(trans('app.delete_confirm_button'));

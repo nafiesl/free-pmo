@@ -7,7 +7,7 @@
 @include('projects.partials.breadcrumb',['title' => trans('project.edit')])
 
 <div class="row">
-    <div class="col-md-6 col-md-offset-2">
+    <div class="col-md-7 col-md-offset-2">
         {!! Form::model($project, ['route'=>['projects.update', $project->id], 'method' => 'patch']) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ $project->name }}</h3></div>

@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         {!! Form::open(['route'=>'payments.store']) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('payment.create') }}</h3></div>
@@ -19,8 +19,14 @@
                         {!! FormField::price('amount', ['label'=> trans('payment.amount')]) !!}
                     </div>
                 </div>
-                {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project'),'value' => Request::get('project_id')]) !!}
-                {!! FormField::select('customer_id', $customers, ['label'=> trans('payment.customer'),'value' => Request::get('customer_id')]) !!}
+                <div class="row">
+                    <div class="col-md-6">
+                        {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project'),'value' => Request::get('project_id')]) !!}
+                    </div>
+                    <div class="col-md-6">
+                        {!! FormField::select('customer_id', $customers, ['label'=> trans('payment.customer'),'value' => Request::get('customer_id')]) !!}
+                    </div>
+                </div>
                 {!! FormField::textarea('description',['label'=> trans('payment.description'),'rows' => 3]) !!}
             </div>
 
@@ -32,4 +38,30 @@
         {!! Form::close() !!}
     </div>
 </div>
+@endsection
+
+@section('ext_css')
+    {!! Html::style(url('assets/css/plugins/jquery.datetimepicker.css')) !!}
+@endsection
+
+@section('ext_js')
+    {!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
+    {!! Html::script(url('assets/js/plugins/autoNumeric.min.js')) !!}
+@endsection
+
+@section('script')
+<script>
+(function() {
+    $('#date').datetimepicker({
+        timepicker:false,
+        format:'Y-m-d',
+        closeOnDateSelect: true
+    });
+    $('#amount').autoNumeric("init",{
+        aSep: '.',
+        aDec: ',',
+        mDec: '0'
+    });
+})();
+</script>
 @endsection

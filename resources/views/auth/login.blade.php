@@ -7,7 +7,7 @@
     <div class="text-center">
         <img src="{{ url('assets/imgs/logo.png') }}" alt="Logo {{ Option::get('app_owner') }}">
     </div>
-    <h3 class="text-center">{{ Option::get('app_title','Aplikasi Laravel') }}</h3>
+    <h3 class="text-center">{{ Option::get('app_name','Aplikasi Laravel') }}</h3>
     <div class="panel panel-default">
         <div class="panel-body">
             @include('flash::message')

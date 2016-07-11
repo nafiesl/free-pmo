@@ -15,10 +15,7 @@ class PagesController extends Controller {
 
     public function home()
     {
-        $totalIncome = $this->repo->getTotalIncome();
-        $totalExpenditure = $this->repo->getTotalExpenditure();
-
-        return view('pages.home', compact('totalIncome','totalExpenditure'));
+        return view('pages.home');
     }
 
     public function about()

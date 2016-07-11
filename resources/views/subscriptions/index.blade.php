@@ -18,23 +18,21 @@
     <thead>
         <th>{{ trans('app.table_no') }}</th>
         <th>{{ trans('subscription.domain_name') }}</th>
-        <th>{{ trans('subscription.hosting_capacity') }}</th>
+        <th class="text-center">{{ trans('subscription.hosting_capacity') }}</th>
         <th>{{ trans('subscription.start_date') }}</th>
         <th>{{ trans('subscription.due_date') }}</th>
-        <th>{{ trans('subscription.extension_price') }}</th>
+        <th class="text-right">{{ trans('subscription.extension_price') }}</th>
         <th>{{ trans('app.action') }}</th>
     </thead>
     <tbody>
         @forelse($subscriptions as $key => $subscription)
         <tr {{ Carbon::parse($subscription->due_date)->diffInDays(Carbon::now()) < 60 ? 'class=bg-danger' : '' }}>
-            <td>
-                {{ $subscriptions->firstItem() + $key }}
-            </td>
+            <td>{{ $subscriptions->firstItem() + $key }}</td>
             <td>{{ $subscription->domain_name }}</td>
-            <td>{{ $subscription->hosting_capacity }}</td>
+            <td class="text-center">{{ $subscription->hosting_capacity }}</td>
             <td>{{ dateId($subscription->start_date) }}</td>
             <td>{{ dateId($subscription->due_date) }}</td>
-            <td>{{ formatRp($subscription->domain_price + $subscription->hosting_price) }}</td>
+            <td class="text-right">{{ formatRp($subscription->domain_price + $subscription->hosting_price) }}</td>
             <td>
                 {!! link_to_route('subscriptions.show',trans('app.show'),[$subscription->id],['class'=>'btn btn-info btn-xs']) !!}
                 {!! link_to_route('subscriptions.edit',trans('app.edit'),[$subscription->id],['class'=>'btn btn-warning btn-xs']) !!}
@@ -42,7 +40,7 @@
         </tr>
         @empty
         <tr>
-            <td colspan="5">{{ trans('subscription.not_found') }}</td>
+            <td colspan="7">{{ trans('subscription.not_found') }}</td>
         </tr>
         @endforelse
     </tbody>

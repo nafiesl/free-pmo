@@ -4,20 +4,19 @@
             {!! Html::image(url('assets/imgs/logo.png'),'Logo ' . Option::get('app_name','Laravel'), ['class' => 'sidebar-logo']) !!}
         </a>
         <ul class="nav" id="side-menu">
-            <li>{!! html_link_to_route('home', 'Home', [], ['icon' => 'home']) !!}</li>
+            <li>{!! html_link_to_route('home', 'Dashboard', [], ['icon' => 'dashboard']) !!}</li>
             @can('manage_projects')
             <li>
                 {!! html_link_to_route('projects.index', trans('project.projects') . ' <span class="fa arrow"></span>', [], ['icon' => 'table']) !!}
-                <ul class="nav nav-second-level in">
+                <ul class="nav nav-second-level">
                     @foreach(getProjectStatusesList() as $key => $status)
                     <li>
                         <a href="{{ route('projects.index', ['status' => $key]) }}">
                             {{ $status }}
-                            <span class="badge pull-right">{{ in_array($key, array_keys($projectCounts)) ? $projectCounts[$key] : 0 }}</span>
+                            <span class="badge pull-right">{{ array_key_exists($key, $projectsCount) ? $projectsCount[$key] : 0 }}</span>
                         </a>
                     </li>
                     @endforeach
-                    <li>{!! html_link_to_route('projects.index', 'Semua Project') !!}</li>
                 </ul>
             </li>
             @endcan
@@ -33,6 +32,7 @@
                             <li>{!! link_to_route('reports.payments.daily', 'Harian') !!}</li>
                         </ul>
                     </li>
+                    <li>{!! html_link_to_route('reports.current-credits', 'Piutang') !!}</li>
                 </ul>
             </li>
             @endcan
@@ -40,12 +40,7 @@
             <li>{!! html_link_to_route('subscriptions.index', trans('subscription.subscription'), [], ['icon' => 'retweet']) !!}</li>
             @endcan
             @can('manage_payments')
-            <li>
-                {!! html_link_to_route('payments.index', trans('payment.payments') . ' <span class="fa arrow"></span>', [], ['icon' => 'money']) !!}
-                <ul class="nav nav-second-level">
-                    <li>{!! link_to_route('payments.index', trans('payment.payments')) !!}</li>
-                </ul>
-            </li>
+            <li>{!! html_link_to_route('payments.index', trans('payment.payments'), [], ['icon' => 'money']) !!}</li>
             @endcan
             @can('manage_users')
             <li>

@@ -12,7 +12,7 @@ class ManagePaymentsTest extends TestCase
     use DatabaseTransactions;
 
     /** @test */
-    public function admin_can_entry_project_a_payment()
+    public function admin_can_entry_project_a_cashin_payment()
     {
         $user = factory(User::class)->create();
         $user->assignRole('admin');
@@ -41,6 +41,37 @@ class ManagePaymentsTest extends TestCase
         $this->seeInDatabase('payments', ['project_id' => $project->id,'amount' => 1000000,'type' => 1,'date' => '2015-05-01']);
     }
 
+
+    /** @test */
+    public function admin_can_entry_project_a_cashout_payment()
+    {
+        $user = factory(User::class)->create();
+        $user->assignRole('admin');
+        $this->actingAs($user);
+
+        $project = factory(Project::class)->create();
+
+        $customer = factory(User::class)->create();
+        $customer->assignRole('customer');
+
+        $this->visit('payments');
+        $this->seePageIs('payments');
+        $this->click(trans('payment.create'));
+
+        // Fill Form
+        $this->seePageIs('payments/create');
+        $this->type('2015-05-01','date');
+        $this->select(0,'type');
+        $this->type(1000000,'amount');
+        $this->select($project->id, 'project_id');
+        $this->select($customer->id, 'customer_id');
+        $this->type('Pembayaran DP','description');
+        $this->press(trans('payment.create'));
+
+        $this->see(trans('payment.created'));
+        $this->seeInDatabase('payments', ['project_id' => $project->id,'amount' => 1000000,'type' => 0,'date' => '2015-05-01']);
+    }
+
     /** @test */
     public function admin_can_edit_payment_data()
     {
@@ -62,7 +93,7 @@ class ManagePaymentsTest extends TestCase
         $this->type(1234567890,'amount');
         $this->press(trans('payment.update'));
 
-        $this->seePageIs('payments/' . $payment->id . '/edit');
+        $this->seePageIs('payments/' . $payment->id);
         $this->see(trans('payment.updated'));
         $this->seeInDatabase('payments', [
             'customer_id' => $customer->id,
@@ -84,7 +115,7 @@ class ManagePaymentsTest extends TestCase
         $this->click(trans('app.edit'));
         $this->click(trans('payment.delete'));
         $this->press(trans('app.delete_confirm_button'));
-        $this->seePageIs('payments');
+        $this->seePageIs('projects/' . $payment->project_id . '/payments');
         $this->see(trans('payment.deleted'));
     }
 
@@ -115,14 +146,14 @@ class ManagePaymentsTest extends TestCase
         $user->assignRole('admin');
         $this->actingAs($user);
 
-        $payments = factory(Payment::class, 10)->create();
-        $this->assertEquals(10, $payments->count());
+        $payments = factory(Payment::class, 5)->create();
+        $this->assertEquals(5, $payments->count());
 
         $this->visit('/payments');
-        $this->see($payments[9]->project->name);
-        $this->see($payments[9]->date);
-        $this->see(formatRp($payments[9]->amount));
-        $this->see($payments[9]->description);
-        $this->see($payments[9]->customer->name);
+        $this->see($payments[4]->project->name);
+        $this->see($payments[4]->date);
+        $this->see(formatRp($payments[4]->amount));
+        $this->see($payments[4]->description);
+        $this->see($payments[4]->customer->name);
     }
 }

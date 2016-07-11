@@ -22,7 +22,7 @@ class ProjectsController extends Controller {
 	public function index(Request $req)
 	{
 		$status = null;
-		$statusId = $req->get('status');
+		$statusId = $req->get('status', 3);
 		if ($statusId) {
 			$status = $this->repo->getStatusName($statusId);
 		}
@@ -94,6 +94,7 @@ class ProjectsController extends Controller {
 	public function payments($projectId)
 	{
 	    $project = $this->repo->requireById($projectId);
+	    $project->load('payments.customer');
 		return view('projects.payments', compact('project'));
 	}
 

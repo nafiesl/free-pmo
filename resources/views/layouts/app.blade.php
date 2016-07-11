@@ -27,7 +27,7 @@
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
-    {{-- @include('layouts.partials.footer') --}}
+        @include('layouts.partials.footer')
     </div>
     <!-- /#wrapper -->
 

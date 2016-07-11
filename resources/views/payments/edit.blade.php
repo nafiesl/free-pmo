@@ -17,7 +17,7 @@
                         {!! FormField::text('date',['label'=> trans('app.date')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::text('amount',['label'=> trans('payment.amount'),'addon' => ['before'=>'Rp'],'type' => 'number','class' => 'text-right']) !!}
+                        {!! FormField::price('amount',['label'=> trans('payment.amount')]) !!}
                     </div>
                 </div>
                 <div class="row">
@@ -40,4 +40,30 @@
         {!! Form::close() !!}
     </div>
 </div>
+@endsection
+
+@section('ext_css')
+    {!! Html::style(url('assets/css/plugins/jquery.datetimepicker.css')) !!}
+@endsection
+
+@section('ext_js')
+    {!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
+    {!! Html::script(url('assets/js/plugins/autoNumeric.min.js')) !!}
+@endsection
+
+@section('script')
+<script>
+(function() {
+    $('#date').datetimepicker({
+        timepicker:false,
+        format:'Y-m-d',
+        closeOnDateSelect: true
+    });
+    $('#amount').autoNumeric("init",{
+        aSep: '.',
+        aDec: ',',
+        mDec: '0'
+    });
+})();
+</script>
 @endsection

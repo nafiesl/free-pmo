@@ -36,7 +36,7 @@ class PaymentsController extends Controller {
 	{
 		$payment = $this->repo->create($req->except('_token'));
 		flash()->success(trans('payment.created'));
-		return redirect()->route('payments.show', $payment->id);
+		return redirect()->route('projects.payments', $payment->project_id);
 	}
 
 	public function show($paymentId)
@@ -57,7 +57,7 @@ class PaymentsController extends Controller {
 	{
 		$payment = $this->repo->update($req->except(['_method','_token']), $paymentId);
 		flash()->success(trans('payment.updated'));
-		return redirect()->route('payments.edit', $paymentId);
+		return redirect()->route('payments.show', $paymentId);
 	}
 
 	public function delete($paymentId)
@@ -68,15 +68,17 @@ class PaymentsController extends Controller {
 
 	public function destroy(DeleteRequest $req, $paymentId)
 	{
+		$payment = $this->repo->requireById($paymentId);
+		$projectId = $payment->project_id;
 		if ($paymentId == $req->get('payment_id'))
 		{
-			$this->repo->delete($paymentId);
+			$payment->delete();
 	        flash()->success(trans('payment.deleted'));
 		}
 		else
 			flash()->error(trans('payment.undeleted'));
 
-		return redirect()->route('payments.index');
+		return redirect()->route('projects.payments', $projectId);
 	}
 
 }

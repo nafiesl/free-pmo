@@ -130,17 +130,15 @@ class ManageSubscriptionsTest extends TestCase
         $user->assignRole('admin');
         $this->actingAs($user);
 
-        $subscriptions = factory(Subscription::class, 30)->create();
-        $this->assertEquals(30, $subscriptions->count());
+        $subscriptions = factory(Subscription::class, 5)->create();
+        $this->assertEquals(5, $subscriptions->count());
 
         $this->visit('/subscriptions');
-        $this->see($subscriptions[1]->domain_name);
-        $this->see($subscriptions[1]->hosting_capacity);
-        $this->see(dateId($subscriptions[1]->start_date));
-        $this->see(dateId($subscriptions[1]->due_date));
-        $this->see(formatRp($subscriptions[1]->domain_price + $subscriptions[1]->hosting_price));
+        $this->see($subscriptions[4]->domain_name);
+        $this->see($subscriptions[4]->hosting_capacity);
+        $this->see(dateId($subscriptions[4]->start_date));
+        $this->see(dateId($subscriptions[4]->due_date));
+        $this->see(formatRp($subscriptions[4]->domain_price + $subscriptions[4]->hosting_price));
 
-        $this->click('2');
-        $this->seePageIs('/subscriptions?page=2');
     }
 }

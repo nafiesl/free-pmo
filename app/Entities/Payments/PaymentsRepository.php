@@ -19,6 +19,26 @@ class PaymentsRepository extends BaseRepository
     public function getAll($q)
     {
         return $this->model->orderBy('date','desc')
+            ->with('customer','project')
             ->paginate($this->_paginate);
+    }
+
+    public function create($paymentData)
+    {
+        $paymentData['owner_id'] = auth()->id();
+        $paymentData['amount'] = str_replace('.', '', $paymentData['amount']);
+        return $this->storeArray($paymentData);
+    }
+
+    public function update($paymentData = [], $paymentId)
+    {
+        foreach ($paymentData as $key => $value) {
+            if (!$paymentData[$key]) $paymentData[$key] = null;
+        }
+
+        $paymentData['amount'] = str_replace('.', '', $paymentData['amount']);
+        $payment = $this->requireById($paymentId);
+        $payment->update($paymentData);
+        return $payment;
     }
 }

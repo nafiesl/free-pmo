@@ -8,4 +8,5 @@ Route::group(['middleware' => ['web','role:admin'],'prefix' => 'reports'], funct
     Route::get('payments/daily', ['as'=>'reports.payments.daily', 'uses' => 'ReportsController@daily']);
     Route::get('payments/monthly', ['as'=>'reports.payments.monthly', 'uses' => 'ReportsController@monthly']);
     Route::get('payments/yearly', ['as'=>'reports.payments.yearly', 'uses' => 'ReportsController@yearly']);
+    Route::get('current-credits', ['as'=>'reports.current-credits', 'uses' => 'ReportsController@currentCredits']);
 });

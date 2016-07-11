@@ -291,10 +291,8 @@ class FormField
 
     public function price($name, $options = [])
     {
-        $options['type'] = 'number';
         $options['addon'] = ['before' => isset($options['currency']) ? $options['currency'] : 'Rp'];
         $options['class'] = 'text-right';
-        $options['min'] = '0';
         return $this->text($name, $options);
     }
 

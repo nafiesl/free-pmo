@@ -24,5 +24,7 @@ return [
     'project'       => 'Project',
     'customer'      => 'Dari/Kepada',
     'amount'        => 'Jumlah',
+    'cash_in'       => 'Pemasukan',
+    'cash_out'      => 'Pengeluaran',
     'payer'         => 'Pembayar',
 ];

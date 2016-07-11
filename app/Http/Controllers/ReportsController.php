@@ -55,4 +55,10 @@ class ReportsController extends Controller {
 		return view('reports.payments.yearly', compact('reports','years','year'));
 	}
 
+	public function currentCredits()
+	{
+	    $projects = $this->repo->getCurrentCredits();
+		return view('reports.current-credits', compact('projects'));
+	}
+
 }

@@ -27,8 +27,9 @@ class UpdateRequest extends Request {
 	{
 		return [
 			'name' => 'required|max:60',
-			'worker_id' => 'required|numeric',
 			'price' => 'required',
+			'worker_id' => 'required|numeric',
+			'type_id' => 'required|numeric',
 			'description' => 'max:255',
 		];
 	}

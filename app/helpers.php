@@ -198,11 +198,14 @@ function html_link_to_route($name, $title = null, $parameters = [], $attributes 
 function getProjectStatusesList($statusId = null) {
     $statuses = [1 => 'Planned','On Progress','Done','Closed','Canceled','On Hold'];
 
-    if (!is_null($statusId) && array_key_exists($statusId, $statuses)) {
+    if (is_null($statusId))
+        return $statuses;
+
+    if (array_key_exists($statusId, $statuses)) {
         return $statuses[$statusId];
     }
 
-    return $statuses;
+    return null;
 }
 
 function dateDifference($date1 , $date2 , $differenceFormat = '%m Bulan %d Hari' )
@@ -213,5 +216,17 @@ function dateDifference($date1 , $date2 , $differenceFormat = '%m Bulan %d Hari'
     $interval = date_diff($datetime1, $datetime2);
 
     return $interval->format($differenceFormat);
+}
 
+function paymentTypes($paymentTypeId = null)
+{
+    $paymentTypes = [1 => 'Project', 'Add Feature', 'Maintenance'];
+
+    if (is_null($paymentTypeId))
+        return $paymentTypes;
+
+    if (array_key_exists($paymentTypeId, $paymentTypes))
+        return $paymentTypes[$paymentTypeId];
+
+    return null;
 }

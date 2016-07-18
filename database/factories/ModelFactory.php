@@ -55,16 +55,14 @@ $factory->define(Project::class, function (Faker\Generator $faker) {
 $factory->define(Payment::class, function (Faker\Generator $faker) {
 
     return [
-        'project_id' => function() {
-            return factory(Project::class)->create()->id;
-        },
+        'project_id' => factory(Project::class)->create()->id,
         'amount' => rand(1,5) * 500000,
-        'type' => rand(0,1),
+        'in_out' => rand(0,1),
+        'type_id' => rand(1,3),
         'date' => $faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'),
         'description' => $faker->paragraph,
-        'customer_id' => function() {
-            return factory(User::class)->create()->id;
-        },
+        'owner_id' => factory(User::class)->create()->id,
+        'customer_id' => factory(User::class)->create()->id,
     ];
 });
 
@@ -76,9 +74,7 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
     $startDate = Carbon::parse($faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'));
 
     return [
-        'project_id' => function() {
-            return factory(Project::class)->create()->id;
-        },
+        'project_id' => factory(Project::class)->create()->id,
         'domain_name' => 'www.' . str_random(10) . '.com',
         'domain_price' => 125000,
         'epp_code' => str_random(10),
@@ -94,24 +90,19 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
 $factory->define(Feature::class, function (Faker\Generator $faker) {
 
     return [
-        'project_id' => function() {
-            return factory(Project::class)->create()->id;
-        },
+        'project_id' => factory(Project::class)->create()->id,
         'name' => $faker->sentence(3),
         'price' => rand(1,10) * 100000,
         'description' => $faker->paragraph,
-        'worker_id' => function() {
-            return factory(User::class)->create()->id;
-        },
+        'worker_id' => factory(User::class)->create()->id,
+        'type_id' => rand(1,2),
     ];
 });
 
 $factory->define(Task::class, function (Faker\Generator $faker) {
 
     return [
-        'feature_id' => function() {
-            return factory(Feature::class)->create()->id;
-        },
+        'feature_id' => factory(Feature::class)->create()->id,
         'name' => $faker->sentence(3),
         'description' => $faker->paragraph,
         'progress' => rand(40,100),

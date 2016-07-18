@@ -28,13 +28,14 @@ class ManageTasksTest extends TestCase
         // Fill Form
         $this->type('Nama Task Baru','name');
         $this->type('Ipsam magnam laboriosam distinctio officia facere sapiente eius corporis','description');
+        $this->type(70,'progress');
         $this->press(trans('task.create'));
 
         $this->seePageIs('features/' . $feature->id);
         $this->see(trans('task.created'));
         $this->seeInDatabase('tasks', [
             'name' => 'Nama Task Baru',
-            'progress' => 0,
+            'progress' => 70,
             'feature_id' => $feature->id
         ]);
     }
@@ -101,15 +102,15 @@ class ManageTasksTest extends TestCase
 
         $feature = factory(Feature::class)->create(['worker_id' => $user->id]);
 
-        $tasks = factory(Task::class, 10)->create(['feature_id' => $feature->id]);
-        $this->assertEquals(10, $tasks->count());
+        $tasks = factory(Task::class, 5)->create(['feature_id' => $feature->id]);
+        $this->assertEquals(5, $tasks->count());
 
         $this->visit('features/' . $feature->id);
         $this->see($tasks[1]->name);
         $this->see($tasks[1]->progress);
         $this->see($tasks[1]->description);
-        $this->see($tasks[9]->name);
-        $this->see($tasks[9]->progress);
-        $this->see($tasks[9]->description);
+        $this->see($tasks[4]->name);
+        $this->see($tasks[4]->progress);
+        $this->see($tasks[4]->description);
     }
 }

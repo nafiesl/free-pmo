@@ -30,7 +30,7 @@ class ManagePaymentsTest extends TestCase
         // Fill Form
         $this->seePageIs('payments/create');
         $this->type('2015-05-01','date');
-        $this->select(1,'type');
+        $this->select(1,'in_out');
         $this->type(1000000,'amount');
         $this->select($project->id, 'project_id');
         $this->select($customer->id, 'customer_id');
@@ -38,7 +38,7 @@ class ManagePaymentsTest extends TestCase
         $this->press(trans('payment.create'));
 
         $this->see(trans('payment.created'));
-        $this->seeInDatabase('payments', ['project_id' => $project->id,'amount' => 1000000,'type' => 1,'date' => '2015-05-01']);
+        $this->seeInDatabase('payments', ['project_id' => $project->id,'amount' => 1000000,'in_out' => 1,'date' => '2015-05-01']);
     }
 
 
@@ -61,7 +61,8 @@ class ManagePaymentsTest extends TestCase
         // Fill Form
         $this->seePageIs('payments/create');
         $this->type('2015-05-01','date');
-        $this->select(0,'type');
+        $this->select(0,'in_out');
+        $this->select(3,'type_id');
         $this->type(1000000,'amount');
         $this->select($project->id, 'project_id');
         $this->select($customer->id, 'customer_id');
@@ -69,7 +70,7 @@ class ManagePaymentsTest extends TestCase
         $this->press(trans('payment.create'));
 
         $this->see(trans('payment.created'));
-        $this->seeInDatabase('payments', ['project_id' => $project->id,'amount' => 1000000,'type' => 0,'date' => '2015-05-01']);
+        $this->seeInDatabase('payments', ['project_id' => $project->id,'amount' => 1000000,'in_out' => 0,'date' => '2015-05-01']);
     }
 
     /** @test */
@@ -84,12 +85,13 @@ class ManagePaymentsTest extends TestCase
         $customer = factory(User::class)->create();
         $customer->assignRole('customer');
 
-        $payment = factory(Payment::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
+        $payment = factory(Payment::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id, 'owner_id' => $user->id]);
 
         $this->visit('payments/' . $payment->id . '/edit');
         $this->seePageIs('payments/' . $payment->id . '/edit');
         $this->type('2016-05-20','date');
-        $this->select(1, 'type');
+        $this->select(1, 'in_out');
+        $this->select(3,'type_id');
         $this->type(1234567890,'amount');
         $this->press(trans('payment.update'));
 
@@ -127,7 +129,7 @@ class ManagePaymentsTest extends TestCase
         $this->actingAs($user);
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
-        $payment = factory(Payment::class)->create(['project_id' => $project->id]);
+        $payment = factory(Payment::class)->create(['project_id' => $project->id,'owner_id' => $user->id]);
 
         $this->visit('/payments');
         $this->click('Lihat');

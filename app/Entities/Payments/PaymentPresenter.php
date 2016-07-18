@@ -8,7 +8,7 @@ class PaymentPresenter extends Presenter
 {
     public function amount()
     {
-        return $this->entity->type == 0 ? formatRp(-$this->entity->amount) : formatRp($this->entity->amount);
+        return $this->entity->in_out == 0 ? formatRp(-$this->entity->amount) : formatRp($this->entity->amount);
     }
 
     public function projectLink()
@@ -19,5 +19,10 @@ class PaymentPresenter extends Presenter
     public function projectPaymentsLink()
     {
         return link_to_route('projects.payments', trans('project.payments'), [$this->project_id]);
+    }
+
+    public function type()
+    {
+        return paymentTypes($this->entity->type_id);
     }
 }

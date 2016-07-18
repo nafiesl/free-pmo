@@ -10,8 +10,4 @@
             <tr><th>{{ trans('feature.description') }}</th><td>{!! nl2br($feature->description) !!}</td></tr>
         </tbody>
     </table>
-    <div class="panel-footer">
-        {!! link_to_route('features.edit', trans('feature.edit'), [$feature->id], ['class' => 'btn btn-warning']) !!}
-        {!! link_to_route('projects.features', trans('feature.back_to_index'), [$feature->project_id], ['class' => 'btn btn-default']) !!}
-    </div>
 </div>

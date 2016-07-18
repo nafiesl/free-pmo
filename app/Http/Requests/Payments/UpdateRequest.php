@@ -25,9 +25,10 @@ class UpdateRequest extends Request {
 	{
 		return [
 			'date' => 'required|date|date_format:Y-m-d',
-			'type' => 'required|numeric',
+			'in_out' => 'required|numeric',
 			'amount' => 'required',
 			'project_id' => 'required|numeric',
+			'type_id' => 'required|numeric',
 			'customer_id' => 'required|numeric',
 			'description' => 'required|max:255',
 		];

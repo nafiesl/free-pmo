@@ -44,7 +44,7 @@
                 {!! link_to_route('payments.show','Lihat',[$payment->id],['title' => 'Lihat Detail Pembayaran','target' => '_blank','class'=>'btn btn-info btn-xs']) !!}
             </td>
         </tr>
-        <?php $total = $payment->type == 0 ? $total - $payment->amount : $total + $payment->amount ?>
+        <?php $total = $payment->in_out == 0 ? $total - $payment->amount : $total + $payment->amount ?>
         @empty
         <tr><td colspan="5">{{ trans('payment.not_found') }}</td></tr>
         @endforelse

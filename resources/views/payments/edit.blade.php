@@ -11,7 +11,14 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('payment.edit') }}</h3></div>
             <div class="panel-body">
-                {!! FormField::radios('type', ['Pengeluaran','Pemasukan'], ['label'=> trans('payment.type')]) !!}
+                <div class="row">
+                    <div class="col-md-6">
+                        {!! FormField::radios('in_out',['Pengeluaran','Pemasukan'],['label'=> trans('payment.in_out'),'value' => 1]) !!}
+                    </div>
+                    <div class="col-md-6">
+                        {!! FormField::radios('type_id', paymentTypes(), ['label'=> trans('payment.type'),'value' => 1,'list_style' => 'unstyled']) !!}
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-6">
                         {!! FormField::text('date',['label'=> trans('app.date')]) !!}

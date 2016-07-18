@@ -33,6 +33,7 @@ class ManageFeaturesTest extends TestCase
         $this->type('Nama Fitur Baru','name');
         $this->type(100000,'price');
         $this->select($worker->id, 'worker_id');
+        $this->select(1, 'type_id');
         $this->type('Similique, eligendi fuga animi? Ipsam magnam laboriosam distinctio officia facere sapiente eius corporis','description');
         $this->press(trans('feature.create'));
 
@@ -42,6 +43,7 @@ class ManageFeaturesTest extends TestCase
             'name' => 'Nama Fitur Baru',
             'price' => 100000,
             'worker_id' => $worker->id,
+            'type_id' => 1,
             'project_id' => $project->id
         ]);
     }
@@ -66,6 +68,7 @@ class ManageFeaturesTest extends TestCase
         $this->type('Nama Fitur Edit','name');
         $this->type(33333,'price');
         $this->select($user[2]->id,'worker_id');
+        $this->select(2, 'type_id');
         $this->press(trans('feature.update'));
 
         $this->seePageIs('projects/' . $project->id . '/features');
@@ -74,7 +77,8 @@ class ManageFeaturesTest extends TestCase
             'name' => 'Nama Fitur Edit',
             'price' => 33333,
             'worker_id' => $user[2]->id,
-            'project_id' => $project->id
+            'project_id' => $project->id,
+            'type_id' => 2
         ]);
     }
 

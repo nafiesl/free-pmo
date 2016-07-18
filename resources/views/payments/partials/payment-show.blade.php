@@ -3,7 +3,8 @@
     <table class="table table-condensed">
         <tbody>
             <tr><th>{{ trans('payment.date') }}</th><td>{{ $payment->date }}</td></tr>
-            <tr><th>{{ trans('payment.type') }}</th><td>{{ $payment->type ? trans('payment.cash_in') : trans('payment.cash_out') }}</td></tr>
+            <tr><th>{{ trans('payment.in_out') }}</th><td>{{ $payment->in_out ? trans('payment.cash_in') : trans('payment.cash_out') }}</td></tr>
+            <tr><th>{{ trans('payment.type') }}</th><td>{{ $payment->present()->type_id }}</td></tr>
             <tr><th>{{ trans('payment.amount') }}</th><td class="text-right">{{ $payment->present()->amount }}</td></tr>
             <tr><th>{{ trans('payment.description') }}</th><td>{{ $payment->description }}</td></tr>
             <tr><th>{{ trans('payment.customer') }}</th><td>{{ $payment->customer->name }}</td></tr>

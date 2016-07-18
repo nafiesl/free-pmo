@@ -5,7 +5,12 @@
 @section('content')
 @include('projects.partials.breadcrumb',['title' => trans('project.features')])
 
-<h1 class="page-header">{{ $project->name }} <small>{{ trans('project.features') }}</small></h1>
+<h1 class="page-header">
+    <div class="pull-right">
+        {!! html_link_to_route('features.create', trans('feature.create'), [$project->id], ['class' => 'btn btn-primary','icon' => 'plus']) !!}
+    </div>
+    {{ $project->name }} <small>{{ trans('project.features') }}</small>
+</h1>
 
 @include('projects.partials.nav-tabs')
 
@@ -38,7 +43,10 @@
                 <td class="text-center">{{ formatDecimal($feature->progress = $feature->tasks->avg('progress')) }} %</td>
                 <td class="text-right">{{ formatRp($feature->price) }}</td>
                 <td>{{ $feature->worker->name }}</td>
-                <td>{!! link_to_route('features.show', trans('app.show'),[$feature->id],['class' => 'btn btn-info btn-xs']) !!}</td>
+                <td>
+                    {!! link_to_route('features.show', trans('app.show'),[$feature->id],['class' => 'btn btn-info btn-xs']) !!}
+                    {!! link_to_route('features.edit', trans('app.edit'),[$feature->id],['class' => 'btn btn-warning btn-xs']) !!}
+                </td>
             </tr>
             @empty
             <tr><td colspan="7">{{ trans('feature.empty') }}</td></tr>
@@ -52,7 +60,6 @@
                 <th class="text-right">{{ formatRp($features->sum('price')) }}</th>
                 <th colspan="2"></th>
             </tr>
-            <tr><td colspan="7">{!! html_link_to_route('features.create', trans('feature.create'), [$project->id], ['class' => 'btn btn-primary','icon' => 'plus']) !!}</td></tr>
         </tfoot>
     </table>
 </div>

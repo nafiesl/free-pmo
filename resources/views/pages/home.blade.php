@@ -81,7 +81,7 @@
         <div class="panel panel-danger">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-3"><i class="fa fa-thumbs-o-down fa-5x"></i></div>
+                    <div class="col-xs-3"><i class="fa fa-smile-o fa-5x"></i></div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">{{ array_key_exists(5, $projectsCount) ? $projectsCount[5] : 0 }}</div>
                         <div class="lead">{{ getProjectStatusesList(5) }}</div>
@@ -99,7 +99,7 @@
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-3"><i class="fa fa-hand-stop-o fa-5x"></i></div>
+                    <div class="col-xs-3"><i class="fa fa-hand-paper-o fa-5x"></i></div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">{{ array_key_exists(6, $projectsCount) ? $projectsCount[6] : 0 }}</div>
                         <div class="lead">{{ getProjectStatusesList(6) }}</div>

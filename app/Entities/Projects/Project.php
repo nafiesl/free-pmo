@@ -34,14 +34,14 @@ class Project extends Model {
     public function cashInTotal()
     {
         return $this->payments->sum(function($payment) {
-            return $payment->type == 1 ? $payment->amount : 0;
+            return $payment->in_out == 1 ? $payment->amount : 0;
         });
     }
 
     public function cashOutTotal()
     {
         return $this->payments->sum(function($payment) {
-            return $payment->type == 0 ? $payment->amount : 0;
+            return $payment->in_out == 0 ? $payment->amount : 0;
         });
     }
 

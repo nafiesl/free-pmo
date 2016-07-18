@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-md-9">
 
-        <?php $groupedPayments = $project->payments->groupBy('type'); ?>
+        <?php $groupedPayments = $project->payments->groupBy('in_out'); ?>
         @foreach ($groupedPayments as $key => $payments)
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ $key == 1 ? 'Pemasukan' : 'Pengeluaran' }}</h3></div>

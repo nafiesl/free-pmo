@@ -21,6 +21,7 @@ return [
     'progress'      => 'Progress',
     'worker'        => 'Pekerja',
     'price'         => 'Nilai Fitur',
+    'type'          => 'Jenis Fitur',
     'tasks'         => 'Daftar Task',
     'price_total'   => 'Nilai Fitur Total',
     'empty'         => 'Belum ada Fitur',

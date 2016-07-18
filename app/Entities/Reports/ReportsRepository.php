@@ -29,7 +29,7 @@ class ReportsRepository extends BaseRepository
 
     public function getMonthlyReports($year, $month)
     {
-        return Payment::select(DB::raw("date, count(`id`) as count, sum(if(type = 1, amount, 0)) AS cashin, sum(if(type = 0, amount, 0)) AS cashout, type"))
+        return Payment::select(DB::raw("date, count(`id`) as count, sum(if(in_out = 1, amount, 0)) AS cashin, sum(if(in_out = 0, amount, 0)) AS cashout, in_out"))
             ->where(DB::raw('YEAR(date)'), $year)
             ->where(DB::raw('MONTH(date)'), $month)
             ->groupBy('date')
@@ -39,7 +39,7 @@ class ReportsRepository extends BaseRepository
 
     public function getYearlyReports($year)
     {
-        return Payment::select(DB::raw("MONTH(date) as month, count(`id`) as count, sum(if(type = 1, amount, 0)) AS cashin, sum(if(type = 0, amount, 0)) AS cashout, type"))
+        return Payment::select(DB::raw("MONTH(date) as month, count(`id`) as count, sum(if(in_out = 1, amount, 0)) AS cashin, sum(if(in_out = 0, amount, 0)) AS cashout, in_out"))
             ->where(DB::raw('YEAR(date)'), $year)
             ->groupBy(DB::raw('YEAR(date)'))
             ->groupBy(DB::raw('MONTH(date)'))

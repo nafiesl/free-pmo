@@ -10,15 +10,18 @@
             <div class="panel-heading"><h3 class="panel-title">{{ $feature->name }} <small>{{ trans('feature.edit') }}</small></h3></div>
             <div class="panel-body">
                 {!! FormField::text('name',['label'=> trans('feature.name')]) !!}
-                {!! FormField::textarea('description',['label'=> trans('feature.description')]) !!}
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         {!! FormField::price('price', ['label'=> trans('feature.price')]) !!}
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         {!! FormField::select('worker_id', $workers, ['label'=> trans('feature.worker'),'value' => 1]) !!}
                     </div>
+                    <div class="col-sm-4">
+                        {!! FormField::radios('type_id', [1 => 'Project','Tambahan'], ['value' => 1,'label'=> trans('feature.type'),'list_style' => 'unstyled']) !!}
+                    </div>
                 </div>
+                {!! FormField::textarea('description',['label'=> trans('feature.description')]) !!}
             </div>
 
             <div class="panel-footer">

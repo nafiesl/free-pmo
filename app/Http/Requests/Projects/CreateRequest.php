@@ -13,7 +13,7 @@ class CreateRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return auth()->user()->can('manage_projects');
+		return auth()->user()->can('add_project');
 	}
 
 	/**

@@ -13,19 +13,18 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function admin_can_input_new_project_with_existing_customer()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $users = factory(User::class, 2)->create();
+        $users[0]->assignRole('admin');
+        $this->actingAs($users[0]);
 
-        $user = factory(User::class)->create();
-        $user->assignRole('customer');
+        $users[1]->assignRole('customer');
 
         $this->visit('/projects');
         $this->seePageIs('/projects');
         $this->click(trans('project.create'));
         $this->seePageIs('/projects/create');
         $this->type('Project Baru','name');
-        $this->select($user->id,'customer_id');
+        $this->select($users[1]->id,'customer_id');
         $this->type('2016-04-15','proposal_date');
         $this->type('2000000','proposal_value');
         $this->type('Deskripsi project baru','description');
@@ -76,7 +75,7 @@ class ManageProjectsTest extends TestCase
         $user->assignRole('admin');
         $this->actingAs($user);
 
-        $project = factory(Project::class)->create();
+        $project = factory(Project::class)->create(['owner_id' => $user->id]);
         $this->visit('/projects?status=' . $project->status_id);
         $this->click(trans('app.edit'));
         $this->click(trans('app.delete'));
@@ -84,4 +83,63 @@ class ManageProjectsTest extends TestCase
         $this->seePageIs('projects');
         $this->see(trans('project.deleted'));
     }
+
+    /** @test */
+    public function admin_can_edit_a_project()
+    {
+        $users = factory(User::class, 2)->create();
+        $users[0]->assignRole('admin');
+        $this->actingAs($users[0]);
+
+        $project = factory(Project::class)->create(['owner_id' => $users[0]->id]);
+        $users[1]->assignRole('customer');
+
+        $this->visit('projects/' . $project->id . '/edit');
+        $this->seePageIs('projects/' . $project->id . '/edit');
+
+        $this->type('Edit Project','name');
+        $this->type('2016-04-15','proposal_date');
+        $this->type('2016-04-25','start_date');
+        $this->type('2016-05-05','end_date');
+        $this->type(2000000,'proposal_value');
+        $this->type(2000000,'project_value');
+        $this->select(4,'status_id');
+        $this->select($users[1]->id,'customer_id');
+        $this->type('Edit deskripsi project','description');
+        $this->press(trans('project.update'));
+
+        $this->seeInDatabase('projects',[
+            'id' => $project->id,
+            'name' => 'Edit Project',
+            'proposal_date' => '2016-04-15',
+            'start_date' => '2016-04-25',
+            'end_date' => '2016-05-05',
+            'customer_id' => $users[1]->id,
+            'description' => 'Edit deskripsi project',
+        ]);
+    }
+
+    /** @test */
+    public function form_is_validated_on_invalid_project_entry()
+    {
+        $users = factory(User::class, 2)->create();
+        $users[0]->assignRole('admin');
+        $this->actingAs($users[0]);
+
+        $users[1]->assignRole('customer');
+
+        $this->visit('/projects');
+        $this->seePageIs('/projects');
+        $this->click(trans('project.create'));
+        $this->seePageIs('/projects/create');
+        $this->type('','name');
+        $this->select($users[1]->id,'customer_id');
+        $this->type('2016-04-15aa','proposal_date');
+        $this->type('','proposal_value');
+        $this->type('Deskripsi project baru','description');
+        $this->press(trans('project.create'));
+        $this->seePageIs('/projects/create');
+        $this->see('Mohon periksa kembali form isian Anda.');
+    }
+
 }

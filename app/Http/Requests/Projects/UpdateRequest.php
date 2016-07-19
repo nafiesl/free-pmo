@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Projects;
 
+use App\Entities\Projects\Project;
 use App\Http\Requests\Request;
 
 class UpdateRequest extends Request {
@@ -13,7 +14,8 @@ class UpdateRequest extends Request {
 	 */
 	public function authorize()
 	{
-		return auth()->user()->can('manage_projects');
+		$project = Project::findOrFail($this->segment(2));
+		return auth()->user()->can('manage_project', $project);
 	}
 
 	/**

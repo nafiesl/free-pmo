@@ -4,7 +4,6 @@ namespace App\Services;
 use Form;
 use Illuminate\Support\Collection;
 use Illuminate\Support\MessageBag;
-use Session;
 
 /**
 * FormField Class (Site FormField Service)
@@ -18,7 +17,7 @@ class FormField
 
     public function __construct()
     {
-        $this->errorBag = Session::get('errors', new MessageBag);;
+        $this->errorBag = session()->get('errors', new MessageBag);
     }
 
     public function text($name, $options = [])

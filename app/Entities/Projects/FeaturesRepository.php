@@ -4,6 +4,7 @@ namespace App\Entities\Projects;
 
 use App\Entities\BaseRepository;
 use App\Entities\Projects\Project;
+use DB;
 
 /**
 * Features Repository Class
@@ -27,6 +28,30 @@ class FeaturesRepository extends BaseRepository
         $featureData['project_id'] = $projectId;
         $featureData['price'] = str_replace('.', '', $featureData['price']);
         return $this->storeArray($featureData);
+    }
+
+    public function createFeatures($featuresData, $projectId)
+    {
+        $selectedFeatures = $this->model->whereIn('id', $featuresData['feature_ids'])->get();
+
+        DB::beginTransaction();
+        foreach ($selectedFeatures as $feature) {
+            $newFeature = $feature->replicate();
+            $newFeature->project_id = $projectId;
+            $newFeature->save();
+
+            $selectedTasks = $feature->tasks()->whereIn('id', $featuresData[$feature->id . '_task_ids'])->get();
+
+            foreach ($selectedTasks as $task) {
+                $newTask = $task->replicate();
+                $newTask->progress = 0;
+                $newTask->feature_id = $newFeature->id;
+                $newTask->save();
+            }
+        }
+        DB::commit();
+
+        return 'ok';
     }
 
     public function getTasksByFeatureId($featureId)

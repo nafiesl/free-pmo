@@ -9,7 +9,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-3"><i class="fa fa-thumb-tack fa-5x"></i></div>
+                    <div class="col-xs-3"><i class="fa fa-paperclip fa-5x"></i></div>
                     <div class="col-xs-9 text-right">
                         <div class="huge">{{ array_key_exists(1, $projectsCount) ? $projectsCount[1] : 0 }}</div>
                         <div class="lead">{{ getProjectStatusesList(1) }}</div>

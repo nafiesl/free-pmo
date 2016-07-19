@@ -34,6 +34,14 @@ class AuthServiceProvider extends ServiceProvider
             });
         }
 
+        $gate->define('add_project', function ($user) {
+            return $user->hasRole('admin');
+        });
+
+        $gate->define('manage_project', function ($user, $project) {
+            return $user->id == $project->owner_id;
+        });
+
         $gate->define('manage_features', function ($user, $project) {
             return $user->id == $project->owner_id;
         });

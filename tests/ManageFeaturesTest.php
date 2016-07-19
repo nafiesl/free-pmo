@@ -2,6 +2,7 @@
 
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
+use App\Entities\Projects\Task;
 use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -135,5 +136,74 @@ class ManageFeaturesTest extends TestCase
         $this->see($features[1]->name);
         $this->see($features[1]->worker->name);
         $this->see(formatRp($features[1]->price));
+    }
+
+    /** @test */
+    public function admin_may_clone_many_features_from_other_projects()
+    {
+        $user = factory(User::class)->create();
+        $user->assignRole('admin');
+        $this->actingAs($user);
+
+        $projects = factory(Project::class, 2)->create(['owner_id' => $user->id]);
+        $features = factory(Feature::class, 3)->create(['project_id' => $projects[0]->id]);
+        $tasks1 = factory(Task::class, 3)->create(['feature_id' => $features[0]->id]);
+        $tasks2 = factory(Task::class, 3)->create(['feature_id' => $features[1]->id]);
+
+        $this->visit('projects/' . $projects[1]->id . '/features');
+        $this->seePageIs('projects/' . $projects[1]->id . '/features');
+        $this->click(trans('feature.add_from_other_project'));
+        $this->seePageIs('projects/' . $projects[1]->id . '/features/add-from-other-project');
+        $this->select($projects[0]->id, 'project_id');
+        $this->press('Lihat Fitur');
+        $this->seePageIs('projects/' . $projects[1]->id . '/features/add-from-other-project?project_id=' . $projects[0]->id);
+
+        // $this->submitForm(trans('feature.create'), [
+        //     'feature_ids' => [$features[0]->id,$features[1]->id],
+        //     $features[0]->id . '_task_ids' => [$tasks1[0]->id,$tasks1[1]->id,$tasks1[2]->id],
+        //     $features[1]->id . '_task_ids' => [$tasks2[0]->id,$tasks2[1]->id,$tasks2[2]->id],
+        // ]);
+
+        // $this->check('feature_ids[0]');
+        // $this->check('feature_ids[1]');
+        // $this->check($features[0]->id . '_task_ids[0]');
+        // $this->check($features[0]->id . '_task_ids[1]');
+        // $this->check($features[0]->id . '_task_ids[2]');
+        // $this->check($features[1]->id . '_task_ids[0]');
+        // $this->check($features[1]->id . '_task_ids[1]');
+        // $this->check($features[1]->id . '_task_ids[2]');
+        // $this->press(trans('feature.create'));
+
+        $form = $this->getForm(trans('feature.create'));
+        $form['feature_ids'][$features[0]->id]->tick();
+        $form['feature_ids'][$features[1]->id]->tick();
+        $form[$features[0]->id . '_task_ids'][$tasks1[0]->id]->tick();
+        $form[$features[0]->id . '_task_ids'][$tasks1[1]->id]->tick();
+        $form[$features[0]->id . '_task_ids'][$tasks1[2]->id]->tick();
+        $form[$features[1]->id . '_task_ids'][$tasks2[0]->id]->tick();
+        $form[$features[1]->id . '_task_ids'][$tasks2[1]->id]->tick();
+        $form[$features[1]->id . '_task_ids'][$tasks2[2]->id]->tick();
+        $this->makeRequestUsingForm($form);
+
+        $this->seePageIs('projects/' . $projects[1]->id . '/features');
+        $this->see(trans('feature.created_from_other_project'));
+        $this->seeInDatabase('features', [
+            'project_id' => $projects[1]->id,
+            'name' => $features[0]->name,
+            'price' => $features[0]->price,
+            'worker_id' => $features[0]->worker_id,
+        ]);
+        $this->seeInDatabase('features', [
+            'project_id' => $projects[1]->id,
+            'name' => $features[1]->name,
+            'price' => $features[1]->price,
+            'worker_id' => $features[1]->worker_id,
+        ]);
+        // $this->seeInDatabase('tasks', [
+        //     'feature_id' => $features[1]->id,
+        //     'name' => $tasks1[0]->name,
+        //     'price' => $features[1]->price,
+        //     'worker_id' => $features[1]->worker_id,
+        // ]);
     }
 }

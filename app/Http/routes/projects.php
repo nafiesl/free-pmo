@@ -12,8 +12,11 @@ Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Projects'], 
     /**
      * Features Routes
      */
+
     Route::get('projects/{id}/features/create', ['as'=>'features.create', 'uses'=>'FeaturesController@create']);
+    Route::get('projects/{id}/features/add-from-other-project', ['as'=>'features.add-from-other-project', 'uses'=>'FeaturesController@addFromOtherProject']);
     Route::post('projects/{id}/features', ['as'=>'features.store', 'uses'=>'FeaturesController@store']);
+    Route::post('projects/{id}/features/store-from-other-project', ['as'=>'features.store-from-other-project', 'uses'=>'FeaturesController@storeFromOtherProject']);
     Route::get('features/{id}/delete', ['as'=>'features.delete', 'uses'=>'FeaturesController@delete']);
     Route::resource('features','FeaturesController',['except' => ['index','create','store']]);
 

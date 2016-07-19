@@ -26,11 +26,31 @@ class FeaturesController extends Controller {
 		return view('features.create',compact('project','workers'));
 	}
 
+	public function addFromOtherProject(Request $req, $projectId)
+	{
+		$selectedProject = null;
+		$project = $this->repo->requireProjectById($projectId);
+		$workers = $this->repo->getWorkersList();
+		$projects = $this->repo->getProjectsList();
+
+		if ($req->has('project_id')) {
+			$selectedProject = $this->repo->requireProjectById($req->get('project_id'));
+		}
+		return view('features.add-from-other-project',compact('project','workers','projects','selectedProject'));
+	}
+
 	public function store(CreateRequest $req, $projectId)
 	{
 		$feature = $this->repo->createFeature($req->except('_token'), $projectId);
 		flash()->success(trans('feature.created'));
 		return redirect()->route('projects.features', $feature->project_id);
+	}
+
+	public function storeFromOtherProject(Request $req, $projectId)
+	{
+		$this->repo->createFeatures($req->except('_token'), $projectId);
+		flash()->success(trans('feature.created_from_other_project'));
+		return redirect()->route('projects.features', $projectId);
 	}
 
 	public function show(Request $req, $featureId)

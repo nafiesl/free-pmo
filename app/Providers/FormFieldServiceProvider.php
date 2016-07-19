@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Services\FormField;
+use Illuminate\Support\ServiceProvider;
 
 class FormFieldServiceProvider extends ServiceProvider
 {

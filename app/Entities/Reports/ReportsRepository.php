@@ -24,6 +24,7 @@ class ReportsRepository extends BaseRepository
         return Payment::orderBy('date','desc')
             ->where('date', $date)
             ->with('customer','project')
+            ->where('owner_id',auth()->id())
             ->get();
     }
 
@@ -34,6 +35,7 @@ class ReportsRepository extends BaseRepository
             ->where(DB::raw('MONTH(date)'), $month)
             ->groupBy('date')
             ->orderBy('date','asc')
+            ->where('owner_id',auth()->id())
             ->get();
     }
 
@@ -44,6 +46,7 @@ class ReportsRepository extends BaseRepository
             ->groupBy(DB::raw('YEAR(date)'))
             ->groupBy(DB::raw('MONTH(date)'))
             ->orderBy('date','asc')
+            ->where('owner_id',auth()->id())
             ->get();
     }
 

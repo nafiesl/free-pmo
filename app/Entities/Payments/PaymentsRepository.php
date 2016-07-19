@@ -20,6 +20,7 @@ class PaymentsRepository extends BaseRepository
     {
         return $this->model->orderBy('date','desc')
             ->with('customer','project')
+            ->whereOwnerId(auth()->id())
             ->paginate($this->_paginate);
     }
 

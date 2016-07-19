@@ -10,10 +10,10 @@
 
 <div class="row">
     <div class="col-md-4 col-md-offset-3">
-{!! Form::open(['route'=>'projects.store']) !!}
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ trans('project.create') }}</h3></div>
-    <div class="panel-body">
+        {!! Form::open(['route'=>'projects.store']) !!}
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">{{ trans('project.create') }}</h3></div>
+            <div class="panel-body">
                 {!! FormField::text('name',['label'=> trans('project.name')]) !!}
                 {!! FormField::select('customer_id', $customers,['placeholder' => '-- Customer Baru --']) !!}
                 <div class="row">
@@ -42,5 +42,7 @@
         </div>
     </div>
 </div>
+
 {!! Form::close() !!}
+<?php // echo '<pre>$errors->toArray() : ', print_r($errors->toArray(), true), '</pre>' ?>
 @endsection

@@ -112,7 +112,7 @@ class ManagePaymentsTest extends TestCase
         $user->assignRole('admin');
         $this->actingAs($user);
 
-        $payment = factory(Payment::class)->create();
+        $payment = factory(Payment::class)->create(['owner_id' => $user->id]);
         $this->visit('/payments');
         $this->click(trans('app.edit'));
         $this->click(trans('payment.delete'));
@@ -148,7 +148,7 @@ class ManagePaymentsTest extends TestCase
         $user->assignRole('admin');
         $this->actingAs($user);
 
-        $payments = factory(Payment::class, 5)->create();
+        $payments = factory(Payment::class, 5)->create(['owner_id' => $user->id]);
         $this->assertEquals(5, $payments->count());
 
         $this->visit('/payments');

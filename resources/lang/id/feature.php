@@ -26,4 +26,5 @@ return [
     'price_total'   => 'Nilai Fitur Total',
     'empty'         => 'Belum ada Fitur',
     'back_to_index' => 'Kembali ke daftar Fitur',
+    'add_from_other_project' => 'Tambah Fitur dari Project Lain',
 ];

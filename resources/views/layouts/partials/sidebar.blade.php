@@ -5,10 +5,15 @@
         </a>
         <ul class="nav" id="side-menu">
             <li>{!! html_link_to_route('home', 'Dashboard', [], ['icon' => 'dashboard']) !!}</li>
-            @can('manage_projects')
+            @can('add_project')
             <li>
+                <?php $projectsCount = App\Entities\Projects\Project::select(DB::raw('status_id, count(id) as count'))
+                            ->groupBy('status_id')
+                            ->where('owner_id', auth()->id())
+                            ->lists('count','status_id')
+                            ->all(); ?>
                 {!! html_link_to_route('projects.index', trans('project.projects') . ' <span class="fa arrow"></span>', [], ['icon' => 'table']) !!}
-                <ul class="nav nav-second-level">
+                <ul class="nav nav-second-level in">
                     @foreach(getProjectStatusesList() as $key => $status)
                     <li>
                         <a href="{{ route('projects.index', ['status' => $key]) }}">

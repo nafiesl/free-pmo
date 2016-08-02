@@ -19,6 +19,9 @@ class PaymentsRepository extends BaseRepository
     public function getAll($q)
     {
         return $this->model->orderBy('date','desc')
+            ->whereHas('project', function($query) use ($q) {
+                $query->where('name', 'like', '%' . $q . '%');
+            })
             ->with('customer','project')
             ->whereOwnerId(auth()->id())
             ->paginate($this->_paginate);

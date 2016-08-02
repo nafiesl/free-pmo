@@ -28,7 +28,8 @@ class UpdateRequest extends Request {
 		return [
 			'name' => 'required|max:60',
 			'description' => 'max:255',
-			'progress' => 'required|numeric|max:100',
+			'progress' => 'numeric|max:100',
+			'route_name' => 'max:255',
 		];
 	}
 

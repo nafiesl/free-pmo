@@ -3,6 +3,13 @@
 @section('content')
 <h1 class="page-header">Dashboard</h1>
 
+<div class="well well-sm">
+    {!! Form::open(['route' => 'projects.index','method'=>'get','class'=>'form-inline']) !!}
+    {!! Form::text('q', Request::get('q'), ['class'=>'form-control index-search-field','placeholder'=>trans('project.search'),'style' => 'width:350px']) !!}
+    {!! Form::submit(trans('project.search'), ['class' => 'btn btn-info btn-sm']) !!}
+    {!! Form::close() !!}
+</div>
+
 <div class="row">
     <div class="col-lg-3 col-md-6">
         <a href="{{ route('projects.index',['status' => 1]) }}">

@@ -106,5 +106,6 @@ $factory->define(Task::class, function (Faker\Generator $faker) {
         'name' => $faker->sentence(3),
         'description' => $faker->paragraph,
         'progress' => rand(40,100),
+        'route_name' => implode('.', $faker->words(3))
     ];
 });

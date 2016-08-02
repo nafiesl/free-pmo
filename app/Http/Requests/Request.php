@@ -13,6 +13,6 @@ abstract class Request extends FormRequest
     protected function formatErrors(Validator $validator)
     {
         flash()->error('Mohon periksa kembali form isian Anda.');
-        return $validator->errors()->all();
+        return $validator->getMessageBag()->toArray();
     }
 }

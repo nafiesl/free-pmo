@@ -19,6 +19,12 @@ class FeaturesController extends Controller {
 	    $this->repo = $repo;
 	}
 
+	public function index()
+	{
+	    $features = $this->repo->getUnfinishedFeatures();
+	    return view('features.unfinished', compact('features'));
+	}
+
 	public function create($projectId)
 	{
 		$project = $this->repo->requireProjectById($projectId);
@@ -95,7 +101,7 @@ class FeaturesController extends Controller {
 	    $projectId = $feature->project_id;
 		if ($featureId == $req->get('feature_id'))
 		{
-			// $feature->tasks()->delete();
+			$feature->tasks()->delete();
 			$feature->delete();
 	        flash()->success(trans('feature.deleted'));
 		}

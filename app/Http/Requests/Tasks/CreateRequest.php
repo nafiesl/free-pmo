@@ -28,7 +28,8 @@ class CreateRequest extends Request {
 		return [
 			'name' => 'required|max:60',
 			'description' => 'max:255',
-			'progress' => 'numeric',
+			'progress' => 'numeric|max:100',
+			'route_name' => 'max:255',
 		];
 	}
 

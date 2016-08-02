@@ -21,7 +21,7 @@
         @forelse($projects as $key => $project)
         <tr>
             <td>{{ 1 + $key }}</td>
-            <td>{!! link_to_route('projects.payments',$project->name,[$project->id],['title' => 'Lihat Detail Pembayaran','target' => '_blank']) !!}</td>
+            <td>{!! link_to_route('projects.payments',$project->name,[$project->id],['title' => 'Lihat Daftar Pembayaran','target' => '_blank']) !!}</td>
             <td class="text-right">{{ formatRp($project->project_value) }}</td>
             <td class="text-right">{{ formatRp($project->cashInTotal()) }}</td>
             <td class="text-right">{{ formatRp($project->balance = $project->project_value - $project->cashInTotal()) }}</td>

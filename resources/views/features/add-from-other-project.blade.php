@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', trans('feature.add_from_other_project'))
+@section('title', trans('feature.add_from_other_project') . ' | ' . $project->name)
 
 @section('content')
 @include('projects.partials.breadcrumb',['title' => trans('feature.add_from_other_project')])

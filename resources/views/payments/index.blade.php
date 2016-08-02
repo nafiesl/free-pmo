@@ -7,7 +7,8 @@
     {!! link_to_route('payments.create', trans('payment.create'), [], ['class'=>'btn btn-success pull-right']) !!}
     {{ trans('payment.payments') }} <small>{{ $payments->total() }} {{ trans('payment.found') }}</small>
 </h1>
-<div class="well well-sm">
+<div class="well well-sm text-right">
+    <div class="pull-left hidden-xs">{!! str_replace('/?', '?', $payments->appends(Request::except('page'))->render()) !!}</div>
     {!! Form::open(['method'=>'get','class'=>'form-inline']) !!}
     {!! Form::text('q', Request::get('q'), ['class'=>'form-control index-search-field','placeholder'=>trans('payment.search'),'style' => 'width:350px']) !!}
     {!! Form::submit(trans('payment.search'), ['class' => 'btn btn-info btn-sm']) !!}

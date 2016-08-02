@@ -4,7 +4,7 @@
         <table class="table table-condensed">
             <tbody>
                 <tr><td>{{ trans('project.name') }}</td><td>{{ $project->name }}</td></tr>
-                <tr><td>{{ trans('project.description') }}</td><td>{{ $project->description }}</td></tr>
+                <tr><td>{{ trans('project.description') }}</td><td>{!! nl2br($project->description) !!}</td></tr>
                 <tr><td>{{ trans('project.proposal_date') }}</td><td>{{ dateId($project->proposal_date) }}</td></tr>
                 <tr><td>{{ trans('project.proposal_value') }}</td><td class="text-right">{{ formatRp($project->proposal_value) }}</td></tr>
                 <tr><td>{{ trans('project.project_value') }}</td><td class="text-right">{{ formatRp($project->project_value) }}</td></tr>
@@ -22,9 +22,5 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div class="panel-footer">
-        {!! link_to_route('projects.edit', trans('project.edit'), [$project->id], ['class' => 'btn btn-warning']) !!}
-        {!! link_to_route('projects.index', trans('project.back_to_index'), ['status' => $project->status_id], ['class' => 'btn btn-default']) !!}
     </div>
 </div>

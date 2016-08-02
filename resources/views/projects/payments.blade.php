@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', trans('project.payments'))
+@section('title', trans('project.payments') . ' | ' . $project->name)
 
 @section('content')
 @include('projects.partials.breadcrumb',['title' => trans('project.payments')])

@@ -52,7 +52,8 @@ class ReportsRepository extends BaseRepository
 
     public function getCurrentCredits()
     {
-        $projects = Project::whereIn('status_id',[3,6])->with('payments')->get();
+        // On Progress, Done, On Hold
+        $projects = Project::whereIn('status_id',[2,3,6])->with('payments','customer')->get();
         return $projects->filter(function($project) {
             return $project->cashInTotal() < $project->project_value;
         })->values();

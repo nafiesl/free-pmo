@@ -51,7 +51,7 @@
                     <td class="text-right">{{ formatRp($report->cashin) }}</td>
                     <td class="text-right">{{ formatRp($report->cashout) }}</td>
                     <td class="text-right">{{ formatRp(($report->cashin - $report->cashout)) }}</td>
-                    <td class="text-center">{!! link_to_route('reports.payments.monthly','Lihat Bulanan',['month' => monthNumber($report->month), 'year' => $year] , ['class'=>'btn btn-info btn-xs','title'=>'Lihat laporan bulanan ' . monthId($report->month)]) !!}</td>
+                    <td class="text-center">{!! link_to_route('reports.payments.monthly','Lihat Bulanan', ['month' => monthNumber($report->month), 'year' => $year], ['class'=>'btn btn-info btn-xs','title'=>'Lihat laporan bulanan ' . monthId($report->month)]) !!}</td>
                 </tr>
                 <?php
                 $invoicesCount += $report->count;
@@ -97,7 +97,9 @@
         xkey: 'month',
         ykeys: ['value'],
         labels: ['Profit'],
-        parseTime:false
+        parseTime:false,
+        goals: [0],
+        goalLineColors : ['red'],
     });
 })();
 </script>

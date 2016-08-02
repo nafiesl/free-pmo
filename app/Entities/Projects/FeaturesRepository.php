@@ -18,6 +18,15 @@ class FeaturesRepository extends BaseRepository
         parent::__construct($model);
     }
 
+    public function getUnfinishedFeatures()
+    {
+        return $this->model->whereHas('tasks', function($query) {
+            return $query->where('progress','<',100);
+        })
+        ->with(['tasks','project','worker'])
+        ->get();
+    }
+
     public function requireProjectById($projectId)
     {
         return Project::findOrFail($projectId);

@@ -30,6 +30,7 @@ class ProjectsRepository extends BaseRepository
                     $query->where('status_id', $statusId);
             })
             ->withCount('payments')
+            ->with('customer')
             ->whereOwnerId(auth()->id())
             ->paginate($this->_paginate);
     }
@@ -73,14 +74,37 @@ class ProjectsRepository extends BaseRepository
     public function delete($projectId)
     {
         $project = $this->requireById($projectId);
+
+        DB::beginTransaction();
+
+        // Delete project payments
         $project->payments()->delete();
+
+        // Delete features tasks
+        $featureIds = $project->features->lists('id')->all();
+        DB::table('tasks')->whereIn('feature_id', $featureIds)->delete();
+
+        // Delete features
         $project->features()->delete();
 
-        return $project->delete();
+        // Delete project
+        $project->delete();
+        DB::commit();
+        return 'deleted';
     }
 
     public function getProjectFeatures($projectId)
     {
         return Feature::whereProjectId($projectId)->with('worker','tasks')->get();
+    }
+
+    public function updateStatus($statusId, $projectId)
+    {
+        $project = $this->requireById($projectId);
+        $project->status_id = $statusId;
+        $project->save();
+        // die('hit');
+
+        return $project;
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', trans('feature.show'))
+@section('title', trans('feature.show') . ' | ' . $feature->name . ' | ' . $feature->project->name)
 
 @section('content')
 @include('features.partials.breadcrumb')
@@ -17,7 +17,8 @@
         @include('features.partials.feature-show')
     </div>
     <div class="col-sm-8">
-        @include('features.partials.feature-tasks')
+        @include('features.partials.feature-tasks-operation')
     </div>
 </div>
+@include('features.partials.feature-tasks')
 @endsection

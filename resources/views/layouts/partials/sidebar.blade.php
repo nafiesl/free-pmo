@@ -6,6 +6,7 @@
         <ul class="nav" id="side-menu">
             <li>{!! html_link_to_route('home', 'Dashboard', [], ['icon' => 'dashboard']) !!}</li>
             @can('add_project')
+            <li>{!! html_link_to_route('features.index', 'On Progress Features', [], ['icon' => 'tasks']) !!}</li>
             <li>
                 <?php $projectsCount = App\Entities\Projects\Project::select(DB::raw('status_id, count(id) as count'))
                             ->groupBy('status_id')
@@ -26,6 +27,9 @@
             </li>
             @endcan
             @can('see_reports')
+            <li>{!! html_link_to_route('reports.payments.yearly', 'Penghasilan', [], ['icon' => 'line-chart']) !!}</li>
+            <li>{!! html_link_to_route('reports.current-credits', 'Piutang', [], ['icon' => 'money']) !!}</li>
+            {{--
             <li>
                 {!! html_link_to_route('reports.payments.index', 'Laporan <span class="fa arrow"></span>', [], ['icon' => 'line-chart']) !!}
                 <ul class="nav nav-second-level">
@@ -40,6 +44,7 @@
                     <li>{!! html_link_to_route('reports.current-credits', 'Piutang') !!}</li>
                 </ul>
             </li>
+            --}}
             @endcan
             @can('manage_subscriptions')
             <li>{!! html_link_to_route('subscriptions.index', trans('subscription.subscription'), [], ['icon' => 'retweet']) !!}</li>

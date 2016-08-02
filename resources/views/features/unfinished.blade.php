@@ -1,24 +1,17 @@
 @extends('layouts.app')
 
-@section('title', trans('project.features') . ' | ' . $project->name)
+@section('title', trans('project.features'))
 
 @section('content')
-@include('projects.partials.breadcrumb',['title' => trans('project.features')])
-
 <h1 class="page-header">
-    <div class="pull-right">
-        {!! html_link_to_route('features.create', trans('feature.create'), [$project->id], ['class' => 'btn btn-primary','icon' => 'plus']) !!}
-        {!! html_link_to_route('features.add-from-other-project', trans('feature.add_from_other_project'), [$project->id], ['class' => 'btn btn-primary','icon' => 'plus']) !!}
-    </div>
-    {{ $project->name }} <small>{{ trans('project.features') }}</small>
+    Daftar Fitur on Progress
 </h1>
-
-@include('projects.partials.nav-tabs')
 
 <div class="panel panel-default">
     <table class="table table-condensed">
         <thead>
             <th>{{ trans('app.table_no') }}</th>
+            <th>{{ trans('project.name') }}</th>
             <th>{{ trans('feature.name') }}</th>
             <th class="text-center">{{ trans('feature.tasks_count') }}</th>
             <th class="text-center">{{ trans('feature.progress') }}</th>
@@ -30,6 +23,7 @@
             @forelse($features as $key => $feature)
             <tr>
                 <td>{{ 1 + $key }}</td>
+                <td>{{ $feature->project->name }}</td>
                 <td>
                     {{ $feature->name }}
                     @if ($feature->tasks->isEmpty() == false)
@@ -48,9 +42,7 @@
                 <td class="text-right">{{ formatRp($feature->price) }}</td>
                 <td>{{ $feature->worker->name }}</td>
                 <td>
-                    {!! link_to_route('features.show', trans('task.create'),[$feature->id],['class' => 'btn btn-default btn-xs']) !!}
                     {!! link_to_route('features.show', trans('app.show'),[$feature->id],['class' => 'btn btn-info btn-xs']) !!}
-                    {!! link_to_route('features.edit', trans('app.edit'),[$feature->id],['class' => 'btn btn-warning btn-xs']) !!}
                 </td>
             </tr>
             @empty
@@ -59,7 +51,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <th class="text-right" colspan="2">Total</th>
+                <th class="text-right" colspan="3">Total</th>
                 <th class="text-center">{{ $features->sum('tasks_count') }}</th>
                 <th class="text-center">{{ formatDecimal($features->avg('progress')) }} %</th>
                 <th class="text-right">{{ formatRp($features->sum('price')) }}</th>

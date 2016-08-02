@@ -1,6 +1,9 @@
 <?php
 
+use App\Entities\Payments\Payment;
+use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
+use App\Entities\Projects\Task;
 use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -19,17 +22,17 @@ class ManageProjectsTest extends TestCase
 
         $users[1]->assignRole('customer');
 
-        $this->visit('/projects');
-        $this->seePageIs('/projects');
+        $this->visit(route('projects.index'));
+        $this->seePageIs(route('projects.index'));
         $this->click(trans('project.create'));
-        $this->seePageIs('/projects/create');
+        $this->seePageIs(route('projects.create'));
         $this->type('Project Baru','name');
         $this->select($users[1]->id,'customer_id');
         $this->type('2016-04-15','proposal_date');
         $this->type('2000000','proposal_value');
         $this->type('Deskripsi project baru','description');
         $this->press(trans('project.create'));
-        $this->seePageIs('/projects');
+
         $this->see(trans('project.created'));
         $this->see('Project Baru');
         $this->seeInDatabase('projects', ['name' => 'Project Baru', 'proposal_value' => '2000000']);
@@ -42,10 +45,10 @@ class ManageProjectsTest extends TestCase
         $user->assignRole('admin');
         $this->actingAs($user);
 
-        $this->visit('/projects');
-        $this->seePageIs('/projects');
+        $this->visit(route('projects.index'));
+        $this->seePageIs(route('projects.index'));
         $this->click(trans('project.create'));
-        $this->seePageIs('/projects/create');
+        $this->seePageIs(route('projects.create'));
 
         // Invalid entry
         $this->type('Project Baru','name');
@@ -54,13 +57,12 @@ class ManageProjectsTest extends TestCase
         $this->type('2000000','proposal_value');
         $this->type('Deskripsi project baru','description');
         $this->press(trans('project.create'));
-        $this->seePageIs('/projects/create');
+        $this->seePageIs(route('projects.create'));
         $this->notSeeInDatabase('projects', ['name' => 'Project Baru', 'proposal_value' => '2000000']);
 
         $this->type('Customer Baru','customer_name');
         $this->type('email@customer.baru','customer_email');
         $this->press(trans('project.create'));
-        $this->seePageIs('/projects');
         $this->see(trans('project.created'));
         $this->see('Project Baru');
         $this->seeInDatabase('users', ['name' => 'Customer Baru', 'email' => 'email@customer.baru']);
@@ -76,12 +78,34 @@ class ManageProjectsTest extends TestCase
         $this->actingAs($user);
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
+        $feature = factory(Feature::class)->create(['project_id' => $project->id]);
+        $task = factory(Task::class)->create(['feature_id' => $feature->id]);
+        $payment = factory(Payment::class)->create(['project_id' => $project->id]);
+
         $this->visit('/projects?status=' . $project->status_id);
         $this->click(trans('app.edit'));
         $this->click(trans('app.delete'));
         $this->press(trans('app.delete_confirm_button'));
         $this->seePageIs('projects');
         $this->see(trans('project.deleted'));
+
+        $this->notSeeInDatabase('projects', [
+            'name' => $project->name,
+            'proposal_value' => $project->proposal_value,
+            'owner_id' => $user->id,
+        ]);
+
+        $this->notSeeInDatabase('payments', [
+            'project_id' => $project->id,
+        ]);
+
+        $this->notSeeInDatabase('features', [
+            'project_id' => $project->id,
+        ]);
+
+        $this->notSeeInDatabase('tasks', [
+            'feature_id' => $feature->id,
+        ]);
     }
 
     /** @test */
@@ -128,18 +152,39 @@ class ManageProjectsTest extends TestCase
 
         $users[1]->assignRole('customer');
 
-        $this->visit('/projects');
-        $this->seePageIs('/projects');
+        $this->visit(route('projects.index'));
+        $this->seePageIs(route('projects.index'));
         $this->click(trans('project.create'));
-        $this->seePageIs('/projects/create');
+        $this->seePageIs(route('projects.create'));
         $this->type('','name');
         $this->select($users[1]->id,'customer_id');
         $this->type('2016-04-15aa','proposal_date');
         $this->type('','proposal_value');
         $this->type('Deskripsi project baru','description');
         $this->press(trans('project.create'));
-        $this->seePageIs('/projects/create');
+        $this->seePageIs(route('projects.create'));
         $this->see('Mohon periksa kembali form isian Anda.');
+    }
+
+    /** @test */
+    public function admin_can_update_project_status_on_project_detail_page()
+    {
+        $user = factory(User::class)->create();
+        $user->assignRole('admin');
+        $this->actingAs($user);
+
+        $project = factory(Project::class)->create(['owner_id' => $user->id, 'status_id' => 1]);
+        $this->visit(route('projects.show', $project->id));
+        $this->seePageIs(route('projects.show', $project->id));
+        $this->select(2, 'status_id');
+        $this->press('Update Project Status');
+        $this->see(trans('project.updated'));
+        $this->seePageIs(route('projects.show', $project->id));
+
+        $this->seeInDatabase('projects', [
+            'id' => $project->id,
+            'status_id' => 2,
+        ]);
     }
 
 }

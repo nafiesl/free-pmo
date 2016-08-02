@@ -18,5 +18,6 @@ return [
     'not_found'     => 'Task tidak ditemukan',
     'progress'      => 'Progress',
     'empty'         => 'Belum ada Task',
+    'route_name'    => 'Route Aplikasi',
     'back_to_index' => 'Kembali ke daftar Task',
 ];

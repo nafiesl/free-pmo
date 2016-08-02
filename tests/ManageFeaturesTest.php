@@ -92,6 +92,13 @@ class ManageFeaturesTest extends TestCase
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
         $feature = factory(Feature::class)->create(['project_id' => $project->id]);
+        $tasks = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
+
+        $this->seeInDatabase('features', [
+            'name' => $feature->name,
+            'price' => $feature->price,
+            'project_id' => $project->id,
+        ]);
 
         $this->visit('projects/' . $feature->project_id . '/features');
         $this->click(trans('app.show'));
@@ -100,6 +107,16 @@ class ManageFeaturesTest extends TestCase
         $this->press(trans('app.delete_confirm_button'));
         $this->seePageIs('projects/' . $project->id . '/features');
         $this->see(trans('feature.deleted'));
+
+        $this->notSeeInDatabase('features', [
+            'name' => $feature->name,
+            'price' => $feature->price,
+            'project_id' => $project->id,
+        ]);
+
+        $this->notSeeInDatabase('tasks', [
+            'feature_id' => $feature->id,
+        ]);
     }
 
     /** @test */
@@ -205,5 +222,21 @@ class ManageFeaturesTest extends TestCase
         //     'price' => $features[1]->price,
         //     'worker_id' => $features[1]->worker_id,
         // ]);
+    }
+
+    /** @test */
+    public function admin_can_see_unfinished_features_list()
+    {
+        $user = factory(User::class)->create();
+        $user->assignRole('admin');
+        $this->actingAs($user);
+
+        // $projects = factory(Project::class, 2)->create(['owner_id' => $user->id]);
+        // $features = factory(Feature::class, 3)->create(['project_id'=> array_rand($projects->lists('id','id')->all())]);
+        // $tasks = factory(Task::class, 10)->create(['feature_id'=> array_rand($features->lists('id','id')->all())]);
+
+        $this->visit('features');
+        $this->seePageIs('features');
+
     }
 }

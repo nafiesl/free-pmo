@@ -44,5 +44,4 @@
 </div>
 
 {!! Form::close() !!}
-<?php // echo '<pre>$errors->toArray() : ', print_r($errors->toArray(), true), '</pre>' ?>
 @endsection

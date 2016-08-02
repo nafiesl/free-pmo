@@ -7170,6 +7170,9 @@ h1.page-header {
 label.control-label {
   color: #428bca; }
 
+.well .pagination {
+  margin: -2px 0 0 -2px; }
+
 @media (min-width: 768px) {
   #page-wrapper {
     margin-left: 200px;

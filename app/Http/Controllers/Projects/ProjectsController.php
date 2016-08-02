@@ -22,7 +22,7 @@ class ProjectsController extends Controller {
 	public function index(Request $req)
 	{
 		$status = null;
-		$statusId = $req->get('status', 3);
+		$statusId = $req->get('status');
 		if ($statusId) {
 			$status = $this->repo->getStatusName($statusId);
 		}
@@ -41,7 +41,7 @@ class ProjectsController extends Controller {
 	{
 		$project = $this->repo->create($req->except('_token'));
 		flash()->success(trans('project.created'));
-		return redirect()->route('projects.index');
+		return redirect()->route('projects.show', $project->id);
 	}
 
 	public function show($projectId)
@@ -96,6 +96,13 @@ class ProjectsController extends Controller {
 	    $project = $this->repo->requireById($projectId);
 	    $project->load('payments.customer');
 		return view('projects.payments', compact('project'));
+	}
+
+	public function statusUpdate(Request $req, $projectId)
+	{
+		$project = $this->repo->updateStatus($req->get('status_id'), $projectId);
+		flash()->success(trans('project.updated'));
+		return redirect()->route('projects.show', $projectId);
 	}
 
 }

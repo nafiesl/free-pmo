@@ -29,6 +29,7 @@ class ManageTasksTest extends TestCase
         $this->type('Nama Task Baru','name');
         $this->type('Ipsam magnam laboriosam distinctio officia facere sapiente eius corporis','description');
         $this->type(70,'progress');
+        $this->type('tasks/create','route_name');
         $this->press(trans('task.create'));
 
         $this->seePageIs('features/' . $feature->id);
@@ -36,7 +37,8 @@ class ManageTasksTest extends TestCase
         $this->seeInDatabase('tasks', [
             'name' => 'Nama Task Baru',
             'progress' => 70,
-            'feature_id' => $feature->id
+            'feature_id' => $feature->id,
+            'route_name' => 'tasks/create',
         ]);
     }
 
@@ -60,6 +62,7 @@ class ManageTasksTest extends TestCase
 
         // Fill Form
         $this->type('Nama Task Edit','name');
+        $this->type('tasks/{id}/edit','route_name');
         $this->type(77,'progress');
         $this->press(trans('task.update'));
 
@@ -68,7 +71,8 @@ class ManageTasksTest extends TestCase
         $this->seeInDatabase('tasks', [
             'name' => 'Nama Task Edit',
             'progress' => 77,
-            'feature_id' => $feature->id
+            'feature_id' => $feature->id,
+            'route_name' => 'tasks/{id}/edit',
         ]);
     }
 
@@ -109,8 +113,10 @@ class ManageTasksTest extends TestCase
         $this->see($tasks[1]->name);
         $this->see($tasks[1]->progress);
         $this->see($tasks[1]->description);
+        $this->see($tasks[1]->route_name);
         $this->see($tasks[4]->name);
         $this->see($tasks[4]->progress);
         $this->see($tasks[4]->description);
+        $this->see($tasks[4]->route_name);
     }
 }

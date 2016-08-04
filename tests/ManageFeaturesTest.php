@@ -38,7 +38,6 @@ class ManageFeaturesTest extends TestCase
         $this->type('Similique, eligendi fuga animi? Ipsam magnam laboriosam distinctio officia facere sapiente eius corporis','description');
         $this->press(trans('feature.create'));
 
-        $this->seePageIs('projects/' . $project->id . '/features');
         $this->see(trans('feature.created'));
         $this->seeInDatabase('features', [
             'name' => 'Nama Fitur Baru',

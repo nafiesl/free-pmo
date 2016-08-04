@@ -75,6 +75,7 @@ label.control-label {
     #page-wrapper {
         margin-left: 200px;
         padding: 0;
+        position: relative;
     }
 /*
     .hidden-xs {
@@ -116,6 +117,9 @@ label.control-label {
 div.notifier {
     border-radius: 0;
     margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
 }
 
 #footer {

@@ -7176,7 +7176,8 @@ label.control-label {
 @media (min-width: 768px) {
   #page-wrapper {
     margin-left: 200px;
-    padding: 0; }
+    padding: 0;
+    position: relative; }
   /*
     .hidden-xs {
         display: block;
@@ -7205,7 +7206,10 @@ label.control-label {
 
 div.notifier {
   border-radius: 0;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  position: absolute;
+  left: 0;
+  right: 0; }
 
 #footer {
   padding: 15px 10px; }

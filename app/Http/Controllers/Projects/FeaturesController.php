@@ -49,7 +49,7 @@ class FeaturesController extends Controller {
 	{
 		$feature = $this->repo->createFeature($req->except('_token'), $projectId);
 		flash()->success(trans('feature.created'));
-		return redirect()->route('projects.features', $feature->project_id);
+		return redirect()->route('features.show', $feature->id);
 	}
 
 	public function storeFromOtherProject(Request $req, $projectId)

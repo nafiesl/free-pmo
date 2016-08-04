@@ -13,10 +13,10 @@
     {{ $feature->name }} <small>{{ trans('feature.show') }}</small>
 </h1>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         @include('features.partials.feature-show')
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-7">
         @include('features.partials.feature-tasks-operation')
     </div>
 </div>

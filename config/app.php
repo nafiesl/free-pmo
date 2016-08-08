@@ -158,7 +158,7 @@ return [
         App\Providers\OptionServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Barryvdh\Debugbar\ServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         BackupManager\Laravel\Laravel5ServiceProvider::class,

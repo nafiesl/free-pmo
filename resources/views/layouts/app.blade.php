@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <title>@yield('title', Option::get('app_name', 'Aplikasi Laravel'))</title>
 
-    {!! Html::style('assets/css/plugins/metisMenu/metisMenu.min.css') !!}
+    {{-- {!! Html::style('assets/css/plugins/metisMenu/metisMenu.min.css') !!} --}}
     @yield('ext_css')
     {!! Html::style('assets/css/app.css') !!}
 </head>

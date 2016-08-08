@@ -14,7 +14,7 @@
                             ->lists('count','status_id')
                             ->all(); ?>
                 {!! html_link_to_route('projects.index', trans('project.projects') . ' <span class="fa arrow"></span>', [], ['icon' => 'table']) !!}
-                <ul class="nav nav-second-level in">
+                <ul class="nav nav-second-level">
                     @foreach(getProjectStatusesList() as $key => $status)
                     <li>
                         <a href="{{ route('projects.index', ['status' => $key]) }}">

@@ -1,5 +1,7 @@
 <?php
 
+use App\Entities\Users\User;
+
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
     /**
@@ -21,5 +23,14 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    protected function adminUserSigningIn()
+    {
+        $user = factory(User::class)->create();
+        $user->assignRole('admin');
+        $this->actingAs($user);
+
+        return $user;
     }
 }

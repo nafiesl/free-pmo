@@ -41,9 +41,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function admin_can_input_new_project_with_new_customer()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $this->adminUserSigningIn();
 
         $this->visit(route('projects.index'));
         $this->seePageIs(route('projects.index'));
@@ -73,9 +71,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function admin_can_delete_a_project()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $this->adminUserSigningIn();
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
         $feature = factory(Feature::class)->create(['project_id' => $project->id]);
@@ -169,9 +165,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function admin_can_update_project_status_on_project_detail_page()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $this->adminUserSigningIn();
 
         $project = factory(Project::class)->create(['owner_id' => $user->id, 'status_id' => 1]);
         $this->visit(route('projects.show', $project->id));

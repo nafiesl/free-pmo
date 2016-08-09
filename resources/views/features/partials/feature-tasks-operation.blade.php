@@ -24,7 +24,7 @@
             <div class="col-sm-5">{!! FormField::text('route_name') !!}</div>
             <div class="col-sm-2">{!! FormField::text('progress', ['addon' => ['after' => '%']]) !!}</div>
         </div>
-        {!! FormField::text('description') !!}
+        {!! FormField::textarea('description') !!}
         {!! Form::hidden('feature_id', $editableTask->feature_id) !!}
         {!! Form::submit(trans('task.update'), ['class' => 'btn btn-warning']) !!}
         {!! link_to_route('features.show', trans('app.cancel'), [$feature->id], ['class' => 'btn btn-default']) !!}

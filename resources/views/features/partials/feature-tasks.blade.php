@@ -8,13 +8,13 @@
             <th class="text-center">{{ trans('task.progress') }}</th>
             <th>{{ trans('app.action') }}</th>
         </thead>
-        <tbody>
+        <tbody id="sort-tasks">
             @forelse($feature->tasks as $key => $task)
-            <tr>
+            <tr id="{{ $task->id }}">
                 <td>{{ 1 + $key }}</td>
                 <td>
                     <div>{{ $task->name }}</div>
-                    <div class="small text-info">{{ $task->description }}</div>
+                    <div class="small text-info">{!! nl2br($task->description) !!}</div>
                 </td>
                 <td>{{ $task->route_name }}</td>
                 <td class="text-center">{{ $task->progress }} %</td>
@@ -44,3 +44,22 @@
         </tfoot>
     </table>
 </div>
+
+@section('ext_js')
+    {!! Html::script(url('assets/js/plugins/jquery-ui.min.js')) !!}
+@endsection
+
+@section('script')
+
+<script>
+(function() {
+    $('#sort-tasks').sortable({
+        update: function (event, ui) {
+            var data = $(this).sortable('toArray').toString();
+            // console.log(data);
+            $.post("{{ route('features.tasks-reorder', $feature->id) }}", {postData: data});
+        }
+    });
+})();
+</script>
+@endsection

@@ -18,7 +18,7 @@ class Project extends Model {
 
     public function features()
     {
-        return $this->hasMany(Feature::class);
+        return $this->hasMany(Feature::class)->orderBy('position');
     }
 
     public function payments()

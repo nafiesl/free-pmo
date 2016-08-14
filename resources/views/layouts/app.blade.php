@@ -19,7 +19,6 @@
         @include('layouts.partials.sidebar')
 
         <div id="page-wrapper">
-            {{-- @include('layouts.partials.top-nav') --}}
             @include('flash::message')
             <div class="container-fluid">
                 @yield('content')

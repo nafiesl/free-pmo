@@ -27,7 +27,7 @@ class Feature extends Model {
 
     public function tasks()
     {
-        return $this->hasMany(Task::class)->orderBy('progress');
+        return $this->hasMany(Task::class)->orderBy('progress')->orderBy('position');
     }
 
 }

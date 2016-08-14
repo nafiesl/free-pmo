@@ -111,4 +111,14 @@ class FeaturesController extends Controller {
 		return redirect()->route('projects.features', $projectId);
 	}
 
+	public function tasksReorder(Request $req, $featureId)
+	{
+		if ($req->ajax()) {
+			$data = $this->repo->tasksReorder($req->get('postData'));
+	 	   	return 'oke';
+		}
+
+		return null;
+	}
+
 }

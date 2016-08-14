@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
 
@@ -23,5 +24,10 @@ abstract class BaseRepository extends EloquentRepository {
     public function getProjectsList()
     {
         return Project::orderBy('name')->lists('name','id');
+    }
+
+    public function requireFeatureById($featureId)
+    {
+        return Feature::findOrFail($featureId);
     }
 }

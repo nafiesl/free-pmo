@@ -95,7 +95,7 @@ class ProjectsRepository extends BaseRepository
 
     public function getProjectFeatures($projectId)
     {
-        return Feature::whereProjectId($projectId)->with('worker','tasks')->get();
+        return Feature::whereProjectId($projectId)->orderBy('position')->with('worker','tasks')->get();
     }
 
     public function updateStatus($statusId, $projectId)
@@ -103,8 +103,19 @@ class ProjectsRepository extends BaseRepository
         $project = $this->requireById($projectId);
         $project->status_id = $statusId;
         $project->save();
-        // die('hit');
 
         return $project;
+    }
+
+    public function featuresReorder($sortedData)
+    {
+        $featureOrder = explode(',', $sortedData);
+        foreach ($featureOrder as $order => $featureId) {
+            $feature = $this->requireFeatureById($featureId);
+            $feature->position = $order + 1;
+            $feature->save();
+        }
+
+        return $featureOrder;
     }
 }

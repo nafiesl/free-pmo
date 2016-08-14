@@ -67,7 +67,7 @@ class FormField
         $hasError = $this->errorBag->has($name) ? 'has-error' : '';
         $htmlForm = '<div class="form-group ' . $hasError . '">';
 
-        $rows = isset($options['rows']) ? $options['rows'] : 5;
+        $rows = isset($options['rows']) ? $options['rows'] : 3;
         $value = isset($options['value']) ? $options['value'] : null;
 
         $fieldParams = ['class'=>'form-control','rows' => $rows];

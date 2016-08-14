@@ -23,6 +23,9 @@ class FeaturesRepository extends BaseRepository
         return $this->model->whereHas('tasks', function($query) {
             return $query->where('progress','<',100);
         })
+        ->whereHas('project', function($query) {
+            return $query->whereIn('status_id', [2,3]);
+        })
         ->with(['tasks','project','worker'])
         ->get();
     }
@@ -83,5 +86,18 @@ class FeaturesRepository extends BaseRepository
         $feature = $this->requireById($featureId);
         $feature->update($featureData);
         return $feature;
+    }
+
+    public function tasksReorder($sortedData)
+    {
+        $taskOrder = explode(',', $sortedData);
+
+        foreach ($taskOrder as $order => $taskId) {
+            $task = $this->requireTaskById($taskId);
+            $task->position = $order + 1;
+            $task->save();
+        }
+
+        return $taskOrder;
     }
 }

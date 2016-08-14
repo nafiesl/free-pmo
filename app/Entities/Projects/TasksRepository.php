@@ -3,7 +3,6 @@
 namespace App\Entities\Projects;
 
 use App\Entities\BaseRepository;
-use App\Entities\Projects\Feature;
 
 /**
 * Tasks Repository Class
@@ -15,11 +14,6 @@ class TasksRepository extends BaseRepository
     public function __construct(Task $model)
     {
         parent::__construct($model);
-    }
-
-    public function requireFeatureById($featureId)
-    {
-        return Feature::findOrFail($featureId);
     }
 
     public function createTask($taskData, $featureId)

@@ -24,6 +24,7 @@ return [
     'cash_out_total' => 'Total Pengeluaran',
     'customer'      => 'Customer',
     'features'      => 'Daftar Fitur',
+    'features_export' => 'Export Fitur ke Excel',
     'worker'        => 'Pekerja',
     'status'        => 'Status Project',
     'payments'      => 'Pembayaran',

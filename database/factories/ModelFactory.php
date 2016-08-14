@@ -96,6 +96,7 @@ $factory->define(Feature::class, function (Faker\Generator $faker) {
         'description' => $faker->paragraph,
         'worker_id' => factory(User::class)->create()->id,
         'type_id' => rand(1,2),
+        'position' => rand(1,10),
     ];
 });
 
@@ -106,6 +107,7 @@ $factory->define(Task::class, function (Faker\Generator $faker) {
         'name' => $faker->sentence(3),
         'description' => $faker->paragraph,
         'progress' => rand(40,100),
-        'route_name' => implode('.', $faker->words(3))
+        'route_name' => implode('.', $faker->words(3)),
+        'position' => rand(1,10),
     ];
 });

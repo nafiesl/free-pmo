@@ -158,10 +158,11 @@ return [
         App\Providers\OptionServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        BackupManager\Laravel\Laravel5ServiceProvider::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-        BackupManager\Laravel\Laravel5ServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -211,6 +212,7 @@ return [
 
         'Carbon'    => Carbon\Carbon::class,
         'Debugbar'  => Barryvdh\Debugbar\Facade::class,
+        'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Form'      => Collective\Html\FormFacade::class,
         'FormField' => App\Services\Facades\FormField::class,
         'Html'      => Collective\Html\HtmlFacade::class,

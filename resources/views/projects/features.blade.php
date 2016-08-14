@@ -16,7 +16,7 @@
 @include('projects.partials.nav-tabs')
 
 <div class="panel panel-default">
-    <table class="table table-condensed">
+    <table id="features-table" class="table table-condensed table-striped">
         <thead>
             <th>{{ trans('app.table_no') }}</th>
             <th>{{ trans('feature.name') }}</th>
@@ -26,17 +26,18 @@
             <th>{{ trans('feature.worker') }}</th>
             <th>{{ trans('app.action') }}</th>
         </thead>
-        <tbody>
+        <tbody id="sort-features">
             @forelse($features as $key => $feature)
-            <tr>
-                <td>{{ 1 + $key }}</td>
+            @php($no = 1 + $key)
+            <tr id="{{ $feature->id }}">
+                <td>{{ $no }}</td>
                 <td>
                     {{ $feature->name }}
                     @if ($feature->tasks->isEmpty() == false)
                     <ul>
                         @foreach($feature->tasks as $task)
-                        <li style="cursor:pointer" title="{{ $task->progress }} %">
-                            <i class="fa fa-battery-{{ ceil(4 * $task->progress/100) }}"></i>
+                        <li title="{{ $task->progress }} %">
+                            {{-- <i class="fa fa-battery-{{ ceil(4 * $task->progress/100) }}"></i> --}}
                             {{ $task->name }}
                         </li>
                         @endforeach
@@ -68,4 +69,32 @@
         </tfoot>
     </table>
 </div>
+@endsection
+{{--
+@section('ext_css')
+    {!! Html::style(url('assets/css/plugins/dataTables.bootstrap.css')) !!}
+@endsection
+ --}}
+@section('ext_js')
+{{--     {!! Html::script(url('assets/js/plugins/dataTables/jquery.dataTables.js')) !!}
+    {!! Html::script(url('assets/js/plugins/dataTables/dataTables.bootstrap.js')) !!}
+ --}}    {!! Html::script(url('assets/js/plugins/jquery-ui.min.js')) !!}
+@endsection
+
+@section('script')
+
+<script>
+(function() {
+    // $('#features-table').dataTable({
+    //     "paging": false,
+    //     "info": false
+    // });
+    $('#sort-features').sortable({
+        update: function (event, ui) {
+            var data = $(this).sortable('toArray').toString();
+            $.post("{{ route('projects.features-reorder', $project->id) }}", {postData: data});
+        }
+    });
+})();
+</script>
 @endsection

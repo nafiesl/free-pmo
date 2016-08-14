@@ -91,6 +91,22 @@ class ProjectsController extends Controller {
 		return view('projects.features', compact('project','features'));
 	}
 
+	public function featuresExport($projectId)
+	{
+	    $project = $this->repo->requireById($projectId);
+	    $features = $this->repo->getProjectFeatures($projectId);
+		// return view('projects.features-export', compact('project','features'));
+
+	    \Excel::create(str_slug(trans('project.features') . '-' . $project->name), function($excel) use ($project, $features) {
+
+		    $excel->sheet('testng', function($sheet) use ($project, $features) {
+
+		        $sheet->loadView('projects.features-export',compact('project','features'));
+
+		    });
+		})->download('xlsx');
+	}
+
 	public function payments($projectId)
 	{
 	    $project = $this->repo->requireById($projectId);
@@ -103,6 +119,16 @@ class ProjectsController extends Controller {
 		$project = $this->repo->updateStatus($req->get('status_id'), $projectId);
 		flash()->success(trans('project.updated'));
 		return redirect()->route('projects.show', $projectId);
+	}
+
+	public function featuresReorder(Request $req, $projectId)
+	{
+		if ($req->ajax()) {
+			$data = $this->repo->featuresReorder($req->get('postData'));
+	 	   	return 'oke';
+		}
+
+		return null;
 	}
 
 }

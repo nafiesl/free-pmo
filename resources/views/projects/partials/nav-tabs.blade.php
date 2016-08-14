@@ -1,3 +1,6 @@
+@if (Request::segment(3) == 'features')
+{!! link_to_route('projects.features-export', trans('project.features_export'), [$project->id], ['class' => 'btn btn-success pull-right']) !!}
+@endif
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
     <li class="{{ Request::segment(3) == null ? 'active' : '' }}">

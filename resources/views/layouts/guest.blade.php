@@ -9,11 +9,12 @@
     <meta name="author" content="">
     <title>@yield('title', Option::get('app_name', 'Aplikasi Laravel'))</title>
 
-    {!! Html::style('assets/css/bootstrap.min.css') !!}
-    {!! Html::style('assets/css/bootstrap-theme.min.css') !!}
-    {!! Html::style('assets/css/font-awesome.min.css') !!}
-    {!! Html::style('assets/css/sb-admin-2.css') !!}
+    {{-- {!! Html::style('assets/css/bootstrap.min.css') !!} --}}
+    {{-- {!! Html::style('assets/css/bootstrap-theme.min.css') !!} --}}
+    {{-- {!! Html::style('assets/css/font-awesome.min.css') !!} --}}
+    {{-- {!! Html::style('assets/css/sb-admin-2.css') !!} --}}
     {!! Html::style('assets/css/app.css') !!}
+    @yield('ext_css')
 </head>
 <body>
     <div class="container">
@@ -25,11 +26,14 @@
 
     {!! Html::script(url('assets/js/jquery.js')) !!}
     {!! Html::script(url('assets/js/bootstrap.min.js')) !!}
+    @yield('ext_js')
 
     <script type="text/javascript">
     (function() {
         $("div.alert.notifier").delay(10000).fadeOut();
     })();
     </script>
+
+    @yield('script')
 </body>
 </html>

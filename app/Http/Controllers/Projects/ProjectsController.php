@@ -91,20 +91,20 @@ class ProjectsController extends Controller {
 		return view('projects.features', compact('project','features'));
 	}
 
-	public function featuresExport($projectId)
+	public function featuresExport($projectId, $type = 'excel')
 	{
 	    $project = $this->repo->requireById($projectId);
 	    $features = $this->repo->getProjectFeatures($projectId);
 		// return view('projects.features-export', compact('project','features'));
-
-	    \Excel::create(str_slug(trans('project.features') . '-' . $project->name), function($excel) use ($project, $features) {
-
-		    $excel->sheet('testng', function($sheet) use ($project, $features) {
-
-		        $sheet->loadView('projects.features-export',compact('project','features'));
-
-		    });
-		})->download('xlsx');
+	    if ($type == 'excel') {
+		    \Excel::create(str_slug(trans('project.features') . '-' . $project->name), function($excel) use ($project, $features) {
+			    $excel->sheet('testng', function($sheet) use ($project, $features) {
+			        $sheet->loadView('projects.features-export-excel',compact('project','features'));
+			    });
+			})->download('xlsx');
+	    } else {
+			return view('projects.features-export-html', compact('project','features'));
+	    }
 	}
 
 	public function payments($projectId)

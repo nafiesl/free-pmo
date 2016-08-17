@@ -29,7 +29,7 @@
                 <th>{{ trans('feature.name') }}</th>
                 {{-- <th class="text-center">{{ trans('feature.progress') }}</th> --}}
                 <th class="text-right">{{ trans('feature.price') }}</th>
-                <th>{{ trans('app.notes') }}</th>
+                <th>{{ trans('app.description') }}</th>
             </tr>
         </thead>
         <tbody id="sort-features">

@@ -1,5 +1,8 @@
 @if (Request::segment(3) == 'features')
-{!! link_to_route('projects.features-export', trans('project.features_export'), [$project->id], ['class' => 'btn btn-success pull-right']) !!}
+<div class="pull-right">
+{!! link_to_route('projects.features-export', trans('project.features_export_html'), [$project->id, 'html'], ['class' => 'btn btn-link','target' => '_blank']) !!}
+{!! link_to_route('projects.features-export', trans('project.features_export_excel'), [$project->id], ['class' => 'btn btn-link']) !!}
+</div>
 @endif
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">

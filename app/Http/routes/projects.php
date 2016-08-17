@@ -6,7 +6,7 @@ Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Projects'], 
      */
     Route::get('projects/{id}/delete', ['as'=>'projects.delete', 'uses'=>'ProjectsController@delete']);
     Route::get('projects/{id}/features', ['as'=>'projects.features', 'uses'=>'ProjectsController@features']);
-    Route::get('projects/{id}/features-export', ['as'=>'projects.features-export', 'uses'=>'ProjectsController@featuresExport']);
+    Route::get('projects/{id}/features-export/{type?}', ['as'=>'projects.features-export', 'uses'=>'ProjectsController@featuresExport']);
     Route::get('projects/{id}/payments', ['as'=>'projects.payments', 'uses'=>'ProjectsController@payments']);
     Route::post('projects/{id}/features-reorder', ['as'=>'projects.features-reorder', 'uses'=>'ProjectsController@featuresReorder']);
     Route::patch('projects/{id}/status-update', ['as'=>'projects.status-update', 'uses'=>'ProjectsController@statusUpdate']);

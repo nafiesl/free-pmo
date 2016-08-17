@@ -3,10 +3,10 @@
     <table class="table table-condensed">
         <thead>
             <th>{{ trans('app.table_no') }}</th>
-            <th>{{ trans('task.name') }}</th>
-            <th>{{ trans('task.route_name') }}</th>
-            <th class="text-center">{{ trans('task.progress') }}</th>
-            <th>{{ trans('app.action') }}</th>
+            <th class="col-md-7">{{ trans('task.name') }}</th>
+            <th class="col-md-2">{{ trans('task.route_name') }}</th>
+            <th class="text-center col-md-1">{{ trans('task.progress') }}</th>
+            <th class="col-md-2">{{ trans('app.action') }}</th>
         </thead>
         <tbody id="sort-tasks">
             @forelse($feature->tasks as $key => $task)

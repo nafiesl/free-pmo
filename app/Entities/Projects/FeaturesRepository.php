@@ -26,7 +26,7 @@ class FeaturesRepository extends BaseRepository
         ->whereHas('project', function($query) {
             return $query->whereIn('status_id', [2,3]);
         })
-        ->with(['tasks','project','worker'])
+        ->with(['tasks','project'])
         ->get();
     }
 

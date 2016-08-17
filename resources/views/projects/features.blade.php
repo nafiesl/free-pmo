@@ -23,8 +23,8 @@
             <th class="text-center">{{ trans('feature.tasks_count') }}</th>
             <th class="text-center">{{ trans('feature.progress') }}</th>
             <th class="text-right">{{ trans('feature.price') }}</th>
-            <th>{{ trans('feature.worker') }}</th>
-            <th>{{ trans('app.action') }}</th>
+            {{-- <th>{{ trans('feature.worker') }}</th> --}}
+            <th class="text-center">{{ trans('app.action') }}</th>
         </thead>
         <tbody id="sort-features">
             @forelse($features as $key => $feature)
@@ -36,10 +36,7 @@
                     @if ($feature->tasks->isEmpty() == false)
                     <ul>
                         @foreach($feature->tasks as $task)
-                        <li title="{{ $task->progress }} %">
-                            {{-- <i class="fa fa-battery-{{ ceil(4 * $task->progress/100) }}"></i> --}}
-                            {{ $task->name }}
-                        </li>
+                        <li>{{ $task->name }}</li>
                         @endforeach
                     </ul>
                     @endif
@@ -47,8 +44,8 @@
                 <td class="text-center">{{ $feature->tasks_count = $feature->tasks->count() }}</td>
                 <td class="text-center">{{ formatDecimal($feature->progress = $feature->tasks->avg('progress')) }} %</td>
                 <td class="text-right">{{ formatRp($feature->price) }}</td>
-                <td>{{ $feature->worker->name }}</td>
-                <td>
+                {{-- <td>{{ $feature->worker->name }}</td> --}}
+                <td class="text-center">
                     {!! link_to_route('features.show', trans('task.create'),[$feature->id],['class' => 'btn btn-default btn-xs']) !!}
                     {!! link_to_route('features.show', trans('app.show'),[$feature->id],['class' => 'btn btn-info btn-xs']) !!}
                     {!! link_to_route('features.edit', trans('app.edit'),[$feature->id],['class' => 'btn btn-warning btn-xs']) !!}

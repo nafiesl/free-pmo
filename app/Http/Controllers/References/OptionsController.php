@@ -20,8 +20,13 @@ class OptionsController extends Controller {
 
 	public function index(Request $req)
 	{
+		$editableOption = null;
 		$options = $this->repo->getAll();
-		return view('options.index',compact('options'));
+
+		if (in_array($req->get('action'), ['del','edit']) && $req->has('id'))
+			$editableOption = $this->repo->requireById($req->get('id'));
+
+		return view('options.index',compact('options','editableOption'));
 	}
 
 	public function create()

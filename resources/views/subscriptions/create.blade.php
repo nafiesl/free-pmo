@@ -39,8 +39,8 @@
                         {!! FormField::text('due_date',['label'=> trans('subscription.due_date')]) !!}
                     </div>
                 </div>
-                {!! FormField::select('customer_id', $customers,['label'=> trans('subscription.customer')]) !!}
-                {!! FormField::select('project_id', $projects,['label'=> trans('subscription.project')]) !!}
+                {!! FormField::select('customer_id', $customers,['label'=> trans('subscription.customer'),'value' => Request::get('customer_id')]) !!}
+                {!! FormField::select('project_id', $projects,['label'=> trans('subscription.project'),'value' => Request::get('project_id')]) !!}
                 {!! FormField::textarea('remark',['label'=> trans('subscription.remark')]) !!}
             </div>
 

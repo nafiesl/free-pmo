@@ -81,21 +81,22 @@ class ProjectsRepository extends BaseRepository
         $project->payments()->delete();
 
         // Delete features tasks
-        $featureIds = $project->features->lists('id')->all();
+        $featureIds = $project->allFeatures->lists('id')->all();
         DB::table('tasks')->whereIn('feature_id', $featureIds)->delete();
 
         // Delete features
-        $project->features()->delete();
+        $project->allFeatures()->delete();
 
         // Delete project
         $project->delete();
+
         DB::commit();
         return 'deleted';
     }
 
-    public function getProjectFeatures($projectId)
+    public function getProjectFeatures($projectId, $type = 1)
     {
-        return Feature::whereProjectId($projectId)->orderBy('position')->with('worker','tasks')->get();
+        return Feature::whereProjectId($projectId)->whereTypeId($type)->orderBy('position')->with('worker','tasks')->get();
     }
 
     public function updateStatus($statusId, $projectId)

@@ -44,7 +44,13 @@ class ManageSubscriptionsTest extends TestCase
 
         $this->seePageIs('subscriptions');
         $this->see(trans('subscription.created'));
-        $this->seeInDatabase('subscriptions', ['project_id' => $project->id,'domain_price' => 100000,'start_date' => '2015-05-02','due_date' => '2016-05-02']);
+        $this->seeInDatabase('subscriptions', [
+            'project_id' => $project->id,
+            'domain_price' => 100000,
+            'status_id' => 1,
+            'start_date' => '2015-05-02',
+            'due_date' => '2016-05-02'
+        ]);
     }
 
     /** @test */
@@ -70,6 +76,7 @@ class ManageSubscriptionsTest extends TestCase
         $this->type(500000,'hosting_price');
         $this->type('2015-05-02','start_date');
         $this->type('2016-05-02','due_date');
+        $this->select(0,'status_id');
         $this->press(trans('subscription.update'));
 
         $this->seePageIs('subscriptions/' . $subscription->id . '/edit');
@@ -78,6 +85,7 @@ class ManageSubscriptionsTest extends TestCase
             'epp_code' => $eppCode,
             'customer_id' => $customer->id,
             'project_id' => $project->id,
+            'status_id' => 0,
             'hosting_capacity' => '4GB',
             'hosting_price' => '500000',
             'start_date' => '2015-05-02',

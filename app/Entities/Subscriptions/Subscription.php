@@ -25,4 +25,9 @@ class Subscription extends Model {
         return $this->belongsTo(User::class,'customer_id');
     }
 
+    public function status()
+    {
+        return $this->status_id ? 'Aktif' : 'Non Aktif';
+    }
+
 }

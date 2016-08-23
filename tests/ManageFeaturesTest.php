@@ -99,8 +99,13 @@ class ManageFeaturesTest extends TestCase
             'project_id' => $project->id,
         ]);
 
-        $this->visit('projects/' . $feature->project_id . '/features');
-        $this->click(trans('app.show'));
+        // $this->visit('projects/' . $project->id . '/features');
+        // $this->seePageIs('projects/' . $project->id . '/features');
+        // $this->click('show-feature-' . $feature->id);
+        // $this->dump();
+        $this->visit('features/' . $feature->id);
+        $this->seePageIs('features/' . $feature->id);
+        // die('hit');
         $this->click(trans('app.edit'));
         $this->click(trans('feature.delete'));
         $this->press(trans('app.delete_confirm_button'));
@@ -126,10 +131,10 @@ class ManageFeaturesTest extends TestCase
         $this->actingAs($user);
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
-        $feature = factory(Feature::class)->create(['project_id' => $project->id]);
+        $feature = factory(Feature::class)->create(['project_id' => $project->id,'type_id' => 1]);
 
         $this->visit('projects/' . $project->id . '/features');
-        $this->click(trans('app.show'));
+        $this->click('show-feature-' . $feature->id);
         $this->seePageIs('features/' . $feature->id);
         $this->see(trans('feature.show'));
         $this->see($feature->name);
@@ -145,12 +150,11 @@ class ManageFeaturesTest extends TestCase
         $this->actingAs($user);
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
-        $features = factory(Feature::class, 5)->create(['project_id' => $project->id]);
+        $features = factory(Feature::class, 5)->create(['project_id' => $project->id, 'type_id' => 1]);
         $this->assertEquals(5, $features->count());
 
         $this->visit('projects/' . $project->id . '/features');
         $this->see($features[1]->name);
-        $this->see($features[1]->worker->name);
         $this->see(formatRp($features[1]->price));
     }
 

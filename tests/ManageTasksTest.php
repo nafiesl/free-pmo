@@ -62,7 +62,6 @@ class ManageTasksTest extends TestCase
 
         // Fill Form
         $this->type('Nama Task Edit','name');
-        $this->type('tasks/{id}/edit','route_name');
         $this->type(77,'progress');
         $this->press(trans('task.update'));
 
@@ -71,8 +70,7 @@ class ManageTasksTest extends TestCase
         $this->seeInDatabase('tasks', [
             'name' => 'Nama Task Edit',
             'progress' => 77,
-            'feature_id' => $feature->id,
-            'route_name' => 'tasks/{id}/edit',
+            'feature_id' => $feature->id
         ]);
     }
 

@@ -36,6 +36,7 @@
                 </div>
                 {!! FormField::select('customer_id', $customers,['label'=> trans('subscription.customer')]) !!}
                 {!! FormField::select('project_id', $projects,['label'=> trans('subscription.project')]) !!}
+                {!! FormField::radios('status_id', ['Non Active','Active'],['label'=> trans('app.status')]) !!}
                 {!! FormField::textarea('remark',['label'=> trans('subscription.remark')]) !!}
             </div>
 

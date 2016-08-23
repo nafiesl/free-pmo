@@ -29,7 +29,7 @@
                 {!! FormField::text('progress', ['addon' => ['after' => '%']]) !!}
             </div>
             <div class="col-md-6">
-                {!! FormField::select('feature_id', $feature->project->features->lists('name','id'), ['label' => 'Pindahkan ke Fitur lain']) !!}
+                {!! FormField::select('feature_id', $feature->project->allFeatures->lists('name','id'), ['label' => 'Pindahkan ke Fitur lain']) !!}
             </div>
         </div>
         {!! Form::submit(trans('task.update'), ['class' => 'btn btn-warning']) !!}
@@ -43,7 +43,7 @@
     <div class="panel-heading"><h3 class="panel-title">{{ trans('task.delete') }}</h3></div>
     <div class="panel-body">
         <div>{{ $editableTask->name }}</div>
-        <div class="small text-info">{!! $editableTask->description !!}</div>
+        <div class="small text-info">{!! nl2br($editableTask->description) !!}</div>
     </div>
     <div class="panel-footer">
         {{ trans('app.delete_confirm') }}

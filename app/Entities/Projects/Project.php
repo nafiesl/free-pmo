@@ -4,6 +4,7 @@ namespace App\Entities\Projects;
 
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\ProjectPresenter;
+use App\Entities\Subscriptions\Subscription;
 use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -16,9 +17,24 @@ class Project extends Model {
     protected $guarded = ['id','created_at','updated_at'];
 	// protected $dates = ['start_date','end_date'];
 
-    public function features()
+    public function allFeatures()
     {
         return $this->hasMany(Feature::class)->orderBy('position');
+    }
+
+    public function features()
+    {
+        return $this->hasMany(Feature::class)->orderBy('position')->whereTypeId(1);
+    }
+
+    public function additionalFeatures()
+    {
+        return $this->hasMany(Feature::class)->orderBy('position')->whereTypeId(2);
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
     }
 
     public function payments()

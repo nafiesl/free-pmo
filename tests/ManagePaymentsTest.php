@@ -156,7 +156,6 @@ class ManagePaymentsTest extends TestCase
         $this->see($payments[4]->project->name);
         $this->see($payments[4]->date);
         $this->see(formatRp($payments[4]->amount));
-        $this->see($payments[4]->description);
         $this->see($payments[4]->customer->name);
     }
 

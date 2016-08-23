@@ -75,6 +75,7 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
 
     return [
         'project_id' => factory(Project::class)->create()->id,
+        'status_id' => 1,
         'domain_name' => 'www.' . str_random(10) . '.com',
         'domain_price' => 125000,
         'epp_code' => str_random(10),

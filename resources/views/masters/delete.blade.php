@@ -5,7 +5,7 @@
 @section('content')
 <h1 class="page-header">
     <div class="pull-right">
-        {!! delete_button(['route'=>['masters.destroy',$master->id]], trans('app.delete_confirm_button'), ['class'=>'btn btn-danger'], ['master_id'=>$master->id]) !!}
+        {!! FormField::delete(['route'=>['masters.destroy',$master->id]], trans('app.delete_confirm_button'), ['class'=>'btn btn-danger'], ['master_id'=>$master->id]) !!}
     </div>
     {{ trans('app.delete_confirm') }}
     {!! link_to_route('masters.show', trans('app.cancel'), [$master->id], ['class' => 'btn btn-default']) !!}

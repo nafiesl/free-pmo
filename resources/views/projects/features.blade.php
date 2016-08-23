@@ -47,7 +47,7 @@
                 {{-- <td>{{ $feature->worker->name }}</td> --}}
                 <td class="text-center">
                     {!! link_to_route('features.show', trans('task.create'),[$feature->id],['class' => 'btn btn-default btn-xs']) !!}
-                    {!! link_to_route('features.show', trans('app.show'),[$feature->id],['class' => 'btn btn-info btn-xs']) !!}
+                    {!! link_to_route('features.show', trans('app.show'),[$feature->id],['class' => 'btn btn-info btn-xs','id' => 'show-feature-' . $feature->id]) !!}
                     {!! link_to_route('features.edit', trans('app.edit'),[$feature->id],['class' => 'btn btn-warning btn-xs']) !!}
                 </td>
             </tr>

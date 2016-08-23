@@ -26,7 +26,7 @@
                 @if ($selectedProject)
                 {!! Form::open(['route'=>['features.store-from-other-project', $project->id]]) !!}
                 <ul class="list-unstyled">
-                    @forelse($selectedProject->features as $key => $feature)
+                    @forelse($selectedProject->allFeatures as $key => $feature)
                     <li>
                         <label for="feature_id_{{ $feature->id }}">
                         {!! Form::checkbox('feature_ids[' . $feature->id . ']', $feature->id, null, ['id' => 'feature_id_' . $feature->id]) !!}

@@ -18,6 +18,8 @@ class SubscriptionsRepository extends BaseRepository
 
     public function getAll($q)
     {
-        return $this->model->orderBy('due_date')->where('domain_name','like','%' . $q . '%')->paginate($this->_paginate);
+        return $this->model->orderBy('due_date')
+            ->where('domain_name','like','%' . $q . '%')
+            ->paginate($this->_paginate);
     }
 }

@@ -143,22 +143,6 @@ class ManageFeaturesTest extends TestCase
     }
 
     /** @test */
-    public function admin_can_see_all_features()
-    {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
-
-        $project = factory(Project::class)->create(['owner_id' => $user->id]);
-        $features = factory(Feature::class, 5)->create(['project_id' => $project->id, 'type_id' => 1]);
-        $this->assertEquals(5, $features->count());
-
-        $this->visit('projects/' . $project->id . '/features');
-        $this->see($features[1]->name);
-        $this->see(formatRp($features[1]->price));
-    }
-
-    /** @test */
     public function admin_may_clone_many_features_from_other_projects()
     {
         $user = factory(User::class)->create();

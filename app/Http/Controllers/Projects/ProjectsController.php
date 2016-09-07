@@ -84,11 +84,10 @@ class ProjectsController extends Controller {
 		return redirect()->route('projects.index');
 	}
 
-	public function features(Request $req, $projectId)
+	public function features($projectId)
 	{
-		$featureType = $req->get('feature_type', 1);
 	    $project = $this->repo->requireById($projectId);
-	    $features = $this->repo->getProjectFeatures($projectId, $featureType);
+	    $features = $this->repo->getProjectFeatures($projectId);
 		return view('projects.features', compact('project','features'));
 	}
 
@@ -103,8 +102,9 @@ class ProjectsController extends Controller {
 		$featureType = $req->get('feature_type', 1);
 	    $project = $this->repo->requireById($projectId);
 	    $features = $this->repo->getProjectFeatures($projectId, $featureType);
-		// return view('projects.features-export', compact('project','features'));
+
 	    if ($exportType == 'excel') {
+			// return view('projects.features-export-excel', compact('project','features'));
 		    \Excel::create(str_slug(trans('project.features') . '-' . $project->name), function($excel) use ($project, $features) {
 			    $excel->sheet('testng', function($sheet) use ($project, $features) {
 			        $sheet->loadView('projects.features-export-excel',compact('project','features'));

@@ -27,20 +27,20 @@
             <tr>
                 <th>{{ trans('app.table_no') }}</th>
                 <th>{{ trans('feature.name') }}</th>
-                {{-- <th class="text-center">{{ trans('feature.progress') }}</th> --}}
-                <th class="text-right">{{ trans('feature.price') }}</th>
+                <th class="text-center">{{ trans('feature.progress') }}</th>
+                {{-- <th class="text-right">{{ trans('feature.price') }}</th> --}}
                 <th>{{ trans('app.description') }}</th>
             </tr>
         </thead>
         <tbody id="sort-features">
             @forelse($features as $key => $feature)
             <tr>
-                <td rowspan="{{ $feature->tasks->count() + 1 }}">{{ 1 + $key }}</td>
+                <td>{{ 1 + $key }}</td>
                 <td>
                     {{ $feature->name }}
                 </td>
-                {{-- <td class="text-center">{{ formatDecimal($feature->progress = $feature->tasks->avg('progress')) }} %</td> --}}
-                <td rowspan="{{ $feature->tasks->count() + 1 }}" class="text-right">{{ $feature->price }}</td>
+                <td class="text-center">{{ $feature->progress = $feature->tasks->avg('progress')/100 }}</td>
+                {{-- <td class="text-right">{{ $feature->price }}</td> --}}
                 <td style="wrap-text: true;">{!! nl2br($feature->description) !!}</td>
             </tr>
 
@@ -61,8 +61,8 @@
         <tfoot>
             <tr>
                 <th class="text-right" colspan="2">Total</th>
-                {{-- <th class="text-center">{{ formatDecimal($features->avg('progress')) }} %</th> --}}
-                <th class="text-right">{{ $features->sum('price') }}</th>
+                <th class="text-center">{{ $features->avg('progress')/100 }}</th>
+                {{-- <th class="text-right">{{ $features->sum('price') }}</th> --}}
                 <th></th>
             </tr>
         </tfoot>

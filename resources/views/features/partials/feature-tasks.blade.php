@@ -6,7 +6,7 @@
             <th class="col-md-7">{{ trans('task.name') }}</th>
             <th class="col-md-2">{{ trans('task.route_name') }}</th>
             <th class="text-center col-md-1">{{ trans('task.progress') }}</th>
-            <th class="col-md-2">{{ trans('app.action') }}</th>
+            <th class="col-md-2 text-center">{{ trans('app.action') }}</th>
         </thead>
         <tbody id="sort-tasks">
             @forelse($feature->tasks as $key => $task)
@@ -18,17 +18,25 @@
                 </td>
                 <td>{{ $task->route_name }}</td>
                 <td class="text-center">{{ $task->progress }} %</td>
-                <td>
-                    {{ link_to_route('features.show', trans('task.edit'), [
+                <td class="text-center">
+                    {!! html_link_to_route('features.show', '', [
                         $feature->id,
                         'action' => 'task_edit',
                         'task_id' => $task->id
-                    ],['class' => 'btn btn-warning btn-xs']) }}
-                    {{ link_to_route('features.show', trans('task.delete'), [
+                    ],[
+                        'class' => 'btn btn-warning btn-xs',
+                        'title' => trans('task.edit'),
+                        'icon' => 'edit'
+                    ]) !!}
+                    {!! html_link_to_route('features.show', '', [
                         $feature->id,
                         'action' => 'task_delete',
                         'task_id' => $task->id
-                    ],['class' => 'btn btn-danger btn-xs']) }}
+                    ],[
+                        'class' => 'btn btn-danger btn-xs',
+                        'title' => trans('task.delete'),
+                        'icon' => 'close'
+                    ]) !!}
                 </td>
             </tr>
             @empty

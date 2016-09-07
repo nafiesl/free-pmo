@@ -15,8 +15,19 @@
 
 @include('projects.partials.nav-tabs')
 
-<div class="panel panel-default">
-    <table id="features-table" class="table table-condensed table-striped">
+@foreach($features->groupBy('type_id') as $key => $groupedFeatures)
+
+<div class="panel panel-default table-responsive">
+    <div class="panel-heading">
+        <div class="pull-right">
+            {!! link_to_route('projects.features-export', trans('project.features_export_html'), [$project->id, 'html', 'feature_type' => $key], ['class' => '','target' => '_blank']) !!} |
+            {!! link_to_route('projects.features-export', trans('project.features_export_excel'), [$project->id, 'excel', 'feature_type' => $key], ['class' => '']) !!}
+        </div>
+        <h3 class="panel-title">
+            {{ $key == 1 ? 'Daftar Fitur' : 'Fitur Tambahan' }}
+        </h3>
+    </div>
+    <table class="table table-condensed table-striped">
         <thead>
             <th>{{ trans('app.table_no') }}</th>
             <th>{{ trans('feature.name') }}</th>
@@ -26,8 +37,8 @@
             {{-- <th>{{ trans('feature.worker') }}</th> --}}
             <th class="text-center">{{ trans('app.action') }}</th>
         </thead>
-        <tbody id="sort-features">
-            @forelse($features as $key => $feature)
+        <tbody class="sort-features">
+            @forelse($groupedFeatures as $key => $feature)
             @php($no = 1 + $key)
             <tr id="{{ $feature->id }}">
                 <td>{{ $no }}</td>
@@ -46,9 +57,8 @@
                 <td class="text-right">{{ formatRp($feature->price) }}</td>
                 {{-- <td>{{ $feature->worker->name }}</td> --}}
                 <td class="text-center">
-                    {!! link_to_route('features.show', trans('task.create'),[$feature->id],['class' => 'btn btn-default btn-xs']) !!}
-                    {!! link_to_route('features.show', trans('app.show'),[$feature->id],['class' => 'btn btn-info btn-xs','id' => 'show-feature-' . $feature->id]) !!}
-                    {!! link_to_route('features.edit', trans('app.edit'),[$feature->id],['class' => 'btn btn-warning btn-xs']) !!}
+                    {!! html_link_to_route('features.show', '',[$feature->id],['icon' => 'search', 'title' => 'Lihat ' . trans('feature.show'), 'class' => 'btn btn-info btn-xs','id' => 'show-feature-' . $feature->id]) !!}
+                    {!! html_link_to_route('features.edit', '',[$feature->id],['icon' => 'edit', 'title' => trans('feature.edit'), 'class' => 'btn btn-warning btn-xs']) !!}
                 </td>
             </tr>
             @empty
@@ -58,35 +68,27 @@
         <tfoot>
             <tr>
                 <th class="text-right" colspan="2">Total</th>
-                <th class="text-center">{{ $features->sum('tasks_count') }}</th>
-                <th class="text-center">{{ formatDecimal($features->avg('progress')) }} %</th>
-                <th class="text-right">{{ formatRp($features->sum('price')) }}</th>
+                <th class="text-center">{{ $groupedFeatures->sum('tasks_count') }}</th>
+                <th class="text-center">{{ formatDecimal($project->getFeatureOveralProgress()) }} %</th>
+                <th class="text-right">{{ formatRp($groupedFeatures->sum('price')) }}</th>
                 <th colspan="2"></th>
             </tr>
         </tfoot>
     </table>
 </div>
+@endforeach
+
 @endsection
-{{--
-@section('ext_css')
-    {!! Html::style(url('assets/css/plugins/dataTables.bootstrap.css')) !!}
-@endsection
- --}}
+
 @section('ext_js')
-{{--     {!! Html::script(url('assets/js/plugins/dataTables/jquery.dataTables.js')) !!}
-    {!! Html::script(url('assets/js/plugins/dataTables/dataTables.bootstrap.js')) !!}
- --}}    {!! Html::script(url('assets/js/plugins/jquery-ui.min.js')) !!}
+    {!! Html::script(url('assets/js/plugins/jquery-ui.min.js')) !!}
 @endsection
 
 @section('script')
 
 <script>
 (function() {
-    // $('#features-table').dataTable({
-    //     "paging": false,
-    //     "info": false
-    // });
-    $('#sort-features').sortable({
+    $('.sort-features').sortable({
         update: function (event, ui) {
             var data = $(this).sortable('toArray').toString();
             $.post("{{ route('projects.features-reorder', $project->id) }}", {postData: data});

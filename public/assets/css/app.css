@@ -7156,7 +7156,8 @@ h1.page-header {
   margin: auto; }
 
 .nav > li > a {
-  padding: 6px 10px; }
+  padding: 6px 10px;
+  border-color: #eee #eee #ddd; }
 
 .navbar-right > li > a {
   padding: 15px; }

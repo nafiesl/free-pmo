@@ -17,12 +17,12 @@ class Project extends Model {
     protected $guarded = ['id','created_at','updated_at'];
 	// protected $dates = ['start_date','end_date'];
 
-    public function allFeatures()
+    public function features()
     {
         return $this->hasMany(Feature::class)->orderBy('position');
     }
 
-    public function features()
+    public function mainFeatures()
     {
         return $this->hasMany(Feature::class)->orderBy('position')->whereTypeId(1);
     }
@@ -59,6 +59,20 @@ class Project extends Model {
         return $this->payments->sum(function($payment) {
             return $payment->in_out == 0 ? $payment->amount : 0;
         });
+    }
+
+    public function getFeatureOveralProgress()
+    {
+        $overalProgress = 0;
+        $totalPrice = $this->features->sum('price');
+
+        foreach ($this->features as $feature) {
+            $progress = $feature->tasks->avg('progress');
+            $index = $feature->price / $totalPrice;
+            $overalProgress += $progress * $index;
+        }
+
+        return $overalProgress;
     }
 
 }

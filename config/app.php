@@ -159,7 +159,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         BackupManager\Laravel\Laravel5ServiceProvider::class,
-        // Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,

@@ -61,7 +61,7 @@
         <tfoot>
             <tr>
                 <th class="text-right" colspan="2">Total</th>
-                <th class="text-center">{{ $features->avg('progress')/100 }}</th>
+                <th class="text-center">{{ $project->getFeatureOveralProgress() }} %</th>
                 {{-- <th class="text-right">{{ $features->sum('price') }}</th> --}}
                 <th></th>
             </tr>

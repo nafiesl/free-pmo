@@ -109,7 +109,7 @@ class ProjectsController extends Controller {
 			    $excel->sheet('testng', function($sheet) use ($project, $features) {
 			        $sheet->loadView('projects.features-export-excel',compact('project','features'));
 			    });
-			})->download('xlsx');
+			})->download('xls');
 	    } else {
 			return view('projects.features-export-html', compact('project','features'));
 	    }

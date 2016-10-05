@@ -64,6 +64,7 @@ class Project extends Model {
     public function getFeatureOveralProgress()
     {
         $overalProgress = 0;
+        $this->features->load('tasks');
         $totalPrice = $this->features->sum('price');
 
         foreach ($this->features as $feature) {

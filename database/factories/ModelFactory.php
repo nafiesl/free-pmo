@@ -5,6 +5,7 @@ use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
+use App\Entities\Users\Event;
 use App\Entities\Users\User;
 
 /*
@@ -22,9 +23,10 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'username' => $faker->username,
-        'email' => $faker->email,
+        'email' => $email = $faker->email,
         'password' => 'member',
         'remember_token' => str_random(10),
+        'api_token' => bcrypt($email),
     ];
 });
 
@@ -110,5 +112,18 @@ $factory->define(Task::class, function (Faker\Generator $faker) {
         'progress' => rand(40,100),
         'route_name' => implode('.', $faker->words(3)),
         'position' => rand(1,10),
+    ];
+});
+
+$factory->define(Event::class, function (Faker\Generator $faker) {
+
+    return [
+        'user_id' => factory(User::class)->create()->id,
+        'project_id' => factory(Project::class)->create()->id,
+        'title' => $faker->words(rand(2,4), true),
+        'body' => $faker->sentence,
+        'start' => $faker->dateTimeBetween('-2 months', '-2 months')->format('Y-m-d H:i:s'),
+        'end' => $faker->dateTimeBetween('-2 months', '-2 months')->format('Y-m-d H:i:s'),
+        'is_allday' => rand(0,1),
     ];
 });

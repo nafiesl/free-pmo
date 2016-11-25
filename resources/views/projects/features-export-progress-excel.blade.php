@@ -11,9 +11,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{{ $project->name }}</title>
     <style>
-        table {
-            border-collapse:collapse;
-        }
         th, td {
             padding: 5px;
         }
@@ -24,13 +21,14 @@
         <thead>
             <tr>
                 <td colspan="4" style="text-align:center">
-                    <strong>{{ trans('project.features') }} {{ $project->name }}</strong>
+                    <h1>{{ trans('project.features') }} {{ $project->name }}</h1>
                 </td>
             </tr>
             <tr>
                 <th>{{ trans('app.table_no') }}</th>
                 <th>{{ trans('feature.name') }}</th>
-                <th class="text-right">{{ trans('feature.price') }}</th>
+                <th class="text-center">{{ trans('feature.progress') }}</th>
+                {{-- <th class="text-right">{{ trans('feature.price') }}</th> --}}
                 <th>{{ trans('app.description') }}</th>
             </tr>
         </thead>
@@ -41,7 +39,8 @@
                 <td>
                     {{ $feature->name }}
                 </td>
-                <td class="text-right">{{ $feature->price }}</td>
+                <td class="text-center">{{ $feature->progress = $feature->tasks->avg('progress')/100 }}</td>
+                {{-- <td class="text-right">{{ $feature->price }}</td> --}}
                 <td style="wrap-text: true;">{!! nl2br($feature->description) !!}</td>
             </tr>
 
@@ -62,7 +61,8 @@
         <tfoot>
             <tr>
                 <th class="text-right" colspan="2">Total</th>
-                <th class="text-right">{{ $features->sum('price') }}</th>
+                <th class="text-center">{{ $project->getFeatureOveralProgress() }} %</th>
+                {{-- <th class="text-right">{{ $features->sum('price') }}</th> --}}
                 <th></th>
             </tr>
         </tfoot>

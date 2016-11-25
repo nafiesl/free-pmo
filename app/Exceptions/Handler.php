@@ -45,6 +45,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
+        if ($e instanceof AuthorizationException) {
+            if ($request->isJson())
+                return response()->json(['error' => 'Forbidden Action.'], 403);
+
+            flash()->error('Invalid access');
+            return redirect()->home();
+        }
         return parent::render($request, $e);
     }
 }

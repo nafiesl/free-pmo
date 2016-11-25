@@ -11,7 +11,7 @@
 
     {{-- {!! Html::style('assets/css/plugins/metisMenu/metisMenu.min.css') !!} --}}
     @yield('ext_css')
-    {!! Html::style('assets/css/app.css') !!}
+    {!! Html::style('assets/css/app.s.css') !!}
 </head>
 <body>
     <div id="wrapper">
@@ -42,6 +42,9 @@
         $.ajaxSetup({
             headers: {
                 'X-CSRF-Token': $('meta[name="x-csrf-token"]').attr('content')
+            },
+            beforeSend: function(xhr){
+                xhr.setRequestHeader('Authorization', 'Bearer ' + "{{ auth()->user()->api_token }}");
             }
         });
     })();

@@ -37,6 +37,7 @@
             @can('see_reports')
             <li>{!! html_link_to_route('reports.payments.yearly', 'Penghasilan', [], ['icon' => 'line-chart']) !!}</li>
             <li>{!! html_link_to_route('reports.current-credits', 'Piutang', [], ['icon' => 'money']) !!}</li>
+            <li>{!! html_link_to_route('users.calendar', 'Calendar', [], ['icon' => 'calendar']) !!}</li>
             {{--
             <li>
                 {!! html_link_to_route('reports.payments.index', 'Laporan <span class="fa arrow"></span>', [], ['icon' => 'line-chart']) !!}

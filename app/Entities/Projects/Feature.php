@@ -30,4 +30,9 @@ class Feature extends Model {
         return $this->hasMany(Task::class)->orderBy('progress')->orderBy('position');
     }
 
+    public function type()
+    {
+        return $this->type_id == 1 ? 'Project' : 'Additional';
+    }
+
 }

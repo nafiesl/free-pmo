@@ -10,6 +10,7 @@
 <div class="well well-sm text-right">
     <div class="pull-left hidden-xs">{!! str_replace('/?', '?', $projects->appends(Request::except('page'))->render()) !!}</div>
     {!! Form::open(['method'=>'get','class'=>'form-inline']) !!}
+    {!! Form::select('status', getProjectStatusesList(), Request::get('status'), ['class'=>'form-control','placeholder'=> '- Semua Project -']) !!}
     {!! Form::text('q', Request::get('q'), ['class'=>'form-control index-search-field','placeholder'=>trans('project.search'),'style' => 'width:350px']) !!}
     {!! Form::submit(trans('project.search'), ['class' => 'btn btn-info btn-sm']) !!}
     {!! link_to_route('projects.index','Reset',[],['class' => 'btn btn-default btn-sm']) !!}

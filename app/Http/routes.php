@@ -11,3 +11,4 @@ require __DIR__ . '/routes/payments.php';
 require __DIR__ . '/routes/subscriptions.php';
 require __DIR__ . '/routes/reports.php';
 require __DIR__ . '/routes/options-vue.php';
+require __DIR__ . '/routes/calendar.php';

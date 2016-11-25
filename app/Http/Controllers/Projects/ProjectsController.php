@@ -104,7 +104,7 @@ class ProjectsController extends Controller {
 	    $features = $this->repo->getProjectFeatures($projectId, $featureType);
 
 	    if ($exportType == 'excel') {
-			// return view('projects.features-export-excel', compact('project','features'));
+			return view('projects.features-export-excel', compact('project','features'));
 		    \Excel::create(str_slug(trans('project.features') . '-' . $project->name), function($excel) use ($project, $features) {
 			    $excel->sheet('testng', function($sheet) use ($project, $features) {
 			        $sheet->loadView('projects.features-export-excel',compact('project','features'));

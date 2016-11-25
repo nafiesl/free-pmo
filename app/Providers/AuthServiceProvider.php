@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Entities\Users\Permission;
-use Illuminate\Contracts\Auth\Access\Gate as GateContract;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -20,37 +20,34 @@ class AuthServiceProvider extends ServiceProvider
     /**
      * Register any application authentication / authorization services.
      *
-     * @param  \Illuminate\Contracts\Auth\Access\Gate  $gate
      * @return void
      */
-    public function boot(GateContract $gate)
+    public function boot()
     {
-        $this->registerPolicies($gate);
+        $this->registerPolicies();
 
         // Dynamically register permissions with Laravel's Gate.
         foreach ($this->getPermissions() as $permission) {
-            $gate->define($permission->name, function ($user) use ($permission) {
+            Gate::define($permission->name, function ($user) use ($permission) {
                 return $user->hasPermission($permission);
             });
         }
 
-        $gate->define('add_project', function ($user) {
+        Gate::define('add_project', function ($user) {
             return $user->hasRole('admin');
         });
 
-        $gate->define('manage_project', function ($user, $project) {
+        Gate::define('manage_project', function ($user, $project) {
             return $user->id == $project->owner_id;
         });
 
-        $gate->define('manage_features', function ($user, $project) {
+        Gate::define('manage_features', function ($user, $project) {
             return $user->id == $project->owner_id;
         });
 
-        $gate->define('manage_feature', function ($user, $feature) {
+        Gate::define('manage_feature', function ($user, $feature) {
             return $user->id == $feature->worker_id;
         });
-
-
     }
 
     /**

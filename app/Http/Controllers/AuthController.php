@@ -29,7 +29,7 @@ class AuthController extends Controller {
 
         $this->middleware('guest', ['only' => [
             'getLogin', 'postLogin', 'getRegister', 'postRegister',
-            'getActivate', 'getEmail', 'postEmail', 'getReset', 'postReset'
+            'getActivate'
             ]
         ]);
         $this->middleware('auth', ['only' => [
@@ -124,15 +124,5 @@ class AuthController extends Controller {
 
         flash()->success('Profil berhasil diupdate.');
         return redirect()->route('auth.profile');
-    }
-
-    /**
-     * Overrided from Illuminate\Foundation\Auth\ResetsPasswords
-     */
-    protected function resetPassword($user, $password)
-    {
-        $user->password = $password;
-        $user->save();
-        Auth::login($user);
     }
 }

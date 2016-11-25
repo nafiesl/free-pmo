@@ -16,7 +16,7 @@ class ApiEventsTest extends TestCase
         $user = factory(User::class)->create();
         $events = factory(Event::class, 5)->create(['user_id' => $user->id]);
 
-        $this->json('get', route('api.events.index'), [
+        $this->getJson(route('api.events.index'), [
             'Authorization' => 'Bearer ' . $user->api_token
         ]);
 
@@ -28,6 +28,8 @@ class ApiEventsTest extends TestCase
                 'title',
                 'body',
                 'start',
+                'end',
+                'allDay',
             ]
         ]);
     }
@@ -37,13 +39,15 @@ class ApiEventsTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->json('post', route('api.events.store'), [
+        $this->postJson(route('api.events.store'), [
             'title' => 'New Event Title',
             'body' => 'New Event Body',
             'start' => '2016-07-21 12:20:00',
         ], [
             'Authorization' => 'Bearer ' . $user->api_token
         ]);
+
+        // $this->dump();
 
         $this->seeStatusCode(201);
 
@@ -73,15 +77,13 @@ class ApiEventsTest extends TestCase
         $user = factory(User::class)->create();
         $event = factory(Event::class)->create(['user_id' => $user->id]);
         // dump($event->toArray());
-        $this->json('patch', route('api.events.update'), [
+        $this->patchJson(route('api.events.update'), [
             'id' => $event->id,
             'title' => 'New Event Title',
             'body' => 'New Event Body',
         ], [
             'Authorization' => 'Bearer ' . $user->api_token
         ]);
-
-        $this->dump();
 
         $this->seeStatusCode(200);
 
@@ -105,7 +107,7 @@ class ApiEventsTest extends TestCase
         $user = factory(User::class)->create();
         $event = factory(Event::class)->create(['user_id' => $user->id]);
 
-        $this->json('delete',route('api.events.destroy'), ['id' => $event->id], [
+        $this->deleteJson(route('api.events.destroy'), ['id' => $event->id], [
             'Authorization' => 'Bearer ' . $user->api_token
         ]);
 
@@ -122,7 +124,7 @@ class ApiEventsTest extends TestCase
         $user = factory(User::class)->create();
         $event = factory(Event::class)->create(['user_id' => $user->id, 'start' => '2016-11-17 12:00:00']);
 
-        $this->json('patch', route('api.events.reschedule'), [
+        $this->patchJson(route('api.events.reschedule'), [
             'id' => $event->id,
             'start' => '2016-11-07 13:00:00',
             'start' => '2016-11-07 15:00:00',
@@ -130,7 +132,7 @@ class ApiEventsTest extends TestCase
             'Authorization' => 'Bearer ' . $user->api_token
         ]);
 
-        $this->dump();
+        // $this->dump();
         $this->seeStatusCode(200);
 
         $this->seeJson([

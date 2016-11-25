@@ -75,7 +75,7 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('permission.permissions') }}</h3></div>
             <div class="panel-body">
-                {!! FormField::checkboxes('permission', $permissions->lists('label','id')->all(), ['value' => $role->permissions,'label'=>false,'list_style' => 'unstyled']) !!}
+                {!! FormField::checkboxes('permission', $permissions->pluck('label','id')->all(), ['value' => $role->permissions,'label'=>false,'list_style' => 'unstyled']) !!}
             </div>
             <div class="panel-footer">
                 {!! Form::submit(trans('role.update'), ['class' => 'btn btn-warning']) !!}

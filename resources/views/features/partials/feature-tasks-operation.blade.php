@@ -29,7 +29,7 @@
                 {!! FormField::text('progress', ['addon' => ['after' => '%']]) !!}
             </div>
             <div class="col-md-6">
-                {!! FormField::select('feature_id', $feature->project->features->lists('name','id'), ['label' => 'Pindahkan ke Fitur lain']) !!}
+                {!! FormField::select('feature_id', $feature->project->features->pluck('name','id'), ['label' => 'Pindahkan ke Fitur lain']) !!}
             </div>
         </div>
         {!! Form::submit(trans('task.update'), ['class' => 'btn btn-warning']) !!}

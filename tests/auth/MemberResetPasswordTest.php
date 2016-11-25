@@ -14,14 +14,14 @@ class MemberResetPasswordTest extends TestCase
         $user = factory(App\Entities\Users\User::class)->create();
 
         // Reset Request
-        $this->visit('auth/forgot-password');
+        $this->visit(route('auth.reset-request'));
         $this->notSeeInDatabase('password_resets', [
             'email' => $user->email
         ]);
         $this->see('Reset Password');
         $this->type($user->email,'email');
         $this->press('Kirim Link Reset Password');
-        $this->seePageIs('auth/forgot-password');
+        $this->seePageIs(route('auth.reset-request'));
         $this->see('Kami sudah mengirim email');
         $this->seeInDatabase('password_resets', [
             'email' => $user->email
@@ -31,7 +31,7 @@ class MemberResetPasswordTest extends TestCase
         $resetData = DB::table('password_resets')->where('email', $user->email)->first();
         $token = $resetData->token;
 
-        $this->visit('auth/reset/' . $token);
+        $this->visit('password/reset/' . $token);
         $this->see('Reset Password');
         $this->see('Password Baru');
 

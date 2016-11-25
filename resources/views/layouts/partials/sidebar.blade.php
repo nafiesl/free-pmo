@@ -19,7 +19,7 @@
                 <?php $projectsCount = App\Entities\Projects\Project::select(DB::raw('status_id, count(id) as count'))
                             ->groupBy('status_id')
                             ->where('owner_id', auth()->id())
-                            ->lists('count','status_id')
+                            ->pluck('count','status_id')
                             ->all(); ?>
                 {!! html_link_to_route('projects.index', trans('project.projects') . ' <span class="fa arrow"></span>', [], ['icon' => 'table']) !!}
                 <ul class="nav nav-second-level">

@@ -21,7 +21,7 @@
             </div>
             <div class="checkbox">
                 <label><input name="remember" type="checkbox" value="Remember Me">Remember Me</label>
-                {!! link_to_route('auth.forgot-password', trans('auth.forgot_password'),[],['class'=>'pull-right']) !!}
+                {!! link_to_route('auth.reset-request', trans('auth.forgot_password'),[],['class'=>'pull-right']) !!}
             </div>
             {!! Form::submit(trans('auth.login'), ['class'=>'btn btn-success btn-block']) !!}
             {!! link_to_route('auth.register', trans('auth.need_account'),[],['class'=>'btn btn-info btn-block']) !!}

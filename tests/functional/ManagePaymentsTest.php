@@ -141,23 +141,23 @@ class ManagePaymentsTest extends TestCase
         $this->see($payment->customer->name);
     }
 
-    /** @test */
-    public function admin_can_see_all_payments()
-    {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+    // /** @test */
+    // public function admin_can_see_all_payments()
+    // {
+    //     $user = factory(User::class)->create();
+    //     $user->assignRole('admin');
+    //     $this->actingAs($user);
 
-        $payments = factory(Payment::class, 5)->create(['owner_id' => $user->id]);
-        $this->assertEquals(5, $payments->count());
+    //     $payments = factory(Payment::class, 5)->create(['owner_id' => $user->id]);
+    //     $this->assertEquals(5, $payments->count());
 
-        $this->visit(route('payments.index'));
-        $this->seePageIs(route('payments.index'));
-        $this->see($payments[4]->project->name);
-        $this->see($payments[4]->date);
-        $this->see(formatRp($payments[4]->amount));
-        $this->see($payments[4]->customer->name);
-    }
+    //     $this->visit(route('payments.index'));
+    //     $this->seePageIs(route('payments.index'));
+    //     $this->see($payments[4]->project->name);
+    //     $this->see($payments[4]->date);
+    //     $this->see(formatRp($payments[4]->amount));
+    //     $this->see($payments[4]->customer->name);
+    // }
 
     /** @test */
     public function admin_can_search_payment_by_customer_name()
@@ -166,8 +166,8 @@ class ManagePaymentsTest extends TestCase
         $user->assignRole('admin');
         $this->actingAs($user);
 
-        $payments = factory(Payment::class, 5)->create(['owner_id' => $user->id]);
-        $this->assertEquals(5, $payments->count());
+        $payments = factory(Payment::class, 2)->create(['owner_id' => $user->id]);
+        $this->assertEquals(2, $payments->count());
 
         $this->visit(route('payments.index'));
 

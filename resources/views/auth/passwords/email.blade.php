@@ -8,7 +8,7 @@
 		<div class="panel-heading"><h3 class="panel-title">Reset Password</h3></div>
 		<div class="panel-body">
             @include('auth.partials._notifications')
-			{!! Form::open(['route'=>'auth.forgot-password']) !!}
+			{!! Form::open(['route'=>'auth.reset-email']) !!}
             {!! FormField::email('email') !!}
             {!! Form::submit(trans('auth.send_reset_password_link'), ['class'=>'btn btn-success btn-block']) !!}
             {!! link_to_route('auth.login','Back to Login', [],['class'=>'btn btn-default btn-block']) !!}

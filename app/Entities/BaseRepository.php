@@ -13,17 +13,17 @@ abstract class BaseRepository extends EloquentRepository {
 
     public function getCustomersList()
     {
-        return User::orderBy('name')->hasRoles(['customer'])->lists('name','id');
+        return User::orderBy('name')->hasRoles(['customer'])->pluck('name','id');
     }
 
     public function getWorkersList()
     {
-        return User::orderBy('name')->hasRoles(['worker'])->lists('name','id');
+        return User::orderBy('name')->hasRoles(['worker'])->pluck('name','id');
     }
 
     public function getProjectsList()
     {
-        return Project::orderBy('name')->lists('name','id');
+        return Project::orderBy('name')->pluck('name','id');
     }
 
     public function requireFeatureById($featureId)

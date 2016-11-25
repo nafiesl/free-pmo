@@ -131,22 +131,22 @@ class ManageSubscriptionsTest extends TestCase
         $this->see(dateId($subscription->due_date));
     }
 
-    /** @test */
-    public function admin_can_see_all_subscriptions()
-    {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+    // /** @test */
+    // public function admin_can_see_all_subscriptions()
+    // {
+    //     $user = factory(User::class)->create();
+    //     $user->assignRole('admin');
+    //     $this->actingAs($user);
 
-        $subscriptions = factory(Subscription::class, 5)->create();
-        $this->assertEquals(5, $subscriptions->count());
+    //     $subscriptions = factory(Subscription::class, 5)->create();
+    //     $this->assertEquals(5, $subscriptions->count());
 
-        $this->visit('/subscriptions');
-        $this->see($subscriptions[4]->domain_name);
-        $this->see($subscriptions[4]->hosting_capacity);
-        $this->see(dateId($subscriptions[4]->start_date));
-        $this->see(dateId($subscriptions[4]->due_date));
-        $this->see(formatRp($subscriptions[4]->domain_price + $subscriptions[4]->hosting_price));
+    //     $this->visit('/subscriptions');
+    //     $this->see($subscriptions[4]->domain_name);
+    //     $this->see($subscriptions[4]->hosting_capacity);
+    //     $this->see(dateId($subscriptions[4]->start_date));
+    //     $this->see(dateId($subscriptions[4]->due_date));
+    //     $this->see(formatRp($subscriptions[4]->domain_price + $subscriptions[4]->hosting_price));
 
-    }
+    // }
 }

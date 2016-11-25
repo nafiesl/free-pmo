@@ -56,7 +56,7 @@ trait HasRoles
 
     public function hasRoles(array $roleNameArray)
     {
-        return $this->roles->contains(function($key, $role) use ($roleNameArray) {
+        return $this->roles->contains(function($role, $key) use ($roleNameArray) {
             return in_array($role->name, $roleNameArray);
         });
     }

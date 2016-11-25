@@ -81,7 +81,7 @@ class ProjectsRepository extends BaseRepository
         $project->payments()->delete();
 
         // Delete features tasks
-        $featureIds = $project->features->lists('id')->all();
+        $featureIds = $project->features->pluck('id')->all();
         DB::table('tasks')->whereIn('feature_id', $featureIds)->delete();
 
         // Delete features

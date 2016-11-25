@@ -26,6 +26,7 @@
                     ],[
                         'class' => 'btn btn-warning btn-xs',
                         'title' => trans('task.edit'),
+                        'id' => $task->id . '-tasks-edit',
                         'icon' => 'edit'
                     ]) !!}
                     {!! html_link_to_route('features.show', '', [
@@ -35,6 +36,7 @@
                     ],[
                         'class' => 'btn btn-danger btn-xs',
                         'title' => trans('task.delete'),
+                        'id' => $task->id . '-tasks-delete',
                         'icon' => 'close'
                     ]) !!}
                 </td>

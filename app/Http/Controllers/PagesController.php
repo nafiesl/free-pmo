@@ -20,7 +20,7 @@ class PagesController extends Controller {
         $projectsCount = Project::select(DB::raw('status_id, count(id) as count'))
             ->groupBy('status_id')
             ->where('owner_id', auth()->id())
-            ->lists('count','status_id')
+            ->pluck('count','status_id')
             ->all();
         return view('pages.home', compact('projectsCount'));
     }

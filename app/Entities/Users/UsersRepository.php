@@ -63,7 +63,7 @@ class UsersRepository extends BaseRepository
 
     public function getRolesList()
     {
-        return Role::where('type', 0)->lists('label','id')->all();
+        return Role::where('type', 0)->pluck('label','id')->all();
     }
 
     public function delete($userId)

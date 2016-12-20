@@ -13,7 +13,7 @@
     {{-- {!! Html::style('assets/css/bootstrap-theme.min.css') !!} --}}
     {{-- {!! Html::style('assets/css/font-awesome.min.css') !!} --}}
     {{-- {!! Html::style('assets/css/sb-admin-2.css') !!} --}}
-    {!! Html::style('assets/css/app.css') !!}
+    {!! Html::style('assets/css/app.s.css') !!}
     @yield('ext_css')
 </head>
 <body>

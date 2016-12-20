@@ -8,17 +8,6 @@ use App\Entities\Subscriptions\Subscription;
 use App\Entities\Users\Event;
 use App\Entities\Users\User;
 
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
 $factory->define(User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
@@ -73,6 +62,9 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
     $customer = factory(User::class)->create();
     $customer->assignRole('customer');
     $customerId = $customer->id;
+    $vendor = factory(User::class)->create();
+    $vendor->assignRole('vendor');
+    $vendorId = $vendor->id;
     $startDate = Carbon::parse($faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'));
 
     return [
@@ -87,6 +79,7 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
         'due_date' => $startDate->addYears(1)->format('Y-m-d'),
         'remark' => $faker->paragraph,
         'customer_id' => $customerId,
+        'vendor_id' => $vendorId,
     ];
 });
 

@@ -29,9 +29,9 @@
         @forelse($payments as $key => $payment)
         <tr>
             <td>{{ $payments->firstItem() + $key }}</td>
-            <td>{!! link_to_route('projects.payments', $payment->project->name, [$payment->project_id], ['title' => 'Lihat seluruh Pembayaran Project ini']) !!}</td>
+            <td>{!! link_to_route('projects.payments', $payment->project->name, [$payment->project_id], ['title' => 'Lihat seluruh Pembayaran Project ini']) !!} [{{ $payment->type() }}]</td>
             <td class="text-center">{{ $payment->date }}</td>
-            <td class="text-right">{{ formatRp($payment->amount) }}</td>
+            <td class="text-right">{{ $payment->present()->amount }}</td>
             <td>{{ $payment->description }}</td>
             <td>{{ $payment->customer->name }}</td>
             <td>

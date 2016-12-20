@@ -2,7 +2,7 @@
 /**
  * Account Routes
  */
-Route::group(['prefix' => 'auth','middleware' => 'web','as'=>'auth.'], function() {
+Route::group(['middleware' => 'web','as'=>'auth.'], function() {
     Route::get('login', ['as'=>'login', 'uses' => 'AuthController@getLogin']);
     Route::post('login', ['as'=>'login', 'uses' => 'AuthController@postLogin']);
     Route::get('logout', ['as'=>'logout', 'uses' => 'AuthController@getLogout']);

@@ -41,6 +41,7 @@
                 </div>
                 {!! FormField::select('customer_id', $customers,['label'=> trans('subscription.customer'),'value' => Request::get('customer_id')]) !!}
                 {!! FormField::select('project_id', $projects,['label'=> trans('subscription.project'),'value' => Request::get('project_id')]) !!}
+                {!! FormField::select('vendor_id', $vendors,['label'=> trans('subscription.vendor'),'value' => Request::get('vendor_id')]) !!}
                 {!! FormField::textarea('remark',['label'=> trans('subscription.remark')]) !!}
             </div>
 

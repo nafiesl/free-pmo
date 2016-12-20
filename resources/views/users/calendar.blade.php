@@ -94,7 +94,12 @@
                                 <textarea class="form-control" style="height:55px;" id="descr2" name="descr2"></textarea>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="col-sm-9">
+                                <label for="is_allday2"><input id="is_allday2" type="checkbox" name="is_allday2"> All Day Event?</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -134,16 +139,18 @@
 
         var calendar = $('#calendar').fullCalendar({
             header: {
-                left: 'prev,next today',
+                right: 'prev,next today',
                 center: 'title',
-                right: 'month,agendaWeek,agendaDay'
+                left: 'month,agendaWeek,agendaDay,listYear'
             },
+            // defaultView: 'month',
             height: 550,
             selectable: true,
             selectHelper: true,
-            droppable: false,
-            editable: false,
+            minTime: '06:00:00',
             // eventLimit: true,
+            weekNumbers: true,
+            navLinks: true,
             slotLabelFormat: 'HH:mm',
             slotDuration: '01:00:00',
             events: {
@@ -153,11 +160,9 @@
                     alert('there was an error while fetching events!');
                 }
             },
-            eventRender: function(calEvent, element) {
-                // element.find('.fc-content').prepend('<strong style="display:block">' + calEvent.user + '</strong>');
-            },
             select: function(start, end, allDay) {
-                $('#fc_create').click();
+                // $('#fc_create').click();
+                $('#CalenderModalNew').modal('show');
 
                 started = start;
                 ended = end;
@@ -199,7 +204,7 @@
 
                     calendar.fullCalendar('unselect');
 
-                    $('.antoclose').click();
+                    $('#CalenderModalNew').modal('hide');
 
                     return false;
                 });
@@ -210,6 +215,7 @@
                     $('#user2').text(calEvent.user);
                     $('#title2').val(calEvent.title);
                     $('#descr2').val(calEvent.body);
+                    $('#is_allday2').val(calEvent.allDay);
                     $('#CalenderModalEdit').modal();
                 }
                 else {
@@ -243,17 +249,17 @@
                     }
 
                     $('#CalenderModalEdit').modal('hide');
-                    $('#CalenderModalView').modal('hide');
                 });
 
                 $("#antoform2").off("submit").on("submit", function() {
                     calEvent.title = $("#title2").val();
                     calEvent.body = $("#descr2").val();
+                    calEvent.is_allday = $("#is_allday2").is(':checked');
 
                     $.ajax({
                         url: "{{ route('api.events.update') }}",
                         method: "PATCH",
-                        data: { id: calEvent.id, title: calEvent.title, body: calEvent.body },
+                        data: { id: calEvent.id, title: calEvent.title, body: calEvent.body, is_allday: calEvent.is_allday },
                         success: function(response){
                             if(response.message == 'event.updated')
                                 $('#calendar').fullCalendar('updateEvent',calEvent);
@@ -308,6 +314,6 @@
 
             }
         });
-})();
+    })();
 </script>
 @endsection

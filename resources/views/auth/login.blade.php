@@ -3,6 +3,7 @@
 @section('title', trans('auth.login'))
 
 @section('content')
+@include('flash::message')
 <div class="login-panel col-md-4 col-md-offset-4">
     <div class="text-center">
         <img src="{{ url('assets/imgs/logo.png') }}" alt="Logo {{ Option::get('app_owner') }}">
@@ -10,7 +11,6 @@
     <h3 class="text-center">{{ Option::get('app_name','Aplikasi Laravel') }}</h3>
     <div class="panel panel-default">
         <div class="panel-body">
-            @include('flash::message')
             @include('auth.partials._errors')
         	{!! Form::open(['route'=>'auth.login']) !!}
             <div class="form-group {!! $errors->has('username') ? 'has-error' : ''; !!}">

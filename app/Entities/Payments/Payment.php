@@ -24,4 +24,9 @@ class Payment extends Model {
     {
         return $this->belongsTo(User::class, 'customer_id');
     }
+
+    public function type()
+    {
+        return paymentTypes($this->type_id);
+    }
 }

@@ -15,14 +15,14 @@ class MemberRegistrationAndLoginTest extends TestCase
         $user = factory(User::class)->create(['email' => 'member@app.dev']);
         $user->assignRole('customer');
 
-        $this->visit('/auth/register');
+        $this->visit(route('auth.register'));
         $this->type('', 'name');
         $this->type('', 'username');
         $this->type('member@app.dev', 'email');
         $this->type('', 'password');
         $this->type('', 'password_confirmation');
         $this->press('Buat Akun Baru');
-        $this->seePageIs('/auth/register');
+        $this->seePageIs(route('auth.register'));
         $this->see('Nama harus diisi.');
         $this->see('Username harus diisi.');
         $this->see('Email ini sudah terdaftar.');
@@ -35,7 +35,7 @@ class MemberRegistrationAndLoginTest extends TestCase
         $this->type('password', 'password');
         $this->type('password..', 'password_confirmation');
         $this->press('Buat Akun Baru');
-        $this->seePageIs('/auth/register');
+        $this->seePageIs(route('auth.register'));
         $this->see('Email tidak valid.');
         $this->see('Konfirmasi password tidak sesuai.');
     }
@@ -43,50 +43,50 @@ class MemberRegistrationAndLoginTest extends TestCase
     /** @test */
     public function member_register_successfully()
     {
-        $this->visit('/auth/register');
+        $this->visit(route('auth.register'));
         $this->type('Nama Member', 'name');
         $this->type('namamember', 'username');
         $this->type('email@mail.com', 'email');
         $this->type('password.111', 'password');
         $this->type('password.111', 'password_confirmation');
         $this->press('Buat Akun Baru');
-        $this->seePageIs('/home');
+        $this->seePageIs(route('home'));
         $this->see('Selamat datang Nama Member.');
     }
 
     /** @test */
     public function member_register_and_login_successfully()
     {
-        $this->visit('/auth/register');
+        $this->visit(route('auth.register'));
         $this->type('Nama Member', 'name');
         $this->type('namamember', 'username');
         $this->type('email@mail.com', 'email');
         $this->type('password.111', 'password');
         $this->type('password.111', 'password_confirmation');
         $this->press('Buat Akun Baru');
-        $this->seePageIs('/home');
+        $this->seePageIs(route('home'));
         $this->see('Selamat datang Nama Member.');
         $this->click('Keluar');
 
-        $this->visit('/auth/login');
+        $this->visit(route('auth.login'));
         $this->type('namamember','username');
         $this->type('password.111','password');
         $this->press('Login');
-        $this->seePageIs('/home');
+        $this->seePageIs(route('home'));
         $this->see('Selamat datang kembali Nama Member.');
         $this->click('Keluar');
-        $this->seePageIs('/auth/login');
+        $this->seePageIs(route('auth.login'));
         $this->see('Anda telah logout.');
     }
 
     /** @test */
     public function member_invalid_login()
     {
-        $this->visit('/auth/login');
+        $this->visit(route('auth.login'));
         $this->type('namamember','username');
         $this->type('password.112','password');
         $this->press('Login');
-        $this->seePageIs('/auth/login');
+        $this->seePageIs(route('auth.login'));
         $this->see('Mohon maaf, anda tidak dapat login');
     }
 }

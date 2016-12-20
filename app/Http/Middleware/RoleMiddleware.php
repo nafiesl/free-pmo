@@ -18,7 +18,7 @@ class RoleMiddleware
         $nameArray = explode('|', $names);
 
         if (auth()->check() == false) {
-            return redirect()->guest('auth/login');
+            return redirect()->guest('login');
         }
 
         // Cek apakah grup user ada di dalam array $nameArray?

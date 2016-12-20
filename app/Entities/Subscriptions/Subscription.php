@@ -25,6 +25,11 @@ class Subscription extends Model {
         return $this->belongsTo(User::class,'customer_id');
     }
 
+    public function vendor()
+    {
+        return $this->belongsTo(User::class,'vendor_id');
+    }
+
     public function status()
     {
         return $this->status_id ? 'Aktif' : 'Non Aktif';

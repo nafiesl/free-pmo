@@ -81,6 +81,7 @@ class ApiEventsTest extends TestCase
             'id' => $event->id,
             'title' => 'New Event Title',
             'body' => 'New Event Body',
+            'is_allday' => 'true',
         ], [
             'Authorization' => 'Bearer ' . $user->api_token
         ]);

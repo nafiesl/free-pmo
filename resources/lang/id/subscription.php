@@ -28,4 +28,5 @@ return [
     'back_to_index' => 'Kembali ke daftar Langganan',
     'customer'      => 'Customer',
     'project'       => 'Project',
+    'vendor'        => 'Vendor',
 ];

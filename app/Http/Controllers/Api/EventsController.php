@@ -89,6 +89,7 @@ class EventsController extends Controller
             'id' => 'required|numeric|exists:user_events,id',
             'title' => 'required|string|max:60',
             'body' => 'string|max:255',
+            'is_allday' => '',
         ]);
 
         $event = Event::findOrFail($request->get('id'));
@@ -96,6 +97,7 @@ class EventsController extends Controller
 
         $event->title = $request->get('title');
         $event->body = $request->get('body');
+        $event->is_allday = !!$request->get('is_allday');
 
         $event->save();
 

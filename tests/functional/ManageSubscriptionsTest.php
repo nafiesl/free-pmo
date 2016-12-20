@@ -23,6 +23,9 @@ class ManageSubscriptionsTest extends TestCase
         $customer = factory(User::class)->create();
         $customer->assignRole('customer');
 
+        $vendor = factory(User::class)->create();
+        $vendor->assignRole('vendor');
+
         $this->visit('subscriptions');
         $this->seePageIs('subscriptions');
         $this->see(trans('subscription.subscriptions'));
@@ -39,6 +42,7 @@ class ManageSubscriptionsTest extends TestCase
         $this->type('2016-05-02','due_date');
         $this->select($project->id, 'project_id');
         $this->select($customer->id, 'customer_id');
+        $this->select($vendor->id, 'vendor_id');
         $this->type('','remark');
         $this->press(trans('subscription.create'));
 
@@ -49,7 +53,9 @@ class ManageSubscriptionsTest extends TestCase
             'domain_price' => 100000,
             'status_id' => 1,
             'start_date' => '2015-05-02',
-            'due_date' => '2016-05-02'
+            'due_date' => '2016-05-02',
+            'customer_id' => $customer->id,
+            'vendor_id' => $vendor->id,
         ]);
     }
 
@@ -65,6 +71,9 @@ class ManageSubscriptionsTest extends TestCase
         $customer = factory(User::class)->create();
         $customer->assignRole('customer');
 
+        $vendor = factory(User::class)->create();
+        $vendor->assignRole('vendor');
+
         $subscription = factory(Subscription::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
 
         $this->visit('subscriptions/' . $subscription->id . '/edit');
@@ -76,6 +85,9 @@ class ManageSubscriptionsTest extends TestCase
         $this->type(500000,'hosting_price');
         $this->type('2015-05-02','start_date');
         $this->type('2016-05-02','due_date');
+        $this->select($project->id, 'project_id');
+        $this->select($customer->id, 'customer_id');
+        $this->select($vendor->id, 'vendor_id');
         $this->select(0,'status_id');
         $this->press(trans('subscription.update'));
 
@@ -90,6 +102,8 @@ class ManageSubscriptionsTest extends TestCase
             'hosting_price' => '500000',
             'start_date' => '2015-05-02',
             'due_date' => '2016-05-02',
+            'customer_id' => $customer->id,
+            'vendor_id' => $vendor->id,
         ]);
     }
 

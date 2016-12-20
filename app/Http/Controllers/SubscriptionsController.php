@@ -29,7 +29,8 @@ class SubscriptionsController extends Controller {
 	{
 		$projects = $this->repo->getProjectsList();
 		$customers = $this->repo->getCustomersList();
-		return view('subscriptions.create', compact('projects','customers'));
+		$vendors = $this->repo->getVendorsList();
+		return view('subscriptions.create', compact('projects','customers','vendors'));
 	}
 
 	public function store(CreateRequest $req)
@@ -50,7 +51,8 @@ class SubscriptionsController extends Controller {
 		$subscription = $this->repo->requireById($subscriptionId);
 		$projects = $this->repo->getProjectsList();
 		$customers = $this->repo->getCustomersList();
-		return view('subscriptions.edit',compact('subscription','projects','customers'));
+		$vendors = $this->repo->getVendorsList();
+		return view('subscriptions.edit',compact('subscription','projects','customers','vendors'));
 	}
 
 	public function update(UpdateRequest $req, $subscriptionId)

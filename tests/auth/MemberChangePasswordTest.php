@@ -16,8 +16,8 @@ class MemberChangePasswordTest extends TestCase
         $user->assignRole('customer');
         $this->actingAs($user);
 
-        $this->visit('home');
-        $this->seePageIs('home');
+        $this->visit(route('home'));
+        $this->seePageIs(route('home'));
         $this->click(trans('auth.change_password'));
 
         $this->type('member1','old_password');
@@ -34,10 +34,10 @@ class MemberChangePasswordTest extends TestCase
 
         // Logout and login using new Password
         $this->click('Keluar');
-        $this->seePageIs('auth/login');
+        $this->seePageIs(route('auth.login'));
         $this->type($user->username,'username');
         $this->type('rahasia','password');
         $this->press('Login');
-        $this->seePageIs('home');
+        $this->seePageIs(route('home'));
     }
 }

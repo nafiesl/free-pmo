@@ -48,8 +48,7 @@ class MemberResetPasswordTest extends TestCase
         $this->type('rahasia','password_confirmation');
         $this->press('Reset Password');
 
-
-        $this->seePageIs('home');
+        $this->seePageIs(route('home'));
 
         $this->notSeeInDatabase('password_resets', [
             'email' => $user->email
@@ -57,11 +56,11 @@ class MemberResetPasswordTest extends TestCase
 
         // Logout and login using new Password
         $this->click('Keluar');
-        $this->seePageIs('auth/login');
+        $this->seePageIs(route('auth.login'));
         $this->type($user->username,'username');
         $this->type('rahasia','password');
         $this->press('Login');
-        $this->seePageIs('home');
+        $this->seePageIs(route('home'));
     }
 
 }

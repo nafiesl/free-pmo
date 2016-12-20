@@ -37,7 +37,7 @@
                         <td class="text-center">{{ $payment->date }}</td>
                         <td class="text-right">{{ formatRp($payment->amount) }}</td>
                         <td>{{ $payment->customer->name }}</td>
-                        <td>{{ $payment->description }}</td>
+                        <td>{{ $payment->description }} [{{ $payment->type() }}]</td>
                         <td>{!! html_link_to_route('payments.show','',[$payment->id],['class' => 'btn btn-info btn-xs','icon' => 'search','title' => 'Lihat ' . trans('payment.show')]) !!}</td>
                     </tr>
                     @empty

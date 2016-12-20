@@ -7,8 +7,8 @@ use App\Entities\Projects\Project;
 use DB;
 
 class PagesController extends Controller {
-    private $repo;
 
+    private $repo;
 
 	public function __construct(PagesRepository $repo)
 	{

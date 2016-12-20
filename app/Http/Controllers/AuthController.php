@@ -50,7 +50,6 @@ class AuthController extends Controller {
 
         if (Auth::attempt($loginData, $req->has('remember')))
         {
-
             flash()->success('Selamat datang kembali ' . Auth::user()->name . '.');
             return redirect()->intended('home');
         }
@@ -62,7 +61,6 @@ class AuthController extends Controller {
     public function getLogout()
     {
         Auth::logout();
-
         flash()->success('Anda telah logout.');
         return redirect()->route('auth.login');
     }

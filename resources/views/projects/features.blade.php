@@ -21,7 +21,8 @@
     <div class="panel-heading">
         <div class="pull-right">
             {!! link_to_route('projects.features-export', trans('project.features_export_html'), [$project->id, 'html', 'feature_type' => $key], ['class' => '','target' => '_blank']) !!} |
-            {!! link_to_route('projects.features-export', trans('project.features_export_excel'), [$project->id, 'excel', 'feature_type' => $key], ['class' => '']) !!}
+            {!! link_to_route('projects.features-export', trans('project.features_export_excel'), [$project->id, 'excel', 'feature_type' => $key], ['class' => '','target' => '_blank']) !!} |
+            {!! link_to_route('projects.features-export', trans('project.features_export_progress_excel'), [$project->id, 'excel-progress', 'feature_type' => $key], ['class' => '','target' => '_blank']) !!}
         </div>
         <h3 class="panel-title">
             {{ $key == 1 ? 'Daftar Fitur' : 'Fitur Tambahan' }}
@@ -69,7 +70,10 @@
             <tr>
                 <th class="text-right" colspan="2">Total</th>
                 <th class="text-center">{{ $groupedFeatures->sum('tasks_count') }}</th>
-                <th class="text-center">{{ formatDecimal($project->getFeatureOveralProgress()) }} %</th>
+                <th class="text-center">
+                    <span title="Total Progress">{{ formatDecimal($groupedFeatures->sum('progress') / $groupedFeatures->count()) }} %</span>
+                    <span title="Overal Progress" style="font-weight:300">({{ formatDecimal($project->getFeatureOveralProgress()) }} %)</span>
+                </th>
                 <th class="text-right">{{ formatRp($groupedFeatures->sum('price')) }}</th>
                 <th colspan="2"></th>
             </tr>

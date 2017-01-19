@@ -71,7 +71,7 @@ class ManageFeaturesTest extends TestCase
         $this->select(2, 'type_id');
         $this->press(trans('feature.update'));
 
-        $this->seePageIs('projects/' . $project->id . '/features');
+        $this->seePageIs('features/' . $feature->id);
         $this->see(trans('feature.updated'));
         $this->seeInDatabase('features', [
             'name' => 'Nama Fitur Edit',

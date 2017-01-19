@@ -86,7 +86,7 @@ class FeaturesController extends Controller {
 	{
 		$feature = $this->repo->update($req->except(['_method','_token']), $featureId);
 		flash()->success(trans('feature.updated'));
-		return redirect()->route('projects.features', $feature->project_id);
+		return redirect()->route('features.show', $feature->id);
 	}
 
 	public function delete($featureId)

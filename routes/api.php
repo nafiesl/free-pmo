@@ -1,8 +1,9 @@
 <?php
 
 Route::group(['prefix' => 'v1','namespace' => 'Api', 'as' => 'api.', 'middleware' => ['auth:api']], function() {
+    require __DIR__ . '/api/projects.php';
     /**
-     * Savety Calendar
+     * Calendar
      */
     Route::get('get-events', ['as' => 'events.index', 'uses' => 'EventsController@index']);
     Route::post('events', ['as' => 'events.store', 'uses' => 'EventsController@store']);

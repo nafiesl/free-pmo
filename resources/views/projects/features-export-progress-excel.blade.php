@@ -29,7 +29,7 @@
                 <th>{{ trans('feature.name') }}</th>
                 <th class="text-center">{{ trans('feature.progress') }}</th>
                 {{-- <th class="text-right">{{ trans('feature.price') }}</th> --}}
-                <th>{{ trans('app.description') }}</th>
+                {{-- <th>{{ trans('app.description') }}</th> --}}
             </tr>
         </thead>
         <tbody id="sort-features">
@@ -41,19 +41,21 @@
                 </td>
                 <td class="text-center">{{ $feature->progress = $feature->tasks->avg('progress')/100 }}</td>
                 {{-- <td class="text-right">{{ $feature->price }}</td> --}}
-                <td style="wrap-text: true;">{!! nl2br($feature->description) !!}</td>
+                {{-- <td style="wrap-text: true;">{!! nl2br($feature->description) !!}</td> --}}
             </tr>
 
+            <?php /*
             @if ($feature->tasks->count())
             @foreach($feature->tasks as $task)
             <tr>
                 <td></td>
                 <td>{{ $task->name }}</td>
                 <td></td>
-                <td style="wrap-text: true;">{!! nl2br($task->description) !!}</td>
+                {{-- <td style="wrap-text: true;">{!! nl2br($task->description) !!}</td> --}}
             </tr>
             @endforeach
             @endif
+            */ ?>
             @empty
             <tr><td colspan="7">{{ trans('feature.empty') }}</td></tr>
             @endforelse
@@ -63,7 +65,7 @@
                 <th class="text-right" colspan="2">Total</th>
                 <th class="text-center">{{ $project->getFeatureOveralProgress() }} %</th>
                 {{-- <th class="text-right">{{ $features->sum('price') }}</th> --}}
-                <th></th>
+                {{-- <th></th> --}}
             </tr>
         </tfoot>
     </table>

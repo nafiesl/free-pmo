@@ -26,6 +26,7 @@ return [
     'features'      => 'Daftar Fitur',
     'features_export_html' => 'Export HTML',
     'features_export_excel' => 'Export Excel',
+    'features_export_progress_excel' => 'Export Progress',
     'subscriptions' => 'Langganan',
     'worker'        => 'Pekerja',
     'status'        => 'Status Project',

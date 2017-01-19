@@ -110,6 +110,8 @@ class ProjectsController extends Controller {
 			        $sheet->loadView('projects.features-export-excel',compact('project','features'));
 			    });
 			})->download('xls');
+	    } elseif ($exportType == 'excel-progress') {
+			return view('projects.features-export-progress-excel', compact('project','features'));
 	    } else {
 			return view('projects.features-export-html', compact('project','features'));
 	    }

@@ -111,7 +111,12 @@ class ProjectsController extends Controller {
 			    });
 			})->download('xls');
 	    } elseif ($exportType == 'excel-progress') {
-			return view('projects.features-export-progress-excel', compact('project','features'));
+			// return view('projects.features-export-progress-excel', compact('project','features'));
+		    \Excel::create(str_slug(trans('project.features') . '-' . $project->name), function($excel) use ($project, $features) {
+			    $excel->sheet('export-progress', function($sheet) use ($project, $features) {
+			        $sheet->loadView('projects.features-export-progress-excel',compact('project','features'));
+			    });
+			})->download('xls');
 	    } else {
 			return view('projects.features-export-html', compact('project','features'));
 	    }

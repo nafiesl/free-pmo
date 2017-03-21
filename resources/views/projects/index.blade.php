@@ -23,7 +23,7 @@
         <th class="text-center">{{ trans('project.start_date') }}</th>
         <th class="text-center">{{ trans('project.work_duration') }}</th>
         {{-- <th class="text-center">{{ trans('project.payments') }}</th> --}}
-        {{-- <th class="text-right">{{ trans('project.project_value') }}</th> --}}
+        <th class="text-right">{{ trans('project.project_value') }}</th>
         <th class="text-center">{{ trans('app.status') }}</th>
         <th>{{ trans('project.customer') }}</th>
         <th>{{ trans('app.action') }}</th>
@@ -36,12 +36,12 @@
             <td class="text-center">{{ $project->start_date }}</td>
             <td class="text-right">{{ $project->present()->workDuration }}</td>
             {{-- <td class="text-center">{{ $project->payments_count }}</td> --}}
-            {{-- <td class="text-right">{{ formatRp($project->project_value) }}</td> --}}
+            <td class="text-right">{{ formatRp($project->project_value) }}</td>
             <td class="text-center">{{ $project->present()->status }}</td>
             <td>{{ $project->customer->name }}</td>
             <td>
-                {!! link_to_route('projects.show',trans('app.show'),[$project->id],['class'=>'btn btn-info btn-xs']) !!}
-                {!! link_to_route('projects.edit',trans('app.edit'),[$project->id],['class'=>'btn btn-warning btn-xs']) !!}
+                {!! html_link_to_route('projects.show','',[$project->id],['icon'=>'search', 'class'=>'btn btn-info btn-xs', 'title' => trans('app.show')]) !!}
+                {!! html_link_to_route('projects.edit','',[$project->id],['icon'=>'edit', 'class'=>'btn btn-warning btn-xs', 'title' => trans('app.edit')]) !!}
             </td>
         </tr>
         @empty

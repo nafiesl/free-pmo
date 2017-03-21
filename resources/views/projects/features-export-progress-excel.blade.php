@@ -39,7 +39,7 @@
                 <td>
                     {{ $feature->name }}
                 </td>
-                <td class="text-center">{{ $feature->progress = $feature->tasks->avg('progress')/100 }}</td>
+                <td class="text-center">{{ formatDecimal($feature->progress = $feature->tasks->avg('progress')) }}</td>
                 {{-- <td class="text-right">{{ $feature->price }}</td> --}}
                 {{-- <td style="wrap-text: true;">{!! nl2br($feature->description) !!}</td> --}}
             </tr>
@@ -63,7 +63,8 @@
         <tfoot>
             <tr>
                 <th class="text-right" colspan="2">Total</th>
-                <th class="text-center">{{ $project->getFeatureOveralProgress() }} %</th>
+                <th class="text-center">{{ formatDecimal($features->sum('progress') / count($features)) }}</th>
+                {{-- <th class="text-center">{{ $project->getFeatureOveralProgress() }} %</th> --}}
                 {{-- <th class="text-right">{{ $features->sum('price') }}</th> --}}
                 {{-- <th></th> --}}
             </tr>

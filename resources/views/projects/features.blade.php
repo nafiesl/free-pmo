@@ -21,8 +21,8 @@
     <div class="panel-heading">
         <div class="pull-right">
             {!! link_to_route('projects.features-export', trans('project.features_export_html'), [$project->id, 'html', 'feature_type' => $key], ['class' => '','target' => '_blank']) !!} |
-            {!! link_to_route('projects.features-export', trans('project.features_export_excel'), [$project->id, 'excel', 'feature_type' => $key], ['class' => '','target' => '_blank']) !!} |
-            {!! link_to_route('projects.features-export', trans('project.features_export_progress_excel'), [$project->id, 'excel-progress', 'feature_type' => $key], ['class' => '','target' => '_blank']) !!}
+            {!! link_to_route('projects.features-export', trans('project.features_export_excel'), [$project->id, 'excel', 'feature_type' => $key], ['class' => '']) !!} |
+            {!! link_to_route('projects.features-export', trans('project.features_export_progress_excel'), [$project->id, 'excel-progress', 'feature_type' => $key], ['class' => '']) !!}
         </div>
         <h3 class="panel-title">
             {{ $key == 1 ? 'Daftar Fitur' : 'Fitur Tambahan' }}
@@ -34,14 +34,17 @@
             <th>{{ trans('feature.name') }}</th>
             <th class="text-center">{{ trans('feature.tasks_count') }}</th>
             <th class="text-center">{{ trans('feature.progress') }}</th>
-            <th class="text-right">{{ trans('feature.price') }}</th>
+            {{-- <th class="text-right">{{ trans('feature.price') }}</th> --}}
             {{-- <th>{{ trans('feature.worker') }}</th> --}}
             <th class="text-center">{{ trans('app.action') }}</th>
         </thead>
         <tbody class="sort-features">
             @forelse($groupedFeatures as $key => $feature)
-            @php($no = 1 + $key)
-            <tr id="{{ $feature->id }}">
+            @php
+            $no = 1 + $key;
+            $feature->progress = $feature->tasks->avg('progress');
+            @endphp
+            <tr id="{{ $feature->id }}" {!! $feature->progress <= 50 ? 'style="background-color: #faebcc"' : '' !!}>
                 <td>{{ $no }}</td>
                 <td>
                     {{ $feature->name }}
@@ -54,8 +57,8 @@
                     @endif
                 </td>
                 <td class="text-center">{{ $feature->tasks_count = $feature->tasks->count() }}</td>
-                <td class="text-center">{{ formatDecimal($feature->progress = $feature->tasks->avg('progress')) }} %</td>
-                <td class="text-right">{{ formatRp($feature->price) }}</td>
+                <td class="text-center">{{ formatDecimal($feature->progress) }} %</td>
+                {{-- <td class="text-right">{{ formatRp($feature->price) }}</td> --}}
                 {{-- <td>{{ $feature->worker->name }}</td> --}}
                 <td class="text-center">
                     {!! html_link_to_route('features.show', '',[$feature->id],['icon' => 'search', 'title' => 'Lihat ' . trans('feature.show'), 'class' => 'btn btn-info btn-xs','id' => 'show-feature-' . $feature->id]) !!}
@@ -74,7 +77,7 @@
                     <span title="Total Progress">{{ formatDecimal($groupedFeatures->sum('progress') / $groupedFeatures->count()) }} %</span>
                     <span title="Overal Progress" style="font-weight:300">({{ formatDecimal($project->getFeatureOveralProgress()) }} %)</span>
                 </th>
-                <th class="text-right">{{ formatRp($groupedFeatures->sum('price')) }}</th>
+                {{-- <th class="text-right">{{ formatRp($groupedFeatures->sum('price')) }}</th> --}}
                 <th colspan="2"></th>
             </tr>
         </tfoot>

@@ -4,6 +4,7 @@ namespace App\Entities\Projects;
 
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\ProjectPresenter;
+use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
 use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +21,11 @@ class Project extends Model {
     public function features()
     {
         return $this->hasMany(Feature::class)->orderBy('position');
+    }
+
+    public function tasks()
+    {
+        return $this->hasManyThrough(Task::class, Feature::class);
     }
 
     public function mainFeatures()

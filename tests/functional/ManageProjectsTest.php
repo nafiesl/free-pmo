@@ -78,7 +78,7 @@ class ManageProjectsTest extends TestCase
         $task = factory(Task::class)->create(['feature_id' => $feature->id]);
         $payment = factory(Payment::class)->create(['project_id' => $project->id]);
 
-        $this->visit('/projects?status=' . $project->status_id);
+        $this->visit('projects/' . $project->id);
         $this->click(trans('app.edit'));
         $this->click(trans('app.delete'));
         $this->press(trans('app.delete_confirm_button'));

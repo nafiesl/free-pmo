@@ -19,15 +19,15 @@ class ProjectsController extends Controller {
 	    $this->repo = $repo;
 	}
 
-	public function index(Request $req)
+	public function index(Request $request)
 	{
 		$status = null;
-		$statusId = $req->get('status');
+		$statusId = $request->get('status');
 		if ($statusId) {
 			$status = $this->repo->getStatusName($statusId);
 		}
 
-		$projects = $this->repo->getProjects($req->get('q'), $statusId);
+		$projects = $this->repo->getProjects($request->get('q'), $statusId);
 		return view('projects.index',compact('projects','status'));
 	}
 
@@ -37,9 +37,9 @@ class ProjectsController extends Controller {
 		return view('projects.create', compact('customers'));
 	}
 
-	public function store(CreateRequest $req)
+	public function store(CreateRequest $request)
 	{
-		$project = $this->repo->create($req->except('_token'));
+		$project = $this->repo->create($request->except('_token'));
 		flash()->success(trans('project.created'));
 		return redirect()->route('projects.show', $project->id);
 	}
@@ -58,9 +58,9 @@ class ProjectsController extends Controller {
 		return view('projects.edit',compact('project','statuses','customers'));
 	}
 
-	public function update(UpdateRequest $req, $projectId)
+	public function update(UpdateRequest $request, $projectId)
 	{
-		$project = $this->repo->update($req->except(['_method','_token']), $projectId);
+		$project = $this->repo->update($request->except(['_method','_token']), $projectId);
 		flash()->success(trans('project.updated'));
 		return redirect()->route('projects.edit', $projectId);
 	}
@@ -71,9 +71,9 @@ class ProjectsController extends Controller {
 		return view('projects.delete', compact('project'));
 	}
 
-	public function destroy(DeleteRequest $req, $projectId)
+	public function destroy(DeleteRequest $request, $projectId)
 	{
-		if ($projectId == $req->get('project_id'))
+		if ($projectId == $request->get('project_id'))
 		{
 			$this->repo->delete($projectId);
 	        flash()->success(trans('project.deleted'));
@@ -97,9 +97,9 @@ class ProjectsController extends Controller {
 		return view('projects.subscriptions', compact('project'));
 	}
 
-	public function featuresExport(Request $req, $projectId, $exportType = 'excel')
+	public function featuresExport(Request $request, $projectId, $exportType = 'excel')
 	{
-		$featureType = $req->get('feature_type', 1);
+		$featureType = $request->get('feature_type', 1);
 	    $project = $this->repo->requireById($projectId);
 	    $features = $this->repo->getProjectFeatures($projectId, $featureType);
 
@@ -111,7 +111,7 @@ class ProjectsController extends Controller {
 			    });
 			})->download('xls');
 	    } elseif ($exportType == 'excel-progress') {
-			// return view('projects.features-export-progress-excel', compact('project','features'));
+			return view('projects.features-export-progress-excel', compact('project','features'));
 		    \Excel::create(str_slug(trans('project.features') . '-' . $project->name), function($excel) use ($project, $features) {
 			    $excel->sheet('export-progress', function($sheet) use ($project, $features) {
 			        $sheet->loadView('projects.features-export-progress-excel',compact('project','features'));
@@ -129,17 +129,17 @@ class ProjectsController extends Controller {
 		return view('projects.payments', compact('project'));
 	}
 
-	public function statusUpdate(Request $req, $projectId)
+	public function statusUpdate(Request $request, $projectId)
 	{
-		$project = $this->repo->updateStatus($req->get('status_id'), $projectId);
+		$project = $this->repo->updateStatus($request->get('status_id'), $projectId);
 		flash()->success(trans('project.updated'));
 		return redirect()->route('projects.show', $projectId);
 	}
 
-	public function featuresReorder(Request $req, $projectId)
+	public function featuresReorder(Request $request, $projectId)
 	{
-		if ($req->ajax()) {
-			$data = $this->repo->featuresReorder($req->get('postData'));
+		if ($request->ajax()) {
+			$data = $this->repo->featuresReorder($request->get('postData'));
 	 	   	return 'oke';
 		}
 

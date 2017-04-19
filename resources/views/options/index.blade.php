@@ -4,7 +4,7 @@
 <h1 class="page-header">
     {{ trans('option.options') }}
 </h1>
-{{ FormField::price('price') }}
+
 <div class="row">
     <div class="col-md-8">
         {!! Form::open(['route'=>'options.save', 'method'=>'patch']) !!}

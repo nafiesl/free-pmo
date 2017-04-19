@@ -34,7 +34,7 @@
             <th>{{ trans('feature.name') }}</th>
             <th class="text-center">{{ trans('feature.tasks_count') }}</th>
             <th class="text-center">{{ trans('feature.progress') }}</th>
-            {{-- <th class="text-right">{{ trans('feature.price') }}</th> --}}
+            <th class="text-right">{{ trans('feature.price') }}</th>
             {{-- <th>{{ trans('feature.worker') }}</th> --}}
             <th class="text-center">{{ trans('app.action') }}</th>
         </thead>
@@ -58,7 +58,7 @@
                 </td>
                 <td class="text-center">{{ $feature->tasks_count = $feature->tasks->count() }}</td>
                 <td class="text-center">{{ formatDecimal($feature->progress) }} %</td>
-                {{-- <td class="text-right">{{ formatRp($feature->price) }}</td> --}}
+                <td class="text-right">{{ formatRp($feature->price) }}</td>
                 {{-- <td>{{ $feature->worker->name }}</td> --}}
                 <td class="text-center">
                     {!! html_link_to_route('features.show', '',[$feature->id],['icon' => 'search', 'title' => 'Lihat ' . trans('feature.show'), 'class' => 'btn btn-info btn-xs','id' => 'show-feature-' . $feature->id]) !!}
@@ -77,7 +77,7 @@
                     <span title="Total Progress">{{ formatDecimal($groupedFeatures->sum('progress') / $groupedFeatures->count()) }} %</span>
                     <span title="Overal Progress" style="font-weight:300">({{ formatDecimal($project->getFeatureOveralProgress()) }} %)</span>
                 </th>
-                {{-- <th class="text-right">{{ formatRp($groupedFeatures->sum('price')) }}</th> --}}
+                <th class="text-right">{{ formatRp($groupedFeatures->sum('price')) }}</th>
                 <th colspan="2"></th>
             </tr>
         </tfoot>

@@ -28,7 +28,7 @@ class PaymentsController extends Controller {
 	public function create()
 	{
 		$projects = $this->repo->getProjectsList();
-		$customers = $this->repo->getCustomersList();
+		$customers = $this->repo->getCustomersAndVendorsList();
 		return view('payments.create',compact('projects','customers'));
 	}
 

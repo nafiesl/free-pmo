@@ -28,7 +28,7 @@
                 <th>{{ trans('app.table_no') }}</th>
                 <th>{{ trans('feature.name') }}</th>
                 <th class="text-center">{{ trans('feature.progress') }}</th>
-                {{-- <th class="text-right">{{ trans('feature.price') }}</th> --}}
+                <th class="text-right">{{ trans('feature.price') }}</th>
                 {{-- <th>{{ trans('app.description') }}</th> --}}
             </tr>
         </thead>
@@ -40,21 +40,22 @@
                     {{ $feature->name }}
                 </td>
                 <td class="text-center">{{ formatDecimal($feature->progress = $feature->tasks->avg('progress')) }}</td>
-                {{-- <td class="text-right">{{ $feature->price }}</td> --}}
+                <td class="text-right">{{ $feature->price }}</td>
                 {{-- <td style="wrap-text: true;">{!! nl2br($feature->description) !!}</td> --}}
             </tr>
 
-            <?php /*
             @if ($feature->tasks->count())
             @foreach($feature->tasks as $task)
             <tr>
                 <td></td>
                 <td>{{ $task->name }}</td>
+                <td>{{ $task->progress }}</td>
                 <td></td>
                 {{-- <td style="wrap-text: true;">{!! nl2br($task->description) !!}</td> --}}
             </tr>
             @endforeach
             @endif
+            <?php /*
             */ ?>
             @empty
             <tr><td colspan="7">{{ trans('feature.empty') }}</td></tr>
@@ -63,9 +64,9 @@
         <tfoot>
             <tr>
                 <th class="text-right" colspan="2">Total</th>
-                <th class="text-center">{{ formatDecimal($features->sum('progress') / count($features)) }}</th>
-                {{-- <th class="text-center">{{ $project->getFeatureOveralProgress() }} %</th> --}}
-                {{-- <th class="text-right">{{ $features->sum('price') }}</th> --}}
+                {{-- <th class="text-center">{{ formatDecimal($features->sum('progress') / count($features)) }}</th> --}}
+                <th class="text-center">{{ formatDecimal($project->getFeatureOveralProgress()) }} %</th>
+                <th class="text-right">{{ $features->sum('price') }}</th>
                 {{-- <th></th> --}}
             </tr>
         </tfoot>

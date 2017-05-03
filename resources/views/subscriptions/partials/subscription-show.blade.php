@@ -19,6 +19,7 @@
                     @endif
                 </td>
             </tr>
+            <tr><td>{{ trans('subscription.remark') }}</td><td>{!! nl2br($subscription->remark) !!}</td></tr>
         </tbody>
     </table>
     <div class="panel-footer">

@@ -64,7 +64,7 @@ abstract class EloquentRepository
             return $this->storeEloquentModel($data);
         } else {
             foreach ($data as $key => $value) {
-                if (!$data[$key]) $data[$key] = null;
+                if ($data[$key] == '') $data[$key] = null;
             }
             return $this->storeArray($data);
         }

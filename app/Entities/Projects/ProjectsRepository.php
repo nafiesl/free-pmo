@@ -41,7 +41,7 @@ class ProjectsRepository extends BaseRepository
         $projectData['owner_id'] = auth()->id();
         DB::beginTransaction();
 
-        if ($projectData['customer_id'] == '') {
+        if (isset($projectData['customer_id']) == false || $projectData['customer_id'] == '') {
             $customer = $this->createNewCustomer($projectData['customer_name'], $projectData['customer_email']);
             $projectData['customer_id'] = $customer->id;
         }

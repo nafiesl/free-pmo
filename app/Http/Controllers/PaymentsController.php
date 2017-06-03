@@ -49,7 +49,7 @@ class PaymentsController extends Controller {
 	{
 		$payment = $this->repo->requireById($paymentId);
 		$projects = $this->repo->getProjectsList();
-		$customers = $this->repo->getCustomersList();
+		$customers = $this->repo->getCustomersAndVendorsList();
 		return view('payments.edit',compact('payment','projects','customers'));
 	}
 

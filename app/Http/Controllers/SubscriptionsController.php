@@ -21,7 +21,7 @@ class SubscriptionsController extends Controller {
 
 	public function index(Request $req)
 	{
-		$subscriptions = $this->repo->getAll($req->get('q'));
+		$subscriptions = $this->repo->getSubscriptions($req->get('q'), $req->get('vendor_id'));
 		return view('subscriptions.index',compact('subscriptions'));
 	}
 

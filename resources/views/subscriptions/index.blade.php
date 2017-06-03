@@ -21,7 +21,7 @@
         <th>{{ trans('subscription.domain_name') }}</th>
         <th class="text-center">{{ trans('subscription.hosting_capacity') }}</th>
         <th>{{ trans('subscription.vendor') }}</th>
-        <th>{{ trans('subscription.due_date') }}</th>
+        <th class="text-right">{{ trans('subscription.due_date') }}</th>
         <th class="text-right">{{ trans('subscription.extension_price') }}</th>
         <th class="text-center">{{ trans('app.status') }}</th>
         <th>{{ trans('app.action') }}</th>
@@ -33,9 +33,9 @@
             <td>{{ $subscription->domain_name }}</td>
             <td class="text-center">{{ $subscription->hosting_capacity }}</td>
             <td>{{ $subscription->vendor->name }}</td>
-            <td title="
-                {{ trans('subscription.start_date') }} : {{ dateId($subscription->start_date) }}
-                {{ trans('subscription.due_date') }} : {{ dateId($subscription->due_date) }}
+            <td class="text-right" title="
+                {{ trans('subscription.start_date') }} : {{ dateId($subscription->start_date) }} \n
+{{ trans('subscription.due_date') }} : {{ dateId($subscription->due_date) }}
                 ">{{ dateId($subscription->due_date) }}</td>
             <td class="text-right">{{ formatRp($subscription->domain_price + $subscription->hosting_price) }}</td>
             <td class="text-center">{{ $subscription->status() }}</td>

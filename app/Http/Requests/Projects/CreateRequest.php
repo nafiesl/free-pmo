@@ -24,13 +24,13 @@ class CreateRequest extends Request {
 	public function rules()
 	{
 		return [
-			'name' => 'required|max:50',
-			'proposal_date' => 'date|date_format:Y-m-d',
-			'proposal_value' => 'numeric',
-			'customer_id' => 'numeric',
-			'customer_name' => 'required_without:customer_id|max:60',
-			'customer_email' => 'required_without:customer_id|email|unique:users,email',
-			'description' => 'max:255',
+			'name'           => 'required|max:50',
+			'proposal_date'  => 'nullable|date|date_format:Y-m-d',
+			'proposal_value' => 'nullable|numeric',
+			'customer_id'    => 'nullable|numeric',
+			'customer_name'  => 'nullable|required_without:customer_id|max:60',
+			'customer_email' => 'nullable|required_without:customer_id|email|unique:users,email',
+			'description'    => 'nullable|max:255',
 		];
 	}
 

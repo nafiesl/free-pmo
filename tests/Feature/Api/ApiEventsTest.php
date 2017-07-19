@@ -1,7 +1,10 @@
 <?php
 
+namespace Tests\Feature\Api;
+
 use App\Entities\Users\Event;
 use App\Entities\Users\User;
+use Tests\TestCase;
 
 class ApiEventsTest extends TestCase
 {

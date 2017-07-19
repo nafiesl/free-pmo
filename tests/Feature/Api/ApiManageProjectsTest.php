@@ -1,7 +1,10 @@
 <?php
 
+namespace Tests\Feature\Api;
+
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
+use Tests\TestCase;
 
 class ApiManageProjectsTest extends TestCase
 {

@@ -1,8 +1,11 @@
 <?php
 
+namespace Tests\Feature;
+
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
 use App\Entities\Users\User;
+use Tests\TestCase;
 
 class ManageSubscriptionsTest extends TestCase
 {

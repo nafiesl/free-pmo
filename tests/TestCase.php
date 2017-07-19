@@ -1,9 +1,12 @@
 <?php
 
+namespace Tests;
+
 use App\Entities\Users\Role;
 use App\Entities\Users\User;
+use Tests\Traits\DatabaseMigrateSeeds;
 
-class TestCase extends Laravel\BrowserKitTesting\TestCase
+class TestCase extends \Laravel\BrowserKitTesting\TestCase
 {
     use DatabaseMigrateSeeds;
 
@@ -23,7 +26,7 @@ class TestCase extends Laravel\BrowserKitTesting\TestCase
     {
         $app = require __DIR__.'/../bootstrap/app.php';
 
-        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+        $app->make(\Illuminate\Contracts\Console\Kernel::class)->bootstrap();
         \Hash::setRounds(5);
 
         return $app;

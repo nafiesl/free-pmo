@@ -1,8 +1,11 @@
 <?php
 
+namespace Tests\Feature;
+
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
+use Tests\TestCase;
 
 class ManagePaymentsTest extends TestCase
 {

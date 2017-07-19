@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Traits;
+
 use Illuminate\Contracts\Console\Kernel;
 
 trait DatabaseMigrateSeeds

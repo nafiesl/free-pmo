@@ -1,11 +1,14 @@
 <?php
 
+namespace Tests\Feature;
+
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
 use App\Entities\Users\Role;
 use App\Entities\Users\User;
+use Tests\TestCase;
 
 class ManageProjectsTest extends TestCase
 {

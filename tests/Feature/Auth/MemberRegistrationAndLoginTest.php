@@ -1,6 +1,9 @@
 <?php
 
+namespace Tests\Feature\Auth;
+
 use App\Entities\Users\User;
+use Tests\TestCase;
 
 class MemberRegistrationAndLoginTest extends TestCase
 {

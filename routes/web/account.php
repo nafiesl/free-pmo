@@ -18,5 +18,5 @@ Route::group(['middleware' => 'web','as'=>'auth.'], function() {
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('auth.reset-request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('auth.reset-email');
-Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('auth.reset-password');
-Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('auth.reset-password');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('reset-password');

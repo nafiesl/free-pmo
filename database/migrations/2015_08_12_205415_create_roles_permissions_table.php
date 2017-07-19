@@ -12,9 +12,10 @@ class CreateRolesPermissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles_permissions', function (Blueprint $table) {
+        Schema::create('roles_permissions', function (Blueprint $table)
+        {
             $table->increments('id');
-            $table->tinyInteger('type')->unsigned()->index()->default(1);
+            $table->boolean('type')->unsigned()->index()->default(1);
             $table->string('name', 60);
             $table->string('label', 60);
         });

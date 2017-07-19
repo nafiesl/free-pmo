@@ -12,7 +12,8 @@ class CreateSiteReferencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('site_references', function (Blueprint $table) {
+        Schema::create('site_references', function (Blueprint $table)
+        {
             $table->increments('id');
             $table->string('cat', 20);
             $table->char('code', 1);

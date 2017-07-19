@@ -8,6 +8,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class ApiManageProjectsTest extends TestCase
 {
+    use DatabaseTransactions;
+
     /** @test */
     public function user_can_get_project_lists()
     {

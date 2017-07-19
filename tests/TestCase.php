@@ -5,6 +5,8 @@ use App\Entities\Users\User;
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
+    use DatabaseMigrateSeeds;
+
     /**
      * The base URL to use while testing the application.
      *
@@ -25,6 +27,17 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
         \Hash::setRounds(5);
 
         return $app;
+    }
+
+    protected function setUpTraits()
+    {
+        parent::setUpTraits();
+        $uses = array_flip(class_uses_recursive(static::class));
+
+        if (isset($uses[DatabaseMigrateSeeds::class])) {
+            $this->runDatabaseMigrateSeeds();
+        }
+
     }
 
     protected function adminUserSigningIn()

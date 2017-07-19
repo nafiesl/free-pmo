@@ -2,14 +2,9 @@
 
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class ApiManageProjectsTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function user_can_get_project_lists()
     {

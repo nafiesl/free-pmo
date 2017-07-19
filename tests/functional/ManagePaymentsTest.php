@@ -3,14 +3,9 @@
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class ManagePaymentsTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function admin_can_entry_project_a_cashin_payment()
     {

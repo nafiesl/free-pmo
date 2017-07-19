@@ -6,14 +6,9 @@ use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
 use App\Entities\Users\Role;
 use App\Entities\Users\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class ManageProjectsTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function admin_can_input_new_project_with_existing_customer()
     {

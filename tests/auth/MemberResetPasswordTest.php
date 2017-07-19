@@ -1,17 +1,13 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use App\Entities\Users\User;
 
 class MemberResetPasswordTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function member_can_reset_password_by_their_email()
     {
-        $user = factory(App\Entities\Users\User::class)->create();
+        $user = factory(User::class)->create();
 
         // Reset Request
         $this->visit(route('auth.reset-request'));

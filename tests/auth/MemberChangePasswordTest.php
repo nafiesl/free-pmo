@@ -1,14 +1,9 @@
 <?php
 
 use App\Entities\Users\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class MemberChangePasswordTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function member_can_change_password()
     {

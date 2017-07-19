@@ -2,14 +2,9 @@
 
 use App\Entities\Users\Event;
 use App\Entities\Users\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class ApiEventsTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function it_can_get_all_existing_events()
     {

@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'Regular Member',
+                'name' => 'Customer',
                 'username' => 'member',
                 'email' => 'member@app.dev',
                 'password' => bcrypt('member'),

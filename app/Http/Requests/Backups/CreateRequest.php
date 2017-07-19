@@ -24,7 +24,7 @@ class CreateRequest extends Request {
 	public function rules()
 	{
 		return [
-			'file_name' => 'max:20|alpha_dash',
+			'file_name' => 'nullable|max:20|alpha_dash',
 		];
 	}
 

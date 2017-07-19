@@ -28,8 +28,8 @@ class AuthServiceProvider extends ServiceProvider
 
         // Dynamically register permissions with Laravel's Gate.
         foreach ($this->getPermissions() as $permission) {
-            Gate::define($permission->name, function ($user) use ($permission) {
-                return $user->hasPermission($permission);
+            Gate::define($permission, function ($user) {
+                return $user->hasRole('admin');
             });
         }
 
@@ -57,6 +57,15 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected function getPermissions()
     {
-        return Permission::with('roles')->get();
+        return [
+            'manage_users',
+            'manage_role_permissions',
+            'manage_backups',
+            'manage_options',
+            'manage_projects',
+            'manage_payments',
+            'manage_subscriptions',
+            'see_reports',
+        ];
     }
 }

@@ -6,6 +6,7 @@ use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
 use App\Entities\Users\Event;
+use App\Entities\Users\Role;
 use App\Entities\Users\User;
 
 $factory->define(User::class, function (Faker\Generator $faker) {
@@ -15,7 +16,15 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'email'          => $email = $faker->unique()->email,
         'password'       => 'member',
         'remember_token' => str_random(10),
-        'api_token'      => bcrypt($email),
+        'api_token'      => str_random(40),
+    ];
+});
+
+$factory->define(Role::class, function (Faker\Generator $faker) {
+    return [
+        'type'  => 0,
+        'name'  => $faker->word,
+        'label' => $faker->sentence,
     ];
 });
 

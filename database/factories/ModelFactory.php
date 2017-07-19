@@ -13,18 +13,10 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     return [
         'name'           => $faker->name,
         'username'       => $faker->unique()->username,
-        'email'          => $email = $faker->unique()->email,
+        'email'          => $faker->unique()->email,
         'password'       => 'member',
         'remember_token' => str_random(10),
         'api_token'      => str_random(40),
-    ];
-});
-
-$factory->define(Role::class, function (Faker\Generator $faker) {
-    return [
-        'type'  => 0,
-        'name'  => $faker->word,
-        'label' => $faker->sentence,
     ];
 });
 

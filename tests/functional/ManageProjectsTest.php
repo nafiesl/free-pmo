@@ -17,9 +17,6 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function admin_can_input_new_project_with_existing_customer()
     {
-        $adminRole = factory(Role::class)->create(['name' => 'admin']);
-        $customerRole = factory(Role::class)->create(['name' => 'customer']);
-
         $users = factory(User::class, 2)->create();
         $users[0]->assignRole('admin');
         $this->actingAs($users[0]);
@@ -46,7 +43,6 @@ class ManageProjectsTest extends TestCase
     public function admin_can_input_new_project_with_new_customer()
     {
         $this->adminUserSigningIn();
-        $customerRole = factory(Role::class)->create(['name' => 'customer']);
 
         $this->visit(route('projects.index'));
         $this->seePageIs(route('projects.index'));
@@ -112,9 +108,6 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function admin_can_edit_a_project()
     {
-        $adminRole = factory(Role::class)->create(['name' => 'admin']);
-        $customerRole = factory(Role::class)->create(['name' => 'customer']);
-
         $users = factory(User::class, 2)->create();
         $users[0]->assignRole('admin');
         $this->actingAs($users[0]);
@@ -150,9 +143,6 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function form_is_validated_on_invalid_project_entry()
     {
-        $adminRole = factory(Role::class)->create(['name' => 'admin']);
-        $customerRole = factory(Role::class)->create(['name' => 'customer']);
-
         $users = factory(User::class, 2)->create();
         $users[0]->assignRole('admin');
         $this->actingAs($users[0]);

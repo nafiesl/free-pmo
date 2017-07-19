@@ -29,7 +29,6 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
     protected function adminUserSigningIn()
     {
-        factory(Role::class)->create(['name' => 'admin']);
         $user = factory(User::class)->create();
         $user->assignRole('admin');
         $this->actingAs($user);

@@ -7,13 +7,13 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class MemberRegistrationAndLoginTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations;
 
     /** @test */
     public function registration_validation()
     {
-        $user = factory(User::class)->create(['email' => 'member@app.dev']);
-        $user->assignRole('customer');
+        // $user = factory(User::class)->create(['email' => 'member@app.dev']);
+        // $user->assignRole('customer');
 
         $this->visit(route('auth.register'));
         $this->type('', 'name');

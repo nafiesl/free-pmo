@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class ManageSubscriptionsTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations;
 
     /** @test */
     public function admin_can_entry_subscription()
@@ -88,7 +88,7 @@ class ManageSubscriptionsTest extends TestCase
         $this->select($project->id, 'project_id');
         $this->select($customer->id, 'customer_id');
         $this->select($vendor->id, 'vendor_id');
-        $this->select(0,'status_id');
+        $this->select(1,'status_id');
         $this->press(trans('subscription.update'));
 
         $this->seePageIs('subscriptions/' . $subscription->id . '/edit');
@@ -97,7 +97,7 @@ class ManageSubscriptionsTest extends TestCase
             'epp_code' => $eppCode,
             'customer_id' => $customer->id,
             'project_id' => $project->id,
-            'status_id' => 0,
+            'status_id' => 1,
             'hosting_capacity' => '4GB',
             'hosting_price' => '500000',
             'start_date' => '2015-05-02',

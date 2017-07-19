@@ -22,7 +22,7 @@ class CreateSubscriptionsTable extends Migration {
 			$table->string('epp_code', 60)->nullable();
 			$table->integer('domain_price')->unsigned();
 			$table->string('hosting_capacity', 60)->nullable();
-			$table->boolean('status_id')->default(1);
+			$table->boolean('status_id')->unsigned()->default(1);
 			$table->integer('hosting_price')->unsigned()->nullable();
 			$table->date('start_date')->nullable();
 			$table->date('due_date')->nullable();

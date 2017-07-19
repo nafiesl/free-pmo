@@ -161,7 +161,6 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         BackupManager\Laravel\Laravel5ServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
@@ -213,7 +212,6 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Carbon'    => Carbon\Carbon::class,
-        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Fractal'   => Spatie\Fractal\FractalFacade::class,
         'Form'      => Collective\Html\FormFacade::class,

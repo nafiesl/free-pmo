@@ -156,13 +156,12 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\FormFieldServiceProvider::class,
         App\Providers\OptionServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
         BackupManager\Laravel\Laravel5ServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Luthfi\FormField\FormFieldServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Spatie\Fractal\FractalServiceProvider::class,
     ],
@@ -214,11 +213,11 @@ return [
         'Carbon'    => Carbon\Carbon::class,
         'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
         'Fractal'   => Spatie\Fractal\FractalFacade::class,
-        'Form'      => Collective\Html\FormFacade::class,
-        'FormField' => App\Services\Facades\FormField::class,
-        'Html'      => Collective\Html\HtmlFacade::class,
-        'Flash'     => Laracasts\Flash\Flash::class,
         'Option'    => App\Services\Facades\Option::class,
+
+        'FormField' => Luthfi\FormField\FormFieldFacade::class,
+        'Form'      => Collective\Html\FormFacade::class,
+        'Html'      => Collective\Html\HtmlFacade::class,
 
     ],
 

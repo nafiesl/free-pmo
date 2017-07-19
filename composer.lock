@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2f401db91b0298fc38ade2c58a191657",
+    "content-hash": "9853f898a7ea6916d797832a1737a999",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -956,6 +956,46 @@
                 "rest"
             ],
             "time": "2016-12-28T01:30:30+00:00"
+        },
+        {
+            "name": "luthfi/formfield",
+            "version": "0.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nafiesl/FormField.git",
+                "reference": "dfbbae8f86f6d332a9f548ad6cebc77e2c66810f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nafiesl/FormField/zipball/dfbbae8f86f6d332a9f548ad6cebc77e2c66810f",
+                "reference": "dfbbae8f86f6d332a9f548ad6cebc77e2c66810f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.3.* || 5.4.*",
+                "laravelcollective/html": "5.3.* || 5.4.*"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Luthfi\\FormField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nafies Luthfi",
+                    "email": "nafiesl@gmail.com"
+                }
+            ],
+            "description": "Form Field helper class for Laravel 5.3 with Twitter Bootstrap",
+            "time": "2017-06-16T03:22:15+00:00"
         },
         {
             "name": "maatwebsite/excel",

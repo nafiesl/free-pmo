@@ -3,7 +3,7 @@
 use App\Entities\Users\Role;
 use App\Entities\Users\User;
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
+class TestCase extends Laravel\BrowserKitTesting\TestCase
 {
     use DatabaseMigrateSeeds;
 

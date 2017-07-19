@@ -24,9 +24,6 @@ class OptionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['option'] = $this->app->share(function($app)
-        {
-            return new Option();
-        });
+        $this->app->alias(Option::class, 'option');
     }
 }

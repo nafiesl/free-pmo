@@ -24,9 +24,6 @@ class FormFieldServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['formField'] = $this->app->share(function($app)
-        {
-            return new FormField();
-        });
+        $this->app->alias(FormField::class, 'formField');
     }
 }

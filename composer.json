@@ -8,21 +8,20 @@
         "php": ">=5.6.4",
         "barryvdh/laravel-dompdf": "^0.7.0",
         "intervention/image": "^2.3",
-        "laravel/framework": "5.3.*",
-        "laravelcollective/html": "5.3.*",
+        "laravel/framework": "5.4.*",
+        "luthfi/formfield": "1.*",
         "laracasts/flash": "~2",
         "laracasts/presenter": "^0.2.1",
         "backup-manager/laravel": "^1.0",
         "maatwebsite/excel": "~2.1.0",
-        "spatie/laravel-fractal": "^2.0"
+        "spatie/laravel-fractal": "^3.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^2.0",
         "fzaninotto/faker": "~1.4",
+        "laravel/browser-kit-testing": "^1.0",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.0",
-        "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*",
+        "phpunit/phpunit": "~5.7",
         "johnkary/phpunit-speedtrap": "^1.0"
     },
     "autoload": {

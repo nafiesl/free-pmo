@@ -70,12 +70,12 @@ class Project extends Model {
     public function getFeatureOveralProgress()
     {
         $overalProgress = 0;
-        $this->features->load('tasks');
+        $this->load('features.tasks');
         $totalPrice = $this->features->sum('price');
 
         foreach ($this->features as $feature) {
             $progress = $feature->tasks->avg('progress');
-            $index = $feature->price / $totalPrice;
+            $index = $totalPrice ? ($feature->price / $totalPrice) : 1;
             $overalProgress += $progress * $index;
         }
 

@@ -12,7 +12,6 @@ use App\Entities\Users\User;
 $factory->define(User::class, function (Faker\Generator $faker) {
     return [
         'name'           => $faker->name,
-        'username'       => $faker->unique()->username,
         'email'          => $faker->unique()->email,
         'password'       => 'member',
         'remember_token' => str_random(10),

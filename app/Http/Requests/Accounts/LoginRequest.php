@@ -24,7 +24,7 @@ class LoginRequest extends Request
     public function rules()
     {
         return [
-            'username' => 'required',
+            'email' => 'required|email',
             'password' => 'required',
         ];
     }
@@ -32,7 +32,7 @@ class LoginRequest extends Request
     public function messages()
     {
         return [
-            'username.required' => 'Username harus diisi.',
+            'email.required' => 'Email harus diisi.',
             'password.required' => 'Password harus diisi.',
         ];
     }

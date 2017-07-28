@@ -25,7 +25,6 @@ class RegisterRequest extends Request
     {
         return [
             'name' => 'required',
-            'username' => 'required|alpha_num',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|between:6,15|confirmed',
             'password_confirmation' => 'required',
@@ -36,8 +35,6 @@ class RegisterRequest extends Request
     {
         return [
             'name.required' => 'Nama harus diisi.',
-            'username.required' => 'Username harus diisi.',
-            'username.alpha_num' => 'Username harus berupa huruf dan angka.',
             'email.required' => 'Email harus diisi.',
             'email.email' => 'Email tidak valid.',
             'email.unique' => 'Email ini sudah terdaftar.',

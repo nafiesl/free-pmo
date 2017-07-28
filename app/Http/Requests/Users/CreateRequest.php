@@ -25,7 +25,6 @@ class CreateRequest extends Request
     {
         return [
             'name'                  => 'required|min:5',
-            'username'              => 'required|alpha_dash|min:4|unique:users,username',
             'email'                 => 'required|email|unique:users,email',
             'role'                  => 'required|array',
             'password'              => 'between:6,15|confirmed',

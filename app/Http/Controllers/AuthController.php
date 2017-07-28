@@ -46,7 +46,7 @@ class AuthController extends Controller {
 
     public function postLogin(LoginRequest $req)
     {
-        $loginData = $req->only('username','password');
+        $loginData = $req->only('email','password');
 
         if (Auth::attempt($loginData, $req->has('remember')))
         {
@@ -54,7 +54,7 @@ class AuthController extends Controller {
             return redirect()->intended('home');
         }
 
-        flash()->error('Mohon maaf, anda tidak dapat login, cek kembali username/password anda!');
+        flash()->error('Mohon maaf, anda tidak dapat login, cek kembali email/password anda!');
         return redirect()->back()->withInput();
     }
 
@@ -72,7 +72,7 @@ class AuthController extends Controller {
 
     public function postRegister(RegisterRequest $req)
     {
-        $registerData = $req->only('name','username','email','password');
+        $registerData = $req->only('name','email','password');
 
         $user = User::create($registerData);
         $user->assignRole('customer');

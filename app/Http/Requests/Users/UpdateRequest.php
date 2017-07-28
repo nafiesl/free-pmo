@@ -25,7 +25,6 @@ class UpdateRequest extends Request
     {
         return [
             'name'                  => 'required|min:5',
-            'username'              => 'required|alpha_dash|min:4|unique:users,username,' . $this->segment(2),
             'email'                 => 'required|email|unique:users,email,' . $this->segment(2),
             'role'                  => 'required|array',
             'password'              => 'nullable|required_with:password_confirmation|between:6,15|confirmed',

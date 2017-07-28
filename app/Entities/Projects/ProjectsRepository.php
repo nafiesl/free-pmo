@@ -63,7 +63,6 @@ class ProjectsRepository extends BaseRepository
         $newCustomer = new User;
         $newCustomer->name = $customerName;
         $newCustomer->email = $customerEmail;
-        $newCustomer->username = str_replace(' ', '_', strtolower($customerName));
         $newCustomer->password = Option::get('default_password', 'member');
         $newCustomer->remember_token = str_random(10);
         $newCustomer->save();

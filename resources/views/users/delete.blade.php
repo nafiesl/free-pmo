@@ -18,7 +18,6 @@
                 <table class="table table-condensed">
                     <tbody>
                         <tr><th>{{ trans('app.name') }}</th><td>{{ $user->name }}</td></tr>
-                        <tr><th>{{ trans('auth.username') }}</th><td>{{ $user->username }}</td></tr>
                         <tr><th>{{ trans('user.email') }}</th><td>{{ $user->email }}</td></tr>
                         <tr>
                             <th>{{ trans('user.role') }}</th>

@@ -11,7 +11,6 @@
             <div class="panel-heading"><h3 class="panel-title">{{ trans('user.show') }}</h3></div>
             <div class="panel-body">
                 {!! FormField::text('name', ['label' => trans('app.name')]) !!}
-                {!! FormField::text('username', ['label' => trans('auth.username')]) !!}
                 {!! FormField::email('email', ['label' => trans('user.email')]) !!}
 
                 {!! FormField::password('password', [

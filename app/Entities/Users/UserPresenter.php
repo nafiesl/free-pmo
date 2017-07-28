@@ -31,7 +31,7 @@ class UserPresenter extends Presenter
 
     public function usernameRoles()
     {
-        $string = $this->username . ' (';
+        $string = $this->name . ' (';
         foreach($this->roles as $key => $role) {
             $string .= ($key != 0) ? ' | ' : '';
             $string .= $role->label;

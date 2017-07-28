@@ -22,7 +22,6 @@
     <thead>
         <th>{{ trans('app.table_no') }}</th>
         <th>{{ trans('app.name') }}</th>
-        <th>{{ trans('auth.username') }}</th>
         <th>{{ trans('user.email') }}</th>
         <th>{{ trans('user.roles') }}</th>
         <th>{{ trans('app.action') }}</th>
@@ -32,7 +31,6 @@
         <tr>
             <td>{{ $users->firstItem() + $key }}</td>
             <td>{{ $user->name }}</td>
-            <td>{{ $user->username }}</td>
             <td>{{ $user->email }}</td>
             <td>{!! $user->present()->roleslink !!}</td>
             <td>

@@ -11,7 +11,7 @@ class ResetPasswordTest extends TestCase
     public function user_can_reset_password_by_their_email()
     {
         // $user = factory(User::class)->create();
-        $user1 = factory(User::class)->create(['username' => '123456', 'email' => 'testing@app.dev']);
+        $user1 = factory(User::class)->create(['email' => 'testing@app.dev']);
 
         // Reset Request
         $this->visit('password/reset');

@@ -13,8 +13,8 @@
         <div class="panel-body">
             @include('auth.partials._errors')
         	{!! Form::open(['route'=>'auth.login']) !!}
-            <div class="form-group {!! $errors->has('username') ? 'has-error' : ''; !!}">
-                {!! Form::text('username', null, ['class'=>'form-control', 'placeholder'=> trans('auth.username')]) !!}
+            <div class="form-group {!! $errors->has('email') ? 'has-error' : ''; !!}">
+                {!! Form::email('email', null, ['class'=>'form-control', 'placeholder'=> trans('auth.email')]) !!}
             </div>
             <div class="form-group {!! $errors->has('password') ? 'has-error' : ''; !!}">
                 {!! Form::password('password', ['class'=>'form-control', 'placeholder'=> trans('auth.password')]) !!}

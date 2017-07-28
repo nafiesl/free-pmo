@@ -18,7 +18,6 @@
                             {{ $user->name }}
                         </td>
                     </tr>
-                    <tr><th>{{ trans('user.username') }}</th><td>{{ $user->username }}</td></tr>
                     <tr>
                         <th>{{ trans('user.roles') }}</th>
                         <td>{{ $user->present()->displayRoles }}</td>

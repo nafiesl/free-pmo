@@ -15,12 +15,6 @@
 					{!! Form::text('name', null, ['class'=>'form-control','placeholder' => trans('app.name')]) !!}
 				</div>
             </div>
-            <div class="form-group {!! $errors->has('username') ? 'has-error' : ''; !!}">
-            	{!! Form::label('username', trans('auth.username'), ['class'=>'col-md-4 control-label']) !!}
-				<div class="col-md-6">
-					{!! Form::text('username', null, ['class'=>'form-control','placeholder'=>trans('auth.username')]) !!}
-				</div>
-            </div>
             <div class="form-group {!! $errors->has('email') ? 'has-error' : ''; !!}">
             	{!! Form::label('email', trans('user.email'), ['class'=>'col-md-4 control-label']) !!}
 				<div class="col-md-6">

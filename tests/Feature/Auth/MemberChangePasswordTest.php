@@ -33,7 +33,7 @@ class MemberChangePasswordTest extends TestCase
         // Logout and login using new Password
         $this->click('Keluar');
         $this->seePageIs(route('auth.login'));
-        $this->type($user->username,'username');
+        $this->type($user->email,'email');
         $this->type('rahasia','password');
         $this->press('Login');
         $this->seePageIs(route('home'));

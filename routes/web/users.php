@@ -8,13 +8,7 @@ Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Users'], fun
     Route::resource('users','UsersController');
 
     /**
-     * Permissions Routes
-     */
-    Route::resource('permissions','PermissionsController');
-
-    /**
      * Roles Routes
      */
     Route::resource('roles','RolesController');
-    Route::post('roles/{id}/update-permissions', ['as' => 'roles.update-permissions', 'uses' => 'RolesController@updatePermissions']);
 });

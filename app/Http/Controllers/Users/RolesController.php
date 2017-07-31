@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Users;
 
-use App\Entities\Users\Permission;
 use App\Entities\Users\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Users\Roles\CreateRequest;
@@ -17,9 +16,6 @@ class RolesController extends Controller {
 		// $role = null;
 		if ($req->has('act') && in_array($req->get('act'), ['show','edit','del'])) {
 			$role = $this->requireById($req->get('id'));
-			if ($req->get('act') == 'show') {
-				$permissions = $this->getAllPermissions();
-			}
 		}
 
 		$roles = Role::whereType(0)->get();
@@ -75,11 +71,4 @@ class RolesController extends Controller {
 	{
 		return Role::findOrFail($roleId);
 	}
-
-	private function getAllPermissions()
-	{
-		return Permission::whereType(1)->get();
-	}
-
-
 }

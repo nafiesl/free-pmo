@@ -71,17 +71,6 @@
                 {!! link_to_route('roles.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) !!}
             </div>
         </div>
-        {!! Form::open(['route'=>['roles.update-permissions', $role->id]]) !!}
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('permission.permissions') }}</h3></div>
-            <div class="panel-body">
-                {!! FormField::checkboxes('permission', $permissions->pluck('label','id')->all(), ['value' => $role->permissions,'label'=>false,'list_style' => 'unstyled']) !!}
-            </div>
-            <div class="panel-footer">
-                {!! Form::submit(trans('role.update'), ['class' => 'btn btn-warning']) !!}
-            </div>
-        </div>
-        {!! Form::close() !!}
         @endif
     </div>
     <div class="col-md-8 col-md-pull-4">
@@ -90,6 +79,7 @@
                 <thead>
                     <th>{{ trans('app.table_no') }}</th>
                     <th>{{ trans('app.name') }}</th>
+                    <th>{{ trans('app.label') }}</th>
                     <th class="text-center">{{ trans('role.users_count') }}</th>
                     <th>{{ trans('app.action') }}</th>
                 </thead>
@@ -97,6 +87,7 @@
                     @forelse($roles as $key => $role)
                     <tr>
                         <td>{{ $key + 1 }}</td>
+                        <td>{{ $role->name }}</td>
                         <td>{{ $role->label }}</td>
                         <td class="text-center">{{ $role->users()->count() }}</td>
                         <td>

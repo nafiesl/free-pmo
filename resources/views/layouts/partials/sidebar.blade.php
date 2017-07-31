@@ -68,7 +68,6 @@
                     <li><a href="{{ route('users.index') }}"><i class="fa fa-users fa-fw"></i> {{ trans('user.users') }}</a></li>
                     @can('manage_role_permissions')
                     <li><a href="{{ route('roles.index') }}"><i class="fa fa-gears fa-fw"></i> {{ trans('role.roles') }}</a></li>
-                    <li><a href="{{ route('permissions.index') }}"><i class="fa fa-lock fa-fw"></i> {{ trans('permission.permissions') }}</a></li>
                     @endcan
                 </ul>
             </li>

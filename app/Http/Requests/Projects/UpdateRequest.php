@@ -27,13 +27,13 @@ class UpdateRequest extends Request {
 	{
 		return [
 			'name' => 'required|max:50',
-			'description' => 'max:255',
-			'proposal_date' => 'date|date_format:Y-m-d',
-			'proposal_value' => 'numeric',
-			'start_date' => 'date|date_format:Y-m-d',
-			'end_date' => 'date|date_format:Y-m-d',
-			'project_value' => 'numeric',
-			'customer_id' => 'numeric',
+			'description' => 'nullable|max:255',
+			'proposal_date' => 'nullable|date|date_format:Y-m-d',
+			'proposal_value' => 'nullable|numeric',
+			'start_date' => 'nullable|date|date_format:Y-m-d',
+			'end_date' => 'nullable|date|date_format:Y-m-d',
+			'project_value' => 'nullable|numeric',
+			'customer_id' => 'nullable|numeric',
 		];
 	}
 

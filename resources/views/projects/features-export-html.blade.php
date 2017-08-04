@@ -17,15 +17,15 @@
         <h1 class="page-header text-center">{{ trans('project.features') }} {{ $project->name }}</h1>
 
         @foreach($features as $key => $feature)
-        <h2 class="feature-title">{{ $feature->name }}</h2>
+        <h2 class="feature-title">{{ 1 + $key }}. {{ $feature->name }}</h2>
         <table width="100%" class="table table-condensed table-bordered">
             <tbody>
-                <tr style="background-color: #FFCC00"><th colspan="2">{{ trans('app.description') }}</th></tr>
+                <tr style="background-color: #ffd298"><th colspan="2">{{ trans('app.description') }}</th></tr>
                 <tr><td colspan="2">{!! nl2br($feature->description) !!}</td></tr>
 
                 @if ($feature->tasks->count())
                 <tr><td colspan="2">&nbsp;</td></tr>
-                <tr style="background-color: #FFCC00">
+                <tr style="background-color: #ffd298">
                     <th class="col-md-3">Sub Fitur</th>
                     <th class="col-md-6">{{ trans('app.description') }}</th>
                 </tr>

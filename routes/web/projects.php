@@ -16,7 +16,6 @@ Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Projects'], 
     /**
      * Features Routes
      */
-
     Route::get('projects/{id}/features/create', ['as'=>'features.create', 'uses'=>'FeaturesController@create']);
     Route::get('projects/{id}/features/add-from-other-project', ['as'=>'features.add-from-other-project', 'uses'=>'FeaturesController@addFromOtherProject']);
     Route::post('features/{id}/tasks-reorder', ['as'=>'features.tasks-reorder', 'uses'=>'FeaturesController@tasksReorder']);
@@ -32,4 +31,10 @@ Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Projects'], 
     Route::post('features/{id}/tasks', ['as'=>'tasks.store', 'uses'=>'TasksController@store']);
     Route::patch('task/{id}', ['as'=>'tasks.update', 'uses'=>'TasksController@update']);
     Route::delete('task/{id}', ['as'=>'tasks.destroy', 'uses'=>'TasksController@destroy']);
+
+    /**
+     * Files Routes
+     */
+    Route::get('projects/{project}/files', ['as' => 'projects.files', 'uses' => 'FilesController@index']);
+    Route::post('files/{fileable}', ['as' => 'files.upload', 'uses' => 'FilesController@create']);
 });

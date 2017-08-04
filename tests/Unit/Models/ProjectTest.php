@@ -4,6 +4,7 @@ namespace Tests\Unit\Models;
 
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
+use App\Entities\Projects\File;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
@@ -123,5 +124,12 @@ class ProjectTest extends TestCase
         factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 1, 'price' => 0]);
 
         $this->assertEquals(0, $project->getFeatureOveralProgress());
+    }
+
+    /** @test */
+    public function it_has_many_files()
+    {
+        $project = factory(Project::class)->create();
+        $this->assertTrue($project->files instanceOf Collection);
     }
 }

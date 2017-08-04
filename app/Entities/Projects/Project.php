@@ -82,4 +82,9 @@ class Project extends Model {
         return $overalProgress;
     }
 
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
+
 }

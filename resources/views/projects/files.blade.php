@@ -31,7 +31,9 @@
                             <strong class="">{{ $file->title }}</strong>
                             <div class="text-info small">{{ $file->description }}</div>
                         </td>
-                        <td class="text-center"><a href="#"><i class="fa fa-file"></i></a></td>
+                        <td class="text-center">
+                            {!! html_link_to_route('files.download', '', [$file->id], ['icon' => 'file', 'title' => trans('file.download')]) !!}
+                        </td>
                         <td class="text-center">edit</td>
                     </tr>
                     @empty

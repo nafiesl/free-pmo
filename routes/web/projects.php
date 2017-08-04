@@ -37,4 +37,5 @@ Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Projects'], 
      */
     Route::get('projects/{project}/files', ['as' => 'projects.files', 'uses' => 'FilesController@index']);
     Route::post('files/{fileable}', ['as' => 'files.upload', 'uses' => 'FilesController@create']);
+    Route::get('files/{file}', ['as' => 'files.download', 'uses' => 'FilesController@show']);
 });

@@ -6,6 +6,7 @@ use App\Entities\Projects\File;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use File as FileSystem;
 
 class FilesController extends Controller
 {
@@ -45,6 +46,24 @@ class FilesController extends Controller
             flash()->error('Upload file gagal, coba kembali.');
 
         return back();
+    }
+
+    public function show($fileId)
+    {
+        $file = File::find($fileId);
+
+        if ($file && file_exists(storage_path('app/public/files/'.$file->filename))) {
+            $extension = FileSystem::extension('public/files/'.$file->filename);
+            return response()->download(storage_path('app/public/files/'.$file->filename), $file->title.'.'.$extension);
+        }
+
+        flash(trans('file.not_found'), 'danger');
+
+        if (\URL::previous() != \URL::current()) {
+            return back();
+        }
+
+        return redirect()->home();
     }
 
     private function proccessPhotoUpload($data, $fileableType, $fileableId)

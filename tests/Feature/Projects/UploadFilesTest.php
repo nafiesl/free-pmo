@@ -2,7 +2,11 @@
 
 namespace Tests\Feature\Projects;
 
+use App\Entities\Projects\File;
 use App\Entities\Projects\Project;
+use Illuminate\Http\Testing\FileFactory;
+use Illuminate\Http\UploadedFile;
+use Storage;
 use Tests\TestCase;
 
 class UploadFilesTest extends TestCase
@@ -10,6 +14,7 @@ class UploadFilesTest extends TestCase
     /** @test */
     public function user_can_upload_document_to_a_project()
     {
+        Storage::fake('avatar');
         $user = $this->adminUserSigningIn();
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
         $this->visit(route('projects.files', $project->id));
@@ -17,7 +22,7 @@ class UploadFilesTest extends TestCase
         $this->seeElement('input', ['id' => 'file']);
         $this->seeElement('input', ['type' => 'submit', 'value' => trans('file.upload')]);
 
-        $this->attach(storage_path('app/guitar-640.jpg'), 'file');
+        $this->attach(UploadedFile::fake()->create('avatar.txt'), 'file');
         $this->type('Judul file', 'title');
         $this->type('Deskripsi file yang diuplod.', 'description');
         $this->press(trans('file.upload'));
@@ -32,18 +37,23 @@ class UploadFilesTest extends TestCase
         ]);
 
         $file = $project->files->first();
-        $filePath = storage_path('app/public/files/' . $file->filename);
-        $this->assertFileExistsThenDelete($filePath, 'File doesn\'t exists.');
+        Storage::disk('avatar')->assertExists('public/files/' . $file->filename);
     }
 
     /** @test */
     public function user_can_edit_document_file_on_a_project()
     {
+        Storage::fake('avatar');
         $user = $this->adminUserSigningIn();
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
+        // $file = factory(File::class, 'project')->create(['fileable_id' => $project->id]);
+        // dd(get_class_methods((new FileFactory)->create('123.txt')));
+        // $result = Storage::disk('avatar')->put('public/files', (new FileFactory)->create('123.txt'));
+        // dd($result);
+
         $this->visit(route('projects.files', [$project->id]));
 
-        $this->attach(storage_path('app/guitar-640.jpg'), 'file');
+        $this->attach(UploadedFile::fake()->image('avatar.jpg'), 'file');
         $this->type('Judul file', 'title');
         $this->type('Deskripsi file yang diuplod.', 'description');
         $this->press(trans('file.upload'));
@@ -68,7 +78,6 @@ class UploadFilesTest extends TestCase
             'description' => 'Edit Deskripsi file yang diuplod.',
         ]);
 
-        $filePath = storage_path('app/public/files/' . $file->filename);
-        $this->assertFileExistsThenDelete($filePath, 'File doesn\'t exists.');
+        Storage::disk('avatar')->assertExists('public/files/' . $file->filename);
     }
 }

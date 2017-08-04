@@ -46,7 +46,7 @@
                         </td>
                     </tr>
                     @empty
-                    <tr><td colspan="5">{{ trans('file.empty') }}</td></tr>
+                    <tr><td colspan="6">{{ trans('file.empty') }}</td></tr>
                     @endforelse
                 </tbody>
             </table>

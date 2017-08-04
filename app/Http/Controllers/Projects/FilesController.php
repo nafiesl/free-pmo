@@ -33,6 +33,7 @@ class FilesController extends Controller
     public function create(Request $request, $fileableId)
     {
         $this->validate($request, [
+            'fileable_type'        => 'required',
             'file'        => 'required|file|max:10000',
             'title'       => 'required|max:60',
             'description' => 'nullable|max:255',
@@ -96,7 +97,11 @@ class FilesController extends Controller
         $fileData['description'] = $data['description'];
         \DB::beginTransaction();
         // dd(is_dir(storage_path('app/public/files')));
-        $file->storeAs('public/files', $fileName);
+        if (env('APP_ENV') == 'testing') {
+            $file->store('public/files', 'avatar');
+        } else {
+            $file->store('public/files');
+        }
         // $file->move(storage_path('app/public/files'));
         $file = File::create($fileData);
         \DB::commit();

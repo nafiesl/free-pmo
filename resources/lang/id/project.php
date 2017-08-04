@@ -36,4 +36,7 @@ return [
     'not_found'     => 'Project tidak ditemukan',
     'empty'         => 'Belum ada Project',
     'back_to_index' => 'Kembali ke daftar Project',
+
+    // Attribute
+    'files' => 'List Dokumen',
 ];

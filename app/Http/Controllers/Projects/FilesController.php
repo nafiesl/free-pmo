@@ -26,6 +26,12 @@ class FilesController extends Controller
 
     public function create(Request $request, $fileableId)
     {
+        $this->validate($request, [
+            'file'        => 'required|file|max:10000',
+            'title'       => 'required|max:60',
+            'description' => 'nullable|max:255',
+        ]);
+
         $fileableExist = array_search($request->get('fileable_type'), $this->fileableTypes);
 
         if ($fileableExist) {
@@ -43,11 +49,8 @@ class FilesController extends Controller
 
     private function proccessPhotoUpload($data, $fileableType, $fileableId)
     {
-        // dd(get_class_methods($data['files']));
-        $file = $data['files'];
-        // $fileName = md5(uniqid(rand(), true)).'.'.$file->getClientOriginalExtension();
+        $file = $data['file'];
         $fileName = $file->hashName();
-        // dd($fileName);
 
         $fileData['fileable_id'] = $fileableId;
         $fileData['fileable_type'] = $fileableType;

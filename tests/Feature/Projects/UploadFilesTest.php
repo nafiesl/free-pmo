@@ -13,14 +13,14 @@ class UploadFilesTest extends TestCase
         $user = $this->adminUserSigningIn();
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
         $this->visit(route('projects.files', $project->id));
-        $this->seeElement('form', ['id' => 'upload-files']);
-        $this->seeElement('input', ['id' => 'files']);
-        $this->seeElement('input', ['type' => 'submit', 'value' => trans('app.upload_files')]);
+        $this->seeElement('form', ['id' => 'upload-file']);
+        $this->seeElement('input', ['id' => 'file']);
+        $this->seeElement('input', ['type' => 'submit', 'value' => trans('file.upload')]);
 
-        $this->attach(storage_path('app/guitar-640.jpg'), 'files');
+        $this->attach(storage_path('app/guitar-640.jpg'), 'file');
         $this->type('Judul file', 'title');
         $this->type('Deskripsi file yang diuplod.', 'description');
-        $this->press(trans('app.upload_files'));
+        $this->press(trans('file.upload'));
 
         $this->assertCount(1, $project->files);
 

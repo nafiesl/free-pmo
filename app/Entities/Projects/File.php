@@ -20,6 +20,11 @@ class File extends Model
 
     public function getSize()
     {
-        return \Storage::size('public/files/'.$this->filename);
+        return $this->fileExists() ? \Storage::size('public/files/'.$this->filename) : 0;
+    }
+
+    public function fileExists()
+    {
+        return \Storage::exists('public/files/'.$this->filename);
     }
 }

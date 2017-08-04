@@ -16,13 +16,18 @@ class FilesController extends Controller
 
     public function index(Request $request, $fileableId)
     {
+        $editableFile = null;
         $fileableType = $request->segment(1); // projects, features
         $modelName = $this->getModelName($fileableType);
         $modelShortName = $this->getModelShortName($modelName);
         $model = $modelName::findOrFail($fileableId);
         $files = $model->files;
 
-        return view($fileableType.'.files', [$modelShortName => $model, 'files' => $files]);
+        if (in_array($request->get('action'), ['edit', 'delete']) && $request->has('id')) {
+            $editableFile = File::find($request->get('id'));
+        }
+
+        return view($fileableType.'.files', [$modelShortName => $model, 'files' => $files, 'editableFile' => $editableFile]);
     }
 
     public function create(Request $request, $fileableId)
@@ -64,6 +69,19 @@ class FilesController extends Controller
         }
 
         return redirect()->home();
+    }
+
+    public function update(Request $request, File $file)
+    {
+        $file->title = $request->get('title');
+        $file->description = $request->get('description');
+        $file->save();
+
+        flash(trans('file.updated'), 'success');
+
+        $resourceName = array_search($file->fileable_type, $this->fileableTypes);
+
+        return redirect()->route($resourceName.'.files', $file->fileable_id);
     }
 
     private function proccessPhotoUpload($data, $fileableType, $fileableId)

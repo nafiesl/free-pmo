@@ -52,9 +52,9 @@ class TestCase extends \Laravel\BrowserKitTesting\TestCase
         return $user;
     }
 
-    protected function assertFileExistsThenDelete($filePath)
+    protected function assertFileExistsThenDelete($filePath, $message = null)
     {
-        $this->assertTrue(file_exists($filePath));
+        $this->assertTrue(file_exists($filePath), $message);
 
         unlink($filePath);
         $this->assertFalse(file_exists($filePath));

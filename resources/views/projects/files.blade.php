@@ -36,7 +36,9 @@
                         <td class="text-center">
                             {!! html_link_to_route('files.download', '', [$file->id], ['icon' => 'file', 'title' => trans('file.download')]) !!}
                         </td>
-                        <td class="text-center">edit</td>
+                        <td class="text-center">
+                            {!! html_link_to_route('projects.files', '', [$project->id, 'action' => 'edit', 'id' => $file->id], ['icon' => 'edit', 'title' => trans('file.edit')]) !!}
+                        </td>
                     </tr>
                     @empty
                     <tr><td colspan="5">{{ trans('file.empty') }}</td></tr>
@@ -46,6 +48,7 @@
         </div>
     </div>
     <div class="col-md-4">
+        @if (Request::has('action') == false)
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('file.create') }}</h3></div>
             <div class="panel-body">
@@ -58,6 +61,20 @@
                 {!! Form::close() !!}
             </div>
         </div>
+        @endif
+        @if (Request::get('action') == 'edit' && $editableFile)
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">{{ trans('file.edit') }} : {{ $editableFile->title }}</h3></div>
+            <div class="panel-body">
+                {!! Form::model($editableFile, ['route' => ['files.update', $editableFile->id],'method' => 'patch']) !!}
+                {!! FormField::text('title', ['label' => trans('file.title'), 'required' => true]) !!}
+                {!! FormField::textarea('description', ['label' => trans('file.description')]) !!}
+                {!! Form::submit(trans('file.update'), ['class' => 'btn btn-success']) !!}
+                {{ link_to_route('projects.files', trans('app.cancel'), [$project->id], ['class' => 'btn btn-default']) }}
+                {!! Form::close() !!}
+            </div>
+        </div>
+    @endif
     </div>
 </div>
 

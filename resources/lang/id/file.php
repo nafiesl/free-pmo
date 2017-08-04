@@ -25,7 +25,7 @@ return [
     'download'       => 'Download',
 
     // Attributes
-    'name'           => 'Nama File',
+    'title'          => 'Nama File',
     'description'    => 'Deskripsi File',
     'size'           => 'Ukuran File',
 ];

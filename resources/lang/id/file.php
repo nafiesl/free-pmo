@@ -28,4 +28,5 @@ return [
     'title'          => 'Nama File',
     'description'    => 'Deskripsi File',
     'size'           => 'Ukuran File',
+    'updated_at'     => 'Tanggal',
 ];

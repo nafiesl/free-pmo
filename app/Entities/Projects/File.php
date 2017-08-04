@@ -23,6 +23,16 @@ class File extends Model
         return $this->fileExists() ? \Storage::size('public/files/'.$this->filename) : 0;
     }
 
+    public function getDate()
+    {
+        return $this->updated_at->format('Y-m-d');
+    }
+
+    public function getTime()
+    {
+        return $this->updated_at->format('H:i:s');
+    }
+
     public function fileExists()
     {
         return \Storage::exists('public/files/'.$this->filename);

@@ -13,7 +13,7 @@
         {!! link_to_route('projects.subscriptions', trans('project.subscriptions'), [$project->id]) !!}
     </li>
     <li class="{{ Request::segment(3) == 'files' ? 'active' : '' }}">
-        {!! link_to_route('projects.files', trans('project.files'), [$project->id]) !!}
+        {!! link_to_route('projects.files', trans('project.files') . ' (' . $project->files->count() . ')', [$project->id]) !!}
     </li>
 </ul>
 <br>

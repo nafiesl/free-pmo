@@ -17,4 +17,9 @@ class File extends Model
     {
         return $this->morphTo('fileable', Project::class);
     }
+
+    public function getSize()
+    {
+        return \Storage::size('public/files/'.$this->filename);
+    }
 }

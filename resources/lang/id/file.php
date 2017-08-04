@@ -22,9 +22,10 @@ return [
     'undeleteable'   => 'Data File tidak dapat dihapus.',
     'select'         => 'Pilih File',
     'upload'         => 'Upload File',
-    'download'       => 'Download File',
+    'download'       => 'Download',
 
     // Attributes
     'name'           => 'Nama File',
     'description'    => 'Deskripsi File',
+    'size'           => 'Ukuran File',
 ];

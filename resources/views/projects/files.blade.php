@@ -20,6 +20,7 @@
                 <thead>
                     <th>{{ trans('app.table_no') }}</th>
                     <th>{{ trans('file.file') }}</th>
+                    <th class="text-right">{{ trans('file.size') }}</th>
                     <th class="text-center">{{ trans('file.download') }}</th>
                     <th class="text-center">{{ trans('app.action') }}</th>
                 </thead>
@@ -31,6 +32,7 @@
                             <strong class="">{{ $file->title }}</strong>
                             <div class="text-info small">{{ $file->description }}</div>
                         </td>
+                        <td class="text-right">{{ formatSizeUnits($file->getSize()) }}</td>
                         <td class="text-center">
                             {!! html_link_to_route('files.download', '', [$file->id], ['icon' => 'file', 'title' => trans('file.download')]) !!}
                         </td>

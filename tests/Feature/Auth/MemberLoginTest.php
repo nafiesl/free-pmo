@@ -19,7 +19,7 @@ class MemberLoginTest extends TestCase
         $this->press(trans('auth.login'));
         $this->seePageIs(route('home'));
         $this->see('Selamat datang kembali Nama Member.');
-        $this->click('Keluar');
+        $this->click(trans('auth.logout'));
         $this->seePageIs(route('auth.login'));
         $this->see('Anda telah logout.');
     }

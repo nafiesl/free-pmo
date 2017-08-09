@@ -21,13 +21,13 @@ class MemberChangePasswordTest extends TestCase
         $this->type('member1','old_password');
         $this->type('rahasia','password');
         $this->type('rahasia','password_confirmation');
-        $this->press('Ganti Password');
+        $this->press(trans('auth.change_password'));
         $this->see('Password lama tidak cocok');
 
         $this->type('member','old_password');
         $this->type('rahasia','password');
         $this->type('rahasia','password_confirmation');
-        $this->press('Ganti Password');
+        $this->press(trans('auth.change_password'));
         $this->see('Password berhasil diubah');
 
         // Logout and login using new Password

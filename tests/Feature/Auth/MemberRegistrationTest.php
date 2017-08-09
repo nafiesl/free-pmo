@@ -15,7 +15,7 @@ class MemberRegistrationTest extends TestCase
         $this->type('member@app.dev', 'email');
         $this->type('', 'password');
         $this->type('', 'password_confirmation');
-        $this->press('Buat Akun Baru');
+        $this->press(trans('auth.register'));
         $this->seePageIs(route('auth.register'));
         $this->see('Nama harus diisi.');
         $this->see('Email ini sudah terdaftar.');
@@ -26,7 +26,7 @@ class MemberRegistrationTest extends TestCase
         $this->type('email', 'email');
         $this->type('password', 'password');
         $this->type('password..', 'password_confirmation');
-        $this->press('Buat Akun Baru');
+        $this->press(trans('auth.register'));
         $this->seePageIs(route('auth.register'));
         $this->see('Email tidak valid.');
         $this->see('Konfirmasi password tidak sesuai.');
@@ -40,7 +40,7 @@ class MemberRegistrationTest extends TestCase
         $this->type('email@mail.com', 'email');
         $this->type('password.111', 'password');
         $this->type('password.111', 'password_confirmation');
-        $this->press('Buat Akun Baru');
+        $this->press(trans('auth.register'));
         $this->seePageIs(route('home'));
         $this->see('Selamat datang Nama Member.');
     }

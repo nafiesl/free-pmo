@@ -3,7 +3,7 @@
     <div class="panel-body">
         <table class="table table-condensed">
             <tbody>
-                <tr><td>{{ trans('project.name') }}</td><td>{{ $project->name }}</td></tr>
+                <tr><td class="col-xs-3">{{ trans('project.name') }}</td><td class="col-xs-9">{{ $project->name }}</td></tr>
                 <tr><td>{{ trans('project.description') }}</td><td>{!! nl2br($project->description) !!}</td></tr>
                 <tr><td>{{ trans('project.proposal_date') }}</td><td>{{ dateId($project->proposal_date) }}</td></tr>
                 <tr><td>{{ trans('project.proposal_value') }}</td><td class="text-right">{{ formatRp($project->proposal_value) }}</td></tr>

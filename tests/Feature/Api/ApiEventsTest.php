@@ -126,7 +126,7 @@ class ApiEventsTest extends TestCase
         $this->patchJson(route('api.events.reschedule'), [
             'id' => $event->id,
             'start' => '2016-11-07 13:00:00',
-            'start' => '2016-11-07 15:00:00',
+            'end' => '2016-11-07 15:00:00',
         ], [
             'Authorization' => 'Bearer ' . $user->api_token
         ]);
@@ -142,7 +142,7 @@ class ApiEventsTest extends TestCase
             'id' => $event->id,
             'user_id' => $user->id,
             'start' => '2016-11-07 13:00:00',
-            'start' => '2016-11-07 15:00:00',
+            'end' => '2016-11-07 15:00:00',
         ]);
     }
 }

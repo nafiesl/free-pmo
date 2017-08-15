@@ -143,7 +143,7 @@
                 center: 'title',
                 left: 'month,agendaWeek,agendaDay,listYear'
             },
-            // defaultView: 'month',
+            defaultView: 'agendaWeek',
             height: 550,
             selectable: true,
             selectHelper: true,

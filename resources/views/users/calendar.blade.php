@@ -49,6 +49,12 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">Project</label>
+                            <div class="col-sm-9">
+                                {!! FormField::select('project_id', $projects, ['label' => false, 'id' => 'project1']) !!}
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label"></label>
                             <div class="col-sm-9">
                                 <label for="is_allday"><input id="is_allday" type="checkbox" name="is_allday"> All Day Event?</label>
@@ -92,6 +98,12 @@
                             <label class="col-sm-3 control-label">Description</label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" style="height:55px;" id="descr2" name="descr2"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Project</label>
+                            <div class="col-sm-9">
+                                {!! FormField::select('project_id', $projects, ['label' => false, 'id' => 'project2']) !!}
                             </div>
                         </div>
                         <div class="form-group">
@@ -170,13 +182,14 @@
                 $(".antosubmit").on("click", function() {
                     var title = $("#title").val();
                     var body = $("#descr").val();
+                    var project_id = $('#project1').val();
                     var is_allday = $("#is_allday").is(':checked');
 
                     if (title) {
                         $.ajax({
                             url: "{{ route('api.events.store') }}",
                             method: "POST",
-                            data: { title: title, body: body, start: started.format("YYYY-MM-DD HH:mm:ss"), end: ended.format("YYYY-MM-DD HH:mm:ss"), is_allday: is_allday },
+                            data: { title: title, body: body, project_id: project_id, start: started.format("YYYY-MM-DD HH:mm:ss"), end: ended.format("YYYY-MM-DD HH:mm:ss"), is_allday: is_allday },
                             success: function(response){
                                 if(response.message == 'event.created') {
                                     calendar.fullCalendar('renderEvent', {
@@ -187,6 +200,7 @@
                                         end: ended.format("YYYY-MM-DD HH:mm"),
                                         user: "{{ auth()->user()->name }}",
                                         user_id: "{{ auth()->id() }}",
+                                        project_id: project_id,
                                         allDay: is_allday,
                                         editable: true
                                     }, true);
@@ -215,7 +229,8 @@
                     $('#user2').text(calEvent.user);
                     $('#title2').val(calEvent.title);
                     $('#descr2').val(calEvent.body);
-                    $('#is_allday2').val(calEvent.allDay);
+                    $('#project2').val(calEvent.project_id);
+                    $('#is_allday2').prop('checked', calEvent.allDay);
                     $('#CalenderModalEdit').modal();
                 }
                 else {
@@ -254,12 +269,13 @@
                 $("#antoform2").off("submit").on("submit", function() {
                     calEvent.title = $("#title2").val();
                     calEvent.body = $("#descr2").val();
+                    calEvent.project_id = $('#project2').val();
                     calEvent.is_allday = $("#is_allday2").is(':checked');
 
                     $.ajax({
                         url: "{{ route('api.events.update') }}",
                         method: "PATCH",
-                        data: { id: calEvent.id, title: calEvent.title, body: calEvent.body, is_allday: calEvent.is_allday },
+                        data: { id: calEvent.id, title: calEvent.title, body: calEvent.body, project_id: calEvent.project_id, is_allday: calEvent.is_allday },
                         success: function(response){
                             if(response.message == 'event.updated')
                                 $('#calendar').fullCalendar('updateEvent',calEvent);

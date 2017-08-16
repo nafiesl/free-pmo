@@ -25,6 +25,7 @@ class EventsController extends Controller
                     'id' => $event->id,
                     'user' => $event->user->name,
                     'user_id' => $event->user_id,
+                    'project_id' => $event->project_id,
                     'title' => $event->title,
                     'body' => $event->body,
                     'start' => $event->start,
@@ -42,8 +43,9 @@ class EventsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'project_id' => 'nullable|numeric|exists:projects,id',
             'title' => 'required|string|max:60',
-            'body' => 'string|max:255',
+            'body' => 'nullable|string|max:255',
             'start' => 'required|date|date_format:Y-m-d H:i:s',
             'end' => 'date|date_format:Y-m-d H:i:s',
             'is_allday' => '',
@@ -51,6 +53,7 @@ class EventsController extends Controller
 
         $event = new Event;
         $event->user_id = auth()->id();
+        $event->project_id = $request->get('project_id');
         $event->title = $request->get('title');
         $event->body = $request->get('body');
         $event->start = $request->get('start');
@@ -65,6 +68,7 @@ class EventsController extends Controller
             ->transformWith(function($event) {
                 return [
                     'id' => $event->id,
+                    'project_id' => $event->project_id,
                     'user' => $event->user->name,
                     'title' => $event->title,
                     'body' => $event->body,
@@ -87,17 +91,19 @@ class EventsController extends Controller
     {
         $this->validate($request, [
             'id' => 'required|numeric|exists:user_events,id',
+            'project_id' => 'nullable|numeric|exists:projects,id',
             'title' => 'required|string|max:60',
-            'body' => 'string|max:255',
+            'body' => 'nullable|string|max:255',
             'is_allday' => '',
         ]);
 
         $event = Event::findOrFail($request->get('id'));
         $this->authorize('update', $event);
 
+        $event->project_id = $request->get('project_id');
         $event->title = $request->get('title');
         $event->body = $request->get('body');
-        $event->is_allday = !!$request->get('is_allday');
+        $event->is_allday = $request->get('is_allday') == 'true' ? 1 : 0;
 
         $event->save();
 
@@ -107,6 +113,7 @@ class EventsController extends Controller
             ->transformWith(function($event) {
                 return [
                     'id' => $event->id,
+                    'project_id' => $event->project_id,
                     'user' => $event->user->name,
                     'title' => $event->title,
                     'body' => $event->body,

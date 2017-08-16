@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Api;
 
+use App\Entities\Projects\Project;
 use App\Entities\Users\Event;
 use App\Entities\Users\User;
 use Tests\TestCase;
@@ -12,7 +13,7 @@ class ApiEventsTest extends TestCase
     public function it_can_get_all_existing_events()
     {
         $user = factory(User::class)->create();
-        $events = factory(Event::class, 5)->create(['user_id' => $user->id]);
+        $events = factory(Event::class, 2)->create(['user_id' => $user->id]);
 
         $this->getJson(route('api.events.index'), [
             'Authorization' => 'Bearer ' . $user->api_token
@@ -28,6 +29,7 @@ class ApiEventsTest extends TestCase
                 'start',
                 'end',
                 'allDay',
+                'project_id',
             ]
         ]);
     }
@@ -36,11 +38,13 @@ class ApiEventsTest extends TestCase
     public function user_can_create_new_event()
     {
         $user = factory(User::class)->create();
+        $project = factory(Project::class)->create();
 
         $this->postJson(route('api.events.store'), [
             'title' => 'New Event Title',
             'body' => 'New Event Body',
             'start' => '2016-07-21 12:20:00',
+            'project_id' => $project->id,
         ], [
             'Authorization' => 'Bearer ' . $user->api_token
         ]);
@@ -51,6 +55,7 @@ class ApiEventsTest extends TestCase
 
         $this->seeJson([
             'message' => trans('event.created'),
+            'project_id' => $project->id,
             'user' => $user->name,
             'title' => 'New Event Title',
             'body' => 'New Event Body',
@@ -60,6 +65,7 @@ class ApiEventsTest extends TestCase
         ]);
 
         $this->seeInDatabase('user_events', [
+            'project_id' => $project->id,
             'user_id' => $user->id,
             'title' => 'New Event Title',
             'body' => 'New Event Body',
@@ -73,10 +79,12 @@ class ApiEventsTest extends TestCase
     public function user_can_update_their_event()
     {
         $user = factory(User::class)->create();
+        $project = factory(Project::class)->create();
         $event = factory(Event::class)->create(['user_id' => $user->id]);
         // dump($event->toArray());
         $this->patchJson(route('api.events.update'), [
             'id' => $event->id,
+            'project_id' => $project->id,
             'title' => 'New Event Title',
             'body' => 'New Event Body',
             'is_allday' => 'true',
@@ -88,6 +96,7 @@ class ApiEventsTest extends TestCase
 
         $this->seeJson([
             'message' => trans('event.updated'),
+            'project_id' => $project->id,
             'user' => $user->name,
             'title' => 'New Event Title',
             'body' => 'New Event Body',
@@ -95,6 +104,7 @@ class ApiEventsTest extends TestCase
 
         $this->seeInDatabase('user_events', [
             'user_id' => $user->id,
+            'project_id' => $project->id,
             'title' => 'New Event Title',
             'body' => 'New Event Body',
         ]);

@@ -7,6 +7,7 @@
 
 <h1 class="page-header">
     <div class="pull-right">
+        {!! html_link_to_route('features.create', trans('feature.create'), [$feature->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
         {!! link_to_route('features.edit', trans('feature.edit'), [$feature->id], ['class' => 'btn btn-warning']) !!}
         {!! link_to_route('projects.features', trans('feature.back_to_index'), [$feature->project_id, '#' . $feature->id], ['class' => 'btn btn-default']) !!}
     </div>

@@ -19,9 +19,9 @@ class PaymentsController extends Controller {
 	    $this->repo = $repo;
 	}
 
-	public function index(Request $req)
+	public function index(Request $request)
 	{
-		$payments = $this->repo->getAll($req->get('q'));
+		$payments = $this->repo->getPayments($request->only('customer_id'));
 		return view('payments.index',compact('payments'));
 	}
 

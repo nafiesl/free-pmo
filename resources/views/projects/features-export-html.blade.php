@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{{ $project->name }}</title>
+    <title>{{ trans('project.features') }} {{ $project->name }}</title>
     {!! Html::style('assets/css/app.s.css') !!}
 </head>
 <body style="font-family:'Liberation Serif'">
@@ -17,7 +17,7 @@
         <h1 class="page-header text-center">{{ trans('project.features') }} {{ $project->name }}</h1>
 
         @foreach($features as $key => $feature)
-        <h2 class="feature-title">{{ 1 + $key }}. {{ $feature->name }}</h2>
+        <h2 class="feature-title">{{ $feature->name }}</h2>
         <table width="100%" class="table table-condensed table-bordered">
             <tbody>
                 <tr style="background-color: #ffd298"><th colspan="2">{{ trans('app.description') }}</th></tr>

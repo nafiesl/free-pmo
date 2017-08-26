@@ -19,6 +19,12 @@
                     @endif
                 </td>
             </tr>
+            <tr>
+                <td>{{ trans('subscription.project') }}</td>
+                <td>
+                    {{ link_to_route('projects.subscriptions', $subscription->project->name, [$subscription->project_id], ['target' => '_blank']) }}
+                </td>
+            </tr>
             <tr><td>{{ trans('subscription.remark') }}</td><td>{!! nl2br($subscription->remark) !!}</td></tr>
         </tbody>
     </table>

@@ -20,7 +20,7 @@ return [
     'description'   => 'Deskripsi',
     'progress'      => 'Progress',
     'worker'        => 'Pekerja',
-    'price'         => 'Nilai Fitur',
+    'price'         => 'Biaya Pengerjaan',
     'type'          => 'Jenis Fitur',
     'tasks'         => 'Daftar Task',
     'price_total'   => 'Nilai Fitur Total',

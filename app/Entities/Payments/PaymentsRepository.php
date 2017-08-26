@@ -16,11 +16,18 @@ class PaymentsRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function getAll($q)
+    public function getPayments($queryStrings)
     {
         return $this->model->orderBy('date','desc')
-            ->whereHas('project', function($query) use ($q) {
-                $query->where('name', 'like', '%' . $q . '%');
+            ->whereHas('project', function($query) use ($queryStrings) {
+                if (isset($queryStrings['q'])) {
+                    $query->where('name', 'like', '%' . $queryStrings['q'] . '%');
+                }
+            })
+            ->where(function ($query) use ($queryStrings) {
+                if (isset($queryStrings['customer_id'])) {
+                    $query->where('customer_id', $queryStrings['customer_id']);
+                }
             })
             ->with('customer','project')
             ->whereOwnerId(auth()->id())

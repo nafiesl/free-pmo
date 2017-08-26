@@ -7,8 +7,8 @@
 
 <h1 class="page-header">
     <div class="pull-right">
-        {!! html_link_to_route('features.create', trans('feature.create'), [$project->id], ['class' => 'btn btn-primary','icon' => 'plus']) !!}
-        {!! html_link_to_route('features.add-from-other-project', trans('feature.add_from_other_project'), [$project->id], ['class' => 'btn btn-primary','icon' => 'plus']) !!}
+        {!! html_link_to_route('features.create', trans('feature.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+        {!! html_link_to_route('features.add-from-other-project', trans('feature.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
     </div>
     {{ $project->name }} <small>{{ trans('project.features') }}</small>
 </h1>

@@ -53,7 +53,6 @@
 
 @section('ext_js')
     {!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
-    {!! Html::script(url('assets/js/plugins/autoNumeric.min.js')) !!}
 @endsection
 
 @section('script')
@@ -63,11 +62,6 @@
         timepicker:false,
         format:'Y-m-d',
         closeOnDateSelect: true
-    });
-    $('#amount').autoNumeric("init",{
-        aSep: '.',
-        aDec: ',',
-        mDec: '0'
     });
 })();
 </script>

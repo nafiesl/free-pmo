@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Payments;
 
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;

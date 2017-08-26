@@ -9,11 +9,12 @@
 </h1>
 <div class="well well-sm text-right">
     <div class="pull-left hidden-xs">{!! str_replace('/?', '?', $payments->appends(Request::except('page'))->render()) !!}</div>
-    {!! Form::open(['method'=>'get','class'=>'form-inline']) !!}
-    {!! Form::text('q', Request::get('q'), ['class'=>'form-control index-search-field','placeholder'=>trans('payment.search'),'style' => 'width:350px']) !!}
-    {!! Form::submit(trans('payment.search'), ['class' => 'btn btn-info btn-sm']) !!}
-    {!! link_to_route('payments.index','Reset',[],['class' => 'btn btn-default btn-sm']) !!}
-    {!! Form::close() !!}
+    {{ Form::open(['method'=>'get','class'=>'form-inline']) }}
+    {{ Form::text('q', Request::get('q'), ['class'=>'form-control index-search-field','placeholder' => trans('payment.search')]) }}
+    {{ Form::select('customer_id', ['' => '-- '.trans('payment.customer').' --'] + $usersList, request('customer_id'), ['class' => 'form-control', 'id' => 'customer_id']) }}
+    {{ Form::submit(trans('app.search'), ['class' => 'btn btn-info btn-sm']) }}
+    {{ link_to_route('payments.index','Reset',[],['class' => 'btn btn-default btn-sm']) }}
+    {{ Form::close() }}
 </div>
 <table class="table table-condensed">
     <thead>
@@ -47,4 +48,20 @@
     </tbody>
 </table>
     {!! str_replace('/?', '?', $payments->appends(Request::except('page'))->render()) !!}
+@endsection
+
+@section('ext_css')
+    {!! Html::style(url('assets/css/plugins/select2.min.css')) !!}
+@endsection
+
+@section('ext_js')
+    {!! Html::script(url('assets/js/plugins/select2.min.js')) !!}
+@endsection
+
+@section('script')
+<script>
+(function () {
+    $('#customer_id').select2();
+})();
+</script>
 @endsection

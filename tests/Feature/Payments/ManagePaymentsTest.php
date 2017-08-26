@@ -156,24 +156,4 @@ class ManagePaymentsTest extends TestCase
     //     $this->see(formatRp($payments[4]->amount));
     //     $this->see($payments[4]->customer->name);
     // }
-
-    /** @test */
-    public function admin_can_search_payment_by_customer_name()
-    {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
-
-        $payments = factory(Payment::class, 2)->create(['owner_id' => $user->id]);
-        $this->assertEquals(2, $payments->count());
-
-        $this->visit(route('payments.index'));
-
-        $firstName = explode(' ', $payments[0]->project->name)[0];
-
-        $this->type($firstName, 'q');
-        $this->press(trans('payment.search'));
-        $this->seePageIs(route('payments.index', ['q' => $firstName]));
-        $this->see($payments[0]->project->name);
-    }
 }

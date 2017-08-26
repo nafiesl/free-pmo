@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Payments\CreateRequest;
-use App\Http\Requests\Payments\UpdateRequest;
-use App\Http\Requests\Payments\DeleteRequest;
-use App\Http\Controllers\Controller;
 use App\Entities\Payments\PaymentsRepository;
-
+use App\Entities\Users\User;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Payments\CreateRequest;
+use App\Http\Requests\Payments\DeleteRequest;
+use App\Http\Requests\Payments\UpdateRequest;
 use Illuminate\Http\Request;
 
 class PaymentsController extends Controller {
@@ -21,8 +21,9 @@ class PaymentsController extends Controller {
 
 	public function index(Request $request)
 	{
-		$payments = $this->repo->getPayments($request->only('customer_id'));
-		return view('payments.index',compact('payments'));
+		$payments = $this->repo->getPayments($request->only('q', 'customer_id'));
+		$usersList = User::pluck('name', 'id')->all();
+		return view('payments.index',compact('payments', 'usersList'));
 	}
 
 	public function create()

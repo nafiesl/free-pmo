@@ -16,4 +16,6 @@ pipelines:
           - docker-php-ext-install -j$(nproc) gd
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
+          - cp .env.example .env
+          - php artisan key:generate
           - vendor/bin/phpunit

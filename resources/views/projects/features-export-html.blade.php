@@ -40,7 +40,7 @@
         </table>
         @endforeach
 
-        <h1 class="page-header text-center">Biaya Pembuatan</h1>
+        <h1 class="page-header text-center">{{ trans('project.cost_proposal') }}</h1>
         <table width="100%" class="table table-condensed table-bordered">
             <tbody>
                 <tr>

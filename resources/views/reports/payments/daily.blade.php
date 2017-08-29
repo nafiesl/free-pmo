@@ -23,11 +23,11 @@
 <table class="table table-condensed table-hover">
     <thead>
         <th>{{ trans('app.table_no') }}</th>
-        <th class="col-md-3">{{ trans('payment.project') }}</th>
+        <th class="col-md-2">{{ trans('payment.project') }}</th>
         <th class="col-md-1 text-center">{{ trans('app.date') }}</th>
         <th class="col-md-2 text-right">{{ trans('payment.amount') }}</th>
-        <th class="col-md-2">{{ trans('payment.customer') }}</th>
-        <th class="col-md-3">{{ trans('payment.description') }}</th>
+        <th class="col-md-2 text-center">{{ trans('payment.customer') }}</th>
+        <th class="col-md-5">{{ trans('payment.description') }}</th>
         <th class="col-md-1">{{ trans('app.action') }}</th>
     </thead>
     <tbody>
@@ -35,11 +35,11 @@
         @forelse($payments as $key => $payment)
         <tr>
             <td>{{ 1 + $key }}</td>
-            <td>{{ $payment->project->name }}</td>
+            <td>{{ $payment->project->present()->projectLink() }}</td>
             <td class="text-center">{{ $payment->date }}</td>
             <td class="text-right">{{ $payment->present()->amount }}</td>
-            <td>{{ $payment->customer->name }}</td>
-            <td>{{ $payment->description }}</td>
+            <td class="text-center">{{ $payment->customer->name }}</td>
+            <td>{{ $payment->description }} [{{ $payment->type() }}]</td>
             <td>
                 {!! link_to_route('payments.show','Lihat',[$payment->id],['title' => 'Lihat Detail Pembayaran','target' => '_blank','class'=>'btn btn-info btn-xs']) !!}
             </td>

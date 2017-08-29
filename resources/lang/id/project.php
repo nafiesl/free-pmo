@@ -36,6 +36,7 @@ return [
     // Attribute
     'files'         => 'List Dokumen',
     'features'      => 'Daftar Item Pekerjaan',
+    'cost_proposal' => 'Pengajuan Biaya',
 
     // Actions
     'features_export_html'           => 'Export HTML',

@@ -10,9 +10,9 @@ abstract class Request extends FormRequest
     /**
      * {@inheritdoc}
      */
-    protected function formatErrors(Validator $validator)
+    protected function failedValidation(Validator $validator)
     {
         flash()->error('Mohon periksa kembali form isian Anda.');
-        return $validator->getMessageBag()->toArray();
+        parent::failedValidation($validator);
     }
 }

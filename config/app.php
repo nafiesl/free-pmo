@@ -159,7 +159,7 @@ return [
         App\Providers\OptionServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        BackupManager\Laravel\Laravel5ServiceProvider::class,
+        BackupManager\Laravel\Laravel55ServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
         Luthfi\FormField\FormFieldServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,

@@ -15,7 +15,7 @@ class ApiManageProjectsTest extends TestCase
         $project = factory(Project::class, 5)->create(['owner_id' => $user->id]);
 
         $this->getJson(route('api.projects.index'), [
-            'Authorization' => 'Bearer ' . $user->api_token
+            'Authorization' => 'Bearer '.$user->api_token
         ]);
 
         $this->seeStatusCode(200);

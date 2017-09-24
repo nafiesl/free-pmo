@@ -4,7 +4,6 @@ namespace Tests\Unit\Models;
 
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
-use App\Entities\Projects\File;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
@@ -19,8 +18,8 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id]);
-        $this->assertTrue($project->features instanceOf Collection);
-        $this->assertTrue($project->features->first() instanceOf Feature);
+        $this->assertTrue($project->features instanceof Collection);
+        $this->assertTrue($project->features->first() instanceof Feature);
     }
 
     /** @test */
@@ -28,8 +27,8 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 1]);
-        $this->assertTrue($project->mainFeatures instanceOf Collection);
-        $this->assertTrue($project->mainFeatures->first() instanceOf Feature);
+        $this->assertTrue($project->mainFeatures instanceof Collection);
+        $this->assertTrue($project->mainFeatures->first() instanceof Feature);
     }
 
     /** @test */
@@ -37,8 +36,8 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 2]);
-        $this->assertTrue($project->additionalFeatures instanceOf Collection);
-        $this->assertTrue($project->additionalFeatures->first() instanceOf Feature);
+        $this->assertTrue($project->additionalFeatures instanceof Collection);
+        $this->assertTrue($project->additionalFeatures->first() instanceof Feature);
     }
 
     /** @test */
@@ -47,8 +46,8 @@ class ProjectTest extends TestCase
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 2]);
         $tasks = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
-        $this->assertTrue($project->tasks instanceOf Collection);
-        $this->assertTrue($project->tasks->first() instanceOf Task);
+        $this->assertTrue($project->tasks instanceof Collection);
+        $this->assertTrue($project->tasks->first() instanceof Task);
     }
 
     /** @test */
@@ -56,8 +55,8 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $payment = factory(Payment::class)->create(['project_id' => $project->id]);
-        $this->assertTrue($project->payments instanceOf Collection);
-        $this->assertTrue($project->payments->first() instanceOf Payment);
+        $this->assertTrue($project->payments instanceof Collection);
+        $this->assertTrue($project->payments->first() instanceof Payment);
     }
 
     /** @test */
@@ -65,15 +64,15 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
-        $this->assertTrue($project->subscriptions instanceOf Collection);
-        $this->assertTrue($project->subscriptions->first() instanceOf Subscription);
+        $this->assertTrue($project->subscriptions instanceof Collection);
+        $this->assertTrue($project->subscriptions->first() instanceof Subscription);
     }
 
     /** @test */
     public function it_belongs_to_a_customer()
     {
         $project = factory(Project::class)->create();
-        $this->assertTrue($project->customer instanceOf User);
+        $this->assertTrue($project->customer instanceof User);
     }
 
     /** @test */
@@ -130,6 +129,6 @@ class ProjectTest extends TestCase
     public function it_has_many_files()
     {
         $project = factory(Project::class)->create();
-        $this->assertTrue($project->files instanceOf Collection);
+        $this->assertTrue($project->files instanceof Collection);
     }
 }

@@ -19,14 +19,12 @@ class ResetPasswordTest extends TestCase
             'email' => 'testing@app.dev'
         ]);
         $this->see(trans('auth.reset_password'));
-        $this->type('testing@app.dev','email');
+        $this->type('testing@app.dev', 'email');
         $this->press(trans('auth.send_reset_password_link'));
         $this->seePageIs('password/reset');
         $this->see(trans('passwords.sent'));
         $this->seeInDatabase('password_resets', [
             'email' => 'testing@app.dev'
         ]);
-
     }
-
 }

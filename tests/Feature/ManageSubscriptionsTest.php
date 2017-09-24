@@ -31,17 +31,17 @@ class ManageSubscriptionsTest extends TestCase
         $this->seePageIs('subscriptions/create');
 
         // Fill Form
-        $this->type('www.domain.com','domain_name');
-        $this->type(100000,'domain_price');
-        $this->type('100000','epp_code');
-        $this->type('3GB','hosting_capacity');
-        $this->type(500000,'hosting_price');
-        $this->type('2015-05-02','start_date');
-        $this->type('2016-05-02','due_date');
+        $this->type('www.domain.com', 'domain_name');
+        $this->type(100000, 'domain_price');
+        $this->type('100000', 'epp_code');
+        $this->type('3GB', 'hosting_capacity');
+        $this->type(500000, 'hosting_price');
+        $this->type('2015-05-02', 'start_date');
+        $this->type('2016-05-02', 'due_date');
         $this->select($project->id, 'project_id');
         $this->select($customer->id, 'customer_id');
         $this->select($vendor->id, 'vendor_id');
-        $this->type('','remark');
+        $this->type('', 'remark');
         $this->press(trans('subscription.create'));
 
         $this->seePageIs('subscriptions');
@@ -74,22 +74,22 @@ class ManageSubscriptionsTest extends TestCase
 
         $subscription = factory(Subscription::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
 
-        $this->visit('subscriptions/' . $subscription->id . '/edit');
-        $this->seePageIs('subscriptions/' . $subscription->id . '/edit');
+        $this->visit('subscriptions/'.$subscription->id.'/edit');
+        $this->seePageIs('subscriptions/'.$subscription->id.'/edit');
 
         // Fill Form
-        $this->type($eppCode = str_random(10),'epp_code');
-        $this->type('4GB','hosting_capacity');
-        $this->type(500000,'hosting_price');
-        $this->type('2015-05-02','start_date');
-        $this->type('2016-05-02','due_date');
+        $this->type($eppCode = str_random(10), 'epp_code');
+        $this->type('4GB', 'hosting_capacity');
+        $this->type(500000, 'hosting_price');
+        $this->type('2015-05-02', 'start_date');
+        $this->type('2016-05-02', 'due_date');
         $this->select($project->id, 'project_id');
         $this->select($customer->id, 'customer_id');
         $this->select($vendor->id, 'vendor_id');
-        $this->select(1,'status_id');
+        $this->select(1, 'status_id');
         $this->press(trans('subscription.update'));
 
-        $this->seePageIs('subscriptions/' . $subscription->id . '/edit');
+        $this->seePageIs('subscriptions/'.$subscription->id.'/edit');
         $this->see(trans('subscription.updated'));
         $this->seeInDatabase('subscriptions', [
             'epp_code' => $eppCode,
@@ -133,7 +133,7 @@ class ManageSubscriptionsTest extends TestCase
 
         $this->visit('/subscriptions');
         $this->click(trans('app.show'));
-        $this->seePageIs('subscriptions/' . $subscription->id);
+        $this->seePageIs('subscriptions/'.$subscription->id);
         $this->see(trans('subscription.show'));
         $this->see($subscription->domain_name);
         $this->see(formatRp($subscription->domain_price));

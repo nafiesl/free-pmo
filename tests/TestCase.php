@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-use App\Entities\Users\Role;
 use App\Entities\Users\User;
 use Tests\Traits\DatabaseMigrateSeeds;
 
@@ -40,7 +39,6 @@ class TestCase extends \Laravel\BrowserKitTesting\TestCase
         if (isset($uses[DatabaseMigrateSeeds::class])) {
             $this->runDatabaseMigrateSeeds();
         }
-
     }
 
     protected function adminUserSigningIn()

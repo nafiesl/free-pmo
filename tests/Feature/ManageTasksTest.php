@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Entities\Projects\Feature;
-use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
 use App\Entities\Users\User;
 use Tests\TestCase;
@@ -18,19 +17,19 @@ class ManageTasksTest extends TestCase
         $this->actingAs($user);
 
         $feature = factory(Feature::class)->create(['worker_id' => $user->id]);
-        $this->visit('features/' . $feature->id);
-        $this->seePageIs('features/' . $feature->id);
+        $this->visit('features/'.$feature->id);
+        $this->seePageIs('features/'.$feature->id);
         $this->see(trans('feature.tasks'));
         $this->see(trans('task.create'));
 
         // Fill Form
-        $this->type('Nama Task Baru','name');
-        $this->type('Ipsam magnam laboriosam distinctio officia facere sapiente eius corporis','description');
-        $this->type(70,'progress');
-        $this->type('tasks/create','route_name');
+        $this->type('Nama Task Baru', 'name');
+        $this->type('Ipsam magnam laboriosam distinctio officia facere sapiente eius corporis', 'description');
+        $this->type(70, 'progress');
+        $this->type('tasks/create', 'route_name');
         $this->press(trans('task.create'));
 
-        $this->seePageIs('features/' . $feature->id);
+        $this->seePageIs('features/'.$feature->id);
         $this->see(trans('task.created'));
         $this->seeInDatabase('tasks', [
             'name' => 'Nama Task Baru',
@@ -52,18 +51,18 @@ class ManageTasksTest extends TestCase
 
         $task = factory(Task::class)->create(['feature_id' => $feature->id]);
 
-        $this->visit('features/' . $feature->id);
-        $this->click($task->id . '-tasks-edit');
-        $this->seePageIs('features/' . $feature->id . '?action=task_edit&task_id=' . $task->id);
+        $this->visit('features/'.$feature->id);
+        $this->click($task->id.'-tasks-edit');
+        $this->seePageIs('features/'.$feature->id.'?action=task_edit&task_id='.$task->id);
         $this->see(trans('task.edit'));
         $this->see(trans('task.update'));
 
         // Fill Form
-        $this->type('Nama Task Edit','name');
-        $this->type(77,'progress');
+        $this->type('Nama Task Edit', 'name');
+        $this->type(77, 'progress');
         $this->press(trans('task.update'));
 
-        $this->seePageIs('features/' . $feature->id);
+        $this->seePageIs('features/'.$feature->id);
         $this->see(trans('task.updated'));
         $this->seeInDatabase('tasks', [
             'name' => 'Nama Task Edit',
@@ -84,11 +83,11 @@ class ManageTasksTest extends TestCase
 
         $task = factory(Task::class)->create(['feature_id' => $feature->id]);
 
-        $this->visit('features/' . $feature->id);
-        $this->click($task->id . '-tasks-delete');
+        $this->visit('features/'.$feature->id);
+        $this->click($task->id.'-tasks-delete');
         $this->see(trans('app.delete_confirm_button'));
         $this->press(trans('app.delete_confirm_button'));
-        $this->seePageIs('features/' . $feature->id);
+        $this->seePageIs('features/'.$feature->id);
         $this->see(trans('task.deleted'));
     }
 
@@ -105,7 +104,7 @@ class ManageTasksTest extends TestCase
     //     $tasks = factory(Task::class, 5)->create(['feature_id' => $feature->id]);
     //     $this->assertEquals(5, $tasks->count());
 
-    //     $this->visit('features/' . $feature->id);
+    //     $this->visit('features/'.$feature->id);
     //     $this->see($tasks[1]->name);
     //     $this->see($tasks[1]->progress);
     //     $this->see($tasks[1]->description);

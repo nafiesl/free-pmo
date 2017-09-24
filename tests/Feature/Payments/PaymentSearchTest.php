@@ -4,9 +4,6 @@ namespace Tests\Feature\Payments;
 
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
 class PaymentSearchTest extends TestCase

@@ -14,8 +14,8 @@ class MemberLoginTest extends TestCase
         $user->assignRole('customer');
 
         $this->visit(route('auth.login'));
-        $this->type('email@mail.com','email');
-        $this->type('member','password');
+        $this->type('email@mail.com', 'email');
+        $this->type('member', 'password');
         $this->press(trans('auth.login'));
         $this->seePageIs(route('home'));
         $this->see('Selamat datang kembali Nama Member.');
@@ -28,8 +28,8 @@ class MemberLoginTest extends TestCase
     public function member_invalid_login()
     {
         $this->visit(route('auth.login'));
-        $this->type('email@mail.com','email');
-        $this->type('password.112','password');
+        $this->type('email@mail.com', 'email');
+        $this->type('password.112', 'password');
         $this->press(trans('auth.login'));
         $this->seePageIs(route('auth.login'));
         $this->see('Mohon maaf, anda tidak dapat login');

@@ -37,7 +37,7 @@ class UploadFilesTest extends TestCase
         ]);
 
         $file = $project->files->first();
-        Storage::disk('avatar')->assertExists('public/files/' . $file->filename);
+        Storage::disk('avatar')->assertExists('public/files/'.$file->filename);
     }
 
     /** @test */
@@ -78,6 +78,6 @@ class UploadFilesTest extends TestCase
             'description' => 'Edit Deskripsi file yang diuplod.',
         ]);
 
-        Storage::disk('avatar')->assertExists('public/files/' . $file->filename);
+        Storage::disk('avatar')->assertExists('public/files/'.$file->filename);
     }
 }

@@ -16,7 +16,7 @@ class ApiEventsTest extends TestCase
         $events = factory(Event::class, 2)->create(['user_id' => $user->id]);
 
         $this->getJson(route('api.events.index'), [
-            'Authorization' => 'Bearer ' . $user->api_token
+            'Authorization' => 'Bearer '.$user->api_token
         ]);
 
         $this->seeStatusCode(200);
@@ -46,7 +46,7 @@ class ApiEventsTest extends TestCase
             'start' => '2016-07-21 12:20:00',
             'project_id' => $project->id,
         ], [
-            'Authorization' => 'Bearer ' . $user->api_token
+            'Authorization' => 'Bearer '.$user->api_token
         ]);
 
         // $this->dump();
@@ -89,7 +89,7 @@ class ApiEventsTest extends TestCase
             'body' => 'New Event Body',
             'is_allday' => 'true',
         ], [
-            'Authorization' => 'Bearer ' . $user->api_token
+            'Authorization' => 'Bearer '.$user->api_token
         ]);
 
         $this->seeStatusCode(200);
@@ -117,7 +117,7 @@ class ApiEventsTest extends TestCase
         $event = factory(Event::class)->create(['user_id' => $user->id]);
 
         $this->deleteJson(route('api.events.destroy'), ['id' => $event->id], [
-            'Authorization' => 'Bearer ' . $user->api_token
+            'Authorization' => 'Bearer '.$user->api_token
         ]);
 
         $this->seeStatusCode(200);
@@ -138,7 +138,7 @@ class ApiEventsTest extends TestCase
             'start' => '2016-11-07 13:00:00',
             'end' => '2016-11-07 15:00:00',
         ], [
-            'Authorization' => 'Bearer ' . $user->api_token
+            'Authorization' => 'Bearer '.$user->api_token
         ]);
 
         // $this->dump();

@@ -6,6 +6,7 @@
 @include('payments.partials.breadcrumb')
 <h1 class="page-header">
     <div class="pull-right">
+        {!! link_to_route('payments.pdf', trans('payment.print'), [$payment->id], ['class' => 'btn btn-success']) !!}
         {!! link_to_route('payments.index', 'Lihat Semua Pembayaran', [], ['class' => 'btn btn-default']) !!}
     </div>
     {{ trans('payment.show') }}

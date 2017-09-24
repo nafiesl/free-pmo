@@ -6,14 +6,15 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
+        "backup-manager/laravel": "^1.0",
         "barryvdh/laravel-dompdf": "^0.8.0",
         "intervention/image": "^2.3",
-        "laravel/framework": "5.5.*",
-        "luthfi/formfield": "^0.2.0",
         "laracasts/flash": "~2",
         "laracasts/presenter": "^0.2.1",
-        "backup-manager/laravel": "^1.0",
+        "laravel/framework": "5.5.*",
+        "luthfi/formfield": "^0.2.0",
         "maatwebsite/excel": "~2.1.0",
+        "riskihajar/terbilang": "^1.2",
         "spatie/laravel-fractal": "^5.0"
     },
     "require-dev": {

@@ -163,6 +163,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Luthfi\FormField\FormFieldServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Riskihajar\Terbilang\TerbilangServiceProvider::class,
         Spatie\Fractal\FractalServiceProvider::class,
     ],
 
@@ -218,6 +219,7 @@ return [
         'FormField' => Luthfi\FormField\FormFieldFacade::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
+        'Terbilang' => Riskihajar\Terbilang\Facades\Terbilang::class,
 
     ],
 

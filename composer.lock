@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c61f297d80073ba97f8138e4ebd7a31",
+    "content-hash": "eb58ad569b92d48f00e1a5774b96dbca",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -1905,6 +1905,52 @@
                 "uuid"
             ],
             "time": "2017-09-22T20:46:04+00:00"
+        },
+        {
+            "name": "riskihajar/terbilang",
+            "version": "1.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/riskihajar/terbilang.git",
+                "reference": "8294ee3a854bd71e16f5e9c1516e8b5eebc1f497"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/riskihajar/terbilang/zipball/8294ee3a854bd71e16f5e9c1516e8b5eebc1f497",
+                "reference": "8294ee3a854bd71e16f5e9c1516e8b5eebc1f497",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~4.2||~5",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Riskihajar\\Terbilang\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "riskihajar",
+                    "email": "riskihajar@gmail.com",
+                    "homepage": "http://riskihajar.com"
+                }
+            ],
+            "description": "Convert number & date to words in any language for Laravel 4 | 5",
+            "homepage": "https://github.com/riskihajar/terbilang",
+            "keywords": [
+                "date to words",
+                "laravel",
+                "number to roman",
+                "number to words",
+                "terbilang"
+            ],
+            "time": "2017-09-08T07:28:55+00:00"
         },
         {
             "name": "sabberworm/php-css-parser",

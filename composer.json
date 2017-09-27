@@ -6,7 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "backup-manager/laravel": "^1.0",
+        "backup-manager/laravel": "dev-master",
         "barryvdh/laravel-dompdf": "^0.8.0",
         "intervention/image": "^2.3",
         "laracasts/flash": "~2",

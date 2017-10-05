@@ -4,10 +4,15 @@
 
 @section('content')
 <div class="pull-right">
-    <form action="{{ route('invoices.add') }}" method="POST">
-        {{ csrf_field() }}
-        <input type="submit" class="btn btn-default navbar-btn" name="create-invoice-draft" id="invoice-draft-create-button" value="{{ trans('invoice.create') }}">
-    </form>
+    {!! FormField::formButton(
+        ['route' => 'invoices.add'],
+        trans('invoice.create'),
+        [
+            'class' => 'btn btn-default',
+            'name' => 'create-invoice-draft',
+            'id' => 'invoice-draft-create-button'
+        ]
+    ) !!}
 </div>
 <h1 class="page-header">{{ trans('invoice.list') }}</h1>
 

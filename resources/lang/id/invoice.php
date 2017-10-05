@@ -9,6 +9,7 @@ return [
     'not_found'      => 'Invoice tidak ditemukan',
     'empty'          => 'Belum ada Invoice',
     'back_to_index'  => 'Kembali ke daftar Invoice',
+    'draft_not_found' => 'Draft Invoice tidak ditemukan',
 
     // Actions
     'proccess'       => 'Proses Invoice',

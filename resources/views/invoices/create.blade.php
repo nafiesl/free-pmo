@@ -3,18 +3,16 @@
 @section('title', 'Entry Invoice')
 
 @section('content')
-<div class="pull-right">
-    {!! FormField::formButton(
-        ['route' => 'invoices.add'],
-        trans('invoice.create'),
-        [
+<h1 class="page-header">
+    <div class="pull-right">
+        {!! FormField::formButton(['route' => 'invoices.add'], trans('invoice.create'), [
             'class' => 'btn btn-default',
             'name' => 'create-invoice-draft',
             'id' => 'invoice-draft-create-button'
-        ]
-    ) !!}
-</div>
-<h1 class="page-header">{{ trans('invoice.list') }}</h1>
+        ] ) !!}
+    </div>
+    {{ trans('invoice.list') }}
+</h1>
 
 <?php use Facades\App\Services\InvoiceDrafts\InvoiceDraftCollection; ?>
 @includeWhen(! InvoiceDraftCollection::isEmpty(), 'invoices.partials.invoice-draft-tabs')

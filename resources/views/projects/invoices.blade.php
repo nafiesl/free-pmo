@@ -7,7 +7,11 @@
 
 <h1 class="page-header">
     <div class="pull-right">
-        {!! html_link_to_route('invoices.create', trans('invoice.create'), ['project_id' => $project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+        {!! FormField::formButton(['route' => 'invoices.add'], trans('invoice.create'), [
+            'class' => 'btn btn-success',
+            'name' => 'create-invoice-draft',
+            'id' => 'invoice-draft-create-button'
+        ] ) !!}
     </div>
     {{ $project->name }} <small>{{ trans('project.invoices') }}</small>
 </h1>

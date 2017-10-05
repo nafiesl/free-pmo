@@ -97,7 +97,7 @@ class InvoiceEntryTest extends TestCase
     }
 
     /** @test */
-    public function user_can_update_draft_transaction_detail_and_get_confirm_page()
+    public function user_can_update_draft_invoice_detail_and_get_confirm_page()
     {
         $project = factory(Project::class)->create();
         $cart = new InvoiceDraftCollection();
@@ -128,7 +128,7 @@ class InvoiceEntryTest extends TestCase
     }
 
     /** @test */
-    public function user_can_save_transaction_if_draft_is_completed()
+    public function user_can_save_invoice_if_draft_is_completed()
     {
         $cart = new InvoiceDraftCollection();
 

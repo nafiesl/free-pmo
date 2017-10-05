@@ -20,4 +20,21 @@ class Invoice extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function generateNewNumber()
+    {
+        $prefix = date('ym');
+
+
+        $lastInvoice = $this->orderBy('number', 'desc')->first();
+
+
+        if (!is_null($lastInvoice)) {
+            $lastInvoiceNo = $lastInvoice->number;
+            if (substr($lastInvoiceNo, 0, 4) == $prefix) {
+                return ++$lastInvoiceNo;
+            }
+        }
+        return $prefix.'001';
+    }
 }

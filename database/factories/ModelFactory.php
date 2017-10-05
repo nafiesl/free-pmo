@@ -139,12 +139,12 @@ $factory->define(Event::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Invoice::class, function (Faker\Generator $faker) {
-
+    $invoice = new Invoice;
     return [
         'project_id'  => function () {
             return factory(Project::class)->create()->id;
         },
-        'number'      => date('ym').'001',
+        'number'      => $invoice->generateNewNumber(),
         'items'       => [],
         'amount'      => 100000,
         'notes'       => $faker->paragraph,

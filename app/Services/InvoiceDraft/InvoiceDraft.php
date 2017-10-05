@@ -62,7 +62,7 @@ class InvoiceDraft
     public function store()
     {
         $invoice = new Invoice();
-        $invoice->number = $this->getNewInvoiceNo();
+        $invoice->number = $invoice->generateNewNumber();
         $invoice->items = $this->getItemsArray();
         $invoice->project_id = $this->projectId;
         $invoice->amount = $this->getTotal();
@@ -73,22 +73,6 @@ class InvoiceDraft
         $invoice->save();
 
         return $invoice;
-    }
-
-    public function getNewInvoiceNo()
-    {
-        $prefix = date('ym');
-
-        $lastInvoice = Invoice::orderBy('number', 'desc')->first();
-
-        if (!is_null($lastInvoice)) {
-            $lastInvoiceNo = $lastInvoice->number;
-            if (substr($lastInvoiceNo, 0, 3) == $prefix) {
-                return ++$lastInvoiceNo;
-            }
-        }
-
-        return $prefix.'001';
     }
 
     protected function getItemsArray()

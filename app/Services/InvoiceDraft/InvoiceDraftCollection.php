@@ -2,7 +2,6 @@
 
 namespace App\Services\InvoiceDrafts;
 
-use App\Product;
 use Illuminate\Support\Collection;
 
 /**
@@ -108,13 +107,6 @@ class InvoiceDraftCollection
         $this->session->put($this->instance, $content);
 
         return $item;
-    }
-
-    public function draftHasItem(TrasactionDraft $draft, Product $product)
-    {
-        $item = $draft->search($product);
-
-        return !is_null($item);
     }
 
     public function updateDraftItem($draftKey, $itemKey, $newItemData)

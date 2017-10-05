@@ -2,6 +2,7 @@
 
 namespace App\Entities\Invoices;
 
+use App\Entities\Projects\Project;
 use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
@@ -12,6 +13,11 @@ class Invoice extends Model
 
     public function getRouteKeyName()
     {
-        return 'invoice_no';
+        return 'number';
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
     }
 }

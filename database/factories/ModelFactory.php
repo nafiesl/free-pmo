@@ -1,5 +1,6 @@
 <?php
 
+use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
@@ -134,5 +135,20 @@ $factory->define(Event::class, function (Faker\Generator $faker) {
         'start'      => $faker->dateTimeBetween('-2 months', '-2 months')->format('Y-m-d H:i:s'),
         'end'        => $faker->dateTimeBetween('-2 months', '-2 months')->format('Y-m-d H:i:s'),
         'is_allday'  => rand(0,1),
+    ];
+});
+
+$factory->define(Invoice::class, function (Faker\Generator $faker) {
+
+    return [
+        'project_id'  => function () {
+            return factory(Project::class)->create()->id;
+        },
+        'number'      => date('ym').'001',
+        'items'       => [],
+        'amount'      => 100000,
+        'notes'       => $faker->paragraph,
+        'status_id'   => 1,
+        'user_id'     => 1,
     ];
 });

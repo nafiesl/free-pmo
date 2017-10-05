@@ -157,7 +157,7 @@ class InvoiceEntryTest extends TestCase
         // $this->see(trans('invoice.created', ['invoice_no' => date('ym').'0001']));
 
         $this->seeInDatabase('invoices', [
-            'invoice_no' => date('ym').'0001',
+            'number'     => date('ym').'001',
             'items'      => '[{"description":"Deskripsi item invoice","amount":1000},{"description":"Deskripsi item invoice","amount":2000}]',
             'project_id' => $project->id,
             'amount'     => 3000,

@@ -126,8 +126,8 @@ class InvoiceDraftController extends Controller
 
         $invoice = $draft->store();
         $draft->destroy();
-        flash(trans('invoice.created', ['invoice_no' => $invoice->invoice_no]), 'success')->important();
+        flash(trans('invoice.created', ['number' => $invoice->number]), 'success')->important();
 
-        return redirect()->route('invoices.show', $invoice->invoice_no);
+        return redirect()->route('invoices.show', $invoice->number);
     }
 }

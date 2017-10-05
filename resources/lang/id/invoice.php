@@ -12,6 +12,7 @@ return [
 
     // Actions
     'proccess'       => 'Proses Invoice',
+    'item_list_empty' => 'List Item masih kosong.',
     'create'         => 'Input Invoice Baru',
     'created'        => 'Input Invoice baru telah berhasil.',
     'show'           => 'Detail Invoice',
@@ -25,7 +26,11 @@ return [
     'undeleteable'   => 'Data Invoice tidak dapat dihapus.',
 
     // Attributes
+    'number'         => 'No. Invoice',
     'project'        => 'Project',
     'items'          => 'Item Invoice',
     'notes'          => 'Catatan',
+    'amount'         => 'Tagihan',
+    'item_description' => 'Deskripsi',
+    'item_amount'    => 'Biaya',
 ];

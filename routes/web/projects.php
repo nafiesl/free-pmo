@@ -14,6 +14,11 @@ Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Projects'], 
     Route::resource('projects','ProjectsController');
 
     /**
+     * Project Invoices Routes
+     */
+    Route::get('projects/{project}/invoices', ['as'=>'projects.invoices', 'uses'=>'InvoicesController@index']);
+
+    /**
      * Features Routes
      */
     Route::get('projects/{id}/features/create', ['as'=>'features.create', 'uses'=>'FeaturesController@create']);

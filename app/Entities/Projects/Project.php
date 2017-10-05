@@ -2,6 +2,7 @@
 
 namespace App\Entities\Projects;
 
+use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\ProjectPresenter;
 use App\Entities\Projects\Task;
@@ -41,6 +42,11 @@ class Project extends Model {
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
     }
 
     public function payments()

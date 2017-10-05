@@ -7,7 +7,9 @@
 @include('projects.partials.breadcrumb',['title' => trans('project.subscriptions')])
 
 <h1 class="page-header">
-    {!! link_to_route('subscriptions.create', trans('subscription.create'), ['project_id' => $project->id, 'customer_id' => $project->customer_id], ['class'=>'btn btn-success pull-right']) !!}
+    <div class="pull-right">
+        {!! link_to_route('subscriptions.create', trans('subscription.create'), ['project_id' => $project->id, 'customer_id' => $project->customer_id], ['class'=>'btn btn-success']) !!}
+    </div>
     {{ $project->name }} <small>{{ trans('project.subscriptions') }}</small>
 </h1>
 

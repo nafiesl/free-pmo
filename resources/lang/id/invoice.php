@@ -24,6 +24,7 @@ return [
     'deleted'        => 'Hapus data Invoice telah berhasil.',
     'undeleted'      => 'Data Invoice gagal dihapus.',
     'undeleteable'   => 'Data Invoice tidak dapat dihapus.',
+    'print'          => 'Cetak Invoice',
 
     // Attributes
     'number'         => 'No. Invoice',
@@ -31,6 +32,8 @@ return [
     'items'          => 'Item Invoice',
     'notes'          => 'Catatan',
     'amount'         => 'Tagihan',
+    'customer'       => 'Customer',
     'item_description' => 'Deskripsi',
     'item_amount'    => 'Biaya',
+    'items_count'    => 'Jumlah Item',
 ];

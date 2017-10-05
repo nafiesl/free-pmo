@@ -11,4 +11,9 @@ class InvoicesController extends Controller
     {
         return view('invoices.show', compact('invoice'));
     }
+
+    public function pdf(Invoice $invoice)
+    {
+        return view('invoices.pdf', compact('invoice'));
+    }
 }

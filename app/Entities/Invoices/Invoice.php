@@ -25,9 +25,7 @@ class Invoice extends Model
     {
         $prefix = date('ym');
 
-
         $lastInvoice = $this->orderBy('number', 'desc')->first();
-
 
         if (!is_null($lastInvoice)) {
             $lastInvoiceNo = $lastInvoice->number;
@@ -36,5 +34,12 @@ class Invoice extends Model
             }
         }
         return $prefix.'001';
+    }
+
+    public function getItemsCountAttribute($value)
+    {
+        $pcsCount = 0;
+
+        return count($this->items);
     }
 }

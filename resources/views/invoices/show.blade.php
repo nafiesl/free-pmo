@@ -3,8 +3,10 @@
 @section('title', $invoice->number . ' - ' . trans('invoice.detail'))
 
 @section('content')
-{{-- <div class="pull-right">{{ link_to_route('invoices.pdf', trans('invoice.invoice_print'), [$invoice->number], ['class' => 'btn btn-info']) }}</div> --}}
-<h1 class="page-header">{{ $invoice->number }} <small>{{ trans('invoice.detail') }}</small></h1>
+<h1 class="page-header">
+    <div class="pull-right">{{ link_to_route('invoices.pdf', trans('invoice.print'), [$invoice->number], ['class' => 'btn btn-default']) }}</div>
+    {{ $invoice->number }} <small>{{ trans('invoice.detail') }}</small>
+</h1>
 <div class="row">
     <div class="col-sm-4">
         <div class="panel panel-default">
@@ -14,8 +16,8 @@
                     <tbody>
                         <tr><td>{{ trans('invoice.number') }}</td><td class="text-primary strong">{{ $invoice->number }}</td></tr>
                         <tr><td>{{ trans('app.date') }}</td><td>{{ $invoice->created_at->format('Y-m-d') }}</td></tr>
-                        <tr><td>{{ trans('invoice.project') }}</td><td>{{ $invoice->project_id }}</td></tr>
-                        <tr><td>{{ trans('invoice.customer_phone') }}</td><td>{{ $invoice->customer['phone'] }}</td></tr>
+                        <tr><td>{{ trans('invoice.project') }}</td><td>{{ $invoice->project->name }}</td></tr>
+                        <tr><td>{{ trans('invoice.customer') }}</td><td>{{ $invoice->project->customer->name }}</td></tr>
                         <tr><td>{{ trans('invoice.items_count') }}</td><td>{{ $invoice->items_count }}</td></tr>
                         <tr><td>{{ trans('invoice.amount') }}</td><td class="text-right strong">{{ formatRp($invoice->amount) }}</td></tr>
                     </tbody>
@@ -47,7 +49,7 @@
             <tfoot>
                 <tr>
                     <th colspan="2" class="text-right">{{ trans('app.total') }} :</th>
-                    <th class="text-right">{{ formatRp($invoice['total']) }}</th>
+                    <th class="text-right">{{ formatRp($invoice->amount) }}</th>
                 </tr>
             </tfoot>
         </table>

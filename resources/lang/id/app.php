@@ -38,4 +38,5 @@ return [
     'end_date'              => 'Tanggal Selesai',
     'change_photo'          => 'Ganti Foto',
     'welcome'               => 'Selamat Datang',
+    'to'                    => 'Kepada',
 ];

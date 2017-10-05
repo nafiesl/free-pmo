@@ -11,5 +11,6 @@ require __DIR__ . '/web/projects.php';
 require __DIR__ . '/web/payments.php';
 require __DIR__ . '/web/subscriptions.php';
 require __DIR__ . '/web/reports.php';
+require __DIR__ . '/web/invoices.php';
 require __DIR__ . '/web/options-vue.php';
 require __DIR__ . '/web/calendar.php';

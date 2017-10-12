@@ -19,6 +19,11 @@ class Project extends Model {
     protected $guarded = ['id','created_at','updated_at'];
 	// protected $dates = ['start_date','end_date'];
 
+    public function nameLink()
+    {
+        return link_to_route('projects.show', $this->name, [$this->id], ['target' => '_blank']);
+    }
+
     public function features()
     {
         return $this->hasMany(Feature::class)->orderBy('position');

@@ -131,4 +131,13 @@ class ProjectTest extends TestCase
         $project = factory(Project::class)->create();
         $this->assertTrue($project->files instanceof Collection);
     }
+
+    /** @test */
+    public function it_has_name_link_method()
+    {
+        $project = factory(Project::class)->make();
+        $this->assertEquals(link_to_route('projects.show', $project->name, [$project->id], [
+            'target' => '_blank'
+        ]), $project->nameLink());
+    }
 }

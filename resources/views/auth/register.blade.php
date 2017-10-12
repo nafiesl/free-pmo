@@ -7,7 +7,7 @@
     <div class="login-panel panel panel-default">
         <div class="panel-heading"><h3 class="panel-title">{{ trans('auth.register') }}</h3></div>
         <div class="panel-body">
-			@include('auth.partials._errors')
+			@include('auth.partials._notifications')
         	{!! Form::open(['route'=>'auth.register','class'=>'form-horizontal']) !!}
             <div class="form-group {!! $errors->has('name') ? 'has-error' : ''; !!}">
             	{!! Form::label('name', trans('app.name'), ['class'=>'col-md-4 control-label']) !!}

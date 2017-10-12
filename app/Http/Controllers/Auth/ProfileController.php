@@ -30,7 +30,7 @@ class ProfileController extends Controller
         $user->email = $profileData['email'];
         $user->save();
 
-        flash()->success(trans('auth.profile_updated'));
+        flash(trans('auth.profile_updated'), 'success');
         return back();
     }
 

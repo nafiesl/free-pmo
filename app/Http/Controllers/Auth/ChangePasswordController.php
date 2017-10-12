@@ -30,8 +30,7 @@ class ChangePasswordController extends Controller
             'password_confirmation' => 'required',
         ]);
 
-        if (app('hash')->check($input['old_password'], auth()->user()->password))
-        {
+        if (app('hash')->check($input['old_password'], auth()->user()->password)) {
             $user = auth()->user();
             $user->password = $input['password'];
             $user->save();
@@ -43,5 +42,4 @@ class ChangePasswordController extends Controller
         flash(trans('auth.old_password_failed'), 'danger');
         return back();
     }
-
 }

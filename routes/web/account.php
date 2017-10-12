@@ -3,12 +3,14 @@
  * Account Routes
  */
 Route::group(['middleware' => 'web','as'=>'auth.'], function() {
-    Route::get('login', ['as'=>'login', 'uses' => 'AuthController@getLogin']);
-    Route::post('login', ['as'=>'login', 'uses' => 'AuthController@postLogin']);
-    Route::get('logout', ['as'=>'logout', 'uses' => 'AuthController@getLogout']);
     Route::get('register', ['as'=>'register', 'uses' => 'AuthController@getRegister']);
     Route::post('register', ['as'=>'register', 'uses' => 'AuthController@postRegister']);
 });
+
+// Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
+Route::post('login', 'Auth\LoginController@login');
+Route::get('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 // User Profile Routes...
 Route::get('profile', ['uses' => 'Auth\ProfileController@show'])->name('auth.profile');

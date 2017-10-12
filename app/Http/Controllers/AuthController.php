@@ -70,27 +70,4 @@ class AuthController extends Controller
         flash()->success(trans('auth.welcome', ['name' => $user->name]));
         return redirect()->route('home');
     }
-
-    public function getProfile()
-    {
-        $user = Auth::user();
-        return view('auth.profile', compact('user'));
-    }
-
-    public function patchProfile(Request $request)
-    {
-        $profileData = $request->validate([
-            'name' => 'required|max:60',
-            'email' => 'required|email',
-        ]);
-
-        $user = auth()->user();
-
-        $user->name = $profileData['name'];
-        $user->email = $profileData['email'];
-        $user->save();
-
-        flash()->success(trans('auth.profile_updated'));
-        return back();
-    }
 }

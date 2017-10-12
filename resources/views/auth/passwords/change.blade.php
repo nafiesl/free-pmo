@@ -9,7 +9,7 @@
 
 <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-default">
-        {!! Form::open(['route'=>'auth.change-password']) !!}
+        {!! Form::open(['route'=>'auth.change-password', 'method' => 'patch']) !!}
         <div class="panel-body">
             {!! FormField::password('old_password', ['label' => false, 'placeholder' => trans('auth.old_password')]) !!}
             {!! FormField::password('password', ['label' => false, 'placeholder' => trans('auth.new_password')]) !!}

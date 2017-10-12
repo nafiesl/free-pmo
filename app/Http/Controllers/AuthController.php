@@ -15,23 +15,15 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    use ResetsPasswords, ThrottlesLogins;
+    use ThrottlesLogins;
 
     public function __construct(Guard $auth, PasswordBroker $passwords)
     {
         $this->auth = $auth;
         $this->passwords = $passwords;
 
-        $this->middleware('guest', ['only' => [
-            'getLogin', 'postLogin', 'getRegister', 'postRegister',
-            'getActivate'
-            ]
-        ]);
-        $this->middleware('auth', ['only' => [
-            'getLogout', 'getChangePassword', 'postChangePassword',
-            'getProfile', 'patchProfile'
-            ]
-        ]);
+        $this->middleware('guest', ['only' => ['getLogin', 'postLogin', 'getRegister', 'postRegister']]);
+        $this->middleware('auth', ['only' => ['getLogout', 'getProfile', 'patchProfile']]);
     }
 
     public function getLogin()
@@ -77,33 +69,6 @@ class AuthController extends Controller
 
         flash()->success(trans('auth.welcome', ['name' => $user->name]));
         return redirect()->route('home');
-    }
-
-    public function getActivate($code)
-    {
-    }
-
-    public function getChangePassword()
-    {
-        return view('auth.change-password');
-    }
-
-    public function postChangePassword(ChangePasswordRequest $request)
-    {
-        $input = $request->except('_token');
-
-        $user = auth()->user();
-
-        if (app('hash')->check($input['old_password'], $user->password)) {
-            $user->password = $input['password'];
-            $user->save();
-
-            flash()->success(trans('auth.password_changed'));
-            return redirect()->back();
-        }
-
-        flash()->error('Password lama tidak cocok!');
-        return redirect()->back();
     }
 
     public function getProfile()

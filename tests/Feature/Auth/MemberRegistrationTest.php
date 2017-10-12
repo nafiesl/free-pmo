@@ -10,22 +10,27 @@ class MemberRegistrationTest extends TestCase
     public function registration_validation()
     {
         $this->visit(route('auth.register'));
-        $this->type('', 'name');
-        $this->type('member@app.dev', 'email');
-        $this->type('', 'password');
-        $this->type('', 'password_confirmation');
-        $this->press(trans('auth.register'));
+
+        $this->submitForm(trans('auth.register'), [
+            'name' => '',
+            'email' => 'member@app.dev',
+            'password' => '',
+            'password_confirmation' => '',
+        ]);
+
         $this->seePageIs(route('auth.register'));
         $this->see('Nama harus diisi.');
         $this->see('Email ini sudah terdaftar.');
         $this->see('Password harus diisi.');
         $this->see('Konfirmasi password harus diisi.');
 
-        $this->type('Nama Member', 'name');
-        $this->type('email', 'email');
-        $this->type('password', 'password');
-        $this->type('password..', 'password_confirmation');
-        $this->press(trans('auth.register'));
+        $this->submitForm(trans('auth.register'), [
+            'name' => 'Nama Member',
+            'email' => 'email',
+            'password' => 'password',
+            'password_confirmation' => 'password..',
+        ]);
+
         $this->seePageIs(route('auth.register'));
         $this->see('Email tidak valid.');
         $this->see('Konfirmasi password tidak sesuai.');
@@ -35,12 +40,13 @@ class MemberRegistrationTest extends TestCase
     public function member_register_successfully()
     {
         $this->visit(route('auth.register'));
-        $this->type('Nama Member', 'name');
-        $this->type('email@mail.com', 'email');
-        $this->type('password.111', 'password');
-        $this->type('password.111', 'password_confirmation');
-        $this->press(trans('auth.register'));
+        $this->submitForm(trans('auth.register'), [
+            'name' => 'Nama Member',
+            'email' => 'email@mail.com',
+            'password' => 'password.111',
+            'password_confirmation' => 'password.111',
+        ]);
         $this->seePageIs(route('home'));
-        $this->see('Selamat datang Nama Member.');
+        $this->see(trans('auth.welcome', ['name' => 'Nama Member']));
     }
 }

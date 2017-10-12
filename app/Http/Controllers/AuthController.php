@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Users\User;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Accounts\ChangePasswordRequest;
 use App\Http\Requests\Accounts\LoginRequest;
 use App\Http\Requests\Accounts\RegisterRequest;
@@ -13,10 +12,9 @@ use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Http\Request;
 
-class AuthController extends Controller {
-
+class AuthController extends Controller
+{
     use ResetsPasswords, ThrottlesLogins;
 
     private $user;
@@ -44,17 +42,16 @@ class AuthController extends Controller {
         return view('auth.login');
     }
 
-    public function postLogin(LoginRequest $req)
+    public function postLogin(LoginRequest $request)
     {
-        $loginData = $req->only('email','password');
+        $loginData = $request->only('email', 'password');
 
-        if (Auth::attempt($loginData, $req->has('remember')))
-        {
-            flash()->success('Selamat datang kembali ' . Auth::user()->name . '.');
+        if (Auth::attempt($loginData, $request->has('remember'))) {
+            flash()->success(trans('auth.welcome', ['name' => Auth::user()->name]));
             return redirect()->intended('home');
         }
 
-        flash()->error('Mohon maaf, anda tidak dapat login, cek kembali email/password anda!');
+        flash()->error(trans('auth.failed'));
         return redirect()->back()->withInput();
     }
 
@@ -70,21 +67,20 @@ class AuthController extends Controller {
         return view('auth.register');
     }
 
-    public function postRegister(RegisterRequest $req)
+    public function postRegister(RegisterRequest $request)
     {
-        $registerData = $req->only('name','email','password');
+        $registerData = $request->only('name', 'email', 'password');
 
         $user = User::create($registerData);
         $user->assignRole('customer');
         Auth::login($user);
 
-        flash()->success('Selamat datang ' . $user->name . '.');
+        flash()->success(trans('auth.welcome', ['name' => $user->name]));
         return redirect()->route('home');
     }
 
     public function getActivate($code)
     {
-
     }
 
     public function getChangePassword()
@@ -92,12 +88,11 @@ class AuthController extends Controller {
         return view('auth.change-password');
     }
 
-    public function postChangePassword(ChangePasswordRequest $req)
+    public function postChangePassword(ChangePasswordRequest $request)
     {
-        $input = $req->except('_token');
+        $input = $request->except('_token');
 
-        if (app('hash')->check($input['old_password'], $this->user->password))
-        {
+        if (app('hash')->check($input['old_password'], $this->user->password)) {
             $this->user->password = $input['password'];
             $this->user->save();
 
@@ -115,9 +110,9 @@ class AuthController extends Controller {
         return view('auth.profile', compact('user'));
     }
 
-    public function patchProfile(UpdateProfileRequest $req)
+    public function patchProfile(UpdateProfileRequest $request)
     {
-        $this->user->name = $req->get('name');
+        $this->user->name = $request->get('name');
         $this->user->save();
 
         flash()->success('Profil berhasil diupdate.');

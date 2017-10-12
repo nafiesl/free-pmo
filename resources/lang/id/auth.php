@@ -33,4 +33,5 @@ return [
     'send_reset_password_link'  => 'Kirim Link Reset Password',
     'old_password_failed'       => 'Password lama tidak cocok!',
     'welcome'                   => 'Selamat datang kembali :name.',
+    'logged_out'                => 'Anda telah logout.',
 ];

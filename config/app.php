@@ -159,12 +159,8 @@ return [
         App\Providers\OptionServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        BackupManager\Laravel\Laravel55ServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
-        Luthfi\FormField\FormFieldServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
         Riskihajar\Terbilang\TerbilangServiceProvider::class,
-        Spatie\Fractal\FractalServiceProvider::class,
     ],
 
     /*
@@ -212,15 +208,8 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         'Carbon'    => Carbon\Carbon::class,
-        'Excel'     => Maatwebsite\Excel\Facades\Excel::class,
-        'Fractal'   => Spatie\Fractal\FractalFacade::class,
         'Option'    => App\Services\Facades\Option::class,
-
-        'FormField' => Luthfi\FormField\FormFieldFacade::class,
-        'Form'      => Collective\Html\FormFacade::class,
-        'Html'      => Collective\Html\HtmlFacade::class,
         'Terbilang' => Riskihajar\Terbilang\Facades\Terbilang::class,
-
     ],
 
 ];

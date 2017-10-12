@@ -23,6 +23,7 @@ return [
     'have_an_account'           => 'Saya sudah punya Akun',
     'need_account'              => 'Belum punya Akun?',
     'change_password'           => 'Ganti Password',
+    'password_changed'          => 'Password berhasil diubah.',
     'forgot_password'           => 'Lupa Password?',
     'reset_password'            => 'Reset Password',
     'password_confirmation'     => 'Ulangi Password',
@@ -30,4 +31,6 @@ return [
     'new_password'              => 'Password Baru',
     'new_password_confirmation' => 'Ulangi Password Baru',
     'send_reset_password_link'  => 'Kirim Link Reset Password',
+    'old_password_failed'       => 'Password lama tidak cocok!',
+    'welcome'                   => 'Selamat datang kembali :name.',
 ];

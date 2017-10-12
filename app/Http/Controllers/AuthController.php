@@ -101,7 +101,7 @@ class AuthController extends Controller {
             $this->user->password = $input['password'];
             $this->user->save();
 
-            flash()->success('Password berhasil diubah!');
+            flash()->success(trans('auth.password_changed'));
             return redirect()->back();
         }
 

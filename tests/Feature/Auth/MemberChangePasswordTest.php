@@ -15,27 +15,29 @@ class MemberChangePasswordTest extends TestCase
         $this->actingAs($user);
 
         $this->visit(route('home'));
-        $this->seePageIs(route('home'));
         $this->click(trans('auth.change_password'));
 
-        $this->type('member1', 'old_password');
-        $this->type('rahasia', 'password');
-        $this->type('rahasia', 'password_confirmation');
-        $this->press(trans('auth.change_password'));
-        $this->see('Password lama tidak cocok');
+        $this->submitForm(trans('auth.change_password'), [
+            'old_password' => 'member1',
+            'password' => 'rahasia',
+            'password_confirmation' => 'rahasia',
+        ]);
+        $this->see(trans('auth.old_password_failed'));
+        $this->assertTrue(
+            app('hash')->check('member', $user->password),
+            'The password shouldn\'t changed!'
+        );
 
-        $this->type('member', 'old_password');
-        $this->type('rahasia', 'password');
-        $this->type('rahasia', 'password_confirmation');
-        $this->press(trans('auth.change_password'));
-        $this->see('Password berhasil diubah');
+        $this->submitForm(trans('auth.change_password'), [
+            'old_password' => 'member',
+            'password' => 'rahasia',
+            'password_confirmation' => 'rahasia',
+        ]);
+        $this->see(trans('auth.password_changed'));
 
-        // Logout and login using new Password
-        $this->click('Keluar');
-        $this->seePageIs(route('auth.login'));
-        $this->type($user->email, 'email');
-        $this->type('rahasia', 'password');
-        $this->press('Login');
-        $this->seePageIs(route('home'));
+        $this->assertTrue(
+            app('hash')->check('rahasia', $user->password),
+            'The password should changed!'
+        );
     }
 }

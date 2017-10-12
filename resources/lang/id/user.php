@@ -1,12 +1,21 @@
 <?php
 
 return [
+    // Label
     'user'            => 'User',
     'users'           => 'Daftar User',
     'user_id'         => 'User ID',
+    'profile'         => 'Profil User',
     'search'          => 'Cari User: ketik nama',
-    'religion'        => 'Agama',
-    'nationality'     => 'Kewarganegaraan',
+    'role'            => 'Grup',
+    'roles'           => 'Grup',
+    'search'          => 'Ketik nama user lalu tekan Enter..',
+    'found'           => 'User ditemukan',
+    'not_found'       => 'User tidak ditemukan',
+    'empty'           => 'Belum ada User',
+    'back_to_index'   => 'Kembali ke Daftar User',
+
+    // Actions
     'create'          => 'Input User Baru',
     'created'         => 'Input User baru telah berhasil.',
     'show'            => 'Detail User',
@@ -16,25 +25,10 @@ return [
     'delete'          => 'Hapus Data User',
     'deleted'         => 'Hapus data User telah berhasil.',
     'undeleted'       => 'Data User gagal dihapus.',
-    'contact'         => 'Kontak',
-    'email'           => 'Alamat Email',
-    'phone'           => 'Telp/Hp.',
-    'role'            => 'Grup',
-    'roles'           => 'Grup',
-    'empty'           => 'Belum ada User',
-    'back_to_index'   => 'Kembali ke Daftar User',
-    'search'          => 'Ketik nama user lalu tekan Enter..',
-    'not_found'       => 'User tidak ditemukan',
-    'found'           => 'User ditemukan',
+
+    // Attributes
+    'name'            => 'Nama User',
     'registered_at'   => 'Terdaftar sejak',
-    'permissions'     => 'Hak Akses User',
-    'pdob'            => 'Tempat/Tanggal Lahir',
-    'birth'           => 'Lahir',
-    'photo'           => 'Foto',
-    'pob'             => 'Tempat Lahir',
-    'dob'             => 'Tanggal Lahir',
-    'prefix'          => 'Title Awal',
-    'suffix'          => 'Title Akhir',
-    'login_id'        => 'Login ID',
-    'gender'          => 'Jenis Kelamin',
+    'email'           => 'Alamat Email',
+    'api_token'       => 'API Token',
 ];

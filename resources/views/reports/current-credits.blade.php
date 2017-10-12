@@ -3,8 +3,9 @@
 @section('title', 'Piutang Saat Ini')
 
 @section('content')
-
-<h1 class="page-header">Piutang Saat Ini</h1>
+<ul class="breadcrumb hidden-print">
+    <li class="active">Piutang Saat Ini</li>
+</ul>
 
 <table class="table table-condensed table-hover">
     <thead>

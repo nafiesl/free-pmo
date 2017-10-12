@@ -34,4 +34,6 @@ return [
     'old_password_failed'       => 'Password lama tidak cocok!',
     'welcome'                   => 'Selamat datang kembali :name.',
     'logged_out'                => 'Anda telah logout.',
+    'profile'                   => 'Profil Saya',
+    'profile_updated'           => 'Profil sudah diupdate.',
 ];

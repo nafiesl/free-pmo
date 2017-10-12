@@ -3,16 +3,17 @@
 @section('title', trans('auth.change_password'))
 
 @section('content')
-<br>
+<ul class="breadcrumb hidden-print">
+    <li class="active">{{ trans('auth.change_password') }}</li>
+</ul>
+
 <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title">{{ trans('auth.change_password') }}</h3></div>
         {!! Form::open(['route'=>'auth.change-password']) !!}
         <div class="panel-body">
-            @include('auth.partials._notifications')
-            {!! FormField::password('old_password', ['label'=> trans('auth.old_password')]) !!}
-            {!! FormField::password('password', ['label'=>trans('auth.new_password')]) !!}
-            {!! FormField::password('password_confirmation', ['label'=>trans('auth.new_password_confirmation')]) !!}
+            {!! FormField::password('old_password', ['label' => false, 'placeholder' => trans('auth.old_password')]) !!}
+            {!! FormField::password('password', ['label' => false, 'placeholder' => trans('auth.new_password')]) !!}
+            {!! FormField::password('password_confirmation', ['label' => false, 'placeholder' => trans('auth.new_password_confirmation')]) !!}
         </div>
         <div class="panel-footer">
             {!! Form::submit(trans('auth.change_password'), ['class'=>'btn btn-info']) !!}

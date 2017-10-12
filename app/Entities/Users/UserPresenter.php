@@ -40,23 +40,4 @@ class UserPresenter extends Presenter
 
         return $string;
     }
-
-    public function displayPermissions()
-    {
-        $string = '<ul class="permissions-list">';
-        foreach($this->roles as $key => $role) {
-            foreach ($role->permissions as $key2 => $permission) {
-                $string .= '<li>' . $permission->label . '</li>';
-            }
-        }
-        $string .= '</ul>';
-
-        return $string;
-    }
-
-    public function photo()
-    {
-        return Html::image('assets/imgs/icon_user_1.png', $this->name, ['width' => '100px']);
-    }
-
 }

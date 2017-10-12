@@ -1,11 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="page-header">Dashboard</h1>
+<ul class="breadcrumb hidden-print">
+    <li class="active">Dashboard</li>
+</ul>
 
 <div class="well well-sm">
     {!! Form::open(['route' => 'projects.index','method'=>'get','class'=>'form-inline']) !!}
-    {!! Form::text('q', Request::get('q'), ['class'=>'form-control index-search-field','placeholder'=>trans('project.search'),'style' => 'width:350px']) !!}
+    {!! Form::text('q', Request::get('q'), [
+        'class' => 'form-control index-search-field',
+        'placeholder' => trans('project.search'),
+        'style' => 'width:100%;max-width:350px'
+    ]) !!}
     {!! Form::submit(trans('project.search'), ['class' => 'btn btn-info btn-sm']) !!}
     {!! Form::close() !!}
 </div>

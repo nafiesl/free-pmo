@@ -6,22 +6,19 @@ use App\Entities\Users\User;
 use App\Http\Requests\Accounts\ChangePasswordRequest;
 use App\Http\Requests\Accounts\LoginRequest;
 use App\Http\Requests\Accounts\RegisterRequest;
-use App\Http\Requests\Accounts\UpdateProfileRequest;
 use Auth;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\PasswordBroker;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
     use ResetsPasswords, ThrottlesLogins;
 
-    private $user;
-
     public function __construct(Guard $auth, PasswordBroker $passwords)
     {
-        $this->user = Auth::user();
         $this->auth = $auth;
         $this->passwords = $passwords;
 
@@ -42,11 +39,14 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function postLogin(LoginRequest $request)
+    public function postLogin(Request $request)
     {
-        $loginData = $request->only('email', 'password');
+        $loginData = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
-        if (Auth::attempt($loginData, $request->has('remember'))) {
+        if (Auth::attempt($loginData)) {
             flash()->success(trans('auth.welcome', ['name' => Auth::user()->name]));
             return redirect()->intended('home');
         }
@@ -92,9 +92,11 @@ class AuthController extends Controller
     {
         $input = $request->except('_token');
 
-        if (app('hash')->check($input['old_password'], $this->user->password)) {
-            $this->user->password = $input['password'];
-            $this->user->save();
+        $user = auth()->user();
+
+        if (app('hash')->check($input['old_password'], $user->password)) {
+            $user->password = $input['password'];
+            $user->save();
 
             flash()->success(trans('auth.password_changed'));
             return redirect()->back();
@@ -110,12 +112,20 @@ class AuthController extends Controller
         return view('auth.profile', compact('user'));
     }
 
-    public function patchProfile(UpdateProfileRequest $request)
+    public function patchProfile(Request $request)
     {
-        $this->user->name = $request->get('name');
-        $this->user->save();
+        $profileData = $request->validate([
+            'name' => 'required|max:60',
+            'email' => 'required|email',
+        ]);
 
-        flash()->success('Profil berhasil diupdate.');
-        return redirect()->route('auth.profile');
+        $user = auth()->user();
+
+        $user->name = $profileData['name'];
+        $user->email = $profileData['email'];
+        $user->save();
+
+        flash()->success(trans('auth.profile_updated'));
+        return back();
     }
 }

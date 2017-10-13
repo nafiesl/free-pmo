@@ -67,11 +67,14 @@
                 </td>
             </tr>
             <tr>
-                <td style="font-size: 20px; font-weight: bold; text-align: center;height: 80px;vertical-align: bottom;">Terbilang</td>
+                <td style="font-size: 20px; font-weight: bold; text-align: center;height: 100px;vertical-align: bottom;">Terbilang</td>
                 <td style="font-size: 20px; font-weight: bold; vertical-align: bottom;">
                     {{ formatRp($payment->amount) }},-
                 </td>
-                <td style="text-align: center;vertical-align: bottom; font-weight: bold;">JasaWebsiteBanjarmasin.com</td>
+                <td style="text-align: center;vertical-align: bottom;">
+                    <strong>{{ auth()->user()->name }}, S. Kom.</strong> <br>
+                    JasaWebsiteBanjarmasin.com
+                </td>
             </tr>
         </tbody>
     </table>

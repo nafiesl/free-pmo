@@ -21,7 +21,7 @@ class Project extends Model {
 
     public function nameLink()
     {
-        return link_to_route('projects.show', $this->name, [$this->id], ['target' => '_blank']);
+        return link_to_route('projects.show', $this->name, [$this->id]);
     }
 
     public function features()

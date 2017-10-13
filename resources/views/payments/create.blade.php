@@ -3,6 +3,10 @@
 @section('title', trans('payment.create'))
 
 @section('content')
+<ul class="breadcrumb hidden-print">
+    <li>{{ link_to_route('payments.index', trans('payment.payments')) }}</li>
+    <li class="active">{{ trans('payment.create') }}</li>
+</ul>
 
 <div class="row">
     <div class="col-md-6">
@@ -12,7 +16,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::radios('in_out',['Pengeluaran','Pemasukan'],['label'=> trans('payment.in_out'),'value' => 1]) !!}
+                        {!! FormField::radios('in_out',['Pengeluaran', 'Pemasukan'],['label' => trans('payment.in_out'),'value' => 1]) !!}
                     </div>
                     <div class="col-md-6">
                         {!! FormField::radios('type_id', paymentTypes(), ['label'=> trans('payment.type'),'value' => 1,'list_style' => 'unstyled']) !!}
@@ -39,7 +43,7 @@
 
             <div class="panel-footer">
                 {!! Form::submit(trans('payment.create'), ['class'=>'btn btn-primary']) !!}
-                {!! link_to_route('payments.index', trans('app.cancel'), [], ['class'=>'btn btn-default']) !!}
+                {{ link_to_route('payments.index', trans('app.cancel'), [], ['class'=>'btn btn-default']) }}
             </div>
         </div>
         {!! Form::close() !!}

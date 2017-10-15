@@ -43,9 +43,8 @@ class User extends Authenticatable
      */
     public function assignRole($role)
     {
-        return $this->roles()->save(
-            Role::whereName($role)->firstOrFail()
-        );
+        $roleId = Role::whereName($role)->firstOrFail()->id;
+        return $this->roles()->attach($roleId);
     }
 
     /**
@@ -56,9 +55,8 @@ class User extends Authenticatable
      */
     public function removeRole($role)
     {
-        return $this->roles()->detach(
-            Role::whereName($role)->firstOrFail()
-        );
+        $roleId = Role::whereName($role)->firstOrFail()->id;
+        return $this->roles()->detach($roleId);
     }
 
     /**
@@ -78,9 +76,10 @@ class User extends Authenticatable
 
     public function hasRoles(array $roleNameArray)
     {
-        return $this->roles->contains(function($role, $key) use ($roleNameArray) {
-            return in_array($role->name, $roleNameArray);
-        });
+        return $this->roles->pluck('name')
+            ->contains(function($role, $key) use ($roleNameArray) {
+                return in_array($role, $roleNameArray);
+            });
     }
 
     public function scopeHasRoles($query, array $roleNameArray)

@@ -17,9 +17,5 @@ trait DatabaseMigrateSeeds
         $this->artisan('db:seed');
 
         $this->app[Kernel::class]->setArtisan(null);
-
-        $this->beforeApplicationDestroyed(function () {
-            $this->artisan('migrate:rollback');
-        });
     }
 }

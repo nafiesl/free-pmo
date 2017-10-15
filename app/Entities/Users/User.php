@@ -49,6 +49,19 @@ class User extends Authenticatable
     }
 
     /**
+     * Remove the given role from the user.
+     *
+     * @param  string $role
+     * @return mixed
+     */
+    public function removeRole($role)
+    {
+        return $this->roles()->detach(
+            Role::whereName($role)->firstOrFail()
+        );
+    }
+
+    /**
      * Determine if the user has the given role.
      *
      * @param  mixed $role

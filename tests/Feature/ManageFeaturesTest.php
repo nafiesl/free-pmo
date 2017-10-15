@@ -13,30 +13,26 @@ class ManageFeaturesTest extends TestCase
     /** @test */
     public function admin_can_entry_feature()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $user = $this->adminUserSigningIn();
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
 
-        $worker = factory(User::class)->create();
-        $worker->assignRole('worker');
+        $worker = $this->createUser('worker');
 
-        $this->visit('projects/'.$project->id.'/features');
-        $this->seePageIs('projects/'.$project->id.'/features');
-        $this->see(trans('project.features'));
+        $this->visit(route('projects.features', $project->id));
         $this->click(trans('feature.create'));
-        $this->seePageIs('projects/'.$project->id.'/features/create');
+        $this->seePageIs(route('features.create', $project->id));
 
-        // Fill Form
-        $this->type('Nama Fitur Baru', 'name');
-        $this->type(100000, 'price');
-        $this->select($worker->id, 'worker_id');
-        $this->select(1, 'type_id');
-        $this->type('Similique, eligendi fuga animi? Ipsam magnam laboriosam distinctio officia facere sapiente eius corporis', 'description');
-        $this->press(trans('feature.create'));
+        $this->submitForm(trans('feature.create'), [
+            'name' => 'Nama Fitur Baru',
+            'price' => 100000,
+            'worker_id' => $worker->id,
+            'type_id' => 1,
+            'description' => 'Similique, eligendi fuga animi?',
+        ]);
 
         $this->see(trans('feature.created'));
+
         $this->seeInDatabase('features', [
             'name' => 'Nama Fitur Baru',
             'price' => 100000,
@@ -59,18 +55,19 @@ class ManageFeaturesTest extends TestCase
 
         $feature = factory(Feature::class)->create(['worker_id' => $user[1]->id, 'project_id' => $project->id]);
 
-        $this->visit('features/'.$feature->id.'/edit');
-        $this->seePageIs('features/'.$feature->id.'/edit');
+        $this->visit(route('features.edit', $feature->id));
 
-        // Fill Form
-        $this->type('Nama Fitur Edit', 'name');
-        $this->type(33333, 'price');
-        $this->select($user[2]->id, 'worker_id');
-        $this->select(2, 'type_id');
-        $this->press(trans('feature.update'));
+        $this->submitForm(trans('feature.update'), [
+            'name' => 'Nama Fitur Edit',
+            'price' => 33333,
+            'worker_id' => $user[2]->id,
+            'type_id' => 2,
+        ]);
 
-        $this->seePageIs('features/'.$feature->id);
+        $this->seePageIs(route('features.show', $feature->id));
+
         $this->see(trans('feature.updated'));
+
         $this->seeInDatabase('features', [
             'name' => 'Nama Fitur Edit',
             'price' => 33333,
@@ -83,9 +80,7 @@ class ManageFeaturesTest extends TestCase
     /** @test */
     public function admin_can_delete_a_feature()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $user = $this->adminUserSigningIn();
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
         $feature = factory(Feature::class)->create(['project_id' => $project->id]);
@@ -97,17 +92,14 @@ class ManageFeaturesTest extends TestCase
             'project_id' => $project->id,
         ]);
 
-        // $this->visit('projects/'.$project->id.'/features');
-        // $this->seePageIs('projects/'.$project->id.'/features');
-        // $this->click('show-feature-'.$feature->id);
-        // $this->dump();
-        $this->visit('features/'.$feature->id);
-        $this->seePageIs('features/'.$feature->id);
-        // die('hit');
+        $this->visit(route('features.show', $feature->id));
+
         $this->click(trans('app.edit'));
         $this->click(trans('feature.delete'));
         $this->press(trans('app.delete_confirm_button'));
-        $this->seePageIs('projects/'.$project->id.'/features');
+
+        $this->seePageIs(route('projects.features', $project->id));
+
         $this->see(trans('feature.deleted'));
 
         $this->notSeeInDatabase('features', [
@@ -124,16 +116,14 @@ class ManageFeaturesTest extends TestCase
     /** @test */
     public function admin_can_see_a_feature()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $user = $this->adminUserSigningIn();
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
         $feature = factory(Feature::class)->create(['project_id' => $project->id,'type_id' => 1]);
 
-        $this->visit('projects/'.$project->id.'/features');
+        $this->visit(route('projects.features', $project->id));
         $this->click('show-feature-'.$feature->id);
-        $this->seePageIs('features/'.$feature->id);
+        $this->seePageIs(route('features.show', $project->id));
         $this->see(trans('feature.show'));
         $this->see($feature->name);
         $this->see(formatRp($feature->price));
@@ -143,38 +133,21 @@ class ManageFeaturesTest extends TestCase
     /** @test */
     public function admin_may_clone_many_features_from_other_projects()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $user = $this->adminUserSigningIn();
 
         $projects = factory(Project::class, 2)->create(['owner_id' => $user->id]);
         $features = factory(Feature::class, 3)->create(['project_id' => $projects[0]->id]);
         $tasks1 = factory(Task::class, 3)->create(['feature_id' => $features[0]->id]);
         $tasks2 = factory(Task::class, 3)->create(['feature_id' => $features[1]->id]);
 
-        $this->visit('projects/'.$projects[1]->id.'/features');
-        $this->seePageIs('projects/'.$projects[1]->id.'/features');
+        $this->visit(route('projects.features', $projects[1]->id));
+
         $this->click(trans('feature.add_from_other_project'));
-        $this->seePageIs('projects/'.$projects[1]->id.'/features/add-from-other-project');
+        $this->seePageIs(route('features.add-from-other-project', $projects[1]->id));
+
         $this->select($projects[0]->id, 'project_id');
-        $this->press('Lihat Fitur');
-        $this->seePageIs('projects/'.$projects[1]->id.'/features/add-from-other-project?project_id='.$projects[0]->id);
-
-        // $this->submitForm(trans('feature.create'), [
-        //     'feature_ids' => [$features[0]->id,$features[1]->id],
-        //     $features[0]->id.'_task_ids' => [$tasks1[0]->id,$tasks1[1]->id,$tasks1[2]->id],
-        //     $features[1]->id.'_task_ids' => [$tasks2[0]->id,$tasks2[1]->id,$tasks2[2]->id],
-        // ]);
-
-        // $this->check('feature_ids[0]');
-        // $this->check('feature_ids[1]');
-        // $this->check($features[0]->id.'_task_ids[0]');
-        // $this->check($features[0]->id.'_task_ids[1]');
-        // $this->check($features[0]->id.'_task_ids[2]');
-        // $this->check($features[1]->id.'_task_ids[0]');
-        // $this->check($features[1]->id.'_task_ids[1]');
-        // $this->check($features[1]->id.'_task_ids[2]');
-        // $this->press(trans('feature.create'));
+        $this->press(trans('project.show_features'));
+        $this->seePageIs(route('features.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]));
 
         $form = $this->getForm(trans('feature.create'));
         $form['feature_ids'][$features[0]->id]->tick();
@@ -187,40 +160,31 @@ class ManageFeaturesTest extends TestCase
         $form[$features[1]->id.'_task_ids'][$tasks2[2]->id]->tick();
         $this->makeRequestUsingForm($form);
 
-        $this->seePageIs('projects/'.$projects[1]->id.'/features');
+        $this->seePageIs(route('projects.features', $projects[1]->id));
+
         $this->see(trans('feature.created_from_other_project'));
+
         $this->seeInDatabase('features', [
             'project_id' => $projects[1]->id,
             'name' => $features[0]->name,
             'price' => $features[0]->price,
             'worker_id' => $features[0]->worker_id,
         ]);
+
         $this->seeInDatabase('features', [
             'project_id' => $projects[1]->id,
             'name' => $features[1]->name,
             'price' => $features[1]->price,
             'worker_id' => $features[1]->worker_id,
         ]);
-        // $this->seeInDatabase('tasks', [
-        //     'feature_id' => $features[1]->id,
-        //     'name' => $tasks1[0]->name,
-        //     'price' => $features[1]->price,
-        //     'worker_id' => $features[1]->worker_id,
-        // ]);
     }
 
     /** @test */
     public function admin_can_see_unfinished_features_list()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $user = $this->adminUserSigningIn();
 
-        // $projects = factory(Project::class, 2)->create(['owner_id' => $user->id]);
-        // $features = factory(Feature::class, 3)->create(['project_id'=> array_rand($projects->lists('id','id')->all())]);
-        // $tasks = factory(Task::class, 10)->create(['feature_id'=> array_rand($features->lists('id','id')->all())]);
-
-        $this->visit('features');
-        $this->seePageIs('features');
+        $this->visit(route('features.index'));
+        $this->seePageIs(route('features.index'));
     }
 }

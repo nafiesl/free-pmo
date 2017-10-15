@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Projects'], function() {
+Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Projects'], function () {
     /**
      * Projects Routes
      */
@@ -11,7 +11,7 @@ Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Projects'], 
     Route::get('projects/{id}/subscriptions', ['as'=>'projects.subscriptions', 'uses'=>'ProjectsController@subscriptions']);
     Route::post('projects/{id}/features-reorder', ['as'=>'projects.features-reorder', 'uses'=>'ProjectsController@featuresReorder']);
     Route::patch('projects/{id}/status-update', ['as'=>'projects.status-update', 'uses'=>'ProjectsController@statusUpdate']);
-    Route::resource('projects','ProjectsController');
+    Route::resource('projects', 'ProjectsController');
 
     /**
      * Project Invoices Routes
@@ -27,7 +27,7 @@ Route::group(['middleware' => ['web','role:admin'], 'namespace' => 'Projects'], 
     Route::post('projects/{id}/features', ['as'=>'features.store', 'uses'=>'FeaturesController@store']);
     Route::post('projects/{id}/features/store-from-other-project', ['as'=>'features.store-from-other-project', 'uses'=>'FeaturesController@storeFromOtherProject']);
     Route::get('features/{id}/delete', ['as'=>'features.delete', 'uses'=>'FeaturesController@delete']);
-    Route::resource('features','FeaturesController',['except' => ['create','store']]);
+    Route::resource('features', 'FeaturesController', ['except' => ['create','store']]);
 
     /**
      * Tasks Routes

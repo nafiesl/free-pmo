@@ -11,15 +11,14 @@
             <div class="panel-heading"><h3 class="panel-title">{{ trans('feature.add_from_other_project') }}</h3></div>
             <div class="panel-body">
                 {!! Form::open(['method'=>'get']) !!}
-                <?php // echo '<pre>$selectedProject : ', print_r($selectedProject, true), '</pre>'; ?>
                 <div class="form-group">
                     <label for="project_id" class="text-primary">{{ trans('project.project') }}</label>
                     <div class="input-group">
-                        {!! Form::select('project_id', $projects, Request::get('project_id'), [
+                        {!! Form::select('project_id', $projects, request('project_id'), [
                             'class' => 'form-control customer-select',
                             'placeholder' => '-- Pilih Project --'
                         ]) !!}
-                        <span class="input-group-btn"><button class="btn btn-default btn-sm" type="submit">Lihat Fitur</button></span>
+                        <span class="input-group-btn"><button class="btn btn-default btn-sm" type="submit">{{ trans('project.show_features') }}</button></span>
                     </div>
                 </div>
                 {!! Form::close() !!}

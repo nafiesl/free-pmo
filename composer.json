@@ -7,6 +7,7 @@
     "require": {
         "php": ">=7.0.0",
         "backup-manager/laravel": "dev-master",
+        "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.3",
         "laracasts/flash": "~2",
         "laracasts/presenter": "^0.2.1",

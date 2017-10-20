@@ -2,83 +2,98 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Backups\CreateRequest;
-use App\Http\Requests\Backups\BackupUploadRequest;
-use App\Http\Requests\Backups\DeleteRequest;
-use App\Http\Controllers\Controller;
-use App\Entities\Backups\BackupsRepository;
-
+use App\Http\Requests\BackupUploadRequest;
+use BackupManager\Filesystems\Destination;
+use BackupManager\Manager;
 use Illuminate\Http\Request;
+use League\Flysystem\FileExistsException;
+use League\Flysystem\FileNotFoundException;
 
-class BackupsController extends Controller {
+class BackupsController extends Controller
+{
+    public function index(Request $request)
+    {
+        if (!file_exists(storage_path('app/backup/db'))) {
+            $backups = [];
+        } else {
+            $backups = \File::allFiles(storage_path('app/backup/db'));
 
-	private $repo;
+            // Sort files by modified time DESC
+            usort($backups, function ($a, $b) {
+                return -1 * strcmp($a->getMTime(), $b->getMTime());
+            });
+        }
 
-	public function __construct(BackupsRepository $repo)
-	{
-	    $this->repo = $repo;
-	}
+        return view('backups.index', compact('backups'));
+    }
 
-	public function index(Request $req)
-	{
-		$backups = $this->repo->getAllFiles();
-		return view('backups.index',compact('backups'));
-	}
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'file_name' => 'nullable|max:30|regex:/^[\w._-]+$/',
+        ]);
 
-	public function restore($fileName)
-	{
-		return view('backups.restore', compact('fileName'));
-	}
+        try {
+            $manager = app()->make(Manager::class);
+            $fileName = $request->get('file_name') ?: date('Y-m-d_Hi');
 
-	public function postRestore(Request $req, $fileName)
-	{
-		$result = $this->repo->restore($fileName);
+            $manager->makeBackup()->run('mysql', [
+                    new Destination('local', 'backup/db/'.$fileName),
+                ], 'gzip');
 
-		if ($result)
-			flash()->success('Database berhasil dikembalikan dengan file ' . $fileName);
+            flash(trans('backup.created', ['filename' => $fileName.'.gz']), 'success');
 
-		return redirect()->route('backups.index');
-	}
+            return redirect()->route('backups.index');
+        } catch (FileExistsException $e) {
+            flash(trans('backup.not_created', ['filename' => $fileName.'.gz']), 'danger');
 
-	public function store(CreateRequest $req)
-	{
-		$fileName = $this->repo->create($req->except('_token'));
+            return redirect()->route('backups.index');
+        }
+    }
 
-		if ($fileName)
-			flash()->success('Backup berhasil dilakukan, nama File : ' . $fileName);
+    public function destroy($fileName)
+    {
+        if (file_exists(storage_path('app/backup/db/').$fileName)) {
+            unlink(storage_path('app/backup/db/').$fileName);
+        }
 
-		return redirect()->route('backups.index');
-	}
+        flash(trans('backup.deleted', ['filename' => $fileName]), 'warning');
+        return redirect()->route('backups.index');
+    }
 
-	public function delete($fileName)
-	{
-		return view('backups.delete', compact('fileName'));
-	}
+    public function download($fileName)
+    {
+        return response()->download(storage_path('app/backup/db/').$fileName);
+    }
 
-	public function destroy(Request $req, $fileName)
-	{
-		$result = $this->repo->delete($fileName);
+    public function restore($fileName)
+    {
+        try {
+            $manager = app()->make(Manager::class);
+            $manager->makeRestore()->run('local', 'backup/db/'.$fileName, 'mysql', 'gzip');
+        } catch (FileNotFoundException $e) {
+        }
 
-		if ($result)
-			flash()->success('File ' . $fileName . ' berhasil dihapus.');
-		else
-			flash()->error('File ' . $fileName . ' gagal dihapus.');
+        flash(trans('backup.restored', ['filename' => $fileName]), 'success');
+        return redirect()->route('backups.index');
+    }
 
-		return redirect()->route('backups.index');
-	}
+    public function upload(Request $request)
+    {
+    	$data = $request->validate([
+    		'backup_file' => 'required|mimetypes:application/x-gzip',
+    	], [
+    		'backup_file.mimetypes' => 'Invalid file type, must be <strong>.gz</strong> file',
+    	]);
 
-	public function upload(BackupUploadRequest $req)
-	{
-		$result = $this->repo->proccessBackupFileUpload($req);
-		if ($result)
-			flash()->success('Upload file berhasil.');
+        $file = $data['backup_file'];
+        $fileName = $file->getClientOriginalName();
 
-		return redirect()->route('backups.index');
-	}
+        if (file_exists(storage_path('app/backup/db/').$fileName) == false) {
+            $file->storeAs('backup/db', $fileName);
+        }
 
-	public function download($fileName)
-	{
-		return response()->download(storage_path('app') . '/backup/db/'.$fileName);
-	}
-
+        flash(trans('backup.uploaded', ['filename' => $fileName]), 'success');
+        return redirect()->route('backups.index');
+    }
 }

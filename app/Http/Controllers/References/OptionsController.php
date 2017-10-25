@@ -2,69 +2,60 @@
 
 namespace App\Http\Controllers\References;
 
-use App\Http\Requests\Options\CreateRequest;
-use App\Http\Requests\Options\DeleteRequest;
+use App\Entities\Options\Option;
 use App\Http\Controllers\Controller;
-use App\Entities\Options\OptionsRepository;
-
 use Illuminate\Http\Request;
 
-class OptionsController extends Controller {
+class OptionsController extends Controller
+{
+    public function index(Request $req)
+    {
+        $options = Option::all();
+        $editableOption = null;
 
-	private $repo;
+        if (in_array($req->get('action'), ['del', 'edit']) && $req->has('id')) {
+            $editableOption = Option::findOrFail($req->get('id'));
+        }
 
-	public function __construct(OptionsRepository $repo)
-	{
-	    $this->repo = $repo;
-	}
+        return view('options.index', compact('options', 'editableOption'));
+    }
 
-	public function index(Request $req)
-	{
-		$editableOption = null;
-		$options = $this->repo->getAll();
+    public function store(Request $req)
+    {
+        $newOptionData = $req->validate([
+            'key' => 'required|max:255|alpha_dash',
+            'value' => 'max:255',
+        ]);
 
-		if (in_array($req->get('action'), ['del','edit']) && $req->has('id'))
-			$editableOption = $this->repo->requireById($req->get('id'));
+        $option = Option::create($newOptionData);
 
-		return view('options.index',compact('options','editableOption'));
-	}
+        flash()->success(trans('option.created'));
+        return redirect()->route('options.index');
+    }
 
-	public function create()
-	{
-		return view('options.create');
-	}
+    public function destroy(Request $req, $optionId)
+    {
+        if ($optionId == $req->get('option_id')) {
+            Option::findOrFail($optionId)->delete();
+            flash()->success(trans('option.deleted'));
+        } else {
+            flash()->error(trans('option.undeleted'));
+        }
 
-	public function store(CreateRequest $req)
-	{
-		$option = $this->repo->create($req->except('_token'));
-		flash()->success(trans('option.created'));
-		return redirect()->route('options.index');
-	}
+        return redirect()->route('options.index');
+    }
 
-	public function delete($optionId)
-	{
-	    $option = $this->repo->requireById($optionId);
-		return view('options.delete', compact('option'));
-	}
+    public function save(Request $req)
+    {
+        $options = Option::all();
+        foreach ($req->except(['_method', '_token']) as $key => $value) {
+            $option = $options->where('key', $key)->first();
+            $option->value = $value;
+            $option->save();
+        }
 
-	public function destroy(Request $req, $optionId)
-	{
-		if ($optionId == $req->get('option_id'))
-		{
-			$this->repo->delete($optionId);
-	        flash()->success(trans('option.deleted'));
-		}
-		else
-			flash()->error(trans('option.undeleted'));
-
-		return redirect()->route('options.index');
-	}
-
-	public function save(Request $req)
-	{
-		$this->repo->save($req->except(['_method','_token']));
-		flash()->success(trans('option.updated'));
-		return redirect()->route('options.index');
-	}
+        flash()->success(trans('option.updated'));
+        return redirect()->route('options.index');
+    }
 
 }

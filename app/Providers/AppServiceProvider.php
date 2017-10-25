@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Entities\Projects\Project;
-use DB;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        require_once app_path() . '/helpers.php';
+        require_once app_path().'/helpers.php';
     }
 
     /**

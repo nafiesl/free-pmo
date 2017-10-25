@@ -138,4 +138,33 @@ class ProjectTest extends TestCase
         $project = factory(Project::class)->make();
         $this->assertEquals(link_to_route('projects.show', $project->name, [$project->id]), $project->nameLink());
     }
+
+    /** @test */
+    public function a_project_has_collectible_earnings_method()
+    {
+        // Collectible earnings is total of (price * avg task progress of each feature)
+        $project = factory(Project::class)->create();
+
+        $collectibeEarnings = 0;
+
+        $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 1, 'price' => 2000]);
+        factory(Task::class)->create(['feature_id' => $feature->id, 'progress' => 20]);
+        $collectibeEarnings += (2000 * (20 / 100)); // feature price * avg task progress
+
+        $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 1, 'price' => 3000]);
+        factory(Task::class)->create(['feature_id' => $feature->id, 'progress' => 30]);
+        $collectibeEarnings += (3000 * (30 / 100));
+
+        $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 1, 'price' => 1500]);
+        factory(Task::class)->create(['feature_id' => $feature->id, 'progress' => 100]);
+        $collectibeEarnings += (1500 * (100 / 100));
+
+        $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 1, 'price' => 1500]);
+        factory(Task::class)->create(['feature_id' => $feature->id, 'progress' => 100]);
+        $collectibeEarnings += (1500 * (100 / 100));
+
+        // $collectibeEarnings = 400 + 900 + 1500 + 1500;
+
+        $this->assertEquals($collectibeEarnings, $project->getCollectibeEarnings());
+    }
 }

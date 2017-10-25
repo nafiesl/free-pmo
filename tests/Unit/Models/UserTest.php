@@ -13,7 +13,7 @@ class UserTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->assertEquals(link_to_route('users.show', $user->name, [$user->id], [
-            'target' => '_blank'
+            'target' => '_blank',
         ]), $user->nameLink());
     }
 

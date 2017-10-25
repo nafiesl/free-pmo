@@ -7,21 +7,22 @@
  */
 function formatNo($number)
 {
-    return number_format($number, 0,',','.');
+    return number_format($number, 0, ',', '.');
 }
 
 function formatRp($number)
 {
-    if ($number == 0) { return '-'; }
-    if ($number < 0)
+    if ($number == 0) {return '-';}
+    if ($number < 0) {
         return '- Rp. ' . formatNo(abs($number));
+    }
 
     return 'Rp. ' . formatNo($number);
 }
 
 function formatDecimal($number)
 {
-    return number_format($number, 2,',','.');
+    return number_format($number, 2, ',', '.');
 }
 
 /**
@@ -37,17 +38,17 @@ function delete_button($form_params = [], $button_label = 'Delete', $button_opti
     $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : 'del-form';
     $form_params['style'] = isset($form_params['style']) ? $form_params['style'] : 'display:inline';
 
-    if (! isset($button_options['class']))
+    if (!isset($button_options['class'])) {
         $button_options['class'] = 'pull-right';
+    }
 
-    if (! isset($button_options['title']))
+    if (!isset($button_options['title'])) {
         $button_options['title'] = 'Delete this record';
+    }
 
     $htmlForm = Form::open($form_params);
-    if (!empty($hiddenFields))
-    {
-        foreach ($hiddenFields as $k => $v)
-        {
+    if (!empty($hiddenFields)) {
+        foreach ($hiddenFields as $k => $v) {
             $htmlForm .= Form::hidden($k, $v);
         }
     }
@@ -59,8 +60,9 @@ function delete_button($form_params = [], $button_label = 'Delete', $button_opti
 
 function formatDate($date)
 {
-    if (!$date || $date == '0000-00-00')
+    if (!$date || $date == '0000-00-00') {
         return null;
+    }
 
     $explodedDate = explode('-', $date);
 
@@ -73,9 +75,11 @@ function formatDate($date)
     throw new App\Exceptions\InvalidDateException('Kesalahan format tanggal');
 }
 
-function dateId($date) {
-    if (is_null($date) || $date == '0000-00-00')
+function dateId($date)
+{
+    if (is_null($date) || $date == '0000-00-00') {
         return '-';
+    }
 
     $explodedDate = explode('-', $date);
 
@@ -87,13 +91,16 @@ function dateId($date) {
     throw new App\Exceptions\InvalidDateException('Kesalahan format tanggal');
 }
 
-function monthNumber($number) {
+function monthNumber($number)
+{
     return str_pad($number, 2, "0", STR_PAD_LEFT);
 }
 
-function monthId($monthNumber) {
-    if (is_null($monthNumber))
+function monthId($monthNumber)
+{
+    if (is_null($monthNumber)) {
         return $monthNumber;
+    }
 
     $months = getMonths();
     $monthNumber = monthNumber($monthNumber);
@@ -135,13 +142,15 @@ function str_split_ucwords($string)
 
 function getDays()
 {
-    return $days = [1 => 'Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+    return $days = [1 => 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
 }
 
 function getDay($dayIndex = null)
 {
     $days = getDays();
-    if (!is_null($dayIndex) && in_array($dayIndex, range(1, 7))) return $days[$dayIndex];
+    if (!is_null($dayIndex) && in_array($dayIndex, range(1, 7))) {
+        return $days[$dayIndex];
+    }
 
     return '-';
 }
@@ -153,28 +162,17 @@ function sanitizeNumber($number)
 
 function formatSizeUnits($bytes)
 {
-    if ($bytes >= 1073741824)
-    {
+    if ($bytes >= 1073741824) {
         $bytes = number_format($bytes / 1073741824, 2) . ' GB';
-    }
-    elseif ($bytes >= 1048576)
-    {
+    } elseif ($bytes >= 1048576) {
         $bytes = number_format($bytes / 1048576, 2) . ' MB';
-    }
-    elseif ($bytes >= 1024)
-    {
+    } elseif ($bytes >= 1024) {
         $bytes = number_format($bytes / 1024, 2) . ' KB';
-    }
-    elseif ($bytes > 1)
-    {
+    } elseif ($bytes > 1) {
         $bytes = $bytes . ' bytes';
-    }
-    elseif ($bytes == 1)
-    {
+    } elseif ($bytes == 1) {
         $bytes = $bytes . ' byte';
-    }
-    else
-    {
+    } else {
         $bytes = '0 bytes';
     }
 
@@ -188,18 +186,22 @@ function formatSizeUnits($bytes)
  * @param  array  $parameters URL Parameter
  * @param  array  $attributes The anchor tag atributes
  */
-function html_link_to_route($name, $title = null, $parameters = [], $attributes = []) {
-    if (array_key_exists('icon', $attributes))
+function html_link_to_route($name, $title = null, $parameters = [], $attributes = [])
+{
+    if (array_key_exists('icon', $attributes)) {
         $title = '<i class="fa fa-' . $attributes['icon'] . '"></i> ' . $title;
+    }
 
     return app('html')->decode(link_to_route($name, $title, $parameters, $attributes));
 }
 
-function getProjectStatusesList($statusId = null) {
-    $statuses = [1 => 'Planned','On Progress','Done','Closed','Canceled','On Hold'];
+function getProjectStatusesList($statusId = null)
+{
+    $statuses = [1 => 'Planned', 'On Progress', 'Done', 'Closed', 'Canceled', 'On Hold'];
 
-    if (is_null($statusId))
+    if (is_null($statusId)) {
         return $statuses;
+    }
 
     if (array_key_exists($statusId, $statuses)) {
         return $statuses[$statusId];
@@ -208,7 +210,7 @@ function getProjectStatusesList($statusId = null) {
     return null;
 }
 
-function dateDifference($date1 , $date2 , $differenceFormat = '%a' )
+function dateDifference($date1, $date2, $differenceFormat = '%a')
 {
     $datetime1 = date_create($date1);
     $datetime2 = date_create($date2);
@@ -222,11 +224,13 @@ function paymentTypes($paymentTypeId = null)
 {
     $paymentTypes = [1 => 'Project', 'Add Feature', 'Maintenance'];
 
-    if (is_null($paymentTypeId))
+    if (is_null($paymentTypeId)) {
         return $paymentTypes;
+    }
 
-    if (array_key_exists($paymentTypeId, $paymentTypes))
+    if (array_key_exists($paymentTypeId, $paymentTypes)) {
         return $paymentTypes[$paymentTypeId];
+    }
 
     return null;
 }

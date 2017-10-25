@@ -71,21 +71,21 @@ class User extends Authenticatable
             return $this->roles->contains('name', $role);
         }
 
-        return !! $role->intersect($this->roles)->count();
+        return !!$role->intersect($this->roles)->count();
     }
 
     public function hasRoles(array $roleNameArray)
     {
         return $this->roles->pluck('name')
-            ->contains(function($role, $key) use ($roleNameArray) {
+            ->contains(function ($role, $key) use ($roleNameArray) {
                 return in_array($role, $roleNameArray);
             });
     }
 
     public function scopeHasRoles($query, array $roleNameArray)
     {
-        return $query->whereHas('roles', function($q) use ($roleNameArray) {
-            $q->whereIn('name',$roleNameArray);
+        return $query->whereHas('roles', function ($q) use ($roleNameArray) {
+            $q->whereIn('name', $roleNameArray);
         });
     }
 }

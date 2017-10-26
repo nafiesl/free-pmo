@@ -8,12 +8,13 @@ use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
-class Payment extends Model {
+class Payment extends Model
+{
 
     use PresentableTrait;
 
     protected $presenter = PaymentPresenter::class;
-	protected $guarded = ['id','created_at','updated_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function project()
     {

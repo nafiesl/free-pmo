@@ -23,3 +23,5 @@ Route::group(['middleware' => ['web','role:admin']], function () {
     Route::get('backups/{fileName}/dl', ['as'=>'backups.download', 'uses'=>'BackupsController@download']);
     Route::resource('backups', 'BackupsController', ['except' => ['create', 'show', 'edit']]);
 });
+
+Route::apiResource('vendors', 'Partners\VendorsController');

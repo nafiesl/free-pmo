@@ -7,6 +7,7 @@ return [
     'search'         => 'Cari Master',
     'not_found'      => 'Master tidak ditemukan',
     'empty'          => 'Belum ada Master',
+    'back_to_show'   => 'Kembali ke detail Master',
     'back_to_index'  => 'Kembali ke daftar Master',
 
     // Actions

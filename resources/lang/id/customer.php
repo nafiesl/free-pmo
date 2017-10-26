@@ -2,26 +2,28 @@
 
 return [
     // Labels
-    'customer'     => 'Customer',
-    'list'           => 'Customer List',
-    'search'         => 'Search Customer',
-    'not_found'      => 'Customer not found.',
-    'empty'          => 'Customer is empty.',
-    'back_to_show'   => 'Back to Customer Detail',
-    'back_to_index'  => 'Back to Customer List',
+    'customer'       => 'Customer',
+    'list'           => 'Daftar Customer',
+    'search'         => 'Cari Customer',
+    'not_found'      => 'Customer tidak ditemukan',
+    'empty'          => 'Belum ada Customer',
+    'back_to_show'   => 'Kembali ke detail Customer',
+    'back_to_index'  => 'Kembali ke daftar Customer',
 
     // Actions
-    'create'         => 'Create new Customer',
-    'created'        => 'Create new Customer succeded.',
+    'create'         => 'Input Customer Baru',
+    'created'        => 'Input Customer baru telah berhasil.',
+    'show'           => 'Detail Customer',
     'edit'           => 'Edit Customer',
     'update'         => 'Update Customer',
-    'updated'        => 'Update Customer succeded.',
-    'delete'         => 'Delete Customer',
-    'delete_confirm' => 'Are you sure to delete this Customer?',
-    'deleted'        => 'Delete Customer succeded.',
-    'undeleted'      => 'Customer not deleted.',
+    'updated'        => 'Update data Customer telah berhasil.',
+    'delete'         => 'Hapus Customer',
+    'delete_confirm' => 'Anda yakin akan menghapus Customer ini?',
+    'deleted'        => 'Hapus data Customer telah berhasil.',
+    'undeleted'      => 'Data Customer gagal dihapus.',
+    'undeleteable'   => 'Data Customer tidak dapat dihapus.',
 
     // Attributes
-    'name'           => 'Customer Name',
-    'description'    => 'Customer Description',
+    'name'           => 'Nama Customer',
+    'description'    => 'Deskripsi Customer',
 ];

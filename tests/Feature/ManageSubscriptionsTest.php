@@ -51,11 +51,11 @@ class ManageSubscriptionsTest extends TestCase
     /** @test */
     public function admin_can_edit_subscription_data()
     {
-        $eppCode = str_random(10);
         $user = $this->adminUserSigningIn();
-        $customer = $this->createUser('customer');
         $vendor = $this->createUser('vendor');
+        $eppCode = str_random(10);
         $project = factory(Project::class)->create();
+        $customer = $this->createUser('customer');
 
         $subscription = factory(Subscription::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
 

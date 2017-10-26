@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
-use App\Entities\Users\User;
 use Tests\TestCase;
 
 class ManageSubscriptionsTest extends TestCase
@@ -12,28 +11,18 @@ class ManageSubscriptionsTest extends TestCase
     /** @test */
     public function admin_can_entry_subscription()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
-
+        $user = $this->adminUserSigningIn();
+        $vendor = $this->createUser('vendor');
         $project = factory(Project::class)->create();
+        $customer = $this->createUser('customer');
 
-        $customer = factory(User::class)->create();
-        $customer->assignRole('customer');
-
-        $vendor = factory(User::class)->create();
-        $vendor->assignRole('vendor');
-
-        $this->visit('subscriptions');
-        $this->seePageIs('subscriptions');
-        $this->see(trans('subscription.subscriptions'));
+        $this->visit(route('subscriptions.index'));
         $this->click(trans('subscription.create'));
-        $this->seePageIs('subscriptions/create');
 
         // Fill Form
         $this->type('www.domain.com', 'domain_name');
         $this->type(100000, 'domain_price');
-        $this->type('100000', 'epp_code');
+        $this->type('EPPCODE', 'epp_code');
         $this->type('3GB', 'hosting_capacity');
         $this->type(500000, 'hosting_price');
         $this->type('2015-05-02', 'start_date');
@@ -44,11 +33,13 @@ class ManageSubscriptionsTest extends TestCase
         $this->type('', 'remark');
         $this->press(trans('subscription.create'));
 
-        $this->seePageIs('subscriptions');
+        $this->seePageIs(route('subscriptions.index'));
         $this->see(trans('subscription.created'));
+
         $this->seeInDatabase('subscriptions', [
             'project_id' => $project->id,
             'domain_price' => 100000,
+            'epp_code' => 'EPPCODE',
             'status_id' => 1,
             'start_date' => '2015-05-02',
             'due_date' => '2016-05-02',
@@ -60,25 +51,19 @@ class ManageSubscriptionsTest extends TestCase
     /** @test */
     public function admin_can_edit_subscription_data()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
-
+        $eppCode = str_random(10);
+        $user = $this->adminUserSigningIn();
+        $customer = $this->createUser('customer');
+        $vendor = $this->createUser('vendor');
         $project = factory(Project::class)->create();
-
-        $customer = factory(User::class)->create();
-        $customer->assignRole('customer');
-
-        $vendor = factory(User::class)->create();
-        $vendor->assignRole('vendor');
 
         $subscription = factory(Subscription::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
 
-        $this->visit('subscriptions/'.$subscription->id.'/edit');
-        $this->seePageIs('subscriptions/'.$subscription->id.'/edit');
+        $this->visit(route('subscriptions.edit', $subscription->id));
+        $this->seePageIs(route('subscriptions.edit', $subscription->id));
 
         // Fill Form
-        $this->type($eppCode = str_random(10), 'epp_code');
+        $this->type($eppCode, 'epp_code');
         $this->type('4GB', 'hosting_capacity');
         $this->type(500000, 'hosting_price');
         $this->type('2015-05-02', 'start_date');
@@ -89,7 +74,7 @@ class ManageSubscriptionsTest extends TestCase
         $this->select(1, 'status_id');
         $this->press(trans('subscription.update'));
 
-        $this->seePageIs('subscriptions/'.$subscription->id.'/edit');
+        $this->seePageIs(route('subscriptions.edit', $subscription->id));
         $this->see(trans('subscription.updated'));
         $this->seeInDatabase('subscriptions', [
             'epp_code' => $eppCode,
@@ -108,33 +93,28 @@ class ManageSubscriptionsTest extends TestCase
     /** @test */
     public function admin_can_delete_a_subscription()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $user = $this->adminUserSigningIn();
 
         $subscription = factory(Subscription::class)->create();
 
-        $this->visit('/subscriptions');
-        $this->click(trans('app.edit'));
+        $this->visit(route('subscriptions.edit', $subscription->id));
         $this->click(trans('subscription.delete'));
         $this->press(trans('app.delete_confirm_button'));
-        $this->seePageIs('subscriptions');
+        $this->seePageIs(route('subscriptions.index'));
         $this->see(trans('subscription.deleted'));
+
+        $this->dontSeeInDatabase('subscriptions', ['id' => $subscription->id]);
     }
 
     /** @test */
     public function admin_can_see_a_subscription()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $this->actingAs($user);
+        $user = $this->adminUserSigningIn();
 
         $subscription = factory(Subscription::class)->create();
 
-        $this->visit('/subscriptions');
-        $this->click(trans('app.show'));
-        $this->seePageIs('subscriptions/'.$subscription->id);
-        $this->see(trans('subscription.show'));
+        $this->visit(route('subscriptions.show', $subscription->id));
+
         $this->see($subscription->domain_name);
         $this->see(formatRp($subscription->domain_price));
         $this->see($subscription->hosting_capacity);
@@ -142,23 +122,4 @@ class ManageSubscriptionsTest extends TestCase
         $this->see(dateId($subscription->start_date));
         $this->see(dateId($subscription->due_date));
     }
-
-    // /** @test */
-    // public function admin_can_see_all_subscriptions()
-    // {
-    //     $user = factory(User::class)->create();
-    //     $user->assignRole('admin');
-    //     $this->actingAs($user);
-
-    //     $subscriptions = factory(Subscription::class, 5)->create();
-    //     $this->assertEquals(5, $subscriptions->count());
-
-    //     $this->visit('/subscriptions');
-    //     $this->see($subscriptions[4]->domain_name);
-    //     $this->see($subscriptions[4]->hosting_capacity);
-    //     $this->see(dateId($subscriptions[4]->start_date));
-    //     $this->see(dateId($subscriptions[4]->due_date));
-    //     $this->see(formatRp($subscriptions[4]->domain_price + $subscriptions[4]->hosting_price));
-
-    // }
 }

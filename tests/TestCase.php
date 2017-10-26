@@ -3,33 +3,12 @@
 namespace Tests;
 
 use App\Entities\Users\User;
+use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 use Tests\Traits\DatabaseMigrateSeeds;
 
-class TestCase extends \Laravel\BrowserKitTesting\TestCase
+abstract class TestCase extends BaseTestCase
 {
-    use DatabaseMigrateSeeds;
-
-    /**
-     * The base URL to use while testing the application.
-     *
-     * @var string
-     */
-    protected $baseUrl = 'http://localhost';
-
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        $app = require __DIR__.'/../bootstrap/app.php';
-
-        $app->make(\Illuminate\Contracts\Console\Kernel::class)->bootstrap();
-        \Hash::setRounds(5);
-
-        return $app;
-    }
+    use CreatesApplication, DatabaseMigrateSeeds;
 
     protected function setUpTraits()
     {
@@ -43,8 +22,7 @@ class TestCase extends \Laravel\BrowserKitTesting\TestCase
 
     protected function adminUserSigningIn()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
+        $user = $this->createUser();
         $this->actingAs($user);
 
         return $user;

@@ -1,7 +1,5 @@
 <?php
-// auth()->loginUsingId(1);
 
-require __DIR__ . '/web/helpers.php';
 require __DIR__ . '/web/pages.php';
 require __DIR__ . '/web/users.php';
 require __DIR__ . '/web/references.php';
@@ -25,3 +23,5 @@ Route::group(['middleware' => ['web','role:admin']], function () {
 });
 
 Route::apiResource('vendors', 'Partners\VendorsController');
+
+Route::apiResource('customers', 'Partners\CustomersController');

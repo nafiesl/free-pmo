@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
@@ -14,7 +15,7 @@ use Tests\TestCase;
 class ProjectTest extends TestCase
 {
     /** @test */
-    public function it_has_many_features()
+    public function a_project_has_many_features()
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id]);
@@ -23,7 +24,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function it_has_many_main_features()
+    public function a_project_has_many_main_features()
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 1]);
@@ -32,7 +33,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function it_has_many_additional_features()
+    public function a_project_has_many_additional_features()
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 2]);
@@ -41,7 +42,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function it_has_feature_tasks()
+    public function a_project_has_feature_tasks()
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 2]);
@@ -51,7 +52,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function it_has_many_payments()
+    public function a_project_has_many_payments()
     {
         $project = factory(Project::class)->create();
         $payment = factory(Payment::class)->create(['project_id' => $project->id]);
@@ -60,7 +61,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function it_has_many_subscriptions()
+    public function a_project_has_many_subscriptions()
     {
         $project = factory(Project::class)->create();
         $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
@@ -69,14 +70,14 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function it_belongs_to_a_customer()
+    public function a_project_belongs_to_a_customer()
     {
         $project = factory(Project::class)->create();
-        $this->assertTrue($project->customer instanceof User);
+        $this->assertTrue($project->customer instanceof Customer);
     }
 
     /** @test */
-    public function it_has_cash_in_total_method()
+    public function a_project_has_cash_in_total_method()
     {
         $project = factory(Project::class)->create();
         $payments = factory(Payment::class, 2)->create(['project_id' => $project->id, 'in_out' => 1, 'amount' => 20000]);
@@ -84,7 +85,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function it_has_cash_out_total_method()
+    public function a_project_has_cash_out_total_method()
     {
         $project = factory(Project::class)->create();
         $payments = factory(Payment::class, 2)->create(['project_id' => $project->id, 'in_out' => 0, 'amount' => 10000]);
@@ -93,7 +94,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function it_has_feature_overall_progress_method()
+    public function a_project_has_feature_overall_progress_method()
     {
         $project = factory(Project::class)->create();
 
@@ -113,7 +114,7 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function it_returns_0_on_feature_overall_progress_method_if_all_feature_is_free()
+    public function a_project_returns_0_on_feature_overall_progress_method_if_all_feature_is_free()
     {
         $project = factory(Project::class)->create();
 
@@ -126,14 +127,14 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function it_has_many_files()
+    public function a_project_has_many_files()
     {
         $project = factory(Project::class)->create();
         $this->assertTrue($project->files instanceof Collection);
     }
 
     /** @test */
-    public function it_has_name_link_method()
+    public function a_project_has_name_link_method()
     {
         $project = factory(Project::class)->make();
         $this->assertEquals(link_to_route('projects.show', $project->name, [$project->id]), $project->nameLink());

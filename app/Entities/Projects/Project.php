@@ -3,6 +3,7 @@
 namespace App\Entities\Projects;
 
 use App\Entities\Invoices\Invoice;
+use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\ProjectPresenter;
 use App\Entities\Projects\Task;
@@ -62,7 +63,7 @@ class Project extends Model
 
     public function customer()
     {
-        return $this->belongsTo(User::class, 'customer_id');
+        return $this->belongsTo(Customer::class);
     }
 
     public function cashInTotal()

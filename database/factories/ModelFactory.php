@@ -1,6 +1,7 @@
 <?php
 
 use App\Entities\Invoices\Invoice;
+use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
@@ -38,7 +39,7 @@ $factory->define(Project::class, function (Faker\Generator $faker) {
             return factory(User::class)->create()->id;
         },
         'customer_id' => function () {
-            return factory(User::class)->create()->id;
+            return factory(Customer::class)->create()->id;
         },
     ];
 });

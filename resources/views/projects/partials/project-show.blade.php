@@ -16,7 +16,7 @@
                     <td>
                         {{ $project->present()->customerNameAndEmail }}
                         @if ($project->customer_id && auth()->id() == $project->owner_id)
-                        {!! link_to_route('users.edit', 'Edit', [$project->customer_id], ['title' => 'Edit Data Customer']) !!}
+                        {!! link_to_route('users.edit', trans('app.edit'), [$project->customer_id], ['title' => trans('customer.edit')]) !!}
                         @endif
                     </td>
                 </tr>

@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Entities\Partners\Customer;
+use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
 use Tests\TestCase;
@@ -11,10 +13,10 @@ class ManageSubscriptionsTest extends TestCase
     /** @test */
     public function admin_can_entry_subscription()
     {
-        $user = $this->adminUserSigningIn();
-        $vendor = $this->createUser('vendor');
-        $project = factory(Project::class)->create();
-        $customer = $this->createUser('customer');
+        $user     = $this->adminUserSigningIn();
+        $vendor   = factory(Vendor::class)->create();
+        $project  = factory(Project::class)->create();
+        $customer = factory(Customer::class)->create();
 
         $this->visit(route('subscriptions.index'));
         $this->click(trans('subscription.create'));
@@ -37,25 +39,25 @@ class ManageSubscriptionsTest extends TestCase
         $this->see(trans('subscription.created'));
 
         $this->seeInDatabase('subscriptions', [
-            'project_id' => $project->id,
+            'project_id'   => $project->id,
             'domain_price' => 100000,
-            'epp_code' => 'EPPCODE',
-            'status_id' => 1,
-            'start_date' => '2015-05-02',
-            'due_date' => '2016-05-02',
-            'customer_id' => $customer->id,
-            'vendor_id' => $vendor->id,
+            'epp_code'     => 'EPPCODE',
+            'status_id'    => 1,
+            'start_date'   => '2015-05-02',
+            'due_date'     => '2016-05-02',
+            'customer_id'  => $customer->id,
+            'vendor_id'    => $vendor->id,
         ]);
     }
 
     /** @test */
     public function admin_can_edit_subscription_data()
     {
-        $user = $this->adminUserSigningIn();
-        $vendor = $this->createUser('vendor');
-        $eppCode = str_random(10);
-        $project = factory(Project::class)->create();
-        $customer = $this->createUser('customer');
+        $user     = $this->adminUserSigningIn();
+        $vendor   = factory(Vendor::class)->create();
+        $eppCode  = str_random(10);
+        $project  = factory(Project::class)->create();
+        $customer = factory(Customer::class)->create();
 
         $subscription = factory(Subscription::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
 
@@ -77,16 +79,16 @@ class ManageSubscriptionsTest extends TestCase
         $this->seePageIs(route('subscriptions.edit', $subscription->id));
         $this->see(trans('subscription.updated'));
         $this->seeInDatabase('subscriptions', [
-            'epp_code' => $eppCode,
-            'customer_id' => $customer->id,
-            'project_id' => $project->id,
-            'status_id' => 1,
+            'epp_code'         => $eppCode,
+            'customer_id'      => $customer->id,
+            'project_id'       => $project->id,
+            'status_id'        => 1,
             'hosting_capacity' => '4GB',
-            'hosting_price' => '500000',
-            'start_date' => '2015-05-02',
-            'due_date' => '2016-05-02',
-            'customer_id' => $customer->id,
-            'vendor_id' => $vendor->id,
+            'hosting_price'    => '500000',
+            'start_date'       => '2015-05-02',
+            'due_date'         => '2016-05-02',
+            'customer_id'      => $customer->id,
+            'vendor_id'        => $vendor->id,
         ]);
     }
 

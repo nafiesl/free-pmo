@@ -3,13 +3,12 @@
 namespace App\Entities\Projects;
 
 use App\Entities\BaseRepository;
-use App\Entities\Users\User;
+use App\Entities\Partners\Customer;
 use DB;
-use Option;
 
 /**
-* Projects Repository Class
-*/
+ * Projects Repository Class
+ */
 class ProjectsRepository extends BaseRepository
 {
     protected $model;
@@ -24,10 +23,12 @@ class ProjectsRepository extends BaseRepository
         $statusIds = array_keys(getProjectStatusesList());
 
         return $this->model->latest()
-            ->where(function($query) use ($q, $statusId, $statusIds) {
-                $query->where('name','like','%'.$q.'%');
-                if ($statusId && in_array($statusId, $statusIds))
+            ->where(function ($query) use ($q, $statusId, $statusIds) {
+                $query->where('name', 'like', '%'.$q.'%');
+                if ($statusId && in_array($statusId, $statusIds)) {
                     $query->where('status_id', $statusId);
+                }
+
             })
             ->withCount('payments')
             ->with('customer')
@@ -38,11 +39,11 @@ class ProjectsRepository extends BaseRepository
     public function create($projectData)
     {
         $projectData['project_value'] = $projectData['proposal_value'] ?: 0;
-        $projectData['owner_id'] = auth()->id();
+        $projectData['owner_id']      = auth()->id();
         DB::beginTransaction();
 
         if (isset($projectData['customer_id']) == false || $projectData['customer_id'] == '') {
-            $customer = $this->createNewCustomer($projectData['customer_name'], $projectData['customer_email']);
+            $customer                   = $this->createNewCustomer($projectData['customer_name'], $projectData['customer_email']);
             $projectData['customer_id'] = $customer->id;
         }
         unset($projectData['customer_name']);
@@ -60,13 +61,11 @@ class ProjectsRepository extends BaseRepository
 
     public function createNewCustomer($customerName, $customerEmail)
     {
-        $newCustomer = new User;
-        $newCustomer->name = $customerName;
+        $newCustomer        = new Customer;
+        $newCustomer->name  = $customerName;
         $newCustomer->email = $customerEmail;
-        $newCustomer->password = Option::get('default_password', 'member');
-        $newCustomer->remember_token = str_random(10);
         $newCustomer->save();
-        $newCustomer->assignRole('customer');
+
         return $newCustomer;
     }
 
@@ -95,17 +94,18 @@ class ProjectsRepository extends BaseRepository
 
     public function getProjectFeatures($projectId, $type = null)
     {
-        return Feature::where(function($query) use ($projectId, $type) {
+        return Feature::where(function ($query) use ($projectId, $type) {
             $query->whereProjectId($projectId);
-            if ($type)
+            if ($type) {
                 $query->whereTypeId($type);
+            }
 
-        })->orderBy('position')->with('worker','tasks')->get();
+        })->orderBy('position')->with('worker', 'tasks')->get();
     }
 
     public function updateStatus($statusId, $projectId)
     {
-        $project = $this->requireById($projectId);
+        $project            = $this->requireById($projectId);
         $project->status_id = $statusId;
         $project->save();
 
@@ -116,7 +116,7 @@ class ProjectsRepository extends BaseRepository
     {
         $featureOrder = explode(',', $sortedData);
         foreach ($featureOrder as $order => $featureId) {
-            $feature = $this->requireFeatureById($featureId);
+            $feature           = $this->requireFeatureById($featureId);
             $feature->position = $order + 1;
             $feature->save();
         }

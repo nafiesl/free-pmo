@@ -2,6 +2,7 @@
 
 use App\Entities\Invoices\Invoice;
 use App\Entities\Partners\Customer;
+use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
@@ -73,19 +74,19 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
             return factory(Project::class)->create()->id;
         },
         'status_id' => 1,
-        'domain_name' => 'www.' . str_random(10) . '.com',
+        'domain_name' => 'www.'.str_random(10).'.com',
         'domain_price' => 125000,
         'epp_code' => str_random(10),
-        'hosting_capacity' => rand(1, 3) . ' GB',
+        'hosting_capacity' => rand(1, 3).' GB',
         'hosting_price' => rand(1, 5) * 100000,
         'start_date' => $startDate->format('Y-m-d'),
         'due_date' => $startDate->addYears(1)->format('Y-m-d'),
         'remark' => $faker->paragraph,
         'customer_id' => function () {
-            return factory(User::class)->create()->id;
+            return factory(Customer::class)->create()->id;
         },
         'vendor_id' => function () {
-            return factory(User::class)->create()->id;
+            return factory(Vendor::class)->create()->id;
         },
     ];
 });

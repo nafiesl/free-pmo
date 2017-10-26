@@ -8,7 +8,7 @@ class ProjectPresenter extends Presenter
 {
     public function customerNameAndEmail()
     {
-        return $this->customer_id ? $this->customer->name  . ' (' . $this->customer->email . ')' : '-';
+        return $this->customer_id ? $this->customer->name.' ('.$this->customer->email.')' : '-';
     }
 
     public function projectLink()
@@ -23,14 +23,16 @@ class ProjectPresenter extends Presenter
 
     public function workDuration()
     {
-        if (is_null($this->entity->end_date))
+        if (is_null($this->entity->end_date)) {
             return '-';
+        }
 
-        $workDuration = dateDifference($this->entity->start_date,$this->entity->end_date);
-        if ((int) $workDuration > 30)
-            return dateDifference($this->entity->start_date,$this->entity->end_date, '%m Bulan %d Hari');
+        $workDuration = dateDifference($this->entity->start_date, $this->entity->end_date);
+        if ((int) $workDuration > 30) {
+            return dateDifference($this->entity->start_date, $this->entity->end_date, '%m Bulan %d Hari');
+        }
 
-        return $workDuration . ' Hari';
+        return $workDuration.' Hari';
     }
 
 }

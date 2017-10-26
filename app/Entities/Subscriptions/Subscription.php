@@ -2,37 +2,33 @@
 
 namespace App\Entities\Subscriptions;
 
-use App\Entities\Projects\Project;
-use App\Entities\Subscriptions\SubscriptionPresenter;
-use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
-class Subscription extends Model {
-
+class Subscription extends Model
+{
     use PresentableTrait;
 
-    protected $presenter = SubscriptionPresenter::class;
-	protected $guarded = ['id','created_at','updated_at'];
+    protected $presenter = 'App\Entities\Subscriptions\SubscriptionPresenter';
+    protected $guarded   = ['id', 'created_at', 'updated_at'];
 
     public function project()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo('App\Entities\Projects\Project');
     }
 
     public function customer()
     {
-        return $this->belongsTo(User::class,'customer_id');
+        return $this->belongsTo('App\Entities\Partners\Customer');
     }
 
     public function vendor()
     {
-        return $this->belongsTo(User::class,'vendor_id');
+        return $this->belongsTo('App\Entities\Partners\Vendor', 'vendor_id');
     }
 
     public function status()
     {
-        return $this->status_id ? 'Aktif' : 'Non Aktif';
+        return $this->status_id ? trans('app.active') : trans('app.in_active');
     }
-
 }

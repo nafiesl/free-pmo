@@ -39,4 +39,6 @@ return [
     'change_photo'          => 'Ganti Foto',
     'welcome'               => 'Selamat Datang',
     'to'                    => 'Kepada',
+    'active'                => 'Aktif',
+    'in_active'             => 'Non Aktif',
 ];

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "05c5536c0772c2dcb2d66fcd2655f724",
+    "content-hash": "42c587280dac3b87958ec2fdd600a6e3",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -74,7 +74,7 @@
         },
         {
             "name": "backup-manager/laravel",
-            "version": "dev-master",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/backup-manager/laravel.git",
@@ -3301,6 +3301,68 @@
             "time": "2017-06-21T11:44:53+00:00"
         },
         {
+            "name": "luthfi/simple-crud-generator",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
+                "reference": "b9a6cc68112931f1f667b7dea6a7b99e038e3740"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/b9a6cc68112931f1f667b7dea6a7b99e038e3740",
+                "reference": "b9a6cc68112931f1f667b7dea6a7b99e038e3740",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.4.* || 5.5.*",
+                "laravel/browser-kit-testing": "^2.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Luthfi\\CrudGenerator\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Luthfi\\CrudGenerator\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nafies Luthfi",
+                    "email": "nafiesl@gmail.com"
+                }
+            ],
+            "description": "A simple CRUD generator for Laravel 5.5.",
+            "support": {
+                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/0.1.1",
+                "issues": "https://github.com/nafiesl/SimpleCrudGenerator/issues"
+            },
+            "time": "2017-10-24T14:25:37+00:00"
+        },
+        {
             "name": "maximebf/debugbar",
             "version": "1.13.1",
             "source": {
@@ -4881,7 +4943,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "backup-manager/laravel": 20,
         "johnkary/phpunit-speedtrap": 20
     },
     "prefer-stable": false,

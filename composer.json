@@ -4,9 +4,15 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/nafiesl/SimpleCrudGenerator.git"
+        }
+    ],
     "require": {
         "php": ">=7.0.0",
-        "backup-manager/laravel": "dev-master",
+        "backup-manager/laravel": "^1.2",
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.3",
         "laracasts/flash": "~2",
@@ -17,13 +23,15 @@
         "riskihajar/terbilang": "^1.2",
         "spatie/laravel-fractal": "^5.0"
     },
+
     "require-dev": {
         "barryvdh/laravel-debugbar": "^2.0",
         "fzaninotto/faker": "~1.4",
+        "johnkary/phpunit-speedtrap": "dev-master",
         "laravel/browser-kit-testing": "^2.0",
+        "luthfi/simple-crud-generator": "^0.1.1",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~6.0",
-        "johnkary/phpunit-speedtrap": "dev-master"
+        "phpunit/phpunit": "~6.0"
     },
     "autoload": {
         "classmap": [

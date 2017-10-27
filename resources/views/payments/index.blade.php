@@ -11,7 +11,7 @@
     <div class="pull-left hidden-xs">{!! str_replace('/?', '?', $payments->appends(Request::except('page'))->render()) !!}</div>
     {{ Form::open(['method'=>'get','class'=>'form-inline']) }}
     {{ Form::text('q', Request::get('q'), ['class'=>'form-control index-search-field','placeholder' => trans('payment.search')]) }}
-    {{ Form::select('customer_id', ['' => '-- '.trans('payment.customer').' --'] + $usersList, request('customer_id'), ['class' => 'form-control', 'id' => 'customer_id']) }}
+    {{ Form::select('partner_id', ['' => '-- '.trans('payment.customer').' --'] + $usersList, request('partner_id'), ['class' => 'form-control', 'id' => 'partner_id']) }}
     {{ Form::submit(trans('app.search'), ['class' => 'btn btn-info btn-sm']) }}
     {{ link_to_route('payments.index','Reset',[],['class' => 'btn btn-default btn-sm']) }}
     {{ Form::close() }}
@@ -34,7 +34,8 @@
             <td class="text-center">{{ $payment->date }}</td>
             <td class="text-right">{{ $payment->present()->amount }}</td>
             <td>{{ $payment->description }}</td>
-            <td>{{ $payment->customer->name }}</td>
+            <td>{{ $payment->partner->name }}</td>
+            {{-- <td>{{ $payment->partner }}</td> --}}
             <td>
                 {!! link_to_route('payments.show', trans('app.show'), [$payment->id], ['class'=>'btn btn-info btn-xs']) !!}
                 {!! link_to_route('payments.edit', trans('app.edit'), [$payment->id], ['class'=>'btn btn-warning btn-xs']) !!}
@@ -61,7 +62,7 @@
 @section('script')
 <script>
 (function () {
-    $('#customer_id').select2();
+    $('#partner_id').select2();
 })();
 </script>
 @endsection

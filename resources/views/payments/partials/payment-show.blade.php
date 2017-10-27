@@ -7,7 +7,7 @@
             <tr><th>{{ trans('payment.type') }}</th><td>{{ $payment->present()->type_id }}</td></tr>
             <tr><th>{{ trans('payment.amount') }}</th><td class="text-right">{{ $payment->present()->amount }}</td></tr>
             <tr><th>{{ trans('payment.description') }}</th><td>{{ $payment->description }}</td></tr>
-            <tr><th>{{ trans('payment.customer') }}</th><td>{{ $payment->customer->name }}</td></tr>
+            <tr><th>{{ trans('payment.customer') }}</th><td>{{ $payment->partner->name }}</td></tr>
         </tbody>
     </table>
     <div class="panel-footer">

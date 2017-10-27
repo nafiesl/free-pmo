@@ -35,7 +35,7 @@
                         {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project'),'value' => Request::get('project_id')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::select('customer_id', $partners, ['label'=> trans('payment.customer'),'value' => Request::get('customer_id')]) !!}
+                        {!! FormField::select('partner_id', $partners, ['label'=> trans('payment.customer'),'value' => Request::get('customer_id')]) !!}
                     </div>
                 </div>
                 {!! FormField::textarea('description',['label'=> trans('payment.description'),'rows' => 3]) !!}

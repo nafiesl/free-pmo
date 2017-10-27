@@ -12,10 +12,10 @@ class PaymentTest extends TestCase
     /** @test */
     public function it_has_partner_relation()
     {
-        $payment = factory(Payment::class)->states('income')->create(['in_out' => 1]);
+        $payment = factory(Payment::class, 'income')->create(['in_out' => 1]);
         $this->assertTrue($payment->partner instanceof Customer);
 
-        $payment = factory(Payment::class)->states('expanse')->create(['in_out' => 0]);
+        $payment = factory(Payment::class, 'expanse')->create(['in_out' => 0]);
         $this->assertTrue($payment->partner instanceof Vendor);
     }
 }

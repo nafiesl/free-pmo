@@ -27,17 +27,17 @@ class ManagePaymentsTest extends TestCase
         $this->select(1, 'in_out');
         $this->type(1000000, 'amount');
         $this->select($project->id, 'project_id');
-        $this->select($customer->id, 'customer_id');
+        $this->select($customer->id, 'partner_id');
         $this->type('Pembayaran DP', 'description');
         $this->press(trans('payment.create'));
 
         $this->see(trans('payment.created'));
         $this->seeInDatabase('payments', [
-            'project_id'  => $project->id,
-            'amount'      => 1000000,
-            'in_out'      => 1,
-            'date'        => '2015-05-01',
-            'customer_id' => $customer->id,
+            'project_id' => $project->id,
+            'amount'     => 1000000,
+            'in_out'     => 1,
+            'date'       => '2015-05-01',
+            'partner_id' => $customer->id,
         ]);
     }
 
@@ -59,17 +59,17 @@ class ManagePaymentsTest extends TestCase
         $this->select(3, 'type_id');
         $this->type(1000000, 'amount');
         $this->select($project->id, 'project_id');
-        $this->select($vendor->id, 'customer_id');
+        $this->select($vendor->id, 'partner_id');
         $this->type('Pembayaran DP', 'description');
         $this->press(trans('payment.create'));
 
         $this->see(trans('payment.created'));
         $this->seeInDatabase('payments', [
-            'project_id'  => $project->id,
-            'amount'      => 1000000,
-            'in_out'      => 0,
-            'date'        => '2015-05-01',
-            'customer_id' => $vendor->id,
+            'project_id' => $project->id,
+            'amount'     => 1000000,
+            'in_out'     => 0,
+            'date'       => '2015-05-01',
+            'partner_id' => $vendor->id,
         ]);
     }
 
@@ -80,10 +80,10 @@ class ManagePaymentsTest extends TestCase
         $customer = factory(Customer::class)->create();
         $project  = factory(Project::class)->create();
 
-        $payment = factory(Payment::class)->create([
-            'customer_id' => $customer->id,
-            'project_id'  => $project->id,
-            'owner_id'    => $user->id,
+        $payment = factory(Payment::class, 'expanse')->create([
+            'partner_id' => $customer->id,
+            'project_id' => $project->id,
+            'owner_id'   => $user->id,
         ]);
 
         $this->visit(route('payments.edit', $payment->id));
@@ -98,10 +98,10 @@ class ManagePaymentsTest extends TestCase
 
         $this->see(trans('payment.updated'));
         $this->seeInDatabase('payments', [
-            'customer_id' => $customer->id,
-            'project_id'  => $project->id,
-            'date'        => '2016-05-20',
-            'amount'      => 1234567890,
+            'partner_id' => $customer->id,
+            'project_id' => $project->id,
+            'date'       => '2016-05-20',
+            'amount'     => 1234567890,
         ]);
     }
 
@@ -110,7 +110,7 @@ class ManagePaymentsTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $payment = factory(Payment::class)->create(['owner_id' => $user->id]);
+        $payment = factory(Payment::class, 'expanse')->create(['owner_id' => $user->id]);
         $this->visit(route('payments.index'));
         $this->click(trans('app.edit'));
         $this->click(trans('payment.delete'));
@@ -125,7 +125,7 @@ class ManagePaymentsTest extends TestCase
         $user = $this->adminUserSigningIn();
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
-        $payment = factory(Payment::class)->create(['project_id' => $project->id, 'owner_id' => $user->id]);
+        $payment = factory(Payment::class, 'expanse')->create(['project_id' => $project->id, 'owner_id' => $user->id]);
 
         $this->visit(route('payments.index'));
         $this->click(trans('app.show'));
@@ -134,6 +134,6 @@ class ManagePaymentsTest extends TestCase
         $this->see($payment->date);
         $this->see(formatRp($payment->amount));
         $this->see($payment->description);
-        $this->see($payment->customer->name);
+        $this->see($payment->partner->name);
     }
 }

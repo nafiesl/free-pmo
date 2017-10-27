@@ -31,10 +31,10 @@ class Payment extends Model
     public function partner()
     {
         if ($this->in_out == 1) {
-            return $this->belongsTo(Customer::class, 'customer_id');
+            return $this->belongsTo(Customer::class, 'partner_id');
         }
 
-        return $this->belongsTo(Vendor::class, 'customer_id');
+        return $this->belongsTo(Vendor::class, 'partner_id');
     }
 
     public function type()

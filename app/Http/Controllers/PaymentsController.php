@@ -21,7 +21,7 @@ class PaymentsController extends Controller
 
     public function index(Request $request)
     {
-        $payments  = $this->repo->getPayments($request->only('q', 'customer_id'));
+        $payments  = $this->repo->getPayments($request->only('q', 'partner_id'));
         $usersList = User::pluck('name', 'id')->all();
         return view('payments.index', compact('payments', 'usersList'));
     }

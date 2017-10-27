@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-md-9">
 
-        <?php $groupedPayments = $project->payments->groupBy('in_out'); ?>
+        <?php $groupedPayments = $project->payments->groupBy('in_out');?>
         @foreach ($groupedPayments as $key => $payments)
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ $key == 1 ? 'Pemasukan' : 'Pengeluaran' }}</h3></div>
@@ -36,7 +36,7 @@
                         <td>{{ 1 + $key }}</td>
                         <td class="text-center">{{ $payment->date }}</td>
                         <td class="text-right">{{ formatRp($payment->amount) }}</td>
-                        <td>{{ $payment->customer->name }}</td>
+                        <td>{{ $payment->partner->name }}</td>
                         <td>{{ $payment->description }} [{{ $payment->type() }}]</td>
                         <td>{!! html_link_to_route('payments.show','',[$payment->id],['class' => 'btn btn-info btn-xs','icon' => 'search','title' => 'Lihat ' . trans('payment.show')]) !!}</td>
                     </tr>

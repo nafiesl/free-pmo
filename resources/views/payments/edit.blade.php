@@ -32,7 +32,7 @@
                         {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project')]) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! FormField::select('customer_id', $customers, ['label'=> trans('payment.customer')]) !!}
+                        {!! FormField::select('customer_id', $partners, ['label'=> trans('payment.customer')]) !!}
                     </div>
                 </div>
                 {!! FormField::textarea('description',['label'=> trans('payment.description')]) !!}

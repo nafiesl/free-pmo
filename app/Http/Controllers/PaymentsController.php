@@ -21,7 +21,7 @@ class PaymentsController extends Controller
 
     public function index(Request $request)
     {
-        $payments = $this->repo->getPayments($request->only('q', 'customer_id'));
+        $payments  = $this->repo->getPayments($request->only('q', 'customer_id'));
         $usersList = User::pluck('name', 'id')->all();
         return view('payments.index', compact('payments', 'usersList'));
     }
@@ -29,8 +29,8 @@ class PaymentsController extends Controller
     public function create()
     {
         $projects = $this->repo->getProjectsList();
-        $customers = $this->repo->getCustomersAndVendorsList();
-        return view('payments.create', compact('projects', 'customers'));
+        $partners = $this->repo->getCustomersAndVendorsList();
+        return view('payments.create', compact('projects', 'partners'));
     }
 
     public function store(CreateRequest $request)
@@ -48,13 +48,13 @@ class PaymentsController extends Controller
     public function edit(Payment $payment)
     {
         $projects = $this->repo->getProjectsList();
-        $customers = $this->repo->getCustomersAndVendorsList();
-        return view('payments.edit', compact('payment', 'projects', 'customers'));
+        $partners = $this->repo->getCustomersAndVendorsList();
+        return view('payments.edit', compact('payment', 'projects', 'partners'));
     }
 
     public function update(UpdateRequest $request, $paymentId)
     {
-        $payment = $this->repo->update($request->except(['_method','_token']), $paymentId);
+        $payment = $this->repo->update($request->except(['_method', '_token']), $paymentId);
         flash()->success(trans('payment.updated'));
         return redirect()->route('payments.show', $paymentId);
     }

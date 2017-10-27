@@ -21,7 +21,11 @@ abstract class BaseRepository extends EloquentRepository
 
     public function getCustomersAndVendorsList()
     {
-        return User::orderBy('name')->hasRoles(['customer', 'vendor'])->pluck('name', 'id');
+        $partnerList = [
+            'Customer' => Customer::orderBy('name')->pluck('name', 'id')->all(),
+            'Vendor'   => Vendor::orderBy('name')->pluck('name', 'id')->all(),
+        ];
+        return $partnerList;
     }
 
     public function getWorkersList()

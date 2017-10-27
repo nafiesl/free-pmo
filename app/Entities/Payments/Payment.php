@@ -2,6 +2,8 @@
 
 namespace App\Entities\Payments;
 
+use App\Entities\Partners\Customer;
+use App\Entities\Partners\Vendor;
 use App\Entities\Payments\PaymentPresenter;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
@@ -14,7 +16,7 @@ class Payment extends Model
     use PresentableTrait;
 
     protected $presenter = PaymentPresenter::class;
-    protected $guarded = ['id', 'created_at', 'updated_at'];
+    protected $guarded   = ['id', 'created_at', 'updated_at'];
 
     public function project()
     {
@@ -24,6 +26,15 @@ class Payment extends Model
     public function customer()
     {
         return $this->belongsTo(User::class, 'customer_id');
+    }
+
+    public function partner()
+    {
+        if ($this->in_out == 1) {
+            return $this->belongsTo(Customer::class, 'customer_id');
+        }
+
+        return $this->belongsTo(Vendor::class, 'customer_id');
     }
 
     public function type()

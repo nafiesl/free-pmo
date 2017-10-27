@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Projects;
 
-use App\Http\Requests\Projects\CreateRequest;
-use App\Http\Requests\Projects\UpdateRequest;
-use App\Http\Requests\Projects\DeleteRequest;
-use App\Http\Controllers\Controller;
 use App\Entities\Projects\ProjectsRepository;
-
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Projects\CreateRequest;
+use App\Http\Requests\Projects\DeleteRequest;
+use App\Http\Requests\Projects\UpdateRequest;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -21,7 +20,7 @@ class ProjectsController extends Controller
 
     public function index(Request $request)
     {
-        $status = null;
+        $status   = null;
         $statusId = $request->get('status');
         if ($statusId) {
             $status = $this->repo->getStatusName($statusId);
@@ -52,15 +51,15 @@ class ProjectsController extends Controller
 
     public function edit($projectId)
     {
-        $project = $this->repo->requireById($projectId);
-        $statuses = getProjectStatusesList();
+        $project   = $this->repo->requireById($projectId);
+        $statuses  = getProjectStatusesList();
         $customers = $this->repo->getCustomersList();
         return view('projects.edit', compact('project', 'statuses', 'customers'));
     }
 
     public function update(UpdateRequest $request, $projectId)
     {
-        $project = $this->repo->update($request->except(['_method','_token']), $projectId);
+        $project = $this->repo->update($request->except(['_method', '_token']), $projectId);
         flash()->success(trans('project.updated'));
         return redirect()->route('projects.edit', $projectId);
     }
@@ -85,7 +84,7 @@ class ProjectsController extends Controller
 
     public function features($projectId)
     {
-        $project = $this->repo->requireById($projectId);
+        $project  = $this->repo->requireById($projectId);
         $features = $this->repo->getProjectFeatures($projectId);
         return view('projects.features', compact('project', 'features'));
     }
@@ -99,8 +98,8 @@ class ProjectsController extends Controller
     public function featuresExport(Request $request, $projectId, $exportType = 'excel')
     {
         $featureType = $request->get('feature_type', 1);
-        $project = $this->repo->requireById($projectId);
-        $features = $this->repo->getProjectFeatures($projectId, $featureType);
+        $project     = $this->repo->requireById($projectId);
+        $features    = $this->repo->getProjectFeatures($projectId, $featureType);
 
         if ($exportType == 'excel') {
             return view('projects.features-export-excel', compact('project', 'features'));
@@ -124,7 +123,7 @@ class ProjectsController extends Controller
     public function payments($projectId)
     {
         $project = $this->repo->requireById($projectId);
-        $project->load('payments.customer');
+        $project->load('payments.partner');
         return view('projects.payments', compact('project'));
     }
 

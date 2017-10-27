@@ -2,7 +2,6 @@
 
 use App\Entities\Invoices\Invoice;
 use App\Entities\Partners\Customer;
-use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
@@ -65,7 +64,7 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
             return factory(Customer::class)->create()->id;
         },
         'vendor_id'        => function () {
-            return factory(Vendor::class)->create()->id;
+            return factory(Customer::class)->create()->id;
         },
     ];
 });

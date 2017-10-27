@@ -22,11 +22,6 @@ class Subscription extends Model
         return $this->belongsTo('App\Entities\Partners\Customer');
     }
 
-    public function vendor()
-    {
-        return $this->belongsTo('App\Entities\Partners\Vendor', 'vendor_id');
-    }
-
     public function status()
     {
         return $this->status_id ? trans('app.active') : trans('app.in_active');

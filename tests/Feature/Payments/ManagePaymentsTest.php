@@ -3,7 +3,6 @@
 namespace Tests\Feature\Payments;
 
 use App\Entities\Partners\Customer;
-use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use Tests\TestCase;
@@ -45,7 +44,7 @@ class ManagePaymentsTest extends TestCase
     public function admin_can_entry_project_an_expanse_payment()
     {
         $user    = $this->adminUserSigningIn();
-        $vendor  = factory(Vendor::class)->create();
+        $vendor  = factory(Customer::class)->create();
         $project = factory(Project::class)->create();
 
         $this->visit(route('payments.index'));
@@ -80,7 +79,7 @@ class ManagePaymentsTest extends TestCase
         $customer = factory(Customer::class)->create();
         $project  = factory(Project::class)->create();
 
-        $payment = factory(Payment::class, 'expanse')->create([
+        $payment = factory(Payment::class)->create([
             'partner_id' => $customer->id,
             'project_id' => $project->id,
             'owner_id'   => $user->id,
@@ -110,7 +109,7 @@ class ManagePaymentsTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $payment = factory(Payment::class, 'expanse')->create(['owner_id' => $user->id]);
+        $payment = factory(Payment::class)->create(['owner_id' => $user->id]);
         $this->visit(route('payments.index'));
         $this->click(trans('app.edit'));
         $this->click(trans('payment.delete'));
@@ -125,7 +124,7 @@ class ManagePaymentsTest extends TestCase
         $user = $this->adminUserSigningIn();
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
-        $payment = factory(Payment::class, 'expanse')->create(['project_id' => $project->id, 'owner_id' => $user->id]);
+        $payment = factory(Payment::class)->create(['project_id' => $project->id, 'owner_id' => $user->id]);
 
         $this->visit(route('payments.index'));
         $this->click(trans('app.show'));

@@ -13,8 +13,8 @@ class PaymentSearchTest extends TestCase
     {
         $admin          = $this->adminUserSigningIn();
         $project        = factory(Project::class)->create(['name' => 'Project']);
-        $payment        = factory(Payment::class, 'expanse')->create(['owner_id' => $admin->id, 'project_id' => $project->id]);
-        $unShownPayment = factory(Payment::class, 'expanse')->create(['owner_id' => $admin->id]);
+        $payment        = factory(Payment::class)->create(['owner_id' => $admin->id, 'project_id' => $project->id]);
+        $unShownPayment = factory(Payment::class)->create(['owner_id' => $admin->id]);
 
         $this->visit(route('payments.index'));
         $this->submitForm(trans('app.search'), [
@@ -31,8 +31,8 @@ class PaymentSearchTest extends TestCase
     public function partner_find_payment_by_customer_id()
     {
         $admin          = $this->adminUserSigningIn();
-        $payment        = factory(Payment::class, 'expanse')->create(['owner_id' => $admin->id]);
-        $unShownPayment = factory(Payment::class, 'expanse')->create(['owner_id' => $admin->id]);
+        $payment        = factory(Payment::class)->create(['owner_id' => $admin->id]);
+        $unShownPayment = factory(Payment::class)->create(['owner_id' => $admin->id]);
 
         $this->visit(route('payments.index'));
         $this->submitForm(trans('app.search'), [

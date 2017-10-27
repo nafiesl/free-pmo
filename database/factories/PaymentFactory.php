@@ -20,7 +20,7 @@ $factory->define(Payment::class, function (Faker $faker) {
         'owner_id'    => function () {
             return factory(User::class)->create()->id;
         },
-        'customer_id' => function () {
+        'partner_id'  => function () {
             return factory(Customer::class)->create()->id;
         },
     ];

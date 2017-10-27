@@ -5,8 +5,8 @@ namespace App\Entities\Subscriptions;
 use App\Entities\BaseRepository;
 
 /**
-* Subscriptions Repository Class
-*/
+ * Subscriptions Repository Class
+ */
 class SubscriptionsRepository extends BaseRepository
 {
     protected $model;
@@ -16,16 +16,20 @@ class SubscriptionsRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function getSubscriptions($q, $vendorId)
+    public function getSubscriptions($q, $customerId)
     {
         return $this->model->orderBy('due_date')
-            ->where(function($query) use ($q, $vendorId) {
-                if ($vendorId)
-                    $query->where('vendor_id', $vendorId);
-                if ($q)
-                    $query->where('domain_name','like','%' . $q . '%');
+            ->where(function ($query) use ($q, $customerId) {
+                if ($customerId) {
+                    $query->where('customer_id', $customerId);
+                }
+
+                if ($q) {
+                    $query->where('domain_name', 'like', '%'.$q.'%');
+                }
+
             })
-            ->with('vendor')
+            ->with('customer')
             ->paginate($this->_paginate);
     }
 }

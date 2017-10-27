@@ -35,7 +35,6 @@
             <td class="text-right">{{ $payment->present()->amount }}</td>
             <td>{{ $payment->description }}</td>
             <td>{{ $payment->partner->name }}</td>
-            {{-- <td>{{ $payment->partner }}</td> --}}
             <td>
                 {!! link_to_route('payments.show', trans('app.show'), [$payment->id], ['class'=>'btn btn-info btn-xs']) !!}
                 {!! link_to_route('payments.edit', trans('app.edit'), [$payment->id], ['class'=>'btn btn-warning btn-xs']) !!}

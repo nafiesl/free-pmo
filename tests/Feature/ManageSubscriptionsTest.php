@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Entities\Partners\Customer;
-use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
 use Tests\TestCase;
@@ -14,7 +13,7 @@ class ManageSubscriptionsTest extends TestCase
     public function admin_can_entry_subscription()
     {
         $user     = $this->adminUserSigningIn();
-        $vendor   = factory(Vendor::class)->create();
+        $vendor   = factory(Customer::class)->create();
         $project  = factory(Project::class)->create();
         $customer = factory(Customer::class)->create();
 
@@ -54,7 +53,7 @@ class ManageSubscriptionsTest extends TestCase
     public function admin_can_edit_subscription_data()
     {
         $user     = $this->adminUserSigningIn();
-        $vendor   = factory(Vendor::class)->create();
+        $vendor   = factory(Customer::class)->create();
         $eppCode  = str_random(10);
         $project  = factory(Project::class)->create();
         $customer = factory(Customer::class)->create();

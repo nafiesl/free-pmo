@@ -9,9 +9,9 @@ use Tests\TestCase;
 class PaymentTest extends TestCase
 {
     /** @test */
-    public function it_has_customer_relation()
+    public function it_has_partner_relation()
     {
         $payment = factory(Payment::class)->create();
-        $this->assertTrue($payment->customer instanceof Customer);
+        $this->assertTrue($payment->partner instanceof Customer);
     }
 }

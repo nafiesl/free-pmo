@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     use Notifiable, PresentableTrait;
 
-    protected $fillable  = ['name', 'email', 'password'];
+    protected $fillable  = ['name', 'email', 'password', 'api_token'];
     protected $hidden    = ['password', 'remember_token', 'api_token'];
     protected $presenter = UserPresenter::class;
 

@@ -27,6 +27,8 @@ class AuthController extends Controller
     {
         $registerData = $request->only('name', 'email', 'password');
 
+        $registerData['api_token'] = str_random(32);
+
         $user = User::create($registerData);
         $user->assignRole('admin');
         $user->assignRole('worker');

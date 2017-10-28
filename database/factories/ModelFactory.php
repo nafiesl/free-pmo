@@ -19,30 +19,6 @@ $factory->define(User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(Project::class, function (Faker\Generator $faker) {
-
-    $proposalDate = $faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d');
-    $startDate    = Carbon::parse($proposalDate)->addDays(10);
-    $endDate      = $startDate->addDays(rand(1, 13) * 7);
-
-    return [
-        'name'           => $faker->sentence(3),
-        'description'    => $faker->paragraph,
-        'proposal_date'  => $proposalDate,
-        'start_date'     => $startDate->format('Y-m-d'),
-        'end_date'       => $endDate->format('Y-m-d'),
-        'project_value'  => $projectValue = rand(1, 10) * 500000,
-        'proposal_value' => $projectValue,
-        'status_id'      => rand(1, 6),
-        'owner_id'       => function () {
-            return factory(User::class)->create()->id;
-        },
-        'customer_id'    => function () {
-            return factory(Partner::class)->create()->id;
-        },
-    ];
-});
-
 $factory->define(Subscription::class, function (Faker\Generator $faker) {
 
     $startDate = Carbon::parse($faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'));

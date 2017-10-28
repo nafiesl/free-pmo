@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Entities\Agencies\Agency;
 use App\Entities\Partners\Partner;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
@@ -71,8 +72,21 @@ class ProjectTest extends TestCase
     /** @test */
     public function a_project_belongs_to_a_customer()
     {
-        $project = factory(Project::class)->create();
+        $customer = factory(Partner::class)->create();
+        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
+
         $this->assertTrue($project->customer instanceof Partner);
+        $this->assertEquals($project->customer_id, $customer->id);
+    }
+
+    /** @test */
+    public function a_project_belongs_to_an_agency()
+    {
+        $agency  = factory(Agency::class)->create();
+        $project = factory(Project::class)->create(['owner_id' => $agency->id]);
+
+        $this->assertTrue($project->owner instanceof Agency);
+        $this->assertEquals($project->owner_id, $agency->id);
     }
 
     /** @test */

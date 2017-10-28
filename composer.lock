@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "42c587280dac3b87958ec2fdd600a6e3",
+    "content-hash": "d7f0b843dffbe069e2c3e5877590b926",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -3302,16 +3302,16 @@
         },
         {
             "name": "luthfi/simple-crud-generator",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
-                "reference": "b9a6cc68112931f1f667b7dea6a7b99e038e3740"
+                "reference": "bef1109473c7a4a3c3ea71de1b64f5e246c04074"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/b9a6cc68112931f1f667b7dea6a7b99e038e3740",
-                "reference": "b9a6cc68112931f1f667b7dea6a7b99e038e3740",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/bef1109473c7a4a3c3ea71de1b64f5e246c04074",
+                "reference": "bef1109473c7a4a3c3ea71de1b64f5e246c04074",
                 "shasum": ""
             },
             "require": {
@@ -3357,10 +3357,10 @@
             ],
             "description": "A simple CRUD generator for Laravel 5.5.",
             "support": {
-                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/0.1.1",
+                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/0.1.2",
                 "issues": "https://github.com/nafiesl/SimpleCrudGenerator/issues"
             },
-            "time": "2017-10-24T14:25:37+00:00"
+            "time": "2017-10-28T06:34:09+00:00"
         },
         {
             "name": "maximebf/debugbar",

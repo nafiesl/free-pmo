@@ -29,7 +29,7 @@
         "fzaninotto/faker": "~1.4",
         "johnkary/phpunit-speedtrap": "dev-master",
         "laravel/browser-kit-testing": "^2.0",
-        "luthfi/simple-crud-generator": "^0.1.1",
+        "luthfi/simple-crud-generator": "^0.1.2",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~6.0"
     },

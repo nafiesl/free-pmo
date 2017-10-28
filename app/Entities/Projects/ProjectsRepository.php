@@ -61,9 +61,10 @@ class ProjectsRepository extends BaseRepository
 
     public function createNewCustomer($customerName, $customerEmail)
     {
-        $newCustomer        = new Partner;
-        $newCustomer->name  = $customerName;
-        $newCustomer->email = $customerEmail;
+        $newCustomer           = new Partner;
+        $newCustomer->name     = $customerName;
+        $newCustomer->email    = $customerEmail;
+        $newCustomer->owner_id = auth()->user()->agency->id;
         $newCustomer->save();
 
         return $newCustomer;

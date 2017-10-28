@@ -44,6 +44,8 @@ class PartnersController extends Controller
             'notes'   => 'nullable|max:255',
         ]);
 
+        $newPartnerData['owner_id'] = auth()->user()->agency->id;
+
         Partner::create($newPartnerData);
 
         flash(trans('partner.created'), 'success');

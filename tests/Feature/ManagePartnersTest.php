@@ -25,7 +25,7 @@ class ManagePartnersTest extends TestCase
     /** @test */
     public function user_can_create_a_partner()
     {
-        $this->adminUserSigningIn();
+        $user = $this->adminUserSigningIn();
         $this->visit(route('partners.index'));
 
         $this->click(trans('partner.create'));
@@ -43,12 +43,13 @@ class ManagePartnersTest extends TestCase
         $this->seePageIs(route('partners.index'));
 
         $this->seeInDatabase('partners', [
-            'name'    => 'Partner 1 name',
-            'email'   => 'partner1@mail.com',
-            'phone'   => '081234567890',
-            'pic'     => 'Nama PIC Partner',
-            'address' => 'Alamat partner 1',
-            'notes'   => null,
+            'name'     => 'Partner 1 name',
+            'email'    => 'partner1@mail.com',
+            'phone'    => '081234567890',
+            'pic'      => 'Nama PIC Partner',
+            'address'  => 'Alamat partner 1',
+            'notes'    => null,
+            'owner_id' => $user->agency->id,
         ]);
     }
 

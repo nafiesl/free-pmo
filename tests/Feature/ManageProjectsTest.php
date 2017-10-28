@@ -36,7 +36,7 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function admin_can_input_new_project_with_new_partner()
     {
-        $this->adminUserSigningIn();
+        $user = $this->adminUserSigningIn();
 
         $this->visit(route('projects.index'));
         $this->seePageIs(route('projects.index'));
@@ -68,6 +68,7 @@ class ManageProjectsTest extends TestCase
             'name'           => 'Project Baru',
             'proposal_value' => '2000000',
             'customer_id'    => $newPartner->id,
+            'owner_id'       => $user->agency->id,
         ]);
     }
 

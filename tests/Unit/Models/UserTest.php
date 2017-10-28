@@ -55,6 +55,6 @@ class UserTest extends TestCase
         $user = factory(User::class)->create();
         $user->assignRole('worker');
 
-        $this->assertCount(2, User::orderBy('name')->hasRoles(['worker'])->get());
+        $this->assertCount(1, User::orderBy('name')->hasRoles(['worker'])->get());
     }
 }

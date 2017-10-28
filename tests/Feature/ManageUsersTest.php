@@ -7,6 +7,16 @@ use Tests\TestCase;
 
 class ManageUsersTest extends TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        \DB::table('roles_permissions')->insert([
+            ['type' => 0, 'name' => 'admin', 'label' => 'Admin'],
+            ['type' => 0, 'name' => 'worker', 'label' => 'Worker'],
+        ]);
+    }
+
     /** @test */
     public function admin_can_insert_new_user()
     {

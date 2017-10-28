@@ -14,7 +14,7 @@ trait DatabaseMigrateSeeds
     public function runDatabaseMigrateSeeds()
     {
         $this->artisan('migrate');
-        $this->artisan('db:seed');
+        // $this->artisan('db:seed');
 
         $this->app[Kernel::class]->setArtisan(null);
     }

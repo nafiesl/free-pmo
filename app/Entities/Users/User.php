@@ -11,8 +11,8 @@ class User extends Authenticatable
 {
     use Notifiable, PresentableTrait;
 
-    protected $fillable = ['name', 'email', 'password'];
-    protected $hidden = ['password', 'remember_token', 'api_token'];
+    protected $fillable  = ['name', 'email', 'password'];
+    protected $hidden    = ['password', 'remember_token', 'api_token'];
     protected $presenter = UserPresenter::class;
 
     public function setPasswordAttribute($value)
@@ -41,10 +41,16 @@ class User extends Authenticatable
      * @param  string $role
      * @return mixed
      */
-    public function assignRole($role)
+    public function assignRole($roleName)
     {
-        $roleId = Role::whereName($role)->firstOrFail()->id;
-        return $this->roles()->attach($roleId);
+        $role = Role::firstOrNew(['name' => $roleName]);
+
+        if ($role->exists == false) {
+            $role->label = ucwords($roleName);
+            $role->save();
+        }
+
+        return $this->roles()->attach($role);
     }
 
     /**
@@ -71,7 +77,7 @@ class User extends Authenticatable
             return $this->roles->contains('name', $role);
         }
 
-        return !!$role->intersect($this->roles)->count();
+        return  !  ! $role->intersect($this->roles)->count();
     }
 
     public function hasRoles(array $roleNameArray)

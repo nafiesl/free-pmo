@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
+use App\Entities\Users\User;
 use Tests\TestCase;
 
 class MemberRegistrationTest extends TestCase
@@ -9,12 +10,14 @@ class MemberRegistrationTest extends TestCase
     /** @test */
     public function registration_validation()
     {
+        factory(User::class)->create(['email' => 'member@app.dev']);
+
         $this->visit(route('auth.register'));
 
         $this->submitForm(trans('auth.register'), [
-            'name' => '',
-            'email' => 'member@app.dev',
-            'password' => '',
+            'name'                  => '',
+            'email'                 => 'member@app.dev',
+            'password'              => '',
             'password_confirmation' => '',
         ]);
 
@@ -25,9 +28,9 @@ class MemberRegistrationTest extends TestCase
         $this->see('Konfirmasi password harus diisi.');
 
         $this->submitForm(trans('auth.register'), [
-            'name' => 'Nama Member',
-            'email' => 'email',
-            'password' => 'password',
+            'name'                  => 'Nama Member',
+            'email'                 => 'email',
+            'password'              => 'password',
             'password_confirmation' => 'password..',
         ]);
 
@@ -41,9 +44,9 @@ class MemberRegistrationTest extends TestCase
     {
         $this->visit(route('auth.register'));
         $this->submitForm(trans('auth.register'), [
-            'name' => 'Nama Member',
-            'email' => 'email@mail.com',
-            'password' => 'password.111',
+            'name'                  => 'Nama Member',
+            'email'                 => 'email@mail.com',
+            'password'              => 'password.111',
             'password_confirmation' => 'password.111',
         ]);
         $this->seePageIs(route('home'));

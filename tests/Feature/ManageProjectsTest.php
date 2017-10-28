@@ -77,10 +77,10 @@ class ManageProjectsTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $project = factory(Project::class)->create(['owner_id' => $user->id]);
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
         $feature = factory(Feature::class)->create(['project_id' => $project->id]);
         $task    = factory(Task::class)->create(['feature_id' => $feature->id]);
-        $payment = factory(Payment::class)->create(['project_id' => $project->id]);
+        $payment = factory(Payment::class)->create(['project_id' => $project->id, 'owner_id' => $user->agency->id]);
 
         $this->visit('projects/'.$project->id);
         $this->click(trans('app.edit'));

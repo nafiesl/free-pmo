@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\Entities\Projects\Feature;
+use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
-use App\Entities\Users\User;
 use Tests\TestCase;
 
 class ManageTasksTest extends TestCase
@@ -12,10 +12,10 @@ class ManageTasksTest extends TestCase
     /** @test */
     public function admin_can_entry_task()
     {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $user    = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
 
-        $feature = factory(Feature::class)->create(['worker_id' => $user->id]);
+        $feature = factory(Feature::class)->create(['worker_id' => $user->id, 'project_id' => $project->id]);
         $this->visit('features/'.$feature->id);
         $this->seePageIs('features/'.$feature->id);
         $this->see(trans('feature.tasks'));
@@ -41,10 +41,10 @@ class ManageTasksTest extends TestCase
     /** @test */
     public function admin_can_edit_task_data()
     {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $user    = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
 
-        $feature = factory(Feature::class)->create(['worker_id' => $user->id]);
+        $feature = factory(Feature::class)->create(['worker_id' => $user->id, 'project_id' => $project->id]);
 
         $task = factory(Task::class)->create(['feature_id' => $feature->id]);
 
@@ -71,10 +71,10 @@ class ManageTasksTest extends TestCase
     /** @test */
     public function admin_can_delete_a_task()
     {
-        $user = factory(User::class)->create();
-        $this->actingAs($user);
+        $user    = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
 
-        $feature = factory(Feature::class)->create(['worker_id' => $user->id]);
+        $feature = factory(Feature::class)->create(['worker_id' => $user->id, 'project_id' => $project->id]);
 
         $task = factory(Task::class)->create(['feature_id' => $feature->id]);
 

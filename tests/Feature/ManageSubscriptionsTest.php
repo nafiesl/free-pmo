@@ -14,7 +14,7 @@ class ManageSubscriptionsTest extends TestCase
     {
         $user     = $this->adminUserSigningIn();
         $vendor   = factory(Partner::class)->create();
-        $project  = factory(Project::class)->create();
+        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id]);
         $customer = factory(Partner::class)->create();
 
         $this->visit(route('subscriptions.index'));
@@ -55,7 +55,7 @@ class ManageSubscriptionsTest extends TestCase
         $user     = $this->adminUserSigningIn();
         $vendor   = factory(Partner::class)->create();
         $eppCode  = str_random(10);
-        $project  = factory(Project::class)->create();
+        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id]);
         $customer = factory(Partner::class)->create();
 
         $subscription = factory(Subscription::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
@@ -94,9 +94,9 @@ class ManageSubscriptionsTest extends TestCase
     /** @test */
     public function admin_can_delete_a_subscription()
     {
-        $user = $this->adminUserSigningIn();
-
-        $subscription = factory(Subscription::class)->create();
+        $user         = $this->adminUserSigningIn();
+        $project      = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
 
         $this->visit(route('subscriptions.edit', $subscription->id));
         $this->click(trans('subscription.delete'));
@@ -110,9 +110,9 @@ class ManageSubscriptionsTest extends TestCase
     /** @test */
     public function admin_can_see_a_subscription()
     {
-        $user = $this->adminUserSigningIn();
-
-        $subscription = factory(Subscription::class)->create();
+        $user         = $this->adminUserSigningIn();
+        $project      = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
 
         $this->visit(route('subscriptions.show', $subscription->id));
 

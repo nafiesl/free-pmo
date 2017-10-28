@@ -30,7 +30,6 @@ class PaymentsRepository extends BaseRepository
                 }
             })
             ->with('partner', 'project')
-            ->whereOwnerId(auth()->id())
             ->paginate($this->_paginate);
     }
 

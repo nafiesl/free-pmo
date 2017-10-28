@@ -13,8 +13,8 @@ class ManagePaymentsTest extends TestCase
     public function admin_can_entry_project_an_income_payment()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Partner::class)->create();
-        $project  = factory(Project::class)->create();
+        $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id]);
 
         $this->visit(route('payments.index'));
         $this->seePageIs(route('payments.index'));
@@ -44,8 +44,8 @@ class ManagePaymentsTest extends TestCase
     public function admin_can_entry_project_an_expanse_payment()
     {
         $user    = $this->adminUserSigningIn();
-        $vendor  = factory(Partner::class)->create();
-        $project = factory(Project::class)->create();
+        $vendor  = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
 
         $this->visit(route('payments.index'));
         $this->seePageIs(route('payments.index'));
@@ -76,13 +76,13 @@ class ManagePaymentsTest extends TestCase
     public function admin_can_edit_payment_data()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Partner::class)->create();
-        $project  = factory(Project::class)->create();
+        $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id]);
 
         $payment = factory(Payment::class)->create([
             'partner_id' => $customer->id,
             'project_id' => $project->id,
-            'owner_id'   => $user->id,
+            'owner_id'   => $user->agency->id,
         ]);
 
         $this->visit(route('payments.edit', $payment->id));
@@ -107,9 +107,13 @@ class ManagePaymentsTest extends TestCase
     /** @test */
     public function admin_can_delete_a_payment()
     {
-        $user = $this->adminUserSigningIn();
+        $user    = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $payment = factory(Payment::class)->create([
+            'project_id' => $project->id,
+            'owner_id'   => $user->agency->id,
+        ]);
 
-        $payment = factory(Payment::class)->create(['owner_id' => $user->id]);
         $this->visit(route('payments.index'));
         $this->click(trans('app.edit'));
         $this->click(trans('payment.delete'));

@@ -16,7 +16,7 @@ class InvoiceEntryTest extends TestCase
         $this->adminUserSigningIn();
 
         // Add new draft to collection
-        $cart = new InvoiceDraftCollection();
+        $cart  = new InvoiceDraftCollection();
         $draft = $cart->add(new InvoiceDraft());
 
         $this->visit(route('invoices.create'));
@@ -31,7 +31,7 @@ class InvoiceEntryTest extends TestCase
         $this->visit(route('invoices.create'));
 
         $this->press(trans('invoice.create'));
-        $cart = new InvoiceDraftCollection();
+        $cart  = new InvoiceDraftCollection();
         $draft = $cart->content()->last();
         $this->seePageIs(route('invoices.create', $draft->draftKey));
     }
@@ -41,7 +41,7 @@ class InvoiceEntryTest extends TestCase
     {
         $this->adminUserSigningIn();
 
-        $cart = new InvoiceDraftCollection();
+        $cart  = new InvoiceDraftCollection();
         $draft = new InvoiceDraft();
         $cart->add($draft);
 
@@ -99,8 +99,9 @@ class InvoiceEntryTest extends TestCase
     /** @test */
     public function user_can_update_draft_invoice_detail_and_get_confirm_page()
     {
-        $project = factory(Project::class)->create();
-        $cart = new InvoiceDraftCollection();
+        $user    = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $cart    = new InvoiceDraftCollection();
 
         $draft = $cart->add(new InvoiceDraft());
 
@@ -111,7 +112,6 @@ class InvoiceEntryTest extends TestCase
         $cart->addItemToDraft($draft->draftKey, $item1);
         $cart->addItemToDraft($draft->draftKey, $item2);
 
-        $this->adminUserSigningIn();
         $this->visit(route('invoices.create', $draft->draftKey));
 
         $this->type($project->id, 'project_id');
@@ -136,7 +136,9 @@ class InvoiceEntryTest extends TestCase
 
         $item1 = new Item(['description' => 'Deskripsi item invoice', 'amount' => 1000]);
         $item2 = new Item(['description' => 'Deskripsi item invoice', 'amount' => 2000]);
-        $project = factory(Project::class)->create();
+
+        $user    = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
 
         // Add items to draft
         $cart->addItemToDraft($draft->draftKey, $item1);
@@ -144,11 +146,10 @@ class InvoiceEntryTest extends TestCase
 
         $draftAttributes = [
             'project_id' => $project->id,
-            'notes'   => 'Catatan',
+            'notes'      => 'Catatan',
         ];
         $cart->updateDraftAttributes($draft->draftKey, $draftAttributes);
 
-        $user = $this->adminUserSigningIn();
         $this->visit(route('invoices.create', [$draft->draftKey, 'action' => 'confirm']));
 
         $this->press(trans('invoice.save'));

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Entities\Agencies\Agency;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
@@ -45,10 +46,11 @@ class ManageFeaturesTest extends TestCase
     /** @test */
     public function admin_can_edit_feature_data()
     {
-        $user = factory(User::class, 3)->create();
+        $user   = factory(User::class, 3)->create();
+        $agency = factory(Agency::class)->create(['owner_id' => $user[0]->id]);
         $this->actingAs($user[0]);
 
-        $project = factory(Project::class)->create(['owner_id' => $user[0]->id]);
+        $project = factory(Project::class)->create(['owner_id' => $agency->id]);
 
         $feature = factory(Feature::class)->create(['worker_id' => $user[1]->id, 'project_id' => $project->id]);
 

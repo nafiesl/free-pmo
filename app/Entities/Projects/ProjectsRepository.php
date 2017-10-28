@@ -32,7 +32,6 @@ class ProjectsRepository extends BaseRepository
             })
             ->withCount('payments')
             ->with('customer')
-            ->whereOwnerId(auth()->id())
             ->paginate($this->_paginate);
     }
 

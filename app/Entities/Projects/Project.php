@@ -9,6 +9,7 @@ use App\Entities\Payments\Payment;
 use App\Entities\Projects\ProjectPresenter;
 use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
@@ -20,6 +21,26 @@ class Project extends Model
     protected $presenter = ProjectPresenter::class;
     protected $guarded   = ['id', 'created_at', 'updated_at'];
     // protected $dates = ['start_date','end_date'];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        if (auth()->user()) {
+            static::addGlobalScope('by_owner', function (Builder $builder) {
+                if ( ! is_null(auth()->user()->agency)) {
+                    $builder->where('owner_id', auth()->user()->agency->id);
+                } else {
+                    $builder->where('owner_id', 0);
+                }
+            });
+        }
+    }
 
     public function nameLink()
     {

@@ -28,6 +28,14 @@ abstract class TestCase extends BaseTestCase
         return $user;
     }
 
+    protected function userSigningIn()
+    {
+        $user = factory(User::class)->create();
+        $this->actingAs($user);
+
+        return $user;
+    }
+
     protected function createUser($role = 'admin')
     {
         $user = factory(User::class)->create();

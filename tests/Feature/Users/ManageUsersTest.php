@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Users;
 
 use App\Entities\Users\User;
 use Tests\TestCase;

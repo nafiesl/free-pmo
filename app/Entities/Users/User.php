@@ -95,4 +95,9 @@ class User extends Authenticatable
             $q->whereIn('name', $roleNameArray);
         });
     }
+
+    public function agency()
+    {
+        return $this->hasOne('App\Entities\Agencies\Agency', 'owner_id');
+    }
 }

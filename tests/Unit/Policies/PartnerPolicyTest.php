@@ -3,13 +3,10 @@
 namespace Tests\Unit\Policies;
 
 use App\Entities\Partners\Partner;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase as TestCase;
 
-class PartnerTest extends TestCase
+class PartnerPolicyTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function user_can_create_partner()
     {

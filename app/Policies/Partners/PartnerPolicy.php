@@ -11,7 +11,7 @@ class PartnerPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the project.
+     * Determine whether the user can view the partner.
      *
      * @param  \App\Entities\Users\User  $user
      * @param  \App\Entities\Partners\Partner  $partner
@@ -24,7 +24,7 @@ class PartnerPolicy
     }
 
     /**
-     * Determine whether the user can create projects.
+     * Determine whether the user can create partners.
      *
      * @param  \App\Entities\Users\User  $user
      * @param  \App\Entities\Partners\Partner  $partner
@@ -37,7 +37,7 @@ class PartnerPolicy
     }
 
     /**
-     * Determine whether the user can update the project.
+     * Determine whether the user can update the partner.
      *
      * @param  \App\Entities\Users\User  $user
      * @param  \App\Entities\Partners\Partner  $partner
@@ -50,7 +50,7 @@ class PartnerPolicy
     }
 
     /**
-     * Determine whether the user can delete the project.
+     * Determine whether the user can delete the partner.
      *
      * @param  \App\Entities\Users\User  $user
      * @param  \App\Entities\Partners\Partner  $partner

@@ -46,6 +46,7 @@ class User extends Authenticatable
         $role = Role::firstOrNew(['name' => $roleName]);
 
         if ($role->exists == false) {
+            $role->type  = 0;
             $role->label = ucwords($roleName);
             $role->save();
         }

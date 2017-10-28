@@ -29,6 +29,7 @@ class AuthController extends Controller
 
         $user = User::create($registerData);
         $user->assignRole('admin');
+        $user->assignRole('worker');
         Auth::login($user);
 
         flash()->success(trans('auth.welcome', ['name' => $user->name]));

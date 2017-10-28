@@ -1,9 +1,9 @@
 <?php
 
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use Faker\Generator as Faker;
 
-$factory->define(Customer::class, function (Faker $faker) {
+$factory->define(Partner::class, function (Faker $faker) {
 
     return [
         'name' => $faker->company,

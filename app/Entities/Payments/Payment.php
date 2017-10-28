@@ -2,7 +2,7 @@
 
 namespace App\Entities\Payments;
 
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use App\Entities\Payments\PaymentPresenter;
 use App\Entities\Projects\Project;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +23,7 @@ class Payment extends Model
 
     public function partner()
     {
-        return $this->belongsTo(Customer::class, 'partner_id');
+        return $this->belongsTo(Partner::class, 'partner_id');
     }
 
     public function type()

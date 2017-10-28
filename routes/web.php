@@ -22,4 +22,4 @@ Route::group(['middleware' => ['web', 'role:admin']], function () {
     Route::resource('backups', 'BackupsController', ['except' => ['create', 'show', 'edit']]);
 });
 
-Route::apiResource('customers', 'Partners\CustomersController');
+Route::apiResource('partners', 'Partners\PartnersController');

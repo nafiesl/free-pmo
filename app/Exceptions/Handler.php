@@ -45,10 +45,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // throw $exception;
+
         if ($exception instanceof AuthorizationException) {
 
-            if ($request->expectsJson())
+            if ($request->expectsJson()) {
                 return response()->json(['error' => 'Forbidden Action.'], 403);
+            }
 
             flash()->error('Invalid access');
             return redirect()->home();
@@ -56,8 +59,9 @@ class Handler extends ExceptionHandler
 
         if ($exception instanceof EntityNotFoundException) {
 
-            if ($request->expectsJson())
+            if ($request->expectsJson()) {
                 return response()->json(['error' => 'Data not found.'], 404);
+            }
 
             flash()->error('Data not found.');
             return redirect()->home();

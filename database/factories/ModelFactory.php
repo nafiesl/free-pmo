@@ -1,7 +1,7 @@
 <?php
 
 use App\Entities\Invoices\Invoice;
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
@@ -38,7 +38,7 @@ $factory->define(Project::class, function (Faker\Generator $faker) {
             return factory(User::class)->create()->id;
         },
         'customer_id'    => function () {
-            return factory(Customer::class)->create()->id;
+            return factory(Partner::class)->create()->id;
         },
     ];
 });
@@ -61,10 +61,10 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
         'due_date'         => $startDate->addYears(1)->format('Y-m-d'),
         'remark'           => $faker->paragraph,
         'customer_id'      => function () {
-            return factory(Customer::class)->create()->id;
+            return factory(Partner::class)->create()->id;
         },
         'vendor_id'        => function () {
-            return factory(Customer::class)->create()->id;
+            return factory(Partner::class)->create()->id;
         },
     ];
 });

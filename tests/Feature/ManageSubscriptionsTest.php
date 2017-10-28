@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
 use Tests\TestCase;
@@ -13,9 +13,9 @@ class ManageSubscriptionsTest extends TestCase
     public function admin_can_entry_subscription()
     {
         $user     = $this->adminUserSigningIn();
-        $vendor   = factory(Customer::class)->create();
+        $vendor   = factory(Partner::class)->create();
         $project  = factory(Project::class)->create();
-        $customer = factory(Customer::class)->create();
+        $customer = factory(Partner::class)->create();
 
         $this->visit(route('subscriptions.index'));
         $this->click(trans('subscription.create'));
@@ -53,10 +53,10 @@ class ManageSubscriptionsTest extends TestCase
     public function admin_can_edit_subscription_data()
     {
         $user     = $this->adminUserSigningIn();
-        $vendor   = factory(Customer::class)->create();
+        $vendor   = factory(Partner::class)->create();
         $eppCode  = str_random(10);
         $project  = factory(Project::class)->create();
-        $customer = factory(Customer::class)->create();
+        $customer = factory(Partner::class)->create();
 
         $subscription = factory(Subscription::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
 

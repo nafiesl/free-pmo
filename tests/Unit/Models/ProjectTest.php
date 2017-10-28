@@ -2,13 +2,12 @@
 
 namespace Tests\Unit\Models;
 
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
-use App\Entities\Users\User;
 use Illuminate\Support\Collection;
 use Tests\TestCase;
 
@@ -46,7 +45,7 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 2]);
-        $tasks = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
+        $tasks   = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
         $this->assertTrue($project->tasks instanceof Collection);
         $this->assertTrue($project->tasks->first() instanceof Task);
     }
@@ -63,7 +62,7 @@ class ProjectTest extends TestCase
     /** @test */
     public function a_project_has_many_subscriptions()
     {
-        $project = factory(Project::class)->create();
+        $project      = factory(Project::class)->create();
         $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
         $this->assertTrue($project->subscriptions instanceof Collection);
         $this->assertTrue($project->subscriptions->first() instanceof Subscription);
@@ -73,13 +72,13 @@ class ProjectTest extends TestCase
     public function a_project_belongs_to_a_customer()
     {
         $project = factory(Project::class)->create();
-        $this->assertTrue($project->customer instanceof Customer);
+        $this->assertTrue($project->customer instanceof Partner);
     }
 
     /** @test */
     public function a_project_has_cash_in_total_method()
     {
-        $project = factory(Project::class)->create();
+        $project  = factory(Project::class)->create();
         $payments = factory(Payment::class, 2)->create(['project_id' => $project->id, 'in_out' => 1, 'amount' => 20000]);
         $this->assertEquals(40000, $project->cashInTotal());
     }
@@ -87,7 +86,7 @@ class ProjectTest extends TestCase
     /** @test */
     public function a_project_has_cash_out_total_method()
     {
-        $project = factory(Project::class)->create();
+        $project  = factory(Project::class)->create();
         $payments = factory(Payment::class, 2)->create(['project_id' => $project->id, 'in_out' => 0, 'amount' => 10000]);
         factory(Payment::class)->create(['project_id' => $project->id, 'in_out' => 1, 'amount' => 10000]);
         $this->assertEquals(20000, $project->cashOutTotal());

@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Payments;
 
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use Tests\TestCase;
@@ -13,7 +13,7 @@ class ManagePaymentsTest extends TestCase
     public function admin_can_entry_project_an_income_payment()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
+        $customer = factory(Partner::class)->create();
         $project  = factory(Project::class)->create();
 
         $this->visit(route('payments.index'));
@@ -44,7 +44,7 @@ class ManagePaymentsTest extends TestCase
     public function admin_can_entry_project_an_expanse_payment()
     {
         $user    = $this->adminUserSigningIn();
-        $vendor  = factory(Customer::class)->create();
+        $vendor  = factory(Partner::class)->create();
         $project = factory(Project::class)->create();
 
         $this->visit(route('payments.index'));
@@ -76,7 +76,7 @@ class ManagePaymentsTest extends TestCase
     public function admin_can_edit_payment_data()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
+        $customer = factory(Partner::class)->create();
         $project  = factory(Project::class)->create();
 
         $payment = factory(Payment::class)->create([

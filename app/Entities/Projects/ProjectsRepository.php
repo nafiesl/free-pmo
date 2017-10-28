@@ -3,7 +3,7 @@
 namespace App\Entities\Projects;
 
 use App\Entities\BaseRepository;
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use DB;
 
 /**
@@ -61,7 +61,7 @@ class ProjectsRepository extends BaseRepository
 
     public function createNewCustomer($customerName, $customerEmail)
     {
-        $newCustomer        = new Customer;
+        $newCustomer        = new Partner;
         $newCustomer->name  = $customerName;
         $newCustomer->email = $customerEmail;
         $newCustomer->save();

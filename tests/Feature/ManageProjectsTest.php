@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
@@ -12,17 +12,17 @@ use Tests\TestCase;
 class ManageProjectsTest extends TestCase
 {
     /** @test */
-    public function admin_can_input_new_project_with_existing_customer()
+    public function admin_can_input_new_project_with_existing_partner()
     {
-        $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
+        $user    = $this->adminUserSigningIn();
+        $partner = factory(Partner::class)->create();
 
         $this->visit(route('projects.index'));
         $this->seePageIs(route('projects.index'));
         $this->click(trans('project.create'));
         $this->seePageIs(route('projects.create'));
         $this->type('Project Baru', 'name');
-        $this->select($customer->id, 'customer_id');
+        $this->select($partner->id, 'customer_id');
         $this->type('2016-04-15', 'proposal_date');
         $this->type('2000000', 'proposal_value');
         $this->type('Deskripsi project baru', 'description');
@@ -34,7 +34,7 @@ class ManageProjectsTest extends TestCase
     }
 
     /** @test */
-    public function admin_can_input_new_project_with_new_customer()
+    public function admin_can_input_new_project_with_new_partner()
     {
         $this->adminUserSigningIn();
 
@@ -53,21 +53,21 @@ class ManageProjectsTest extends TestCase
         $this->seePageIs(route('projects.create'));
         $this->notSeeInDatabase('projects', ['name' => 'Project Baru', 'proposal_value' => '2000000']);
 
-        $this->type('Customer Baru', 'customer_name');
-        $this->type('email@customer.baru', 'customer_email');
+        $this->type('Partner Baru', 'customer_name');
+        $this->type('email@partner.baru', 'customer_email');
         $this->press(trans('project.create'));
 
         $this->see(trans('project.created'));
         $this->see('Project Baru');
-        $this->seeInDatabase('customers', [
-            'name'  => 'Customer Baru',
-            'email' => 'email@customer.baru',
+        $this->seeInDatabase('partners', [
+            'name'  => 'Partner Baru',
+            'email' => 'email@partner.baru',
         ]);
-        $newCustomer = Customer::whereName('Customer Baru')->whereEmail('email@customer.baru')->first();
+        $newPartner = Partner::whereName('Partner Baru')->whereEmail('email@partner.baru')->first();
         $this->seeInDatabase('projects', [
             'name'           => 'Project Baru',
             'proposal_value' => '2000000',
-            'customer_id'    => $newCustomer->id,
+            'customer_id'    => $newPartner->id,
         ]);
     }
 
@@ -110,9 +110,9 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function admin_can_edit_a_project()
     {
-        $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
-        $project  = factory(Project::class)->create(['owner_id' => $user->id]);
+        $user    = $this->adminUserSigningIn();
+        $partner = factory(Partner::class)->create();
+        $project = factory(Project::class)->create(['owner_id' => $user->id]);
 
         $this->visit('projects/'.$project->id.'/edit');
         $this->seePageIs('projects/'.$project->id.'/edit');
@@ -124,7 +124,7 @@ class ManageProjectsTest extends TestCase
         $this->type(2000000, 'proposal_value');
         $this->type(2000000, 'project_value');
         $this->select(4, 'status_id');
-        $this->select($customer->id, 'customer_id');
+        $this->select($partner->id, 'customer_id');
         $this->type('Edit deskripsi project', 'description');
         $this->press(trans('project.update'));
 
@@ -134,7 +134,7 @@ class ManageProjectsTest extends TestCase
             'proposal_date' => '2016-04-15',
             'start_date'    => '2016-04-25',
             'end_date'      => '2016-05-05',
-            'customer_id'   => $customer->id,
+            'customer_id'   => $partner->id,
             'description'   => 'Edit deskripsi project',
         ]);
     }
@@ -144,14 +144,14 @@ class ManageProjectsTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $customer = factory(Customer::class)->create();
+        $partner = factory(Partner::class)->create();
 
         $this->visit(route('projects.index'));
         $this->seePageIs(route('projects.index'));
         $this->click(trans('project.create'));
         $this->seePageIs(route('projects.create'));
         $this->type('', 'name');
-        $this->select($customer->id, 'customer_id');
+        $this->select($partner->id, 'customer_id');
         $this->type('2016-04-15aa', 'proposal_date');
         $this->type('', 'proposal_value');
         $this->type('Deskripsi project baru', 'description');

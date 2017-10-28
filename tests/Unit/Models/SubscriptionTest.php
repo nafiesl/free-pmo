@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Models;
 
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use App\Entities\Subscriptions\Subscription;
 use Tests\TestCase as TestCase;
 
@@ -19,6 +19,6 @@ class SubscriptionTest extends TestCase
     public function it_has_customer_relation()
     {
         $subscription = factory(Subscription::class)->create();
-        $this->assertTrue($subscription->customer instanceof Customer);
+        $this->assertTrue($subscription->customer instanceof Partner);
     }
 }

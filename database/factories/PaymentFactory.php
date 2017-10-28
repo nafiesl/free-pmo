@@ -1,6 +1,6 @@
 <?php
 
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
@@ -21,7 +21,7 @@ $factory->define(Payment::class, function (Faker $faker) {
             return factory(User::class)->create()->id;
         },
         'partner_id'  => function () {
-            return factory(Customer::class)->create()->id;
+            return factory(Partner::class)->create()->id;
         },
     ];
 });

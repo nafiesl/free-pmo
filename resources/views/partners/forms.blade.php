@@ -1,17 +1,17 @@
 @if (Request::get('action') == 'create')
-    {!! Form::open(['route' => 'customers.store']) !!}
+    {!! Form::open(['route' => 'partners.store']) !!}
     {!! FormField::text('name', ['required' => true]) !!}
     {!! FormField::email('email') !!}
     {!! FormField::text('phone') !!}
     {!! FormField::text('pic') !!}
     {!! FormField::textarea('address') !!}
     {!! FormField::textarea('notes') !!}
-    {!! Form::submit(trans('customer.create'), ['class' => 'btn btn-success']) !!}
-    {{ link_to_route('customers.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
+    {!! Form::submit(trans('partner.create'), ['class' => 'btn btn-success']) !!}
+    {{ link_to_route('partners.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
     {!! Form::close() !!}
 @endif
-@if (Request::get('action') == 'edit' && $editableCustomer)
-    {!! Form::model($editableCustomer, ['route' => ['customers.update', $editableCustomer->id],'method' => 'patch']) !!}
+@if (Request::get('action') == 'edit' && $editablePartner)
+    {!! Form::model($editablePartner, ['route' => ['partners.update', $editablePartner->id],'method' => 'patch']) !!}
     {!! FormField::text('name', ['required' => true]) !!}
     {!! FormField::email('email') !!}
     {!! FormField::text('phone') !!}
@@ -25,42 +25,42 @@
     @if (request('page'))
         {{ Form::hidden('page', request('page')) }}
     @endif
-    {!! Form::submit(trans('customer.update'), ['class' => 'btn btn-success']) !!}
-    {{ link_to_route('customers.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
+    {!! Form::submit(trans('partner.update'), ['class' => 'btn btn-success']) !!}
+    {{ link_to_route('partners.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
     {!! Form::close() !!}
 @endif
-@if (Request::get('action') == 'delete' && $editableCustomer)
+@if (Request::get('action') == 'delete' && $editablePartner)
     <div class="panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title">{{ trans('customer.delete') }}</h3></div>
+        <div class="panel-heading"><h3 class="panel-title">{{ trans('partner.delete') }}</h3></div>
         <div class="panel-body">
-            <label class="control-label">{{ trans('customer.name') }}</label>
-            <p>{{ $editableCustomer->name }}</p>
+            <label class="control-label">{{ trans('partner.name') }}</label>
+            <p>{{ $editablePartner->name }}</p>
             <label class="control-label">{{ trans('contact.email') }}</label>
-            <p>{{ $editableCustomer->email }}</p>
+            <p>{{ $editablePartner->email }}</p>
             <label class="control-label">{{ trans('contact.phone') }}</label>
-            <p>{{ $editableCustomer->phone }}</p>
+            <p>{{ $editablePartner->phone }}</p>
             <label class="control-label">{{ trans('app.address') }}</label>
-            <p>{{ $editableCustomer->address }}</p>
+            <p>{{ $editablePartner->address }}</p>
             <label class="control-label">{{ trans('app.status') }}</label>
-            <p>{{ $editableCustomer->is_active }}</p>
+            <p>{{ $editablePartner->is_active }}</p>
             <label class="control-label">{{ trans('app.notes') }}</label>
-            <p>{{ $editableCustomer->notes }}</p>
-            {!! $errors->first('customer_id', '<span class="form-error small">:message</span>') !!}
+            <p>{{ $editablePartner->notes }}</p>
+            {!! $errors->first('partner_id', '<span class="form-error small">:message</span>') !!}
         </div>
         <hr style="margin:0">
         <div class="panel-body">{{ trans('app.delete_confirm') }}</div>
         <div class="panel-footer">
             {!! FormField::delete(
-                ['route'=>['customers.destroy',$editableCustomer->id]],
+                ['route'=>['partners.destroy',$editablePartner->id]],
                 trans('app.delete_confirm_button'),
                 ['class'=>'btn btn-danger'],
                 [
-                    'customer_id' => $editableCustomer->id,
+                    'partner_id' => $editablePartner->id,
                     'page' => request('page'),
                     'q' => request('q'),
                 ]
             ) !!}
-            {{ link_to_route('customers.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
+            {{ link_to_route('partners.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
         </div>
     </div>
 @endif

@@ -3,12 +3,11 @@
 namespace App\Entities\Projects;
 
 use App\Entities\Invoices\Invoice;
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Partner;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\ProjectPresenter;
 use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
-use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
@@ -18,7 +17,7 @@ class Project extends Model
     use PresentableTrait;
 
     protected $presenter = ProjectPresenter::class;
-    protected $guarded = ['id', 'created_at', 'updated_at'];
+    protected $guarded   = ['id', 'created_at', 'updated_at'];
     // protected $dates = ['start_date','end_date'];
 
     public function nameLink()
@@ -63,7 +62,7 @@ class Project extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(Partner::class);
     }
 
     public function cashInTotal()
@@ -88,7 +87,7 @@ class Project extends Model
 
         foreach ($this->features as $feature) {
             $progress = $feature->tasks->avg('progress');
-            $index = $totalPrice ? ($feature->price / $totalPrice) : 1;
+            $index    = $totalPrice ? ($feature->price / $totalPrice) : 1;
             $overalProgress += $progress * $index;
         }
 

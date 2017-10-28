@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Entities\Users\User;
 use Tests\TestCase;
 
 class MemberChangePasswordTest extends TestCase
@@ -10,16 +9,14 @@ class MemberChangePasswordTest extends TestCase
     /** @test */
     public function member_can_change_password()
     {
-        $user = factory(User::class)->create();
-        $user->assignRole('customer');
-        $this->actingAs($user);
+        $user = $this->adminUserSigningIn();
 
         $this->visit(route('home'));
         $this->click(trans('auth.change_password'));
 
         $this->submitForm(trans('auth.change_password'), [
-            'old_password' => 'member1',
-            'password' => 'rahasia',
+            'old_password'          => 'member1',
+            'password'              => 'rahasia',
             'password_confirmation' => 'rahasia',
         ]);
         $this->see(trans('auth.old_password_failed'));
@@ -29,8 +26,8 @@ class MemberChangePasswordTest extends TestCase
         );
 
         $this->submitForm(trans('auth.change_password'), [
-            'old_password' => 'member',
-            'password' => 'rahasia',
+            'old_password'          => 'member',
+            'password'              => 'rahasia',
             'password_confirmation' => 'rahasia',
         ]);
         $this->see(trans('auth.password_changed'));

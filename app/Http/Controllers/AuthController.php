@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     public function __construct(Guard $auth, PasswordBroker $passwords)
     {
-        $this->auth = $auth;
+        $this->auth      = $auth;
         $this->passwords = $passwords;
 
         $this->middleware('guest');
@@ -28,7 +28,7 @@ class AuthController extends Controller
         $registerData = $request->only('name', 'email', 'password');
 
         $user = User::create($registerData);
-        $user->assignRole('customer');
+        $user->assignRole('admin');
         Auth::login($user);
 
         flash()->success(trans('auth.welcome', ['name' => $user->name]));

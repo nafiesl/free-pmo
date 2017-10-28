@@ -53,9 +53,8 @@ class UserTest extends TestCase
     public function it_can_queried_by_roles()
     {
         $user = factory(User::class)->create();
-        $user->assignRole('vendor');
         $user->assignRole('worker');
 
-        $this->assertCount(1, User::orderBy('name')->hasRoles(['vendor', 'worker'])->get());
+        $this->assertCount(2, User::orderBy('name')->hasRoles(['worker'])->get());
     }
 }

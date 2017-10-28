@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Agencies\Agency;
 use App\Entities\Users\User;
 use App\Http\Requests\Accounts\RegisterRequest;
 use Auth;
@@ -33,6 +34,13 @@ class AuthController extends Controller
         $user->assignRole('admin');
         $user->assignRole('worker');
         Auth::login($user);
+
+        $agency = Agency::create([
+            'name'     => $request->get('agency_name'),
+            'email'    => $request->get('email'),
+            'website'  => $request->get('agency_website'),
+            'owner_id' => $user->id,
+        ]);
 
         flash()->success(trans('auth.welcome', ['name' => $user->name]));
         return redirect()->route('home');

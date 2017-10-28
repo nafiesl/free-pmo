@@ -9,6 +9,18 @@
         <div class="panel-body">
 			@include('auth.partials._notifications')
         	{!! Form::open(['route'=>'auth.register','class'=>'form-horizontal']) !!}
+            <div class="form-group {!! $errors->has('agency_name') ? 'has-error' : ''; !!}">
+                {!! Form::label('agency_name', trans('agency.name'), ['class'=>'col-md-4 control-label']) !!}
+                <div class="col-md-6">
+                    {!! Form::text('agency_name', null, ['class'=>'form-control','placeholder' => trans('agency.name')]) !!}
+                </div>
+            </div>
+            <div class="form-group {!! $errors->has('agency_website') ? 'has-error' : ''; !!}">
+                {!! Form::label('agency_website', trans('agency.website'), ['class'=>'col-md-4 control-label']) !!}
+                <div class="col-md-6">
+                    {!! Form::text('agency_website', null, ['class'=>'form-control','placeholder' => trans('agency.website')]) !!}
+                </div>
+            </div>
             <div class="form-group {!! $errors->has('name') ? 'has-error' : ''; !!}">
             	{!! Form::label('name', trans('app.name'), ['class'=>'col-md-4 control-label']) !!}
 				<div class="col-md-6">

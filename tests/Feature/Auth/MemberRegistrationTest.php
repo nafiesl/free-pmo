@@ -44,12 +44,25 @@ class MemberRegistrationTest extends TestCase
     {
         $this->visit(route('auth.register'));
         $this->submitForm(trans('auth.register'), [
+            'agency_name'           => 'Nama Agency',
             'name'                  => 'Nama Member',
             'email'                 => 'email@mail.com',
             'password'              => 'password.111',
             'password_confirmation' => 'password.111',
         ]);
+
         $this->seePageIs(route('home'));
+
         $this->see(trans('auth.welcome', ['name' => 'Nama Member']));
+
+        $this->seeInDatabase('users', [
+            'name'  => 'Nama Member',
+            'email' => 'email@mail.com',
+        ]);
+
+        $this->seeInDatabase('agencies', [
+            'name'  => 'Nama Agency',
+            'email' => 'email@mail.com',
+        ]);
     }
 }

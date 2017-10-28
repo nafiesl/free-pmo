@@ -24,9 +24,11 @@ class RegisterRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|between:6,15|confirmed',
+            'agency_name'           => 'required|max:255',
+            'agency_website'        => 'nullable|url|max:255',
+            'name'                  => 'required|max:255',
+            'email'                 => 'required|email|max:255|unique:users,email|unique:agencies,email',
+            'password'              => 'required|between:6,15|confirmed',
             'password_confirmation' => 'required',
         ];
     }
@@ -34,13 +36,15 @@ class RegisterRequest extends Request
     public function messages()
     {
         return [
-            'name.required' => 'Nama harus diisi.',
-            'email.required' => 'Email harus diisi.',
-            'email.email' => 'Email tidak valid.',
-            'email.unique' => 'Email ini sudah terdaftar.',
-            'password.required' => 'Password harus diisi.',
-            'password.between' => 'Password baru harus antara 6 - 15 karakter.',
-            'password.confirmed' => 'Konfirmasi password tidak sesuai.',
+            'agency_name.required'           => 'Nama Agensi harus diisi.',
+            'agency_website.url'             => 'Alamat Website Agensi tidak valid.',
+            'name.required'                  => 'Nama harus diisi.',
+            'email.required'                 => 'Email harus diisi.',
+            'email.email'                    => 'Email tidak valid.',
+            'email.unique'                   => 'Email ini sudah terdaftar.',
+            'password.required'              => 'Password harus diisi.',
+            'password.between'               => 'Password baru harus antara 6 - 15 karakter.',
+            'password.confirmed'             => 'Konfirmasi password tidak sesuai.',
             'password_confirmation.required' => 'Konfirmasi password harus diisi.',
         ];
     }

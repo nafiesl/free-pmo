@@ -11,7 +11,6 @@ class MemberLoginTest extends TestCase
     public function user_can_login_and_logout()
     {
         $user = factory(User::class)->create(['name' => 'Nama Member', 'email' => 'email@mail.com']);
-        $user->assignRole('worker');
 
         $this->visit(route('auth.login'));
 

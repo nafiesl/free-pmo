@@ -36,7 +36,7 @@ class AuthServiceProvider extends ServiceProvider
         }
 
         Gate::define('add_project', function ($user) {
-            return $user->hasRole('admin');
+            return  ! is_null($user->agency);
         });
 
         Gate::define('manage_project', function ($user, $project) {

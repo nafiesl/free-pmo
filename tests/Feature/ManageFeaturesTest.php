@@ -24,21 +24,21 @@ class ManageFeaturesTest extends TestCase
         $this->seePageIs(route('features.create', $project->id));
 
         $this->submitForm(trans('feature.create'), [
-            'name' => 'Nama Fitur Baru',
-            'price' => 100000,
-            'worker_id' => $worker->id,
-            'type_id' => 1,
+            'name'        => 'Nama Fitur Baru',
+            'price'       => 100000,
+            'worker_id'   => $worker->id,
+            'type_id'     => 1,
             'description' => 'Similique, eligendi fuga animi?',
         ]);
 
         $this->see(trans('feature.created'));
 
         $this->seeInDatabase('features', [
-            'name' => 'Nama Fitur Baru',
-            'price' => 100000,
-            'worker_id' => $worker->id,
-            'type_id' => 1,
-            'project_id' => $project->id
+            'name'       => 'Nama Fitur Baru',
+            'price'      => 100000,
+            'worker_id'  => $worker->id,
+            'type_id'    => 1,
+            'project_id' => $project->id,
         ]);
     }
 
@@ -46,9 +46,6 @@ class ManageFeaturesTest extends TestCase
     public function admin_can_edit_feature_data()
     {
         $user = factory(User::class, 3)->create();
-        $user[0]->assignRole('admin');
-        $user[1]->assignRole('worker');
-        $user[2]->assignRole('worker');
         $this->actingAs($user[0]);
 
         $project = factory(Project::class)->create(['owner_id' => $user[0]->id]);
@@ -58,10 +55,10 @@ class ManageFeaturesTest extends TestCase
         $this->visit(route('features.edit', $feature->id));
 
         $this->submitForm(trans('feature.update'), [
-            'name' => 'Nama Fitur Edit',
-            'price' => 33333,
+            'name'      => 'Nama Fitur Edit',
+            'price'     => 33333,
             'worker_id' => $user[2]->id,
-            'type_id' => 2,
+            'type_id'   => 2,
         ]);
 
         $this->seePageIs(route('features.show', $feature->id));
@@ -69,11 +66,11 @@ class ManageFeaturesTest extends TestCase
         $this->see(trans('feature.updated'));
 
         $this->seeInDatabase('features', [
-            'name' => 'Nama Fitur Edit',
-            'price' => 33333,
-            'worker_id' => $user[2]->id,
+            'name'       => 'Nama Fitur Edit',
+            'price'      => 33333,
+            'worker_id'  => $user[2]->id,
             'project_id' => $project->id,
-            'type_id' => 2
+            'type_id'    => 2,
         ]);
     }
 
@@ -84,11 +81,11 @@ class ManageFeaturesTest extends TestCase
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
         $feature = factory(Feature::class)->create(['project_id' => $project->id]);
-        $tasks = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
+        $tasks   = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
 
         $this->seeInDatabase('features', [
-            'name' => $feature->name,
-            'price' => $feature->price,
+            'name'       => $feature->name,
+            'price'      => $feature->price,
             'project_id' => $project->id,
         ]);
 
@@ -103,8 +100,8 @@ class ManageFeaturesTest extends TestCase
         $this->see(trans('feature.deleted'));
 
         $this->notSeeInDatabase('features', [
-            'name' => $feature->name,
-            'price' => $feature->price,
+            'name'       => $feature->name,
+            'price'      => $feature->price,
             'project_id' => $project->id,
         ]);
 
@@ -119,7 +116,7 @@ class ManageFeaturesTest extends TestCase
         $user = $this->adminUserSigningIn();
 
         $project = factory(Project::class)->create(['owner_id' => $user->id]);
-        $feature = factory(Feature::class)->create(['project_id' => $project->id,'type_id' => 1]);
+        $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 1]);
 
         $this->visit(route('projects.features', $project->id));
         $this->click('show-feature-'.$feature->id);
@@ -137,8 +134,8 @@ class ManageFeaturesTest extends TestCase
 
         $projects = factory(Project::class, 2)->create(['owner_id' => $user->id]);
         $features = factory(Feature::class, 3)->create(['project_id' => $projects[0]->id]);
-        $tasks1 = factory(Task::class, 3)->create(['feature_id' => $features[0]->id]);
-        $tasks2 = factory(Task::class, 3)->create(['feature_id' => $features[1]->id]);
+        $tasks1   = factory(Task::class, 3)->create(['feature_id' => $features[0]->id]);
+        $tasks2   = factory(Task::class, 3)->create(['feature_id' => $features[1]->id]);
 
         $this->visit(route('projects.features', $projects[1]->id));
 
@@ -166,16 +163,16 @@ class ManageFeaturesTest extends TestCase
 
         $this->seeInDatabase('features', [
             'project_id' => $projects[1]->id,
-            'name' => $features[0]->name,
-            'price' => $features[0]->price,
-            'worker_id' => $features[0]->worker_id,
+            'name'       => $features[0]->name,
+            'price'      => $features[0]->price,
+            'worker_id'  => $features[0]->worker_id,
         ]);
 
         $this->seeInDatabase('features', [
             'project_id' => $projects[1]->id,
-            'name' => $features[1]->name,
-            'price' => $features[1]->price,
-            'worker_id' => $features[1]->worker_id,
+            'name'       => $features[1]->name,
+            'price'      => $features[1]->price,
+            'worker_id'  => $features[1]->worker_id,
         ]);
     }
 

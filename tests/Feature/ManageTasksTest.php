@@ -13,7 +13,6 @@ class ManageTasksTest extends TestCase
     public function admin_can_entry_task()
     {
         $user = factory(User::class)->create();
-        $user->assignRole('admin');
         $this->actingAs($user);
 
         $feature = factory(Feature::class)->create(['worker_id' => $user->id]);
@@ -32,8 +31,8 @@ class ManageTasksTest extends TestCase
         $this->seePageIs('features/'.$feature->id);
         $this->see(trans('task.created'));
         $this->seeInDatabase('tasks', [
-            'name' => 'Nama Task Baru',
-            'progress' => 70,
+            'name'       => 'Nama Task Baru',
+            'progress'   => 70,
             'feature_id' => $feature->id,
             'route_name' => 'tasks/create',
         ]);
@@ -43,8 +42,6 @@ class ManageTasksTest extends TestCase
     public function admin_can_edit_task_data()
     {
         $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $user->assignRole('worker');
         $this->actingAs($user);
 
         $feature = factory(Feature::class)->create(['worker_id' => $user->id]);
@@ -65,9 +62,9 @@ class ManageTasksTest extends TestCase
         $this->seePageIs('features/'.$feature->id);
         $this->see(trans('task.updated'));
         $this->seeInDatabase('tasks', [
-            'name' => 'Nama Task Edit',
-            'progress' => 77,
-            'feature_id' => $feature->id
+            'name'       => 'Nama Task Edit',
+            'progress'   => 77,
+            'feature_id' => $feature->id,
         ]);
     }
 
@@ -75,8 +72,6 @@ class ManageTasksTest extends TestCase
     public function admin_can_delete_a_task()
     {
         $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $user->assignRole('worker');
         $this->actingAs($user);
 
         $feature = factory(Feature::class)->create(['worker_id' => $user->id]);
@@ -90,28 +85,4 @@ class ManageTasksTest extends TestCase
         $this->seePageIs('features/'.$feature->id);
         $this->see(trans('task.deleted'));
     }
-
-    // /** @test */
-    // public function admin_can_see_all_tasks()
-    // {
-    //     $user = factory(User::class)->create();
-    //     $user->assignRole('admin');
-    //     $user->assignRole('worker');
-    //     $this->actingAs($user);
-
-    //     $feature = factory(Feature::class)->create(['worker_id' => $user->id]);
-
-    //     $tasks = factory(Task::class, 5)->create(['feature_id' => $feature->id]);
-    //     $this->assertEquals(5, $tasks->count());
-
-    //     $this->visit('features/'.$feature->id);
-    //     $this->see($tasks[1]->name);
-    //     $this->see($tasks[1]->progress);
-    //     $this->see($tasks[1]->description);
-    //     $this->see($tasks[1]->route_name);
-    //     $this->see($tasks[4]->name);
-    //     $this->see($tasks[4]->progress);
-    //     $this->see($tasks[4]->description);
-    //     $this->see($tasks[4]->route_name);
-    // }
 }

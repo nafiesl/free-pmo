@@ -49,7 +49,6 @@ class ManageUsersTest extends TestCase
     {
         $user  = $this->adminUserSigningIn();
         $user2 = factory(User::class)->create();
-        $user2->assignRole('worker');
 
         $this->visit(route('users.edit', $user2->id));
         $this->type('Ganti nama User', 'name');
@@ -72,7 +71,6 @@ class ManageUsersTest extends TestCase
     {
         $user  = $this->adminUserSigningIn();
         $user2 = factory(User::class)->create();
-        $user2->assignRole('worker');
 
         $this->visit(route('users.edit', $user2->id));
 

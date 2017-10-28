@@ -19,47 +19,6 @@ class UserTest extends TestCase
     }
 
     /** @test */
-    public function user_can_assigned_to_a_role()
-    {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-
-        $this->assertTrue($user->hasRole('admin'));
-    }
-
-    /** @test */
-    public function user_has_many_roles()
-    {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $user->assignRole('worker');
-
-        $this->assertTrue($user->hasRoles(['admin', 'worker']));
-    }
-
-    /** @test */
-    public function user_can_be_removed_from_a_role()
-    {
-        $user = factory(User::class)->create();
-        $user->assignRole('admin');
-        $user->assignRole('worker');
-
-        $this->assertTrue($user->hasRoles(['admin', 'worker']));
-
-        $user->removeRole('worker');
-        $this->assertFalse($user->fresh()->hasRole('worker'));
-    }
-
-    /** @test */
-    public function user_can_queried_by_roles()
-    {
-        $user = factory(User::class)->create();
-        $user->assignRole('worker');
-
-        $this->assertCount(1, User::orderBy('name')->hasRoles(['worker'])->get());
-    }
-
-    /** @test */
     public function user_can_owns_one_agency()
     {
         $user   = factory(User::class)->create();

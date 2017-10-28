@@ -31,9 +31,6 @@ class AuthController extends Controller
         $registerData['api_token'] = str_random(32);
 
         $user = User::create($registerData);
-        $user->assignRole('admin');
-        $user->assignRole('worker');
-        Auth::login($user);
 
         $agency = Agency::create([
             'name'     => $request->get('agency_name'),
@@ -41,6 +38,8 @@ class AuthController extends Controller
             'website'  => $request->get('agency_website'),
             'owner_id' => $user->id,
         ]);
+
+        Auth::login($user);
 
         flash()->success(trans('auth.welcome', ['name' => $user->name]));
         return redirect()->route('home');

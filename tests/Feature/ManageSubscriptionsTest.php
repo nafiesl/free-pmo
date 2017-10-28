@@ -34,8 +34,8 @@ class ManageSubscriptionsTest extends TestCase
         $this->type('', 'remark');
         $this->press(trans('subscription.create'));
 
-        $this->seePageIs(route('subscriptions.index'));
         $this->see(trans('subscription.created'));
+        $this->seePageIs(route('subscriptions.index'));
 
         $this->seeInDatabase('subscriptions', [
             'project_id'   => $project->id,

@@ -1,39 +1,42 @@
 <?php
 
-Route::group(['middleware' => ['web','role:admin'],'prefix' => 'reports'], function() {
+Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'reports'], function () {
     /**
      * Reports Routes
      */
-    Route::get('payments', ['as'=>'reports.payments.index', 'uses' => 'ReportsController@monthly']);
-    Route::get('payments/daily', ['as'=>'reports.payments.daily', 'uses' => 'ReportsController@daily']);
-    Route::get('payments/monthly', ['as'=>'reports.payments.monthly', 'uses' => 'ReportsController@monthly']);
-    Route::get('payments/yearly', ['as'=>'reports.payments.yearly', 'uses' => 'ReportsController@yearly']);
-    Route::get('current-credits', ['as'=>'reports.current-credits', 'uses' => 'ReportsController@currentCredits']);
+    Route::get('payments', ['as' => 'reports.payments.index', 'uses' => 'ReportsController@monthly']);
+    Route::get('payments/daily', ['as' => 'reports.payments.daily', 'uses' => 'ReportsController@daily']);
+    Route::get('payments/monthly', ['as' => 'reports.payments.monthly', 'uses' => 'ReportsController@monthly']);
+    Route::get('payments/yearly', ['as' => 'reports.payments.yearly', 'uses' => 'ReportsController@yearly']);
+    Route::get('current-credits', ['as' => 'reports.current-credits', 'uses' => 'ReportsController@currentCredits']);
 
-    Route::get('log-files', ['as' => 'log-files.index', 'uses' => function() {
-            if (!file_exists(storage_path('logs')))
-                return [];
+    Route::get('log-files', ['as' => 'log-files.index', 'uses' => function () {
+        if ( ! file_exists(storage_path('logs'))) {
+            return [];
+        }
 
-            $logFiles = \File::allFiles(storage_path('logs'));
+        $logFiles = \File::allFiles(storage_path('logs'));
 
-            // Sort files by modified time DESC
-            usort($logFiles, function($a, $b) {
-                return -1 * strcmp($a->getMTime(), $b->getMTime());
-            });
+        // Sort files by modified time DESC
+        usort($logFiles, function ($a, $b) {
+            return -1 * strcmp($a->getMTime(), $b->getMTime());
+        });
 
-            return view('reports.log-files',compact('logFiles'));
+        return view('reports.log-files', compact('logFiles'));
     }]);
 
-    Route::get('log-files/{filename}', ['as' => 'log-files.show', 'uses' => function($fileName) {
-        if (file_exists(storage_path('logs/' . $fileName)))
-            return response()->file(storage_path('logs/' . $fileName), ['content-type' => 'text/plain']);
+    Route::get('log-files/{filename}', ['as' => 'log-files.show', 'uses' => function ($fileName) {
+        if (file_exists(storage_path('logs/'.$fileName))) {
+            return response()->file(storage_path('logs/'.$fileName), ['content-type' => 'text/plain']);
+        }
 
         return 'Invalid file name.';
     }]);
 
-    Route::get('log-files/{filename}/download', ['as' => 'log-files.download', 'uses' => function($fileName) {
-        if (file_exists(storage_path('logs/' . $fileName)))
-            return response()->download(storage_path('logs/' . $fileName), env('APP_ENV') . '.' . $fileName);
+    Route::get('log-files/{filename}/download', ['as' => 'log-files.download', 'uses' => function ($fileName) {
+        if (file_exists(storage_path('logs/'.$fileName))) {
+            return response()->download(storage_path('logs/'.$fileName), env('APP_ENV').'.'.$fileName);
+        }
 
         return 'Invalid file name.';
     }]);

@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web','role:admin']], function() {
+Route::group(['middleware' => ['web', 'auth']], function () {
     /*
      * Invoice Draft Routes
      */

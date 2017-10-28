@@ -22,6 +22,7 @@ class CreatePartnersTable extends Migration
             $table->string('address')->nullable();
             $table->string('notes')->nullable();
             $table->boolean('is_active')->default(1);
+            $table->unsignedInteger('owner_id');
             $table->timestamps();
         });
     }

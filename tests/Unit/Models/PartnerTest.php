@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Entities\Agencies\Agency;
 use App\Entities\Partners\Partner;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase as TestCase;
@@ -11,9 +12,12 @@ class PartnerTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function it_has_name_attribute()
+    public function a_partner_has_an_owner()
     {
-        $partner = factory(Partner::class)->create(['name' => 'Partner 1 name']);
-        $this->assertEquals('Partner 1 name', $partner->name);
+        $agency  = factory(Agency::class)->create();
+        $partner = factory(Partner::class)->create(['owner_id' => $agency->id]);
+
+        $this->assertTrue($partner->owner instanceof Agency);
+        $this->assertEquals($partner->owner->id, $agency->id);
     }
 }

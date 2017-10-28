@@ -27,14 +27,6 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('user.roles') }}</h3></div>
-            <div class="panel-body">
-                {!! FormField::checkboxes('role', $roles, ['label' => false, 'value' => $user->roles]) !!}
-            </div>
-        </div>
-    </div>
 </div>
 <div class="panel-footer">
     {!! Form::submit(trans('user.update'), ['class'=>'btn btn-warning']) !!}

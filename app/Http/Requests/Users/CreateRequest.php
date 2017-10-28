@@ -26,7 +26,6 @@ class CreateRequest extends Request
         return [
             'name'                  => 'required|min:5',
             'email'                 => 'required|email|unique:users,email',
-            'role'                  => 'required|array',
             'password'              => 'between:6,15|confirmed',
             'password_confirmation' => 'required_with:password',
         ];

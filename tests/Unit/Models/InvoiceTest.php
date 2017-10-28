@@ -11,8 +11,12 @@ class InvoiceTest extends TestCase
     /** @test */
     public function it_has_project_relation()
     {
-        $invoice = factory(Invoice::class)->create();
+        $user    = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $invoice = factory(Invoice::class)->create(['project_id' => $project->id]);
+
         $this->assertTrue($invoice->project instanceof Project);
+        $this->assertEquals($invoice->project->id, $project->id);
     }
 
     /** @test */

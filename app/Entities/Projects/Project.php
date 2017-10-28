@@ -31,15 +31,13 @@ class Project extends Model
     {
         parent::boot();
 
-        if (auth()->user()) {
-            static::addGlobalScope('by_owner', function (Builder $builder) {
-                if ( ! is_null(auth()->user()->agency)) {
-                    $builder->where('owner_id', auth()->user()->agency->id);
-                } else {
-                    $builder->where('owner_id', 0);
-                }
-            });
-        }
+        static::addGlobalScope('by_owner', function (Builder $builder) {
+            if ( ! is_null(auth()->user()->agency)) {
+                $builder->where('owner_id', auth()->user()->agency->id);
+            } else {
+                $builder->where('owner_id', 0);
+            }
+        });
     }
 
     public function nameLink()

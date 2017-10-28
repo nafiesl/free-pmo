@@ -61,7 +61,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         return [
             'manage_users',
-            'manage_role_permissions',
             'manage_backups',
             'manage_options',
             'manage_projects',

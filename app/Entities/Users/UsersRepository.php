@@ -51,11 +51,6 @@ class UsersRepository extends BaseRepository
         throw new UpdateUserException('Failed to update User');
     }
 
-    public function getRolesList()
-    {
-        return Role::where('type', 0)->pluck('label', 'id')->all();
-    }
-
     public function delete($userId)
     {
         $user = $this->requireById($userId);

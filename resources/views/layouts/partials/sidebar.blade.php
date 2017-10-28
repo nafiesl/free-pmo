@@ -20,8 +20,8 @@
                 <?php $projectsCount = App\Entities\Projects\Project::select(DB::raw('status_id, count(id) as count'))
                             ->groupBy('status_id')
                             ->where('owner_id', auth()->id())
-                            ->pluck('count','status_id')
-                            ->all(); ?>
+                            ->pluck('count', 'status_id')
+                            ->all();?>
                 {!! html_link_to_route('projects.index', trans('project.projects') . ' <span class="fa arrow"></span>', [], ['icon' => 'table']) !!}
                 <ul class="nav nav-second-level">
                     @foreach(getProjectStatusesList() as $key => $status)
@@ -67,9 +67,6 @@
                 <a href="{{ route('users.index') }}"><i class="fa fa-users fa-fw"></i> {{ trans('user.users') }} <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li><a href="{{ route('users.index') }}"><i class="fa fa-users fa-fw"></i> {{ trans('user.users') }}</a></li>
-                    @can('manage_role_permissions')
-                    <li><a href="{{ route('roles.index') }}"><i class="fa fa-gears fa-fw"></i> {{ trans('role.roles') }}</a></li>
-                    @endcan
                 </ul>
             </li>
             @endcan

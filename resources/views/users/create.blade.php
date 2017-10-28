@@ -12,7 +12,6 @@
             <div class="panel-body">
                 {!! FormField::text('name', ['label' => trans('app.name')]) !!}
                 {!! FormField::email('email', ['label' => trans('user.email')]) !!}
-                {!! FormField::checkboxes('role', $roles, ['label' => trans('user.role')]) !!}
 
                 {!! FormField::password('password', [
                     'label' => trans('auth.password'),

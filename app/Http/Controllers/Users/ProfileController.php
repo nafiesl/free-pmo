@@ -8,7 +8,7 @@ class ProfileController extends Controller
 {
     public function show()
     {
-        return auth()->user();
+        return view('users.profile.show');
     }
 
     public function edit()

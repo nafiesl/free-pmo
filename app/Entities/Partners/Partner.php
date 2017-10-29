@@ -20,4 +20,14 @@ class Partner extends Model
     {
         return $this->hasMany('App\Entities\Projects\Project', 'customer_id');
     }
+
+    public function nameLink()
+    {
+        return link_to_route('partners.show', $this->name, [$this->id], [
+            'title' => trans(
+                'app.show_detail_title',
+                ['name' => $this->name, 'type' => trans('partner.partner')]
+            ),
+        ]);
+    }
 }

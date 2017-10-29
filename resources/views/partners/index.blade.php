@@ -37,7 +37,7 @@
             @foreach($partners as $key => $partner)
             <tr>
                 <td class="text-center">{{ $partners->firstItem() + $key }}</td>
-                <td>{{ $partner->name }}</td>
+                <td>{{ $partner->nameLink() }}</td>
                 <td>{{ $partner->email }}</td>
                 <td>{{ $partner->phone }}</td>
                 <td class="text-center">{{ $partner->projects_count }}</td>

@@ -56,6 +56,17 @@ class PartnersController extends Controller
     }
 
     /**
+     * Show the specified partner.
+     *
+     * @param  \App\Entities\Partners\Partner  $partner
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Partner $partner)
+    {
+        return view('partners.show', compact('partner'));
+    }
+
+    /**
      * Update the specified partner in storage.
      *
      * @param  \Illuminate\Http\Request  $request

@@ -5,14 +5,11 @@ namespace Tests\Unit\Models;
 use App\Entities\Agencies\Agency;
 use App\Entities\Partners\Partner;
 use App\Entities\Projects\Project;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Collection;
 use Tests\TestCase as TestCase;
 
 class PartnerTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
     public function a_partner_has_an_owner()
     {
@@ -31,5 +28,19 @@ class PartnerTest extends TestCase
 
         $this->assertTrue($partner->projects instanceof Collection);
         $this->assertTrue($partner->projects->first() instanceof Project);
+    }
+
+    /** @test */
+    public function a_partner_has_name_link_method()
+    {
+        $partner = factory(Partner::class)->make();
+        $this->assertEquals(
+            link_to_route('partners.show', $partner->name, [$partner->id], [
+                'title' => trans(
+                    'app.show_detail_title',
+                    ['name' => $partner->name, 'type' => trans('partner.partner')]
+                ),
+            ]), $partner->nameLink()
+        );
     }
 }

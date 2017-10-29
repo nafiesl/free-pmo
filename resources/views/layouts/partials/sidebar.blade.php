@@ -66,12 +66,7 @@
             <li>{!! html_link_to_route('partners.index', trans('partner.list'), [], ['icon' => 'users']) !!}</li>
             @endcan
             @can('manage_users')
-            <li>
-                <a href="{{ route('users.index') }}"><i class="fa fa-users fa-fw"></i> {{ trans('user.users') }} <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="{{ route('users.index') }}"><i class="fa fa-users fa-fw"></i> {{ trans('user.users') }}</a></li>
-                </ul>
-            </li>
+            <li>{!! html_link_to_route('users.index', trans('user.users'), [], ['icon' => 'users']) !!}</li>
             @endcan
             @can('manage_options')
             <li>

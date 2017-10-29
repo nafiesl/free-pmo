@@ -3,7 +3,7 @@
 @section('title', 'Laporan Harian : ' . dateId($date))
 
 @section('content')
-<?php $dt = Carbon::parse($date) ?>
+<?php $dt = Carbon::parse($date)?>
 
 <ul class="breadcrumb hidden-print">
     <li>{{ link_to_route('reports.payments.yearly', 'Laporan Tahun ' . $dt->year, ['year' => $dt->year]) }}</li>
@@ -31,20 +31,20 @@
         <th class="col-md-1">{{ trans('app.action') }}</th>
     </thead>
     <tbody>
-        <?php $total = 0; ?>
+        <?php $total = 0;?>
         @forelse($payments as $key => $payment)
         <tr>
             <td>{{ 1 + $key }}</td>
             <td>{{ $payment->project->present()->projectLink() }}</td>
             <td class="text-center">{{ $payment->date }}</td>
             <td class="text-right">{{ $payment->present()->amount }}</td>
-            <td class="text-center">{{ $payment->customer->name }}</td>
+            <td class="text-center">{{ $payment->partner->name }}</td>
             <td>{{ $payment->description }} [{{ $payment->type() }}]</td>
             <td>
                 {!! link_to_route('payments.show','Lihat',[$payment->id],['title' => 'Lihat Detail Pembayaran','target' => '_blank','class'=>'btn btn-info btn-xs']) !!}
             </td>
         </tr>
-        <?php $total = $payment->in_out == 0 ? $total - $payment->amount : $total + $payment->amount ?>
+        <?php $total = $payment->in_out == 0 ? $total - $payment->amount : $total + $payment->amount?>
         @empty
         <tr><td colspan="5">{{ trans('payment.not_found') }}</td></tr>
         @endforelse

@@ -22,7 +22,6 @@ class CreatePaymentsTable extends Migration
             $table->date('date');
             $table->string('description');
             $table->integer('partner_id')->unsigned();
-            $table->integer('owner_id')->unsigned();
             $table->timestamps();
         });
     }

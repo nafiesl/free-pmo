@@ -35,8 +35,7 @@ class PaymentsRepository extends BaseRepository
 
     public function create($paymentData)
     {
-        $paymentData['owner_id'] = auth()->id();
-        $paymentData['amount']   = str_replace('.', '', $paymentData['amount']);
+        $paymentData['amount'] = str_replace('.', '', $paymentData['amount']);
         return $this->storeArray($paymentData);
     }
 

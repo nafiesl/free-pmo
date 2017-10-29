@@ -82,7 +82,6 @@ class ManagePaymentsTest extends TestCase
         $payment = factory(Payment::class)->create([
             'partner_id' => $customer->id,
             'project_id' => $project->id,
-            'owner_id'   => $user->agency->id,
         ]);
 
         $this->visit(route('payments.edit', $payment->id));
@@ -111,7 +110,6 @@ class ManagePaymentsTest extends TestCase
         $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
         $payment = factory(Payment::class)->create([
             'project_id' => $project->id,
-            'owner_id'   => $user->agency->id,
         ]);
 
         $this->visit(route('payments.index'));
@@ -127,8 +125,8 @@ class ManagePaymentsTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $project = factory(Project::class)->create(['owner_id' => $user->id]);
-        $payment = factory(Payment::class)->create(['project_id' => $project->id, 'owner_id' => $user->id]);
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $payment = factory(Payment::class)->create(['project_id' => $project->id]);
 
         $this->visit(route('payments.index'));
         $this->click(trans('app.show'));

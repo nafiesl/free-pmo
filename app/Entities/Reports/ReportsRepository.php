@@ -8,8 +8,8 @@ use App\Entities\Projects\Project;
 use DB;
 
 /**
-* Reports Repository Class
-*/
+ * Reports Repository Class
+ */
 class ReportsRepository extends BaseRepository
 {
     protected $model;
@@ -21,10 +21,9 @@ class ReportsRepository extends BaseRepository
 
     public function getDailyReports($date, $q)
     {
-        return Payment::orderBy('date','desc')
+        return Payment::orderBy('date', 'desc')
             ->where('date', $date)
-            ->with('customer','project')
-            ->where('owner_id',auth()->id())
+            ->with('partner', 'project')
             ->get();
     }
 
@@ -34,8 +33,7 @@ class ReportsRepository extends BaseRepository
             ->where(DB::raw('YEAR(date)'), $year)
             ->where(DB::raw('MONTH(date)'), $month)
             ->groupBy('date')
-            ->orderBy('date','asc')
-            ->where('owner_id',auth()->id())
+            ->orderBy('date', 'asc')
             ->get();
     }
 
@@ -45,16 +43,15 @@ class ReportsRepository extends BaseRepository
             ->where(DB::raw('YEAR(date)'), $year)
             ->groupBy(DB::raw('YEAR(date)'))
             ->groupBy(DB::raw('MONTH(date)'))
-            ->orderBy('date','asc')
-            ->where('owner_id',auth()->id())
+            ->orderBy('date', 'asc')
             ->get();
     }
 
     public function getCurrentCredits()
     {
         // On Progress, Done, On Hold
-        $projects = Project::whereIn('status_id',[2,3,6])->with('payments','customer')->get();
-        return $projects->filter(function($project) {
+        $projects = Project::whereIn('status_id', [2, 3, 6])->with('payments', 'customer')->get();
+        return $projects->filter(function ($project) {
             return $project->cashInTotal() < $project->project_value;
         })->values();
     }

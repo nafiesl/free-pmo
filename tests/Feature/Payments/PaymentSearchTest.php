@@ -13,9 +13,9 @@ class PaymentSearchTest extends TestCase
     {
         $admin          = $this->adminUserSigningIn();
         $project        = factory(Project::class)->create(['owner_id' => $admin->agency->id, 'name' => 'Project']);
-        $payment        = factory(Payment::class)->create(['owner_id' => $admin->agency->id, 'project_id' => $project->id]);
+        $payment        = factory(Payment::class)->create(['project_id' => $project->id]);
         $project2       = factory(Project::class)->create(['owner_id' => $admin->agency->id]);
-        $unShownPayment = factory(Payment::class)->create(['owner_id' => $admin->agency->id, 'project_id' => $project2->id]);
+        $unShownPayment = factory(Payment::class)->create(['project_id' => $project2->id]);
 
         $this->visit(route('payments.index'));
         $this->submitForm(trans('app.search'), [
@@ -33,9 +33,9 @@ class PaymentSearchTest extends TestCase
     {
         $admin          = $this->adminUserSigningIn();
         $project        = factory(Project::class)->create(['owner_id' => $admin->agency->id, 'name' => 'Project']);
-        $payment        = factory(Payment::class)->create(['owner_id' => $admin->agency->id, 'project_id' => $project->id]);
+        $payment        = factory(Payment::class)->create(['project_id' => $project->id]);
         $project2       = factory(Project::class)->create(['owner_id' => $admin->agency->id]);
-        $unShownPayment = factory(Payment::class)->create(['owner_id' => $admin->agency->id, 'project_id' => $project2->id]);
+        $unShownPayment = factory(Payment::class)->create(['project_id' => $project2->id]);
 
         $this->visit(route('payments.index'));
         $this->submitForm(trans('app.search'), [

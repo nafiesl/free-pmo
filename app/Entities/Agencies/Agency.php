@@ -12,4 +12,9 @@ class Agency extends Model
     {
         return $this->belongsTo('App\Entities\Users\User');
     }
+
+    public function projects()
+    {
+        return $this->hasMany('App\Entities\Projects\Project', 'owner_id');
+    }
 }

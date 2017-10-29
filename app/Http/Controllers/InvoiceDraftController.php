@@ -19,7 +19,7 @@ class InvoiceDraftController extends Controller
 
     public function index(Request $request)
     {
-        $draft = $this->draftCollection->content()->first();
+        $draft    = $this->draftCollection->content()->first();
         $projects = Project::pluck('name', 'id');
 
         return view('invoices.create', compact('draft', 'projects'));
@@ -69,8 +69,7 @@ class InvoiceDraftController extends Controller
         return back();
     }
 
-    public function empty($draftKey)
-    {
+    function empty($draftKey) {
         $this->draftCollection->emptyDraft($draftKey);
 
         return redirect()->route('invoices.create', $draftKey);

@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Entities\Partners\Partner;
 use App\Entities\Projects\Project;
 use App\Services\InvoiceDrafts\InvoiceDraft;
 use App\Services\InvoiceDrafts\InvoiceDraftCollection;
@@ -137,8 +138,9 @@ class InvoiceEntryTest extends TestCase
         $item1 = new Item(['description' => 'Deskripsi item invoice', 'amount' => 1000]);
         $item2 = new Item(['description' => 'Deskripsi item invoice', 'amount' => 2000]);
 
-        $user    = $this->adminUserSigningIn();
-        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $user     = $this->adminUserSigningIn();
+        $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
 
         // Add items to draft
         $cart->addItemToDraft($draft->draftKey, $item1);

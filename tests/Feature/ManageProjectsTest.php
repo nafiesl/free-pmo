@@ -15,7 +15,7 @@ class ManageProjectsTest extends TestCase
     public function admin_can_input_new_project_with_existing_partner()
     {
         $user    = $this->adminUserSigningIn();
-        $partner = factory(Partner::class)->create();
+        $partner = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
 
         $this->visit(route('projects.index'));
         $this->seePageIs(route('projects.index'));
@@ -75,9 +75,10 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function admin_can_delete_a_project()
     {
-        $user = $this->adminUserSigningIn();
+        $user    = $this->adminUserSigningIn();
+        $partner = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
 
-        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $partner->id]);
         $feature = factory(Feature::class)->create(['project_id' => $project->id]);
         $task    = factory(Task::class)->create(['feature_id' => $feature->id]);
         $payment = factory(Payment::class)->create(['project_id' => $project->id]);
@@ -112,8 +113,8 @@ class ManageProjectsTest extends TestCase
     public function admin_can_edit_a_project()
     {
         $user    = $this->adminUserSigningIn();
-        $partner = factory(Partner::class)->create();
-        $project = factory(Project::class)->create(['owner_id' => $user->id]);
+        $partner = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $project = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $partner->id]);
 
         $this->visit('projects/'.$project->id.'/edit');
         $this->seePageIs('projects/'.$project->id.'/edit');
@@ -143,9 +144,8 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function form_is_validated_on_invalid_project_entry()
     {
-        $user = $this->adminUserSigningIn();
-
-        $partner = factory(Partner::class)->create();
+        $user    = $this->adminUserSigningIn();
+        $partner = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
 
         $this->visit(route('projects.index'));
         $this->seePageIs(route('projects.index'));
@@ -157,6 +157,7 @@ class ManageProjectsTest extends TestCase
         $this->type('', 'proposal_value');
         $this->type('Deskripsi project baru', 'description');
         $this->press(trans('project.create'));
+
         $this->seePageIs(route('projects.create'));
         $this->see('Mohon periksa kembali form isian Anda.');
     }
@@ -165,7 +166,12 @@ class ManageProjectsTest extends TestCase
     public function admin_can_update_project_status_on_project_detail_page()
     {
         $user    = $this->adminUserSigningIn();
-        $project = factory(Project::class)->create(['owner_id' => $user->id, 'status_id' => 1]);
+        $partner = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $project = factory(Project::class)->create([
+            'owner_id'    => $user->agency->id,
+            'customer_id' => $partner->id,
+            'status_id'   => 1,
+        ]);
 
         $this->visit(route('projects.show', $project->id));
         $this->seePageIs(route('projects.show', $project->id));

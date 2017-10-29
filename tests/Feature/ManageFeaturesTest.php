@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Entities\Agencies\Agency;
+use App\Entities\Partners\Partner;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
@@ -16,9 +17,10 @@ class ManageFeaturesTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $project = factory(Project::class)->create(['owner_id' => $user->id]);
+        $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
 
-        $worker = $this->createUser('worker');
+        $worker = $this->createUser();
 
         $this->visit(route('projects.features', $project->id));
         $this->click(trans('feature.create'));
@@ -50,7 +52,8 @@ class ManageFeaturesTest extends TestCase
         $agency = factory(Agency::class)->create(['owner_id' => $user[0]->id]);
         $this->actingAs($user[0]);
 
-        $project = factory(Project::class)->create(['owner_id' => $agency->id]);
+        $customer = factory(Partner::class)->create(['owner_id' => $agency->id]);
+        $project  = factory(Project::class)->create(['owner_id' => $agency->id, 'customer_id' => $customer->id]);
 
         $feature = factory(Feature::class)->create(['worker_id' => $user[1]->id, 'project_id' => $project->id]);
 
@@ -79,11 +82,11 @@ class ManageFeaturesTest extends TestCase
     /** @test */
     public function admin_can_delete_a_feature()
     {
-        $user = $this->adminUserSigningIn();
-
-        $project = factory(Project::class)->create(['owner_id' => $user->id]);
-        $feature = factory(Feature::class)->create(['project_id' => $project->id]);
-        $tasks   = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
+        $user     = $this->adminUserSigningIn();
+        $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
+        $feature  = factory(Feature::class)->create(['project_id' => $project->id]);
+        $tasks    = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
 
         $this->seeInDatabase('features', [
             'name'       => $feature->name,
@@ -132,9 +135,9 @@ class ManageFeaturesTest extends TestCase
     /** @test */
     public function admin_may_clone_many_features_from_other_projects()
     {
-        $user = $this->adminUserSigningIn();
-
-        $projects = factory(Project::class, 2)->create(['owner_id' => $user->id]);
+        $user     = $this->adminUserSigningIn();
+        $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $projects = factory(Project::class, 2)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
         $features = factory(Feature::class, 3)->create(['project_id' => $projects[0]->id]);
         $tasks1   = factory(Task::class, 3)->create(['feature_id' => $features[0]->id]);
         $tasks2   = factory(Task::class, 3)->create(['feature_id' => $features[1]->id]);

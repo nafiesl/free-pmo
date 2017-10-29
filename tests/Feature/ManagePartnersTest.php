@@ -13,10 +13,10 @@ class ManagePartnersTest extends TestCase
     /** @test */
     public function user_can_see_partner_list_in_partner_index_page()
     {
-        $partner1 = factory(Partner::class)->create();
-        $partner2 = factory(Partner::class)->create();
+        $user     = $this->adminUserSigningIn();
+        $partner1 = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $partner2 = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
 
-        $this->adminUserSigningIn();
         $this->visit(route('partners.index'));
         $this->see($partner1->name);
         $this->see($partner2->name);
@@ -56,8 +56,8 @@ class ManagePartnersTest extends TestCase
     /** @test */
     public function user_can_edit_a_partner_within_search_query()
     {
-        $this->adminUserSigningIn();
-        $partner = factory(Partner::class)->create(['name' => 'Testing 123']);
+        $user    = $this->adminUserSigningIn();
+        $partner = factory(Partner::class)->create(['owner_id' => $user->agency->id, 'name' => 'Testing 123']);
 
         $this->visit(route('partners.index', ['q' => '123']));
         $this->click('edit-partner-'.$partner->id);
@@ -89,8 +89,8 @@ class ManagePartnersTest extends TestCase
     /** @test */
     public function user_can_delete_a_partner()
     {
-        $this->adminUserSigningIn();
-        $partner = factory(Partner::class)->create();
+        $user    = $this->adminUserSigningIn();
+        $partner = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
 
         $this->visit(route('partners.index', [$partner->id]));
         $this->click('del-partner-'.$partner->id);

@@ -35,7 +35,7 @@ class UserProfileTest extends TestCase
         ]);
 
         $this->see(trans('auth.profile_updated'));
-        $this->seePageIs(route('users.profile.edit'));
+        $this->seePageIs(route('users.profile.show'));
 
         $this->seeInDatabase('users', [
             'id'    => $user->id,
@@ -45,11 +45,20 @@ class UserProfileTest extends TestCase
     }
 
     /** @test */
+    public function a_user_can_visit_their_agency_page()
+    {
+        $user   = $this->userSigningIn();
+        $agency = factory(Agency::class)->create(['owner_id' => $user]);
+        $this->visit(route('users.agency.show'));
+        $this->seePageIs(route('users.agency.show'));
+    }
+
+    /** @test */
     public function a_user_can_update_their_agency_data()
     {
         $user   = $this->userSigningIn();
         $agency = factory(Agency::class)->create(['owner_id' => $user]);
-        $this->visit(route('users.profile.edit'));
+        $this->visit(route('users.agency.edit'));
 
         $this->submitForm(trans('agency.update'), [
             'name'    => 'Nama Agensi Saya',
@@ -60,7 +69,7 @@ class UserProfileTest extends TestCase
         ]);
 
         $this->see(trans('agency.updated'));
-        $this->seePageIs(route('users.profile.edit'));
+        $this->seePageIs(route('users.agency.show'));
 
         $this->seeInDatabase('agencies', [
             'id'      => $agency->id,

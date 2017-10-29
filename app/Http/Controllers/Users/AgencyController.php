@@ -6,6 +6,17 @@ use App\Http\Controllers\Controller;
 
 class AgencyController extends Controller
 {
+    public function show()
+    {
+        $agency = auth()->user()->agency;
+        return view('users.agency.show', compact('agency'));
+    }
+
+    public function edit()
+    {
+        return view('users.agency.edit');
+    }
+
     public function update()
     {
         $agency = auth()->user()->agency;
@@ -19,6 +30,6 @@ class AgencyController extends Controller
 
         flash(trans('agency.updated'), 'success');
 
-        return back();
+        return redirect()->route('users.agency.show');
     }
 }

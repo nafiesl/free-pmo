@@ -14,6 +14,10 @@
         </a>
         <ul class="nav" id="side-menu">
             <li>{!! html_link_to_route('home', 'Dashboard', [], ['icon' => 'dashboard']) !!}</li>
+            <li>{!! html_link_to_route('users.profile.show', trans('auth.profile'), [], ['icon' => 'user']) !!}</li>
+            @can('manage', auth()->user()->agency)
+            <li>{!! html_link_to_route('users.agency.show', trans('auth.agency'), [], ['icon' => 'user']) !!}</li>
+            @endcan
             @can('add_project')
             <li>{!! html_link_to_route('features.index', 'On Progress Features', [], ['icon' => 'tasks']) !!}</li>
             <li>

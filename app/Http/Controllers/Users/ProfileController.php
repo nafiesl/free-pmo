@@ -8,7 +8,8 @@ class ProfileController extends Controller
 {
     public function show()
     {
-        return view('users.profile.show');
+        $user = auth()->user();
+        return view('users.profile.show', compact('user'));
     }
 
     public function edit()
@@ -26,6 +27,6 @@ class ProfileController extends Controller
 
         flash(trans('auth.profile_updated'), 'success');
 
-        return back();
+        return redirect()->route('users.profile.show');
     }
 }

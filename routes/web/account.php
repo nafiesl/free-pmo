@@ -23,7 +23,6 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('reset-password');
 
 // User's Profile routes
-
 Route::get('profile', [
     'as'         => 'users.profile.show',
     'uses'       => 'Users\ProfileController@show',
@@ -39,6 +38,19 @@ Route::get('profile/edit', [
 Route::patch('profile/update', [
     'as'         => 'users.profile.update',
     'uses'       => 'Users\ProfileController@update',
+    'middleware' => ['web', 'auth'],
+]);
+
+// User's Agency routes
+Route::get('agency', [
+    'as'         => 'users.agency.show',
+    'uses'       => 'Users\AgencyController@show',
+    'middleware' => ['web', 'auth'],
+]);
+
+Route::get('agency/edit', [
+    'as'         => 'users.agency.edit',
+    'uses'       => 'Users\AgencyController@edit',
     'middleware' => ['web', 'auth'],
 ]);
 

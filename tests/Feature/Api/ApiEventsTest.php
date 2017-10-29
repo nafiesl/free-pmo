@@ -12,11 +12,11 @@ class ApiEventsTest extends TestCase
     /** @test */
     public function it_can_get_all_existing_events()
     {
-        $user = factory(User::class)->create();
+        $user   = factory(User::class)->create();
         $events = factory(Event::class, 2)->create(['user_id' => $user->id]);
 
         $this->getJson(route('api.events.index'), [
-            'Authorization' => 'Bearer '.$user->api_token
+            'Authorization' => 'Bearer '.$user->api_token,
         ]);
 
         $this->seeStatusCode(200);
@@ -30,94 +30,92 @@ class ApiEventsTest extends TestCase
                 'end',
                 'allDay',
                 'project_id',
-            ]
+            ],
         ]);
     }
 
     /** @test */
     public function user_can_create_new_event()
     {
-        $user = factory(User::class)->create();
+        $user    = factory(User::class)->create();
         $project = factory(Project::class)->create();
 
         $this->postJson(route('api.events.store'), [
-            'title' => 'New Event Title',
-            'body' => 'New Event Body',
-            'start' => '2016-07-21 12:20:00',
+            'title'      => 'New Event Title',
+            'body'       => 'New Event Body',
+            'start'      => '2016-07-21 12:20:00',
             'project_id' => $project->id,
         ], [
-            'Authorization' => 'Bearer '.$user->api_token
+            'Authorization' => 'Bearer '.$user->api_token,
         ]);
-
-        // $this->dump();
 
         $this->seeStatusCode(201);
 
         $this->seeJson([
-            'message' => trans('event.created'),
+            'message'    => trans('event.created'),
             'project_id' => $project->id,
-            'user' => $user->name,
-            'title' => 'New Event Title',
-            'body' => 'New Event Body',
-            'start' => '2016-07-21 12:20:00',
-            'end' => null,
-            'allDay' => false,
+            'user'       => $user->name,
+            'title'      => 'New Event Title',
+            'body'       => 'New Event Body',
+            'start'      => '2016-07-21 12:20:00',
+            'end'        => null,
+            'allDay'     => false,
         ]);
 
         $this->seeInDatabase('user_events', [
             'project_id' => $project->id,
-            'user_id' => $user->id,
-            'title' => 'New Event Title',
-            'body' => 'New Event Body',
-            'start' => '2016-07-21 12:20:00',
-            'end' => null,
-            'is_allday' => 0,
+            'user_id'    => $user->id,
+            'title'      => 'New Event Title',
+            'body'       => 'New Event Body',
+            'start'      => '2016-07-21 12:20:00',
+            'end'        => null,
+            'is_allday'  => 0,
         ]);
     }
 
     /** @test */
     public function user_can_update_their_event()
     {
-        $user = factory(User::class)->create();
+        $user    = factory(User::class)->create();
         $project = factory(Project::class)->create();
-        $event = factory(Event::class)->create(['user_id' => $user->id]);
+        $event   = factory(Event::class)->create(['user_id' => $user->id]);
         // dump($event->toArray());
         $this->patchJson(route('api.events.update'), [
-            'id' => $event->id,
+            'id'         => $event->id,
             'project_id' => $project->id,
-            'title' => 'New Event Title',
-            'body' => 'New Event Body',
-            'is_allday' => 'true',
+            'title'      => 'New Event Title',
+            'body'       => 'New Event Body',
+            'is_allday'  => 'true',
         ], [
-            'Authorization' => 'Bearer '.$user->api_token
+            'Authorization' => 'Bearer '.$user->api_token,
         ]);
 
         $this->seeStatusCode(200);
 
         $this->seeJson([
-            'message' => trans('event.updated'),
+            'message'    => trans('event.updated'),
             'project_id' => $project->id,
-            'user' => $user->name,
-            'title' => 'New Event Title',
-            'body' => 'New Event Body',
+            'user'       => $user->name,
+            'title'      => 'New Event Title',
+            'body'       => 'New Event Body',
         ]);
 
         $this->seeInDatabase('user_events', [
-            'user_id' => $user->id,
+            'user_id'    => $user->id,
             'project_id' => $project->id,
-            'title' => 'New Event Title',
-            'body' => 'New Event Body',
+            'title'      => 'New Event Title',
+            'body'       => 'New Event Body',
         ]);
     }
 
     /** @test */
     public function user_can_delete_their_event()
     {
-        $user = factory(User::class)->create();
+        $user  = factory(User::class)->create();
         $event = factory(Event::class)->create(['user_id' => $user->id]);
 
         $this->deleteJson(route('api.events.destroy'), ['id' => $event->id], [
-            'Authorization' => 'Bearer '.$user->api_token
+            'Authorization' => 'Bearer '.$user->api_token,
         ]);
 
         $this->seeStatusCode(200);
@@ -130,15 +128,15 @@ class ApiEventsTest extends TestCase
     /** @test */
     public function user_can_reschedule_their_event()
     {
-        $user = factory(User::class)->create();
+        $user  = factory(User::class)->create();
         $event = factory(Event::class)->create(['user_id' => $user->id, 'start' => '2016-11-17 12:00:00']);
 
         $this->patchJson(route('api.events.reschedule'), [
-            'id' => $event->id,
+            'id'    => $event->id,
             'start' => '2016-11-07 13:00:00',
-            'end' => '2016-11-07 15:00:00',
+            'end'   => '2016-11-07 15:00:00',
         ], [
-            'Authorization' => 'Bearer '.$user->api_token
+            'Authorization' => 'Bearer '.$user->api_token,
         ]);
 
         // $this->dump();
@@ -149,10 +147,10 @@ class ApiEventsTest extends TestCase
         ]);
 
         $this->seeInDatabase('user_events', [
-            'id' => $event->id,
+            'id'      => $event->id,
             'user_id' => $user->id,
-            'start' => '2016-11-07 13:00:00',
-            'end' => '2016-11-07 15:00:00',
+            'start'   => '2016-11-07 13:00:00',
+            'end'     => '2016-11-07 15:00:00',
         ]);
     }
 }

@@ -62,6 +62,7 @@ class ProjectsRepository extends BaseRepository
     {
         $newCustomer           = new Partner;
         $newCustomer->name     = $customerName;
+        $newCustomer->type_id  = 1;
         $newCustomer->email    = $customerEmail;
         $newCustomer->owner_id = auth()->user()->agency->id;
         $newCustomer->save();

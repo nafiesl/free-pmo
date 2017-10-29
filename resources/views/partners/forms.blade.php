@@ -1,6 +1,7 @@
 @if (Request::get('action') == 'create')
     {!! Form::open(['route' => 'partners.store']) !!}
     {!! FormField::text('name', ['required' => true]) !!}
+    {!! FormField::radios('type_id', $partnerTypes, ['required' => true]) !!}
     {!! FormField::email('email') !!}
     {!! FormField::text('phone') !!}
     {!! FormField::text('pic') !!}
@@ -13,6 +14,7 @@
 @if (Request::get('action') == 'edit' && $editablePartner)
     {!! Form::model($editablePartner, ['route' => ['partners.update', $editablePartner->id],'method' => 'patch']) !!}
     {!! FormField::text('name', ['required' => true]) !!}
+    {!! FormField::radios('type_id', $partnerTypes, ['required' => true]) !!}
     {!! FormField::email('email') !!}
     {!! FormField::text('phone') !!}
     {!! FormField::text('pic') !!}

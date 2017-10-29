@@ -43,4 +43,16 @@ class PartnerTest extends TestCase
             ]), $partner->nameLink()
         );
     }
+
+    /** @test */
+    public function a_partner_has_type()
+    {
+        $partner = factory(Partner::class, 'customer')->make();
+        $this->assertEquals(1, $partner->type_id);
+        $this->assertEquals(trans('partner.types.customer'), $partner->type);
+
+        $partner = factory(Partner::class, 'vendor')->make();
+        $this->assertEquals(2, $partner->type_id);
+        $this->assertEquals(trans('partner.types.vendor'), $partner->type);
+    }
 }

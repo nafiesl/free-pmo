@@ -16,7 +16,13 @@ class PartnersController extends Controller
     public function index()
     {
         $editablePartner = null;
-        $partners        = Partner::where(function ($query) {
+
+        $partnerTypes = [
+            1 => trans('partner.types.customer'),
+            2 => trans('partner.types.vendor'),
+        ];
+
+        $partners = Partner::where(function ($query) {
             $query->where('name', 'like', '%'.request('q').'%');
         })
             ->withCount('projects')
@@ -26,7 +32,7 @@ class PartnersController extends Controller
             $editablePartner = Partner::find(request('id'));
         }
 
-        return view('partners.index', compact('partners', 'editablePartner'));
+        return view('partners.index', compact('partners', 'partnerTypes', 'editablePartner'));
     }
 
     /**
@@ -39,6 +45,7 @@ class PartnersController extends Controller
     {
         $newPartnerData = $this->validate($request, [
             'name'    => 'required|max:60',
+            'type_id' => 'required|numeric',
             'email'   => 'nullable|email|unique:partners,email',
             'phone'   => 'nullable|max:255',
             'pic'     => 'nullable|max:255',
@@ -77,6 +84,7 @@ class PartnersController extends Controller
     {
         $partnerData = $this->validate($request, [
             'name'      => 'required|max:60',
+            'type_id'   => 'required|numeric',
             'email'     => 'nullable|email|unique:partners,email,'.$partner->id,
             'phone'     => 'nullable|max:255',
             'pic'       => 'nullable|max:255',

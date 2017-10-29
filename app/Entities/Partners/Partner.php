@@ -9,7 +9,12 @@ class Partner extends Model
 {
     use OwnedByAgency;
 
-    protected $fillable = ['name', 'email', 'phone', 'pic', 'address', 'notes', 'is_active', 'owner_id'];
+    protected $fillable = ['name', 'type_id', 'email', 'phone', 'pic', 'address', 'notes', 'is_active', 'owner_id'];
+
+    public function getTypeAttribute()
+    {
+        return $this->type_id == 1 ? trans('partner.types.customer') : trans('partner.types.vendor');
+    }
 
     public function owner()
     {

@@ -28,4 +28,10 @@ return [
     'description'    => 'Deskripsi Partner',
     'pic'            => 'PIC',
     'projects_count' => 'Jml Project',
+
+    // Types
+    'types'          => [
+        'customer' => 'Customer',
+        'vendor'   => 'Vendor',
+    ],
 ];

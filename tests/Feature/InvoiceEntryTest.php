@@ -165,7 +165,7 @@ class InvoiceEntryTest extends TestCase
             'project_id' => $project->id,
             'amount'     => 3000,
             'notes'      => 'Catatan',
-            'user_id'    => $user->id,
+            'creator_id' => $user->id,
             'status_id'  => 1,
         ]);
     }

@@ -19,6 +19,7 @@
                         <tr><td>{{ trans('invoice.project') }}</td><td>{{ $invoice->project->name }}</td></tr>
                         <tr><td>{{ trans('invoice.customer') }}</td><td>{{ $invoice->project->customer->name }}</td></tr>
                         <tr><td>{{ trans('invoice.items_count') }}</td><td>{{ $invoice->items_count }}</td></tr>
+                        <tr><td>{{ trans('invoice.creator') }}</td><td>{{ $invoice->creator->name }}</td></tr>
                         <tr><td>{{ trans('invoice.amount') }}</td><td class="text-right strong">{{ formatRp($invoice->amount) }}</td></tr>
                     </tbody>
                 </table>

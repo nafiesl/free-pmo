@@ -4,6 +4,7 @@ namespace Tests\Unit\Models;
 
 use App\Entities\Invoices\Invoice;
 use App\Entities\Projects\Project;
+use App\Entities\Users\User;
 use Tests\TestCase;
 
 class InvoiceTest extends TestCase
@@ -17,6 +18,15 @@ class InvoiceTest extends TestCase
 
         $this->assertTrue($invoice->project instanceof Project);
         $this->assertEquals($invoice->project->id, $project->id);
+    }
+    /** @test */
+    public function it_has_creator_relation()
+    {
+        $user    = $this->adminUserSigningIn();
+        $invoice = factory(Invoice::class)->create(['creator_id' => $user->id]);
+
+        $this->assertTrue($invoice->creator instanceof User);
+        $this->assertEquals($invoice->creator->id, $user->id);
     }
 
     /** @test */

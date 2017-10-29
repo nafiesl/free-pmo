@@ -103,6 +103,8 @@ $factory->define(Invoice::class, function (Faker\Generator $faker) {
         'amount'     => 100000,
         'notes'      => $faker->paragraph,
         'status_id'  => 1,
-        'user_id'    => 1,
+        'creator_id' => function () {
+            return factory(User::class)->create()->id;
+        },
     ];
 });

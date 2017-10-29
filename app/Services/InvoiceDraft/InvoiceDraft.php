@@ -31,8 +31,7 @@ class InvoiceDraft
         unset($this->items[$itemKey]);
     }
 
-    public function empty()
-    {
+    function empty() {
         $this->items = [];
     }
 
@@ -48,7 +47,7 @@ class InvoiceDraft
 
     public function updateItem($itemKey, $newItemData)
     {
-        if (!isset($this->items[$itemKey])) {
+        if ( ! isset($this->items[$itemKey])) {
             return;
         }
 
@@ -61,14 +60,14 @@ class InvoiceDraft
 
     public function store()
     {
-        $invoice = new Invoice();
-        $invoice->number = $invoice->generateNewNumber();
-        $invoice->items = $this->getItemsArray();
+        $invoice             = new Invoice();
+        $invoice->number     = $invoice->generateNewNumber();
+        $invoice->items      = $this->getItemsArray();
         $invoice->project_id = $this->projectId;
-        $invoice->amount = $this->getTotal();
-        $invoice->notes = $this->notes;
-        $invoice->status_id = 1;
-        $invoice->user_id = auth()->id() ?: 1;
+        $invoice->amount     = $this->getTotal();
+        $invoice->notes      = $this->notes;
+        $invoice->status_id  = 1;
+        $invoice->creator_id = auth()->id() ?: 1;
 
         $invoice->save();
 

@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateInvoicesTable extends Migration
 {
@@ -19,9 +19,9 @@ class CreateInvoicesTable extends Migration
             $table->string('number', 8)->unique();
             $table->text('items');
             $table->unsignedInteger('amount');
-            $table->string('notes');
+            $table->string('notes')->nullable();
             $table->unsignedTinyInteger('status_id');
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('creator_id');
             $table->timestamps();
         });
     }

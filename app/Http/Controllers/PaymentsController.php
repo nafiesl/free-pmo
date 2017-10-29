@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Partners\Partner;
 use App\Entities\Payments\Payment;
 use App\Entities\Payments\PaymentsRepository;
-use App\Entities\Users\User;
 use App\Http\Requests\Payments\CreateRequest;
 use App\Http\Requests\Payments\DeleteRequest;
 use App\Http\Requests\Payments\UpdateRequest;
@@ -21,9 +21,9 @@ class PaymentsController extends Controller
 
     public function index(Request $request)
     {
-        $payments  = $this->repo->getPayments($request->only('q', 'partner_id'));
-        $usersList = User::pluck('name', 'id')->all();
-        return view('payments.index', compact('payments', 'usersList'));
+        $payments     = $this->repo->getPayments($request->only('q', 'partner_id'));
+        $partnersList = Partner::pluck('name', 'id')->all();
+        return view('payments.index', compact('payments', 'partnersList'));
     }
 
     public function create()

@@ -11,7 +11,7 @@
     <div class="pull-left hidden-xs">{!! str_replace('/?', '?', $payments->appends(Request::except('page'))->render()) !!}</div>
     {{ Form::open(['method'=>'get','class'=>'form-inline']) }}
     {{ Form::text('q', Request::get('q'), ['class'=>'form-control index-search-field','placeholder' => trans('payment.search')]) }}
-    {{ Form::select('partner_id', ['' => '-- '.trans('payment.customer').' --'] + $usersList, request('partner_id'), ['class' => 'form-control', 'id' => 'partner_id']) }}
+    {{ Form::select('partner_id', ['' => '-- '.trans('payment.customer').' --'] + $partnersList, request('partner_id'), ['class' => 'form-control', 'id' => 'partner_id']) }}
     {{ Form::submit(trans('app.search'), ['class' => 'btn btn-info btn-sm']) }}
     {{ link_to_route('payments.index','Reset',[],['class' => 'btn btn-default btn-sm']) }}
     {{ Form::close() }}

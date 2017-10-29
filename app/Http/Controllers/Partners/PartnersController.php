@@ -18,7 +18,9 @@ class PartnersController extends Controller
         $editablePartner = null;
         $partners        = Partner::where(function ($query) {
             $query->where('name', 'like', '%'.request('q').'%');
-        })->paginate(25);
+        })
+            ->withCount('projects')
+            ->paginate(25);
 
         if (in_array(request('action'), ['edit', 'delete']) && request('id') != null) {
             $editablePartner = Partner::find(request('id'));

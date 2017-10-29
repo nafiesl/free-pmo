@@ -16,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         'App\Entities\Partners\Partner' => 'App\Policies\Partners\PartnerPolicy',
         'App\Entities\Projects\Project' => 'App\Policies\Projects\ProjectPolicy',
+        'App\Entities\Agencies\Agency'  => 'App\Policies\AgencyPolicy',
         'App\Entities\Users\Event'      => 'App\Policies\EventPolicy',
     ];
 

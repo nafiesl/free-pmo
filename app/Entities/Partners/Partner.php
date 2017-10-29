@@ -15,4 +15,9 @@ class Partner extends Model
     {
         return $this->belongsTo('App\Entities\Agencies\Agency');
     }
+
+    public function projects()
+    {
+        return $this->hasMany('App\Entities\Projects\Project', 'customer_id');
+    }
 }

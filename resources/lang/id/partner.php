@@ -26,4 +26,5 @@ return [
     // Attributes
     'name'           => 'Nama Partner',
     'description'    => 'Deskripsi Partner',
+    'projects_count' => 'Jml Project',
 ];

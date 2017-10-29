@@ -18,10 +18,10 @@
             <li>{!! html_link_to_route('features.index', 'On Progress Features', [], ['icon' => 'tasks']) !!}</li>
             <li>
                 <?php $projectsCount = App\Entities\Projects\Project::select(DB::raw('status_id, count(id) as count'))
-                            ->groupBy('status_id')
-                            ->where('owner_id', auth()->id())
-                            ->pluck('count', 'status_id')
-                            ->all();?>
+    ->groupBy('status_id')
+    ->where('owner_id', auth()->id())
+    ->pluck('count', 'status_id')
+    ->all();?>
                 {!! html_link_to_route('projects.index', trans('project.projects') . ' <span class="fa arrow"></span>', [], ['icon' => 'table']) !!}
                 <ul class="nav nav-second-level">
                     @foreach(getProjectStatusesList() as $key => $status)
@@ -61,6 +61,9 @@
             @endcan
             @can('manage_payments')
             <li>{!! html_link_to_route('payments.index', trans('payment.payments'), [], ['icon' => 'money']) !!}</li>
+            @endcan
+            @can('manage', auth()->user()->agency)
+            <li>{!! html_link_to_route('partners.index', trans('partner.list'), [], ['icon' => 'users']) !!}</li>
             @endcan
             @can('manage_users')
             <li>

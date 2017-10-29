@@ -5,13 +5,11 @@
 @section('content')
 <h1 class="page-header">
     <div class="pull-right">
-        {{ link_to_route('partners.index', trans('partner.create'), ['action' => 'create'], ['class' => 'btn btn-success']) }}
+        {{ link_to_route('partners.create', trans('partner.create'), [], ['class' => 'btn btn-success']) }}
     </div>
     {{ trans('partner.list') }}
     <small>{{ trans('app.total') }} : {{ $partners->total() }} {{ trans('partner.partner') }}</small>
 </h1>
-
-@includeWhen(Request::has('action'), 'partners.forms')
 
 <div class="panel panel-default table-responsive">
     <div class="panel-heading">
@@ -42,20 +40,7 @@
                 <td>{{ $partner->phone }}</td>
                 <td class="text-center">{{ $partner->projects_count }}</td>
                 <td class="text-center">{{ $partner->is_active }}</td>
-                <td class="text-center">
-                    {!! link_to_route(
-                        'partners.index',
-                        trans('app.edit'),
-                        ['action' => 'edit', 'id' => $partner->id] + Request::only('page', 'q'),
-                        ['id' => 'edit-partner-' . $partner->id]
-                        ) !!} |
-                    {!! link_to_route(
-                        'partners.index',
-                        trans('app.delete'),
-                        ['action' => 'delete', 'id' => $partner->id] + Request::only('page', 'q'),
-                        ['id' => 'del-partner-' . $partner->id]
-                        ) !!}
-                    </td>
+                <td class="text-center"></td>
                 </tr>
                 @endforeach
             </tbody>

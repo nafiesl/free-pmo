@@ -36,6 +36,21 @@ class PartnersController extends Controller
     }
 
     /**
+     * Show the create partner form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $partnerTypes = [
+            1 => trans('partner.types.customer'),
+            2 => trans('partner.types.vendor'),
+        ];
+
+        return view('partners.create', compact('partnerTypes'));
+    }
+
+    /**
      * Store a newly created partner in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -74,6 +89,22 @@ class PartnersController extends Controller
     }
 
     /**
+     * Show the edit partner form.
+     *
+     * @param  \App\Entities\Partners\Partner  $partner
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Partner $partner)
+    {
+        $partnerTypes = [
+            1 => trans('partner.types.customer'),
+            2 => trans('partner.types.vendor'),
+        ];
+
+        return view('partners.edit', compact('partnerTypes', 'partner'));
+    }
+
+    /**
      * Update the specified partner in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -93,12 +124,11 @@ class PartnersController extends Controller
             'is_active' => 'required|boolean',
         ]);
 
-        $routeParam = request()->only('page', 'q');
-
-        $partner = $partner->update($partnerData);
+        $partner->update($partnerData);
 
         flash(trans('partner.updated'), 'success');
-        return redirect()->route('partners.index', $routeParam);
+
+        return redirect()->route('partners.show', $partner->id);
     }
 
     /**

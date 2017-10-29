@@ -3,7 +3,14 @@
 @section('title', trans('partner.show'))
 
 @section('content')
-<h1 class="page-header">{{ $partner->name }} <small>{{ trans('partner.show') }}</small></h1>
+<h1 class="page-header">
+    <div class="pull-right">
+        {!! link_to_route('partners.edit', trans('partner.edit'), [$partner->id], ['id' => 'edit-partner-' . $partner->id, 'class' => 'btn btn-warning']) !!}
+        {!! link_to_route('partners.index', trans('partner.back_to_index'), [], ['class' => 'btn btn-default']) !!}
+    </div>
+
+    {{ $partner->name }} <small>{{ trans('partner.show') }}</small>
+</h1>
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
@@ -19,10 +26,6 @@
                     <tr><td>{{ trans('app.notes') }}</td><td>{!! nl2br($partner->notes) !!}</td></tr>
                 </tbody>
             </table>
-            <div class="panel-footer">
-                {{-- {!! link_to_route('partners.edit', trans('partner.edit'), [$partner->id], ['class' => 'btn btn-warning']) !!} --}}
-                {!! link_to_route('partners.index', trans('partner.back_to_index'), [], ['class' => 'btn btn-default']) !!}
-            </div>
         </div>
     </div>
     <div class="col-md-6">

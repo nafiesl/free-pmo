@@ -29,7 +29,7 @@ class ManagePartnersTest extends TestCase
         $this->visit(route('partners.index'));
 
         $this->click(trans('partner.create'));
-        $this->seePageIs(route('partners.index', ['action' => 'create']));
+        $this->seePageIs(route('partners.create'));
 
         $this->submitForm(trans('partner.create'), [
             'name'    => 'Partner 1 name',
@@ -41,7 +41,7 @@ class ManagePartnersTest extends TestCase
             'notes'   => '',
         ]);
 
-        $this->seePageIs(route('partners.index'));
+        $this->see(trans('partner.created'));
 
         $this->seeInDatabase('partners', [
             'name'     => 'Partner 1 name',
@@ -56,14 +56,14 @@ class ManagePartnersTest extends TestCase
     }
 
     /** @test */
-    public function user_can_edit_a_partner_within_search_query()
+    public function user_can_edit_a_partner()
     {
         $user    = $this->adminUserSigningIn();
         $partner = factory(Partner::class)->create(['owner_id' => $user->agency->id, 'name' => 'Testing 123']);
 
-        $this->visit(route('partners.index', ['q' => '123']));
+        $this->visit(route('partners.show', [$partner->id]));
         $this->click('edit-partner-'.$partner->id);
-        $this->seePageIs(route('partners.index', ['action' => 'edit', 'id' => $partner->id, 'q' => '123']));
+        $this->seePageIs(route('partners.edit', [$partner->id]));
 
         $this->submitForm(trans('partner.update'), [
             'name'      => 'Partner 1 name',
@@ -76,7 +76,7 @@ class ManagePartnersTest extends TestCase
             'is_active' => 0,
         ]);
 
-        $this->seePageIs(route('partners.index', ['q' => '123']));
+        $this->seePageIs(route('partners.show', $partner->id));
 
         $this->seeInDatabase('partners', [
             'name'      => 'Partner 1 name',
@@ -96,9 +96,9 @@ class ManagePartnersTest extends TestCase
         $user    = $this->adminUserSigningIn();
         $partner = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
 
-        $this->visit(route('partners.index', [$partner->id]));
+        $this->visit(route('partners.edit', [$partner->id]));
         $this->click('del-partner-'.$partner->id);
-        $this->seePageIs(route('partners.index', ['action' => 'delete', 'id' => $partner->id]));
+        $this->seePageIs(route('partners.edit', [$partner->id, 'action' => 'delete']));
 
         $this->seeInDatabase('partners', [
             'id' => $partner->id,

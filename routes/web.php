@@ -24,5 +24,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     /*
      * Partners Routes
      */
-    Route::apiResource('partners', 'Partners\PartnersController');
+    Route::resource('partners', 'Partners\PartnersController');
 });

@@ -9,6 +9,9 @@ return [
     'empty'          => 'Belum ada Partner',
     'back_to_show'   => 'Kembali ke detail Partner',
     'back_to_index'  => 'Kembali ke daftar Partner',
+    'type'           => 'Jenis Partner',
+    'detail'         => 'Detail Partner',
+    'contact'        => 'Kontak Partner',
 
     // Actions
     'create'         => 'Input Partner Baru',

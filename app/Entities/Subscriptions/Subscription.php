@@ -17,7 +17,7 @@ class Subscription extends Model
         return $this->belongsTo('App\Entities\Projects\Project');
     }
 
-    public function customer()
+    public function vendor()
     {
         return $this->belongsTo('App\Entities\Partners\Partner');
     }

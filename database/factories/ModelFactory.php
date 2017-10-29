@@ -36,9 +36,6 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
         'start_date'       => $startDate->format('Y-m-d'),
         'due_date'         => $startDate->addYears(1)->format('Y-m-d'),
         'remark'           => $faker->paragraph,
-        'customer_id'      => function () {
-            return factory(Partner::class)->create()->id;
-        },
         'vendor_id'        => function () {
             return factory(Partner::class)->create()->id;
         },

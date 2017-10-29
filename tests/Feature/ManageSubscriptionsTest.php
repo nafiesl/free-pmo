@@ -15,7 +15,7 @@ class ManageSubscriptionsTest extends TestCase
         $user     = $this->adminUserSigningIn();
         $vendor   = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
         $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
-        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
 
         $this->visit(route('subscriptions.index'));
         $this->click(trans('subscription.create'));
@@ -29,7 +29,6 @@ class ManageSubscriptionsTest extends TestCase
         $this->type('2015-05-02', 'start_date');
         $this->type('2016-05-02', 'due_date');
         $this->select($project->id, 'project_id');
-        $this->select($customer->id, 'customer_id');
         $this->select($vendor->id, 'vendor_id');
         $this->type('', 'remark');
         $this->press(trans('subscription.create'));
@@ -44,7 +43,6 @@ class ManageSubscriptionsTest extends TestCase
             'status_id'    => 1,
             'start_date'   => '2015-05-02',
             'due_date'     => '2016-05-02',
-            'customer_id'  => $customer->id,
             'vendor_id'    => $vendor->id,
         ]);
     }
@@ -56,12 +54,11 @@ class ManageSubscriptionsTest extends TestCase
         $user     = $this->adminUserSigningIn();
         $vendor   = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
         $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
-        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
 
-        $subscription = factory(Subscription::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
+        $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
 
         $this->visit(route('subscriptions.edit', $subscription->id));
-        $this->seePageIs(route('subscriptions.edit', $subscription->id));
 
         // Fill Form
         $this->type($eppCode, 'epp_code');
@@ -70,7 +67,6 @@ class ManageSubscriptionsTest extends TestCase
         $this->type('2015-05-02', 'start_date');
         $this->type('2016-05-02', 'due_date');
         $this->select($project->id, 'project_id');
-        $this->select($customer->id, 'customer_id');
         $this->select($vendor->id, 'vendor_id');
         $this->select(1, 'status_id');
         $this->press(trans('subscription.update'));
@@ -79,14 +75,12 @@ class ManageSubscriptionsTest extends TestCase
         $this->see(trans('subscription.updated'));
         $this->seeInDatabase('subscriptions', [
             'epp_code'         => $eppCode,
-            'customer_id'      => $customer->id,
             'project_id'       => $project->id,
             'status_id'        => 1,
             'hosting_capacity' => '4GB',
             'hosting_price'    => '500000',
             'start_date'       => '2015-05-02',
             'due_date'         => '2016-05-02',
-            'customer_id'      => $customer->id,
             'vendor_id'        => $vendor->id,
         ]);
     }
@@ -96,9 +90,9 @@ class ManageSubscriptionsTest extends TestCase
     {
         $user     = $this->adminUserSigningIn();
         $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
-        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
 
-        $subscription = factory(Subscription::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
+        $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
 
         $this->visit(route('subscriptions.edit', $subscription->id));
         $this->click(trans('subscription.delete'));
@@ -115,7 +109,8 @@ class ManageSubscriptionsTest extends TestCase
         $user         = $this->adminUserSigningIn();
         $customer     = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
         $project      = factory(Project::class)->create(['owner_id' => $user->agency->id]);
-        $subscription = factory(Subscription::class)->create(['customer_id' => $customer->id, 'project_id' => $project->id]);
+        $project      = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
+        $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
 
         $this->visit(route('subscriptions.show', $subscription->id));
 

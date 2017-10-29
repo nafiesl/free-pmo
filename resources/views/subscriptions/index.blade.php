@@ -32,7 +32,7 @@
             <td>{{ $subscriptions->firstItem() + $key }}</td>
             <td>{{ $subscription->domain_name }}</td>
             <td class="text-center">{{ $subscription->hosting_capacity }}</td>
-            <td>{{ $subscription->customer->name }}</td>
+            <td>{{ $subscription->vendor->name }}</td>
             <td class="text-right" title="
                 {{ trans('subscription.start_date') }} : {{ dateId($subscription->start_date) }} \n
 {{ trans('subscription.due_date') }} : {{ dateId($subscription->due_date) }}

@@ -13,10 +13,7 @@
             <tr>
                 <td>{{ trans('subscription.customer') }}</td>
                 <td>
-                    {{ $subscription->present()->customerNameAndEmail }}
-                    @if ($subscription->project->customer_id && auth()->id() == $subscription->project->owner_id)
-                    {!! link_to_route('users.edit', 'Edit', [$subscription->customer_id], ['title' => 'Edit Data Customer']) !!}
-                    @endif
+                    {{ $subscription->project->customer->name }}
                 </td>
             </tr>
             <tr>

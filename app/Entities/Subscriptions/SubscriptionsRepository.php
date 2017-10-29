@@ -29,7 +29,7 @@ class SubscriptionsRepository extends BaseRepository
                 }
 
             })
-            ->with('customer')
+            ->with('vendor')
             ->paginate($this->_paginate);
     }
 }

@@ -32,7 +32,6 @@ class UpdateRequest extends Request
             'hosting_price'    => 'required_with:hosting_capacity|numeric',
             'start_date'       => 'required|date|date_format:Y-m-d',
             'due_date'         => 'required|date|date_format:Y-m-d',
-            'customer_id'      => 'required|numeric',
             'project_id'       => 'required|numeric',
             'vendor_id'        => 'required|numeric',
             'remark'           => 'max:255',

@@ -22,7 +22,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::resource('backups', 'BackupsController', ['except' => ['create', 'show', 'edit']]);
 
     /*
-     * Partners Routes
+     * Customers Routes
      */
-    Route::resource('partners', 'Partners\PartnersController');
+    Route::resource('customers', 'Partners\CustomersController');
 });

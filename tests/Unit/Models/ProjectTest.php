@@ -3,7 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Entities\Agencies\Agency;
-use App\Entities\Partners\Partner;
+use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
@@ -72,10 +72,10 @@ class ProjectTest extends TestCase
     /** @test */
     public function a_project_belongs_to_a_customer()
     {
-        $customer = factory(Partner::class)->create();
+        $customer = factory(Customer::class)->create();
         $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
 
-        $this->assertTrue($project->customer instanceof Partner);
+        $this->assertTrue($project->customer instanceof Customer);
         $this->assertEquals($project->customer_id, $customer->id);
     }
 

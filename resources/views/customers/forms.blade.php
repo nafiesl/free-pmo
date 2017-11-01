@@ -1,37 +1,37 @@
-@if (Request::get('action') == 'delete' && $partner)
+@if (Request::get('action') == 'delete' && $customer)
 <div class="row">
     <div class="col-md-4 col-md-offset-4">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('partner.delete') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ trans('customer.delete') }}</h3></div>
             <div class="panel-body">
-                <label class="control-label">{{ trans('partner.name') }}</label>
-                <p>{{ $partner->name }}</p>
+                <label class="control-label">{{ trans('customer.name') }}</label>
+                <p>{{ $customer->name }}</p>
                 <label class="control-label">{{ trans('contact.email') }}</label>
-                <p>{{ $partner->email }}</p>
+                <p>{{ $customer->email }}</p>
                 <label class="control-label">{{ trans('contact.phone') }}</label>
-                <p>{{ $partner->phone }}</p>
+                <p>{{ $customer->phone }}</p>
                 <label class="control-label">{{ trans('address.address') }}</label>
-                <p>{{ $partner->address }}</p>
+                <p>{{ $customer->address }}</p>
                 <label class="control-label">{{ trans('app.status') }}</label>
-                <p>{{ $partner->is_active }}</p>
+                <p>{{ $customer->is_active }}</p>
                 <label class="control-label">{{ trans('app.notes') }}</label>
-                <p>{{ $partner->notes }}</p>
-                {!! $errors->first('partner_id', '<span class="form-error small">:message</span>') !!}
+                <p>{{ $customer->notes }}</p>
+                {!! $errors->first('customer_id', '<span class="form-error small">:message</span>') !!}
             </div>
             <hr style="margin:0">
             <div class="panel-body">{{ trans('app.delete_confirm') }}</div>
             <div class="panel-footer">
                 {!! FormField::delete(
-                    ['route'=>['partners.destroy',$partner->id]],
+                    ['route'=>['customers.destroy',$customer->id]],
                     trans('app.delete_confirm_button'),
                     ['class'=>'btn btn-danger'],
                     [
-                        'partner_id' => $partner->id,
+                        'customer_id' => $customer->id,
                         'page' => request('page'),
                         'q' => request('q'),
                     ]
                 ) !!}
-                {{ link_to_route('partners.edit', trans('app.cancel'), [$partner->id], ['class' => 'btn btn-default']) }}
+                {{ link_to_route('customers.edit', trans('app.cancel'), [$customer->id], ['class' => 'btn btn-default']) }}
             </div>
         </div>
     </div>

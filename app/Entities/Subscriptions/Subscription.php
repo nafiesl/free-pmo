@@ -19,7 +19,7 @@ class Subscription extends Model
 
     public function vendor()
     {
-        return $this->belongsTo('App\Entities\Partners\Partner');
+        return $this->belongsTo('App\Entities\Partners\Customer');
     }
 
     public function status()

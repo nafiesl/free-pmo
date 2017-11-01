@@ -67,7 +67,7 @@
             <li>{!! html_link_to_route('payments.index', trans('payment.payments'), [], ['icon' => 'money']) !!}</li>
             @endcan
             @can('manage', auth()->user()->agency)
-            <li>{!! html_link_to_route('partners.index', trans('partner.list'), [], ['icon' => 'users']) !!}</li>
+            <li>{!! html_link_to_route('customers.index', trans('customer.list'), [], ['icon' => 'users']) !!}</li>
             @endcan
             @can('manage_users')
             <li>{!! html_link_to_route('users.index', trans('user.users'), [], ['icon' => 'users']) !!}</li>

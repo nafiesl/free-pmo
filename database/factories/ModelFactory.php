@@ -1,7 +1,7 @@
 <?php
 
 use App\Entities\Invoices\Invoice;
-use App\Entities\Partners\Partner;
+use App\Entities\Partners\Customer;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
@@ -37,7 +37,7 @@ $factory->define(Subscription::class, function (Faker\Generator $faker) {
         'due_date'         => $startDate->addYears(1)->format('Y-m-d'),
         'remark'           => $faker->paragraph,
         'vendor_id'        => function () {
-            return factory(Partner::class)->create()->id;
+            return factory(Customer::class)->create()->id;
         },
     ];
 });

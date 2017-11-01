@@ -1,6 +1,6 @@
 <?php
 
-use App\Entities\Partners\Partner;
+use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use Faker\Generator as Faker;
@@ -17,7 +17,7 @@ $factory->define(Payment::class, function (Faker $faker) {
         'date'        => $faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'),
         'description' => $faker->paragraph,
         'partner_id'  => function () {
-            return factory(Partner::class)->create()->id;
+            return factory(Customer::class)->create()->id;
         },
     ];
 });

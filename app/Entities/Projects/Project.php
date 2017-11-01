@@ -4,7 +4,7 @@ namespace App\Entities\Projects;
 
 use App\Entities\Agencies\Agency;
 use App\Entities\Invoices\Invoice;
-use App\Entities\Partners\Partner;
+use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\ProjectPresenter;
 use App\Entities\Projects\Task;
@@ -63,7 +63,7 @@ class Project extends Model
 
     public function customer()
     {
-        return $this->belongsTo(Partner::class);
+        return $this->belongsTo(Customer::class);
     }
 
     public function owner()

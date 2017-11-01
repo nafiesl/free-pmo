@@ -2,7 +2,6 @@
 
 namespace App\Entities\Payments;
 
-use App\Entities\Partners\Partner;
 use App\Entities\Payments\PaymentPresenter;
 use App\Entities\Projects\Project;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,7 +34,7 @@ class Payment extends Model
 
     public function partner()
     {
-        return $this->belongsTo(Partner::class, 'partner_id');
+        return $this->belongsTo('App\Entities\Partners\Customer', 'partner_id');
     }
 
     public function type()

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\Partners\Partner;
+use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Payments\PaymentsRepository;
 use App\Http\Requests\Payments\CreateRequest;
@@ -22,7 +22,7 @@ class PaymentsController extends Controller
     public function index(Request $request)
     {
         $payments     = $this->repo->getPayments($request->only('q', 'partner_id'));
-        $partnersList = Partner::pluck('name', 'id')->all();
+        $partnersList = Customer::pluck('name', 'id')->all();
         return view('payments.index', compact('payments', 'partnersList'));
     }
 

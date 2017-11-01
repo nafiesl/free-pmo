@@ -3,7 +3,7 @@
 namespace Tests\Feature;
 
 use App\Entities\Agencies\Agency;
-use App\Entities\Partners\Partner;
+use App\Entities\Partners\Customer;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
@@ -17,7 +17,7 @@ class ManageFeaturesTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
         $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
 
         $worker = $this->createUser();
@@ -52,7 +52,7 @@ class ManageFeaturesTest extends TestCase
         $agency = factory(Agency::class)->create(['owner_id' => $user[0]->id]);
         $this->actingAs($user[0]);
 
-        $customer = factory(Partner::class)->create(['owner_id' => $agency->id]);
+        $customer = factory(Customer::class)->create(['owner_id' => $agency->id]);
         $project  = factory(Project::class)->create(['owner_id' => $agency->id, 'customer_id' => $customer->id]);
 
         $feature = factory(Feature::class)->create(['worker_id' => $user[1]->id, 'project_id' => $project->id]);
@@ -83,7 +83,7 @@ class ManageFeaturesTest extends TestCase
     public function admin_can_delete_a_feature()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
         $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
         $feature  = factory(Feature::class)->create(['project_id' => $project->id]);
         $tasks    = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
@@ -136,7 +136,7 @@ class ManageFeaturesTest extends TestCase
     public function admin_may_clone_many_features_from_other_projects()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Partner::class)->create(['owner_id' => $user->agency->id]);
+        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
         $projects = factory(Project::class, 2)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
         $features = factory(Feature::class, 3)->create(['project_id' => $projects[0]->id]);
         $tasks1   = factory(Task::class, 3)->create(['feature_id' => $features[0]->id]);

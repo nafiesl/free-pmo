@@ -5,7 +5,7 @@ namespace App\Entities\Partners;
 use App\Traits\OwnedByAgency;
 use Illuminate\Database\Eloquent\Model;
 
-class Partner extends Model
+class Customer extends Model
 {
     use OwnedByAgency;
 
@@ -23,10 +23,10 @@ class Partner extends Model
 
     public function nameLink()
     {
-        return link_to_route('partners.show', $this->name, [$this->id], [
+        return link_to_route('customers.show', $this->name, [$this->id], [
             'title' => trans(
                 'app.show_detail_title',
-                ['name' => $this->name, 'type' => trans('partner.partner')]
+                ['name' => $this->name, 'type' => trans('customer.customer')]
             ),
         ]);
     }

@@ -1,7 +1,7 @@
 <?php
 
 use App\Entities\Agencies\Agency;
-use App\Entities\Partners\Partner;
+use App\Entities\Partners\Customer;
 use App\Entities\Projects\Project;
 use Faker\Generator as Faker;
 
@@ -24,7 +24,7 @@ $factory->define(Project::class, function (Faker $faker) {
             return factory(Agency::class)->create()->id;
         },
         'customer_id'    => function () {
-            return factory(Partner::class)->create()->id;
+            return factory(Customer::class)->create()->id;
         },
     ];
 });

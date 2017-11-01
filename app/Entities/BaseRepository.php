@@ -2,7 +2,7 @@
 
 namespace App\Entities;
 
-use App\Entities\Partners\Partner;
+use App\Entities\Partners\Customer;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
@@ -15,12 +15,12 @@ abstract class BaseRepository extends EloquentRepository
 
     public function getCustomersList()
     {
-        return Partner::orderBy('name')->pluck('name', 'id');
+        return Customer::orderBy('name')->pluck('name', 'id');
     }
 
     public function getCustomersAndVendorsList()
     {
-        return Partner::orderBy('name')->pluck('name', 'id');
+        return Customer::orderBy('name')->pluck('name', 'id');
     }
 
     public function getWorkersList()
@@ -30,7 +30,7 @@ abstract class BaseRepository extends EloquentRepository
 
     public function getVendorsList()
     {
-        return Partner::orderBy('name')->pluck('name', 'id');
+        return Customer::orderBy('name')->pluck('name', 'id');
     }
 
     public function getProjectsList()

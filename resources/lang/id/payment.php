@@ -8,6 +8,10 @@ return [
     'not_found'     => 'Pembayaran tidak ditemukan',
     'empty'         => 'Belum ada Pembayaran',
     'back_to_index' => 'Kembali ke daftar Pembayaran',
+    'receipt'       => 'Bukti Pembayaran',
+    'from'          => 'Terima dari',
+    'cash_amount'   => 'Uang Sejumlah',
+    'words_amount'  => 'Terbilang',
 
     // Actions
     'create'        => 'Input Pembayaran Baru',
@@ -23,7 +27,7 @@ return [
     'print'         => 'Cetak Kuitansi',
 
     // Attrubutes
-    'description'   => 'Deskripsi',
+    'description'   => 'Untuk Pembayaran',
     'date'          => 'Tanggal Pembayaran',
     'in_out'        => 'Jenis Transaksi',
     'type'          => 'Jenis Pembayaran',

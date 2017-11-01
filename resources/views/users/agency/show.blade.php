@@ -13,7 +13,7 @@
                 <tr><th class="col-xs-4">{{ trans('agency.name') }}</th><td>{{ $agency->name }}</td></tr>
                 <tr><th>{{ trans('agency.email') }}</th><td>{{ $agency->email }}</td></tr>
                 <tr><th>{{ trans('agency.phone') }}</th><td>{{ $agency->phone }}</td></tr>
-                <tr><th>{{ trans('agency.address') }}</th><td>{{ $agency->address }}</td></tr>
+                <tr><th>{{ trans('agency.address') }}</th><td>{!! nl2br($agency->address) !!}</td></tr>
                 <tr><th>{{ trans('agency.website') }}</th><td>{{ $agency->website }}</td></tr>
             </table>
             <div class="panel-footer">

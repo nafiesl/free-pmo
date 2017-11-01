@@ -33,7 +33,6 @@ class ManagePartnersTest extends TestCase
 
         $this->submitForm(trans('partner.create'), [
             'name'    => 'Partner 1 name',
-            'type_id' => 1,
             'email'   => 'partner1@mail.com',
             'phone'   => '081234567890',
             'pic'     => 'Nama PIC Partner',
@@ -45,7 +44,6 @@ class ManagePartnersTest extends TestCase
 
         $this->seeInDatabase('partners', [
             'name'     => 'Partner 1 name',
-            'type_id'  => 1,
             'email'    => 'partner1@mail.com',
             'phone'    => '081234567890',
             'pic'      => 'Nama PIC Partner',
@@ -67,7 +65,6 @@ class ManagePartnersTest extends TestCase
 
         $this->submitForm(trans('partner.update'), [
             'name'      => 'Partner 1 name',
-            'type_id'   => 2,
             'email'     => 'partner1@mail.com',
             'phone'     => '081234567890',
             'pic'       => 'Nama PIC Partner',
@@ -80,7 +77,6 @@ class ManagePartnersTest extends TestCase
 
         $this->seeInDatabase('partners', [
             'name'      => 'Partner 1 name',
-            'type_id'   => 2,
             'email'     => 'partner1@mail.com',
             'phone'     => '081234567890',
             'pic'       => 'Nama PIC Partner',

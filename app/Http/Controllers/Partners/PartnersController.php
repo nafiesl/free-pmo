@@ -42,12 +42,7 @@ class PartnersController extends Controller
      */
     public function create()
     {
-        $partnerTypes = [
-            1 => trans('partner.types.customer'),
-            2 => trans('partner.types.vendor'),
-        ];
-
-        return view('partners.create', compact('partnerTypes'));
+        return view('partners.create');
     }
 
     /**
@@ -60,7 +55,6 @@ class PartnersController extends Controller
     {
         $newPartnerData = $this->validate($request, [
             'name'    => 'required|max:60',
-            'type_id' => 'required|numeric',
             'email'   => 'nullable|email|unique:partners,email',
             'phone'   => 'nullable|max:255',
             'pic'     => 'nullable|max:255',
@@ -96,12 +90,7 @@ class PartnersController extends Controller
      */
     public function edit(Partner $partner)
     {
-        $partnerTypes = [
-            1 => trans('partner.types.customer'),
-            2 => trans('partner.types.vendor'),
-        ];
-
-        return view('partners.edit', compact('partnerTypes', 'partner'));
+        return view('partners.edit', compact('partner'));
     }
 
     /**
@@ -115,7 +104,6 @@ class PartnersController extends Controller
     {
         $partnerData = $this->validate($request, [
             'name'      => 'required|max:60',
-            'type_id'   => 'required|numeric',
             'email'     => 'nullable|email|unique:partners,email,'.$partner->id,
             'phone'     => 'nullable|max:255',
             'pic'       => 'nullable|max:255',

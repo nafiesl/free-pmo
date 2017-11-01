@@ -22,7 +22,6 @@
                         <legend>@lang('partner.detail')</legend>
                         {!! FormField::text('name', ['required' => true]) !!}
                         <div class="row">
-                            <div class="col-xs-6">{!! FormField::radios('type_id', $partnerTypes, ['required' => true]) !!}</div>
                             <div class="col-xs-6">{!! FormField::radios('is_active', ['Non Aktif', 'Aktif']) !!}</div>
                         </div>
                         {!! FormField::textarea('notes') !!}

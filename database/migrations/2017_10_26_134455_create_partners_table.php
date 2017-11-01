@@ -16,7 +16,6 @@ class CreatePartnersTable extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 60);
-            $table->unsignedTinyInteger('type_id');
             $table->string('email')->nullable()->unique();
             $table->string('phone')->nullable();
             $table->string('pic')->nullable();

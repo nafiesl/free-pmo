@@ -28,7 +28,6 @@
                 <th>{{ trans('contact.phone') }}</th>
                 <th class="text-center">{{ trans('partner.projects_count') }}</th>
                 <th class="text-center">{{ trans('app.status') }}</th>
-                <th class="text-center">{{ trans('app.action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -40,7 +39,6 @@
                 <td>{{ $partner->phone }}</td>
                 <td class="text-center">{{ $partner->projects_count }}</td>
                 <td class="text-center">{{ $partner->is_active }}</td>
-                <td class="text-center"></td>
                 </tr>
                 @endforeach
             </tbody>

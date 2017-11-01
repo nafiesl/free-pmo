@@ -19,7 +19,6 @@
                     <div class="col-md-6">
                         <legend>@lang('partner.detail')</legend>
                         {!! FormField::text('name', ['required' => true]) !!}
-                        {!! FormField::radios('type_id', $partnerTypes, ['required' => true]) !!}
                         {!! FormField::textarea('notes') !!}
                     </div>
                     <div class="col-md-6">

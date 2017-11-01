@@ -1,8 +1,8 @@
 @if (Request::get('action') == 'create')
     {!! Form::open(['route' => 'vendors.store']) !!}
     {!! FormField::text('name', ['required' => true]) !!}
-    {!! FormField::textarea('description') !!}
     {!! FormField::text('website') !!}
+    {!! FormField::textarea('notes') !!}
     {!! Form::submit(trans('vendor.create'), ['class' => 'btn btn-success']) !!}
     {{ link_to_route('vendors.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
     {!! Form::close() !!}
@@ -10,9 +10,9 @@
 @if (Request::get('action') == 'edit' && $editableVendor)
     {!! Form::model($editableVendor, ['route' => ['vendors.update', $editableVendor->id],'method' => 'patch']) !!}
     {!! FormField::text('name', ['required' => true]) !!}
-    {!! FormField::textarea('description') !!}
     {!! FormField::text('website') !!}
     {!! FormField::radios('is_active', ['Non Aktif', 'Aktif']) !!}
+    {!! FormField::textarea('notes') !!}
     @if (request('q'))
         {{ Form::hidden('q', request('q')) }}
     @endif

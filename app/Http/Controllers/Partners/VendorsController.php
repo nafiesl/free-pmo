@@ -36,9 +36,9 @@ class VendorsController extends Controller
     public function store(Request $request)
     {
         $newVendorData = $this->validate($request, [
-            'name'        => 'required|max:60',
-            'description' => 'nullable|max:255',
-            'website'     => 'nullable|url|max:255',
+            'name'    => 'required|max:60',
+            'notes'   => 'nullable|max:255',
+            'website' => 'nullable|url|max:255',
         ]);
 
         $newVendorData['owner_id'] = auth()->user()->agency->id;
@@ -59,10 +59,10 @@ class VendorsController extends Controller
     public function update(Request $request, Vendor $vendor)
     {
         $vendorData = $this->validate($request, [
-            'name'        => 'required|max:60',
-            'description' => 'nullable|max:255',
-            'website'     => 'nullable|url|max:255',
-            'is_active'   => 'required|boolean',
+            'name'      => 'required|max:60',
+            'notes'     => 'nullable|max:255',
+            'website'   => 'nullable|url|max:255',
+            'is_active' => 'required|boolean',
         ]);
 
         $routeParam = request()->only('page', 'q');

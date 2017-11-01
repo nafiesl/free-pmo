@@ -7,9 +7,8 @@ use Faker\Generator as Faker;
 $factory->define(Vendor::class, function (Faker $faker) {
 
     return [
-        'name'        => $faker->word,
-        'description' => $faker->sentence,
-        'owner_id'    => function () {
+        'name'     => $faker->word,
+        'owner_id' => function () {
             return factory(Agency::class)->create()->id;
         },
     ];

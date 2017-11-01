@@ -31,9 +31,11 @@ class ManageVendorsTest extends TestCase
         $this->click(trans('vendor.create'));
         $this->seePageIs(route('vendors.index', ['action' => 'create']));
 
-        $this->type('Vendor 1 name', 'name');
-        $this->type('Vendor 1 description', 'description');
-        $this->press(trans('vendor.create'));
+        $this->submitForm(trans('vendor.create'), [
+            'name'        => 'Vendor 1 name',
+            'description' => 'Vendor 1 description',
+            'website'     => 'https://example.com',
+        ]);
 
         $this->see(trans('vendor.created'));
         $this->seePageIs(route('vendors.index'));
@@ -41,6 +43,7 @@ class ManageVendorsTest extends TestCase
         $this->seeInDatabase('vendors', [
             'name'        => 'Vendor 1 name',
             'description' => 'Vendor 1 description',
+            'website'     => 'https://example.com',
         ]);
     }
 
@@ -54,9 +57,12 @@ class ManageVendorsTest extends TestCase
         $this->click('edit-vendor-'.$vendor->id);
         $this->seePageIs(route('vendors.index', ['action' => 'edit', 'id' => $vendor->id, 'q' => '123']));
 
-        $this->type('Vendor 1 name', 'name');
-        $this->type('Vendor 1 description', 'description');
-        $this->press(trans('vendor.update'));
+        $this->submitForm(trans('vendor.update'), [
+            'name'        => 'Vendor 1 name',
+            'description' => 'Vendor 1 description',
+            'website'     => 'https://example.com',
+            'is_active'   => 0,
+        ]);
 
         $this->see(trans('vendor.updated'));
         $this->seePageIs(route('vendors.index', ['q' => '123']));
@@ -64,6 +70,8 @@ class ManageVendorsTest extends TestCase
         $this->seeInDatabase('vendors', [
             'name'        => 'Vendor 1 name',
             'description' => 'Vendor 1 description',
+            'website'     => 'https://example.com',
+            'is_active'   => 0,
         ]);
     }
 

@@ -38,6 +38,7 @@ class VendorsController extends Controller
         $newVendorData = $this->validate($request, [
             'name'        => 'required|max:60',
             'description' => 'nullable|max:255',
+            'website'     => 'nullable|url|max:255',
         ]);
 
         $newVendorData['owner_id'] = auth()->user()->agency->id;
@@ -60,6 +61,8 @@ class VendorsController extends Controller
         $vendorData = $this->validate($request, [
             'name'        => 'required|max:60',
             'description' => 'nullable|max:255',
+            'website'     => 'nullable|url|max:255',
+            'is_active'   => 'required|boolean',
         ]);
 
         $routeParam = request()->only('page', 'q');

@@ -2,6 +2,7 @@
     {!! Form::open(['route' => 'vendors.store']) !!}
     {!! FormField::text('name', ['required' => true]) !!}
     {!! FormField::textarea('description') !!}
+    {!! FormField::text('website') !!}
     {!! Form::submit(trans('vendor.create'), ['class' => 'btn btn-success']) !!}
     {{ link_to_route('vendors.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
     {!! Form::close() !!}
@@ -10,6 +11,8 @@
     {!! Form::model($editableVendor, ['route' => ['vendors.update', $editableVendor->id],'method' => 'patch']) !!}
     {!! FormField::text('name', ['required' => true]) !!}
     {!! FormField::textarea('description') !!}
+    {!! FormField::text('website') !!}
+    {!! FormField::radios('is_active', ['Non Aktif', 'Aktif']) !!}
     @if (request('q'))
         {{ Form::hidden('q', request('q')) }}
     @endif

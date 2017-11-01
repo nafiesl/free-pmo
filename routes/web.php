@@ -25,4 +25,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
      * Customers Routes
      */
     Route::resource('customers', 'Partners\CustomersController');
+
+    /*
+     * Vendors Routes
+     */
+    Route::apiResource('vendors', 'Partners\VendorsController');
 });

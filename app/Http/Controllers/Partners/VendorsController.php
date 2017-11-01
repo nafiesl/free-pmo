@@ -35,12 +35,14 @@ class VendorsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $newVendorData = $this->validate($request, [
             'name'        => 'required|max:60',
             'description' => 'nullable|max:255',
         ]);
 
-        Vendor::create($request->only('name', 'description'));
+        $newVendorData['owner_id'] = auth()->user()->agency->id;
+
+        Vendor::create($newVendorData);
 
         flash(trans('vendor.created'), 'success');
         return redirect()->route('vendors.index');
@@ -55,14 +57,14 @@ class VendorsController extends Controller
      */
     public function update(Request $request, Vendor $vendor)
     {
-        $this->validate($request, [
+        $vendorData = $this->validate($request, [
             'name'        => 'required|max:60',
             'description' => 'nullable|max:255',
         ]);
 
         $routeParam = request()->only('page', 'q');
 
-        $vendor = $vendor->update($request->only('name', 'description'));
+        $vendor = $vendor->update($vendorData);
 
         flash(trans('vendor.updated'), 'success');
         return redirect()->route('vendors.index', $routeParam);

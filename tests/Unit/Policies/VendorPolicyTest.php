@@ -21,7 +21,7 @@ class VendorPolicyTest extends TestCase
     public function user_can_view_vendor()
     {
         $user   = $this->adminUserSigningIn();
-        $vendor = factory(Vendor::class)->create(['name' => 'Vendor 1 name']);
+        $vendor = factory(Vendor::class)->create(['owner_id' => $user->agency->id]);
         $this->assertTrue($user->can('view', $vendor));
     }
 
@@ -29,7 +29,7 @@ class VendorPolicyTest extends TestCase
     public function user_can_update_vendor()
     {
         $user   = $this->adminUserSigningIn();
-        $vendor = factory(Vendor::class)->create(['name' => 'Vendor 1 name']);
+        $vendor = factory(Vendor::class)->create(['owner_id' => $user->agency->id]);
         $this->assertTrue($user->can('update', $vendor));
     }
 
@@ -37,7 +37,7 @@ class VendorPolicyTest extends TestCase
     public function user_can_delete_vendor()
     {
         $user   = $this->adminUserSigningIn();
-        $vendor = factory(Vendor::class)->create(['name' => 'Vendor 1 name']);
+        $vendor = factory(Vendor::class)->create(['owner_id' => $user->agency->id]);
         $this->assertTrue($user->can('delete', $vendor));
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Policies\Partners;
 
-use App\Entities\Users\User;
 use App\Entities\Partners\Vendor;
+use App\Entities\Users\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class VendorPolicy
@@ -19,8 +19,7 @@ class VendorPolicy
      */
     public function view(User $user, Vendor $vendor)
     {
-        // Update $user authorization to view $vendor here.
-        return true;
+        return $user->agency->id == $vendor->owner_id;
     }
 
     /**
@@ -32,8 +31,7 @@ class VendorPolicy
      */
     public function create(User $user, Vendor $vendor)
     {
-        // Update $user authorization to create $vendor here.
-        return true;
+        return  !  ! $user->agency;
     }
 
     /**
@@ -45,8 +43,7 @@ class VendorPolicy
      */
     public function update(User $user, Vendor $vendor)
     {
-        // Update $user authorization to update $vendor here.
-        return true;
+        return $this->view($user, $vendor);
     }
 
     /**
@@ -58,7 +55,6 @@ class VendorPolicy
      */
     public function delete(User $user, Vendor $vendor)
     {
-        // Update $user authorization to delete $vendor here.
-        return true;
+        return $this->view($user, $vendor);
     }
 }

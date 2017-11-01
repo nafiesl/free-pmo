@@ -35,6 +35,7 @@ class ManageVendorsTest extends TestCase
         $this->type('Vendor 1 description', 'description');
         $this->press(trans('vendor.create'));
 
+        $this->see(trans('vendor.created'));
         $this->seePageIs(route('vendors.index'));
 
         $this->seeInDatabase('vendors', [
@@ -57,6 +58,7 @@ class ManageVendorsTest extends TestCase
         $this->type('Vendor 1 description', 'description');
         $this->press(trans('vendor.update'));
 
+        $this->see(trans('vendor.updated'));
         $this->seePageIs(route('vendors.index', ['q' => '123']));
 
         $this->seeInDatabase('vendors', [
@@ -81,6 +83,7 @@ class ManageVendorsTest extends TestCase
 
         $this->press(trans('app.delete_confirm_button'));
 
+        $this->see(trans('vendor.deleted'));
         $this->dontSeeInDatabase('vendors', [
             'id' => $vendor->id,
         ]);

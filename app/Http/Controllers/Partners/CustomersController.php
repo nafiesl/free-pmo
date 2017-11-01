@@ -15,19 +15,13 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        $editableCustomer = null;
-
         $customers = Customer::where(function ($query) {
             $query->where('name', 'like', '%'.request('q').'%');
         })
             ->withCount('projects')
             ->paginate(25);
 
-        if (in_array(request('action'), ['edit', 'delete']) && request('id') != null) {
-            $editableCustomer = Customer::find(request('id'));
-        }
-
-        return view('customers.index', compact('customers', 'editableCustomer'));
+        return view('customers.index', compact('customers'));
     }
 
     /**
@@ -54,6 +48,7 @@ class CustomersController extends Controller
             'phone'   => 'nullable|max:255',
             'pic'     => 'nullable|max:255',
             'address' => 'nullable|max:255',
+            'website' => 'nullable|url|max:255',
             'notes'   => 'nullable|max:255',
         ]);
 
@@ -103,6 +98,7 @@ class CustomersController extends Controller
             'phone'     => 'nullable|max:255',
             'pic'       => 'nullable|max:255',
             'address'   => 'nullable|max:255',
+            'website'   => 'nullable|url|max:255',
             'notes'     => 'nullable|max:255',
             'is_active' => 'required|boolean',
         ]);

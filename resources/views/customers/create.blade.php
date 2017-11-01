@@ -28,6 +28,7 @@
                             <div class="col-xs-7">{!! FormField::email('email') !!}</div>
                             <div class="col-xs-5">{!! FormField::text('phone') !!}</div>
                         </div>
+                        {!! FormField::text('website') !!}
                         {!! FormField::textarea('address') !!}
                     </div>
                 </div>

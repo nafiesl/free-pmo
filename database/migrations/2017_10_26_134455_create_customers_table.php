@@ -20,6 +20,7 @@ class CreateCustomersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('pic')->nullable();
             $table->string('address')->nullable();
+            $table->string('website')->nullable();
             $table->string('notes')->nullable();
             $table->boolean('is_active')->default(1);
             $table->unsignedInteger('owner_id');

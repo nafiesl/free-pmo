@@ -9,7 +9,7 @@ class Customer extends Model
 {
     use OwnedByAgency;
 
-    protected $fillable = ['name', 'email', 'phone', 'pic', 'address', 'notes', 'is_active', 'owner_id'];
+    protected $fillable = ['name', 'email', 'phone', 'pic', 'address', 'website', 'notes', 'is_active', 'owner_id'];
 
     public function owner()
     {

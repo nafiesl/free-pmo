@@ -13,7 +13,7 @@ class ManageCustomersTest extends TestCase
     /** @test */
     public function user_can_see_customer_list_in_customer_index_page()
     {
-        $user     = $this->adminUserSigningIn();
+        $user      = $this->adminUserSigningIn();
         $customer1 = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
         $customer2 = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
 
@@ -37,6 +37,7 @@ class ManageCustomersTest extends TestCase
             'phone'   => '081234567890',
             'pic'     => 'Nama PIC Customer',
             'address' => 'Alamat customer 1',
+            'website' => 'https://example.com',
             'notes'   => '',
         ]);
 
@@ -48,6 +49,7 @@ class ManageCustomersTest extends TestCase
             'phone'    => '081234567890',
             'pic'      => 'Nama PIC Customer',
             'address'  => 'Alamat customer 1',
+            'website'  => 'https://example.com',
             'notes'    => null,
             'owner_id' => $user->agency->id,
         ]);
@@ -56,7 +58,7 @@ class ManageCustomersTest extends TestCase
     /** @test */
     public function user_can_edit_a_customer()
     {
-        $user    = $this->adminUserSigningIn();
+        $user     = $this->adminUserSigningIn();
         $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id, 'name' => 'Testing 123']);
 
         $this->visit(route('customers.show', [$customer->id]));
@@ -69,6 +71,7 @@ class ManageCustomersTest extends TestCase
             'phone'     => '081234567890',
             'pic'       => 'Nama PIC Customer',
             'address'   => 'Alamat customer 1',
+            'website'   => 'https://example.com',
             'notes'     => '',
             'is_active' => 0,
         ]);
@@ -81,6 +84,7 @@ class ManageCustomersTest extends TestCase
             'phone'     => '081234567890',
             'pic'       => 'Nama PIC Customer',
             'address'   => 'Alamat customer 1',
+            'website'   => 'https://example.com',
             'notes'     => null,
             'is_active' => 0,
         ]);
@@ -89,7 +93,7 @@ class ManageCustomersTest extends TestCase
     /** @test */
     public function user_can_delete_a_customer()
     {
-        $user    = $this->adminUserSigningIn();
+        $user     = $this->adminUserSigningIn();
         $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
 
         $this->visit(route('customers.edit', [$customer->id]));

@@ -3,6 +3,7 @@
 namespace App\Entities;
 
 use App\Entities\Partners\Customer;
+use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Feature;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
@@ -20,7 +21,11 @@ abstract class BaseRepository extends EloquentRepository
 
     public function getCustomersAndVendorsList()
     {
-        return Customer::orderBy('name')->pluck('name', 'id');
+        $partners = [
+            'Customer' => Customer::orderBy('name')->pluck('name', 'id')->all(),
+            'Vendor'   => Vendor::orderBy('name')->pluck('name', 'id')->all(),
+        ];
+        return $partners;
     }
 
     public function getWorkersList()

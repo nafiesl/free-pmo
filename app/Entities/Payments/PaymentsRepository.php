@@ -36,6 +36,13 @@ class PaymentsRepository extends BaseRepository
     public function create($paymentData)
     {
         $paymentData['amount'] = str_replace('.', '', $paymentData['amount']);
+
+        if ($paymentData['in_out'] == 0) {
+            $paymentData['partner_type'] = 'App\Entities\Partners\Vendor';
+        } else {
+            $paymentData['partner_type'] = 'App\Entities\Partners\Customer';
+        }
+
         return $this->storeArray($paymentData);
     }
 

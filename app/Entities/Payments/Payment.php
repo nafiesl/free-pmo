@@ -34,7 +34,7 @@ class Payment extends Model
 
     public function partner()
     {
-        return $this->belongsTo('App\Entities\Partners\Customer', 'partner_id');
+        return $this->morphTo();
     }
 
     public function type()

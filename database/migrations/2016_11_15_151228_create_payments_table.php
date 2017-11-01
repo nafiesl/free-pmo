@@ -21,6 +21,7 @@ class CreatePaymentsTable extends Migration
             $table->boolean('in_out')->default(1)->comment('0: out, 1: in');
             $table->date('date');
             $table->string('description');
+            $table->string('partner_type');
             $table->integer('partner_id')->unsigned();
             $table->timestamps();
         });

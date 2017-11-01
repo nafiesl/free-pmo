@@ -3,6 +3,7 @@
 namespace Tests\Feature\Payments;
 
 use App\Entities\Partners\Customer;
+use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use Tests\TestCase;
@@ -32,11 +33,12 @@ class ManagePaymentsTest extends TestCase
 
         $this->see(trans('payment.created'));
         $this->seeInDatabase('payments', [
-            'project_id' => $project->id,
-            'amount'     => 1000000,
-            'in_out'     => 1,
-            'date'       => '2015-05-01',
-            'partner_id' => $customer->id,
+            'project_id'   => $project->id,
+            'amount'       => 1000000,
+            'in_out'       => 1,
+            'date'         => '2015-05-01',
+            'partner_type' => Customer::class,
+            'partner_id'   => $customer->id,
         ]);
     }
 
@@ -44,7 +46,7 @@ class ManagePaymentsTest extends TestCase
     public function admin_can_entry_project_an_expanse_payment()
     {
         $user    = $this->adminUserSigningIn();
-        $vendor  = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
+        $vendor  = factory(Vendor::class)->create(['owner_id' => $user->agency->id]);
         $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
 
         $this->visit(route('payments.index'));
@@ -64,11 +66,12 @@ class ManagePaymentsTest extends TestCase
 
         $this->see(trans('payment.created'));
         $this->seeInDatabase('payments', [
-            'project_id' => $project->id,
-            'amount'     => 1000000,
-            'in_out'     => 0,
-            'date'       => '2015-05-01',
-            'partner_id' => $vendor->id,
+            'project_id'   => $project->id,
+            'amount'       => 1000000,
+            'in_out'       => 0,
+            'date'         => '2015-05-01',
+            'partner_type' => Vendor::class,
+            'partner_id'   => $vendor->id,
         ]);
     }
 

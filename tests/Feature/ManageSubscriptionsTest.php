@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Entities\Partners\Customer;
+use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
 use Tests\TestCase;
@@ -13,7 +14,7 @@ class ManageSubscriptionsTest extends TestCase
     public function admin_can_entry_subscription()
     {
         $user     = $this->adminUserSigningIn();
-        $vendor   = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
+        $vendor   = factory(Vendor::class)->create(['owner_id' => $user->agency->id]);
         $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
         $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
 
@@ -52,7 +53,7 @@ class ManageSubscriptionsTest extends TestCase
     {
         $eppCode  = str_random(10);
         $user     = $this->adminUserSigningIn();
-        $vendor   = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
+        $vendor   = factory(Vendor::class)->create(['owner_id' => $user->agency->id]);
         $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
         $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
 

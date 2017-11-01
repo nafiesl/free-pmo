@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Models;
 
-use App\Entities\Partners\Customer;
+use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
 use Tests\TestCase as TestCase;
@@ -27,6 +27,9 @@ class SubscriptionTest extends TestCase
     public function it_has_vendor_relation()
     {
         $subscription = factory(Subscription::class)->create();
-        $this->assertTrue($subscription->vendor instanceof Customer);
+        $this->assertTrue(
+            $subscription->vendor instanceof Vendor,
+            'A subscription must belongs to a App\Entities\Partners\Vendor model as it\'s vendor.'
+        );
     }
 }

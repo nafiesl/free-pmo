@@ -1,11 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title', trans('auth.profile'))
 
-@section('content')
-<ul class="breadcrumb hidden-print">
-    <li class="active">{{ trans('auth.profile') }}</li>
-</ul>
+@section('content-dashboard')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">

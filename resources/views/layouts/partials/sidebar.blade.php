@@ -13,17 +13,13 @@
             <div class="small" style="margin-top:10px">{{ Option::get('app_name','Laravel') }}</div>
         </a>
         <ul class="nav" id="side-menu">
-            <li>{!! html_link_to_route('home', 'Dashboard', [], ['icon' => 'dashboard']) !!}</li>
-            <li>{!! html_link_to_route('users.profile.show', trans('auth.profile'), [], ['icon' => 'user']) !!}</li>
+            <li>{!! html_link_to_route('home', trans('nav_menu.dashboard'), [], ['icon' => 'dashboard']) !!}</li>
             @can('manage', auth()->user()->agency)
-            <li>{!! html_link_to_route('users.agency.show', trans('auth.agency'), [], ['icon' => 'user']) !!}</li>
-            @endcan
-            @can('add_project')
-            <li>{!! html_link_to_route('features.index', 'On Progress Features', [], ['icon' => 'tasks']) !!}</li>
+            <li>{!! html_link_to_route('users.agency.show', trans('nav_menu.agency'), [], ['icon' => 'user']) !!}</li>
+            <li>{!! html_link_to_route('features.index', trans('feature.on_progress'), [], ['icon' => 'tasks']) !!}</li>
             <li>
                 <?php $projectsCount = App\Entities\Projects\Project::select(DB::raw('status_id, count(id) as count'))
     ->groupBy('status_id')
-    ->where('owner_id', auth()->id())
     ->pluck('count', 'status_id')
     ->all();?>
                 {!! html_link_to_route('projects.index', trans('project.projects') . ' <span class="fa arrow"></span>', [], ['icon' => 'table']) !!}

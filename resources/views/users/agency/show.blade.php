@@ -1,11 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title', trans('agency.agency'))
 
-@section('content')
-<ul class="breadcrumb hidden-print">
-    <li class="active">{{ trans('agency.agency') }}</li>
-</ul>
+@section('content-dashboard')
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">

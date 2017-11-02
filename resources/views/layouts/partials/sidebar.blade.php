@@ -16,7 +16,6 @@
         <ul class="nav" id="side-menu">
             <li>{!! html_link_to_route('home', trans('nav_menu.dashboard'), [], ['icon' => 'dashboard']) !!}</li>
             @can('manage', auth()->user()->agency)
-            <li>{!! html_link_to_route('users.agency.show', trans('nav_menu.agency'), [], ['icon' => 'user']) !!}</li>
             <li>{!! html_link_to_route('features.index', trans('feature.on_progress'), [], ['icon' => 'tasks']) !!}</li>
             <li>
                 {!! html_link_to_route('projects.index', trans('project.projects') . ' <span class="fa arrow"></span>', [], ['icon' => 'table']) !!}

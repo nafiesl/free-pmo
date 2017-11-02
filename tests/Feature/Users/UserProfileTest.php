@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Users;
 
-use App\Entities\Agencies\Agency;
 use Tests\TestCase;
 
 class UserProfileTest extends TestCase
@@ -47,8 +46,7 @@ class UserProfileTest extends TestCase
     /** @test */
     public function a_user_can_visit_their_agency_page()
     {
-        $user   = $this->userSigningIn();
-        $agency = factory(Agency::class)->create(['owner_id' => $user]);
+        $user = $this->adminUserSigningIn();
         $this->visit(route('users.agency.show'));
         $this->seePageIs(route('users.agency.show'));
     }
@@ -56,8 +54,7 @@ class UserProfileTest extends TestCase
     /** @test */
     public function a_user_can_update_their_agency_data()
     {
-        $user   = $this->userSigningIn();
-        $agency = factory(Agency::class)->create(['owner_id' => $user]);
+        $user = $this->adminUserSigningIn();
         $this->visit(route('users.agency.edit'));
 
         $this->submitForm(trans('agency.update'), [
@@ -72,7 +69,7 @@ class UserProfileTest extends TestCase
         $this->seePageIs(route('users.agency.show'));
 
         $this->seeInDatabase('agencies', [
-            'id'      => $agency->id,
+            'id'      => $user->agency->id,
             'name'    => 'Nama Agensi Saya',
             'email'   => 'nama_agensi@domain.com',
             'address' => 'Jln. Kalimantan, No. 20, Kota',

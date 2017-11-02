@@ -14,7 +14,7 @@ class AgencyTest extends TestCase
     public function agency_has_an_owner()
     {
         $agency = factory(Agency::class)->create();
-        $this->assertTrue($agency->owner instanceof User);
+        $this->assertInstanceOf(User::class, $agency->owner);
     }
 
     /** @test */
@@ -23,7 +23,37 @@ class AgencyTest extends TestCase
         $agency  = factory(Agency::class)->create();
         $project = factory(Project::class)->create(['owner_id' => $agency->id]);
 
-        $this->assertTrue($agency->projects instanceof Collection);
-        $this->assertTrue($agency->projects->first() instanceof Project);
+        $this->assertInstanceOf(Collection::class, $agency->projects);
+        $this->assertInstanceOf(Project::class, $agency->projects->first());
+    }
+
+    /** @test */
+    public function agency_can_has_many_workers()
+    {
+        $agency  = factory(Agency::class)->create();
+        $workers = factory(User::class, 2)->create();
+
+        $agency->addWorkers($workers);
+
+        $this->assertCount(2, $agency->workers);
+        $this->assertInstanceOf(Collection::class, $agency->workers);
+        $this->assertInstanceOf(User::class, $agency->workers->first());
+    }
+
+    /** @test */
+    public function agency_can_remove_some_workers()
+    {
+        $agency  = factory(Agency::class)->create();
+        $workers = factory(User::class, 2)->create();
+
+        $agency->addWorkers($workers);
+
+        $this->assertCount(2, $agency->workers);
+
+        $agency->removeWorkers($workers->take(1));
+
+        $agency = $agency->fresh();
+        $this->assertCount(1, $agency->workers);
+        $this->assertEquals($workers[1]->id, $agency->workers->first()->id);
     }
 }

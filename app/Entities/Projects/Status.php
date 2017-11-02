@@ -3,6 +3,7 @@
 namespace App\Entities\Projects;
 
 use App\Entities\ReferenceAbstract;
+use App\Exceptions\ReferenceKeyNotFoundException;
 
 class Status extends ReferenceAbstract
 {
@@ -15,9 +16,36 @@ class Status extends ReferenceAbstract
         6 => 'on_hold',
     ];
 
+    protected static $colors = [
+        1 => 'default',
+        2 => 'yellow',
+        3 => 'primary',
+        4 => 'green',
+        5 => 'danger',
+        6 => 'warning',
+    ];
+
+    protected static $icons = [
+        1 => 'paperclip',
+        2 => 'tasks',
+        3 => 'thumbs-o-up',
+        4 => 'money',
+        5 => 'frown-o',
+        6 => 'hand-paper-o',
+    ];
+
     public static function getNameById($singleId)
     {
-        return trans('project.'.static::$lists[$singleId]);
+        return trans('project.'.static::getById($singleId));
+    }
+
+    public static function getIconById($singleId)
+    {
+        if ( !  ! static::getById($singleId) && isset(static::$icons[$singleId])) {
+            return static::$icons[$singleId];
+        }
+
+        throw new ReferenceKeyNotFoundException('Reference key: '.$singleId.' not found for '.get_called_class().'::icons');
     }
 
     public static function toArray()
@@ -28,10 +56,5 @@ class Status extends ReferenceAbstract
         }
 
         return $lists;
-    }
-
-    public static function all()
-    {
-        return collect($this->toArray());
     }
 }

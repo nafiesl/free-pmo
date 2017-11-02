@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Exceptions\ReferenceKeyNotFoundException;
 use Illuminate\Support\Arr;
 
 abstract class ReferenceAbstract
@@ -27,7 +28,11 @@ abstract class ReferenceAbstract
 
     public static function getById($singleId)
     {
-        return static::$lists[$singleId];
+        if (isset(static::$lists[$singleId])) {
+            return static::$lists[$singleId];
+        }
+
+        new ReferenceKeyNotFoundException('Reference key: '.$singleId.' not found for '.get_called_class().'::lists');
     }
 
     public static function only(array $singleIds)
@@ -47,7 +52,11 @@ abstract class ReferenceAbstract
 
     public static function getColorById($colorId)
     {
-        return isset(static::$lists[$colorId]) ? static::$colors[$colorId] : null;
+        if ( !  ! static::getById($colorId) && isset(static::$colors[$colorId])) {
+            return static::$colors[$colorId];
+        }
+
+        throw new ReferenceKeyNotFoundException('Reference key: '.$colorId.' not found for '.get_called_class().'::colors');
     }
 
     public static function colorsExcept(array $colorIds)

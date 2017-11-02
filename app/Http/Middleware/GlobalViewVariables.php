@@ -22,7 +22,7 @@ class GlobalViewVariables
             ->pluck('count', 'status_id')
             ->all();
 
-        view()->share('sidebarProjectStats', $projectsCount);
+        view()->share('projectStatusStats', $projectsCount);
 
         return $next($request);
     }

@@ -33,7 +33,8 @@ class AgencyTest extends TestCase
         $agency  = factory(Agency::class)->create();
         $workers = factory(User::class, 2)->create();
 
-        $agency->addWorkers($workers);
+        $agency->addWorker($workers[0]);
+        $agency->addWorker($workers[1]);
 
         $this->assertCount(2, $agency->workers);
         $this->assertInstanceOf(Collection::class, $agency->workers);
@@ -46,11 +47,12 @@ class AgencyTest extends TestCase
         $agency  = factory(Agency::class)->create();
         $workers = factory(User::class, 2)->create();
 
-        $agency->addWorkers($workers);
+        $agency->addWorker($workers[0]);
+        $agency->addWorker($workers[1]);
 
         $this->assertCount(2, $agency->workers);
 
-        $agency->removeWorkers($workers->take(1));
+        $agency->removeWorker($workers[0]);
 
         $agency = $agency->fresh();
         $this->assertCount(1, $agency->workers);

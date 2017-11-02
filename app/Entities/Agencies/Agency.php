@@ -2,8 +2,8 @@
 
 namespace App\Entities\Agencies;
 
+use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 
 class Agency extends Model
 {
@@ -24,13 +24,13 @@ class Agency extends Model
         return $this->belongsToMany('App\Entities\Users\User', 'agency_workers', 'agency_id', 'worker_id');
     }
 
-    public function addWorkers(Collection $workers)
+    public function addWorker(User $worker)
     {
-        $this->workers()->attach($workers);
+        $this->workers()->attach($worker);
     }
 
-    public function removeWorkers(Collection $workers)
+    public function removeWorker(User $worker)
     {
-        $this->workers()->detach($workers);
+        $this->workers()->detach($worker);
     }
 }

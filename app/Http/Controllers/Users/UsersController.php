@@ -21,7 +21,7 @@ class UsersController extends Controller
 
     public function index(Request $req)
     {
-        $users = $this->repo->getUsers($req->get('q'), $req->get('role'));
+        $users = $this->repo->getUsers($req->get('q'));
         return view('users.index', compact('users'));
     }
 

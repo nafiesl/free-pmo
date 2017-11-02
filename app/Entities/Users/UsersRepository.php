@@ -18,11 +18,11 @@ class UsersRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function getUsers($q, $rolesString)
+    public function getUsers($q)
     {
         return $this->model->latest()
             ->where('name', 'like', '%'.$q.'%')
-            ->paginate($this->_paginate);
+            ->get();
     }
 
     public function create($userData)

@@ -1,14 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.dashboard')
 
 @section('title', trans('user.create'))
 
-@section('content')
-<h1 class="page-header">{{ trans('user.create') }}</h1>
+@section('content-dashboard')
 <div class="row">
     <div class="col-md-6">
         {!! Form::open(['route'=>'users.store']) !!}
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">User Data</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ trans('user.create') }}</h3></div>
             <div class="panel-body">
                 {!! FormField::text('name', ['label' => trans('app.name')]) !!}
                 {!! FormField::email('email', ['label' => trans('user.email')]) !!}

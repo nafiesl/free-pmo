@@ -26,7 +26,7 @@
 </div>
 <div class="panel panel-success">
     <div class="panel-heading"><h3 class="panel-title">Detail Laporan</h3></div>
-    <div class="panel-body">
+    <div class="panel-body table-responsive">
         <table class="table table-condensed">
             <thead>
                 <th class="text-center">Bulan</th>

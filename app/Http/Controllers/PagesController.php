@@ -6,7 +6,9 @@ class PagesController extends Controller
 {
     public function home()
     {
-        return view('pages.home');
+        return view('pages.home', [
+            'queriedYear' => request('year', date('Y')),
+        ]);
     }
 
     public function about()

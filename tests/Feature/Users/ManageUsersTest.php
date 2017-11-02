@@ -8,6 +8,23 @@ use Tests\TestCase;
 class ManageUsersTest extends TestCase
 {
     /** @test */
+    public function user_can_see_user_list_from_dashboard_tab()
+    {
+        $user   = $this->adminUserSigningIn();
+        $agency = $user->agency;
+
+        $user1 = factory(User::class)->create();
+        $user2 = factory(User::class)->create();
+
+        $agency->addWorker($user1);
+        $agency->addWorker($user2);
+
+        $this->visit(route('users.index'));
+        $this->see($user1->name);
+        $this->see($user2->name);
+    }
+
+    /** @test */
     public function admin_can_insert_new_user()
     {
         $user = $this->adminUserSigningIn();

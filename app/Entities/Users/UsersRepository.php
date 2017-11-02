@@ -20,7 +20,7 @@ class UsersRepository extends BaseRepository
 
     public function getUsers($q)
     {
-        return $this->model->latest()
+        return auth()->user()->agency->workers()
             ->where('name', 'like', '%'.$q.'%')
             ->get();
     }
@@ -32,6 +32,8 @@ class UsersRepository extends BaseRepository
         }
 
         $user = $this->storeArray($userData);
+
+        auth()->user()->agency->addWorker($user);
 
         return $user;
     }

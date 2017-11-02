@@ -10,8 +10,8 @@ class ManageUsersTest extends TestCase
     /** @test */
     public function user_can_see_user_list_from_dashboard_tab()
     {
-        $user   = $this->adminUserSigningIn();
-        $agency = $user->agency;
+        $admin  = $this->adminUserSigningIn();
+        $agency = $admin->agency;
 
         $user1 = factory(User::class)->create();
         $user2 = factory(User::class)->create();
@@ -27,7 +27,7 @@ class ManageUsersTest extends TestCase
     /** @test */
     public function admin_can_insert_new_user()
     {
-        $user = $this->adminUserSigningIn();
+        $admin = $this->adminUserSigningIn();
 
         $this->visit(route('users.index'));
         $this->click(trans('user.create'));
@@ -53,8 +53,9 @@ class ManageUsersTest extends TestCase
     /** @test */
     public function admin_can_edit_user_data()
     {
-        $user  = $this->adminUserSigningIn();
+        $admin = $this->adminUserSigningIn();
         $user2 = factory(User::class)->create();
+        $admin->agency->addWorker($user2);
 
         $this->visit(route('users.edit', $user2->id));
         $this->type('Ganti nama User', 'name');
@@ -62,9 +63,11 @@ class ManageUsersTest extends TestCase
         $this->press(trans('user.update'));
 
         $this->seePageIs(route('users.edit', $user2->id));
+
         $this->see(trans('user.updated'));
         $this->see('Ganti nama User');
         $this->see('member@mail.dev');
+
         $this->seeInDatabase('users', [
             'id'    => $user2->id,
             'name'  => 'Ganti nama User',
@@ -75,8 +78,9 @@ class ManageUsersTest extends TestCase
     /** @test */
     public function admin_can_deleta_a_user()
     {
-        $user  = $this->adminUserSigningIn();
+        $admin = $this->adminUserSigningIn();
         $user2 = factory(User::class)->create();
+        $admin->agency->addWorker($user2);
 
         $this->visit(route('users.edit', $user2->id));
 
@@ -98,6 +102,11 @@ class ManageUsersTest extends TestCase
             'name'     => $user2->name,
             'username' => $user2->username,
             'email'    => $user2->email,
+        ]);
+
+        $this->notSeeInDatabase('agency_workers', [
+            'agency_id' => $admin->agency->id,
+            'worker_id' => $user2->id,
         ]);
     }
 }

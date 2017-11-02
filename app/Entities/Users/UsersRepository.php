@@ -57,6 +57,8 @@ class UsersRepository extends BaseRepository
     {
         $user = $this->requireById($userId);
 
+        \DB::table('agency_workers')->where('worker_id', $userId)->delete();
+
         return $user->delete();
     }
 }

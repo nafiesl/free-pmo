@@ -14,8 +14,8 @@ class ManageCustomersTest extends TestCase
     public function user_can_see_customer_list_in_customer_index_page()
     {
         $user      = $this->adminUserSigningIn();
-        $customer1 = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
-        $customer2 = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
+        $customer1 = factory(Customer::class)->create();
+        $customer2 = factory(Customer::class)->create();
 
         $this->visit(route('customers.index'));
         $this->see($customer1->name);
@@ -44,14 +44,13 @@ class ManageCustomersTest extends TestCase
         $this->see(trans('customer.created'));
 
         $this->seeInDatabase('customers', [
-            'name'     => 'Customer 1 name',
-            'email'    => 'customer1@mail.com',
-            'phone'    => '081234567890',
-            'pic'      => 'Nama PIC Customer',
-            'address'  => 'Alamat customer 1',
-            'website'  => 'https://example.com',
-            'notes'    => null,
-            'owner_id' => $user->agency->id,
+            'name'    => 'Customer 1 name',
+            'email'   => 'customer1@mail.com',
+            'phone'   => '081234567890',
+            'pic'     => 'Nama PIC Customer',
+            'address' => 'Alamat customer 1',
+            'website' => 'https://example.com',
+            'notes'   => null,
         ]);
     }
 
@@ -59,7 +58,7 @@ class ManageCustomersTest extends TestCase
     public function user_can_edit_a_customer()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id, 'name' => 'Testing 123']);
+        $customer = factory(Customer::class)->create(['name' => 'Testing 123']);
 
         $this->visit(route('customers.show', [$customer->id]));
         $this->click('edit-customer-'.$customer->id);
@@ -94,7 +93,7 @@ class ManageCustomersTest extends TestCase
     public function user_can_delete_a_customer()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
+        $customer = factory(Customer::class)->create();
 
         $this->visit(route('customers.edit', [$customer->id]));
         $this->click('del-customer-'.$customer->id);

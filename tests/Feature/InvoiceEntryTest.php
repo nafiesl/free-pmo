@@ -101,7 +101,7 @@ class InvoiceEntryTest extends TestCase
     public function user_can_update_draft_invoice_detail_and_get_confirm_page()
     {
         $user    = $this->adminUserSigningIn();
-        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $project = factory(Project::class)->create();
         $cart    = new InvoiceDraftCollection();
 
         $draft = $cart->add(new InvoiceDraft());
@@ -139,8 +139,8 @@ class InvoiceEntryTest extends TestCase
         $item2 = new Item(['description' => 'Deskripsi item invoice', 'amount' => 2000]);
 
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
-        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
+        $customer = factory(Customer::class)->create();
+        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
 
         // Add items to draft
         $cart->addItemToDraft($draft->draftKey, $item1);

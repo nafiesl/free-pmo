@@ -13,7 +13,7 @@ class ManageTasksTest extends TestCase
     public function admin_can_entry_task()
     {
         $user    = $this->adminUserSigningIn();
-        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $project = factory(Project::class)->create();
 
         $feature = factory(Feature::class)->create(['worker_id' => $user->id, 'project_id' => $project->id]);
         $this->visit('features/'.$feature->id);
@@ -42,7 +42,7 @@ class ManageTasksTest extends TestCase
     public function admin_can_edit_task_data()
     {
         $user    = $this->adminUserSigningIn();
-        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $project = factory(Project::class)->create();
 
         $feature = factory(Feature::class)->create(['worker_id' => $user->id, 'project_id' => $project->id]);
 
@@ -72,7 +72,7 @@ class ManageTasksTest extends TestCase
     public function admin_can_delete_a_task()
     {
         $user    = $this->adminUserSigningIn();
-        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $project = factory(Project::class)->create();
 
         $feature = factory(Feature::class)->create(['worker_id' => $user->id, 'project_id' => $project->id]);
 

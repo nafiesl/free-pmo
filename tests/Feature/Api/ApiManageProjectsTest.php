@@ -11,7 +11,7 @@ class ApiManageProjectsTest extends TestCase
     public function user_can_get_project_lists()
     {
         $user    = $this->adminUserSigningIn();
-        $project = factory(Project::class, 1)->create(['owner_id' => $user->agency->id]);
+        $project = factory(Project::class, 1)->create();
 
         $this->getJson(route('api.projects.index'), [
             'Authorization' => 'Bearer '.$user->api_token,

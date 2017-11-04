@@ -19,7 +19,7 @@ class VendorPolicy
      */
     public function view(User $user, Vendor $vendor)
     {
-        return $user->agency->id == $vendor->owner_id;
+        return true;
     }
 
     /**
@@ -31,7 +31,7 @@ class VendorPolicy
      */
     public function create(User $user, Vendor $vendor)
     {
-        return  !  ! $user->agency;
+        return true;
     }
 
     /**

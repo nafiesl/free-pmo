@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Models;
 
-use App\Entities\Agencies\Agency;
 use App\Entities\Partners\Customer;
 use App\Entities\Projects\Project;
 use Illuminate\Support\Collection;
@@ -11,23 +10,13 @@ use Tests\TestCase as TestCase;
 class CustomerTest extends TestCase
 {
     /** @test */
-    public function a_customer_has_an_owner()
-    {
-        $agency   = factory(Agency::class)->create();
-        $customer = factory(Customer::class)->create(['owner_id' => $agency->id]);
-
-        $this->assertTrue($customer->owner instanceof Agency);
-        $this->assertEquals($customer->owner->id, $agency->id);
-    }
-
-    /** @test */
     public function a_customer_has_many_projects()
     {
         $customer = factory(Customer::class)->create();
         $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
 
-        $this->assertTrue($customer->projects instanceof Collection);
-        $this->assertTrue($customer->projects->first() instanceof Project);
+        $this->assertInstanceOf(Collection::class, $customer->projects);
+        $this->assertInstanceOf(Project::class, $customer->projects->first());
     }
 
     /** @test */

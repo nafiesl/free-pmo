@@ -20,7 +20,7 @@ class ProjectPolicy
     public function view(User $user, Project $project)
     {
         // User can only view the project if he is the project's agency owner.
-        return $user->agency->id == $project->owner_id;
+        return true;
     }
 
     /**
@@ -33,7 +33,7 @@ class ProjectPolicy
     public function create(User $user, Project $project)
     {
         // User can create a project if they owns an agency.
-        return  ! is_null($user->agency);
+        return  true;
     }
 
     /**

@@ -13,19 +13,20 @@ class InvoiceTest extends TestCase
     public function it_has_project_relation()
     {
         $user    = $this->adminUserSigningIn();
-        $project = factory(Project::class)->create(['owner_id' => $user->agency->id]);
+        $project = factory(Project::class)->create();
         $invoice = factory(Invoice::class)->create(['project_id' => $project->id]);
 
-        $this->assertTrue($invoice->project instanceof Project);
+        $this->assertInstanceOf(Project::class, $invoice->project);
         $this->assertEquals($invoice->project->id, $project->id);
     }
+
     /** @test */
     public function it_has_creator_relation()
     {
         $user    = $this->adminUserSigningIn();
         $invoice = factory(Invoice::class)->create(['creator_id' => $user->id]);
 
-        $this->assertTrue($invoice->creator instanceof User);
+        $this->assertInstanceOf(User::class, $invoice->creator);
         $this->assertEquals($invoice->creator->id, $user->id);
     }
 

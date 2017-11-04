@@ -24,7 +24,6 @@ class CreateProjectsTable extends Migration {
 			$table->integer('proposal_value')->unsigned()->nullable();
 			$table->boolean('status_id')->default(1)->comment('1: planned, 2: on progress, 3: done, 4: closed, 5: canceled, 6: on hold ');
 			$table->integer('customer_id')->unsigned();
-			$table->integer('owner_id')->unsigned();
 			$table->timestamps();
 		});
 	}

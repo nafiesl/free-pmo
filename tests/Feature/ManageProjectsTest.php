@@ -15,7 +15,7 @@ class ManageProjectsTest extends TestCase
     public function admin_can_input_new_project_with_existing_customer()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
+        $customer = factory(Customer::class)->create();
 
         $this->visit(route('projects.index'));
         $this->seePageIs(route('projects.index'));
@@ -68,7 +68,6 @@ class ManageProjectsTest extends TestCase
             'name'           => 'Project Baru',
             'proposal_value' => '2000000',
             'customer_id'    => $newCustomer->id,
-            'owner_id'       => $user->agency->id,
         ]);
     }
 
@@ -76,9 +75,9 @@ class ManageProjectsTest extends TestCase
     public function admin_can_delete_a_project()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
+        $customer = factory(Customer::class)->create();
 
-        $project = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
+        $project = factory(Project::class)->create(['customer_id' => $customer->id]);
         $feature = factory(Feature::class)->create(['project_id' => $project->id]);
         $task    = factory(Task::class)->create(['feature_id' => $feature->id]);
         $payment = factory(Payment::class)->create(['project_id' => $project->id]);
@@ -87,13 +86,12 @@ class ManageProjectsTest extends TestCase
         $this->click(trans('app.edit'));
         $this->click(trans('app.delete'));
         $this->press(trans('app.delete_confirm_button'));
-        $this->seePageIs('projects');
+        $this->seePageIs(route('projects.index'));
         $this->see(trans('project.deleted'));
 
         $this->notSeeInDatabase('projects', [
             'name'           => $project->name,
             'proposal_value' => $project->proposal_value,
-            'owner_id'       => $user->id,
         ]);
 
         $this->notSeeInDatabase('payments', [
@@ -113,8 +111,8 @@ class ManageProjectsTest extends TestCase
     public function admin_can_edit_a_project()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
-        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
+        $customer = factory(Customer::class)->create();
+        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
 
         $this->visit('projects/'.$project->id.'/edit');
         $this->seePageIs('projects/'.$project->id.'/edit');
@@ -145,7 +143,7 @@ class ManageProjectsTest extends TestCase
     public function form_is_validated_on_invalid_project_entry()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
+        $customer = factory(Customer::class)->create();
 
         $this->visit(route('projects.index'));
         $this->seePageIs(route('projects.index'));
@@ -166,9 +164,8 @@ class ManageProjectsTest extends TestCase
     public function admin_can_update_project_status_on_project_detail_page()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
+        $customer = factory(Customer::class)->create();
         $project  = factory(Project::class)->create([
-            'owner_id'    => $user->agency->id,
             'customer_id' => $customer->id,
             'status_id'   => 1,
         ]);

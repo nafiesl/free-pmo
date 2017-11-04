@@ -9,13 +9,12 @@ use App\Entities\Payments\Payment;
 use App\Entities\Projects\ProjectPresenter;
 use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
-use App\Traits\OwnedByAgency;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
 class Project extends Model
 {
-    use PresentableTrait, OwnedByAgency;
+    use PresentableTrait;
 
     protected $presenter = ProjectPresenter::class;
     protected $guarded   = ['id', 'created_at', 'updated_at'];

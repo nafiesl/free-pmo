@@ -22,7 +22,7 @@ class ProjectPolicyTest extends TestCase
     {
         $user    = $this->userSigningIn();
         $agency  = factory(Agency::class)->create(['owner_id' => $user->id]);
-        $project = factory(Project::class)->create(['owner_id' => $agency->id]);
+        $project = factory(Project::class)->create();
 
         $this->assertTrue($user->can('view', $project));
     }
@@ -32,7 +32,7 @@ class ProjectPolicyTest extends TestCase
     {
         $user    = $this->userSigningIn();
         $agency  = factory(Agency::class)->create(['owner_id' => $user->id]);
-        $project = factory(Project::class)->create(['owner_id' => $agency->id]);
+        $project = factory(Project::class)->create();
 
         $this->assertTrue($user->can('update', $project));
     }
@@ -42,7 +42,7 @@ class ProjectPolicyTest extends TestCase
     {
         $user    = $this->userSigningIn();
         $agency  = factory(Agency::class)->create(['owner_id' => $user->id]);
-        $project = factory(Project::class)->create(['owner_id' => $agency->id]);
+        $project = factory(Project::class)->create();
 
         $this->assertTrue($user->can('delete', $project));
     }

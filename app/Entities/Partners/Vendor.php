@@ -6,10 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vendor extends Model
 {
-    protected $fillable = ['name', 'notes', 'website', 'owner_id', 'is_active'];
-
-    public function owner()
-    {
-        return $this->belongsTo('App\Entities\Agencies\Agency', 'owner_id');
-    }
+    protected $fillable = ['name', 'notes', 'website', 'is_active'];
 }

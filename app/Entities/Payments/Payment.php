@@ -19,12 +19,12 @@ class Payment extends Model
     {
         parent::boot();
 
-        static::addGlobalScope('by_owner_project', function (Builder $builder) {
-            if (auth()->user() && auth()->user()->agency) {
-                $projectIds = auth()->user()->agency->projects->pluck('id')->all();
-                $builder->whereIn('project_id', $projectIds);
-            }
-        });
+        // static::addGlobalScope('by_owner_project', function (Builder $builder) {
+        //     if (auth()->user() && auth()->user()->agency) {
+        //         $projectIds = auth()->user()->agency->projects->pluck('id')->all();
+        //         $builder->whereIn('project_id', $projectIds);
+        //     }
+        // });
     }
 
     public function project()

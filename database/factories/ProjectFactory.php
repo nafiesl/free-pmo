@@ -20,9 +20,6 @@ $factory->define(Project::class, function (Faker $faker) {
         'project_value'  => $projectValue = rand(1, 10) * 500000,
         'proposal_value' => $projectValue,
         'status_id'      => rand(1, 6),
-        'owner_id'       => function () {
-            return factory(Agency::class)->create()->id;
-        },
         'customer_id'    => function () {
             return factory(Customer::class)->create()->id;
         },

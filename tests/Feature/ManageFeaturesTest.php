@@ -17,8 +17,8 @@ class ManageFeaturesTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
-        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
+        $customer = factory(Customer::class)->create();
+        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
 
         $worker = $this->createUser();
 
@@ -49,11 +49,11 @@ class ManageFeaturesTest extends TestCase
     public function admin_can_edit_feature_data()
     {
         $user   = factory(User::class, 3)->create();
-        $agency = factory(Agency::class)->create(['owner_id' => $user[0]->id]);
+        $agency = factory(Agency::class)->create();
         $this->actingAs($user[0]);
 
-        $customer = factory(Customer::class)->create(['owner_id' => $agency->id]);
-        $project  = factory(Project::class)->create(['owner_id' => $agency->id, 'customer_id' => $customer->id]);
+        $customer = factory(Customer::class)->create();
+        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
 
         $feature = factory(Feature::class)->create(['worker_id' => $user[1]->id, 'project_id' => $project->id]);
 
@@ -83,8 +83,8 @@ class ManageFeaturesTest extends TestCase
     public function admin_can_delete_a_feature()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
-        $project  = factory(Project::class)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
+        $customer = factory(Customer::class)->create();
+        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
         $feature  = factory(Feature::class)->create(['project_id' => $project->id]);
         $tasks    = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
 
@@ -120,7 +120,7 @@ class ManageFeaturesTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $project = factory(Project::class)->create(['owner_id' => $user->id]);
+        $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 1]);
 
         $this->visit(route('projects.features', $project->id));
@@ -136,8 +136,8 @@ class ManageFeaturesTest extends TestCase
     public function admin_may_clone_many_features_from_other_projects()
     {
         $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create(['owner_id' => $user->agency->id]);
-        $projects = factory(Project::class, 2)->create(['owner_id' => $user->agency->id, 'customer_id' => $customer->id]);
+        $customer = factory(Customer::class)->create();
+        $projects = factory(Project::class, 2)->create(['customer_id' => $customer->id]);
         $features = factory(Feature::class, 3)->create(['project_id' => $projects[0]->id]);
         $tasks1   = factory(Task::class, 3)->create(['feature_id' => $features[0]->id]);
         $tasks2   = factory(Task::class, 3)->create(['feature_id' => $features[1]->id]);

@@ -38,7 +38,6 @@ class ProjectsRepository extends BaseRepository
     public function create($projectData)
     {
         $projectData['project_value'] = $projectData['proposal_value'] ?: 0;
-        $projectData['owner_id']      = auth()->id();
         DB::beginTransaction();
 
         if (isset($projectData['customer_id']) == false || $projectData['customer_id'] == '') {
@@ -63,7 +62,6 @@ class ProjectsRepository extends BaseRepository
         $newCustomer           = new Customer;
         $newCustomer->name     = $customerName;
         $newCustomer->email    = $customerEmail;
-        $newCustomer->owner_id = auth()->user()->agency->id;
         $newCustomer->save();
 
         return $newCustomer;

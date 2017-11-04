@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\Models;
 
-use App\Entities\Agencies\Agency;
 use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Feature;
@@ -19,8 +18,8 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id]);
-        $this->assertTrue($project->features instanceof Collection);
-        $this->assertTrue($project->features->first() instanceof Feature);
+        $this->assertInstanceOf(Collection::class, $project->features);
+        $this->assertInstanceOf(Feature::class, $project->features->first());
     }
 
     /** @test */
@@ -28,8 +27,8 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 1]);
-        $this->assertTrue($project->mainFeatures instanceof Collection);
-        $this->assertTrue($project->mainFeatures->first() instanceof Feature);
+        $this->assertInstanceOf(Collection::class, $project->mainFeatures);
+        $this->assertInstanceOf(Feature::class, $project->mainFeatures->first());
     }
 
     /** @test */
@@ -37,8 +36,8 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 2]);
-        $this->assertTrue($project->additionalFeatures instanceof Collection);
-        $this->assertTrue($project->additionalFeatures->first() instanceof Feature);
+        $this->assertInstanceOf(Collection::class, $project->additionalFeatures);
+        $this->assertInstanceOf(Feature::class, $project->additionalFeatures->first());
     }
 
     /** @test */
@@ -47,8 +46,8 @@ class ProjectTest extends TestCase
         $project = factory(Project::class)->create();
         $feature = factory(Feature::class)->create(['project_id' => $project->id, 'type_id' => 2]);
         $tasks   = factory(Task::class, 2)->create(['feature_id' => $feature->id]);
-        $this->assertTrue($project->tasks instanceof Collection);
-        $this->assertTrue($project->tasks->first() instanceof Task);
+        $this->assertInstanceOf(Collection::class, $project->tasks);
+        $this->assertInstanceOf(Task::class, $project->tasks->first());
     }
 
     /** @test */
@@ -56,8 +55,8 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $payment = factory(Payment::class)->create(['project_id' => $project->id]);
-        $this->assertTrue($project->payments instanceof Collection);
-        $this->assertTrue($project->payments->first() instanceof Payment);
+        $this->assertInstanceOf(Collection::class, $project->payments);
+        $this->assertInstanceOf(Payment::class, $project->payments->first());
     }
 
     /** @test */
@@ -65,8 +64,8 @@ class ProjectTest extends TestCase
     {
         $project      = factory(Project::class)->create();
         $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
-        $this->assertTrue($project->subscriptions instanceof Collection);
-        $this->assertTrue($project->subscriptions->first() instanceof Subscription);
+        $this->assertInstanceOf(Collection::class, $project->subscriptions);
+        $this->assertInstanceOf(Subscription::class, $project->subscriptions->first());
     }
 
     /** @test */
@@ -75,18 +74,8 @@ class ProjectTest extends TestCase
         $customer = factory(Customer::class)->create();
         $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
 
-        $this->assertTrue($project->customer instanceof Customer);
+        $this->assertInstanceOf(Customer::class, $project->customer);
         $this->assertEquals($project->customer_id, $customer->id);
-    }
-
-    /** @test */
-    public function a_project_belongs_to_an_agency()
-    {
-        $agency  = factory(Agency::class)->create();
-        $project = factory(Project::class)->create(['owner_id' => $agency->id]);
-
-        $this->assertTrue($project->owner instanceof Agency);
-        $this->assertEquals($project->owner_id, $agency->id);
     }
 
     /** @test */
@@ -143,7 +132,7 @@ class ProjectTest extends TestCase
     public function a_project_has_many_files()
     {
         $project = factory(Project::class)->create();
-        $this->assertTrue($project->files instanceof Collection);
+        $this->assertInstanceOf(Collection::class, $project->files);
     }
 
     /** @test */

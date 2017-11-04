@@ -23,7 +23,6 @@ class CreateCustomersTable extends Migration
             $table->string('website')->nullable();
             $table->string('notes')->nullable();
             $table->boolean('is_active')->default(1);
-            $table->unsignedInteger('owner_id');
             $table->timestamps();
         });
     }

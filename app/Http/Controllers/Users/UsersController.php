@@ -35,7 +35,7 @@ class UsersController extends Controller
         $userData = $request->validate([
             'name'                  => 'required|min:5',
             'email'                 => 'required|email|unique:users,email',
-            'password'              => 'between:6,15|confirmed',
+            'password'              => 'nullable|between:6,15|confirmed',
             'password_confirmation' => 'required_with:password',
         ]);
 

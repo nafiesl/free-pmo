@@ -20,6 +20,7 @@ class AgencyController extends Controller
     public function update()
     {
         Option::set('agency_name', request('name'));
+        Option::set('agency_tagline', request('tagline'));
         Option::set('agency_email', request('email'));
         Option::set('agency_website', request('website'));
         Option::set('agency_address', request('address'));

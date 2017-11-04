@@ -58,6 +58,7 @@ class UserProfileTest extends TestCase
 
         $this->submitForm(trans('agency.update'), [
             'name'    => 'Nama Agensi Saya',
+            'tagline' => 'Tagline agensi saya',
             'email'   => 'nama_agensi@domain.com',
             'address' => 'Jln. Kalimantan, No. 20, Kota',
             'phone'   => '081234567890',
@@ -86,6 +87,10 @@ class UserProfileTest extends TestCase
         $this->seeInDatabase('site_options', [
             'key'   => 'agency_website',
             'value' => 'https://example.com',
+        ]);
+        $this->seeInDatabase('site_options', [
+            'key'   => 'agency_tagline',
+            'value' => 'Tagline agensi saya',
         ]);
     }
 }

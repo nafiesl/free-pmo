@@ -7,6 +7,7 @@
     <div class="col-md-6 col-lg-offset-2">
         {{ Form::open(['route' => 'users.agency.update', 'method' => 'patch']) }}
         {!! FormField::text('name', ['value' => Option::get('agency_name')]) !!}
+        {!! FormField::text('tagline', ['value' => Option::get('agency_tagline')]) !!}
         {!! FormField::email('email', ['value' => Option::get('agency_email')]) !!}
         {!! FormField::text('website', ['value' => Option::get('agency_phone')]) !!}
         {!! FormField::textarea('address', ['value' => Option::get('agency_address')]) !!}

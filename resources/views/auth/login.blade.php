@@ -5,7 +5,7 @@
 @section('content')
 @include('flash::message')
 <div class="login-panel col-md-4 col-md-offset-4 text-center">
-    {{ Html::image(url('assets/imgs/logo.png'), 'Logo '.Option::get('app_name','Aplikasi Laravel')) }}
+    {{ Html::image(url('assets/imgs/logo.png'), 'Logo '.Option::get('agency_name','Aplikasi Laravel')) }}
     <h3>{{ Option::get('app_name','Aplikasi Laravel') }}</h3>
     <div class="panel panel-default">
         <div class="panel-body">

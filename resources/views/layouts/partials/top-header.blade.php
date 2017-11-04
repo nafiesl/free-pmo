@@ -11,8 +11,8 @@
     </div>
     @endif
     <a class="logo-brand" title="{{ Option::get('app_name', 'Aplikasi Laravel') }}" href="{{ route('home') }}">
-        <img src="{{ url('assets/imgs/logo.png') }}" alt="Logo {{ Option::get('app_name', 'Aplikasi Laravel') }}" width="60px">
-        <h1>{{ Option::get('app_name', 'Aplikasi Laravel') }} <br><small>{{ Option::get('app_tagline', 'Tagline Aplikasi Laravel') }}</small></h1>
+        <img src="{{ url('assets/imgs/logo.png') }}" alt="Logo {{ Option::get('agency_name', 'Aplikasi Laravel') }}" width="60px">
+        <h1>{{ Option::get('app_name', 'Aplikasi Laravel') }} <br><small>{{ Option::get('agency_tagline', 'Tagline Aplikasi Laravel') }}</small></h1>
     </a>
 </div>
 

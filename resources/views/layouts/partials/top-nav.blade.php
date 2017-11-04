@@ -5,7 +5,7 @@
             <span class="sr-only">Toggle navigation</span>
             Menu
         </button>
-        <a class="navbar-brand" title="Home | {{ Option::get('app_tagline', 'Laravel app description') }}" href="{{ route('home') }}">
+        <a class="navbar-brand" title="Home | {{ Option::get('agency_tagline', 'Laravel app description') }}" href="{{ route('home') }}">
             {{ Option::get('app_name', 'Laravel') }}
         </a>
     </div>

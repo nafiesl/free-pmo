@@ -13,6 +13,7 @@ return [
 
     // Attributes
     'name'      => 'Nama Agensi',
+    'tagline'   => 'Tagline Agensi',
     'email'     => 'Email Agensi',
     'website'   => 'Website Agensi',
     'address'   => 'Alamat Agensi',

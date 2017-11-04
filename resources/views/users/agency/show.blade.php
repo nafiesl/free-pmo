@@ -8,6 +8,7 @@
         <div class="panel panel-default">
             <table class="table">
                 <tr><th class="col-xs-4">{{ trans('agency.name') }}</th><td>{{ Option::get('agency_name') }}</td></tr>
+                <tr><th>{{ trans('agency.tagline') }}</th><td>{{ Option::get('agency_tagline') }}</td></tr>
                 <tr><th>{{ trans('agency.email') }}</th><td>{{ Option::get('agency_email') }}</td></tr>
                 <tr><th>{{ trans('agency.phone') }}</th><td>{{ Option::get('agency_phone') }}</td></tr>
                 <tr><th>{{ trans('agency.address') }}</th><td>{!! nl2br(Option::get('agency_address')) !!}</td></tr>

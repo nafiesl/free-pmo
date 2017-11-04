@@ -7,6 +7,9 @@
         {!! link_to_route('users.profile.show', trans('auth.profile')) !!}
     </li>
     @can('manage_agency')
+        <li class="{{ Request::segment(1) == 'agency' ? 'active' : '' }}">
+            {!! link_to_route('users.agency.show', trans('nav_menu.agency')) !!}
+        </li>
         <li class="{{ Request::segment(1) == 'users' ? 'active' : '' }}">
             {!! link_to_route('users.index', trans('user.list')) !!}
         </li>

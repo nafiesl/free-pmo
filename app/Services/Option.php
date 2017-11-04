@@ -3,11 +3,10 @@
 namespace App\Services;
 
 use App\Entities\Options\Option as SiteOption;
-use Cache;
 
 /**
-* Option Class (Site Option Service)
-*/
+ * Option Class (Site Option Service)
+ */
 class Option
 {
 
@@ -31,5 +30,22 @@ class Option
             return $option->value;
         }
         return $default;
+    }
+
+    public function set($key, string $value)
+    {
+        $option = $this->option->where('key', $key)->first();
+
+        if ($option) {
+            $option->value = $value;
+            $option->save();
+        } else {
+            $option        = new SiteOption;
+            $option->key   = $key;
+            $option->value = $value;
+            $option->save();
+        }
+
+        return $value;
     }
 }

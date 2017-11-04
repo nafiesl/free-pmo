@@ -24,9 +24,4 @@ class User extends Authenticatable
     {
         return link_to_route('users.show', $this->name, [$this->id], ['target' => '_blank']);
     }
-
-    public function agency()
-    {
-        return $this->hasOne('App\Entities\Agencies\Agency', 'owner_id');
-    }
 }

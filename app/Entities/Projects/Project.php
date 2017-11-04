@@ -2,7 +2,6 @@
 
 namespace App\Entities\Projects;
 
-use App\Entities\Agencies\Agency;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
@@ -63,11 +62,6 @@ class Project extends Model
     public function customer()
     {
         return $this->belongsTo(Customer::class);
-    }
-
-    public function owner()
-    {
-        return $this->belongsTo(Agency::class);
     }
 
     public function cashInTotal()

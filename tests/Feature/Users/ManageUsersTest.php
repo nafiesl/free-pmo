@@ -10,14 +10,10 @@ class ManageUsersTest extends TestCase
     /** @test */
     public function user_can_see_user_list_from_dashboard_tab()
     {
-        $admin  = $this->adminUserSigningIn();
-        $agency = $admin->agency;
+        $admin = $this->adminUserSigningIn();
 
         $user1 = factory(User::class)->create();
         $user2 = factory(User::class)->create();
-
-        $agency->addWorker($user1);
-        $agency->addWorker($user2);
 
         $this->visit(route('users.index'));
         $this->see($user1->name);
@@ -32,6 +28,7 @@ class ManageUsersTest extends TestCase
         $this->visit(route('users.index'));
         $this->click(trans('user.create'));
         $this->seePageIs(route('users.create'));
+
         $this->submitForm(trans('user.create'), [
             'name'                  => 'Nama User',
             'email'                 => 'user@mail.com',
@@ -55,9 +52,9 @@ class ManageUsersTest extends TestCase
     {
         $admin = $this->adminUserSigningIn();
         $user2 = factory(User::class)->create();
-        $admin->agency->addWorker($user2);
 
         $this->visit(route('users.edit', $user2->id));
+
         $this->type('Ganti nama User', 'name');
         $this->type('member@mail.dev', 'email');
         $this->press(trans('user.update'));
@@ -80,7 +77,6 @@ class ManageUsersTest extends TestCase
     {
         $admin = $this->adminUserSigningIn();
         $user2 = factory(User::class)->create();
-        $admin->agency->addWorker($user2);
 
         $this->visit(route('users.edit', $user2->id));
 
@@ -102,11 +98,6 @@ class ManageUsersTest extends TestCase
             'name'     => $user2->name,
             'username' => $user2->username,
             'email'    => $user2->email,
-        ]);
-
-        $this->notSeeInDatabase('agency_workers', [
-            'agency_id' => $admin->agency->id,
-            'worker_id' => $user2->id,
         ]);
     }
 }

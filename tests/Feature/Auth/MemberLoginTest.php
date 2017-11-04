@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Entities\Agencies\Agency;
 use App\Entities\Users\User;
 use Tests\TestCase;
 
@@ -12,7 +11,6 @@ class MemberLoginTest extends TestCase
     public function user_can_login_and_logout()
     {
         $user = factory(User::class)->create(['name' => 'Nama Member', 'email' => 'email@mail.com']);
-        factory(Agency::class)->create(['owner_id' => $user->id]);
 
         $this->visit(route('auth.login'));
 

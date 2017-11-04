@@ -24,8 +24,6 @@ class RegisterRequest extends Request
     public function rules()
     {
         return [
-            'agency_name'           => 'required|max:255',
-            'agency_website'        => 'nullable|url|max:255',
             'name'                  => 'required|max:255',
             'email'                 => 'required|email|max:255|unique:users,email|unique:agencies,email',
             'password'              => 'required|between:6,15|confirmed',
@@ -36,8 +34,6 @@ class RegisterRequest extends Request
     public function messages()
     {
         return [
-            'agency_name.required'           => 'Nama Agensi harus diisi.',
-            'agency_website.url'             => 'Alamat Website Agensi tidak valid.',
             'name.required'                  => 'Nama harus diisi.',
             'email.required'                 => 'Email harus diisi.',
             'email.email'                    => 'Email tidak valid.',

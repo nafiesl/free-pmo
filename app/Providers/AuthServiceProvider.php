@@ -18,7 +18,6 @@ class AuthServiceProvider extends ServiceProvider
         'App\Entities\Partners\Customer' => 'App\Policies\Partners\CustomerPolicy',
         'App\Entities\Projects\Project'  => 'App\Policies\Projects\ProjectPolicy',
         'App\Entities\Users\User'        => 'App\Policies\UserPolicy',
-        'App\Entities\Agencies\Agency'   => 'App\Policies\AgencyPolicy',
         'App\Entities\Users\Event'       => 'App\Policies\EventPolicy',
     ];
 
@@ -34,12 +33,16 @@ class AuthServiceProvider extends ServiceProvider
         // Dynamically register permissions with Laravel's Gate.
         foreach ($this->getPermissions() as $permission) {
             Gate::define($permission, function ($user) {
-                return  true;
+                return true;
             });
         }
 
+        Gate::define('manage_agency', function ($user) {
+            return true;
+        });
+
         Gate::define('add_project', function ($user) {
-            return  ! is_null($user->agency);
+            return true;
         });
 
         Gate::define('manage_project', function ($user, $project) {

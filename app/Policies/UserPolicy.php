@@ -19,7 +19,7 @@ class UserPolicy
      */
     public function view(User $user, Worker $worker)
     {
-        return $user->id == $user->id;
+        return true;
     }
 
     /**
@@ -31,7 +31,7 @@ class UserPolicy
      */
     public function create(User $user, Worker $worker)
     {
-        return  !  ! $user->agency;
+        return true;
     }
 
     /**
@@ -43,7 +43,7 @@ class UserPolicy
      */
     public function update(User $user, Worker $worker)
     {
-        return $user->agency->workers->contains($worker);
+        return true;
     }
 
     /**

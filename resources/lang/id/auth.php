@@ -6,7 +6,6 @@ return [
     'profile_edit'              => 'Edit Profil Saya',
     'update_profile'            => 'Update Profil',
     'profile_updated'           => 'Profil sudah diupdate.',
-    'agency'                    => 'Agensi Saya',
 
     // Registration
     'register'                  => 'Buat Akun Baru',

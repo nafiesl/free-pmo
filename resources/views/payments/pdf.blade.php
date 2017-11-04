@@ -27,13 +27,14 @@
                 </td>
                 <td style="width:350px">
                     <div style="width:280px">
-                        <h4 style="margin:0px; border-bottom: 3px; font-size: 21.5px">{{ auth()->user()->agency->name }}</h4>
-                        {{-- TODO: Agency tagline attribute --}}
+                        <h4 style="margin:0px; border-bottom: 3px; font-size: 21.5px">JasaWebsiteBanjarmasin.com</h4>
                         <div style="font-size:13px">Jasa Pembuatan Website dan Aplikasi Berbasis Web</div>
                         <hr style="margin: 2px 0">
                         <div style="font-size:11px">
-                            {!! nl2br(auth()->user()->agency->address) !!}<br>
-                            @lang('contact.phone_abb') {{ auth()->user()->agency->phone }}<br>
+                            Jln. Pramuka, Gg. Mawar, Rt. 09, No. 60, Kel. Pemurus Luar<br>
+                            Kec. Banjarmasin Timur, Kota Banjarmasin,
+                            Kalsel - 70249,<br>
+                            @lang('contact.phone_abb') 0817 532 654 / 0823 5035 5470
                         </div>
                     </div>
                 </td>
@@ -62,7 +63,6 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td style="text-align: center;">
-                    {{-- TODO: Agency city attribute --}}
                     Banjarmasin, {{ dateId($payment->date) }}
                 </td>
             </tr>
@@ -73,7 +73,7 @@
                 </td>
                 <td style="text-align: center;vertical-align: bottom;">
                     <strong>{{ auth()->user()->name }}, S. Kom.</strong> <br>
-                    {{ auth()->user()->agency->name }}
+                    JasaWebsiteBanjarmasin.com
                 </td>
             </tr>
         </tbody>

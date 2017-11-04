@@ -52,8 +52,6 @@ class CustomersController extends Controller
             'notes'   => 'nullable|max:255',
         ]);
 
-        $newCustomerData['owner_id'] = auth()->user()->agency->id;
-
         Customer::create($newCustomerData);
 
         flash(trans('customer.created'), 'success');

@@ -20,9 +20,8 @@ class UsersRepository extends BaseRepository
 
     public function getUsers($q)
     {
-        return auth()->user()->agency->workers()
-            ->where('name', 'like', '%'.$q.'%')
-            ->get();
+        return User::where('name', 'like', '%'.$q.'%')
+            ->paginate($this->_paginate);
     }
 
     public function create($userData)
@@ -32,8 +31,6 @@ class UsersRepository extends BaseRepository
         }
 
         $user = $this->storeArray($userData);
-
-        auth()->user()->agency->addWorker($user);
 
         return $user;
     }
@@ -56,8 +53,6 @@ class UsersRepository extends BaseRepository
     public function delete($userId)
     {
         $user = $this->requireById($userId);
-
-        \DB::table('agency_workers')->where('worker_id', $userId)->delete();
 
         return $user->delete();
     }

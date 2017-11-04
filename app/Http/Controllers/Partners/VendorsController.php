@@ -41,8 +41,6 @@ class VendorsController extends Controller
             'website' => 'nullable|url|max:255',
         ]);
 
-        $newVendorData['owner_id'] = auth()->user()->agency->id;
-
         Vendor::create($newVendorData);
 
         flash(trans('vendor.created'), 'success');

@@ -2,7 +2,6 @@
 
 namespace Tests;
 
-use App\Entities\Agencies\Agency;
 use App\Entities\Users\User;
 use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 use Tests\Traits\DatabaseMigrateSeeds;
@@ -24,7 +23,6 @@ abstract class TestCase extends BaseTestCase
     protected function adminUserSigningIn()
     {
         $user = $this->createUser();
-        factory(Agency::class)->create(['owner_id' => $user->id]);
         $this->actingAs($user);
 
         return $user;

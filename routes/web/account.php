@@ -40,22 +40,3 @@ Route::patch('profile/update', [
     'uses'       => 'Users\ProfileController@update',
     'middleware' => ['web', 'auth'],
 ]);
-
-// User's Agency routes
-Route::get('agency', [
-    'as'         => 'users.agency.show',
-    'uses'       => 'Users\AgencyController@show',
-    'middleware' => ['web', 'auth'],
-]);
-
-Route::get('agency/edit', [
-    'as'         => 'users.agency.edit',
-    'uses'       => 'Users\AgencyController@edit',
-    'middleware' => ['web', 'auth'],
-]);
-
-Route::patch('agency/update', [
-    'as'         => 'users.agency.update',
-    'uses'       => 'Users\AgencyController@update',
-    'middleware' => ['web', 'auth'],
-]);

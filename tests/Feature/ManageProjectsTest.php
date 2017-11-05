@@ -17,20 +17,22 @@ class ManageProjectsTest extends TestCase
         $user     = $this->adminUserSigningIn();
         $customer = factory(Customer::class)->create();
 
-        $this->visit(route('projects.index'));
-        $this->seePageIs(route('projects.index'));
-        $this->click(trans('project.create'));
-        $this->seePageIs(route('projects.create'));
-        $this->type('Project Baru', 'name');
-        $this->select($customer->id, 'customer_id');
-        $this->type('2016-04-15', 'proposal_date');
-        $this->type('2000000', 'proposal_value');
-        $this->type('Deskripsi project baru', 'description');
-        $this->press(trans('project.create'));
+        $this->visit(route('projects.create'));
+
+        $this->submitForm(trans('project.create'), [
+            'name'           => 'Project Baru',
+            'customer_id'    => $customer->id,
+            'proposal_date'  => '2016-04-15',
+            'proposal_value' => '2000000',
+            'description'    => 'Deskripsi project baru',
+        ]);
 
         $this->see(trans('project.created'));
         $this->see('Project Baru');
-        $this->seeInDatabase('projects', ['name' => 'Project Baru', 'proposal_value' => '2000000']);
+        $this->seeInDatabase('projects', [
+            'name'           => 'Project Baru',
+            'proposal_value' => '2000000',
+        ]);
     }
 
     /** @test */
@@ -38,32 +40,37 @@ class ManageProjectsTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $this->visit(route('projects.index'));
-        $this->seePageIs(route('projects.index'));
-        $this->click(trans('project.create'));
-        $this->seePageIs(route('projects.create'));
+        $this->visit(route('projects.create'));
 
         // Invalid entry
-        $this->type('Project Baru', 'name');
-        $this->select('', 'customer_id');
-        $this->type('2016-04-15', 'proposal_date');
-        $this->type('2000000', 'proposal_value');
-        $this->type('Deskripsi project baru', 'description');
-        $this->press(trans('project.create'));
+        $this->submitForm(trans('project.create'), [
+            'name'           => 'Project Baru',
+            'customer_id'    => '',
+            'proposal_date'  => '2016-04-15',
+            'proposal_value' => '2000000',
+            'description'    => 'Deskripsi project baru',
+        ]);
+
         $this->seePageIs(route('projects.create'));
-        $this->notSeeInDatabase('projects', ['name' => 'Project Baru', 'proposal_value' => '2000000']);
+
+        $this->notSeeInDatabase('projects', [
+            'name'           => 'Project Baru',
+            'proposal_value' => '2000000',
+        ]);
 
         $this->type('Customer Baru', 'customer_name');
         $this->type('email@customer.baru', 'customer_email');
         $this->press(trans('project.create'));
 
         $this->see(trans('project.created'));
-        $this->see('Project Baru');
+
         $this->seeInDatabase('customers', [
             'name'  => 'Customer Baru',
             'email' => 'email@customer.baru',
         ]);
+
         $newCustomer = Customer::whereName('Customer Baru')->whereEmail('email@customer.baru')->first();
+
         $this->seeInDatabase('projects', [
             'name'           => 'Project Baru',
             'proposal_value' => '2000000',

@@ -10,7 +10,7 @@
         table.receipt-table {
             /*border: 1px solid #aaa;*/
             border-collapse: collapse;
-            font-size:14px;
+            font-size:16px;
             max-width: 750px;
         }
         table.receipt-table td {
@@ -22,10 +22,10 @@
     <table class="receipt-table">
         <tbody>
             <tr>
-                <td style="width:120px;">
-                    {{ Html::image(url('assets/imgs/logo.png'), '', ['style' => 'width:100%']) }}
+                <td style="width:140px;">
+                    {{ Html::image(url('assets/imgs/logo.png'), '', ['style' => 'width: 100px;']) }}
                 </td>
-                <td style="width:350px">
+                <td style="width:330px">
                     <div style="width:280px">
                         <h4 style="margin:0px; border-bottom: 3px; font-size: 21.5px">JasaWebsiteBanjarmasin.com</h4>
                         <div style="font-size:13px">Jasa Pembuatan Website dan Aplikasi Berbasis Web</div>

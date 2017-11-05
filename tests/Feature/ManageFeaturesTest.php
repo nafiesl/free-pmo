@@ -47,20 +47,20 @@ class ManageFeaturesTest extends TestCase
     /** @test */
     public function admin_can_edit_feature_data()
     {
-        $user = factory(User::class, 3)->create();
-        $this->actingAs($user[0]);
+        $users = factory(User::class, 3)->create();
+        $this->actingAs($users[0]);
 
         $customer = factory(Customer::class)->create();
         $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
 
-        $feature = factory(Feature::class)->create(['worker_id' => $user[1]->id, 'project_id' => $project->id]);
+        $feature = factory(Feature::class)->create(['worker_id' => $users[1]->id, 'project_id' => $project->id]);
 
         $this->visit(route('features.edit', $feature->id));
 
         $this->submitForm(trans('feature.update'), [
             'name'      => 'Nama Fitur Edit',
             'price'     => 33333,
-            'worker_id' => $user[2]->id,
+            'worker_id' => $users[2]->id,
             'type_id'   => 2,
         ]);
 
@@ -71,7 +71,7 @@ class ManageFeaturesTest extends TestCase
         $this->seeInDatabase('features', [
             'name'       => 'Nama Fitur Edit',
             'price'      => 33333,
-            'worker_id'  => $user[2]->id,
+            'worker_id'  => $users[2]->id,
             'project_id' => $project->id,
             'type_id'    => 2,
         ]);

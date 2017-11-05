@@ -3,25 +3,20 @@
 namespace App\Http\Controllers\Users;
 
 use App\Entities\Users\User;
-use App\Entities\Users\UsersRepository;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Users\DeleteRequest;
-use App\Http\Requests\Users\UpdateRequest;
 use Illuminate\Http\Request;
 
+/**
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class UsersController extends Controller
 {
-
-    private $repo;
-
-    public function __construct(UsersRepository $repo)
-    {
-        $this->repo = $repo;
-    }
-
     public function index(Request $request)
     {
-        $users = $this->repo->getUsers($request->get('q'));
+        $query = $request->get('q');
+        $users = User::where('name', 'like', '%'.$query.'%')
+            ->paginate(25);
+
         return view('users.index', compact('users'));
     }
 
@@ -33,13 +28,17 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $userData = $request->validate([
-            'name'                  => 'required|min:5',
-            'email'                 => 'required|email|unique:users,email',
-            'password'              => 'nullable|between:6,15|confirmed',
-            'password_confirmation' => 'required_with:password',
+            'name'     => 'required|min:5',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'nullable|between:6,15|confirmed',
+            // 'password_confirmation' => 'required_with:password',
         ]);
 
-        $user = $this->repo->create($userData);
+        if (!$userData['password']) {
+            $userData['password'] = \Option::get('password_default', 'member');
+        }
+
+        $user = User::create($userData);
 
         flash()->success(trans('user.created'));
 
@@ -58,11 +57,16 @@ class UsersController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(UpdateRequest $request, User $user)
+    public function update(Request $request, User $user)
     {
         $this->authorize('update', $user);
 
-        $userData = $request->except(['_method', '_token', 'password_confirmation']);
+        $userData = $request->validate([
+            'name'                  => 'required|min:5',
+            'email'                 => 'required|email|unique:users,email,'.$request->segment(2),
+            'password'              => 'nullable|required_with:password_confirmation|between:6,15|confirmed',
+            'password_confirmation' => 'required_with:password',
+        ]);
 
         $user->update($userData);
 
@@ -77,15 +81,19 @@ class UsersController extends Controller
         return view('users.delete', compact('user'));
     }
 
-    public function destroy(DeleteRequest $request, User $user)
+    public function destroy(Request $request, User $user)
     {
         $this->authorize('delete', $user);
 
+        $request->validate([
+            'user_id' => 'required',
+        ]);
+
         if ($request->get('user_id')) {
-            $this->repo->delete($user->id);
-            flash()->success(trans('user.deleted'));
+            $user->delete();
+            flash(trans('user.deleted'), 'success');
         } else {
-            flash()->error(trans('user.undeleted'));
+            flash(trans('user.undeleted'), 'error');
         }
 
         return redirect()->route('users.index');

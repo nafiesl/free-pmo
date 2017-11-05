@@ -5,6 +5,9 @@ namespace Tests\Feature\Users;
 use App\Entities\Users\User;
 use Tests\TestCase;
 
+/**
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class ManageUsersTest extends TestCase
 {
     /** @test */

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 
+/**
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class ProfileController extends Controller
 {
     public function show()

@@ -10,6 +10,8 @@ use App\Entities\Users\User;
 
 /**
  * Base Repository Class
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 abstract class BaseRepository extends EloquentRepository
 {

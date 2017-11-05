@@ -9,6 +9,8 @@ use Carbon\Carbon;
 
 /**
  * AdminDashboardQuery
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class AdminDashboardQuery
 {
@@ -43,6 +45,12 @@ class AdminDashboardQuery
         return Project::where('status_id', 4)->where('start_date', 'like', $year.'%')->count();
     }
 
+    /**
+     * Get current outstanding customer payment amount
+     *
+     * @param  string|integer $year Year of queried payment records
+     * @return integer       Amount of outstanding customer payment
+     */
     public function currentOutstandingCustomerPayment($year)
     {
         // On Progress, Done, On Hold
@@ -64,6 +72,11 @@ class AdminDashboardQuery
         return $oustandingPaymentTotal;
     }
 
+    /**
+     * Get list of customer subscriptions that expires on next 60 days
+     *
+     * @return \Illuminate\Support\Collection Collection of filtered subscriptions
+     */
     public function upcomingSubscriptionDueDatesList()
     {
         $subscriptions = Subscription::get();

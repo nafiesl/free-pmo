@@ -6,6 +6,11 @@ use App\Entities\Users\User;
 use App\Entities\Users\User as Worker;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * User model policy class
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class UserPolicy
 {
     use HandlesAuthorization;

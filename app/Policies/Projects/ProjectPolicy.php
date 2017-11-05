@@ -6,6 +6,11 @@ use App\Entities\Projects\Project;
 use App\Entities\Users\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Project model policy class
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class ProjectPolicy
 {
     use HandlesAuthorization;
@@ -33,7 +38,7 @@ class ProjectPolicy
     public function create(User $user, Project $project)
     {
         // User can create a project if they owns an agency.
-        return  true;
+        return true;
     }
 
     /**

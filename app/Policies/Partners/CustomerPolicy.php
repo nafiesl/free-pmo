@@ -6,6 +6,11 @@ use App\Entities\Partners\Customer;
 use App\Entities\Users\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Customer model policy class
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class CustomerPolicy
 {
     use HandlesAuthorization;

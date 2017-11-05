@@ -6,6 +6,11 @@ use App\Entities\Users\Event;
 use App\Entities\Users\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Event model policy class
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class EventPolicy
 {
     use HandlesAuthorization;

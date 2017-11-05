@@ -6,6 +6,11 @@ use App\Entities\Partners\Vendor;
 use App\Entities\Users\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
+/**
+ * Vendor model policy class
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class VendorPolicy
 {
     use HandlesAuthorization;

@@ -6,6 +6,8 @@ use App\Entities\Invoices\Invoice;
 
 /**
  * Invoice Draft.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class InvoiceDraft
 {
@@ -47,7 +49,7 @@ class InvoiceDraft
 
     public function updateItem($itemKey, $newItemData)
     {
-        if ( ! isset($this->items[$itemKey])) {
+        if (!isset($this->items[$itemKey])) {
             return;
         }
 

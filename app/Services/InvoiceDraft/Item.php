@@ -4,6 +4,8 @@ namespace App\Services\InvoiceDrafts;
 
 /**
  * Draft Item class.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class Item
 {
@@ -13,7 +15,7 @@ class Item
     public function __construct(array $itemDetail)
     {
         $this->description = $itemDetail['description'];
-        $this->amount = $itemDetail['amount'];
+        $this->amount      = $itemDetail['amount'];
     }
 
     public function updateAttribute(array $newItemData)

@@ -9,6 +9,8 @@ use DB;
 
 /**
  * Reports Repository Class
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class ReportsRepository extends BaseRepository
 {

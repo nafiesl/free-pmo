@@ -6,6 +6,8 @@ use App\Entities\Options\Option as SiteOption;
 
 /**
  * Option Class (Site Option Service)
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class Option
 {

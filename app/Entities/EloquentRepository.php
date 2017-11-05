@@ -6,8 +6,10 @@ use App\Exceptions\EntityNotFoundException;
 use Illuminate\Database\Eloquent\Model;
 
 /**
-* Eloquent Repository Class
-*/
+ * Eloquent Repository Class
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 abstract class EloquentRepository
 {
     protected $_paginate = 25;
@@ -26,7 +28,7 @@ abstract class EloquentRepository
     public function getAll($q)
     {
         return $this->model->latest()
-            ->where('name','like','%'.$q.'%')
+            ->where('name', 'like', '%'.$q.'%')
             ->paginate($this->_paginate);
     }
 
@@ -38,8 +40,9 @@ abstract class EloquentRepository
     public function getBy($column, $value)
     {
         $model = $this->model->newQuery()->where($column, $value)->get();
-        if ($model->count() > 1)
+        if ($model->count() > 1) {
             return $model;
+        }
 
         return $model->first();
     }
@@ -47,8 +50,10 @@ abstract class EloquentRepository
     public function requireById($id)
     {
         $model = $this->getById($id);
-        if ( ! $model )
+        if (!$model) {
             throw new EntityNotFoundException($id, $this->model->getTable());
+        }
+
         return $model;
     }
 
@@ -59,12 +64,14 @@ abstract class EloquentRepository
 
     public function create($data)
     {
-        if ($data instanceof Model)
-        {
+        if ($data instanceof Model) {
             return $this->storeEloquentModel($data);
         } else {
             foreach ($data as $key => $value) {
-                if ($data[$key] == '') $data[$key] = null;
+                if ($data[$key] == '') {
+                    $data[$key] = null;
+                }
+
             }
             return $this->storeArray($data);
         }
@@ -73,7 +80,10 @@ abstract class EloquentRepository
     public function update($data = [], $modelId)
     {
         foreach ($data as $key => $value) {
-            if (!$data[$key]) $data[$key] = null;
+            if (!$data[$key]) {
+                $data[$key] = null;
+            }
+
         }
 
         $model = $this->requireById($modelId);
@@ -89,8 +99,7 @@ abstract class EloquentRepository
 
     protected function storeEloquentModel(Model $model)
     {
-        if ($model->getDirty())
-        {
+        if ($model->getDirty()) {
             return $model->save();
         } else {
             return $model->touch();

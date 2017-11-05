@@ -6,6 +6,8 @@ use Illuminate\Support\Collection;
 
 /**
  * InvoiceDraft Collection Class.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class InvoiceDraftCollection
 {
@@ -34,7 +36,7 @@ class InvoiceDraftCollection
 
     public function add(InvoiceDraft $draft)
     {
-        $content = $this->getContent();
+        $content         = $this->getContent();
         $draft->draftKey = str_random(10);
         $content->put($draft->draftKey, $draft);
 
@@ -56,7 +58,7 @@ class InvoiceDraftCollection
         $content = $this->getContent();
 
         $content[$draftKey]->projectId = $draftAttributes['project_id'];
-        $content[$draftKey]->notes = $draftAttributes['notes'];
+        $content[$draftKey]->notes     = $draftAttributes['notes'];
 
         $this->session->put($this->instance, $content);
 

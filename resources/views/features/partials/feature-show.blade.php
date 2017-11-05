@@ -2,7 +2,7 @@
     <div class="panel-heading"><h3 class="panel-title">{{ trans('feature.show') }}</h3></div>
     <table class="table table-condensed">
         <tbody>
-            <tr><th class="col-md-3">{{ trans('feature.name') }}</th><td class="col-md-9">{{ $feature->name }}</td></tr>
+            <tr><th class="col-md-4">{{ trans('feature.name') }}</th><td class="col-md-8">{{ $feature->name }}</td></tr>
             <tr><th>{{ trans('feature.type') }}</th><td>{{ $feature->type() }}</td></tr>
             <tr><th>{{ trans('feature.price') }}</th><td>{{ formatRp($feature->price) }}</td></tr>
             <tr><th>{{ trans('feature.tasks_count') }}</th><td>{{ $feature->tasks->count() }}</td></tr>

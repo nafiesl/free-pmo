@@ -35,6 +35,7 @@ return [
     'delete_confirm_button' => 'Ya, silakan hapus!',
     'delete_confirm'        => 'Anda yakin ingin menghapus?',
     'change_photo'          => 'Ganti Foto',
+    'done'                  => 'Selesai',
 
     // Attributes
     'name'                  => 'Nama',

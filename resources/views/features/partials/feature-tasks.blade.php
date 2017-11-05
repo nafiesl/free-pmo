@@ -1,5 +1,12 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ trans('feature.tasks') }}</h3></div>
+<div id="feature-tasks" class="panel panel-default">
+    <div class="panel-heading">
+        @if (request('action') == 'sort_tasks')
+            {{ link_to_route('features.show', trans('app.done'), [$feature->id], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
+        @else
+            {{ link_to_route('features.show', trans('feature.sort_tasks'), [$feature->id, 'action' => 'sort_tasks', '#feature-tasks'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
+        @endif
+        <h3 class="panel-title">{{ trans('feature.tasks') }}</h3>
+    </div>
     <table class="table table-condensed">
         <thead>
             <th>{{ trans('app.table_no') }}</th>
@@ -49,11 +56,19 @@
             <tr>
                 <th class="text-right" colspan="3">Total</th>
                 <th class="text-center">{{ formatDecimal($feature->tasks->avg('progress')) }} %</th>
-                <th></th>
+                <th>
+                    @if (request('action') == 'sort_tasks')
+                        {{ link_to_route('features.show', trans('app.done'), [$feature->id], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                    @else
+                        {{ link_to_route('features.show', trans('feature.sort_tasks'), [$feature->id, 'action' => 'sort_tasks', '#feature-tasks'], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                    @endif
+                </th>
             </tr>
         </tfoot>
     </table>
 </div>
+
+@if (request('action') == 'sort_tasks')
 
 @section('ext_js')
     {!! Html::script(url('assets/js/plugins/jquery-ui.min.js')) !!}
@@ -73,3 +88,5 @@
 })();
 </script>
 @endsection
+
+@endif

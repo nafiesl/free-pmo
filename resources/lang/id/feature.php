@@ -25,6 +25,7 @@ return [
     'deleted'                => 'Hapus data Fitur telah berhasil.',
     'undeleted'              => 'Data Fitur gagal dihapus.',
     'add_from_other_project' => 'Tambah Fitur dari Project Lain',
+    'sort_tasks'             => 'Urutkan Prioritas Task',
 
     // Attributes
     'name'                   => 'Nama Fitur',

@@ -16,32 +16,33 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! FormField::text('domain_name',['label'=> trans('subscription.domain_name')]) !!}
+                        {!! FormField::text('domain_name', ['label' => trans('subscription.domain_name')]) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! FormField::price('domain_price',['label'=> trans('subscription.domain_price')]) !!}
+                        {!! FormField::price('domain_price', ['label' => trans('subscription.domain_price')]) !!}
                     </div>
                 </div>
-                {!! FormField::text('epp_code',['label'=> trans('subscription.epp_code')]) !!}
+                {!! FormField::text('epp_code', ['label' => trans('subscription.epp_code')]) !!}
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! FormField::text('hosting_capacity',['label'=> trans('subscription.hosting_capacity')]) !!}
+                        {!! FormField::text('hosting_capacity', ['label' => trans('subscription.hosting_capacity')]) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! FormField::price('hosting_price',['label'=> trans('subscription.hosting_price')]) !!}
+                        {!! FormField::price('hosting_price', ['label' => trans('subscription.hosting_price')]) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! FormField::text('start_date',['label'=> trans('subscription.start_date')]) !!}
+                        {!! FormField::text('start_date', ['label' => trans('subscription.start_date')]) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! FormField::text('due_date',['label'=> trans('subscription.due_date')]) !!}
+                        {!! FormField::text('due_date', ['label' => trans('subscription.due_date')]) !!}
                     </div>
                 </div>
-                {!! FormField::select('project_id', $projects,['label'=> trans('subscription.project'),'value' => Request::get('project_id')]) !!}
-                {!! FormField::select('vendor_id', $vendors,['label'=> trans('subscription.vendor'),'value' => Request::get('vendor_id')]) !!}
-                {!! FormField::textarea('remark',['label'=> trans('subscription.remark')]) !!}
+                {!! FormField::select('project_id', $projects, ['label' => trans('subscription.project'), 'value' => Request::get('project_id')]) !!}
+                {!! FormField::select('vendor_id', $vendors, ['label' => trans('subscription.vendor'), 'value' => Request::get('vendor_id')]) !!}
+                {!! FormField::radios('type_id', $subscriptionTypes, ['label' => trans('subscription.type'), 'value' => Request::get('type_id')]) !!}
+                {!! FormField::textarea('remark', ['label' => trans('subscription.remark')]) !!}
             </div>
 
             <div class="panel-footer">

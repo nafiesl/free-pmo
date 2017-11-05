@@ -26,4 +26,9 @@ class Subscription extends Model
     {
         return $this->status_id ? trans('app.active') : trans('app.in_active');
     }
+
+    public function getTypeAttribute()
+    {
+        return $this->type_id == 1 ? trans('subscription.types.domain') : trans('subscription.types.hosting');
+    }
 }

@@ -34,6 +34,7 @@ class CreateRequest extends Request
             'due_date'         => 'required|date|date_format:Y-m-d',
             'project_id'       => 'required|numeric',
             'vendor_id'        => 'required|numeric',
+            'type_id'          => 'required|numeric',
             'remark'           => 'max:255',
         ];
     }

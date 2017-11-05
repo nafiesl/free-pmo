@@ -14,11 +14,12 @@ class CreateSubscriptionsTable extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('project_id')->unsigned();
-            $table->integer('vendor_id')->unsigned();
+            $table->unsignedInteger('project_id');
+            $table->unsignedInteger('vendor_id');
+            $table->unsignedTinyInteger('type_id');
             $table->string('domain_name', 60);
             $table->string('epp_code', 60)->nullable();
-            $table->integer('domain_price')->unsigned();
+            $table->unsignedInteger('domain_price');
             $table->string('hosting_capacity', 60)->nullable();
             $table->boolean('status_id')->unsigned()->default(1);
             $table->integer('hosting_price')->unsigned()->nullable();

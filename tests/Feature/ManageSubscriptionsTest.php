@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Entities\Partners\Customer;
 use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
@@ -21,17 +20,19 @@ class ManageSubscriptionsTest extends TestCase
         $this->click(trans('subscription.create'));
 
         // Fill Form
-        $this->type('www.domain.com', 'domain_name');
-        $this->type(100000, 'domain_price');
-        $this->type('EPPCODE', 'epp_code');
-        $this->type('3GB', 'hosting_capacity');
-        $this->type(500000, 'hosting_price');
-        $this->type('2015-05-02', 'start_date');
-        $this->type('2016-05-02', 'due_date');
-        $this->select($project->id, 'project_id');
-        $this->select($vendor->id, 'vendor_id');
-        $this->type('', 'remark');
-        $this->press(trans('subscription.create'));
+        $this->submitForm(trans('subscription.create'), [
+            'domain_name'      => 'www.domain.com',
+            'domain_price'     => 100000,
+            'epp_code'         => 'EPPCODE',
+            'hosting_capacity' => '3GB',
+            'hosting_price'    => 500000,
+            'start_date'       => '2015-05-02',
+            'due_date'         => '2016-05-02',
+            'project_id'       => $project->id,
+            'vendor_id'        => $vendor->id,
+            'type_id'          => 1,
+            'remark'           => '',
+        ]);
 
         $this->see(trans('subscription.created'));
         $this->seePageIs(route('subscriptions.index'));
@@ -44,37 +45,38 @@ class ManageSubscriptionsTest extends TestCase
             'start_date'   => '2015-05-02',
             'due_date'     => '2016-05-02',
             'vendor_id'    => $vendor->id,
+            'type_id'      => 1,
         ]);
     }
 
     /** @test */
     public function admin_can_edit_subscription_data()
     {
-        $eppCode  = str_random(10);
-        $user     = $this->adminUserSigningIn();
-        $vendor   = factory(Vendor::class)->create();
-        $customer = factory(Customer::class)->create();
-        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
+        $user    = $this->adminUserSigningIn();
+        $vendor  = factory(Vendor::class)->create();
+        $project = factory(Project::class)->create();
 
         $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
 
         $this->visit(route('subscriptions.edit', $subscription->id));
 
         // Fill Form
-        $this->type($eppCode, 'epp_code');
-        $this->type('4GB', 'hosting_capacity');
-        $this->type(500000, 'hosting_price');
-        $this->type('2015-05-02', 'start_date');
-        $this->type('2016-05-02', 'due_date');
-        $this->select($project->id, 'project_id');
-        $this->select($vendor->id, 'vendor_id');
-        $this->select(1, 'status_id');
-        $this->press(trans('subscription.update'));
+        $this->submitForm(trans('subscription.update'), [
+            'epp_code'         => 'EPPCODE1',
+            'hosting_capacity' => '4GB',
+            'hosting_price'    => 500000,
+            'start_date'       => '2015-05-02',
+            'due_date'         => '2016-05-02',
+            'project_id'       => $project->id,
+            'vendor_id'        => $vendor->id,
+            'status_id'        => 1,
+        ]);
 
         $this->seePageIs(route('subscriptions.edit', $subscription->id));
         $this->see(trans('subscription.updated'));
+
         $this->seeInDatabase('subscriptions', [
-            'epp_code'         => $eppCode,
+            'epp_code'         => 'EPPCODE1',
             'project_id'       => $project->id,
             'status_id'        => 1,
             'hosting_capacity' => '4GB',
@@ -88,15 +90,13 @@ class ManageSubscriptionsTest extends TestCase
     /** @test */
     public function admin_can_delete_a_subscription()
     {
-        $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
-        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
-
-        $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
+        $user         = $this->adminUserSigningIn();
+        $subscription = factory(Subscription::class)->create();
 
         $this->visit(route('subscriptions.edit', $subscription->id));
         $this->click(trans('subscription.delete'));
         $this->press(trans('app.delete_confirm_button'));
+
         $this->seePageIs(route('subscriptions.index'));
         $this->see(trans('subscription.deleted'));
 
@@ -107,10 +107,7 @@ class ManageSubscriptionsTest extends TestCase
     public function admin_can_see_a_subscription()
     {
         $user         = $this->adminUserSigningIn();
-        $customer     = factory(Customer::class)->create();
-        $project      = factory(Project::class)->create();
-        $project      = factory(Project::class)->create(['customer_id' => $customer->id]);
-        $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
+        $subscription = factory(Subscription::class)->create();
 
         $this->visit(route('subscriptions.show', $subscription->id));
 

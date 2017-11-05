@@ -29,7 +29,13 @@ class SubscriptionsController extends Controller
     {
         $projects = $this->repo->getProjectsList();
         $vendors  = $this->repo->getVendorsList();
-        return view('subscriptions.create', compact('projects', 'vendors'));
+
+        $subscriptionTypes = [
+            1 => trans('subscription.types.domain'),
+            2 => trans('subscription.types.hosting'),
+        ];
+
+        return view('subscriptions.create', compact('projects', 'vendors', 'subscriptionTypes'));
     }
 
     public function store(CreateRequest $request)

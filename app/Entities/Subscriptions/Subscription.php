@@ -33,6 +33,14 @@ class Subscription extends Model
         return $this->nearOfDueDate() ? '<i class="fa fa-exclamation-circle" style="color: red"></i>' : '';
     }
 
+    public function dueDateDescription()
+    {
+        $dueDateDescription = trans('subscription.start_date').' : '.dateId($this->start_date)."\n";
+        $dueDateDescription .= trans('subscription.due_date').' : '.dateId($this->due_date);
+
+        return $dueDateDescription;
+    }
+
     public function project()
     {
         return $this->belongsTo('App\Entities\Projects\Project');

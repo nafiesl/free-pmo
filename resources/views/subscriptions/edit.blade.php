@@ -9,7 +9,7 @@
 
 @if (request('action') == null)
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6">
         {!! Form::model($subscription, ['route'=>['subscriptions.update', $subscription->id], 'method' => 'patch']) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ $pageTitle }}</h3></div>
@@ -47,7 +47,7 @@
     </div>
     <div class="col-md-3 text-center">
         <legend>@lang('app.action')</legend>
-        <p>{!! link_to_route('subscriptions.show', trans('subscription.show'), [$subscription->id], ['class' => 'btn btn-info']) !!}</p>
+        <p>{!! link_to_route('subscriptions.show', trans('subscription.back_to_show'), [$subscription->id], ['class' => 'btn btn-info']) !!}</p>
         <p>{!! link_to_route('subscriptions.index', trans('subscription.back_to_index'), [], ['class' => 'btn btn-default']) !!}</p>
         <p>{!! link_to_route('subscriptions.edit', trans('subscription.delete'), [$subscription->id, 'action' => 'delete'], ['class'=>'btn btn-danger']) !!}</p>
     </div>

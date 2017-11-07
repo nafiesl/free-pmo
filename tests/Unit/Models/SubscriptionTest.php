@@ -60,6 +60,18 @@ class SubscriptionTest extends TestCase
     }
 
     /** @test */
+    public function it_has_due_date_description_method()
+    {
+        $next3Months = Carbon::now()->addMonths(2)->format('Y-m-d');
+        $subscription = factory(Subscription::class)->make(['due_date' => $next3Months]);
+
+        $dueDateDescription = trans('subscription.start_date').' : '.dateId($subscription->start_date)."\n";
+        $dueDateDescription .= trans('subscription.due_date').' : '.dateId($subscription->due_date);
+
+        $this->assertEquals($dueDateDescription, $subscription->dueDateDescription());
+    }
+
+    /** @test */
     public function it_has_project_relation()
     {
         $subscription = factory(Subscription::class)->create();

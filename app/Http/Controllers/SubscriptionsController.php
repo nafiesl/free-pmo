@@ -44,7 +44,9 @@ class SubscriptionsController extends Controller
 
     public function show(Subscription $subscription)
     {
-        return view('subscriptions.show', compact('subscription'));
+        $pageTitle = $this->getPageTitle('detail', $subscription);
+
+        return view('subscriptions.show', compact('subscription', 'pageTitle'));
     }
 
     public function edit(Subscription $subscription)
@@ -53,7 +55,7 @@ class SubscriptionsController extends Controller
         $vendors = $this->repo->getVendorsList();
         $subscriptionTypes = $this->getSubscriptionTypes();
 
-        $pageTitle = trans('subscription.edit').' - '.$subscription->name.' - '.$subscription->customer->name;
+        $pageTitle = $this->getPageTitle('edit', $subscription);
 
         return view('subscriptions.edit', compact('subscription', 'projects', 'vendors', 'subscriptionTypes', 'pageTitle'));
     }
@@ -74,12 +76,17 @@ class SubscriptionsController extends Controller
         return redirect()->route('subscriptions.index');
     }
 
-    public function getSubscriptionTypes()
+    private function getSubscriptionTypes()
     {
         return [
             1 => trans('subscription.types.domain'),
             2 => trans('subscription.types.hosting'),
         ];
+    }
+
+    private function getPageTitle($pageType, $subscription)
+    {
+        return trans('subscription.'.$pageType).' - '.$subscription->name.' - '.$subscription->customer->name;
     }
 
 }

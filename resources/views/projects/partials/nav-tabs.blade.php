@@ -4,19 +4,19 @@
         {!! link_to_route('projects.show', trans('project.show'), [$project->id]) !!}
     </li>
     <li class="{{ Request::segment(3) == 'features' ? 'active' : '' }}">
-        {!! link_to_route('projects.features', trans('project.features') . ' (' . $project->features->count() . ')', [$project->id]) !!}
+        {!! link_to_route('projects.features', trans('project.features').' ('.$project->features->count().')', [$project->id]) !!}
     </li>
     <li class="{{ Request::segment(3) == 'payments' ? 'active' : '' }}">
-        {!! link_to_route('projects.payments', trans('project.payments') . ' (' . $project->payments->count() . ')', [$project->id]) !!}
+        {!! link_to_route('projects.payments', trans('project.payments').' ('.$project->payments->count().')', [$project->id]) !!}
     </li>
     <li class="{{ Request::segment(3) == 'subscriptions' ? 'active' : '' }}">
-        {!! link_to_route('projects.subscriptions', trans('project.subscriptions'), [$project->id]) !!}
+        {!! link_to_route('projects.subscriptions', trans('project.subscriptions').' ('.$project->subscriptions->count().')', [$project->id]) !!}
     </li>
     <li class="{{ Request::segment(3) == 'invoices' ? 'active' : '' }}">
-        {!! link_to_route('projects.invoices', trans('project.invoices') . ' (' . $project->invoices->count() . ')', [$project->id]) !!}
+        {!! link_to_route('projects.invoices', trans('project.invoices').' ('.$project->invoices->count().')', [$project->id]) !!}
     </li>
     <li class="{{ Request::segment(3) == 'files' ? 'active' : '' }}">
-        {!! link_to_route('projects.files', trans('project.files') . ' (' . $project->files->count() . ')', [$project->id]) !!}
+        {!! link_to_route('projects.files', trans('project.files').' ('.$project->files->count().')', [$project->id]) !!}
     </li>
 </ul>
 <br>

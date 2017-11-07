@@ -31,10 +31,7 @@
             <td>{{ $subscriptions->firstItem() + $key }}</td>
             <td>{{ $subscription->nameLink() }}</td>
             <td>{{ $subscription->customer->name }}</td>
-            <td class="text-right" title="
-                {{ trans('subscription.start_date') }} : {{ dateId($subscription->start_date) }}
-{{ trans('subscription.due_date') }} : {{ dateId($subscription->due_date) }}
-                ">
+            <td class="text-right" title="{!! $subscription->dueDateDescription() !!}">
                 {{ dateId($subscription->due_date) }} {!! $subscription->nearOfDueDateSign() !!}
             </td>
             <td class="text-right">{{ formatRp($subscription->price) }}</td>

@@ -11,6 +11,7 @@ return [
     'found' => 'Langganan ditemukan',
     'not_found' => 'Langganan tidak ditemukan',
     'empty' => 'Belum ada Langganan',
+    'back_to_show' => 'Kembali ke Detail Langganan',
     'back_to_index' => 'Kembali ke daftar Langganan',
 
     // Actions

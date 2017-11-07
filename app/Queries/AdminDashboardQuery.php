@@ -23,7 +23,7 @@ class AdminDashboardQuery
     public function totalEarnings($year)
     {
         $totalEarnings = 0;
-        $payments      = Payment::where('date', 'like', $year.'%')->get();
+        $payments = Payment::where('date', 'like', $year.'%')->get();
         foreach ($payments as $payment) {
             if ($payment->in_out == 1) {
                 $totalEarnings += $payment->amount;
@@ -79,13 +79,13 @@ class AdminDashboardQuery
      */
     public function upcomingSubscriptionDueDatesList()
     {
-        $subscriptions = Subscription::get();
+        $subscriptions = Subscription::orderBy('due_date', 'asc')->get();
 
         $filteredSubscriptions = $subscriptions->filter(function ($subscription) {
             return $subscription->status_id == 1
             && Carbon::parse($subscription->due_date)->diffInDays(Carbon::now()) < 60;
         });
 
-        return $filteredSubscriptions;
+        return $filteredSubscriptions->load('customer');
     }
 }

@@ -28,7 +28,7 @@ class SubscriptionsController extends Controller
     public function create()
     {
         $projects = $this->repo->getProjectsList();
-        $vendors  = $this->repo->getVendorsList();
+        $vendors = $this->repo->getVendorsList();
 
         $subscriptionTypes = [
             1 => trans('subscription.types.domain'),
@@ -54,9 +54,9 @@ class SubscriptionsController extends Controller
     public function edit($subscriptionId)
     {
         $subscription = $this->repo->requireById($subscriptionId);
-        $projects     = $this->repo->getProjectsList();
-        $customers    = $this->repo->getCustomersList();
-        $vendors      = $this->repo->getVendorsList();
+        $projects = $this->repo->getProjectsList();
+        $customers = $this->repo->getCustomersList();
+        $vendors = $this->repo->getVendorsList();
         return view('subscriptions.edit', compact('subscription', 'projects', 'customers', 'vendors'));
     }
 

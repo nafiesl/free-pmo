@@ -18,7 +18,8 @@ class SubscriptionsRepository extends BaseRepository
 
     public function getSubscriptions($q, $customerId)
     {
-        return $this->model->orderBy('due_date')
+        return $this->model->orderBy('status_id', 'desc')
+            ->orderBy('due_date')
             ->where(function ($query) use ($q, $customerId) {
                 if ($customerId) {
                     $query->where('customer_id', $customerId);

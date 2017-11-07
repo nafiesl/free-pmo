@@ -2,6 +2,7 @@
 
 namespace App\Entities\Subscriptions;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
@@ -11,6 +12,26 @@ class Subscription extends Model
 
     protected $presenter = 'App\Entities\Subscriptions\SubscriptionPresenter';
     protected $guarded = ['id', 'created_at', 'updated_at'];
+
+    public function nameLink()
+    {
+        return link_to_route('subscriptions.show', $this->name, [$this->id], [
+            'title' => trans(
+                'app.show_detail_title',
+                ['name' => $this->name, 'type' => trans('subscription.subscription')]
+            ),
+        ]);
+    }
+
+    public function nearOfDueDate()
+    {
+        return Carbon::parse($this->due_date)->diffInDays(Carbon::now()) < 60;
+    }
+
+    public function nearOfDueDateSign()
+    {
+        return $this->nearOfDueDate() ? '<i class="fa fa-exclamation-circle" style="color: red"></i>' : '';
+    }
 
     public function project()
     {

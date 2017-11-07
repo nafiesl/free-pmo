@@ -5,6 +5,8 @@ return [
     // Labels
     'subscription' => 'Langganan',
     'subscriptions' => 'Daftar Langganan',
+    'list' => 'Daftar Langganan',
+    'detail' => 'Detail Langganan',
     'search' => 'Cari Langganan',
     'found' => 'Langganan ditemukan',
     'not_found' => 'Langganan tidak ditemukan',
@@ -14,7 +16,7 @@ return [
     // Actions
     'create' => 'Input Langganan Baru',
     'created' => 'Input Langganan baru telah berhasil.',
-    'show' => 'Detail Langganan',
+    'show' => 'Lihat Detail Langganan',
     'edit' => 'Edit Langganan',
     'update' => 'Update Langganan',
     'updated' => 'Update data Langganan telah berhasil.',

@@ -6,13 +6,17 @@ require __DIR__.'/web/references.php';
 require __DIR__.'/web/account.php';
 require __DIR__.'/web/projects.php';
 require __DIR__.'/web/payments.php';
-require __DIR__.'/web/subscriptions.php';
 require __DIR__.'/web/reports.php';
 require __DIR__.'/web/invoices.php';
 require __DIR__.'/web/options-vue.php';
 require __DIR__.'/web/calendar.php';
 
 Route::group(['middleware' => ['web', 'auth']], function () {
+    /**
+     * Subscriptions Routes
+     */
+    Route::resource('subscriptions', 'SubscriptionsController');
+
     /*
      * Backup Restore Database Routes
      */

@@ -90,6 +90,7 @@ class ManageSubscriptionsTest extends TestCase
 
         $this->visit(route('subscriptions.edit', $subscription->id));
         $this->click(trans('subscription.delete'));
+
         $this->press(trans('app.delete_confirm_button'));
 
         $this->seePageIs(route('subscriptions.index'));

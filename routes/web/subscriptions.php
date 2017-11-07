@@ -4,6 +4,6 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     /**
      * Subscriptions Routes
      */
-    Route::get('subscriptions/{id}/delete', ['as' => 'subscriptions.delete', 'uses' => 'SubscriptionsController@delete']);
+    Route::get('subscriptions/{subscription}/delete', ['as' => 'subscriptions.delete', 'uses' => 'SubscriptionsController@delete']);
     Route::resource('subscriptions', 'SubscriptionsController');
 });

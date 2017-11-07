@@ -25,16 +25,14 @@ class UpdateRequest extends Request
     public function rules()
     {
         return [
-            'domain_name'      => 'required|max:60|unique:subscriptions,domain_name,'.$this->segment(2),
-            'epp_code'         => 'max:60',
-            'domain_price'     => 'required|numeric',
-            'hosting_capacity' => 'max:60',
-            'hosting_price'    => 'required_with:hosting_capacity|numeric',
-            'start_date'       => 'required|date|date_format:Y-m-d',
-            'due_date'         => 'required|date|date_format:Y-m-d',
-            'project_id'       => 'required|numeric',
-            'vendor_id'        => 'required|numeric',
-            'remark'           => 'max:255',
+            'name' => 'required|max:60',
+            'price' => 'required|numeric',
+            'start_date' => 'required|date|date_format:Y-m-d',
+            'due_date' => 'required|date|date_format:Y-m-d',
+            'project_id' => 'required|numeric',
+            'vendor_id' => 'required|numeric',
+            'type_id' => 'required|numeric',
+            'remark' => 'max:255',
         ];
     }
 

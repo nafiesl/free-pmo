@@ -26,11 +26,11 @@ class SubscriptionsRepository extends BaseRepository
                 }
 
                 if ($q) {
-                    $query->where('domain_name', 'like', '%'.$q.'%');
+                    $query->where('name', 'like', '%'.$q.'%');
                 }
 
             })
-            ->with('vendor')
+            ->with('customer', 'vendor')
             ->paginate($this->_paginate);
     }
 }

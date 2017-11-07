@@ -18,11 +18,11 @@
 <table class="table table-condensed">
     <thead>
         <th>{{ trans('app.table_no') }}</th>
-        <th>{{ trans('subscription.domain_name') }}</th>
-        <th class="text-center">{{ trans('subscription.hosting_capacity') }}</th>
-        <th>{{ trans('subscription.vendor') }}</th>
+        <th>{{ trans('subscription.name') }}</th>
+        <th>{{ trans('subscription.customer') }}</th>
         <th class="text-right">{{ trans('subscription.due_date') }}</th>
         <th class="text-right">{{ trans('subscription.extension_price') }}</th>
+        <th>{{ trans('subscription.vendor') }}</th>
         <th class="text-center">{{ trans('app.status') }}</th>
         <th>{{ trans('app.action') }}</th>
     </thead>
@@ -30,14 +30,14 @@
         @forelse($subscriptions as $key => $subscription)
         <tr {{ Carbon::parse($subscription->due_date)->diffInDays(Carbon::now()) < 60 ? 'class=bg-danger' : '' }}>
             <td>{{ $subscriptions->firstItem() + $key }}</td>
-            <td>{{ $subscription->domain_name }}</td>
-            <td class="text-center">{{ $subscription->hosting_capacity }}</td>
-            <td>{{ $subscription->vendor->name }}</td>
+            <td>{{ $subscription->name }}</td>
+            <td>{{ $subscription->customer->name }}</td>
             <td class="text-right" title="
                 {{ trans('subscription.start_date') }} : {{ dateId($subscription->start_date) }} \n
 {{ trans('subscription.due_date') }} : {{ dateId($subscription->due_date) }}
                 ">{{ dateId($subscription->due_date) }}</td>
-            <td class="text-right">{{ formatRp($subscription->domain_price + $subscription->hosting_price) }}</td>
+            <td class="text-right">{{ formatRp($subscription->price) }}</td>
+            <td>{{ $subscription->vendor->name }}</td>
             <td class="text-center">{{ $subscription->status() }}</td>
             <td>
                 {!! link_to_route('subscriptions.show',trans('app.show'),[$subscription->id],['class'=>'btn btn-info btn-xs']) !!}

@@ -3,26 +3,19 @@
     <table class="table table-condensed">
         <tbody>
             <tr><td>{{ trans('subscription.project') }}</td><td>{{ $subscription->project->name }}</td></tr>
-            <tr><td>{{ trans('subscription.domain_name') }}</td><td>{{ $subscription->domain_name }}</td></tr>
-            <tr><td>{{ trans('subscription.domain_price') }}</td><td>{{ formatRp($subscription->domain_price) }}</td></tr>
-            <tr><td>{{ trans('subscription.epp_code') }}</td><td>{{ $subscription->epp_code }}</td></tr>
-            <tr><td>{{ trans('subscription.hosting_capacity') }}</td><td>{{ $subscription->hosting_capacity }}</td></tr>
-            <tr><td>{{ trans('subscription.hosting_price') }}</td><td>{{ formatRp($subscription->hosting_price) }}</td></tr>
+            <tr><td>{{ trans('subscription.name') }}</td><td>{{ $subscription->name }}</td></tr>
+            <tr><td>{{ trans('subscription.price') }}</td><td>{{ formatRp($subscription->price) }}</td></tr>
+            <tr><td>{{ trans('subscription.type') }}</td><td>{{ $subscription->type }}</td></tr>
             <tr><td>{{ trans('subscription.start_date') }}</td><td>{{ dateId($subscription->start_date) }}</td></tr>
             <tr><td>{{ trans('subscription.due_date') }}</td><td>{{ dateId($subscription->due_date) }}</td></tr>
-            <tr>
-                <td>{{ trans('subscription.customer') }}</td>
-                <td>
-                    {{ $subscription->project->customer->name }}
-                </td>
-            </tr>
+            <tr><td>{{ trans('subscription.customer') }}</td><td>{{ $subscription->customer->name }}</td></tr>
             <tr>
                 <td>{{ trans('subscription.project') }}</td>
                 <td>
                     {{ link_to_route('projects.subscriptions', $subscription->project->name, [$subscription->project_id], ['target' => '_blank']) }}
                 </td>
             </tr>
-            <tr><td>{{ trans('subscription.remark') }}</td><td>{!! nl2br($subscription->remark) !!}</td></tr>
+            <tr><td>{{ trans('subscription.notes') }}</td><td>{!! nl2br($subscription->notes) !!}</td></tr>
         </tbody>
     </table>
     <div class="panel-footer">

@@ -15,6 +15,12 @@
 
 @include('projects.partials.nav-tabs')
 
+@if ($features->isEmpty())
+<p>{{ trans('project.no_features') }},
+    {{ link_to_route('features.create', trans('feature.create'), [$project->id]) }}.
+</p>
+@else
+
 @foreach($features->groupBy('type_id') as $key => $groupedFeatures)
 
 <div id="project-features" class="panel panel-default table-responsive">
@@ -97,6 +103,7 @@
 </div>
 @endforeach
 
+@endif
 @endsection
 
 @if (request('action') == 'sort_features')

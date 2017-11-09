@@ -20,7 +20,7 @@ class ProjectsController extends Controller
 
     public function index(Request $request)
     {
-        $status   = null;
+        $status = null;
         $statusId = $request->get('status');
         if ($statusId) {
             $status = $this->repo->getStatusName($statusId);
@@ -51,8 +51,8 @@ class ProjectsController extends Controller
 
     public function edit($projectId)
     {
-        $project   = $this->repo->requireById($projectId);
-        $statuses  = getProjectStatusesList();
+        $project = $this->repo->requireById($projectId);
+        $statuses = getProjectStatusesList();
         $customers = $this->repo->getCustomersList();
         return view('projects.edit', compact('project', 'statuses', 'customers'));
     }
@@ -84,7 +84,7 @@ class ProjectsController extends Controller
 
     public function features($projectId)
     {
-        $project  = $this->repo->requireById($projectId);
+        $project = $this->repo->requireById($projectId);
         $features = $this->repo->getProjectFeatures($projectId);
         return view('projects.features', compact('project', 'features'));
     }
@@ -98,8 +98,8 @@ class ProjectsController extends Controller
     public function featuresExport(Request $request, $projectId, $exportType = 'excel')
     {
         $featureType = $request->get('feature_type', 1);
-        $project     = $this->repo->requireById($projectId);
-        $features    = $this->repo->getProjectFeatures($projectId, $featureType);
+        $project = $this->repo->requireById($projectId);
+        $features = $this->repo->getProjectFeatures($projectId, $featureType);
 
         if ($exportType == 'excel') {
             return view('projects.features-export-excel', compact('project', 'features'));
@@ -116,7 +116,7 @@ class ProjectsController extends Controller
                 });
             })->download('xls');
         } else {
-            return view('projects.features-export-html', compact('project', 'features'));
+            return view('projects.features-export-html-2', compact('project', 'features'));
         }
     }
 

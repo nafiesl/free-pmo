@@ -12,7 +12,7 @@ function formatNo($number)
 
 function formatRp($number)
 {
-    if ($number == 0) {return '-';}
+    if ($number == 0) {return 'Rp. 0';}
     if ($number < 0) {
         return '- Rp. ' . formatNo(abs($number));
     }

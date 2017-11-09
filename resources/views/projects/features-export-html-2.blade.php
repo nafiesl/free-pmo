@@ -1,0 +1,58 @@
+<?php
+    // $filename = str_slug(trans('project.features') . '-' . $project->name) . '.xls';
+    // header("Content-Disposition: attachment; filename=\"$filename\"");
+    // header("Content-Type: application/vnd.ms-excel");
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{{ trans('project.features') }} {{ $project->name }}</title>
+    {!! Html::style('assets/css/app.s.css') !!}
+</head>
+<body style="font-family:'Liberation Serif';font-size: 16px;">
+    <div class="container">
+        <h1 class="page-header text-center">{{ trans('project.features') }} {{ $project->name }}</h1>
+
+        @foreach($features as $key => $feature)
+        <h2 class="feature-title">{{ ++$key }}. {{ $feature->name }}</h2>
+        <p style="padding-left: 30px">{!! nl2br($feature->description) !!}</p>
+        @if ($feature->tasks->count())
+            <div style="padding-left: 30px">
+                <h3>Sub Fitur</h3>
+                @foreach($feature->tasks as $taskKey => $task)
+                <h4>{{ ++$taskKey }}) {{ $task->name }}</h4>
+                <p style="padding-left: 21px">{!! nl2br($task->description) !!}</p>
+                @endforeach
+            </div>
+        @endif
+        @endforeach
+
+        <h1 class="page-header text-center">{{ trans('project.cost_proposal') }}</h1>
+        <table width="100%" class="table table-condensed table-bordered">
+            <tbody>
+                <tr>
+                    <th class="text-center">{{ trans('app.table_no') }}</th>
+                    <th>{{ trans('feature.name') }}</th>
+                    <th class="text-center">{{ trans('feature.price') }}</th>
+                </tr>
+                @foreach($features as $key => $feature)
+                <tr>
+                    <td class="text-center">{{ 1 + $key }}</td>
+                    <td>{{ $feature->name }}</td>
+                    <td class="text-right">{{ formatRp($feature->price) }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th class="text-right" colspan="2">Total</th>
+                    <th class="text-right">{{ formatRp($features->sum('price')) }}</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>

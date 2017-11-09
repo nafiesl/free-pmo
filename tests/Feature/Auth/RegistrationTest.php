@@ -5,7 +5,7 @@ namespace Tests\Feature\Auth;
 use App\Entities\Users\User;
 use Tests\TestCase;
 
-class MemberRegistrationTest extends TestCase
+class RegistrationTest extends TestCase
 {
     /** @test */
     public function registration_validation()

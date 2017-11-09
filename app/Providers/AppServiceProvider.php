@@ -14,6 +14,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         require_once app_path().'/helpers.php';
+        \Validator::extend('file_extension', function ($attribute, $value, $parameters, $validator) {
+            return in_array($value->getClientOriginalExtension(), $parameters);
+        });
     }
 
     /**

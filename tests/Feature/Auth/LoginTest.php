@@ -5,7 +5,7 @@ namespace Tests\Feature\Auth;
 use App\Entities\Users\User;
 use Tests\TestCase;
 
-class MemberLoginTest extends TestCase
+class LoginTest extends TestCase
 {
     /** @test */
     public function user_can_login_and_logout()

@@ -93,4 +93,24 @@ class UserProfileTest extends TestCase
             'value' => 'Tagline agensi saya',
         ]);
     }
+
+    /** @test */
+    public function admin_user_can_update_agency_logo_image()
+    {
+        $user = $this->adminUserSigningIn();
+        $this->visit(route('users.agency.edit'));
+
+        $this->attach(storage_path('app/guitar-640.jpg'), 'logo');
+        $this->press(trans('agency.logo_upload'));
+
+        $this->see(trans('agency.updated'));
+        $this->seePageIs(route('users.agency.show'));
+
+        $this->seeInDatabase('site_options', [
+            'key'   => 'agency_logo_path',
+            'value' => 'guitar-640.jpg',
+        ]);
+
+        $this->assertFileExistsThenDelete(public_path('assets/imgs/guitar-640.jpg'));
+    }
 }

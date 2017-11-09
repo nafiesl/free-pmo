@@ -14,10 +14,10 @@ function formatRp($number)
 {
     if ($number == 0) {return 'Rp. 0';}
     if ($number < 0) {
-        return '- Rp. ' . formatNo(abs($number));
+        return '- Rp. '.formatNo(abs($number));
     }
 
-    return 'Rp. ' . formatNo($number);
+    return 'Rp. '.formatNo($number);
 }
 
 function formatDecimal($number)
@@ -67,9 +67,9 @@ function formatDate($date)
     $explodedDate = explode('-', $date);
 
     if (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[0], $explodedDate[2])) {
-        return $explodedDate[2] . '-' . $explodedDate[1] . '-' . $explodedDate[0];
+        return $explodedDate[2].'-'.$explodedDate[1].'-'.$explodedDate[0];
     } else if (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[2], $explodedDate[0])) {
-        return $explodedDate[2] . '-' . $explodedDate[1] . '-' . $explodedDate[0];
+        return $explodedDate[2].'-'.$explodedDate[1].'-'.$explodedDate[0];
     }
 
     throw new App\Exceptions\InvalidDateException('Kesalahan format tanggal');
@@ -85,7 +85,7 @@ function dateId($date)
 
     if (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[2], $explodedDate[0])) {
         $months = getMonths();
-        return $explodedDate[2] . ' ' . $months[$explodedDate[1]] . ' ' . $explodedDate[0];
+        return $explodedDate[2].' '.$months[$explodedDate[1]].' '.$explodedDate[0];
     }
 
     throw new App\Exceptions\InvalidDateException('Kesalahan format tanggal');
@@ -110,7 +110,7 @@ function monthId($monthNumber)
 function getMonths()
 {
     return [
-        '' => 'Pilih Bulan',
+        ''   => 'Pilih Bulan',
         '01' => 'Januari',
         '02' => 'Pebruari',
         '03' => 'Maret',
@@ -163,15 +163,15 @@ function sanitizeNumber($number)
 function formatSizeUnits($bytes)
 {
     if ($bytes >= 1073741824) {
-        $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+        $bytes = number_format($bytes / 1073741824, 2).' GB';
     } elseif ($bytes >= 1048576) {
-        $bytes = number_format($bytes / 1048576, 2) . ' MB';
+        $bytes = number_format($bytes / 1048576, 2).' MB';
     } elseif ($bytes >= 1024) {
-        $bytes = number_format($bytes / 1024, 2) . ' KB';
+        $bytes = number_format($bytes / 1024, 2).' KB';
     } elseif ($bytes > 1) {
-        $bytes = $bytes . ' bytes';
+        $bytes = $bytes.' bytes';
     } elseif ($bytes == 1) {
-        $bytes = $bytes . ' byte';
+        $bytes = $bytes.' byte';
     } else {
         $bytes = '0 bytes';
     }
@@ -189,7 +189,7 @@ function formatSizeUnits($bytes)
 function html_link_to_route($name, $title = null, $parameters = [], $attributes = [])
 {
     if (array_key_exists('icon', $attributes)) {
-        $title = '<i class="fa fa-' . $attributes['icon'] . '"></i> ' . $title;
+        $title = '<i class="fa fa-'.$attributes['icon'].'"></i> '.$title;
     }
 
     return app('html')->decode(link_to_route($name, $title, $parameters, $attributes));
@@ -233,4 +233,11 @@ function paymentTypes($paymentTypeId = null)
     }
 
     return null;
+}
+
+function appLogoImage()
+{
+    $logoString = '<img style="display: block;text-align: center;margin: 0 auto;width: 100%;max-width: 200px"';
+    $logoString .= 'src="'.asset('assets/imgs/'.Option::get('agency_logo_path', 'default-logo.png')).'">';
+    return $logoString;
 }

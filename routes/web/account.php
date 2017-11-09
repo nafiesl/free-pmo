@@ -59,3 +59,9 @@ Route::patch('agency/update', [
     'uses'       => 'Users\AgencyController@update',
     'middleware' => ['web', 'auth'],
 ]);
+
+Route::patch('agency/logo-upload', [
+    'as'         => 'users.agency.logo-upload',
+    'uses'       => 'Users\AgencyController@logoUpload',
+    'middleware' => ['web', 'auth'],
+]);

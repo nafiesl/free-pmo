@@ -33,4 +33,22 @@ class AgencyController extends Controller
 
         return redirect()->route('users.agency.show');
     }
+
+    public function logoUpload()
+    {
+        $file = request()->validate([
+            'logo' => 'required|max:100|file_extension:png,jpg',
+        ]);
+
+        \File::delete(public_path('assets/imgs/'.Option::get('agency_logo_path')));
+
+        $filename = $file['logo']->getClientOriginalName();
+
+        $file['logo']->move(public_path('assets/imgs'), $filename);
+
+        Option::set('agency_logo_path', $filename);
+
+        flash(trans('agency.updated'), 'success');
+        return redirect()->route('users.agency.show');
+    }
 }

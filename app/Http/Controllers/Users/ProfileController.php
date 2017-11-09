@@ -24,7 +24,7 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
 
-        $user->name  = request('name');
+        $user->name = request('name');
         $user->email = request('email');
         $user->save();
 

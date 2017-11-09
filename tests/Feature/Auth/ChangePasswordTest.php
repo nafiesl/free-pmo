@@ -4,7 +4,7 @@ namespace Tests\Feature\Auth;
 
 use Tests\TestCase;
 
-class MemberChangePasswordTest extends TestCase
+class ChangePasswordTest extends TestCase
 {
     /** @test */
     public function member_can_change_password()

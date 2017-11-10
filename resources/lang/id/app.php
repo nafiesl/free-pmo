@@ -13,6 +13,7 @@ return [
     'in_active'         => 'Non Aktif',
     'show_detail_title' => 'Lihat detail :type :name',
     'status'            => 'Status',
+    'type'              => 'Jenis',
     'total'             => 'Total',
     'count'             => 'Jumlah',
 

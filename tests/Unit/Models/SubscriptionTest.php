@@ -6,6 +6,7 @@ use App\Entities\Partners\Customer;
 use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
+use App\Entities\Subscriptions\Type;
 use Carbon\Carbon;
 use Tests\TestCase as TestCase;
 
@@ -98,11 +99,25 @@ class SubscriptionTest extends TestCase
         $subscription = factory(Subscription::class)->create();
 
         $this->assertEquals(1, $subscription->type_id);
-        $this->assertEquals(trans('subscription.types.domain'), $subscription->type);
+        $this->assertEquals(Type::getNameById(1), $subscription->type);
 
         $subscription = factory(Subscription::class)->create(['type_id' => 2]);
 
         $this->assertEquals(2, $subscription->type_id);
-        $this->assertEquals(trans('subscription.types.hosting'), $subscription->type);
+        $this->assertEquals(Type::getNameById(2), $subscription->type);
+    }
+
+    /** @test */
+    public function a_subscription_has_type_color_attribute()
+    {
+        $subscription = factory(Subscription::class)->create();
+
+        $this->assertEquals(1, $subscription->type_id);
+        $this->assertEquals(Type::getColorById(1), $subscription->type_color);
+
+        $subscription = factory(Subscription::class)->create(['type_id' => 2]);
+
+        $this->assertEquals(2, $subscription->type_id);
+        $this->assertEquals(Type::getColorById(2), $subscription->type_color);
     }
 }

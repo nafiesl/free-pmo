@@ -41,7 +41,7 @@ class Status extends ReferenceAbstract
 
     public static function getIconById($singleId)
     {
-        if ( !  ! static::getById($singleId) && isset(static::$icons[$singleId])) {
+        if (!!static::getById($singleId) && isset(static::$icons[$singleId])) {
             return static::$icons[$singleId];
         }
 

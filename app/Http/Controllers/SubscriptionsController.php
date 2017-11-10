@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\Subscriptions\Subscription;
 use App\Entities\Subscriptions\SubscriptionsRepository;
+use App\Entities\Subscriptions\Type;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SubscriptionRequest as FormRequest;
 use Illuminate\Http\Request;
@@ -20,7 +21,11 @@ class SubscriptionsController extends Controller
 
     public function index(Request $request)
     {
-        $subscriptions = $this->repo->getSubscriptions($request->get('q'), $request->get('vendor_id'));
+        $subscriptions = $this->repo->getSubscriptions(
+            $request->get('q'),
+            $request->get('vendor_id')
+        );
+
         return view('subscriptions.index', compact('subscriptions'));
     }
 
@@ -29,9 +34,7 @@ class SubscriptionsController extends Controller
         $projects = $this->repo->getProjectsList();
         $vendors = $this->repo->getVendorsList();
 
-        $subscriptionTypes = $this->getSubscriptionTypes();
-
-        return view('subscriptions.create', compact('projects', 'vendors', 'subscriptionTypes'));
+        return view('subscriptions.create', compact('projects', 'vendors'));
     }
 
     public function store(FormRequest $subscriptionCreateRequest)
@@ -53,11 +56,10 @@ class SubscriptionsController extends Controller
     {
         $projects = $this->repo->getProjectsList();
         $vendors = $this->repo->getVendorsList();
-        $subscriptionTypes = $this->getSubscriptionTypes();
 
         $pageTitle = $this->getPageTitle('edit', $subscription);
 
-        return view('subscriptions.edit', compact('subscription', 'projects', 'vendors', 'subscriptionTypes', 'pageTitle'));
+        return view('subscriptions.edit', compact('subscription', 'projects', 'vendors', 'pageTitle'));
     }
 
     public function update(FormRequest $subscriptionUpdateRequest, Subscription $subscription)
@@ -78,10 +80,7 @@ class SubscriptionsController extends Controller
 
     private function getSubscriptionTypes()
     {
-        return [
-            1 => trans('subscription.types.domain'),
-            2 => trans('subscription.types.hosting'),
-        ];
+        return Type::toArray();
     }
 
     private function getPageTitle($pageType, $subscription)

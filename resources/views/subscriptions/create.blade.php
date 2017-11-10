@@ -3,6 +3,8 @@
 @section('title', trans('subscription.create'))
 
 @section('content')
+@inject('subscriptionTypes', 'App\Entities\Subscriptions\Type')
+
 <ul class="breadcrumb hidden-print">
     <li>{{ link_to_route('subscriptions.index',trans('subscription.subscriptions')) }}</li>
     <li class="active">{{ trans('subscription.create') }}</li>
@@ -32,7 +34,7 @@
                 </div>
                 {!! FormField::select('project_id', $projects, ['label' => trans('subscription.project'), 'value' => Request::get('project_id')]) !!}
                 {!! FormField::select('vendor_id', $vendors, ['label' => trans('subscription.vendor'), 'value' => Request::get('vendor_id')]) !!}
-                {!! FormField::radios('type_id', $subscriptionTypes, ['label' => trans('subscription.type'), 'value' => Request::get('type_id')]) !!}
+                {!! FormField::radios('type_id', $subscriptionTypes::toArray(), ['label' => trans('subscription.type'), 'value' => Request::get('type_id')]) !!}
                 {!! FormField::textarea('notes', ['label' => trans('subscription.notes')]) !!}
             </div>
 

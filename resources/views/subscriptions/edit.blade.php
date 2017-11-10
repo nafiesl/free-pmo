@@ -3,6 +3,7 @@
 @section('title', $pageTitle)
 
 @section('content')
+@inject('subscriptionTypes', 'App\Entities\Subscriptions\Type')
 @include('subscriptions.partials.breadcrumb', ['title' => $pageTitle])
 
 @includeWhen(request('action') == 'delete', 'subscriptions.partials.delete')
@@ -15,7 +16,7 @@
             <div class="panel-heading"><h3 class="panel-title">{{ $pageTitle }}</h3></div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-6">{!! FormField::radios('type_id', $subscriptionTypes, ['label' => trans('subscription.type'), 'value' => Request::get('type_id')]) !!}</div>
+                    <div class="col-md-6">{!! FormField::radios('type_id', $subscriptionTypes::toArray(), ['label' => trans('subscription.type'), 'value' => Request::get('type_id')]) !!}</div>
                     <div class="col-md-6">{!! FormField::radios('status_id', [trans('app.in_active'), trans('app.active')],['label' => trans('app.status')]) !!}</div>
                 </div>
                 <div class="row">

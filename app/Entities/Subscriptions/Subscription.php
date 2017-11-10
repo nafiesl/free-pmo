@@ -63,6 +63,11 @@ class Subscription extends Model
 
     public function getTypeAttribute()
     {
-        return $this->type_id == 1 ? trans('subscription.types.domain') : trans('subscription.types.hosting');
+        return Type::getNameById($this->type_id);
+    }
+
+    public function getTypeColorAttribute()
+    {
+        return Type::getColorById($this->type_id);
     }
 }

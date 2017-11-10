@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Payments;
 
-use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use Tests\TestCase;
@@ -12,12 +11,10 @@ class PaymentSearchTest extends TestCase
     /** @test */
     public function user_can_find_payment_by_project_name()
     {
-        $admin          = $this->adminUserSigningIn();
-        $customer       = factory(Customer::class)->create();
-        $project        = factory(Project::class)->create(['customer_id' => $customer->id, 'name' => 'Project']);
-        $payment        = factory(Payment::class)->create(['project_id' => $project->id, 'partner_id' => $customer->id]);
-        $project2       = factory(Project::class)->create(['customer_id' => $customer->id]);
-        $unShownPayment = factory(Payment::class)->create(['project_id' => $project2->id, 'partner_id' => $customer->id]);
+        $this->adminUserSigningIn();
+        $project = factory(Project::class)->create(['name' => 'Project']);
+        $payment = factory(Payment::class)->create(['project_id' => $project->id]);
+        $unShownPayment = factory(Payment::class)->create();
 
         $this->visit(route('payments.index'));
         $this->submitForm(trans('app.search'), [
@@ -33,19 +30,9 @@ class PaymentSearchTest extends TestCase
     /** @test */
     public function partner_find_payment_by_customer_id()
     {
-        $admin          = $this->adminUserSigningIn();
-        $project        = factory(Project::class)->create(['name' => 'Project']);
-        $payment        = factory(Payment::class)->create(['project_id' => $project->id]);
-        $project2       = factory(Project::class)->create();
-        $unShownPayment = factory(Payment::class)->create(['project_id' => $project2->id]);
-
-        $admin          = $this->adminUserSigningIn();
-        $customer       = factory(Customer::class)->create();
-        $project        = factory(Project::class)->create(['customer_id' => $customer->id, 'name' => 'Project']);
-        $payment        = factory(Payment::class)->create(['project_id' => $project->id, 'partner_id' => $customer->id]);
-        $customer2      = factory(Customer::class)->create();
-        $project2       = factory(Project::class)->create(['customer_id' => $customer2->id]);
-        $unShownPayment = factory(Payment::class)->create(['project_id' => $project2->id, 'partner_id' => $customer2->id]);
+        $this->adminUserSigningIn();
+        $payment = factory(Payment::class)->create();
+        $unShownPayment = factory(Payment::class)->create();
 
         $this->visit(route('payments.index'));
         $this->submitForm(trans('app.search'), [

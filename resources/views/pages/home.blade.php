@@ -9,7 +9,7 @@
 <?php use Facades\App\Queries\AdminDashboardQuery;?>
 
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-5">
         <legend style="border-bottom: none" class="text-center">Project Status Stats</legend>
         <div class="row">
             @foreach($projectStatuses::all() as $statusId => $status)
@@ -25,7 +25,7 @@
             @endforeach
         </div>
     </div>
-    <div class="col-lg-8">
+    <div class="col-lg-7">
         <legend style="border-bottom: none" class="text-center">Earnings Stats</legend>
         <div class="panel panel-default table-responsive hidden-xs">
             <table class="table table-condensed table-bordered">

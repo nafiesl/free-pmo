@@ -13,9 +13,9 @@ class ManagePaymentsTest extends TestCase
     /** @test */
     public function admin_can_entry_project_an_income_payment()
     {
-        $user     = $this->adminUserSigningIn();
+        $user = $this->adminUserSigningIn();
         $customer = factory(Customer::class)->create();
-        $project  = factory(Project::class)->create();
+        $project = factory(Project::class)->create();
 
         $this->visit(route('payments.index'));
         $this->seePageIs(route('payments.index'));
@@ -45,8 +45,8 @@ class ManagePaymentsTest extends TestCase
     /** @test */
     public function admin_can_entry_project_an_expanse_payment()
     {
-        $user    = $this->adminUserSigningIn();
-        $vendor  = factory(Vendor::class)->create();
+        $user = $this->adminUserSigningIn();
+        $vendor = factory(Vendor::class)->create();
         $project = factory(Project::class)->create();
 
         $this->visit(route('payments.index'));
@@ -78,14 +78,9 @@ class ManagePaymentsTest extends TestCase
     /** @test */
     public function admin_can_edit_payment_data()
     {
-        $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
-        $project  = factory(Project::class)->create();
+        $user = $this->adminUserSigningIn();
 
-        $payment = factory(Payment::class)->create([
-            'partner_id' => $customer->id,
-            'project_id' => $project->id,
-        ]);
+        $payment = factory(Payment::class)->create();
 
         $this->visit(route('payments.edit', $payment->id));
         $this->seePageIs(route('payments.edit', $payment->id));
@@ -99,20 +94,16 @@ class ManagePaymentsTest extends TestCase
 
         $this->see(trans('payment.updated'));
         $this->seeInDatabase('payments', [
-            'partner_id' => $customer->id,
-            'project_id' => $project->id,
-            'date'       => '2016-05-20',
-            'amount'     => 1234567890,
+            'date'   => '2016-05-20',
+            'amount' => 1234567890,
         ]);
     }
 
     /** @test */
     public function admin_can_delete_a_payment()
     {
-        $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
-        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
-        $payment  = factory(Payment::class)->create(['project_id' => $project->id, 'partner_id' => $customer->id]);
+        $user = $this->adminUserSigningIn();
+        $payment = factory(Payment::class)->create();
 
         $this->visit(route('payments.index'));
         $this->click(trans('app.edit'));
@@ -125,10 +116,8 @@ class ManagePaymentsTest extends TestCase
     /** @test */
     public function admin_can_see_a_payment()
     {
-        $user     = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
-        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
-        $payment  = factory(Payment::class)->create(['project_id' => $project->id, 'partner_id' => $customer->id]);
+        $user = $this->adminUserSigningIn();
+        $payment = factory(Payment::class)->create();
 
         $this->visit(route('payments.index'));
         $this->click(trans('app.show'));

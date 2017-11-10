@@ -122,7 +122,7 @@ class ManagePaymentsTest extends TestCase
         $this->visit(route('payments.index'));
         $this->click(trans('app.show'));
         $this->seePageIs(route('payments.show', $payment->id));
-        $this->see(trans('payment.show'));
+        $this->see(trans('payment.detail'));
         $this->see($payment->date);
         $this->see(formatRp($payment->amount));
         $this->see($payment->description);

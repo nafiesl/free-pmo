@@ -4,12 +4,6 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/nafiesl/SimpleCrudGenerator.git"
-        }
-    ],
     "require": {
         "php": ">=7.0.0",
         "backup-manager/laravel": "^1.2",
@@ -29,7 +23,7 @@
         "fzaninotto/faker": "~1.4",
         "johnkary/phpunit-speedtrap": "dev-master",
         "laravel/browser-kit-testing": "^2.0",
-        "luthfi/simple-crud-generator": "^0.1.4",
+        "luthfi/simple-crud-generator": "^0.1.5",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~6.0"
     },

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d928c9a4baae735117c0522c493bbc12",
+    "content-hash": "fddcae8139f7ff2181c602899f1caae5",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -3301,16 +3301,16 @@
         },
         {
             "name": "luthfi/simple-crud-generator",
-            "version": "0.1.4",
+            "version": "0.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
-                "reference": "68bce39cd9d39af6b08e3b1dec78492fd81ec505"
+                "reference": "18dd17ef7914ca1431e6660b88bf042df039373d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/68bce39cd9d39af6b08e3b1dec78492fd81ec505",
-                "reference": "68bce39cd9d39af6b08e3b1dec78492fd81ec505",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/18dd17ef7914ca1431e6660b88bf042df039373d",
+                "reference": "18dd17ef7914ca1431e6660b88bf042df039373d",
                 "shasum": ""
             },
             "require": {
@@ -3335,16 +3335,7 @@
                     "Luthfi\\CrudGenerator\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\": "tests/"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3355,11 +3346,7 @@
                 }
             ],
             "description": "A simple CRUD generator for Laravel 5.5.",
-            "support": {
-                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/master",
-                "issues": "https://github.com/nafiesl/SimpleCrudGenerator/issues"
-            },
-            "time": "2017-11-07T14:45:00+00:00"
+            "time": "2017-11-10T08:22:06+00:00"
         },
         {
             "name": "maximebf/debugbar",

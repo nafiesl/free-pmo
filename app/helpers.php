@@ -110,7 +110,6 @@ function monthId($monthNumber)
 function getMonths()
 {
     return [
-        ''   => 'Pilih Bulan',
         '01' => 'Januari',
         '02' => 'Pebruari',
         '03' => 'Maret',

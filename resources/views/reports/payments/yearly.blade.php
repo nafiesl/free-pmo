@@ -38,39 +38,46 @@
             </thead>
             <tbody>
                 <?php
-                $invoicesCount = 0;
-                $sumTotal = 0;
-                $sumCapital = 0;
-                $sumProfit = 0;
-                $cartData = [];
+                    $cartData = [];
                 ?>
-                @forelse($reports as $key => $report)
+                @foreach(getMonths() as $monthNumber => $monthName)
+                <?php
+                    $any = isset($reports[$monthNumber]);
+                    $count = $any ? $reports[$monthNumber]->count : 0;
+                    $cashin = $any ? $reports[$monthNumber]->cashin : 0;
+                    $cashout = $any ? $reports[$monthNumber]->cashout : 0;
+                    $profit = $any ? $reports[$monthNumber]->profit : 0;
+                ?>
                 <tr>
-                    <td class="text-center">{{ monthId($report->month) }}</td>
-                    <td class="text-center">{{ $report->count }}</td>
-                    <td class="text-right">{{ formatRp($report->cashin) }}</td>
-                    <td class="text-right">{{ formatRp($report->cashout) }}</td>
-                    <td class="text-right">{{ formatRp(($report->cashin - $report->cashout)) }}</td>
-                    <td class="text-center">{!! link_to_route('reports.payments.monthly','Lihat Bulanan', ['month' => monthNumber($report->month), 'year' => $year], ['class'=>'btn btn-info btn-xs','title'=>'Lihat laporan bulanan ' . monthId($report->month)]) !!}</td>
+                    <td class="text-center">{{ monthId($monthNumber) }}</td>
+                    <td class="text-center">{{ $count }}</td>
+                    <td class="text-right">{{ formatRp($cashin) }}</td>
+                    <td class="text-right">{{ formatRp($cashout) }}</td>
+                    <td class="text-right">{{ formatRp($profit) }}</td>
+                    <td class="text-center">
+                        {!! link_to_route(
+                            'reports.payments.monthly',
+                            'Lihat Bulanan',
+                            ['month' => $monthNumber, 'year' => $year],
+                            [
+                                'class'=>'btn btn-info btn-xs',
+                                'title'=>'Lihat laporan bulanan ' . monthId($monthNumber)
+                            ]
+                        ) !!}
+                    </td>
                 </tr>
                 <?php
-                $invoicesCount += $report->count;
-                $sumTotal += $report->cashin;
-                $sumCapital += $report->cashout;
-                $sumProfit += ($report->cashin - $report->cashout);
-                $cartData[] = ['month'=>monthId($report->month),'value'=>($report->cashin - $report->cashout)];
+                    $cartData[] = ['month' => monthId($monthNumber), 'value' => $profit];
                 ?>
-                @empty
-                <tr><td colspan="6">{{ trans('payment.not_found') }}</td></tr>
-                @endforelse
+                @endforeach
             </tbody>
             <tfoot>
                 <tr>
                     <th class="text-center">Jumlah</th>
-                    <th class="text-center">{{ $invoicesCount }}</th>
-                    <th class="text-right">{{ formatRp($sumTotal) }}</th>
-                    <th class="text-right">{{ formatRp($sumCapital) }}</th>
-                    <th class="text-right">{{ formatRp($sumProfit) }}</th>
+                    <th class="text-center">{{ $reports->sum('count') }}</th>
+                    <th class="text-right">{{ formatRp($reports->sum('cashin')) }}</th>
+                    <th class="text-right">{{ formatRp($reports->sum('cashout')) }}</th>
+                    <th class="text-right">{{ formatRp($reports->sum('profit')) }}</th>
                     <td></td>
                 </tr>
             </tfoot>

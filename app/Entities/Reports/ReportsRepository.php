@@ -41,12 +41,26 @@ class ReportsRepository extends BaseRepository
 
     public function getYearlyReports($year)
     {
-        return Payment::select(DB::raw("MONTH(date) as month, count(`id`) as count, sum(if(in_out = 1, amount, 0)) AS cashin, sum(if(in_out = 0, amount, 0)) AS cashout, in_out"))
+        $rawQuery = "MONTH(date) as month";
+        $rawQuery .= ", count(`id`) as count";
+        $rawQuery .= ", sum(if(in_out = 1, amount, 0)) AS cashin";
+        $rawQuery .= ", sum(if(in_out = 0, amount, 0)) AS cashout";
+
+        $reportsData = DB::table('payments')->select(DB::raw($rawQuery))
             ->where(DB::raw('YEAR(date)'), $year)
             ->groupBy(DB::raw('YEAR(date)'))
             ->groupBy(DB::raw('MONTH(date)'))
             ->orderBy('date', 'asc')
             ->get();
+
+        $reports = [];
+        foreach ($reportsData as $report) {
+            $key = str_pad($report->month, 2, '0', STR_PAD_LEFT);
+            $reports[$key] = $report;
+            $reports[$key]->profit = $report->cashin - $report->cashout;
+        }
+
+        return collect($reports);
     }
 
     public function getCurrentCredits()

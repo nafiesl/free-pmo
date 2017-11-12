@@ -3,6 +3,7 @@
 @section('title', trans('payment.edit'))
 
 @section('content')
+
 @include('payments.partials.breadcrumb',['title' => trans('payment.edit')])
 
 <div class="row">
@@ -16,7 +17,7 @@
                         {!! FormField::radios('in_out',['Pengeluaran','Pemasukan'],['label'=> trans('payment.in_out'),'value' => 1]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::radios('type_id', paymentTypes(), ['label'=> trans('payment.type'),'value' => 1,'list_style' => 'unstyled']) !!}
+                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label'=> trans('payment.type'),'value' => 1,'list_style' => 'unstyled']) !!}
                     </div>
                 </div>
                 <div class="row">

@@ -26,6 +26,6 @@ class Payment extends Model
 
     public function type()
     {
-        return paymentTypes($this->type_id);
+        return Type::getNameById($this->type_id);
     }
 }

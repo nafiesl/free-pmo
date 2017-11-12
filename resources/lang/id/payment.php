@@ -39,4 +39,11 @@ return [
     'cash_in'     => 'Pemasukan',
     'cash_out'    => 'Pengeluaran',
     'payer'       => 'Pembayar',
+
+    // Types
+    'types' => [
+        'project'     => 'Project',
+        'add_feature' => 'Add Feature',
+        'maintenance' => 'Maintenance',
+    ],
 ];

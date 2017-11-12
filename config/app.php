@@ -211,6 +211,10 @@ return [
         'Carbon' => Carbon\Carbon::class,
         'Option' => App\Services\Facades\Option::class,
         'Terbilang' => Riskihajar\Terbilang\Facades\Terbilang::class,
+
+        // Reference Facades
+        'PaymentType'      => App\Entities\Payments\Type::class,
+        'SubscriptionType' => App\Entities\Subscriptions\Type::class,
     ],
 
 ];

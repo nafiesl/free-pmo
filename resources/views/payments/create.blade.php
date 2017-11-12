@@ -3,6 +3,7 @@
 @section('title', trans('payment.create'))
 
 @section('content')
+
 <ul class="breadcrumb hidden-print">
     <li>{{ link_to_route('payments.index', trans('payment.payments')) }}</li>
     <li class="active">{{ trans('payment.create') }}</li>
@@ -19,7 +20,7 @@
                         {!! FormField::radios('in_out',['Pengeluaran', 'Pemasukan'],['label' => trans('payment.in_out'),'value' => 1]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::radios('type_id', paymentTypes(), ['label'=> trans('payment.type'),'value' => 1,'list_style' => 'unstyled']) !!}
+                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label'=> trans('payment.type'),'value' => 1,'list_style' => 'unstyled']) !!}
                     </div>
                 </div>
                 <div class="row">

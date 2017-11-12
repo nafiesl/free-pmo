@@ -219,21 +219,6 @@ function dateDifference($date1, $date2, $differenceFormat = '%a')
     return $interval->format($differenceFormat);
 }
 
-function paymentTypes($paymentTypeId = null)
-{
-    $paymentTypes = [1 => 'Project', 'Add Feature', 'Maintenance'];
-
-    if (is_null($paymentTypeId)) {
-        return $paymentTypes;
-    }
-
-    if (array_key_exists($paymentTypeId, $paymentTypes)) {
-        return $paymentTypes[$paymentTypeId];
-    }
-
-    return null;
-}
-
 function appLogoImage()
 {
     $logoString = '<img style="display: block;text-align: center;margin: 0 auto;width: 100%;max-width: 200px"';

@@ -31,12 +31,25 @@ class ReportsRepository extends BaseRepository
 
     public function getMonthlyReports($year, $month)
     {
-        return Payment::select(DB::raw("date, count(`id`) as count, sum(if(in_out = 1, amount, 0)) AS cashin, sum(if(in_out = 0, amount, 0)) AS cashout, in_out"))
+        $rawQuery = "date, count(`id`) as count";
+        $rawQuery .= ", sum(if(in_out = 1, amount, 0)) AS cashin";
+        $rawQuery .= ", sum(if(in_out = 0, amount, 0)) AS cashout";
+
+        $reportsData = DB::table('payments')->select(DB::raw($rawQuery))
             ->where(DB::raw('YEAR(date)'), $year)
             ->where(DB::raw('MONTH(date)'), $month)
             ->groupBy('date')
             ->orderBy('date', 'asc')
             ->get();
+
+        $reports = [];
+        foreach ($reportsData as $report) {
+            $key = substr($report->date, -2);
+            $reports[$key] = $report;
+            $reports[$key]->profit = $report->cashin - $report->cashout;
+        }
+
+        return collect($reports);
     }
 
     public function getYearlyReports($year)

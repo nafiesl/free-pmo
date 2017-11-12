@@ -237,6 +237,22 @@ function paymentTypes($paymentTypeId = null)
 function appLogoImage()
 {
     $logoString = '<img style="display: block;text-align: center;margin: 0 auto;width: 100%;max-width: 200px"';
-    $logoString .= 'src="'.asset('assets/imgs/'.Option::get('agency_logo_path', 'default-logo.png')).'">';
+    $logoString .= 'src="'.appLogoPath().'">';
     return $logoString;
+}
+
+function appLogoPath()
+{
+    return asset('assets/imgs/'.Option::get('agency_logo_path', 'default-logo.png'));
+}
+
+function monthDateArray($year, $month)
+{
+    $dateCount = Carbon::parse($year.'-'.$month)->format('t');
+    $dates = [];
+    foreach (range(1, $dateCount) as $dateNumber) {
+        $dates[] = str_pad($dateNumber, 2, '0', STR_PAD_LEFT);
+    }
+
+    return $dates;
 }

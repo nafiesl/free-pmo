@@ -8,16 +8,13 @@
     <li class="active">{{ $months[$month] }}</li>
 </ul>
 
-<h1 class="page-header">
-    Laporan Bulanan : {{ $months[$month] }} {{ $year }}
-</h1>
-
-{!! Form::open(['method'=>'get','class'=>'form-inline well well-sm']) !!}
-{!! Form::select('month', $months, $month, ['class'=>'form-control']) !!}
-{!! Form::select('year', $years, $year, ['class'=>'form-control']) !!}
-{!! Form::submit('Lihat Laporan', ['class'=>'btn btn-info']) !!}
-{!! link_to_route('reports.payments.monthly','Bulan ini',[],['class'=>'btn btn-default']) !!}
-{!! link_to_route('reports.payments.yearly','Lihat Tahunan',['year' => $year],['class'=>'btn btn-default']) !!}
+{!! Form::open(['method' => 'get', 'class' => 'form-inline well well-sm']) !!}
+{!! Form::label('month', 'Laporan Bulanan', ['class' => 'control-label']) !!}
+{!! Form::select('month', $months, $month, ['class' => 'form-control']) !!}
+{!! Form::select('year', $years, $year, ['class' => 'form-control']) !!}
+{!! Form::submit('Lihat Laporan', ['class' => 'btn btn-info btn-sm']) !!}
+{!! link_to_route('reports.payments.monthly', 'Bulan ini', [], ['class' => 'btn btn-default btn-sm']) !!}
+{!! link_to_route('reports.payments.yearly', 'Lihat Tahunan', ['year' => $year], ['class' => 'btn btn-default btn-sm']) !!}
 {!! Form::close() !!}
 
 <div class="panel panel-primary">
@@ -25,7 +22,7 @@
     <div class="panel-body">
         <strong>Rp.</strong>
         <div id="monthly-chart" style="height: 250px;"></div>
-        <div class="text-center"><strong>Tanggal</strong></div>
+        <div class="text-center"><strong>{{ trans('app.date') }}</strong></div>
     </div>
 </div>
 <div class="panel panel-success">
@@ -33,7 +30,7 @@
     <div class="panel-body">
         <table class="table table-condensed">
             <thead>
-                <th class="text-center">Tanggal</th>
+                <th class="text-center">{{ trans('app.date') }}</th>
                 <th class="text-center">Jumlah Transfer</th>
                 <th class="text-right">Uang Masuk</th>
                 <th class="text-right">Uang Keluar</th>
@@ -42,41 +39,50 @@
             </thead>
             <tbody>
                 <?php
-                $invoicesCount = 0;
-                $sumTotal = 0;
-                $sumCapital = 0;
-                $sumProfit = 0;
-                $cartData = [];
+                    $invoicesCount = 0;
+                    $sumTotal = 0;
+                    $sumCapital = 0;
+                    $sumProfit = 0;
+                    $cartData = [];
                 ?>
-                @forelse($reports as $key => $report)
+                @foreach(monthDateArray($year, $month) as $dateNumber)
+                <?php
+                    $any = isset($reports[$dateNumber]);
+                    $count = $any ? $reports[$dateNumber]->count : 0;
+                    $cashin = $any ? $reports[$dateNumber]->cashin : 0;
+                    $cashout = $any ? $reports[$dateNumber]->cashout : 0;
+                    $profit = $any ? $reports[$dateNumber]->profit : 0;
+                ?>
                 <tr>
-                    <td class="text-center">{{ dateId($report->date) }}</td>
-                    <td class="text-center">{{ $report->count }}</td>
-                    <td class="text-right">{{ formatRp($report->cashin) }}</td>
-                    <td class="text-right">{{ formatRp($report->cashout) }}</td>
-                    <td class="text-right">{{ formatRp(($report->cashin - $report->cashout)) }}</td>
+                    <td class="text-center">{{ dateId($date = $year . '-' . $month . '-' . $dateNumber) }}</td>
+                    <td class="text-center">{{ $count }}</td>
+                    <td class="text-right">{{ formatRp($cashin) }}</td>
+                    <td class="text-right">{{ formatRp($cashout) }}</td>
+                    <td class="text-right">{{ formatRp($profit) }}</td>
                     <td class="text-center">
-                        {!! link_to_route('reports.payments.daily','Lihat Harian',['date' => $report->date] , ['class'=>'btn btn-info btn-xs','title'=>'Lihat laporan harian ' . $report->date]) !!}
+                        {!! link_to_route(
+                            'reports.payments.daily',
+                            'Lihat Harian',
+                            ['date' => $date],
+                            [
+                                'class' => 'btn btn-info btn-xs',
+                                'title' => 'Lihat laporan harian ' . $date
+                            ]
+                        ) !!}
                     </td>
                 </tr>
                 <?php
-                $invoicesCount += $report->count;
-                $sumTotal += $report->cashin;
-                $sumCapital += $report->cashout;
-                $sumProfit += ($report->cashin - $report->cashout);
-                $cartData[] = ['date'=>dateId($report->date),'value'=>($report->cashin - $report->cashout)];
+                    $cartData[] = ['date' => $dateNumber, 'value' => ($profit)];
                 ?>
-                @empty
-                <tr><td colspan="6">{{ trans('payment.not_found') }}</td></tr>
-                @endforelse
+                @endforeach
             </tbody>
             <tfoot>
                 <tr>
                     <th class="text-right">Jumlah</th>
-                    <th class="text-center">{{ $invoicesCount }}</th>
-                    <th class="text-right">{{ formatRp($sumTotal) }}</th>
-                    <th class="text-right">{{ formatRp($sumCapital) }}</th>
-                    <th class="text-right">{{ formatRp($sumProfit) }}</th>
+                    <th class="text-center">{{ $reports->sum('count') }}</th>
+                    <th class="text-right">{{ formatRp($reports->sum('cashin')) }}</th>
+                    <th class="text-right">{{ formatRp($reports->sum('cashout')) }}</th>
+                    <th class="text-right">{{ formatRp($reports->sum('profit')) }}</th>
                     <td></td>
                 </tr>
             </tfoot>
@@ -99,11 +105,12 @@
 (function() {
     new Morris.Line({
         element: 'monthly-chart',
-        data: {!! json_encode($cartData) !!},
+        data: {!! collect($cartData)->toJson() !!},
         xkey: 'date',
         ykeys: ['value'],
-        labels: ['Profit'],
-        parseTime:false
+        labels: ['Profit Rp'],
+        parseTime:false,
+        xLabelAngle: 30,
     });
 })();
 </script>

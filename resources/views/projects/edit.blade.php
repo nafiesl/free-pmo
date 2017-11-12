@@ -35,7 +35,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::select('status_id', $statuses, ['label' => trans('app.status')]) !!}
+                        {!! FormField::select('status_id', ProjectStatus::toArray(), ['label' => trans('app.status')]) !!}
                     </div>
                     <div class="col-md-6">
                         {!! FormField::select('customer_id', $customers, ['label' => trans('project.customer')]) !!}

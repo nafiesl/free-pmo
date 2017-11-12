@@ -215,6 +215,7 @@ return [
         // Reference Facades
         'PaymentType'      => App\Entities\Payments\Type::class,
         'SubscriptionType' => App\Entities\Subscriptions\Type::class,
+        'ProjectStatus'    => App\Entities\Projects\Status::class,
     ],
 
 ];

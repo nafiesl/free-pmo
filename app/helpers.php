@@ -194,21 +194,6 @@ function html_link_to_route($name, $title = null, $parameters = [], $attributes 
     return app('html')->decode(link_to_route($name, $title, $parameters, $attributes));
 }
 
-function getProjectStatusesList($statusId = null)
-{
-    $statuses = [1 => 'Planned', 'On Progress', 'Done', 'Closed', 'Canceled', 'On Hold'];
-
-    if (is_null($statusId)) {
-        return $statuses;
-    }
-
-    if (array_key_exists($statusId, $statuses)) {
-        return $statuses[$statusId];
-    }
-
-    return null;
-}
-
 function dateDifference($date1, $date2, $differenceFormat = '%a')
 {
     $datetime1 = date_create($date1);

@@ -3,6 +3,7 @@
 namespace App\Entities\Projects;
 
 use Laracasts\Presenter\Presenter;
+use ProjectStatus;
 
 class ProjectPresenter extends Presenter
 {
@@ -18,7 +19,7 @@ class ProjectPresenter extends Presenter
 
     public function status()
     {
-        return getProjectStatusesList($this->entity->status_id);
+        return ProjectStatus::getNameById($this->entity->status_id);
     }
 
     public function workDuration()

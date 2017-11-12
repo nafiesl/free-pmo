@@ -107,6 +107,7 @@
         goals: [0],
         goalLineColors : ['red'],
         smooth: false,
+        lineWidth: 2,
     });
 })();
 </script>

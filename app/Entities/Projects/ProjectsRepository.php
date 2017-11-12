@@ -5,6 +5,7 @@ namespace App\Entities\Projects;
 use App\Entities\BaseRepository;
 use App\Entities\Partners\Customer;
 use DB;
+use ProjectStatus;
 
 /**
  * Projects Repository Class
@@ -20,7 +21,7 @@ class ProjectsRepository extends BaseRepository
 
     public function getProjects($q, $statusId)
     {
-        $statusIds = array_keys(getProjectStatusesList());
+        $statusIds = array_keys(ProjectStatus::toArray());
 
         return $this->model->latest()
             ->where(function ($query) use ($q, $statusId, $statusIds) {
@@ -41,7 +42,7 @@ class ProjectsRepository extends BaseRepository
         DB::beginTransaction();
 
         if (isset($projectData['customer_id']) == false || $projectData['customer_id'] == '') {
-            $customer                   = $this->createNewCustomer($projectData['customer_name'], $projectData['customer_email']);
+            $customer = $this->createNewCustomer($projectData['customer_name'], $projectData['customer_email']);
             $projectData['customer_id'] = $customer->id;
         }
         unset($projectData['customer_name']);
@@ -59,9 +60,9 @@ class ProjectsRepository extends BaseRepository
 
     public function createNewCustomer($customerName, $customerEmail)
     {
-        $newCustomer           = new Customer;
-        $newCustomer->name     = $customerName;
-        $newCustomer->email    = $customerEmail;
+        $newCustomer = new Customer;
+        $newCustomer->name = $customerName;
+        $newCustomer->email = $customerEmail;
         $newCustomer->save();
 
         return $newCustomer;
@@ -103,7 +104,7 @@ class ProjectsRepository extends BaseRepository
 
     public function updateStatus($statusId, $projectId)
     {
-        $project            = $this->requireById($projectId);
+        $project = $this->requireById($projectId);
         $project->status_id = $statusId;
         $project->save();
 
@@ -114,7 +115,7 @@ class ProjectsRepository extends BaseRepository
     {
         $featureOrder = explode(',', $sortedData);
         foreach ($featureOrder as $order => $featureId) {
-            $feature           = $this->requireFeatureById($featureId);
+            $feature = $this->requireFeatureById($featureId);
             $feature->position = $order + 1;
             $feature->save();
         }

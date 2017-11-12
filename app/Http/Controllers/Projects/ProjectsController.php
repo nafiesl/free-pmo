@@ -52,9 +52,8 @@ class ProjectsController extends Controller
     public function edit($projectId)
     {
         $project = $this->repo->requireById($projectId);
-        $statuses = getProjectStatusesList();
         $customers = $this->repo->getCustomersList();
-        return view('projects.edit', compact('project', 'statuses', 'customers'));
+        return view('projects.edit', compact('project', 'customers'));
     }
 
     public function update(UpdateRequest $request, $projectId)

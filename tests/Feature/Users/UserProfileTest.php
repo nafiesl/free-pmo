@@ -100,7 +100,7 @@ class UserProfileTest extends TestCase
         $user = $this->adminUserSigningIn();
         $this->visit(route('users.agency.edit'));
 
-        $this->attach(storage_path('app/guitar-640.jpg'), 'logo');
+        $this->attach(storage_path('app/sample-image.jpg'), 'logo');
         $this->press(trans('agency.logo_upload'));
 
         $this->see(trans('agency.updated'));
@@ -108,9 +108,9 @@ class UserProfileTest extends TestCase
 
         $this->seeInDatabase('site_options', [
             'key'   => 'agency_logo_path',
-            'value' => 'guitar-640.jpg',
+            'value' => 'sample-image.jpg',
         ]);
 
-        $this->assertFileExistsThenDelete(public_path('assets/imgs/guitar-640.jpg'));
+        $this->assertFileExistsThenDelete(public_path('assets/imgs/sample-image.jpg'));
     }
 }

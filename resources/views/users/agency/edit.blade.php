@@ -24,11 +24,14 @@
         {!! FormField::text('website', ['value' => Option::get('agency_website')]) !!}
     </div>
     {{ Form::close() }}
-    <div class="col-md-3">
+    <div class="col-md-3 text-center">
         {{ Form::open(['route' => 'users.agency.logo-upload', 'method' => 'patch', 'files' => true]) }}
         <legend>{{ trans('agency.logo') }}</legend>
-        <p>{!! appLogoImage() !!}</p>
-        {!! FormField::file('logo', ['label' => trans('agency.logo_change')]) !!}
+        <p>{!! appLogoImage(['style' => 'margin:20px auto']) !!}</p>
+        {!! FormField::file('logo', [
+            'label' => trans('agency.logo_change'),
+            'info' => ['text' => trans('agency.logo_upload_info'), 'class' => 'danger'],
+        ]) !!}
         {{ Form::submit(trans('agency.logo_upload'), ['class' => 'btn btn-default']) }}
         {{ Form::close() }}
     </div>

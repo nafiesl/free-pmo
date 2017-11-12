@@ -10,7 +10,7 @@
 <div class="navbar-default sidebar hidden-print" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <a class="navbar-brand text-center" title="Home | {{ Option::get('agency_tagline', 'Laravel app description') }}" href="{{ route('home') }}">
-            {!! Html::image(appLogoPath(), 'Logo '.Option::get('agency_name','Laravel'), ['class' => 'sidebar-logo']) !!}
+            {{ appLogoImage(['class' => 'sidebar-logo']) }}
             <div class="small" style="margin-top:10px">{{ Option::get('app_name','Laravel') }}</div>
         </a>
         <ul class="nav" id="side-menu">

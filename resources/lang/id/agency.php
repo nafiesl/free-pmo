@@ -7,11 +7,12 @@ return [
     'detail'    => 'Detail Agensi',
 
     // Actions
-    'edit'        => 'Edit Agensi',
-    'update'      => 'Update Agensi',
-    'updated'     => 'Update data Agensi telah berhasil.',
-    'logo_change' => 'Ganti Logo Agensi',
-    'logo_upload' => 'Upload Logo Agensi',
+    'edit'             => 'Edit Agensi',
+    'update'           => 'Update Agensi',
+    'updated'          => 'Update data Agensi telah berhasil.',
+    'logo_change'      => 'Ganti Logo Agensi',
+    'logo_upload'      => 'Upload Logo Agensi',
+    'logo_upload_info' => 'Upload file <strong>.png</strong> dengan <strong>Lebar 200px</strong>',
 
     // Attributes
     'name'    => 'Nama Agensi',

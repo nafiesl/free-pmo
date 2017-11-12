@@ -8,14 +8,14 @@
     <li class="active">{{ $months[$month] }}</li>
 </ul>
 
-{!! Form::open(['method' => 'get', 'class' => 'form-inline well well-sm']) !!}
-{!! Form::label('month', 'Laporan Bulanan', ['class' => 'control-label']) !!}
-{!! Form::select('month', $months, $month, ['class' => 'form-control']) !!}
-{!! Form::select('year', $years, $year, ['class' => 'form-control']) !!}
-{!! Form::submit('Lihat Laporan', ['class' => 'btn btn-info btn-sm']) !!}
-{!! link_to_route('reports.payments.monthly', 'Bulan ini', [], ['class' => 'btn btn-default btn-sm']) !!}
-{!! link_to_route('reports.payments.yearly', 'Lihat Tahunan', ['year' => $year], ['class' => 'btn btn-default btn-sm']) !!}
-{!! Form::close() !!}
+{{ Form::open(['method' => 'get', 'class' => 'form-inline well well-sm']) }}
+{{ Form::label('month', 'Laporan Bulanan per', ['class' => 'control-label']) }}
+{{ Form::select('month', $months, $month, ['class' => 'form-control']) }}
+{{ Form::select('year', $years, $year, ['class' => 'form-control']) }}
+{{ Form::submit('Lihat Laporan', ['class' => 'btn btn-info btn-sm']) }}
+{{ link_to_route('reports.payments.monthly', 'Bulan ini', [], ['class' => 'btn btn-default btn-sm']) }}
+{{ link_to_route('reports.payments.yearly', 'Lihat Tahunan', ['year' => $year], ['class' => 'btn btn-default btn-sm']) }}
+{{ Form::close() }}
 
 <div class="panel panel-primary">
     <div class="panel-heading"><h3 class="panel-title">Grafik Profit {{ $months[$month] }} {{ $year }}</h3></div>
@@ -38,29 +38,21 @@
                 <th class="text-center">Pilihan</th>
             </thead>
             <tbody>
-                <?php
-                    $invoicesCount = 0;
-                    $sumTotal = 0;
-                    $sumCapital = 0;
-                    $sumProfit = 0;
-                    $cartData = [];
-                ?>
+                <?php $cartData = [];?>
                 @foreach(monthDateArray($year, $month) as $dateNumber)
                 <?php
                     $any = isset($reports[$dateNumber]);
-                    $count = $any ? $reports[$dateNumber]->count : 0;
-                    $cashin = $any ? $reports[$dateNumber]->cashin : 0;
-                    $cashout = $any ? $reports[$dateNumber]->cashout : 0;
                     $profit = $any ? $reports[$dateNumber]->profit : 0;
+                    if ($any):
                 ?>
                 <tr>
                     <td class="text-center">{{ dateId($date = $year . '-' . $month . '-' . $dateNumber) }}</td>
-                    <td class="text-center">{{ $count }}</td>
-                    <td class="text-right">{{ formatRp($cashin) }}</td>
-                    <td class="text-right">{{ formatRp($cashout) }}</td>
+                    <td class="text-center">{{ $any ? $reports[$dateNumber]->count : 0 }}</td>
+                    <td class="text-right">{{ formatRp($any ? $reports[$dateNumber]->cashin : 0) }}</td>
+                    <td class="text-right">{{ formatRp($any ? $reports[$dateNumber]->cashout : 0) }}</td>
                     <td class="text-right">{{ formatRp($profit) }}</td>
                     <td class="text-center">
-                        {!! link_to_route(
+                        {{ link_to_route(
                             'reports.payments.daily',
                             'Lihat Harian',
                             ['date' => $date],
@@ -68,10 +60,11 @@
                                 'class' => 'btn btn-info btn-xs',
                                 'title' => 'Lihat laporan harian ' . $date
                             ]
-                        ) !!}
+                        ) }}
                     </td>
                 </tr>
                 <?php
+                    endif;
                     $cartData[] = ['date' => $dateNumber, 'value' => ($profit)];
                 ?>
                 @endforeach
@@ -92,12 +85,12 @@
 @endsection
 
 @section('ext_css')
-    {!! Html::style(url('assets/css/plugins/morris.css')) !!}
+    {{ Html::style(url('assets/css/plugins/morris.css')) }}
 @endsection
 
 @section('ext_js')
-    {!! Html::script(url('assets/js/plugins/morris/raphael.min.js')) !!}
-    {!! Html::script(url('assets/js/plugins/morris/morris.min.js')) !!}
+    {{ Html::script(url('assets/js/plugins/morris/raphael.min.js')) }}
+    {{ Html::script(url('assets/js/plugins/morris/morris.min.js')) }}
 @endsection
 
 @section('script')
@@ -111,6 +104,9 @@
         labels: ['Profit Rp'],
         parseTime:false,
         xLabelAngle: 30,
+        goals: [0],
+        goalLineColors : ['red'],
+        smooth: false,
     });
 })();
 </script>

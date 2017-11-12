@@ -3,7 +3,7 @@
 @section('title', 'Laporan Harian : ' . dateId($date))
 
 @section('content')
-<?php $dt = Carbon::parse($date)?>
+<?php $dt = Carbon::parse($date); ?>
 
 <ul class="breadcrumb hidden-print">
     <li>{{ link_to_route('reports.payments.yearly', 'Laporan Tahun ' . $dt->year, ['year' => $dt->year]) }}</li>
@@ -11,14 +11,13 @@
     <li class="active">{{ $dt->format('d') }}</li>
 </ul>
 
-<h1 class="page-header">Laporan Harian : {{ dateId($date) }}</h1>
-
-{!! Form::open(['method'=>'get','class'=>'form-inline well well-sm']) !!}
-{!! Form::text('date', $date, ['class'=>'form-control','required','id'=>'date']) !!}
-{!! Form::submit('Lihat Laporan', ['class'=>'btn btn-primary']) !!}
-{!! link_to_route('reports.payments.daily', 'Hari Ini', [], ['class'=>'btn btn-default']) !!}
-{!! link_to_route('reports.payments.monthly', 'Lihat Bulanan', ['month' => monthNumber($dt->month), 'year' => $dt->year], ['class'=>'btn btn-default']) !!}
-{!! Form::close() !!}
+{{ Form::open(['method' => 'get','class' => 'form-inline well well-sm']) }}
+{{ Form::label('date', 'Laporan Harian per', ['class' => 'control-label']) }}
+{{ Form::text('date', $date, ['class' => 'form-control','required','style' => 'width:100px']) }}
+{{ Form::submit('Lihat Laporan', ['class' => 'btn btn-info btn-sm']) }}
+{{ link_to_route('reports.payments.daily', 'Hari Ini', [], ['class' => 'btn btn-default btn-sm']) }}
+{{ link_to_route('reports.payments.monthly', 'Lihat Bulanan', ['month' => monthNumber($dt->month), 'year' => $dt->year], ['class' => 'btn btn-default btn-sm']) }}
+{{ Form::close() }}
 
 <table class="table table-condensed table-hover">
     <thead>
@@ -41,12 +40,12 @@
             <td class="text-center">{{ $payment->partner->name }}</td>
             <td>{{ $payment->description }} [{{ $payment->type() }}]</td>
             <td>
-                {!! link_to_route('payments.show','Lihat',[$payment->id],['title' => 'Lihat Detail Pembayaran','target' => '_blank','class'=>'btn btn-info btn-xs']) !!}
+                {{ link_to_route('payments.show','Lihat',[$payment->id],['title' => 'Lihat Detail Pembayaran','target' => '_blank','class' => 'btn btn-info btn-xs']) }}
             </td>
         </tr>
-        <?php $total = $payment->in_out == 0 ? $total - $payment->amount : $total + $payment->amount?>
+        <?php $total = $payment->in_out == 0 ? $total - $payment->amount : $total + $payment->amount; ?>
         @empty
-        <tr><td colspan="5">{{ trans('payment.not_found') }}</td></tr>
+        <tr><td colspan="7">{{ trans('payment.not_found') }}</td></tr>
         @endforelse
     </tbody>
     <tfoot>
@@ -60,11 +59,11 @@
 @endsection
 
 @section('ext_css')
-    {!! Html::style(url('assets/css/plugins/jquery.datetimepicker.css')) !!}
+    {{ Html::style(url('assets/css/plugins/jquery.datetimepicker.css')) }}
 @endsection
 
 @section('ext_js')
-    {!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
+    {{ Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) }}
 @endsection
 
 @section('script')

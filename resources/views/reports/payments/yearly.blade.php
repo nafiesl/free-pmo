@@ -8,13 +8,12 @@
     <li class="active">Laporan Tahunan</li>
 </ul>
 
-<h1 class="page-header">Laporan Tahunan : {{ $year }}</h1>
-
-{!! Form::open(['method'=>'get','class'=>'form-inline well well-sm']) !!}
-{!! Form::select('year', $years, $year, ['class'=>'form-control']) !!}
-{!! Form::submit('Lihat Laporan', ['class'=>'btn btn-info']) !!}
-{!! link_to_route('reports.payments.yearly','Tahun ini',[],['class'=>'btn btn-default']) !!}
-{!! Form::close() !!}
+{{ Form::open(['method' => 'get', 'class' => 'form-inline well well-sm']) }}
+{{ Form::label('year', 'Laporan Tahunan per', ['class' => 'control-label']) }}
+{{ Form::select('year', $years, $year, ['class' => 'form-control']) }}
+{{ Form::submit('Lihat Laporan', ['class' => 'btn btn-info btn-sm']) }}
+{{ link_to_route('reports.payments.yearly', 'Tahun ini', [], ['class' => 'btn btn-default btn-sm']) }}
+{{ Form::close() }}
 
 <div class="panel panel-primary">
     <div class="panel-heading"><h3 class="panel-title">Grafik Profit {{ $year }}</h3></div>
@@ -37,43 +36,33 @@
                 <th class="text-center">Pilihan</th>
             </thead>
             <tbody>
-                <?php
-                    $cartData = [];
-                ?>
+                <?php $chartData = [];?>
                 @foreach(getMonths() as $monthNumber => $monthName)
-                <?php
-                    $any = isset($reports[$monthNumber]);
-                    $count = $any ? $reports[$monthNumber]->count : 0;
-                    $cashin = $any ? $reports[$monthNumber]->cashin : 0;
-                    $cashout = $any ? $reports[$monthNumber]->cashout : 0;
-                    $profit = $any ? $reports[$monthNumber]->profit : 0;
-                ?>
+                <?php $any = isset($reports[$monthNumber]);?>
                 <tr>
                     <td class="text-center">{{ monthId($monthNumber) }}</td>
-                    <td class="text-center">{{ $count }}</td>
-                    <td class="text-right">{{ formatRp($cashin) }}</td>
-                    <td class="text-right">{{ formatRp($cashout) }}</td>
-                    <td class="text-right">{{ formatRp($profit) }}</td>
+                    <td class="text-center">{{ $any ? $reports[$monthNumber]->count : 0 }}</td>
+                    <td class="text-right">{{ formatRp($any ? $reports[$monthNumber]->cashin : 0) }}</td>
+                    <td class="text-right">{{ formatRp($any ? $reports[$monthNumber]->cashout : 0) }}</td>
+                    <td class="text-right">{{ formatRp($profit = $any ? $reports[$monthNumber]->profit : 0) }}</td>
                     <td class="text-center">
-                        {!! link_to_route(
+                        {{ link_to_route(
                             'reports.payments.monthly',
                             'Lihat Bulanan',
                             ['month' => $monthNumber, 'year' => $year],
                             [
-                                'class'=>'btn btn-info btn-xs',
-                                'title'=>'Lihat laporan bulanan ' . monthId($monthNumber)
+                                'class' => 'btn btn-info btn-xs',
+                                'title' => 'Lihat laporan bulanan ' . monthId($monthNumber)
                             ]
-                        ) !!}
+                        ) }}
                     </td>
                 </tr>
-                <?php
-                    $cartData[] = ['month' => monthId($monthNumber), 'value' => $profit];
-                ?>
+                <?php $chartData[] = ['month' => monthId($monthNumber), 'value' => $profit];?>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
-                    <th class="text-center">Jumlah</th>
+                    <th class="text-center">{{ trans('app.total') }}</th>
                     <th class="text-center">{{ $reports->sum('count') }}</th>
                     <th class="text-right">{{ formatRp($reports->sum('cashin')) }}</th>
                     <th class="text-right">{{ formatRp($reports->sum('cashout')) }}</th>
@@ -87,12 +76,12 @@
 @endsection
 
 @section('ext_css')
-    {!! Html::style(url('assets/css/plugins/morris.css')) !!}
+    {{ Html::style(url('assets/css/plugins/morris.css')) }}
 @endsection
 
 @section('ext_js')
-    {!! Html::script(url('assets/js/plugins/morris/raphael.min.js')) !!}
-    {!! Html::script(url('assets/js/plugins/morris/morris.min.js')) !!}
+    {{ Html::script(url('assets/js/plugins/morris/raphael.min.js')) }}
+    {{ Html::script(url('assets/js/plugins/morris/morris.min.js')) }}
 @endsection
 
 @section('script')
@@ -100,13 +89,14 @@
 (function() {
     new Morris.Line({
         element: 'yearly-chart',
-        data: {!! json_encode($cartData) !!},
+        data: {!! collect($chartData)->toJson() !!},
         xkey: 'month',
         ykeys: ['value'],
-        labels: ['Profit'],
+        labels: ['Profit Rp'],
         parseTime:false,
         goals: [0],
         goalLineColors : ['red'],
+        smooth: false,
     });
 })();
 </script>

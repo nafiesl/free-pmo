@@ -15,7 +15,7 @@ $factory->define(Payment::class, function (Faker $faker) {
         },
         'amount'       => 10000,
         'in_out'       => 1,
-        'type_id'      => rand(1, 3),
+        'type_id'      => 1,
         'date'         => $faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'),
         'description'  => $faker->paragraph,
         'partner_type' => Customer::class,
@@ -25,10 +25,15 @@ $factory->define(Payment::class, function (Faker $faker) {
     ];
 });
 
+$factory->state(Payment::class, 'customer', function (Faker $faker) {
+
+    return [];
+});
+
 $factory->state(Payment::class, 'vendor', function (Faker $faker) {
 
     return [
-        'in_out'       => 1,
+        'in_out'       => 0,
         'type_id'      => 1,
         'partner_type' => Vendor::class,
         'partner_id'   => function () {
@@ -40,7 +45,7 @@ $factory->state(Payment::class, 'vendor', function (Faker $faker) {
 $factory->state(Payment::class, 'fee', function (Faker $faker) {
 
     return [
-        'in_out'       => 1,
+        'in_out'       => 0,
         'type_id'      => 1,
         'partner_type' => User::class,
         'partner_id'   => function () {

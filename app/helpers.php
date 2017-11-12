@@ -204,16 +204,25 @@ function dateDifference($date1, $date2, $differenceFormat = '%a')
     return $interval->format($differenceFormat);
 }
 
-function appLogoImage()
+function appLogoImage($attributes = [])
 {
-    $logoString = '<img style="display: block;text-align: center;margin: 0 auto;width: 100%;max-width: 200px"';
-    $logoString .= 'src="'.appLogoPath().'">';
-    return $logoString;
+    return Html::image(
+        appLogoPath(),
+        'Logo '.Option::get('agency_name', 'Laravel'),
+        $attributes
+    );
 }
 
 function appLogoPath()
 {
-    return asset('assets/imgs/'.Option::get('agency_logo_path', 'default-logo.png'));
+    $defaultLogoImagePath = 'default-logo.png';
+    $optionLogoImagePath = Option::get('agency_logo_path');
+
+    if (is_file(public_path('assets/imgs/'.$optionLogoImagePath))) {
+        return asset('assets/imgs/'.$optionLogoImagePath);
+    }
+
+    return asset('assets/imgs/'.$defaultLogoImagePath);
 }
 
 function monthDateArray($year, $month)

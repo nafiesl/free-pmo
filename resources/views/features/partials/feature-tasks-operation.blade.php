@@ -25,8 +25,17 @@
         </div>
         {!! FormField::textarea('description') !!}
         <div class="row">
-            <div class="col-md-6">
-                {!! FormField::text('progress', ['addon' => ['after' => '%']]) !!}
+            <div class="col-md-4">
+                {!! Form::label('progress', 'Progress', ['class' => 'control-label']) !!}
+
+                {!! Form::input('range', 'progress', null, [
+                    'min' => '0',
+                    'max' => '100',
+                    'step' => '10',
+                ]) !!}
+            </div>
+            <div class="col-md-2" style="font-size: 28px; margin-top: 15px;">
+                <strong id="ap_weight">{{ $editableTask->progress }}</strong> %
             </div>
             <div class="col-md-6">
                 {!! FormField::select('feature_id', $feature->project->features->pluck('name','id'), ['label' => 'Pindahkan ke Fitur lain']) !!}

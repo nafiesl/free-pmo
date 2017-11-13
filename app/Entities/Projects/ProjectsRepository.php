@@ -55,7 +55,7 @@ class ProjectsRepository extends BaseRepository
 
     public function getStatusName($statusId)
     {
-        return getProjectStatusesList($statusId);
+        return ProjectStatus::getNameById($statusId);
     }
 
     public function createNewCustomer($customerName, $customerEmail)

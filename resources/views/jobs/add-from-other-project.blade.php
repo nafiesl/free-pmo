@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', trans('feature.add_from_other_project') . ' | ' . $project->name)
+@section('title', trans('job.add_from_other_project') . ' | ' . $project->name)
 
 @section('content')
-@include('projects.partials.breadcrumb',['title' => trans('feature.add_from_other_project')])
+@include('projects.partials.breadcrumb',['title' => trans('job.add_from_other_project')])
 
 <div class="row">
     <div class="col-sm-6">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('feature.add_from_other_project') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ trans('job.add_from_other_project') }}</h3></div>
             <div class="panel-body">
                 {!! Form::open(['method'=>'get']) !!}
                 <div class="form-group">
@@ -18,23 +18,23 @@
                             'class' => 'form-control customer-select',
                             'placeholder' => '-- Pilih Project --'
                         ]) !!}
-                        <span class="input-group-btn"><button class="btn btn-default btn-sm" type="submit">{{ trans('project.show_features') }}</button></span>
+                        <span class="input-group-btn"><button class="btn btn-default btn-sm" type="submit">{{ trans('project.show_jobs') }}</button></span>
                     </div>
                 </div>
                 {!! Form::close() !!}
                 @if ($selectedProject)
-                {!! Form::open(['route'=>['features.store-from-other-project', $project->id]]) !!}
+                {!! Form::open(['route'=>['jobs.store-from-other-project', $project->id]]) !!}
                 <ul class="list-unstyled">
-                    @forelse($selectedProject->features as $key => $feature)
+                    @forelse($selectedProject->jobs as $key => $job)
                     <li>
-                        <label for="feature_id_{{ $feature->id }}">
-                        {!! Form::checkbox('feature_ids[' . $feature->id . ']', $feature->id, null, ['id' => 'feature_id_' . $feature->id]) !!}
-                        {{ $feature->name }}</label>
+                        <label for="job_id_{{ $job->id }}">
+                        {!! Form::checkbox('job_ids[' . $job->id . ']', $job->id, null, ['id' => 'job_id_' . $job->id]) !!}
+                        {{ $job->name }}</label>
                         <ul style="list-style-type:none">
-                            @foreach($feature->tasks as $task)
+                            @foreach($job->tasks as $task)
                             <li>
-                                <label for="{{ $feature->id }}_task_id_{{ $task->id }}" style="font-weight:normal">
-                                {!! Form::checkbox($feature->id . '_task_ids[' . $task->id . ']', $task->id, null, ['id' => $feature->id . '_task_id_' . $task->id]) !!}
+                                <label for="{{ $job->id }}_task_id_{{ $task->id }}" style="font-weight:normal">
+                                {!! Form::checkbox($job->id . '_task_ids[' . $task->id . ']', $task->id, null, ['id' => $job->id . '_task_id_' . $task->id]) !!}
                                 {{ $task->name }}</label>
                             </li>
                             @endforeach
@@ -47,12 +47,12 @@
                 @else
                     <div class="alert alert-info">Pilih salah satu project</div>
                 @endif
-                {!! Form::submit(trans('feature.create'), ['class'=>'btn btn-primary']) !!}
+                {!! Form::submit(trans('job.create'), ['class'=>'btn btn-primary']) !!}
                 {!! Form::close() !!}
             </div>
 
             <div class="panel-footer">
-                {!! link_to_route('projects.features', trans('app.cancel'), [$project->id], ['class'=>'btn btn-default']) !!}
+                {!! link_to_route('projects.jobs', trans('app.cancel'), [$project->id], ['class'=>'btn btn-default']) !!}
             </div>
         </div>
     </div>

@@ -17,7 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->integer('project_id')->unsigned();
             $table->integer('amount')->unsigned();
-            $table->boolean('type_id')->default(1)->comment('1:project, 2: add_feature, 3:maintenance');
+            $table->boolean('type_id')->default(1)->comment('1:project, 2: add_job, 3:maintenance');
             $table->boolean('in_out')->default(1)->comment('0: out, 1: in');
             $table->date('date');
             $table->string('description');

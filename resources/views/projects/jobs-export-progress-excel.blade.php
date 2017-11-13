@@ -1,7 +1,7 @@
 <?php
-// $filename = str_slug(trans('project.features') . '-' . $project->name) . '.xls';
-// header("Content-Disposition: attachment; filename=\"$filename\"");
-// header("Content-Type: application/vnd.ms-excel");
+    // $filename = str_slug(trans('project.jobs') . '-' . $project->name) . '.xls';
+    // header("Content-Disposition: attachment; filename=\"$filename\"");
+    // header("Content-Type: application/vnd.ms-excel");
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,31 +21,31 @@
         <thead>
             <tr>
                 <td colspan="4" style="text-align:center">
-                    <h1>{{ trans('project.features') }} {{ $project->name }}</h1>
+                    <h1>{{ trans('project.jobs') }} {{ $project->name }}</h1>
                 </td>
             </tr>
             <tr>
                 <th>{{ trans('app.table_no') }}</th>
-                <th>{{ trans('feature.name') }}</th>
-                <th class="text-center">{{ trans('feature.progress') }}</th>
-                <th class="text-right">{{ trans('feature.price') }}</th>
+                <th>{{ trans('job.name') }}</th>
+                <th class="text-center">{{ trans('job.progress') }}</th>
+                <th class="text-right">{{ trans('job.price') }}</th>
                 {{-- <th>{{ trans('app.description') }}</th> --}}
             </tr>
         </thead>
-        <tbody id="sort-features">
-            @forelse($features as $key => $feature)
+        <tbody id="sort-jobs">
+            @forelse($jobs as $key => $job)
             <tr>
                 <td>{{ 1 + $key }}</td>
                 <td>
-                    {{ $feature->name }}
+                    {{ $job->name }}
                 </td>
-                <td class="text-center">{{ formatDecimal($feature->progress = $feature->tasks->avg('progress')) }}</td>
-                <td class="text-right">{{ $feature->price }}</td>
-                {{-- <td style="wrap-text: true;">{!! nl2br($feature->description) !!}</td> --}}
+                <td class="text-center">{{ formatDecimal($job->progress = $job->tasks->avg('progress')) }}</td>
+                <td class="text-right">{{ $job->price }}</td>
+                {{-- <td style="wrap-text: true;">{!! nl2br($job->description) !!}</td> --}}
             </tr>
 
-            @if ($feature->tasks->count())
-            @foreach($feature->tasks as $task)
+            @if ($job->tasks->count())
+            @foreach($job->tasks as $task)
             <tr>
                 <td></td>
                 <td>{{ $task->name }}</td>
@@ -56,17 +56,17 @@
             @endforeach
             @endif
             <?php /*
-            */ ?>
+            */?>
             @empty
-            <tr><td colspan="7">{{ trans('feature.empty') }}</td></tr>
+            <tr><td colspan="7">{{ trans('job.empty') }}</td></tr>
             @endforelse
         </tbody>
         <tfoot>
             <tr>
                 <th class="text-right" colspan="2">Total</th>
-                {{-- <th class="text-center">{{ formatDecimal($features->sum('progress') / count($features)) }}</th> --}}
-                <th class="text-center">{{ formatDecimal($project->getFeatureOveralProgress()) }} %</th>
-                <th class="text-right">{{ $features->sum('price') }}</th>
+                {{-- <th class="text-center">{{ formatDecimal($jobs->sum('progress') / count($jobs)) }}</th> --}}
+                <th class="text-center">{{ formatDecimal($project->getJobOveralProgress()) }} %</th>
+                <th class="text-right">{{ $jobs->sum('price') }}</th>
                 {{-- <th></th> --}}
             </tr>
         </tfoot>

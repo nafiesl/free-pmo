@@ -14,21 +14,21 @@ return [
     'back_to_index'  => 'Kembali ke daftar Project',
 
     // Actions
-    'create'        => 'Input Project Baru',
-    'created'       => 'Input Project baru telah berhasil.',
-    'show'          => 'Detail Project',
-    'edit'          => 'Edit Project',
-    'update'        => 'Update Project',
-    'updated'       => 'Update data Project telah berhasil.',
-    'delete'        => 'Hapus Project',
-    'deleted'       => 'Hapus data Project telah berhasil.',
-    'undeleted'     => 'Data Project gagal dihapus.',
-    'show_features' => 'Lihat Fitur',
+    'create'    => 'Input Project Baru',
+    'created'   => 'Input Project baru telah berhasil.',
+    'show'      => 'Detail Project',
+    'edit'      => 'Edit Project',
+    'update'    => 'Update Project',
+    'updated'   => 'Update data Project telah berhasil.',
+    'delete'    => 'Hapus Project',
+    'deleted'   => 'Hapus data Project telah berhasil.',
+    'undeleted' => 'Data Project gagal dihapus.',
+    'show_jobs' => 'Lihat Job',
 
-    'features_export_html'           => 'Export HTML',
-    'features_export_excel'          => 'Export Excel',
-    'features_export_progress_excel' => 'Export Progress',
-    'sort_features'                  => 'Urutkan Prioritas Fitur',
+    'jobs_export_html'           => 'Export HTML',
+    'jobs_export_excel'          => 'Export Excel',
+    'jobs_export_progress_excel' => 'Export Progress',
+    'sort_jobs'                  => 'Urutkan Prioritas Job',
 
     // Attributes
     'name'           => 'Nama Project',
@@ -41,8 +41,8 @@ return [
 
     // Relations
     'files'         => 'List Dokumen',
-    'features'      => 'Daftar Item Pekerjaan',
-    'no_features'   => 'Belum ada Item Pekerjaan',
+    'jobs'          => 'Daftar Job',
+    'no_jobs'       => 'Belum ada Job',
     'cost_proposal' => 'Pengajuan Biaya',
     'invoices'      => 'List Invoice',
     'customer'      => 'Customer',

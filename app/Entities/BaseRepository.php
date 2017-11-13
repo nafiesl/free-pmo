@@ -4,7 +4,7 @@ namespace App\Entities;
 
 use App\Entities\Partners\Customer;
 use App\Entities\Partners\Vendor;
-use App\Entities\Projects\Feature;
+use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
 
@@ -45,8 +45,8 @@ abstract class BaseRepository extends EloquentRepository
         return Project::orderBy('name')->pluck('name', 'id');
     }
 
-    public function requireFeatureById($featureId)
+    public function requireJobById($jobId)
     {
-        return Feature::findOrFail($featureId);
+        return Job::findOrFail($jobId);
     }
 }

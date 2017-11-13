@@ -1,11 +1,11 @@
-<div id="feature-tasks" class="panel panel-default">
+<div id="job-tasks" class="panel panel-default">
     <div class="panel-heading">
         @if (request('action') == 'sort_tasks')
-            {{ link_to_route('features.show', trans('app.done'), [$feature->id], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
+            {{ link_to_route('jobs.show', trans('app.done'), [$job->id], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
         @else
-            {{ link_to_route('features.show', trans('feature.sort_tasks'), [$feature->id, 'action' => 'sort_tasks', '#feature-tasks'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
+            {{ link_to_route('jobs.show', trans('job.sort_tasks'), [$job->id, 'action' => 'sort_tasks', '#job-tasks'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
         @endif
-        <h3 class="panel-title">{{ trans('feature.tasks') }}</h3>
+        <h3 class="panel-title">{{ trans('job.tasks') }}</h3>
     </div>
     <table class="table table-condensed">
         <thead>
@@ -16,7 +16,7 @@
             <th class="col-md-2 text-center">{{ trans('app.action') }}</th>
         </thead>
         <tbody id="sort-tasks">
-            @forelse($feature->tasks as $key => $task)
+            @forelse($job->tasks as $key => $task)
             <tr id="{{ $task->id }}">
                 <td>{{ 1 + $key }}</td>
                 <td>
@@ -26,8 +26,8 @@
                 <td>{{ $task->route_name }}</td>
                 <td class="text-center">{{ $task->progress }} %</td>
                 <td class="text-center">
-                    {!! html_link_to_route('features.show', '', [
-                        $feature->id,
+                    {!! html_link_to_route('jobs.show', '', [
+                        $job->id,
                         'action' => 'task_edit',
                         'task_id' => $task->id
                     ],[
@@ -36,8 +36,8 @@
                         'id' => $task->id . '-tasks-edit',
                         'icon' => 'edit'
                     ]) !!}
-                    {!! html_link_to_route('features.show', '', [
-                        $feature->id,
+                    {!! html_link_to_route('jobs.show', '', [
+                        $job->id,
                         'action' => 'task_delete',
                         'task_id' => $task->id
                     ],[
@@ -55,12 +55,12 @@
         <tfoot>
             <tr>
                 <th class="text-right" colspan="3">Total</th>
-                <th class="text-center">{{ formatDecimal($feature->tasks->avg('progress')) }} %</th>
+                <th class="text-center">{{ formatDecimal($job->tasks->avg('progress')) }} %</th>
                 <th>
                     @if (request('action') == 'sort_tasks')
-                        {{ link_to_route('features.show', trans('app.done'), [$feature->id], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                        {{ link_to_route('jobs.show', trans('app.done'), [$job->id], ['class' => 'btn btn-default btn-xs pull-right']) }}
                     @else
-                        {{ link_to_route('features.show', trans('feature.sort_tasks'), [$feature->id, 'action' => 'sort_tasks', '#feature-tasks'], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                        {{ link_to_route('jobs.show', trans('job.sort_tasks'), [$job->id, 'action' => 'sort_tasks', '#job-tasks'], ['class' => 'btn btn-default btn-xs pull-right']) }}
                     @endif
                 </th>
             </tr>
@@ -82,7 +82,7 @@
         update: function (event, ui) {
             var data = $(this).sortable('toArray').toString();
             // console.log(data);
-            $.post("{{ route('features.tasks-reorder', $feature->id) }}", {postData: data});
+            $.post("{{ route('jobs.tasks-reorder', $job->id) }}", {postData: data});
         }
     });
 })();

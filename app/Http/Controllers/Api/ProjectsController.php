@@ -24,13 +24,13 @@ class ProjectsController extends Controller
         return $this->repo->requireById($id);
     }
 
-    public function features($id)
+    public function jobs($id)
     {
         $project = $this->repo->requireById($id);
-        // $project->load('features.tasks');
+        // $project->load('jobs.tasks');
         $response = fractal()
             ->item($project->toArray())
-            ->transformWith(function($project) {
+            ->transformWith(function ($project) {
                 return $project;
             })
             ->toArray();

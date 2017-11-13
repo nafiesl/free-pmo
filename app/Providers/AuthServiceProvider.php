@@ -49,12 +49,12 @@ class AuthServiceProvider extends ServiceProvider
             return true;
         });
 
-        Gate::define('manage_features', function ($user, $project) {
+        Gate::define('manage_jobs', function ($user, $project) {
             return true;
         });
 
-        Gate::define('manage_feature', function ($user, $feature) {
-            return $user->id == $feature->worker_id;
+        Gate::define('manage_job', function ($user, $job) {
+            return $user->id == $job->worker_id;
         });
     }
 

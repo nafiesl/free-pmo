@@ -3,8 +3,8 @@
     <li class="{{ Request::segment(3) == null ? 'active' : '' }}">
         {!! link_to_route('projects.show', trans('project.show'), [$project->id]) !!}
     </li>
-    <li class="{{ Request::segment(3) == 'features' ? 'active' : '' }}">
-        {!! link_to_route('projects.features', trans('project.features').' ('.$project->features->count().')', [$project->id]) !!}
+    <li class="{{ Request::segment(3) == 'jobs' ? 'active' : '' }}">
+        {!! link_to_route('projects.jobs', trans('project.jobs').' ('.$project->jobs->count().')', [$project->id]) !!}
     </li>
     <li class="{{ Request::segment(3) == 'payments' ? 'active' : '' }}">
         {!! link_to_route('projects.payments', trans('project.payments').' ('.$project->payments->count().')', [$project->id]) !!}

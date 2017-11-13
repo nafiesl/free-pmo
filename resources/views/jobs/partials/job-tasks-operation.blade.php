@@ -1,5 +1,5 @@
 @if (Request::has('action') == false)
-{!! Form::open(['route' => ['tasks.store', $feature->id]])!!}
+{!! Form::open(['route' => ['tasks.store', $job->id]])!!}
 <div class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">{{ trans('task.create') }}</h3></div>
     <div class="panel-body">
@@ -38,11 +38,11 @@
                 <strong id="ap_weight">{{ $editableTask->progress }}</strong> %
             </div>
             <div class="col-md-6">
-                {!! FormField::select('feature_id', $feature->project->features->pluck('name','id'), ['label' => 'Pindahkan ke Fitur lain']) !!}
+                {!! FormField::select('job_id', $job->project->jobs->pluck('name','id'), ['label' => 'Pindahkan ke Fitur lain']) !!}
             </div>
         </div>
         {!! Form::submit(trans('task.update'), ['class' => 'btn btn-warning']) !!}
-        {!! link_to_route('features.show', trans('app.cancel'), [$feature->id], ['class' => 'btn btn-default']) !!}
+        {!! link_to_route('jobs.show', trans('app.cancel'), [$job->id], ['class' => 'btn btn-default']) !!}
         {!! Form::close() !!}
     </div>
 </div>
@@ -56,7 +56,7 @@
     </div>
     <div class="panel-footer">
         {{ trans('app.delete_confirm') }}
-        {!! link_to_route('features.show', trans('app.cancel'), [$feature->id], ['class' => 'btn btn-default']) !!}
+        {!! link_to_route('jobs.show', trans('app.cancel'), [$job->id], ['class' => 'btn btn-default']) !!}
         <div class="pull-right">
             {!! FormField::delete([
                 'route'=>['tasks.destroy',$editableTask->id]],
@@ -64,7 +64,7 @@
                 ['class'=>'btn btn-danger'],
                 [
                 'task_id' => $editableTask->id,
-                'feature_id' => $editableTask->feature_id,
+                'job_id' => $editableTask->job_id,
                 ]) !!}
             </div>
         </div>

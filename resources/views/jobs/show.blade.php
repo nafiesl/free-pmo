@@ -1,27 +1,27 @@
 @extends('layouts.app')
 
-@section('title', trans('feature.show') . ' | ' . $feature->name . ' | ' . $feature->project->name)
+@section('title', trans('job.show') . ' | ' . $job->name . ' | ' . $job->project->name)
 
 @section('content')
-@include('features.partials.breadcrumb')
+@include('jobs.partials.breadcrumb')
 
 <h1 class="page-header">
     <div class="pull-right">
-        {!! html_link_to_route('features.create', trans('feature.create'), [$feature->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-        {!! link_to_route('features.edit', trans('feature.edit'), [$feature->id], ['class' => 'btn btn-warning']) !!}
-        {!! link_to_route('projects.features', trans('feature.back_to_index'), [$feature->project_id, '#' . $feature->id], ['class' => 'btn btn-default']) !!}
+        {!! html_link_to_route('jobs.create', trans('job.create'), [$job->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+        {!! link_to_route('jobs.edit', trans('job.edit'), [$job->id], ['class' => 'btn btn-warning']) !!}
+        {!! link_to_route('projects.jobs', trans('job.back_to_index'), [$job->project_id, '#' . $job->id], ['class' => 'btn btn-default']) !!}
     </div>
-    {{ $feature->name }} <small>{{ trans('feature.show') }}</small>
+    {{ $job->name }} <small>{{ trans('job.show') }}</small>
 </h1>
 <div class="row">
     <div class="col-md-5">
-        @include('features.partials.feature-show')
+        @include('jobs.partials.job-show')
     </div>
     <div class="col-sm-7">
-        @include('features.partials.feature-tasks-operation')
+        @include('jobs.partials.job-tasks-operation')
     </div>
 </div>
-@include('features.partials.feature-tasks')
+@include('jobs.partials.job-tasks')
 @endsection
 
 @if (Request::get('action') == 'task_edit' && $editableTask)

@@ -43,7 +43,7 @@ return [
     // Types
     'types' => [
         'project'     => 'Project',
-        'add_feature' => 'Add Feature',
+        'add_job'     => 'Add Job',
         'maintenance' => 'Maintenance',
     ],
 ];

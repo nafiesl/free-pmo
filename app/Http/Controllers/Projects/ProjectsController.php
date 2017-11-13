@@ -81,11 +81,11 @@ class ProjectsController extends Controller
         return redirect()->route('projects.index');
     }
 
-    public function features($projectId)
+    public function jobs($projectId)
     {
         $project = $this->repo->requireById($projectId);
-        $features = $this->repo->getProjectFeatures($projectId);
-        return view('projects.features', compact('project', 'features'));
+        $jobs = $this->repo->getProjectJobs($projectId);
+        return view('projects.jobs', compact('project', 'jobs'));
     }
 
     public function subscriptions($projectId)
@@ -94,28 +94,28 @@ class ProjectsController extends Controller
         return view('projects.subscriptions', compact('project'));
     }
 
-    public function featuresExport(Request $request, $projectId, $exportType = 'excel')
+    public function jobsExport(Request $request, $projectId, $exportType = 'excel')
     {
-        $featureType = $request->get('feature_type', 1);
+        $jobType = $request->get('job_type', 1);
         $project = $this->repo->requireById($projectId);
-        $features = $this->repo->getProjectFeatures($projectId, $featureType);
+        $jobs = $this->repo->getProjectJobs($projectId, $jobType);
 
         if ($exportType == 'excel') {
-            return view('projects.features-export-excel', compact('project', 'features'));
-            \Excel::create(str_slug(trans('project.features').'-'.$project->name), function ($excel) use ($project, $features) {
-                $excel->sheet('testng', function ($sheet) use ($project, $features) {
-                    $sheet->loadView('projects.features-export-excel', compact('project', 'features'));
+            return view('projects.jobs-export-excel', compact('project', 'jobs'));
+            \Excel::create(str_slug(trans('project.jobs').'-'.$project->name), function ($excel) use ($project, $jobs) {
+                $excel->sheet('testng', function ($sheet) use ($project, $jobs) {
+                    $sheet->loadView('projects.jobs-export-excel', compact('project', 'jobs'));
                 });
             })->download('xls');
         } elseif ($exportType == 'excel-progress') {
-            return view('projects.features-export-progress-excel', compact('project', 'features'));
-            \Excel::create(str_slug(trans('project.features').'-'.$project->name), function ($excel) use ($project, $features) {
-                $excel->sheet('export-progress', function ($sheet) use ($project, $features) {
-                    $sheet->loadView('projects.features-export-progress-excel', compact('project', 'features'));
+            return view('projects.jobs-export-progress-excel', compact('project', 'jobs'));
+            \Excel::create(str_slug(trans('project.jobs').'-'.$project->name), function ($excel) use ($project, $jobs) {
+                $excel->sheet('export-progress', function ($sheet) use ($project, $jobs) {
+                    $sheet->loadView('projects.jobs-export-progress-excel', compact('project', 'jobs'));
                 });
             })->download('xls');
         } else {
-            return view('projects.features-export-html-2', compact('project', 'features'));
+            return view('projects.jobs-export-html-2', compact('project', 'jobs'));
         }
     }
 
@@ -133,10 +133,10 @@ class ProjectsController extends Controller
         return redirect()->route('projects.show', $projectId);
     }
 
-    public function featuresReorder(Request $request, $projectId)
+    public function jobsReorder(Request $request, $projectId)
     {
         if ($request->ajax()) {
-            $data = $this->repo->featuresReorder($request->get('postData'));
+            $data = $this->repo->jobsReorder($request->get('postData'));
             return 'oke';
         }
 

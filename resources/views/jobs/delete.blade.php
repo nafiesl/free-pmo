@@ -1,25 +1,25 @@
 @extends('layouts.app')
 
-@section('title', trans('feature.delete'))
+@section('title', trans('job.delete'))
 
 @section('content')
 <h1 class="page-header">
     <div class="pull-right">
         {!! FormField::delete([
-            'route'=>['features.destroy',$feature->id]],
+            'route'=>['jobs.destroy',$job->id]],
             trans('app.delete_confirm_button'),
             ['class'=>'btn btn-danger'],
             [
-                'feature_id'=>$feature->id,
-                'project_id'=>$feature->project_id,
+                'job_id'=>$job->id,
+                'project_id'=>$job->project_id,
             ]) !!}
     </div>
     {{ trans('app.delete_confirm') }}
-    {!! link_to_route('features.show', trans('app.cancel'), [$feature->id], ['class' => 'btn btn-default']) !!}
+    {!! link_to_route('jobs.show', trans('app.cancel'), [$job->id], ['class' => 'btn btn-default']) !!}
 </h1>
 <div class="row">
     <div class="col-md-4">
-        @include('features.partials.feature-show')
+        @include('jobs.partials.job-show')
     </div>
 </div>
 @endsection

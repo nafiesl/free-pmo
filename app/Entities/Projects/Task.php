@@ -3,20 +3,20 @@
 namespace App\Entities\Projects;
 
 use App\Entities\Projects\TaskPresenter;
-use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
-class Task extends Model {
+class Task extends Model
+{
 
     use PresentableTrait;
 
     protected $presenter = TaskPresenter::class;
-	protected $guarded = ['id','created_at','updated_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
-    public function feature()
+    public function job()
     {
-        return $this->belongsTo(Feature::class, 'project_id');
+        return $this->belongsTo(Job::class, 'project_id');
     }
 
 }

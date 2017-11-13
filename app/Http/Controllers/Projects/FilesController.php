@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Projects;
 
 use App\Entities\Projects\File;
 use App\Http\Controllers\Controller;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use File as FileSystem;
+use Illuminate\Http\Request;
 
 class FilesController extends Controller
 {
@@ -17,7 +16,7 @@ class FilesController extends Controller
     public function index(Request $request, $fileableId)
     {
         $editableFile = null;
-        $fileableType = $request->segment(1); // projects, features
+        $fileableType = $request->segment(1); // projects, jobs
         $modelName = $this->getModelName($fileableType);
         $modelShortName = $this->getModelShortName($modelName);
         $model = $modelName::findOrFail($fileableId);
@@ -33,10 +32,10 @@ class FilesController extends Controller
     public function create(Request $request, $fileableId)
     {
         $this->validate($request, [
-            'fileable_type'        => 'required',
-            'file'        => 'required|file|max:10000',
-            'title'       => 'required|max:60',
-            'description' => 'nullable|max:255',
+            'fileable_type' => 'required',
+            'file'          => 'required|file|max:10000',
+            'title'         => 'required|max:60',
+            'description'   => 'nullable|max:255',
         ]);
 
         $fileableExist = array_search($request->get('fileable_type'), $this->fileableTypes);
@@ -44,12 +43,15 @@ class FilesController extends Controller
         if ($fileableExist) {
             $file = $this->proccessPhotoUpload($request->except('_token'), $request->get('fileable_type'), $fileableId);
 
-            if ($file->exists)
+            if ($file->exists) {
                 flash()->success('Upload file berhasil.');
-            else
+            } else {
                 flash()->error('Upload file gagal, coba kembali.');
-        } else
+            }
+
+        } else {
             flash()->error('Upload file gagal, coba kembali.');
+        }
 
         return back();
     }
@@ -108,7 +110,6 @@ class FilesController extends Controller
 
         return $file;
     }
-
 
     public function getModelName($fileableType)
     {

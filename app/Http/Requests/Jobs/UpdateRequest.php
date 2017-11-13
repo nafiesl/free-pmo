@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Tasks;
+namespace App\Http\Requests\Jobs;
 
-use App\Entities\Projects\Job;
+use App\Entities\Projects\Project;
 use App\Http\Requests\Request;
 
 class UpdateRequest extends Request
@@ -15,8 +15,8 @@ class UpdateRequest extends Request
      */
     public function authorize()
     {
-        $job = Job::findOrFail($this->get('job_id'));
-        return auth()->user()->can('manage_job', $job);
+        $project = Project::findOrFail($this->get('project_id'));
+        return auth()->user()->can('manage_jobs', $project);
     }
 
     /**
@@ -28,9 +28,10 @@ class UpdateRequest extends Request
     {
         return [
             'name'        => 'required|max:60',
+            'price'       => 'required',
+            'worker_id'   => 'required|numeric',
+            'type_id'     => 'required|numeric',
             'description' => 'max:255',
-            'progress'    => 'numeric|max:100',
-            'route_name'  => 'max:255',
         ];
     }
 

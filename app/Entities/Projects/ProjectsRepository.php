@@ -77,12 +77,12 @@ class ProjectsRepository extends BaseRepository
         // Delete project payments
         $project->payments()->delete();
 
-        // Delete features tasks
-        $featureIds = $project->features->pluck('id')->all();
-        DB::table('tasks')->whereIn('feature_id', $featureIds)->delete();
+        // Delete jobs tasks
+        $jobIds = $project->jobs->pluck('id')->all();
+        DB::table('tasks')->whereIn('job_id', $jobIds)->delete();
 
-        // Delete features
-        $project->features()->delete();
+        // Delete jobs
+        $project->jobs()->delete();
 
         // Delete project
         $project->delete();
@@ -91,9 +91,9 @@ class ProjectsRepository extends BaseRepository
         return 'deleted';
     }
 
-    public function getProjectFeatures($projectId, $type = null)
+    public function getProjectJobs($projectId, $type = null)
     {
-        return Feature::where(function ($query) use ($projectId, $type) {
+        return Job::where(function ($query) use ($projectId, $type) {
             $query->whereProjectId($projectId);
             if ($type) {
                 $query->whereTypeId($type);
@@ -111,15 +111,15 @@ class ProjectsRepository extends BaseRepository
         return $project;
     }
 
-    public function featuresReorder($sortedData)
+    public function jobsReorder($sortedData)
     {
-        $featureOrder = explode(',', $sortedData);
-        foreach ($featureOrder as $order => $featureId) {
-            $feature = $this->requireFeatureById($featureId);
-            $feature->position = $order + 1;
-            $feature->save();
+        $jobOrder = explode(',', $sortedData);
+        foreach ($jobOrder as $order => $jobId) {
+            $job = $this->requireJobById($jobId);
+            $job->position = $order + 1;
+            $job->save();
         }
 
-        return $featureOrder;
+        return $jobOrder;
     }
 }

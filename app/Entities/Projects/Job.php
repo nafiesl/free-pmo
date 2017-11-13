@@ -2,18 +2,19 @@
 
 namespace App\Entities\Projects;
 
-use App\Entities\Projects\FeaturePresenter;
+use App\Entities\Projects\JobPresenter;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
-class Feature extends Model {
+class Job extends Model
+{
 
     use PresentableTrait;
 
-    protected $presenter = FeaturePresenter::class;
-	protected $guarded = ['id','created_at','updated_at'];
+    protected $presenter = JobPresenter::class;
+    protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function project()
     {

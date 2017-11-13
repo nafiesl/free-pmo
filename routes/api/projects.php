@@ -1,4 +1,4 @@
 <?php
 
 Route::resource('projects', 'ProjectsController');
-Route::get('projects/{project}/features', ['as' => 'projects.features', 'uses' => 'ProjectsController@features']);
+Route::get('projects/{project}/jobs', ['as' => 'projects.jobs', 'uses' => 'ProjectsController@jobs']);

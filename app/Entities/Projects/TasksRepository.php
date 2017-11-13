@@ -5,8 +5,8 @@ namespace App\Entities\Projects;
 use App\Entities\BaseRepository;
 
 /**
-* Tasks Repository Class
-*/
+ * Tasks Repository Class
+ */
 class TasksRepository extends BaseRepository
 {
     protected $model;
@@ -16,14 +16,14 @@ class TasksRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function createTask($taskData, $featureId)
+    public function createTask($taskData, $jobId)
     {
-        $taskData['feature_id'] = $featureId;
+        $taskData['job_id'] = $jobId;
         return $this->storeArray($taskData);
     }
 
-    public function getTasksByFeatureId($featureId)
+    public function getTasksByJobId($jobId)
     {
-        return Task::whereTaskId($featureId)->get();
+        return Task::whereTaskId($jobId)->get();
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Tasks;
+namespace App\Http\Requests\Jobs;
 
-use App\Entities\Projects\Job;
+use App\Entities\Projects\Project;
 use App\Http\Requests\Request;
 
 class DeleteRequest extends Request
@@ -15,8 +15,8 @@ class DeleteRequest extends Request
      */
     public function authorize()
     {
-        $job = Job::findOrFail($this->get('job_id'));
-        return auth()->user()->can('manage_job', $job);
+        $project = Project::findOrFail($this->get('project_id'));
+        return auth()->user()->can('manage_jobs', $project);
     }
 
     /**
@@ -27,8 +27,8 @@ class DeleteRequest extends Request
     public function rules()
     {
         return [
-            'task_id' => 'required',
-            'job_id'  => 'required',
+            'job_id'     => 'required',
+            'project_id' => 'required',
         ];
     }
 

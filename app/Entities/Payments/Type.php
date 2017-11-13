@@ -8,7 +8,7 @@ class Type extends ReferenceAbstract
 {
     protected static $lists = [
         1 => 'project',
-        2 => 'add_feature',
+        2 => 'add_job',
         3 => 'maintenance',
     ];
 

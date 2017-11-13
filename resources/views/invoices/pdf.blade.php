@@ -52,7 +52,7 @@
                     <p><strong>{{ $invoice->project->customer->name }}</strong></p>
                 </td>
             </tr>
-            <tr><td colspan="3">{{ trans('project.features') }} :</td></tr>
+            <tr><td colspan="3">{{ trans('project.jobs') }} :</td></tr>
             <tr>
                 <td colspan="3">
                 <table border="1" class="receipt-table" style="width: 100%">

@@ -15,6 +15,7 @@ class SubscriptionTypeTest extends TestCase
         $this->assertEquals([
             1 => trans('subscription.types.domain'),
             2 => trans('subscription.types.hosting'),
+            3 => trans('subscription.types.maintenance'),
         ], $subscriptionType->toArray());
     }
 
@@ -25,6 +26,7 @@ class SubscriptionTypeTest extends TestCase
 
         $this->assertEquals(trans('subscription.types.domain'), $subscriptionType->getNameById(1));
         $this->assertEquals(trans('subscription.types.hosting'), $subscriptionType->getNameById(2));
+        $this->assertEquals(trans('subscription.types.maintenance'), $subscriptionType->getNameById(3));
     }
 
     /** @test */
@@ -34,5 +36,6 @@ class SubscriptionTypeTest extends TestCase
 
         $this->assertEquals('#337ab7', $subscriptionType->getColorById(1));
         $this->assertEquals('#4caf50', $subscriptionType->getColorById(2));
+        $this->assertEquals('#00b3ff', $subscriptionType->getColorById(3));
     }
 }

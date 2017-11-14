@@ -37,7 +37,7 @@ abstract class BaseRepository extends EloquentRepository
 
     public function getVendorsList()
     {
-        return Customer::orderBy('name')->pluck('name', 'id');
+        return Vendor::orderBy('name')->pluck('name', 'id');
     }
 
     public function getProjectsList()

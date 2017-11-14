@@ -14,10 +14,7 @@
                 <tr>
                     <td>{{ trans('project.customer') }}</td>
                     <td>
-                        {{ $project->present()->customerNameAndEmail }}
-                        @if ($project->customer_id && auth()->id() == $project->owner_id)
-                        {!! link_to_route('users.edit', trans('app.edit'), [$project->customer_id], ['title' => trans('customer.edit')]) !!}
-                        @endif
+                        {{ $project->customer->nameLink() }}
                     </td>
                 </tr>
             </tbody>

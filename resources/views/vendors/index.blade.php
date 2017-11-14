@@ -25,7 +25,7 @@
                     <tr>
                         <th class="text-center">{{ trans('app.table_no') }}</th>
                         <th>{{ trans('vendor.name') }}</th>
-                        <th>{{ trans('vendor.description') }}</th>
+                        <th>{{ trans('app.notes') }}</th>
                         <th class="text-center">{{ trans('app.action') }}</th>
                     </tr>
                 </thead>
@@ -34,7 +34,7 @@
                     <tr>
                         <td class="text-center">{{ $vendors->firstItem() + $key }}</td>
                         <td>{{ $vendor->name }}</td>
-                        <td>{{ $vendor->description }}</td>
+                        <td>{{ $vendor->notes }}</td>
                         <td class="text-center">
                             {!! link_to_route(
                                 'vendors.index',

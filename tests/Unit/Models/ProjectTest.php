@@ -14,6 +14,20 @@ use Tests\TestCase;
 class ProjectTest extends TestCase
 {
     /** @test */
+    public function a_project_has_name_link_method()
+    {
+        $project = factory(Project::class)->make();
+        $this->assertEquals(
+            link_to_route('projects.show', $project->name, [$project->id], [
+                'title' => trans(
+                    'app.show_detail_title',
+                    ['name' => $project->name, 'type' => trans('project.project')]
+                ),
+            ]), $project->nameLink()
+        );
+    }
+
+    /** @test */
     public function a_project_has_many_jobs()
     {
         $project = factory(Project::class)->create();
@@ -133,13 +147,6 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $this->assertInstanceOf(Collection::class, $project->files);
-    }
-
-    /** @test */
-    public function a_project_has_name_link_method()
-    {
-        $project = factory(Project::class)->make();
-        $this->assertEquals(link_to_route('projects.show', $project->name, [$project->id]), $project->nameLink());
     }
 
     /** @test */

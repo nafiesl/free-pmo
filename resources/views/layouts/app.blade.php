@@ -10,7 +10,7 @@
     <title>@yield('title', Option::get('app_name', 'Aplikasi Laravel'))</title>
 
     @yield('ext_css')
-    {!! Html::style('assets/css/app.s.css') !!}
+    {!! Html::style('assets/css/app.css') !!}
 </head>
 <body>
     <div id="wrapper">

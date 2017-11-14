@@ -9,11 +9,7 @@
     <meta name="author" content="">
     <title>@yield('title', Option::get('app_name', 'Aplikasi Laravel'))</title>
 
-    {{-- {!! Html::style('assets/css/bootstrap.min.css') !!} --}}
-    {{-- {!! Html::style('assets/css/bootstrap-theme.min.css') !!} --}}
-    {{-- {!! Html::style('assets/css/font-awesome.min.css') !!} --}}
-    {{-- {!! Html::style('assets/css/sb-admin-2.css') !!} --}}
-    {!! Html::style('assets/css/app.s.css') !!}
+    {!! Html::style('assets/css/app.css') !!}
     @yield('ext_css')
 </head>
 <body>

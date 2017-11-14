@@ -44,7 +44,8 @@ return [
 
     // Types
     'types' => [
-        'domain'  => 'Domain',
-        'hosting' => 'Hosting',
+        'domain'      => 'Domain',
+        'hosting'     => 'Hosting',
+        'maintenance' => 'Maintenance',
     ],
 ];

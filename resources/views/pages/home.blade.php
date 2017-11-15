@@ -1,24 +1,20 @@
-@inject('projectStatuses', 'App\Entities\Projects\Status')
-
 @extends('layouts.dashboard')
 
 @section('title', trans('nav_menu.dashboard'))
 
 @section('content-dashboard')
 
-<?php use Facades\App\Queries\AdminDashboardQuery;?>
-
 <div class="row">
     <div class="col-lg-5">
         <legend style="border-bottom: none" class="text-center">Project Status Stats</legend>
         <div class="row">
-            @foreach($projectStatuses::all() as $statusId => $status)
+            @foreach(ProjectStatus::all() as $statusId => $status)
             <div class="col-lg-6 col-md-4 col-xs-6">
                 @include('view-components.dashboard-panel', [
-                    'class' => $projectStatuses->getColorById($statusId),
-                    'icon' => $projectStatuses->getIconById($statusId),
+                    'class' => ProjectStatus::getColorById($statusId),
+                    'icon' => ProjectStatus::getIconById($statusId),
                     'number' => array_key_exists($statusId, $projectStatusStats) ? $projectStatusStats[$statusId] : 0,
-                    'text' => $projectStatuses::getNameById($statusId),
+                    'text' => ProjectStatus::getNameById($statusId),
                     'linkRoute' => route('projects.index', ['status' => $statusId]),
                 ])
             </div>
@@ -36,13 +32,13 @@
                 </tr>
                 <tr>
                     <td class="text-center text-primary lead" style="border-top: none;">
-                        {{ $totalEarnings = formatRp(AdminDashboardQuery::totalEarnings($queriedYear)) }}
+                        {{ $totalEarnings = formatRp(AdminDashboard::totalEarnings($queriedYear)) }}
                     </td>
                     <td class="text-center text-primary lead" style="border-top: none;">
-                        {{ $totalFinishedProjects = AdminDashboardQuery::totalFinishedProjects($queriedYear) }} Projects
+                        {{ $totalFinishedProjects = AdminDashboard::totalFinishedProjects($queriedYear) }} Projects
                     </td>
                     <td class="text-center text-primary lead" style="border-top: none;">
-                        {{ $currentOutstandingCustomerPayment = formatRp(AdminDashboardQuery::currentOutstandingCustomerPayment($queriedYear)) }}
+                        {{ $currentOutstandingCustomerPayment = formatRp(AdminDashboard::currentOutstandingCustomerPayment($queriedYear)) }}
                     </td>
                 </tr>
             </table>
@@ -73,7 +69,7 @@
                     <th class="col-xs-3 text-right">@lang('invoice.amount')</th>
                     <th class="col-xs-5 text-center">@lang('subscription.due_date')</th>
                 </tr>
-                @foreach(AdminDashboardQuery::upcomingSubscriptionDueDatesList() as $subscription)
+                @foreach(AdminDashboard::upcomingSubscriptionDueDatesList() as $subscription)
                 <tr>
                     <td>{{ $subscription->nameLink() }}</td>
                     <td>{{ $subscription->customer->name }}</td>

@@ -20,11 +20,11 @@
         @include('projects.partials.project-show')
     </div>
     <div class="col-md-6">
-        @include('projects.partials.project-stats')
         {!! Form::model($project, ['route' => ['projects.status-update', $project->id], 'method' => 'patch','class' => 'well well-sm form-inline']) !!}
         {!! FormField::select('status_id', ProjectStatus::toArray(), ['label' => trans('project.status')]) !!}
-        {!! Form::submit('Update Project Status', ['class' => 'btn btn-info']) !!}
+        {!! Form::submit('Update Project Status', ['class' => 'btn btn-info btn-sm']) !!}
         {!! Form::close() !!}
+        @include('projects.partials.project-stats')
     </div>
 </div>
 @endsection

@@ -32,7 +32,7 @@
                 <tr>
                     <td class="col-xs-2 text-center">Yearly Earnings ({{ $queriedYear }})</td>
                     <td class="col-xs-2 text-center">Finished Projects ({{ $queriedYear }})</td>
-                    <td class="col-xs-2 text-center">Receiveable Earnings</td>
+                    <td class="col-xs-2 text-center">Current Receiveable Earnings</td>
                 </tr>
                 <tr>
                     <td class="text-center text-primary lead" style="border-top: none;">
@@ -58,7 +58,7 @@
                 <span class="pull-right text-primary">{{ $totalFinishedProjects }} Projects</span>
             </li>
             <li class="list-group-item">
-                Receiveable Earnings
+                Current Receiveable Earnings
                 <span class="pull-right text-primary">{{ $currentOutstandingCustomerPayment }}</span>
             </li>
         </ul>

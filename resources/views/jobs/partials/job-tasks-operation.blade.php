@@ -35,7 +35,7 @@
                 ]) !!}
             </div>
             <div class="col-md-2" style="font-size: 28px; margin-top: 15px;">
-                <strong id="ap_weight">{{ $editableTask->progress }}</strong> %
+                <strong id="ap_weight">{{ $editableTask->progress }}</strong>%
             </div>
             <div class="col-md-6">
                 {!! FormField::select('job_id', $job->project->jobs->pluck('name','id'), ['label' => 'Pindahkan ke Fitur lain']) !!}

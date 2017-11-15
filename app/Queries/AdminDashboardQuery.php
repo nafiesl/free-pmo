@@ -3,6 +3,7 @@
 namespace App\Queries;
 
 use App\Entities\Payments\Payment;
+use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
 use Carbon\Carbon;
@@ -87,5 +88,21 @@ class AdminDashboardQuery
         });
 
         return $filteredSubscriptions->load('customer');
+    }
+
+    /**
+     * Get on progress project jobs count
+     *
+     * @return integer
+     */
+    public function onProgressJobCount()
+    {
+        return Job::whereHas('tasks', function ($query) {
+            return $query->where('progress', '<', 100);
+        })
+            ->whereHas('project', function ($query) {
+                return $query->whereIn('status_id', [2, 3]);
+            })
+            ->count();
     }
 }

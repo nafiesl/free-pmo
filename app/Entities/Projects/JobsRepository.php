@@ -30,6 +30,17 @@ class JobsRepository extends BaseRepository
             ->get();
     }
 
+    public function getProjectJobs($projectId, $type = null)
+    {
+        return Job::where(function ($query) use ($projectId, $type) {
+            $query->whereProjectId($projectId);
+            if ($type) {
+                $query->whereTypeId($type);
+            }
+
+        })->orderBy('position')->with('worker', 'tasks')->get();
+    }
+
     public function requireProjectById($projectId)
     {
         return Project::findOrFail($projectId);

@@ -86,13 +86,6 @@ class ProjectsController extends Controller
         return redirect()->route('projects.index');
     }
 
-    public function jobs($projectId)
-    {
-        $project = $this->repo->requireById($projectId);
-        $jobs = $this->repo->getProjectJobs($projectId);
-        return view('projects.jobs.index', compact('project', 'jobs'));
-    }
-
     public function subscriptions($projectId)
     {
         $project = $this->repo->requireById($projectId);

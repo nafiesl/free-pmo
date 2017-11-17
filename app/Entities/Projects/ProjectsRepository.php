@@ -91,17 +91,6 @@ class ProjectsRepository extends BaseRepository
         return 'deleted';
     }
 
-    public function getProjectJobs($projectId, $type = null)
-    {
-        return Job::where(function ($query) use ($projectId, $type) {
-            $query->whereProjectId($projectId);
-            if ($type) {
-                $query->whereTypeId($type);
-            }
-
-        })->orderBy('position')->with('worker', 'tasks')->get();
-    }
-
     public function updateStatus($statusId, $projectId)
     {
         $project = $this->requireById($projectId);

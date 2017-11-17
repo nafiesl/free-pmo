@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Projects;
 
 use App\Entities\Projects\JobsRepository;
+use App\Entities\Projects\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Jobs\CreateRequest;
 use App\Http\Requests\Jobs\DeleteRequest;
@@ -19,10 +20,10 @@ class JobsController extends Controller
         $this->repo = $repo;
     }
 
-    public function index()
+    public function index(Project $project)
     {
-        $jobs = $this->repo->getUnfinishedJobs();
-        return view('jobs.unfinished', compact('jobs'));
+        $jobs = $this->repo->getProjectJobs($project->id);
+        return view('projects.jobs.index', compact('project', 'jobs'));
     }
 
     public function create($projectId)

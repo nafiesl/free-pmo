@@ -6,8 +6,6 @@ use App\Entities\Projects\JobsRepository;
 use App\Entities\Projects\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Jobs\CreateRequest;
-use App\Http\Requests\Jobs\DeleteRequest;
-use App\Http\Requests\Jobs\UpdateRequest;
 use Illuminate\Http\Request;
 
 /**
@@ -64,66 +62,4 @@ class JobsController extends Controller
         flash()->success(trans('job.created_from_other_project'));
         return redirect()->route('projects.jobs.index', $projectId);
     }
-
-    public function show(Request $req, $jobId)
-    {
-        $editableTask = null;
-        $job = $this->repo->requireById($jobId);
-
-        if ($req->get('action') == 'task_edit' && $req->has('task_id')) {
-            $editableTask = $this->repo->requireTaskById($req->get('task_id'));
-        }
-
-        if ($req->get('action') == 'task_delete' && $req->has('task_id')) {
-            $editableTask = $this->repo->requireTaskById($req->get('task_id'));
-        }
-
-        return view('jobs.show', compact('job', 'editableTask'));
-    }
-
-    public function edit($jobId)
-    {
-        $job = $this->repo->requireById($jobId);
-        $workers = $this->repo->getWorkersList();
-        return view('jobs.edit', compact('job', 'workers'));
-    }
-
-    public function update(UpdateRequest $req, $jobId)
-    {
-        $job = $this->repo->update($req->except(['_method', '_token']), $jobId);
-        flash()->success(trans('job.updated'));
-        return redirect()->route('jobs.show', $job->id);
-    }
-
-    public function delete($jobId)
-    {
-        $job = $this->repo->requireById($jobId);
-        return view('jobs.delete', compact('job'));
-    }
-
-    public function destroy(DeleteRequest $req, $jobId)
-    {
-        $job = $this->repo->requireById($jobId);
-        $projectId = $job->project_id;
-        if ($jobId == $req->get('job_id')) {
-            $job->tasks()->delete();
-            $job->delete();
-            flash()->success(trans('job.deleted'));
-        } else {
-            flash()->error(trans('job.undeleted'));
-        }
-
-        return redirect()->route('projects.jobs.index', $projectId);
-    }
-
-    public function tasksReorder(Request $req, $jobId)
-    {
-        if ($req->ajax()) {
-            $data = $this->repo->tasksReorder($req->get('postData'));
-            return 'oke';
-        }
-
-        return null;
-    }
-
 }

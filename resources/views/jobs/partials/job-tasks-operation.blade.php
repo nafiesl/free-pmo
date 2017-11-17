@@ -5,7 +5,6 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-5">{!! FormField::text('name') !!}</div>
-            <div class="col-sm-5">{!! FormField::text('route_name') !!}</div>
             <div class="col-sm-2">{!! FormField::text('progress', ['addon' => ['after' => '%'],'value' => 0]) !!}</div>
         </div>
         {!! FormField::textarea('description') !!}
@@ -21,7 +20,6 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-6">{!! FormField::text('name') !!}</div>
-            <div class="col-sm-6">{!! FormField::text('route_name') !!}</div>
         </div>
         {!! FormField::textarea('description') !!}
         <div class="row">

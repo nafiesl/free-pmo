@@ -23,7 +23,6 @@ class ManageTasksTest extends TestCase
             'name'        => 'Nama Task Baru',
             'description' => 'Deskripsi task yang dikerjakani.',
             'progress'    => 70,
-            'route_name'  => 'tasks/create',
         ]);
 
         $this->seePageIs(route('jobs.show', $job->id));
@@ -34,7 +33,6 @@ class ManageTasksTest extends TestCase
             'description' => 'Deskripsi task yang dikerjakani.',
             'progress'    => 70,
             'job_id'      => $job->id,
-            'route_name'  => 'tasks/create',
         ]);
     }
 

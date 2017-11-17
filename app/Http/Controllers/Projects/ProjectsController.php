@@ -9,6 +9,11 @@ use App\Http\Requests\Projects\DeleteRequest;
 use App\Http\Requests\Projects\UpdateRequest;
 use Illuminate\Http\Request;
 
+/**
+ * Projects Controller
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
+ */
 class ProjectsController extends Controller
 {
     private $repo;
@@ -85,7 +90,7 @@ class ProjectsController extends Controller
     {
         $project = $this->repo->requireById($projectId);
         $jobs = $this->repo->getProjectJobs($projectId);
-        return view('projects.jobs', compact('project', 'jobs'));
+        return view('projects.jobs.index', compact('project', 'jobs'));
     }
 
     public function subscriptions($projectId)

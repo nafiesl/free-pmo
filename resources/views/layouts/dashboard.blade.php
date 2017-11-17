@@ -20,4 +20,5 @@
 @include('pages.partials.dashboard-nav-tabs')
 
 @yield('content-dashboard')
+
 @endsection

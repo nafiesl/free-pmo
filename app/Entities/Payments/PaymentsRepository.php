@@ -6,6 +6,8 @@ use App\Entities\BaseRepository;
 
 /**
  * Payments Repository Class
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class PaymentsRepository extends BaseRepository
 {
@@ -44,20 +46,5 @@ class PaymentsRepository extends BaseRepository
         }
 
         return $this->storeArray($paymentData);
-    }
-
-    public function update($paymentData = [], $paymentId)
-    {
-        foreach ($paymentData as $key => $value) {
-            if ( ! $paymentData[$key]) {
-                $paymentData[$key] = null;
-            }
-
-        }
-
-        $paymentData['amount'] = str_replace('.', '', $paymentData['amount']);
-        $payment               = $this->requireById($paymentId);
-        $payment->update($paymentData);
-        return $payment;
     }
 }

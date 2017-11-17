@@ -8,6 +8,11 @@ use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use Tests\TestCase;
 
+/**
+ * Manage Payments Feature Test
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class ManagePaymentsTest extends TestCase
 {
     /** @test */
@@ -17,24 +22,26 @@ class ManagePaymentsTest extends TestCase
         $customer = factory(Customer::class)->create();
         $project = factory(Project::class)->create();
 
-        $this->visit(route('payments.index'));
-        $this->seePageIs(route('payments.index'));
-        $this->click(trans('payment.create'));
+        $this->visit(route('payments.create'));
+        $this->seePageIs(route('payments.create'));
 
         // Fill Form
-        $this->seePageIs(route('payments.create'));
-        $this->type('2015-05-01', 'date');
-        $this->select(1, 'in_out');
-        $this->type(1000000, 'amount');
-        $this->select($project->id, 'project_id');
-        $this->select($customer->id, 'partner_id');
-        $this->type('Pembayaran DP', 'description');
-        $this->press(trans('payment.create'));
+        $this->submitForm(trans('payment.create'), [
+            'date'        => '2015-05-01',
+            'in_out'      => 1,
+            'type_id'     => 1,
+            'amount'      => 1000000,
+            'project_id'  => $project->id,
+            'partner_id'  => $customer->id,
+            'description' => 'Pembayaran DP',
+        ]);
 
         $this->see(trans('payment.created'));
+
         $this->seeInDatabase('payments', [
             'project_id'   => $project->id,
             'amount'       => 1000000,
+            'type_id'      => 1,
             'in_out'       => 1,
             'date'         => '2015-05-01',
             'partner_type' => Customer::class,
@@ -49,22 +56,22 @@ class ManagePaymentsTest extends TestCase
         $vendor = factory(Vendor::class)->create();
         $project = factory(Project::class)->create();
 
-        $this->visit(route('payments.index'));
-        $this->seePageIs(route('payments.index'));
-        $this->click(trans('payment.create'));
+        $this->visit(route('payments.create'));
+        $this->seePageIs(route('payments.create'));
 
         // Fill Form
-        $this->seePageIs(route('payments.create'));
-        $this->type('2015-05-01', 'date');
-        $this->select(0, 'in_out');
-        $this->select(3, 'type_id');
-        $this->type(1000000, 'amount');
-        $this->select($project->id, 'project_id');
-        $this->select($vendor->id, 'partner_id');
-        $this->type('Pembayaran DP', 'description');
-        $this->press(trans('payment.create'));
+        $this->submitForm(trans('payment.create'), [
+            'date'        => '2015-05-01',
+            'in_out'      => 0,
+            'type_id'     => 3,
+            'amount'      => 1000000,
+            'project_id'  => $project->id,
+            'partner_id'  => $vendor->id,
+            'description' => 'Pembayaran DP',
+        ]);
 
         $this->see(trans('payment.created'));
+
         $this->seeInDatabase('payments', [
             'project_id'   => $project->id,
             'amount'       => 1000000,
@@ -84,18 +91,21 @@ class ManagePaymentsTest extends TestCase
 
         $this->visit(route('payments.edit', $payment->id));
         $this->seePageIs(route('payments.edit', $payment->id));
-        $this->type('2016-05-20', 'date');
-        $this->select(1, 'in_out');
-        $this->select(3, 'type_id');
-        $this->type(1234567890, 'amount');
-        $this->press(trans('payment.update'));
+
+        $this->submitForm(trans('payment.update'), [
+            'date'        => '2016-05-20',
+            'in_out'      => 0,
+            'type_id'     => 3,
+            'amount'      => 1000000,
+            'description' => 'Pembayaran DP',
+        ]);
 
         $this->seePageIs(route('payments.show', $payment->id));
 
         $this->see(trans('payment.updated'));
         $this->seeInDatabase('payments', [
             'date'   => '2016-05-20',
-            'amount' => 1234567890,
+            'amount' => 1000000,
         ]);
     }
 

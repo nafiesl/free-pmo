@@ -6,6 +6,8 @@ use App\Entities\Users\User;
 use Tests\TestCase;
 
 /**
+ * Manage Users Feature Test
+ *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class ManageUsersTest extends TestCase

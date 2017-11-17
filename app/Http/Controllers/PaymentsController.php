@@ -10,6 +10,11 @@ use App\Http\Requests\Payments\DeleteRequest;
 use App\Http\Requests\Payments\UpdateRequest;
 use Illuminate\Http\Request;
 
+/**
+ * Payments Controller class
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class PaymentsController extends Controller
 {
     private $repo;
@@ -52,11 +57,12 @@ class PaymentsController extends Controller
         return view('payments.edit', compact('payment', 'projects', 'partners'));
     }
 
-    public function update(UpdateRequest $request, $paymentId)
+    public function update(UpdateRequest $request, Payment $payment)
     {
-        $payment = $this->repo->update($request->except(['_method', '_token']), $paymentId);
+        $payment->update($request->except(['_method', '_token']));
+
         flash()->success(trans('payment.updated'));
-        return redirect()->route('payments.show', $paymentId);
+        return redirect()->route('payments.show', $payment->id);
     }
 
     public function delete(Payment $payment)

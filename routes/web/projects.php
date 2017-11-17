@@ -7,11 +7,21 @@ Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Projects'], funct
     Route::get('projects/{id}/delete', ['as' => 'projects.delete', 'uses' => 'ProjectsController@delete']);
     Route::get('projects/{id}/jobs', ['as' => 'projects.jobs', 'uses' => 'ProjectsController@jobs']);
     Route::get('projects/{id}/jobs-export/{type?}', ['as' => 'projects.jobs-export', 'uses' => 'ProjectsController@jobsExport']);
-    Route::get('projects/{id}/payments', ['as' => 'projects.payments', 'uses' => 'ProjectsController@payments']);
     Route::get('projects/{id}/subscriptions', ['as' => 'projects.subscriptions', 'uses' => 'ProjectsController@subscriptions']);
     Route::post('projects/{id}/jobs-reorder', ['as' => 'projects.jobs-reorder', 'uses' => 'ProjectsController@jobsReorder']);
     Route::patch('projects/{id}/status-update', ['as' => 'projects.status-update', 'uses' => 'ProjectsController@statusUpdate']);
     Route::resource('projects', 'ProjectsController');
+
+    /**
+     * Project Payments Routes
+     */
+    Route::get('projects/{id}/payments', ['as' => 'projects.payments', 'uses' => 'ProjectsController@payments']);
+
+    /**
+     * Project Fees Routes
+     */
+    Route::get('projects/{project}/fees/create', ['as' => 'projects.fees.create', 'uses' => 'FeesController@create']);
+    Route::post('projects/{project}/fees/store', ['as' => 'projects.fees.store', 'uses' => 'FeesController@store']);
 
     /**
      * Project Invoices Routes

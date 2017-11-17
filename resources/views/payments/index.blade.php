@@ -10,7 +10,7 @@
 <div class="well well-sm text-right">
     <div class="pull-left hidden-xs">{!! str_replace('/?', '?', $payments->appends(Request::except('page'))->render()) !!}</div>
     {{ Form::open(['method'=>'get','class'=>'form-inline']) }}
-    {{ Form::text('q', Request::get('q'), ['class'=>'form-control index-search-field','placeholder' => trans('payment.search')]) }}
+    {{ Form::text('q', request('q'), ['class'=>'form-control index-search-field','placeholder' => trans('payment.search')]) }}
     {{ Form::select('partner_id', ['' => '-- '.trans('payment.customer').' --'] + $partnersList, request('partner_id'), ['class' => 'form-control', 'id' => 'partner_id']) }}
     {{ Form::submit(trans('app.search'), ['class' => 'btn btn-info btn-sm']) }}
     {{ link_to_route('payments.index','Reset',[],['class' => 'btn btn-default btn-sm']) }}
@@ -30,7 +30,15 @@
         @forelse($payments as $key => $payment)
         <tr>
             <td>{{ $payments->firstItem() + $key }}</td>
-            <td>{!! link_to_route('projects.payments', $payment->project->name, [$payment->project_id], ['title' => 'Lihat seluruh Pembayaran Project ini']) !!} [{{ $payment->type() }}]</td>
+            <td>
+                {{ link_to_route(
+                    'projects.payments',
+                    $payment->project->name,
+                    [$payment->project_id],
+                    ['title' => 'Lihat seluruh Pembayaran Project ini']
+                ) }}<br>
+                <strong class="text-success">{{ $payment->type() }}</strong>
+            </td>
             <td class="text-center">{{ $payment->date }}</td>
             <td class="text-right">{{ $payment->present()->amount }}</td>
             <td>{{ $payment->description }}</td>

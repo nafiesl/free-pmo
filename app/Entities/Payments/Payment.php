@@ -26,6 +26,12 @@ class Payment extends Model
 
     public function type()
     {
-        return Type::getNameById($this->type_id);
+        $type = Type::getNameById($this->type_id);
+
+        if ($this->in_out == 0 && $this->partner_type == 'App\Entities\Users\User') {
+            $type .= ' Fee';
+        }
+
+        return $type;
     }
 }

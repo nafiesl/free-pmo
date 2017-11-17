@@ -3,15 +3,15 @@
 @section('subtitle', trans('project.jobs'))
 
 @section('action-buttons')
-{!! html_link_to_route('jobs.create', trans('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-{!! html_link_to_route('jobs.add-from-other-project', trans('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+{!! html_link_to_route('projects.jobs.create', trans('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+{!! html_link_to_route('projects.jobs.add-from-other-project', trans('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
 @endsection
 
 @section('content-project')
 
 @if ($jobs->isEmpty())
 <p>{{ trans('project.no_jobs') }},
-    {{ link_to_route('jobs.create', trans('job.create'), [$project->id]) }}.
+    {{ link_to_route('projects.jobs.create', trans('job.create'), [$project->id]) }}.
 </p>
 @else
 

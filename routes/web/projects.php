@@ -29,9 +29,9 @@ Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Projects'], funct
     /**
      * Project Jobs Routes
      */
-    Route::get('projects/{id}/jobs/create', ['as' => 'jobs.create', 'uses' => 'JobsController@create']);
-    Route::get('projects/{id}/jobs/add-from-other-project', ['as' => 'jobs.add-from-other-project', 'uses' => 'JobsController@addFromOtherProject']);
+    Route::get('projects/{id}/jobs/create', ['as' => 'projects.jobs.create', 'uses' => 'JobsController@create']);
     Route::post('projects/{id}/jobs', ['as' => 'projects.jobs.store', 'uses' => 'JobsController@store']);
+    Route::get('projects/{id}/jobs/add-from-other-project', ['as' => 'projects.jobs.add-from-other-project', 'uses' => 'JobsController@addFromOtherProject']);
     Route::post('projects/{id}/jobs/store-from-other-project', ['as' => 'projects.jobs.store-from-other-project', 'uses' => 'JobsController@storeFromOtherProject']);
     Route::get('jobs/{id}/delete', ['as' => 'jobs.delete', 'uses' => 'JobsController@delete']);
     Route::post('jobs/{id}/tasks-reorder', ['as' => 'jobs.tasks-reorder', 'uses' => 'JobsController@tasksReorder']);

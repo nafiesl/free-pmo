@@ -28,7 +28,7 @@ class ManageJobsTest extends TestCase
 
         $this->visit(route('projects.jobs.index', $project->id));
         $this->click(trans('job.create'));
-        $this->seePageIs(route('jobs.create', $project->id));
+        $this->seePageIs(route('projects.jobs.create', $project->id));
 
         $this->submitForm(trans('job.create'), [
             'name'        => 'Nama Fitur Baru',
@@ -148,11 +148,11 @@ class ManageJobsTest extends TestCase
         $this->visit(route('projects.jobs.index', $projects[1]->id));
 
         $this->click(trans('job.add_from_other_project'));
-        $this->seePageIs(route('jobs.add-from-other-project', $projects[1]->id));
+        $this->seePageIs(route('projects.jobs.add-from-other-project', $projects[1]->id));
 
         $this->select($projects[0]->id, 'project_id');
         $this->press(trans('project.show_jobs'));
-        $this->seePageIs(route('jobs.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]));
+        $this->seePageIs(route('projects.jobs.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]));
 
         $this->submitForm(trans('job.create'), [
             'job_ids['.$jobs[0]->id.']' => $jobs[0]->id,

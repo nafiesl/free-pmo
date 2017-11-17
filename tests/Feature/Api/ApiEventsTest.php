@@ -7,12 +7,17 @@ use App\Entities\Users\Event;
 use App\Entities\Users\User;
 use Tests\TestCase;
 
+/**
+ * Manage Events API Feature Test
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
+ */
 class ApiEventsTest extends TestCase
 {
     /** @test */
     public function it_can_get_all_existing_events()
     {
-        $user   = factory(User::class)->create();
+        $user = factory(User::class)->create();
         $events = factory(Event::class, 2)->create(['user_id' => $user->id]);
 
         $this->getJson(route('api.events.index'), [
@@ -37,7 +42,7 @@ class ApiEventsTest extends TestCase
     /** @test */
     public function user_can_create_new_event()
     {
-        $user    = factory(User::class)->create();
+        $user = factory(User::class)->create();
         $project = factory(Project::class)->create();
 
         $this->postJson(route('api.events.store'), [
@@ -76,9 +81,9 @@ class ApiEventsTest extends TestCase
     /** @test */
     public function user_can_update_their_event()
     {
-        $user    = factory(User::class)->create();
+        $user = factory(User::class)->create();
         $project = factory(Project::class)->create();
-        $event   = factory(Event::class)->create(['user_id' => $user->id]);
+        $event = factory(Event::class)->create(['user_id' => $user->id]);
         // dump($event->toArray());
         $this->patchJson(route('api.events.update'), [
             'id'         => $event->id,
@@ -111,7 +116,7 @@ class ApiEventsTest extends TestCase
     /** @test */
     public function user_can_delete_their_event()
     {
-        $user  = factory(User::class)->create();
+        $user = factory(User::class)->create();
         $event = factory(Event::class)->create(['user_id' => $user->id]);
 
         $this->deleteJson(route('api.events.destroy'), ['id' => $event->id], [
@@ -128,7 +133,7 @@ class ApiEventsTest extends TestCase
     /** @test */
     public function user_can_reschedule_their_event()
     {
-        $user  = factory(User::class)->create();
+        $user = factory(User::class)->create();
         $event = factory(Event::class)->create(['user_id' => $user->id, 'start' => '2016-11-17 12:00:00']);
 
         $this->patchJson(route('api.events.reschedule'), [

@@ -6,6 +6,11 @@ use App\Entities\Projects\ProjectsRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+/**
+ * Projects Controller
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
+ */
 class ProjectsController extends Controller
 {
     private $repo;

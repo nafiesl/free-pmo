@@ -154,16 +154,19 @@ class ManageJobsTest extends TestCase
         $this->press(trans('project.show_jobs'));
         $this->seePageIs(route('jobs.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]));
 
-        $form = $this->getForm(trans('job.create'));
-        $form['job_ids'][$jobs[0]->id]->tick();
-        $form['job_ids'][$jobs[1]->id]->tick();
-        $form[$jobs[0]->id.'_task_ids'][$tasks1[0]->id]->tick();
-        $form[$jobs[0]->id.'_task_ids'][$tasks1[1]->id]->tick();
-        $form[$jobs[0]->id.'_task_ids'][$tasks1[2]->id]->tick();
-        $form[$jobs[1]->id.'_task_ids'][$tasks2[0]->id]->tick();
-        $form[$jobs[1]->id.'_task_ids'][$tasks2[1]->id]->tick();
-        $form[$jobs[1]->id.'_task_ids'][$tasks2[2]->id]->tick();
-        $this->makeRequestUsingForm($form);
+        $this->submitForm(trans('job.create'), [
+            'job_ids['.$jobs[0]->id.']' => $jobs[0]->id,
+
+            $jobs[0]->id.'_task_ids['.$tasks1[0]->id.']' => $tasks1[0]->id,
+            $jobs[0]->id.'_task_ids['.$tasks1[1]->id.']' => $tasks1[1]->id,
+            $jobs[0]->id.'_task_ids['.$tasks1[2]->id.']' => $tasks1[2]->id,
+
+            'job_ids['.$jobs[1]->id.']' => $jobs[1]->id,
+
+            $jobs[1]->id.'_task_ids['.$tasks2[0]->id.']' => $tasks2[0]->id,
+            $jobs[1]->id.'_task_ids['.$tasks2[1]->id.']' => $tasks2[1]->id,
+            $jobs[1]->id.'_task_ids['.$tasks2[2]->id.']' => $tasks2[2]->id,
+        ]);
 
         $this->seePageIs(route('projects.jobs.index', $projects[1]->id));
 

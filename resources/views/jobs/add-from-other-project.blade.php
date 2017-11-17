@@ -23,7 +23,7 @@
                 </div>
                 {!! Form::close() !!}
                 @if ($selectedProject)
-                {!! Form::open(['route'=>['jobs.store-from-other-project', $project->id]]) !!}
+                {!! Form::open(['route' => ['projects.jobs.store-from-other-project', $project->id]]) !!}
                 <ul class="list-unstyled">
                     @forelse($selectedProject->jobs as $key => $job)
                     <li>

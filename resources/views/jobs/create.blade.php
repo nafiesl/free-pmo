@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        {!! Form::open(['route'=>['jobs.store', $project->id]]) !!}
+        {!! Form::open(['route' => ['projects.jobs.store', $project->id]]) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('job.create') }}</h3></div>
             <div class="panel-body">

@@ -28,7 +28,7 @@
                 {!! Form::hidden('project_id', $job->project_id) !!}
                 {!! Form::submit(trans('job.update'), ['class'=>'btn btn-primary']) !!}
                 {!! link_to_route('jobs.show', trans('app.show'), [$job->id], ['class' => 'btn btn-info']) !!}
-                {!! link_to_route('projects.jobs', trans('job.back_to_index'), [$job->project_id], ['class' => 'btn btn-default']) !!}
+                {!! link_to_route('projects.jobs.index', trans('job.back_to_index'), [$job->project_id], ['class' => 'btn btn-default']) !!}
                 {!! link_to_route('jobs.delete', trans('job.delete'), [$job->id], ['class'=>'btn btn-danger pull-right']) !!}
             </div>
         </div>

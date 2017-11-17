@@ -28,7 +28,7 @@
 
             <div class="panel-footer">
                 {!! Form::submit(trans('job.create'), ['class'=>'btn btn-primary']) !!}
-                {!! link_to_route('projects.jobs', trans('app.cancel'), [$project->id], ['class'=>'btn btn-default']) !!}
+                {!! link_to_route('projects.jobs.index', trans('app.cancel'), [$project->id], ['class'=>'btn btn-default']) !!}
             </div>
         </div>
         {!! Form::close() !!}

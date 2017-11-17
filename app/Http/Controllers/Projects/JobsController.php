@@ -10,6 +10,11 @@ use App\Http\Requests\Jobs\DeleteRequest;
 use App\Http\Requests\Jobs\UpdateRequest;
 use Illuminate\Http\Request;
 
+/**
+ * Project Jobs Controller
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
+ */
 class JobsController extends Controller
 {
 
@@ -57,7 +62,7 @@ class JobsController extends Controller
     {
         $this->repo->createJobs($req->except('_token'), $projectId);
         flash()->success(trans('job.created_from_other_project'));
-        return redirect()->route('projects.jobs', $projectId);
+        return redirect()->route('projects.jobs.index', $projectId);
     }
 
     public function show(Request $req, $jobId)
@@ -108,7 +113,7 @@ class JobsController extends Controller
             flash()->error(trans('job.undeleted'));
         }
 
-        return redirect()->route('projects.jobs', $projectId);
+        return redirect()->route('projects.jobs.index', $projectId);
     }
 
     public function tasksReorder(Request $req, $jobId)

@@ -9,7 +9,7 @@
     <div class="pull-right">
         {!! html_link_to_route('jobs.create', trans('job.create'), [$job->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
         {!! link_to_route('jobs.edit', trans('job.edit'), [$job->id], ['class' => 'btn btn-warning']) !!}
-        {!! link_to_route('projects.jobs', trans('job.back_to_index'), [$job->project_id, '#' . $job->id], ['class' => 'btn btn-default']) !!}
+        {!! link_to_route('projects.jobs.index', trans('job.back_to_index'), [$job->project_id, '#' . $job->id], ['class' => 'btn btn-default']) !!}
     </div>
     {{ $job->name }} <small>{{ trans('job.show') }}</small>
 </h1>

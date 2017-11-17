@@ -9,6 +9,11 @@ use App\Entities\Projects\Task;
 use App\Entities\Users\User;
 use Tests\TestCase;
 
+/**
+ * Manage Project Feature Test
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
+ */
 class ManageJobsTest extends TestCase
 {
     /** @test */
@@ -21,7 +26,7 @@ class ManageJobsTest extends TestCase
 
         $worker = $this->createUser();
 
-        $this->visit(route('projects.jobs', $project->id));
+        $this->visit(route('projects.jobs.index', $project->id));
         $this->click(trans('job.create'));
         $this->seePageIs(route('jobs.create', $project->id));
 
@@ -98,7 +103,7 @@ class ManageJobsTest extends TestCase
         $this->click(trans('job.delete'));
         $this->press(trans('app.delete_confirm_button'));
 
-        $this->seePageIs(route('projects.jobs', $project->id));
+        $this->seePageIs(route('projects.jobs.index', $project->id));
 
         $this->see(trans('job.deleted'));
 
@@ -121,7 +126,7 @@ class ManageJobsTest extends TestCase
         $project = factory(Project::class)->create();
         $job = factory(Job::class)->create(['project_id' => $project->id, 'type_id' => 1]);
 
-        $this->visit(route('projects.jobs', $project->id));
+        $this->visit(route('projects.jobs.index', $project->id));
         $this->click('show-job-'.$job->id);
         $this->seePageIs(route('jobs.show', $project->id));
         $this->see(trans('job.show'));
@@ -140,7 +145,7 @@ class ManageJobsTest extends TestCase
         $tasks1 = factory(Task::class, 3)->create(['job_id' => $jobs[0]->id]);
         $tasks2 = factory(Task::class, 3)->create(['job_id' => $jobs[1]->id]);
 
-        $this->visit(route('projects.jobs', $projects[1]->id));
+        $this->visit(route('projects.jobs.index', $projects[1]->id));
 
         $this->click(trans('job.add_from_other_project'));
         $this->seePageIs(route('jobs.add-from-other-project', $projects[1]->id));
@@ -160,7 +165,7 @@ class ManageJobsTest extends TestCase
         $form[$jobs[1]->id.'_task_ids'][$tasks2[2]->id]->tick();
         $this->makeRequestUsingForm($form);
 
-        $this->seePageIs(route('projects.jobs', $projects[1]->id));
+        $this->seePageIs(route('projects.jobs.index', $projects[1]->id));
 
         $this->see(trans('job.created_from_other_project'));
 

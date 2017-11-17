@@ -52,7 +52,7 @@
             </div>
 
             <div class="panel-footer">
-                {!! link_to_route('projects.jobs', trans('app.cancel'), [$project->id], ['class'=>'btn btn-default']) !!}
+                {!! link_to_route('projects.jobs.index', trans('app.cancel'), [$project->id], ['class'=>'btn btn-default']) !!}
             </div>
         </div>
     </div>

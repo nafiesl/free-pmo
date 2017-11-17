@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-6 col-md-12">
-        <a href="{{ route('projects.jobs',[$project->id]) }}" title="Progress Berdasarkan Index Bobot Biaya Fitur">
+        <a href="{{ route('projects.jobs.index',[$project->id]) }}" title="Progress Berdasarkan Index Bobot Biaya Fitur">
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
@@ -15,7 +15,7 @@
         </a>
     </div>
     <div class="col-lg-6 col-md-12">
-        <a href="{{ route('projects.jobs',[$project->id]) }}" title="Total Fitur dan Task">
+        <a href="{{ route('projects.jobs.index',[$project->id]) }}" title="Total Fitur dan Task">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
@@ -30,7 +30,7 @@
         </a>
     </div>
     <div class="col-lg-6 col-md-12">
-        <a href="{{ route('projects.jobs',[$project->id]) }}" title="Collectible Earnings">
+        <a href="{{ route('projects.jobs.index',[$project->id]) }}" title="Collectible Earnings">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <div class="row">

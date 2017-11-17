@@ -21,9 +21,9 @@
     <div class="panel-heading">
         <div class="pull-right">
             @if (request('action') == 'sort_jobs')
-                {{ link_to_route('projects.jobs', trans('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
+                {{ link_to_route('projects.jobs.index', trans('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
             @else
-                {{ link_to_route('projects.jobs', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
+                {{ link_to_route('projects.jobs.index', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
 
                 {!! link_to_route('projects.jobs-export', trans('project.jobs_export_html'), [$project->id, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!} |
                 {!! link_to_route('projects.jobs-export', trans('project.jobs_export_excel'), [$project->id, 'excel', 'job_type' => $key], ['class' => '']) !!} |
@@ -86,9 +86,9 @@
                 <th class="text-right">{{ formatRp($groupedJobs->sum('price')) }}</th>
                 <th colspan="2">
                     @if (request('action') == 'sort_jobs')
-                        {{ link_to_route('projects.jobs', trans('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                        {{ link_to_route('projects.jobs.index', trans('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right']) }}
                     @else
-                        {{ link_to_route('projects.jobs', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                        {{ link_to_route('projects.jobs.index', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right']) }}
                     @endif
                 </th>
             </tr>

@@ -51,17 +51,17 @@ Route::get('agency', [
 Route::get('agency/edit', [
     'as'         => 'users.agency.edit',
     'uses'       => 'Users\AgencyController@edit',
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['web', 'role:admin'],
 ]);
 
 Route::patch('agency/update', [
     'as'         => 'users.agency.update',
     'uses'       => 'Users\AgencyController@update',
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['web', 'role:admin'],
 ]);
 
 Route::patch('agency/logo-upload', [
     'as'         => 'users.agency.logo-upload',
     'uses'       => 'Users\AgencyController@logoUpload',
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['web', 'role:admin'],
 ]);

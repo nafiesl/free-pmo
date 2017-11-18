@@ -53,6 +53,7 @@ class ManageJobsTest extends TestCase
     public function admin_can_edit_job_data()
     {
         $users = factory(User::class, 3)->create();
+        $users[0]->assignRole('admin');
         $this->actingAs($users[0]);
 
         $customer = factory(Customer::class)->create();

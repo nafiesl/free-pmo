@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Users'], function () {
+Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Users'], function () {
     /**
      * Users Routes
      */

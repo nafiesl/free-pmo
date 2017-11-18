@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['namespace' => 'References', 'middleware' => ['web', 'auth']], function () {
+Route::group(['namespace' => 'References', 'middleware' => ['web', 'role:admin']], function () {
     /**
      * Options Routes
      */

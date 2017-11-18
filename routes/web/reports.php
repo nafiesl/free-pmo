@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'reports'], function () {
+Route::group(['middleware' => ['web', 'role:admin'], 'prefix' => 'reports'], function () {
     /**
      * Reports Routes
      */
@@ -11,7 +11,7 @@ Route::group(['middleware' => ['web', 'auth'], 'prefix' => 'reports'], function 
     Route::get('current-credits', ['as' => 'reports.current-credits', 'uses' => 'ReportsController@currentCredits']);
 
     Route::get('log-files', ['as' => 'log-files.index', 'uses' => function () {
-        if ( ! file_exists(storage_path('logs'))) {
+        if (!file_exists(storage_path('logs'))) {
             return [];
         }
 

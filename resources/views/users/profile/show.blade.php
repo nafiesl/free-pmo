@@ -10,6 +10,7 @@
                 <tr><th class="col-xs-3">{{ trans('user.user_id') }}</th><td>{{ $user->id }}</td></tr>
                 <tr><th>{{ trans('user.name') }}</th><td>{{ $user->name }}</td></tr>
                 <tr><th>{{ trans('user.email') }}</th><td>{{ $user->email }}</td></tr>
+                <tr><th>{{ trans('user.role') }}</th><td>{!! $user->roleList() !!}</td></tr>
                 <tr><th>{{ trans('user.api_token') }}</th><td><code>{{ $user->api_token }}</code></td></tr>
             </table>
             <div class="panel-footer">

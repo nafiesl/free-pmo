@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Projects'], function () {
+Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'], function () {
     /**
      * Projects Routes
      */
@@ -60,6 +60,13 @@ Route::group(['middleware' => ['web', 'auth']], function () {
      */
     Route::get('jobs', ['as' => 'jobs.index', 'uses' => 'JobsController@index']);
     Route::get('jobs/{job}', ['as' => 'jobs.show', 'uses' => 'JobsController@show']);
+});
+
+Route::group(['middleware' => ['web', 'role:admin']], function () {
+
+    /**
+     * Job Actions Routes
+     */
     Route::get('jobs/{job}/edit', ['as' => 'jobs.edit', 'uses' => 'JobsController@edit']);
     Route::patch('jobs/{job}', ['as' => 'jobs.update', 'uses' => 'JobsController@update']);
     Route::get('jobs/{job}/delete', ['as' => 'jobs.delete', 'uses' => 'JobsController@delete']);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Auth;
+namespace Tests\Feature;
 
 use App\Entities\Users\User;
 use Tests\TestCase;
@@ -55,6 +55,11 @@ class InstallationTest extends TestCase
         $this->seePageIs(route('home'));
 
         $this->see(trans('auth.welcome', ['name' => 'Nama Admin']));
+
+        $newAdmin = User::where('email', 'email@mail.com')->first();
+        $this->assertEquals('Nama Admin', $newAdmin->name);
+        $this->assertTrue($newAdmin->hasRole('admin'));
+        $this->assertTrue($newAdmin->hasRole('worker'));
 
         $this->seeInDatabase('users', [
             'name'  => 'Nama Admin',

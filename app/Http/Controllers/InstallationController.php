@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\Users\User;
 use App\Http\Requests\Accounts\RegisterRequest;
 use Auth;
+use DB;
 
 /**
  * Installation Controller
@@ -28,14 +29,6 @@ class InstallationController extends Controller
 
     public function postRegister(RegisterRequest $request)
     {
-        $adminData = $request->only('name', 'email', 'password');
-
-        $adminData['api_token'] = str_random(32);
-
-        $admin = User::create($adminData);
-
-        Auth::login($admin);
-
         $agencyData = collect($request->only('agency_name', 'agency_website', 'email'))
             ->map(function ($value, $key) {
                 return [
@@ -44,7 +37,19 @@ class InstallationController extends Controller
                 ];
             })->toArray();
 
-        \DB::table('site_options')->insert($agencyData);
+        DB::beginTransaction();
+        DB::table('site_options')->insert($agencyData);
+
+        $adminData = $request->only('name', 'email', 'password');
+
+        $adminData['api_token'] = str_random(32);
+
+        $admin = User::create($adminData);
+        $admin->assignRole('admin');
+        $admin->assignRole('worker');
+
+        Auth::login($admin);
+        DB::commit();
 
         flash()->success(trans('auth.welcome', ['name' => $admin->name]));
         return redirect()->route('home');

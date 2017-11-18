@@ -12,7 +12,10 @@
             <div class="panel-body">
                 {!! FormField::text('name', ['label' => trans('app.name')]) !!}
                 {!! FormField::email('email', ['label' => trans('user.email')]) !!}
-                {!! FormField::checkboxes('role', $roles::toArray(), ['label' => trans('user.role')]) !!}
+                {!! FormField::checkboxes('role', $roles::toArray(), [
+                    'label' => trans('user.role'),
+                    'value' => $user->roles->pluck('role_id')
+                ]) !!}
 
                 {!! FormField::password('password', [
                     'label' => trans('auth.password'),

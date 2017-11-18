@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Tasks;
 
-use App\Entities\Projects\Job;
 use App\Http\Requests\Request;
 
 class CreateRequest extends Request
@@ -14,8 +13,7 @@ class CreateRequest extends Request
      */
     public function authorize()
     {
-        $job = Job::findOrFail($this->segment(2));
-        return auth()->user()->can('manage_job', $job);
+        return auth()->user()->can('manage_agency');
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Tasks;
 
-use App\Entities\Projects\Job;
 use App\Http\Requests\Request;
 
 class UpdateRequest extends Request
@@ -15,8 +14,7 @@ class UpdateRequest extends Request
      */
     public function authorize()
     {
-        $job = Job::findOrFail($this->get('job_id'));
-        return auth()->user()->can('manage_job', $job);
+        return auth()->user()->can('manage_agency');
     }
 
     /**

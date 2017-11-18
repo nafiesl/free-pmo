@@ -30,7 +30,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function userSigningIn()
     {
-        $user = $this->createUser();
+        $user = $this->createUser('worker');
         $this->actingAs($user);
 
         return $user;
@@ -39,6 +39,7 @@ abstract class TestCase extends BaseTestCase
     protected function createUser($role = 'admin')
     {
         $user = factory(User::class)->create();
+        $user->assignRole($role);
         return $user;
     }
 

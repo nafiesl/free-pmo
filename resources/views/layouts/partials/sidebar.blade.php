@@ -28,17 +28,9 @@
             <li>{!! html_link_to_route('payments.index', trans('payment.payments'), [], ['icon' => 'money']) !!}</li>
             <li>{!! html_link_to_route('customers.index', trans('customer.list'), [], ['icon' => 'users']) !!}</li>
             <li>{!! html_link_to_route('vendors.index', trans('vendor.list'), [], ['icon' => 'users']) !!}</li>
-            <li>
-                <a href="{{ route('options.index') }}"><i class="fa fa-gears fa-fw"></i> Options <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    @can('manage_options')
-                    <li><a href="{{ route('options.index') }}"><i class="fa fa-gears fa-fw"></i> Options</a></li>
-                    @endcan
-                    @can('manage_backups')
-                    <li><a href="{{ route('backups.index') }}"><i class="fa fa-refresh fa-fw"></i> Backup/Restore DB</a></li>
-                    @endcan
-                </ul>
-            </li>
+            @endcan
+            @can('manage_backups')
+            <li><a href="{{ route('backups.index') }}"><i class="fa fa-refresh fa-fw"></i> Backup/Restore DB</a></li>
             @endcan
             <li>{!! html_link_to_route('auth.change-password', trans('auth.change_password'), [], ['icon' => 'lock']) !!}</li>
             <li>{!! html_link_to_route('auth.logout', trans('auth.logout'), [], ['icon' => 'sign-out']) !!}</li>

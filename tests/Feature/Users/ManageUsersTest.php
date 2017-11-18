@@ -54,6 +54,7 @@ class ManageUsersTest extends TestCase
 
         $this->assertTrue($newUser->hasRole('admin'));
         $this->assertTrue($newUser->hasRole('worker'));
+        $this->assertNotNull($newUser->api_token);
 
         // $this->seeInDatabase('users', [
         //     'id'    => $newUser->id,

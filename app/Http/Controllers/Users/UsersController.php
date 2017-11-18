@@ -41,6 +41,8 @@ class UsersController extends Controller
             $userData['password'] = \Option::get('password_default', 'member');
         }
 
+        $userData['api_token'] = str_random(32);
+
         $user = User::create($userData);
 
         $rolesData = array_map(function ($roleId) use ($user) {

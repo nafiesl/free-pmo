@@ -12,6 +12,7 @@
                     <tbody>
                         <tr><th>{{ trans('app.name') }}</th><td>{{ $user->name }}</td></tr>
                         <tr><th>{{ trans('user.email') }}</th><td>{{ $user->email }}</td></tr>
+                        <tr><th>{{ trans('user.role') }}</th><td>{!! $user->roleList() !!}</td></tr>
                         <tr><th>{{ trans('user.registered_at') }}</th><td>{{ $user->created_at }}</td></tr>
                     </tbody>
                 </table>

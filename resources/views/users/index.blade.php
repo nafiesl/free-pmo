@@ -18,6 +18,7 @@
             <th>{{ trans('app.table_no') }}</th>
             <th>{{ trans('app.name') }}</th>
             <th>{{ trans('user.email') }}</th>
+            <th>{{ trans('user.role') }}</th>
             <th>{{ trans('app.action') }}</th>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
                 <td>{{ 1 + $key }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
+                <td>{!! $user->roleList() !!}</td>
                 <td>
                     {!! link_to_route('users.show',trans('user.show'),[$user->id],['class'=>'btn btn-info btn-xs']) !!}
                 </td>

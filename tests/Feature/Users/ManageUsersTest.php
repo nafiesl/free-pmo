@@ -35,10 +35,10 @@ class ManageUsersTest extends TestCase
         $this->seePageIs(route('users.create'));
 
         $this->submitForm(trans('user.create'), [
-            'name'                  => 'Nama User',
-            'email'                 => 'user@mail.com',
-            'password'              => 'password',
-            'password_confirmation' => 'password',
+            'name'     => 'Nama User',
+            'email'    => 'user@mail.com',
+            'password' => 'password',
+            'role'     => [1, 2], // Administrator, Worker
         ]);
 
         $this->seePageIs(route('users.index'));
@@ -46,10 +46,30 @@ class ManageUsersTest extends TestCase
         $this->see('Nama User');
         $this->see('user@mail.com');
 
-        $this->seeInDatabase('users', [
-            'name'  => 'Nama User',
-            'email' => 'user@mail.com',
-        ]);
+        $newUser = User::where('email', 'user@mail.com')->first();
+
+        $this->assertEquals('Nama User', $newUser->name);
+
+        $this->assertTrue($newUser->hasRoles(['admin', 'worker']));
+
+        $this->assertTrue($newUser->hasRole('admin'));
+        $this->assertTrue($newUser->hasRole('worker'));
+
+        // $this->seeInDatabase('users', [
+        //     'id'    => $newUser->id,
+        //     'name'  => 'Nama User',
+        //     'email' => 'user@mail.com',
+        // ]);
+
+        // $this->seeInDatabase('user_roles', [
+        //     'user_id' => $newUser->id,
+        //     'role_id' => 1,
+        // ]);
+
+        // $this->seeInDatabase('user_roles', [
+        //     'user_id' => $newUser->id,
+        //     'role_id' => 2,
+        // ]);
     }
 
     /** @test */
@@ -57,23 +77,35 @@ class ManageUsersTest extends TestCase
     {
         $admin = $this->adminUserSigningIn();
         $user2 = factory(User::class)->create();
+        $user2->assignRole('worker');
 
         $this->visit(route('users.edit', $user2->id));
 
-        $this->type('Ganti nama User', 'name');
-        $this->type('member@mail.dev', 'email');
-        $this->press(trans('user.update'));
+        $this->submitForm(trans('user.update'), [
+            'name'     => 'Ganti nama User',
+            'email'    => 'member@mail.dev',
+            'password' => 'password',
+            'role'     => [1, 2], // Administrator, Worker
+        ]);
 
         $this->seePageIs(route('users.edit', $user2->id));
 
         $this->see(trans('user.updated'));
-        $this->see('Ganti nama User');
-        $this->see('member@mail.dev');
 
         $this->seeInDatabase('users', [
             'id'    => $user2->id,
             'name'  => 'Ganti nama User',
             'email' => 'member@mail.dev',
+        ]);
+
+        $this->seeInDatabase('user_roles', [
+            'user_id' => $user2->id,
+            'role_id' => 1,
+        ]);
+
+        $this->seeInDatabase('user_roles', [
+            'user_id' => $user2->id,
+            'role_id' => 2,
         ]);
     }
 

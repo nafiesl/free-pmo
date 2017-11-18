@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 /**
+ * Users Controller
+ *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class UsersController extends Controller
@@ -15,6 +17,7 @@ class UsersController extends Controller
     {
         $query = $request->get('q');
         $users = User::where('name', 'like', '%'.$query.'%')
+            ->with('roles')
             ->paginate(25);
 
         return view('users.index', compact('users'));
@@ -30,8 +33,8 @@ class UsersController extends Controller
         $userData = $request->validate([
             'name'     => 'required|min:5',
             'email'    => 'required|email|unique:users,email',
-            'password' => 'nullable|between:6,15|confirmed',
-            // 'password_confirmation' => 'required_with:password',
+            'password' => 'nullable|between:6,15',
+            'role'     => 'required|array',
         ]);
 
         if (!$userData['password']) {
@@ -39,6 +42,15 @@ class UsersController extends Controller
         }
 
         $user = User::create($userData);
+
+        $rolesData = array_map(function ($roleId) use ($user) {
+            return [
+                'user_id' => $user->id,
+                'role_id' => $roleId,
+            ];
+        }, $userData['role']);
+
+        \DB::table('user_roles')->insert($rolesData);
 
         flash()->success(trans('user.created'));
 
@@ -62,13 +74,24 @@ class UsersController extends Controller
         $this->authorize('update', $user);
 
         $userData = $request->validate([
-            'name'                  => 'required|min:5',
-            'email'                 => 'required|email|unique:users,email,'.$request->segment(2),
-            'password'              => 'nullable|required_with:password_confirmation|between:6,15|confirmed',
-            'password_confirmation' => 'required_with:password',
+            'name'     => 'required|min:5',
+            'email'    => 'required|email|unique:users,email,'.$request->segment(2),
+            'password' => 'nullable|required_with:password_confirmation|between:6,15',
+            'role'     => 'required|array',
         ]);
 
         $user->update($userData);
+
+        \DB::table('user_roles')->where(['user_id' => $user->id])->delete();
+
+        $rolesData = array_map(function ($roleId) use ($user) {
+            return [
+                'user_id' => $user->id,
+                'role_id' => $roleId,
+            ];
+        }, $userData['role']);
+
+        \DB::table('user_roles')->insert($rolesData);
 
         flash()->success(trans('user.updated'));
         return redirect()->route('users.edit', $user->id);

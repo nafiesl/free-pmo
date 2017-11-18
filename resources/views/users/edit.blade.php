@@ -1,3 +1,4 @@
+@inject('roles', 'App\Entities\Users\Role')
 @extends('layouts.dashboard')
 
 @section('title', trans('user.edit'))
@@ -11,6 +12,7 @@
             <div class="panel-body">
                 {!! FormField::text('name', ['label' => trans('app.name')]) !!}
                 {!! FormField::email('email', ['label' => trans('user.email')]) !!}
+                {!! FormField::checkboxes('role', $roles::toArray(), ['label' => trans('user.role')]) !!}
 
                 {!! FormField::password('password', [
                     'label' => trans('auth.password'),
@@ -18,10 +20,6 @@
                         'text' => 'Isi field ini jika ingin mengganti password user.',
                         'class' => 'info',
                     ],
-                ]) !!}
-
-                {!! FormField::password('password_confirmation', [
-                    'label' => trans('auth.password_confirmation')
                 ]) !!}
             </div>
             <div class="panel-footer">

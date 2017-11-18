@@ -24,6 +24,8 @@ class RegisterRequest extends Request
     public function rules()
     {
         return [
+            'agency_name'           => 'required|max:255',
+            'agency_website'        => 'nullable|url|max:255',
             'name'                  => 'required|max:255',
             'email'                 => 'required|email|max:255|unique:users,email',
             'password'              => 'required|between:6,15|confirmed',

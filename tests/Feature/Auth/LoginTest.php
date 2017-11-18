@@ -19,8 +19,9 @@ class LoginTest extends TestCase
             'password' => 'member',
         ]);
 
-        $this->seePageIs(route('home'));
         $this->see(trans('auth.welcome', ['name' => $user->name]));
+        $this->seePageIs(route('home'));
+        $this->seeIsAuthenticated();
 
         $this->click(trans('auth.logout'));
 
@@ -32,10 +33,13 @@ class LoginTest extends TestCase
     public function member_invalid_login()
     {
         $this->visit(route('auth.login'));
-        $this->type('email@mail.com', 'email');
-        $this->type('password.112', 'password');
-        $this->press(trans('auth.login'));
+
+        $this->submitForm(trans('auth.login'), [
+            'email'    => 'email@mail.com',
+            'password' => 'member',
+        ]);
+
         $this->seePageIs(route('auth.login'));
-        $this->see(trans('auth.failed'));
+        $this->dontSeeIsAuthenticated();
     }
 }

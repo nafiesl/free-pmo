@@ -5,39 +5,41 @@
 @section('content')
 <div class="col-md-6 col-md-offset-3">
     <div class="login-panel panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title">{{ trans('auth.register') }}</h3></div>
         <div class="panel-body">
-			@include('auth.partials._notifications')
-        	{!! Form::open(['route'=>'auth.register','class'=>'form-horizontal']) !!}
-            <div class="form-group {!! $errors->has('name') ? 'has-error' : ''; !!}">
-            	{!! Form::label('name', trans('app.name'), ['class'=>'col-md-4 control-label']) !!}
-				<div class="col-md-6">
-					{!! Form::text('name', null, ['class'=>'form-control','placeholder' => trans('app.name')]) !!}
-				</div>
+            <div class="text-center">
+                {!! appLogoImage(['style' => 'width:150px']) !!}
+                <h3>{{ Option::get('app_name','Aplikasi Laravel') }}</h3>
             </div>
-            <div class="form-group {!! $errors->has('email') ? 'has-error' : ''; !!}">
-            	{!! Form::label('email', trans('user.email'), ['class'=>'col-md-4 control-label']) !!}
-				<div class="col-md-6">
-					{!! Form::text('email', null, ['class'=>'form-control','placeholder'=>trans('user.email')]) !!}
-				</div>
-            </div>
-            <div class="form-group {!! $errors->has('password') ? 'has-error' : ''; !!}">
-            	{!! Form::label('password', trans('auth.password'), ['class'=>'col-md-4 control-label']) !!}
+            <hr>
+        	{!! Form::open(['route' => 'app.install', 'class' => '']) !!}
+            <p>Silakan isi formulir di bawah ini untuk membuat akun Administrator dan Agensi.</p>
+            <div class="row">
                 <div class="col-md-6">
-                	{!! Form::password('password', ['class'=>'form-control','placeholder'=>trans('auth.password')]) !!}
+                    {!! FormField::text('agency_name', ['required' => true, 'label' => trans('agency.name')]) !!}
+                </div>
+                <div class="col-md-6">
+                    {!! FormField::text('agency_website', ['required' => true, 'label' => trans('agency.website')]) !!}
                 </div>
             </div>
-            <div class="form-group {!! $errors->has('password_confirmation') ? 'has-error' : ''; !!}">
-            	{!! Form::label('password_confirmation', trans('auth.password_confirmation'), ['class'=>'col-md-4 control-label']) !!}
+            <div class="row">
                 <div class="col-md-6">
-                	{!! Form::password('password_confirmation', ['class'=>'form-control','placeholder'=>trans('auth.password_confirmation')]) !!}
+                    {!! FormField::text('name', ['required' => true, 'label' => trans('user.name')]) !!}
+                </div>
+                <div class="col-md-6">
+                    {!! FormField::email('email', ['required' => true, 'label' => trans('auth.email')]) !!}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {!! FormField::password('password', ['required' => true, 'label' => trans('auth.password')]) !!}
+                </div>
+                <div class="col-md-6">
+                    {!! FormField::password('password_confirmation', ['required' => true, 'label' => trans('auth.password_confirmation')]) !!}
                 </div>
             </div>
             <div class="form-group">
-				<div class="col-md-8 col-md-offset-4">
-            		{!! Form::submit(trans('auth.register'), ['class'=>'btn btn-info']) !!}
-                    {!! link_to_route('auth.login',trans('auth.have_an_account'),[],['class'=>'btn btn-success']) !!}
-				</div>
+				{!! Form::submit(trans('auth.register'), ['class' => 'btn btn-success']) !!}
+                {!! link_to_route('auth.login', trans('auth.have_an_account'), [], ['class' => 'btn btn-link pull-right']) !!}
 			</div>
             {!! Form::close() !!}
         </div>

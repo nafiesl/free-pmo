@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Option;
 
 /**
+ * Agency Profile Controller
+ *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class AgencyController extends Controller
@@ -22,6 +24,15 @@ class AgencyController extends Controller
 
     public function update()
     {
+        request()->validate([
+            'name'    => 'required|string|max:100',
+            'tagline' => 'required|string|max:255',
+            'email'   => 'required|email|max:255',
+            'website' => 'required|url|max:255',
+            'address' => 'required|string|max:255',
+            'phone'   => 'required|string|max:255',
+        ]);
+
         Option::set('agency_name', request('name'));
         Option::set('agency_tagline', request('tagline'));
         Option::set('agency_email', request('email'));

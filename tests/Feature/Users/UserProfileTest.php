@@ -4,6 +4,11 @@ namespace Tests\Feature\Users;
 
 use Tests\TestCase;
 
+/**
+ * User Profile Feature Test
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class UserProfileTest extends TestCase
 {
     /** @test */
@@ -41,76 +46,5 @@ class UserProfileTest extends TestCase
             'name'  => 'Nama Saya',
             'email' => 'me@domain.com',
         ]);
-    }
-    /** @test */
-    public function a_user_can_visit_their_agency_page()
-    {
-        $user = $this->adminUserSigningIn();
-        $this->visit(route('users.agency.show'));
-        $this->seePageIs(route('users.agency.show'));
-    }
-
-    /** @test */
-    public function a_user_can_update_their_agency_data()
-    {
-        $user = $this->adminUserSigningIn();
-        $this->visit(route('users.agency.edit'));
-
-        $this->submitForm(trans('agency.update'), [
-            'name'    => 'Nama Agensi Saya',
-            'tagline' => 'Tagline agensi saya',
-            'email'   => 'nama_agensi@domain.com',
-            'address' => 'Jln. Kalimantan, No. 20, Kota',
-            'phone'   => '081234567890',
-            'website' => 'https://example.com',
-        ]);
-
-        $this->see(trans('agency.updated'));
-        $this->seePageIs(route('users.agency.show'));
-
-        $this->seeInDatabase('site_options', [
-            'key'   => 'agency_name',
-            'value' => 'Nama Agensi Saya',
-        ]);
-        $this->seeInDatabase('site_options', [
-            'key'   => 'agency_email',
-            'value' => 'nama_agensi@domain.com',
-        ]);
-        $this->seeInDatabase('site_options', [
-            'key'   => 'agency_address',
-            'value' => 'Jln. Kalimantan, No. 20, Kota',
-        ]);
-        $this->seeInDatabase('site_options', [
-            'key'   => 'agency_phone',
-            'value' => '081234567890',
-        ]);
-        $this->seeInDatabase('site_options', [
-            'key'   => 'agency_website',
-            'value' => 'https://example.com',
-        ]);
-        $this->seeInDatabase('site_options', [
-            'key'   => 'agency_tagline',
-            'value' => 'Tagline agensi saya',
-        ]);
-    }
-
-    /** @test */
-    public function admin_user_can_update_agency_logo_image()
-    {
-        $user = $this->adminUserSigningIn();
-        $this->visit(route('users.agency.edit'));
-
-        $this->attach(storage_path('app/sample-image.jpg'), 'logo');
-        $this->press(trans('agency.logo_upload'));
-
-        $this->see(trans('agency.updated'));
-        $this->seePageIs(route('users.agency.show'));
-
-        $this->seeInDatabase('site_options', [
-            'key'   => 'agency_logo_path',
-            'value' => 'sample-image.jpg',
-        ]);
-
-        $this->assertFileExistsThenDelete(public_path('assets/imgs/sample-image.jpg'));
     }
 }

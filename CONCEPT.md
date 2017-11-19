@@ -1,6 +1,6 @@
-# Project Management Office
+# Free PMO
 
-Project Management Office, is a project management tool for freelancers and agencies to manage and monitor their project easier.
+Free PMO adalah sebuah tool untuk mempermudah pengelolaan dan monitor project bagi feelancer dan agensi.
 
 ## Konsep
 

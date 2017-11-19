@@ -11,7 +11,7 @@
     <div class="sidebar-nav navbar-collapse">
         <a class="navbar-brand text-center" title="Home | {{ Option::get('agency_tagline', 'Laravel app description') }}" href="{{ route('home') }}">
             {{ appLogoImage(['class' => 'sidebar-logo']) }}
-            <div class="small" style="margin-top:10px">{{ Option::get('app_name','Laravel') }}</div>
+            <div class="small" style="margin-top:10px">{{ config('app.name') }}</div>
         </a>
         <ul class="nav" id="side-menu">
             <li>{!! html_link_to_route('home', trans('nav_menu.dashboard'), [], ['icon' => 'dashboard']) !!}</li>

@@ -6,7 +6,7 @@
 @include('flash::message')
 <div class="login-panel col-md-4 col-md-offset-4 text-center">
     {!! appLogoImage() !!}
-    <h3>{{ Option::get('app_name','Aplikasi Laravel') }}</h3>
+    <h3>{{ config('app.name') }}</h3>
     <div class="panel panel-default">
         <div class="panel-body">
         	{{ Form::open(['route'=>'auth.login']) }}

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>@yield('title', Option::get('app_name', 'Aplikasi Laravel'))</title>
+    <title>@yield('title', config('app.name'))</title>
 
     {!! Html::style('assets/css/app.css') !!}
     @yield('ext_css')

@@ -8,7 +8,7 @@
         <div class="panel-body">
             <div class="text-center">
                 {!! appLogoImage(['style' => 'width:150px']) !!}
-                <h3>{{ Option::get('app_name','Aplikasi Laravel') }}</h3>
+                <h3>{{ config('app.name') }}</h3>
             </div>
             <hr>
         	{!! Form::open(['route' => 'app.install', 'class' => '']) !!}
@@ -39,7 +39,6 @@
             </div>
             <div class="form-group">
 				{!! Form::submit(trans('auth.register'), ['class' => 'btn btn-success']) !!}
-                {!! link_to_route('auth.login', trans('auth.have_an_account'), [], ['class' => 'btn btn-link pull-right']) !!}
 			</div>
             {!! Form::close() !!}
         </div>

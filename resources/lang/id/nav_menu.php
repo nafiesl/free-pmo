@@ -2,5 +2,5 @@
 
 return [
     'dashboard' => 'Dashboard',
-    'agency'    => 'Agensi',
+    'agency'    => 'Profil Agensi',
 ];

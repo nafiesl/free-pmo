@@ -13,7 +13,7 @@ use Tests\TestCase;
 class InstallationTest extends TestCase
 {
     /** @test */
-    public function user_cannot_visit_register_page_if_user_already_exists_in_database()
+    public function user_cannot_visit_install_page_if_user_already_exists_in_database()
     {
         factory(User::class)->create(['email' => 'member@app.dev']);
         $this->visit(route('app.install'));
@@ -21,13 +21,13 @@ class InstallationTest extends TestCase
     }
 
     /** @test */
-    public function registration_validation()
+    public function application_install_form_validation()
     {
         $this->visit(route('app.install'));
 
         $this->seePageIs(route('app.install'));
 
-        $this->submitForm(trans('auth.register'), [
+        $this->submitForm(trans('app_install.button'), [
             'name'                  => 'Nama Member',
             'email'                 => 'email',
             'password'              => 'password',
@@ -38,12 +38,12 @@ class InstallationTest extends TestCase
     }
 
     /** @test */
-    public function member_register_successfully()
+    public function application_install_successfully()
     {
         $this->visit(route('app.install'));
         $this->seePageIs(route('app.install'));
 
-        $this->submitForm(trans('auth.register'), [
+        $this->submitForm(trans('app_install.button'), [
             'agency_name'           => 'Nama Agensi',
             'agency_website'        => 'https://example.com',
             'name'                  => 'Nama Admin',

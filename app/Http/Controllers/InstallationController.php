@@ -19,15 +19,15 @@ class InstallationController extends Controller
         $this->middleware('guest');
     }
 
-    public function getRegister()
+    public function index()
     {
         if (User::count()) {
             return redirect()->route('auth.login');
         }
-        return view('auth.register');
+        return view('auth.app-install');
     }
 
-    public function postRegister(RegisterRequest $request)
+    public function store(RegisterRequest $request)
     {
         $agencyData = collect($request->only('agency_name', 'agency_website', 'email'))
             ->map(function ($value, $key) {

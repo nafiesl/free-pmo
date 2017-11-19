@@ -3,8 +3,8 @@
  * Installation Routes
  */
 Route::group(['middleware' => 'web'], function () {
-    Route::get('app-install', ['as' => 'app.install', 'uses' => 'InstallationController@getRegister']);
-    Route::post('app-install', ['as' => 'app.install', 'uses' => 'InstallationController@postRegister']);
+    Route::get('app-install', ['as' => 'app.install', 'uses' => 'InstallationController@index']);
+    Route::post('app-install', ['as' => 'app.install', 'uses' => 'InstallationController@store']);
 });
 
 // Authentication Routes...

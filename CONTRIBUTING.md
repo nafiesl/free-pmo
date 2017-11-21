@@ -3,7 +3,7 @@
 Terima kasih karena telah berkenan mempertimbangkan untuk berkontribusi pada project ini. Mari kita buat software Free PMO menjadi jauh lebih baik.
 
 ### Submit Issue
-Project ini masih terus dikembangkan. Sebagian besar fitur yang telah dibuat memiliki **Feature** atau **Unit Testing**, namun sangat mungkin masih ada **bug** yang terlewat dari pengujian tersebut. Jika selama menggunakan software ini Anda temukan **bug** atau **error**, silakan [melaporkan **Issue**](https://github.com/nafiesl/free-pmo/issues/new){:target="_blank"} dengan **prefix Subject : [BUG]**.
+Project ini masih terus dikembangkan. Sebagian besar fitur yang telah dibuat memiliki **Feature** atau **Unit Testing**, namun sangat mungkin masih ada **bug** yang terlewat dari pengujian tersebut. Jika selama menggunakan software ini Anda temukan **bug** atau **error**, silakan [melaporkan **Issue**](https://github.com/nafiesl/free-pmo/issues/new) dengan **prefix Subject : [BUG]**.
 
 Kita akan mencoba minimalisir **bug** sebisa mungkin.
 
@@ -20,7 +20,7 @@ Wah, bagian ini adalah kontribusi yang luar biasa, Anda sudah berkenan meluangka
 
 #### 1. Bugfix
 
-Di mana Anda membantu dalam **perbaikan error** yang dilaporkan oleh kontributor lain melalui [**Issue**](https://github.com/nafiesl/free-pmo/issues){:target="_blank"}. Jika perbaikan error ini berkaitan dengan interaksi ke database (CRUD Operation), mohon agar Anda :
+Di mana Anda membantu dalam **perbaikan error** yang dilaporkan oleh kontributor lain melalui [**Issue**](https://github.com/nafiesl/free-pmo/issues). Jika perbaikan error ini berkaitan dengan interaksi ke database (CRUD Operation), mohon agar Anda :
 
 1. Membuat **testing**, terkait fitur yang memiliki bug.
 2. Pastikan **semua testing passed** pada saat Anda melakukan **pull request**.
@@ -35,7 +35,7 @@ Pada project ini sangat mungkin terjadi kesalahan penulisan pada `halaman web` s
 
 Jenis **pull request** ini akan menambahkan fitur baru pada Free PMO. Jika Anda ingin melakukan pull request jenis ini, kami harapkan agar memenuhi ketentuan berikut :
 
-1. Sebelumnya fitur ini sudah diusulkan dan dibahas pada [**Issue**](https://github.com/nafiesl/free-pmo/issues){:target="_blank"}.
+1. Sebelumnya fitur ini sudah diusulkan dan dibahas pada [**Issue**](https://github.com/nafiesl/free-pmo/issues).
 2. Fitur tambahan dilengkapi dengan Feature Test atau Unit Test sesuai keperluan (terutama jika ada interaksi perubahan pada database).
 3. Semua **testing passed**
 

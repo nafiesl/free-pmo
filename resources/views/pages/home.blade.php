@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-lg-5">
-        <legend style="border-bottom: none" class="text-center">Project Status Stats</legend>
+        <legend style="border-bottom: none" class="text-center">{{ trans('dashboard.project_status_stats') }}</legend>
         <div class="row">
             @foreach(ProjectStatus::all() as $statusId => $status)
             <div class="col-lg-6 col-md-4 col-xs-6">
@@ -22,13 +22,13 @@
         </div>
     </div>
     <div class="col-lg-7">
-        <legend style="border-bottom: none" class="text-center">Earnings Stats</legend>
+        <legend style="border-bottom: none" class="text-center">{{ trans('dashboard.earnings_stats') }}</legend>
         <div class="panel panel-default table-responsive hidden-xs">
             <table class="table table-condensed table-bordered">
                 <tr>
-                    <td class="col-xs-2 text-center">Yearly Earnings ({{ $queriedYear }})</td>
-                    <td class="col-xs-2 text-center">Finished Projects ({{ $queriedYear }})</td>
-                    <td class="col-xs-2 text-center">Current Receiveable Earnings</td>
+                    <td class="col-xs-2 text-center">{{ trans('dashboard.yearly_earnings') }} ({{ $queriedYear }})</td>
+                    <td class="col-xs-2 text-center">{{ trans('dashboard.finished_projects_count') }} ({{ $queriedYear }})</td>
+                    <td class="col-xs-2 text-center">{{ trans('dashboard.receiveable_earnings') }}</td>
                 </tr>
                 <tr>
                     <td class="text-center text-primary lead" style="border-top: none;">
@@ -46,20 +46,20 @@
 
         <ul class="list-group visible-xs">
             <li class="list-group-item">
-                Yearly Earnings ({{ $queriedYear }})
+                {{ trans('dashboard.yearly_earnings') }} ({{ $queriedYear }})
                 <span class="pull-right text-primary">{{ $totalEarnings }}</span>
             </li>
             <li class="list-group-item">
-                Finished Projects ({{ $queriedYear }})
+                {{ trans('dashboard.finished_projects_count') }} ({{ $queriedYear }})
                 <span class="pull-right text-primary">{{ $totalFinishedProjects }} Projects</span>
             </li>
             <li class="list-group-item">
-                Current Receiveable Earnings
+                {{ trans('dashboard.receiveable_earnings') }}
                 <span class="pull-right text-primary">{{ $currentOutstandingCustomerPayment }}</span>
             </li>
         </ul>
 
-        <legend style="border-bottom: none" class="text-center">Upcoming Subscriptions Due Dates</legend>
+        <legend style="border-bottom: none" class="text-center">{{ trans('dashboard.upcoming_subscriptions_expiry') }}</legend>
 
         <div class="panel panel-default table-responsive">
             <table class="table table-condensed">
@@ -69,7 +69,7 @@
                     <th class="col-xs-3 text-right">@lang('invoice.amount')</th>
                     <th class="col-xs-5 text-center">@lang('subscription.due_date')</th>
                 </tr>
-                @foreach(AdminDashboard::upcomingSubscriptionDueDatesList() as $subscription)
+                @forelse(AdminDashboard::upcomingSubscriptionDueDatesList() as $subscription)
                 <tr>
                     <td>{{ $subscription->nameLink() }}</td>
                     <td>{{ $subscription->customer->name }}</td>
@@ -79,7 +79,9 @@
                         {!! $subscription->nearOfDueDateSign() !!}
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr><td colspan="4">{{ trans('dashboard.no_upcoming_subscriptions_expiry') }}</td></tr>
+                @endforelse
             </table>
         </div>
     </div>

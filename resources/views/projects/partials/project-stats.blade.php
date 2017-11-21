@@ -15,13 +15,13 @@
         </a>
     </div>
     <div class="col-lg-6 col-md-12">
-        <a href="{{ route('projects.jobs.index',[$project->id]) }}" title="Total Fitur dan Task">
+        <a href="{{ route('projects.jobs.index',[$project->id]) }}" title="Total Job dan Task">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3"><i class="fa fa-paperclip fa-4x"></i></div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{{ $project->jobs->count() }} Fitur</div>
+                        <div class="huge">{{ $project->jobs->count() }} Job</div>
                         <div class="lead">{{ $project->tasks->count() }} Task</div>
                     </div>
                 </div>

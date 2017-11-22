@@ -50,7 +50,7 @@
             <tr style="vertical-align: top;">
                 <td>@lang('payment.cash_amount') : </td>
                 <td colspan="2" style="border-bottom: 1px solid #ccc;height: 35px">
-                    {{ ucwords(Terbilang::make($payment->amount)) }} Rupiah
+                    {{ formatRp($payment->amount) }},-
                 </td>
             </tr>
             <tr style="vertical-align: top;">
@@ -69,7 +69,7 @@
             <tr>
                 <td style="font-size: 20px; font-weight: bold; text-align: center;height: 100px;vertical-align: bottom;">@lang('payment.words_amount')</td>
                 <td style="font-size: 20px; font-weight: bold; vertical-align: bottom;">
-                    {{ formatRp($payment->amount) }},-
+                    {{ ucwords(Terbilang::make($payment->amount)) }} Rupiah
                 </td>
                 <td style="text-align: center;vertical-align: bottom;">
                     <strong>{{ auth()->user()->name }}</strong> <br>

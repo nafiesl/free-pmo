@@ -31,6 +31,11 @@ class InstallationController extends Controller
     {
         $agencyData = collect($request->only('agency_name', 'agency_website', 'email'))
             ->map(function ($value, $key) {
+
+                if ($key == 'email') {
+                    $key = 'agency_email';
+                }
+
                 return [
                     'key'   => $key,
                     'value' => $value,

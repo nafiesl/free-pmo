@@ -75,5 +75,10 @@ class InstallationTest extends TestCase
             'key'   => 'agency_website',
             'value' => 'https://example.com',
         ]);
+
+        $this->seeInDatabase('site_options', [
+            'key'   => 'agency_email',
+            'value' => 'email@mail.com',
+        ]);
     }
 }

@@ -69,7 +69,8 @@
     $('#proposal_date,#start_date,#end_date').datetimepicker({
         timepicker:false,
         format:'Y-m-d',
-        closeOnDateSelect: true
+        closeOnDateSelect: true,
+        scrollInput: false
     });
 })();
 </script>

@@ -66,7 +66,8 @@
     $('#date').datetimepicker({
         timepicker:false,
         format:'Y-m-d',
-        closeOnDateSelect: true
+        closeOnDateSelect: true,
+        scrollInput: false
     });
 })();
 </script>

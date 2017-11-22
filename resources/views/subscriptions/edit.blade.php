@@ -54,3 +54,24 @@
 </div>
 @endif
 @endsection
+
+@section('ext_css')
+    {!! Html::style(url('assets/css/plugins/jquery.datetimepicker.css')) !!}
+@endsection
+
+@section('ext_js')
+    {!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
+@endsection
+
+@section('script')
+<script>
+(function() {
+    $('#start_date,#due_date').datetimepicker({
+        timepicker:false,
+        format:'Y-m-d',
+        closeOnDateSelect: true,
+        scrollInput: false
+    });
+})();
+</script>
+@endsection

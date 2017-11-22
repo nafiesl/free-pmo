@@ -3,7 +3,7 @@
 @section('title', 'Laporan Harian : ' . dateId($date))
 
 @section('content')
-<?php $dt = Carbon::parse($date); ?>
+<?php $dt = Carbon::parse($date);?>
 
 <ul class="breadcrumb hidden-print">
     <li>{{ link_to_route('reports.payments.yearly', 'Laporan Tahun ' . $dt->year, ['year' => $dt->year]) }}</li>
@@ -43,7 +43,7 @@
                 {{ link_to_route('payments.show','Lihat',[$payment->id],['title' => 'Lihat Detail Pembayaran','target' => '_blank','class' => 'btn btn-info btn-xs']) }}
             </td>
         </tr>
-        <?php $total = $payment->in_out == 0 ? $total - $payment->amount : $total + $payment->amount; ?>
+        <?php $total = $payment->in_out == 0 ? $total - $payment->amount : $total + $payment->amount;?>
         @empty
         <tr><td colspan="7">{{ trans('payment.not_found') }}</td></tr>
         @endforelse
@@ -71,7 +71,9 @@
 (function() {
     $('#date').datetimepicker({
         timepicker:false,
-        format:'Y-m-d'
+        format:'Y-m-d',
+        closeOnDateSelect: true,
+        scrollInput: false
     });
 })();
 </script>

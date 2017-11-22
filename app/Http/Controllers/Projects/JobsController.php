@@ -62,4 +62,13 @@ class JobsController extends Controller
         flash()->success(trans('job.created_from_other_project'));
         return redirect()->route('projects.jobs.index', $projectId);
     }
+
+    public function jobsExport(Request $request, $projectId, $exportType = 'html')
+    {
+        $jobType = $request->get('job_type', 1);
+        $project = $this->repo->requireById($projectId);
+        $jobs = $this->repo->getProjectJobs($projectId, $jobType);
+
+        return view('projects.jobs-export-html', compact('project', 'jobs'));
+    }
 }

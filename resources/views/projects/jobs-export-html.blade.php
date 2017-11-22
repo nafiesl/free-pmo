@@ -10,7 +10,7 @@
     {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{{ trans('project.jobs') }} {{ $project->name }}</title>
-    {!! Html::style('assets/css/app.s.css') !!}
+    {!! Html::style('assets/css/app.css') !!}
 </head>
 <body style="font-family:'Liberation Serif'">
     <div class="container">

@@ -25,9 +25,7 @@
             @else
                 {{ link_to_route('projects.jobs', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
 
-                {!! link_to_route('projects.jobs-export', trans('project.jobs_export_html'), [$project->id, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!} |
-                {!! link_to_route('projects.jobs-export', trans('project.jobs_export_excel'), [$project->id, 'excel', 'job_type' => $key], ['class' => '']) !!} |
-                {!! link_to_route('projects.jobs-export', trans('project.jobs_export_progress_excel'), [$project->id, 'excel-progress', 'job_type' => $key], ['class' => '']) !!}
+                {!! link_to_route('projects.jobs-export', trans('project.jobs_export_html'), [$project->id, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!}
             @endif
         </div>
         <h3 class="panel-title">

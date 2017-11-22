@@ -92,31 +92,6 @@ class ProjectsController extends Controller
         return view('projects.subscriptions', compact('project'));
     }
 
-    public function jobsExport(Request $request, $projectId, $exportType = 'excel')
-    {
-        $jobType = $request->get('job_type', 1);
-        $project = $this->repo->requireById($projectId);
-        $jobs = $this->repo->getProjectJobs($projectId, $jobType);
-
-        if ($exportType == 'excel') {
-            return view('projects.jobs-export-excel', compact('project', 'jobs'));
-            \Excel::create(str_slug(trans('project.jobs').'-'.$project->name), function ($excel) use ($project, $jobs) {
-                $excel->sheet('testng', function ($sheet) use ($project, $jobs) {
-                    $sheet->loadView('projects.jobs-export-excel', compact('project', 'jobs'));
-                });
-            })->download('xls');
-        } elseif ($exportType == 'excel-progress') {
-            return view('projects.jobs-export-progress-excel', compact('project', 'jobs'));
-            \Excel::create(str_slug(trans('project.jobs').'-'.$project->name), function ($excel) use ($project, $jobs) {
-                $excel->sheet('export-progress', function ($sheet) use ($project, $jobs) {
-                    $sheet->loadView('projects.jobs-export-progress-excel', compact('project', 'jobs'));
-                });
-            })->download('xls');
-        } else {
-            return view('projects.jobs-export-html-2', compact('project', 'jobs'));
-        }
-    }
-
     public function payments($projectId)
     {
         $project = $this->repo->requireById($projectId);

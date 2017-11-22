@@ -9,5 +9,6 @@ return [
     'village'      => 'Kelurahan/Desa',
     'district'     => 'Kecamatan',
     'municipality' => 'Kota/Kab.',
+    'city'         => 'Kota',
     'province'     => 'Propinsi',
 ];

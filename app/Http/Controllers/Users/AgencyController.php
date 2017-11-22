@@ -30,6 +30,7 @@ class AgencyController extends Controller
             'email'   => 'required|email|max:255',
             'website' => 'required|url|max:255',
             'address' => 'required|string|max:255',
+            'city'    => 'required|string|max:100',
             'phone'   => 'required|string|max:255',
         ]);
 
@@ -38,6 +39,7 @@ class AgencyController extends Controller
         Option::set('agency_email', request('email'));
         Option::set('agency_website', request('website'));
         Option::set('agency_address', request('address'));
+        Option::set('agency_city', request('city'));
         Option::set('agency_phone', request('phone'));
 
         flash(trans('agency.updated'), 'success');

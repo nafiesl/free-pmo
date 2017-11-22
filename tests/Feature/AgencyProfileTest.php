@@ -31,6 +31,7 @@ class AgencyProfileTest extends TestCase
             'email'   => 'nama_agensi@domain.com',
             'address' => 'Jln. Kalimantan, No. 20, Kota',
             'phone'   => '081234567890',
+            'city'    => 'Jakarta',
             'website' => 'https://example.com',
         ]);
 
@@ -48,6 +49,10 @@ class AgencyProfileTest extends TestCase
         $this->seeInDatabase('site_options', [
             'key'   => 'agency_address',
             'value' => 'Jln. Kalimantan, No. 20, Kota',
+        ]);
+        $this->seeInDatabase('site_options', [
+            'key'   => 'agency_city',
+            'value' => 'Jakarta',
         ]);
         $this->seeInDatabase('site_options', [
             'key'   => 'agency_phone',

@@ -21,6 +21,7 @@
             <div class="col-md-6">{!! FormField::text('phone', ['value' => Option::get('agency_phone')]) !!}</div>
         </div>
         {!! FormField::textarea('address', ['value' => Option::get('agency_address')]) !!}
+        {!! FormField::text('city', ['value' => Option::get('agency_city')]) !!}
         {!! FormField::text('website', ['value' => Option::get('agency_website')]) !!}
     </div>
     {{ Form::close() }}

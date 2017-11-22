@@ -24,6 +24,7 @@
                 <tr><th>{{ trans('contact.email') }}</th><td>{{ Option::get('agency_email') }}</td></tr>
                 <tr><th>{{ trans('contact.phone') }}</th><td>{{ Option::get('agency_phone') }}</td></tr>
                 <tr><th>{{ trans('address.address') }}</th><td>{!! nl2br(Option::get('agency_address')) !!}</td></tr>
+                <tr><th>{{ trans('address.city') }}</th><td>{{ Option::get('agency_city') }}</td></tr>
                 <tr><th>{{ trans('contact.website') }}</th><td>{{ Option::get('agency_website') }}</td></tr>
             </table>
         </div>

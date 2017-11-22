@@ -9,21 +9,19 @@
     </div>
     <table class="table table-condensed">
         <thead>
-            <th>{{ trans('app.table_no') }}</th>
-            <th class="col-md-7">{{ trans('task.name') }}</th>
-            <th class="col-md-2">{{ trans('task.route_name') }}</th>
+            <th class="col-md-1 text-center">{{ trans('app.table_no') }}</th>
+            <th class="col-md-6">{{ trans('task.name') }}</th>
             <th class="text-center col-md-1">{{ trans('task.progress') }}</th>
             <th class="col-md-2 text-center">{{ trans('app.action') }}</th>
         </thead>
         <tbody id="sort-tasks">
             @forelse($job->tasks as $key => $task)
             <tr id="{{ $task->id }}">
-                <td>{{ 1 + $key }}</td>
+                <td class="text-center">{{ 1 + $key }}</td>
                 <td>
                     <div>{{ $task->name }}</div>
                     <div class="small text-info">{!! nl2br($task->description) !!}</div>
                 </td>
-                <td>{{ $task->route_name }}</td>
                 <td class="text-center">{{ $task->progress }} %</td>
                 <td class="text-center">
                     {!! html_link_to_route('jobs.show', '', [
@@ -49,12 +47,12 @@
                 </td>
             </tr>
             @empty
-            <tr><td colspan="5">{{ trans('task.empty') }}</td></tr>
+            <tr><td colspan="4">{{ trans('task.empty') }}</td></tr>
             @endforelse
         </tbody>
         <tfoot>
             <tr>
-                <th class="text-right" colspan="3">Total</th>
+                <th class="text-right" colspan="2">Total</th>
                 <th class="text-center">{{ formatDecimal($job->tasks->avg('progress')) }} %</th>
                 <th>
                     @if (request('action') == 'sort_tasks')

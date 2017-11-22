@@ -28,7 +28,7 @@
             @endif
         </div>
         <h3 class="panel-title">
-            {{ $key == 1 ? 'Daftar Fitur' : 'Fitur Tambahan' }}
+            {{ $key == 1 ? trans('job.list') : trans('job.additional') }}
         </h3>
     </div>
     <table class="table table-condensed table-striped">

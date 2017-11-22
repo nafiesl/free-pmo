@@ -26,7 +26,7 @@
                 @if ($job->tasks->count())
                 <tr><td colspan="2">&nbsp;</td></tr>
                 <tr style="background-color: #ffd298">
-                    <th class="col-md-3">Sub Fitur</th>
+                    <th class="col-md-3">{{ trans('task.list') }}</th>
                     <th class="col-md-6">{{ trans('app.description') }}</th>
                 </tr>
                     @foreach($job->tasks as $task)

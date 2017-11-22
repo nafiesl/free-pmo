@@ -3,7 +3,8 @@
 return [
     // Labels
     'job'           => 'Job',
-    'jobs'          => 'Daftar Job',
+    'list'          => 'Daftar Job',
+    'additional'    => 'Daftar Job Tambahan',
     'on_progress'   => 'Job on Progress',
     'search'        => 'Cari Job',
     'found'         => 'Job ditemukan',

@@ -3,9 +3,7 @@
 @section('title', trans('project.jobs'))
 
 @section('content')
-<h1 class="page-header">
-    Daftar Fitur on Progress
-</h1>
+<h1 class="page-header">{{ trans('job.on_progress') }}</h1>
 
 <div class="panel panel-default">
     <table class="table table-condensed">

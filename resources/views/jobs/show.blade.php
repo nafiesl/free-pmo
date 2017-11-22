@@ -24,7 +24,6 @@
 @include('jobs.partials.job-tasks')
 @endsection
 
-@if (Request::get('action') == 'task_edit' && $editableTask)
 @section('ext_css')
     {!! Html::style(url('assets/css/plugins/rangeslider.css')) !!}
     <style>
@@ -61,5 +60,3 @@
 })();
 </script>
 @endsection
-
-@endif

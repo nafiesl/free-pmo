@@ -1,6 +1,8 @@
 # Free PMO
 > *Tell our clients that we are managing our projects professionally.*
 
+[![Build Status](https://travis-ci.org/nafiesl/free-pmo.svg?branch=master)](https://travis-ci.org/nafiesl/free-pmo)
+
 Free PMO (Project Management Office), software management project untuk *freelancer* dan agensi, dibangun dengan Framework **Laravel 5**.
 
 ### Daftar Isi

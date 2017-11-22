@@ -8,6 +8,8 @@ use DB;
 
 /**
  * Jobs Repository Class
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
  */
 class JobsRepository extends BaseRepository
 {
@@ -49,7 +51,6 @@ class JobsRepository extends BaseRepository
     public function createJob($jobData, $projectId)
     {
         $jobData['project_id'] = $projectId;
-        $jobData['price'] = str_replace('.', '', $jobData['price']);
         return $this->storeArray($jobData);
     }
 

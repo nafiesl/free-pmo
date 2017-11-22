@@ -43,15 +43,3 @@
 @section('ext_js')
     {!! Html::script(url('assets/js/plugins/autoNumeric.min.js')) !!}
 @endsection
-
-@section('script')
-<script>
-(function() {
-    $('#price').autoNumeric("init",{
-        aSep: '.',
-        aDec: ',',
-        mDec: '0'
-    });
-})();
-</script>
-@endsection

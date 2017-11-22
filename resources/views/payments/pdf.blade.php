@@ -22,20 +22,20 @@
     <table class="receipt-table">
         <tbody>
             <tr>
-                <td style="width:140px;">
-                    {{ Html::image(url('assets/imgs/logo.png'), '', ['style' => 'width: 100px;']) }}
-                </td>
+                <td style="width:140px;">{{ appLogoImage(['style' => 'width: 100px;']) }}</td>
                 <td style="width:330px">
                     <div style="width:280px">
-                        <h4 style="margin:0px; border-bottom: 3px; font-size: 21.5px">JasaWebsiteBanjarmasin.com</h4>
-                        <div style="font-size:13px">Jasa Pembuatan Website dan Aplikasi Berbasis Web</div>
+                        <h4 style="margin:0px; border-bottom: 3px; font-size: 21.5px">{{ Option::get('agency_name') }}</h4>
+                        <div style="font-size:13px">{{ Option::get('agency_tagline') }}</div>
+                        @if (Option::get('agency_address'))
                         <hr style="margin: 2px 0">
                         <div style="font-size:11px">
-                            Jln. Pramuka, Gg. Mawar, Rt. 09, No. 60, Kel. Pemurus Luar<br>
-                            Kec. Banjarmasin Timur, Kota Banjarmasin,
-                            Kalsel - 70249,<br>
-                            @lang('contact.phone_abb') 0817 532 654 / 0823 5035 5470
+                            {{ Option::get('agency_address') }}<br>
+                            @if (Option::get('agency_phone'))
+                            @lang('contact.phone_abb') {{ Option::get('agency_phone') }}
+                            @endif
                         </div>
+                        @endif
                     </div>
                 </td>
                 <td style="width:250px; text-align: center;">
@@ -63,7 +63,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td style="text-align: center;">
-                    Banjarmasin, {{ dateId($payment->date) }}
+                    {{ Option::get('agency_city') ? Option::get('agency_city').', ' : '' }} {{ dateId($payment->date) }}
                 </td>
             </tr>
             <tr>
@@ -72,8 +72,8 @@
                     {{ formatRp($payment->amount) }},-
                 </td>
                 <td style="text-align: center;vertical-align: bottom;">
-                    <strong>{{ auth()->user()->name }}, S. Kom.</strong> <br>
-                    JasaWebsiteBanjarmasin.com
+                    <strong>{{ auth()->user()->name }}</strong> <br>
+                    {{ Option::get('agency_name') }}
                 </td>
             </tr>
         </tbody>

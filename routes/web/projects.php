@@ -28,7 +28,7 @@ Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'],
     /**
      * Project Jobs Routes
      */
-    Route::get('projects/{id}/jobs-export/{type?}', ['as' => 'projects.jobs-export', 'uses' => 'JobsController@jobsExport']);
+    Route::get('projects/{project}/jobs-export/{type?}', ['as' => 'projects.jobs-export', 'uses' => 'JobsController@jobsExport']);
     Route::get('projects/{id}/jobs/create', ['as' => 'projects.jobs.create', 'uses' => 'JobsController@create']);
     Route::post('projects/{id}/jobs', ['as' => 'projects.jobs.store', 'uses' => 'JobsController@store']);
     Route::get('projects/{id}/jobs/add-from-other-project', ['as' => 'projects.jobs.add-from-other-project', 'uses' => 'JobsController@addFromOtherProject']);

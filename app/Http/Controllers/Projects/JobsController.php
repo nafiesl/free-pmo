@@ -9,13 +9,12 @@ use App\Http\Requests\Jobs\CreateRequest;
 use Illuminate\Http\Request;
 
 /**
- * Project Jobs Controller
+ * Project Jobs Controller.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */
 class JobsController extends Controller
 {
-
     private $repo;
 
     public function __construct(JobsRepository $repo)
@@ -25,7 +24,8 @@ class JobsController extends Controller
 
     public function index(Project $project)
     {
-        $jobs = $this->repo->getProjectJobs($project->id);
+        $jobs = $project->jobs;
+
         return view('projects.jobs.index', compact('project', 'jobs'));
     }
 
@@ -33,6 +33,7 @@ class JobsController extends Controller
     {
         $project = $this->repo->requireProjectById($projectId);
         $workers = $this->repo->getWorkersList();
+
         return view('jobs.create', compact('project', 'workers'));
     }
 
@@ -53,6 +54,7 @@ class JobsController extends Controller
     {
         $job = $this->repo->createJob($req->except('_token'), $projectId);
         flash()->success(trans('job.created'));
+
         return redirect()->route('jobs.show', $job->id);
     }
 
@@ -60,14 +62,13 @@ class JobsController extends Controller
     {
         $this->repo->createJobs($req->except('_token'), $projectId);
         flash()->success(trans('job.created_from_other_project'));
+
         return redirect()->route('projects.jobs.index', $projectId);
     }
 
-    public function jobsExport(Request $request, $projectId, $exportType = 'html')
+    public function jobsExport(Project $project, $exportType = 'html')
     {
-        $jobType = $request->get('job_type', 1);
-        $project = $this->repo->requireById($projectId);
-        $jobs = $this->repo->getProjectJobs($projectId, $jobType);
+        $jobs = $project->getJobList(request('job_type', 1));
 
         return view('projects.jobs-export-html', compact('project', 'jobs'));
     }

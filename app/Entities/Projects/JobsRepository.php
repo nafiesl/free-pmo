@@ -7,7 +7,7 @@ use App\Entities\Projects\Project;
 use DB;
 
 /**
- * Jobs Repository Class
+ * Jobs Repository.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */
@@ -30,17 +30,6 @@ class JobsRepository extends BaseRepository
             })
             ->with(['tasks', 'project'])
             ->get();
-    }
-
-    public function getProjectJobs($projectId, $type = null)
-    {
-        return Job::where(function ($query) use ($projectId, $type) {
-            $query->whereProjectId($projectId);
-            if ($type) {
-                $query->whereTypeId($type);
-            }
-
-        })->orderBy('position')->with('worker', 'tasks')->get();
     }
 
     public function requireProjectById($projectId)
@@ -100,6 +89,7 @@ class JobsRepository extends BaseRepository
         $jobData['price'] = str_replace('.', '', $jobData['price']);
         $job = $this->requireById($jobId);
         $job->update($jobData);
+
         return $job;
     }
 

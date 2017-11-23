@@ -11,6 +11,11 @@ use App\Entities\Subscriptions\Subscription;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
+/**
+ * Project Model.
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
+ */
 class Project extends Model
 {
     use PresentableTrait;
@@ -115,6 +120,16 @@ class Project extends Model
         }
 
         return $collectibeEarnings;
+    }
+
+    public function getJobList($jobType)
+    {
+        $jobType = (int) $jobType;
+
+        return $this->jobs()->where('type_id', $jobType)
+            ->orderBy('position')
+            ->with('worker', 'tasks')
+            ->get();
     }
 
 }

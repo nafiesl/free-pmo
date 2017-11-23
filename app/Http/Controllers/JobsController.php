@@ -9,7 +9,7 @@ use App\Http\Requests\Jobs\UpdateRequest;
 use Illuminate\Http\Request;
 
 /**
- * Jobs Controller
+ * Jobs Controller.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */
@@ -25,6 +25,7 @@ class JobsController extends Controller
     public function index()
     {
         $jobs = $this->repo->getUnfinishedJobs();
+
         return view('jobs.unfinished', compact('jobs'));
     }
 
@@ -47,6 +48,7 @@ class JobsController extends Controller
     {
         $job = $this->repo->requireById($jobId);
         $workers = $this->repo->getWorkersList();
+
         return view('jobs.edit', compact('job', 'workers'));
     }
 
@@ -54,12 +56,14 @@ class JobsController extends Controller
     {
         $job = $this->repo->update($req->except(['_method', '_token']), $jobId);
         flash()->success(trans('job.updated'));
+
         return redirect()->route('jobs.show', $job->id);
     }
 
     public function delete($jobId)
     {
         $job = $this->repo->requireById($jobId);
+
         return view('jobs.delete', compact('job'));
     }
 

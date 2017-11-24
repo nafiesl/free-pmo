@@ -79,6 +79,16 @@ Free PMO dibangun menggunakan [metode TDD](https://blog.nafies.id/laravel/testin
 * [luthfi/simple-crud-generator](https://github.com/nafiesl/SimpleCrudGenerator), CRUD generator berupa artisan command untuk mempercepat workflow TDD.
 * [johnkary/phpunit-speedtrap](https://github.com/johnkary/phpunit-speedtrap), pengecekan testing yang lambat (karena query atau proses yang kurang efektif).
 
+##### Frontend
+
+* [Start Bootstrap - SB Admin 2](https://startbootstrap.com/template-overviews/sb-admin-2), Admin template.
+* [Bootstrap v3.3.6](https://getbootstrap.com/docs/3.3/)
+* [Font Awesome 4.6.3](http://fontawesome.io/cheatsheet)
+* [select2](https://github.com/select2/select2)
+* [rangeslider.js](http://rangeslider.js.org)
+* [FullCalendar](https://fullcalendar.io)
+* [morris.js](http://morrisjs.github.io/morris.js), Grafik laporan pendapatan tahunan dan bulanan.
+
 ## Lisensi
 
 Project Free PMO merupakan software free dan open source di bawah [lisensi MIT](LICENSE).

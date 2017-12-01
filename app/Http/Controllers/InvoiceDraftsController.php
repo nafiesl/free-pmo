@@ -52,7 +52,12 @@ class InvoiceDraftsController extends Controller
 
     public function addDraftItem(Request $request, $draftKey)
     {
-        $item = new Item(['description' => $request->description, 'amount' => $request->amount]);
+        $itemData = $request->validate([
+            'new_item_description' => 'required|string|max:255',
+            'new_item_amount'      => 'required|numeric',
+        ]);
+
+        $item = new Item(['description' => $itemData['new_item_description'], 'amount' => $itemData['new_item_amount']]);
         $this->draftCollection->addItemToDraft($draftKey, $item);
 
         flash(trans('invoice.item_added'));
@@ -62,7 +67,19 @@ class InvoiceDraftsController extends Controller
 
     public function updateDraftItem(Request $request, $draftKey)
     {
-        $this->draftCollection->updateDraftItem($draftKey, $request->item_key, $request->only('description', 'amount'));
+        $itemData = $request->validate([
+            'item_key.*'    => 'required|numeric',
+            'description.*' => 'required|string|max:255',
+            'amount.*'      => 'required|numeric',
+        ]);
+
+        $itemData = [
+            'item_key'    => array_shift($itemData['item_key']),
+            'description' => array_shift($itemData['description']),
+            'amount'      => array_shift($itemData['amount']),
+        ];
+
+        $this->draftCollection->updateDraftItem($draftKey, $itemData['item_key'], $itemData);
 
         return back();
     }

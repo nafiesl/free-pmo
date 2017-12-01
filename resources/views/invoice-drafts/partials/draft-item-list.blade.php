@@ -21,16 +21,16 @@
                 <td>{{ $no }}</td>
                     <?php $no++;?>
                     {{ Form::open(['route' => ['invoice-drafts.update-draft-item', $draft->draftKey], 'method' => 'patch']) }}
-                    {{ Form::hidden('item_key', $key) }}
+                    {{ Form::hidden('item_key['.$key.']', $key) }}
                 <td class="col-md-8">
                     {!! FormField::textarea(
-                        'description',
+                        'description['.$key.']',
                         ['id' => 'description-'.$key, 'value' => $item->description, 'label' => false]
                     ) !!}
                 </td>
                 <td class="col-md-3">
                     {!! FormField::price(
-                        'amount',
+                        'amount['.$key.']',
                         ['id' => 'amount-'.$key, 'value' => $item->amount, 'label' => false]
                     ) !!}
                     {{ Form::submit('Update', ['id' => 'update-item-'.$key, 'class' => 'btn btn-success btn-xs pull-right']) }}
@@ -49,21 +49,20 @@
                 <th colspan="4">Tambah Item Invoice</th>
             </tr>
             <tr>
-                <td>&nbsp;</td>
                 {{ Form::open(['route' => ['invoice-drafts.add-draft-item', $draft->draftKey]]) }}
-                <td>
+                <td colspan="2">
                     {!! FormField::textarea(
-                        'description',
-                        ['id' => 'description', 'label' => false, 'placeholder' => 'Deskripsi Item']
+                        'new_item_description',
+                        ['id' => 'new_item_description', 'label' => false, 'placeholder' => trans('invoice.item_description')]
                     ) !!}
                 </td>
-                <td>
+                <td colspan="2">
                     {!! FormField::price(
-                        'amount',
-                        ['id' => 'amount', 'label' => false, 'placeholder' => 'Biaya Item']
+                        'new_item_amount',
+                        ['id' => 'new_item_amount', 'label' => false, 'placeholder' => trans('invoice.item_amount')]
                     ) !!}
+                    {{ Form::submit(trans('invoice.add_item'), ['class' => 'btn btn-primary btn-block']) }}
                 </td>
-                <td class="text-center">{{ Form::submit('add-item', ['class' => 'btn btn-primary']) }}</td>
                 {{ Form::close() }}
             </tr>
         </tbody>

@@ -9,6 +9,11 @@ use App\Services\InvoiceDrafts\InvoiceDraftCollection;
 use App\Services\InvoiceDrafts\Item;
 use Tests\TestCase;
 
+/**
+ * Invoice Entry Feature Test
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
+ */
 class InvoiceEntryTest extends TestCase
 {
     /** @test */
@@ -48,15 +53,15 @@ class InvoiceEntryTest extends TestCase
 
         $this->visit(route('invoice-drafts.show', $draft->draftKey));
 
-        $this->type('Testing deskripsi invoice item', 'description');
-        $this->type(2000, 'amount');
-        $this->press('add-item');
+        $this->type('Testing deskripsi invoice item', 'new_item_description');
+        $this->type(2000, 'new_item_amount');
+        $this->press(trans('invoice.add_item'));
 
         $this->see(trans('invoice.item_added'));
 
-        $this->type('Testing deskripsi invoice item', 'description');
-        $this->type(3000, 'amount');
-        $this->press('add-item');
+        $this->type('Testing deskripsi invoice item', 'new_item_description');
+        $this->type(3000, 'new_item_amount');
+        $this->press(trans('invoice.add_item'));
 
         $this->seePageIs(route('invoice-drafts.show', $draft->draftKey));
         $this->assertEquals(5000, $draft->getTotal());
@@ -97,15 +102,15 @@ class InvoiceEntryTest extends TestCase
         $this->visit(route('invoice-drafts.show', $draft->draftKey));
 
         $this->submitForm('update-item-0', [
-            'item_key'    => 0,
-            'description' => 'Testing deskripsi Update',
-            'amount'      => 100,
+            'item_key[0]'    => 0,
+            'description[0]' => 'Testing deskripsi Update',
+            'amount[0]'      => 100,
         ]);
 
         $this->submitForm('update-item-1', [
-            'item_key'    => 1,
-            'description' => 'Testing deskripsi Update',
-            'amount'      => 100,
+            'item_key[1]'    => 1,
+            'description[1]' => 'Testing deskripsi Update',
+            'amount[1]'      => 100,
         ]);
 
         $this->assertEquals(200, $draft->getTotal());

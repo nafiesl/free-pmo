@@ -29,7 +29,7 @@ return [
     'undeleted'           => 'Data Invoice gagal dihapus.',
     'undeleteable'        => 'Data Invoice tidak dapat dihapus.',
     'print'               => 'Cetak Invoice',
-    'add-item'            => 'Tambah Item',
+    'add_item'            => 'Tambah Item',
     'item_added'          => 'Item berhasil ditambahkan.',
     'confirm_instruction' => 'Silakan periksa rincian di bawah ini, jika belum sesuai, silakan klik kembali.',
 

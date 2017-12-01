@@ -8,7 +8,12 @@ use App\Services\InvoiceDrafts\InvoiceDraftCollection;
 use App\Services\InvoiceDrafts\Item;
 use Illuminate\Http\Request;
 
-class InvoiceDraftController extends Controller
+/**
+ * Invoice Drafts Controller.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
+class InvoiceDraftsController extends Controller
 {
     private $draftCollection;
 
@@ -19,10 +24,10 @@ class InvoiceDraftController extends Controller
 
     public function index(Request $request)
     {
-        $draft    = $this->draftCollection->content()->first();
+        $draft = $this->draftCollection->content()->first();
         $projects = Project::pluck('name', 'id');
 
-        return view('invoices.create', compact('draft', 'projects'));
+        return view('invoice-drafts.index', compact('draft', 'projects'));
     }
 
     public function show(Request $request, $draftKey = null)
@@ -31,18 +36,18 @@ class InvoiceDraftController extends Controller
         if (is_null($draft)) {
             flash(trans('invoice.draft_not_found'), 'danger');
 
-            return redirect()->route('invoices.create');
+            return redirect()->route('invoice-drafts.index');
         }
 
         $projects = Project::pluck('name', 'id');
-        return view('invoices.create', compact('draft', 'projects'));
+        return view('invoice-drafts.index', compact('draft', 'projects'));
     }
 
-    public function add(Request $request)
+    public function create(Request $request)
     {
         $this->draftCollection->add(new InvoiceDraft());
 
-        return redirect()->route('invoices.create', $this->draftCollection->content()->last()->draftKey);
+        return redirect()->route('invoice-drafts.show', $this->draftCollection->content()->last()->draftKey);
     }
 
     public function addDraftItem(Request $request, $draftKey)
@@ -69,23 +74,24 @@ class InvoiceDraftController extends Controller
         return back();
     }
 
-    function empty($draftKey) {
+    public function emptyDraft($draftKey)
+    {
         $this->draftCollection->emptyDraft($draftKey);
 
-        return redirect()->route('invoices.create', $draftKey);
+        return redirect()->route('invoice-drafts.show', $draftKey);
     }
 
-    public function remove(Request $request)
+    public function remove(Request $request, $draftKey)
     {
         $this->draftCollection->removeDraft($request->draft_key);
 
         if ($this->draftCollection->isEmpty()) {
-            return redirect()->route('invoices.create-empty');
+            return redirect()->route('invoice-drafts.index');
         }
 
         $lastDraft = $this->draftCollection->content()->last();
 
-        return redirect()->route('invoices.create', $lastDraft->draftKey);
+        return redirect()->route('invoice-drafts.show', $lastDraft->draftKey);
     }
 
     public function destroy()
@@ -93,7 +99,7 @@ class InvoiceDraftController extends Controller
         $this->draftCollection->destroy();
         flash(trans('invoice.draft_destroyed'), 'warning');
 
-        return redirect()->route('cart.index');
+        return redirect()->route('invoice-drafts.index');
     }
 
     public function proccess(Request $request, $draftKey)
@@ -108,19 +114,19 @@ class InvoiceDraftController extends Controller
         if ($draft->getItemsCount() == 0) {
             flash(trans('invoice.item_list_empty'), 'warning')->important();
 
-            return redirect()->route('invoices.create', [$draftKey]);
+            return redirect()->route('invoice-drafts.show', [$draftKey]);
         }
 
-        flash(trans('invoice.confirm_instruction', ['back_link' => link_to_route('invoices.create', trans('app.back'), $draftKey)]), 'warning')->important();
+        flash(trans('invoice.confirm_instruction'), 'warning')->important();
 
-        return redirect()->route('invoices.create', [$draftKey, 'action' => 'confirm']);
+        return redirect()->route('invoice-drafts.show', [$draftKey, 'action' => 'confirm']);
     }
 
     public function store(Request $request, $draftKey)
     {
         $draft = $this->draftCollection->get($draftKey);
         if (is_null($draft)) {
-            return redirect()->route('cart.index');
+            return redirect()->route('invoice-drafts.index');
         }
 
         $invoice = $draft->store();

@@ -4,6 +4,11 @@ namespace App\Http\Middleware;
 
 use Closure;
 
+/**
+ * Role Middleware.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class Role
 {
     /**

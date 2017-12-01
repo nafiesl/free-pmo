@@ -9,7 +9,7 @@ use App\Entities\Subscriptions\Subscription;
 use Carbon\Carbon;
 
 /**
- * AdminDashboardQuery
+ * Admin Dashboard Query.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */

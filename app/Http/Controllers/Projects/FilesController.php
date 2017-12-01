@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use File as FileSystem;
 use Illuminate\Http\Request;
 
+/**
+ * Project Files Controller.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class FilesController extends Controller
 {
     private $fileableTypes = [

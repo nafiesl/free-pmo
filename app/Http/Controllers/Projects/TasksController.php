@@ -8,6 +8,11 @@ use App\Http\Requests\Tasks\CreateRequest;
 use App\Http\Requests\Tasks\DeleteRequest;
 use App\Http\Requests\Tasks\UpdateRequest;
 
+/**
+ * Project Tasks Controller.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class TasksController extends Controller
 {
 

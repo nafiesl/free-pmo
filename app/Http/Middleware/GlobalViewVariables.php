@@ -6,6 +6,11 @@ use App\Entities\Projects\Project;
 use Closure;
 use DB;
 
+/**
+ * Global View Variables Middleware.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class GlobalViewVariables
 {
     /**

@@ -2,9 +2,14 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use App\Services\Option;
+use Illuminate\Support\ServiceProvider;
 
+/**
+ * Option Service Provider.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class OptionServiceProvider extends ServiceProvider
 {
     /**

@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BackupUploadRequest;
 use BackupManager\Filesystems\Destination;
 use BackupManager\Manager;
 use Illuminate\Http\Request;
 use League\Flysystem\FileExistsException;
 use League\Flysystem\FileNotFoundException;
 
+/**
+ * Database Backups Controller.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class BackupsController extends Controller
 {
     public function index(Request $request)
@@ -38,8 +42,8 @@ class BackupsController extends Controller
             $fileName = $request->get('file_name') ?: date('Y-m-d_Hi');
 
             $manager->makeBackup()->run('mysql', [
-                    new Destination('local', 'backup/db/'.$fileName),
-                ], 'gzip');
+                new Destination('local', 'backup/db/'.$fileName),
+            ], 'gzip');
 
             flash(trans('backup.created', ['filename' => $fileName.'.gz']), 'success');
 
@@ -80,11 +84,11 @@ class BackupsController extends Controller
 
     public function upload(Request $request)
     {
-    	$data = $request->validate([
-    		'backup_file' => 'required|mimetypes:application/x-gzip',
-    	], [
-    		'backup_file.mimetypes' => 'Invalid file type, must be <strong>.gz</strong> file',
-    	]);
+        $data = $request->validate([
+            'backup_file' => 'required|mimetypes:application/x-gzip',
+        ], [
+            'backup_file.mimetypes' => 'Invalid file type, must be <strong>.gz</strong> file',
+        ]);
 
         $file = $data['backup_file'];
         $fileName = $file->getClientOriginalName();

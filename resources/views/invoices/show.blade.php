@@ -11,19 +11,17 @@
     <div class="col-sm-4">
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('invoice.detail') }}</h3></div>
-            <div class="panel-body">
-                <table class="table table-condensed">
-                    <tbody>
-                        <tr><td>{{ trans('invoice.number') }}</td><td class="text-primary strong">{{ $invoice->number }}</td></tr>
-                        <tr><td>{{ trans('app.date') }}</td><td>{{ $invoice->created_at->format('Y-m-d') }}</td></tr>
-                        <tr><td>{{ trans('invoice.project') }}</td><td>{{ $invoice->project->name }}</td></tr>
-                        <tr><td>{{ trans('invoice.customer') }}</td><td>{{ $invoice->project->customer->name }}</td></tr>
-                        <tr><td>{{ trans('invoice.items_count') }}</td><td>{{ $invoice->items_count }}</td></tr>
-                        <tr><td>{{ trans('invoice.creator') }}</td><td>{{ $invoice->creator->name }}</td></tr>
-                        <tr><td>{{ trans('invoice.amount') }}</td><td class="text-right strong">{{ formatRp($invoice->amount) }}</td></tr>
-                    </tbody>
-                </table>
-            </div>
+            <table class="table">
+                <tbody>
+                    <tr><th>{{ trans('invoice.number') }}</th><td class="text-primary strong">{{ $invoice->number }}</td></tr>
+                    <tr><th>{{ trans('app.date') }}</th><td>{{ $invoice->created_at->format('Y-m-d') }}</td></tr>
+                    <tr><th>{{ trans('invoice.project') }}</th><td>{{ $invoice->project->name }}</td></tr>
+                    <tr><th>{{ trans('invoice.customer') }}</th><td>{{ $invoice->project->customer->name }}</td></tr>
+                    <tr><th>{{ trans('invoice.items_count') }}</th><td>{{ $invoice->items_count }}</td></tr>
+                    <tr><th>{{ trans('invoice.creator') }}</th><td>{{ $invoice->creator->name }}</td></tr>
+                    <tr><th>{{ trans('invoice.amount') }}</th><td class="text-right strong">{{ formatRp($invoice->amount) }}</td></tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="col-sm-8">

@@ -9,9 +9,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SubscriptionRequest as FormRequest;
 use Illuminate\Http\Request;
 
+/**
+ * Subscriptions Controller.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class SubscriptionsController extends Controller
 {
-
     private $repo;
 
     public function __construct(SubscriptionsRepository $repo)

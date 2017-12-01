@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 /**
- * Users Controller
+ * Users Controller.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */

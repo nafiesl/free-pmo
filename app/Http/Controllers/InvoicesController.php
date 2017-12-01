@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Invoices\Invoice;
-use Illuminate\Http\Request;
 
+/**
+ * Invoices Controller.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class InvoicesController extends Controller
 {
     public function show(Invoice $invoice)

@@ -25,19 +25,33 @@
         .text-right {
             text-align: right;
         }
+        .text-top {
+            vertical-align: top;
+        }
     </style>
 </head>
 <body>
     <table class="receipt-table">
         <tbody>
             <tr>
-                <td style="width:80px;">
-                    {{ Html::image(url('assets/imgs/logo.png'), '', ['style' => 'width:100%']) }}
+                <td style="width:100px;">
+                    {!! appLogoImage(['style' => 'width:100%']) !!}
                 </td>
-                <td style="width:400px">
+                <td style="width:380px">
                     <div style="width:280px">
-                        <h1 style="margin:0px; border-bottom: 3px; font-size: 21.5px">JasaWebsiteBanjarmasin.com</h1>
-                        <div style="font-size:13px">Jasa Pembuatan Website dan Aplikasi Berbasis Web</div>
+                        <h4 style="margin:0px; border-bottom: 3px; font-size: 21.5px">
+                            {{ Option::get('agency_name') }}
+                        </h4>
+                        <div style="font-size:13px">{{ Option::get('agency_tagline') }}</div>
+                        @if (Option::get('agency_address'))
+                        <hr style="margin: 2px 0">
+                        <div style="font-size:11px">
+                            {{ Option::get('agency_address') }}<br>
+                            @if (Option::get('agency_phone'))
+                            @lang('contact.phone_abb') {{ Option::get('agency_phone') }}
+                            @endif
+                        </div>
+                        @endif
                     </div>
                 </td>
                 <td style="width:270px; text-align: center;">
@@ -66,9 +80,9 @@
                     <tbody>
                         @foreach ($invoice->items as $key => $item)
                             <tr>
-                                <td class="text-center">{{ 1 + $key }}</td>
-                                <td>{{ $item['description'] }}</td>
-                                <td class="text-right">{{ formatRp($item['amount']) }}</td>
+                                <td class="text-center text-top">{{ 1 + $key }}</td>
+                                <td>{!! nl2br($item['description']) !!}</td>
+                                <td class="text-right text-top">{{ formatRp($item['amount']) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -82,7 +96,7 @@
                 </td>
             </tr>
             <tr style="vertical-align: top;">
-                <td>Terbilang : </td>
+                <td>{{ trans('payment.words_amount') }} : </td>
                 <td colspan="2" style="font-weight: bold;">
                     {{ ucwords(Terbilang::make($invoice->amount)) }} Rupiah
                 </td>
@@ -97,8 +111,9 @@
             </tr>
             <tr>
                 <td colspan="3" class="text-center">
-                    Banjarmasin, {{ dateId($invoice->created_at->format('Y-m-d')) }} <br><br><br><br>
-                    <div style="font-weight: bold;">JasaWebsiteBanjarmasin.com</div>
+                    {{ Option::get('agency_city') ? Option::get('agency_city').', ' : '' }}
+                    {{ dateId($invoice->created_at->format('Y-m-d')) }} <br><br><br><br>
+                    <div style="font-weight: bold;">{{ Option::get('agency_name') }}</div>
                 </td>
             </tr>
         </tbody>

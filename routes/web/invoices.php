@@ -19,6 +19,7 @@ Route::group(['middleware' => ['web', 'role:admin']], function () {
     /*
      * Invoices Routes
      */
+    Route::get('invoices', ['as' => 'invoices.index', 'uses' => 'InvoicesController@index']);
     Route::get('invoices/{invoice}', ['as' => 'invoices.show', 'uses' => 'InvoicesController@show']);
     Route::get('invoices/{invoice}/pdf', ['as' => 'invoices.pdf', 'uses' => 'InvoicesController@pdf']);
 });

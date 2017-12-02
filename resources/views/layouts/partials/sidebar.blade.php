@@ -25,6 +25,7 @@
             <li>{!! html_link_to_route('reports.current-credits', 'Piutang', [], ['icon' => 'money']) !!}</li>
             <li>{!! html_link_to_route('users.calendar', 'Calendar', [], ['icon' => 'calendar']) !!}</li>
             <li>{!! html_link_to_route('subscriptions.index', trans('subscription.subscription'), [], ['icon' => 'retweet']) !!}</li>
+            <li>{!! html_link_to_route('invoices.index', trans('invoice.list'), [], ['icon' => 'table']) !!}</li>
             <li>{!! html_link_to_route('payments.index', trans('payment.payments'), [], ['icon' => 'money']) !!}</li>
             <li>{!! html_link_to_route('customers.index', trans('customer.list'), [], ['icon' => 'users']) !!}</li>
             <li>{!! html_link_to_route('vendors.index', trans('vendor.list'), [], ['icon' => 'users']) !!}</li>

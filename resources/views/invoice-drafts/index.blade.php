@@ -6,7 +6,7 @@
 <h1 class="page-header">
     <div class="pull-right">
         {!! FormField::formButton(['route' => 'invoice-drafts.create'], trans('invoice.create'), [
-            'class' => 'btn btn-default',
+            'class' => 'btn btn-success',
             'name' => 'create-invoice-draft',
             'id' => 'invoice-draft-create-button'
         ] ) !!}

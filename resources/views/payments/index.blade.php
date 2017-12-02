@@ -4,7 +4,9 @@
 
 @section('content')
 <h1 class="page-header">
-    {!! link_to_route('payments.create', trans('payment.create'), [], ['class'=>'btn btn-success pull-right']) !!}
+    <div class="pull-right">
+        {!! link_to_route('payments.create', trans('payment.create'), [], ['class'=>'btn btn-success']) !!}
+    </div>
     {{ trans('payment.payments') }} <small>{{ $payments->total() }} {{ trans('payment.found') }}</small>
 </h1>
 <div class="well well-sm text-right">

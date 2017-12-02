@@ -11,6 +11,13 @@ use App\Entities\Invoices\Invoice;
  */
 class InvoicesController extends Controller
 {
+    public function index()
+    {
+        $invoices = Invoice::paginate();
+
+        return view('invoices.index', compact('invoices'));
+    }
+
     public function show(Invoice $invoice)
     {
         return view('invoices.show', compact('invoice'));

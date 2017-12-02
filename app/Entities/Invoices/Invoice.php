@@ -11,6 +11,7 @@ class Invoice extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     protected $casts = ['items' => 'array'];
+    protected $perPage = 25;
 
     public function getRouteKeyName()
     {
@@ -33,7 +34,7 @@ class Invoice extends Model
 
         $lastInvoice = $this->orderBy('number', 'desc')->first();
 
-        if ( ! is_null($lastInvoice)) {
+        if (!is_null($lastInvoice)) {
             $lastInvoiceNo = $lastInvoice->number;
             if (substr($lastInvoiceNo, 0, 4) == $prefix) {
                 return ++$lastInvoiceNo;

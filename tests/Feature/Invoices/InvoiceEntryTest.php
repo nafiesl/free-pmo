@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Invoices;
 
 use App\Entities\Partners\Customer;
 use App\Entities\Projects\Project;

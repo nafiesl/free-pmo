@@ -6,7 +6,11 @@
             'label' => trans('invoice.project'),
             'value' => $draft->projectId,
             'required' => true,
-        ] ) !!}
+        ]) !!}
+        <div class="row">
+            <div class="col-md-6">{!! FormField::text('date', ['label' => trans('invoice.date')]) !!}</div>
+            <div class="col-md-6">{!! FormField::text('due_date', ['label' => trans('invoice.due_date')]) !!}</div>
+        </div>
         {!! FormField::textarea('notes', ['label' => trans('invoice.notes'), 'value' => $draft->notes]) !!}
     </div>
     <div class="panel-footer">

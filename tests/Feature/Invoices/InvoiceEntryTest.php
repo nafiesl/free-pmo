@@ -10,7 +10,7 @@ use App\Services\InvoiceDrafts\Item;
 use Tests\TestCase;
 
 /**
- * Invoice Entry Feature Test
+ * Invoice Entry Feature Test.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */
@@ -136,9 +136,12 @@ class InvoiceEntryTest extends TestCase
 
         $this->visit(route('invoice-drafts.show', $draft->draftKey));
 
-        $this->type($project->id, 'project_id');
-        $this->type('catatan', 'notes');
-        $this->press(trans('invoice.proccess'));
+        $this->submitForm(trans('invoice.proccess'), [
+            'project_id' => $project->id,
+            'date'       => '2017-01-01',
+            'due_date'   => '2017-01-30',
+            'notes'      => 'catatan',
+        ]);
 
         $this->seePageIs(route('invoice-drafts.show', [$draft->draftKey, 'action' => 'confirm']));
 
@@ -169,6 +172,8 @@ class InvoiceEntryTest extends TestCase
 
         $draftAttributes = [
             'project_id' => $project->id,
+            'date'       => '2010-10-10',
+            'due_date'   => '2010-10-30',
             'notes'      => 'Catatan',
         ];
         $cart->updateDraftAttributes($draft->draftKey, $draftAttributes);
@@ -177,17 +182,19 @@ class InvoiceEntryTest extends TestCase
 
         $this->press(trans('invoice.save'));
 
-        // $this->seePageIs(route('invoices.show', date('ym').'0001'));
-        // $this->see(trans('invoice.created', ['invoice_no' => date('ym').'0001']));
+        $this->seePageIs(route('invoices.show', date('ym').'001'));
+        $this->see(trans('invoice.created', ['invoice_no' => date('ym').'001']));
 
         $this->seeInDatabase('invoices', [
-            'number'     => date('ym').'001',
-            'items'      => '[{"description":"Deskripsi item invoice","amount":1000},{"description":"Deskripsi item invoice","amount":2000}]',
             'project_id' => $project->id,
+            'number'     => date('ym').'001',
+            'date'       => '2010-10-10',
+            'due_date'   => '2010-10-30',
+            'items'      => '[{"description":"Deskripsi item invoice","amount":1000},{"description":"Deskripsi item invoice","amount":2000}]',
             'amount'     => 3000,
             'notes'      => 'Catatan',
-            'creator_id' => $user->id,
             'status_id'  => 1,
+            'creator_id' => $user->id,
         ]);
     }
 }

@@ -8,6 +8,7 @@ return [
     'detail'           => 'Detail Invoice',
     'not_found'        => 'Invoice tidak ditemukan.',
     'empty'            => 'Belum ada Invoice',
+    'back_to_show'     => 'Kembali ke Detail Invoice',
     'back_to_index'    => 'Kembali ke daftar Invoice',
     'draft_list'       => 'List Draft Invoice',
     'draft_list_empty' => 'Draft Invoice kosong.',
@@ -31,6 +32,8 @@ return [
     'print'               => 'Cetak Invoice',
     'add_item'            => 'Tambah Item',
     'item_added'          => 'Item berhasil ditambahkan.',
+    'item_updated'        => 'Item berhasil diupdate.',
+    'item_removed'        => 'Item berhasil dihapus.',
     'confirm_instruction' => 'Silakan periksa rincian di bawah ini, jika belum sesuai, silakan klik kembali.',
 
     // Attributes
@@ -39,6 +42,8 @@ return [
     'creator'          => 'Dibuat Oleh',
     'items'            => 'Item Invoice',
     'notes'            => 'Catatan',
+    'date'             => 'Tanggal',
+    'due_date'         => 'Jatuh Tempo',
     'amount'           => 'Tagihan',
     'total'            => 'Total Tagihan',
     'customer'         => 'Customer',

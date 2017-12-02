@@ -36,8 +36,22 @@
                 <td>{{ $invoice->project->customer->nameLink() }}</td>
                 <td class="text-right">{{ formatRp($invoice->amount) }}</td>
                 <td class="text-center">
-                    {!! html_link_to_route('invoices.show', '', [$invoice->number], ['class' => 'btn btn-info btn-xs','icon' => 'search','title' => 'Lihat ' . trans('invoice.show')]) !!}
-                    {!! html_link_to_route('invoices.pdf', '', [$invoice->number], ['class' => 'btn btn-default btn-xs','icon' => 'print','title' => trans('invoice.print'), 'target' => '_blank']) !!}
+                    {!! html_link_to_route(
+                        'invoices.show', '', [$invoice->number],
+                        [
+                            'icon' => 'search',
+                            'class' => 'btn btn-info btn-xs',
+                            'title' => 'Lihat ' . trans('invoice.show')
+                        ]
+                    ) !!}
+                    {!! html_link_to_route(
+                        'invoices.pdf', '', [$invoice->number],
+                        [
+                            'icon' => 'print',
+                            'class' => 'btn btn-default btn-xs',
+                            'title' => trans('invoice.print'), 'target' => '_blank'
+                        ]
+                    ) !!}
                 </td>
             </tr>
             @empty

@@ -13,8 +13,10 @@ class InvoiceDraft
 {
     public $items = [];
 
-    public $projectId;
+    public $date;
     public $notes;
+    public $dueDate;
+    public $projectId;
 
     public function items()
     {
@@ -66,6 +68,8 @@ class InvoiceDraft
         $invoice->number = $invoice->generateNewNumber();
         $invoice->items = $this->getItemsArray();
         $invoice->project_id = $this->projectId;
+        $invoice->date = $this->date;
+        $invoice->due_date = $this->dueDate;
         $invoice->amount = $this->getTotal();
         $invoice->notes = $this->notes;
         $invoice->status_id = 1;

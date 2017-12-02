@@ -17,6 +17,8 @@ class CreateInvoicesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('project_id');
             $table->string('number', 8)->unique();
+            $table->date('date');
+            $table->date('due_date')->nullable();
             $table->text('items');
             $table->unsignedInteger('amount');
             $table->string('notes')->nullable();

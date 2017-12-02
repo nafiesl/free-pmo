@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Invoices;
 
 use App\Entities\Projects\Project;
+use App\Http\Controllers\Controller;
 use App\Services\InvoiceDrafts\InvoiceDraft;
 use App\Services\InvoiceDrafts\InvoiceDraftCollection;
 use App\Services\InvoiceDrafts\Item;
@@ -13,7 +14,7 @@ use Illuminate\Http\Request;
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
-class InvoiceDraftsController extends Controller
+class DraftsController extends Controller
 {
     private $draftCollection;
 
@@ -119,14 +120,16 @@ class InvoiceDraftsController extends Controller
         return redirect()->route('invoice-drafts.index');
     }
 
-    public function proccess(Request $request, $draftKey)
+    public function proccess($draftKey)
     {
-        $this->validate($request, [
-            'project_id' => 'required|exists:projects,id',
+        $invoiceData = request()->validate([
+            'date'       => 'required|date',
             'notes'      => 'nullable|string|max:100',
+            'due_date'   => 'nullable|date|after:date',
+            'project_id' => 'required|exists:projects,id',
         ]);
 
-        $draft = $this->draftCollection->updateDraftAttributes($draftKey, $request->only('project_id', 'notes'));
+        $draft = $this->draftCollection->updateDraftAttributes($draftKey, $invoiceData);
 
         if ($draft->getItemsCount() == 0) {
             flash(trans('invoice.item_list_empty'), 'warning')->important();

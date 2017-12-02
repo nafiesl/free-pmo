@@ -24,20 +24,20 @@
         <thead>
             <th class="text-center">{{ trans('app.table_no') }}</th>
             <th class="col-md-2 text-center">{{ trans('invoice.number') }}</th>
-            <th class="col-md-2 text-center">{{ trans('app.date') }}</th>
-            <th class="col-md-2">{{ trans('invoice.customer') }}</th>
-            <th class="col-md-2">{{ trans('app.description') }}</th>
+            <th class="col-md-2 text-center">{{ trans('invoice.date') }}</th>
+            <th class="col-md-2 text-center">{{ trans('invoice.due_date') }}</th>
+            <th class="col-md-3">{{ trans('invoice.customer') }}</th>
             <th class="col-md-2 text-right">{{ trans('invoice.amount') }}</th>
-            <th class="col-md-2 text-center">{{ trans('app.action') }}</th>
+            <th class="col-md-1 text-center">{{ trans('app.action') }}</th>
         </thead>
         <tbody>
             @forelse($project->invoices as $key => $invoice)
             <tr>
                 <td class="text-center">{{ 1 + $key }}</td>
                 <td class="text-center">{{ $invoice->number }}</td>
-                <td class="text-center">{{ $invoice->created_at->format('Y-m-d') }}</td>
-                <td>{{ $project->customer->name }}</td>
-                <td>{!! nl2br($invoice->description) !!}</td>
+                <td class="text-center">{{ $invoice->date }}</td>
+                <td class="text-center">{{ $invoice->due_date }}</td>
+                <td>{{ $project->customer->nameLink() }}</td>
                 <td class="text-right">{{ formatRp($invoice->amount) }}</td>
                 <td class="text-center">
                     {!! html_link_to_route('invoices.show', '', [$invoice->number], ['class' => 'btn btn-info btn-xs','icon' => 'search','title' => 'Lihat ' . trans('invoice.show')]) !!}
@@ -52,7 +52,7 @@
             <tr>
                 <th colspan="5" class="text-right">{{ trans('app.total') }}</th>
                 <th class="text-right">{{ formatRp($project->invoices->sum('amount')) }}</th>
-                <th></th>
+                <th>&nbsp;</th>
             </tr>
         </tfoot>
     </table>

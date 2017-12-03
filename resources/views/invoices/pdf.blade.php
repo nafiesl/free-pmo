@@ -7,6 +7,9 @@
         html {
             margin: 10px 20px 0px 20px;
         }
+        p {
+            margin: 10px 0px;
+        }
         table.receipt-table {
             /*border: 1px solid #aaa;*/
             border-collapse: collapse;
@@ -61,12 +64,33 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="2">
                     <h4 style="margin: 3px 0;">{{ trans('app.to') }} :</h4>
-                    <p><strong>{{ $invoice->project->customer->name }}</strong></p>
+                    @php
+                        $customer = $invoice->project->customer;
+                    @endphp
+                    <p><strong>{{ $customer->name }}</strong></p>
+                    @if ($customer->address)
+                    <p style="max-width: 250px">{!! nl2br($customer->address) !!}</p>
+                    @endif
+                    @if ($customer->phone)
+                    <p>{{ trans('contact.phone') }} : {{ $customer->phone }}</p>
+                    @endif
+                    @if ($customer->website)
+                    <p>{{ $customer->website }}</p>
+                    @endif
+                    @if ($customer->pic)
+                    <p><strong>UP. {{ $customer->pic }}</strong></p>
+                    @endif
+                </td>
+                <td class="text-center text-top">
+                    @if ($invoice->due_date)
+                    <h4 style="margin: 30px 3px 0;">{{ trans('invoice.due_date') }}</h4>
+                    <p>{{ dateId($invoice->due_date) }}</p>
+                    @endif
                 </td>
             </tr>
-            <tr><td colspan="3">{{ trans('project.jobs') }} :</td></tr>
+            <tr><td colspan="3">{{ trans('invoice.items') }} :</td></tr>
             <tr>
                 <td colspan="3">
                 <table border="1" class="receipt-table" style="width: 100%">
@@ -99,6 +123,11 @@
                 <td>{{ trans('payment.words_amount') }} : </td>
                 <td colspan="2" style="font-weight: bold;">
                     {{ ucwords(Terbilang::make($invoice->amount)) }} Rupiah
+                </td>
+            </tr>
+            <tr style="vertical-align: top;">
+                <td colspan="3">
+                    <p style="font-style: italic;"><strong>Catatan</strong> : {!! nl2br($invoice->notes) !!}</p>
                 </td>
             </tr>
             {{-- TODO : Add dynamic bank account based on agency bank account. --}}

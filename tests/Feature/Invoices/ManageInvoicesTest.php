@@ -53,7 +53,7 @@ class ManageInvoicesTest extends TestCase
     }
 
     /** @test */
-    public function user_can_add_invoice_item()
+    public function user_can_add_invoice_item_on_invoice_edit_page()
     {
         $this->adminUserSigningIn();
         $invoice = factory(Invoice::class)->create();
@@ -84,7 +84,7 @@ class ManageInvoicesTest extends TestCase
     }
 
     /** @test */
-    public function user_can_update_invoice_item()
+    public function user_can_update_invoice_item_on_invoice_edit_page()
     {
         $this->adminUserSigningIn();
 
@@ -115,7 +115,7 @@ class ManageInvoicesTest extends TestCase
     }
 
     /** @test */
-    public function user_can_remove_invoice_item()
+    public function user_can_remove_invoice_item_on_invoice_edit_page()
     {
         $this->adminUserSigningIn();
 
@@ -140,6 +140,30 @@ class ManageInvoicesTest extends TestCase
             'id'     => $invoice->id,
             'items'  => '[{"description":"Testing deskripsi invoice item","amount":"1111"}]',
             'amount' => 1111,
+        ]);
+    }
+
+    /** @test */
+    public function user_can_delete_an_invoice()
+    {
+        $this->adminUserSigningIn();
+        $invoice = factory(Invoice::class)->create();
+
+        $this->visit(route('invoices.edit', $invoice));
+
+        $this->click(trans('invoice.delete'));
+        $this->seePageIs(route('invoices.edit', [$invoice, 'action' => 'delete']));
+
+        $this->submitForm(trans('invoice.delete'), [
+            'invoice_id' => $invoice->id,
+        ]);
+
+        $this->see(trans('invoice.deleted'));
+
+        $this->seePageIs(route('projects.invoices', $invoice->project_id));
+
+        $this->dontSeeInDatabase('invoices', [
+            'id' => $invoice->id,
         ]);
     }
 }

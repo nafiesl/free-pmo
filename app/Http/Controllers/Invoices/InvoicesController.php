@@ -48,6 +48,22 @@ class InvoicesController extends Controller
         return redirect()->route('invoices.show', $invoice);
     }
 
+    public function destroy(Invoice $invoice)
+    {
+        $this->validate(request(), [
+            'invoice_id' => 'required',
+        ]);
+
+        if (request('invoice_id') == $invoice->id && $invoice->delete()) {
+            flash(trans('invoice.deleted'), 'warning');
+            return redirect()->route('projects.invoices', $invoice->project_id);
+        }
+
+        flash(trans('invoice.undeleted'), 'danger');
+
+        return back();
+    }
+
     public function pdf(Invoice $invoice)
     {
         return view('invoices.pdf', compact('invoice'));

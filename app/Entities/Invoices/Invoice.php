@@ -6,6 +6,11 @@ use App\Entities\Projects\Project;
 use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Invoice Model.
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
+ */
 class Invoice extends Model
 {
     protected $guarded = ['id', 'created_at', 'updated_at'];
@@ -48,5 +53,15 @@ class Invoice extends Model
         $pcsCount = 0;
 
         return count($this->items);
+    }
+
+    public function numberLink()
+    {
+        return link_to_route('invoices.show', $this->number, [$this->number], [
+            'title' => trans(
+                'app.show_detail_title',
+                ['name' => $this->number, 'type' => trans('invoice.invoice')]
+            ),
+        ]);
     }
 }

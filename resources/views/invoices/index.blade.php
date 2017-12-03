@@ -30,7 +30,7 @@
             @forelse($invoices as $key => $invoice)
             <tr>
                 <td class="text-center">{{ 1 + $key }}</td>
-                <td class="text-center">{{ $invoice->number }}</td>
+                <td class="text-center">{{ $invoice->numberLink() }}</td>
                 <td class="text-center">{{ $invoice->created_at->format('Y-m-d') }}</td>
                 <td>{{ $invoice->project->nameLink() }}</td>
                 <td>{{ $invoice->project->customer->nameLink() }}</td>

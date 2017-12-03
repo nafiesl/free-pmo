@@ -101,11 +101,14 @@
                     {{ ucwords(Terbilang::make($invoice->amount)) }} Rupiah
                 </td>
             </tr>
+            {{-- TODO : Add dynamic bank account based on agency bank account. --}}
             <tr style="vertical-align: top;">
                 <td colspan="3">
+                    {{--
                     <p>Pembayaran dapat dilakukan melalui transfer ke rekening berikut:</p>
                     No. Rek : <strong>BCA // 782-0088-543</strong><br>
                     An. <strong>NAFIES LUTHFI</strong>
+                    --}}
                     <p>Terima kasih atas kerjasamanya.</p>
                 </td>
             </tr>

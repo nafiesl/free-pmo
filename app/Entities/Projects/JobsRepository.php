@@ -3,7 +3,6 @@
 namespace App\Entities\Projects;
 
 use App\Entities\BaseRepository;
-use App\Entities\Projects\Project;
 use DB;
 
 /**
@@ -40,6 +39,7 @@ class JobsRepository extends BaseRepository
     public function createJob($jobData, $projectId)
     {
         $jobData['project_id'] = $projectId;
+
         return $this->storeArray($jobData);
     }
 
@@ -77,13 +77,12 @@ class JobsRepository extends BaseRepository
         return Task::findOrFail($taskId);
     }
 
-    public function update($jobData = [], $jobId)
+    public function update($jobData, $jobId)
     {
         foreach ($jobData as $key => $value) {
             if (!$jobData[$key]) {
                 $jobData[$key] = null;
             }
-
         }
 
         $jobData['price'] = str_replace('.', '', $jobData['price']);

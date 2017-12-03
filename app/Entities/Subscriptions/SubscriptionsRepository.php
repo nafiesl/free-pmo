@@ -5,7 +5,7 @@ namespace App\Entities\Subscriptions;
 use App\Entities\BaseRepository;
 
 /**
- * Subscriptions Repository Class
+ * Subscriptions Repository Class.
  */
 class SubscriptionsRepository extends BaseRepository
 {
@@ -28,7 +28,6 @@ class SubscriptionsRepository extends BaseRepository
                 if ($q) {
                     $query->where('name', 'like', '%'.$q.'%');
                 }
-
             })
             ->with('customer', 'vendor')
             ->paginate($this->_paginate);

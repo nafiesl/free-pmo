@@ -45,6 +45,7 @@ class Invoice extends Model
                 return ++$lastInvoiceNo;
             }
         }
+
         return $prefix.'001';
     }
 

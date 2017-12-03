@@ -13,7 +13,7 @@ class ManageCustomersTest extends TestCase
     /** @test */
     public function user_can_see_customer_list_in_customer_index_page()
     {
-        $user      = $this->adminUserSigningIn();
+        $user = $this->adminUserSigningIn();
         $customer1 = factory(Customer::class)->create();
         $customer2 = factory(Customer::class)->create();
 
@@ -57,7 +57,7 @@ class ManageCustomersTest extends TestCase
     /** @test */
     public function user_can_edit_a_customer()
     {
-        $user     = $this->adminUserSigningIn();
+        $user = $this->adminUserSigningIn();
         $customer = factory(Customer::class)->create(['name' => 'Testing 123']);
 
         $this->visit(route('customers.show', [$customer->id]));
@@ -92,7 +92,7 @@ class ManageCustomersTest extends TestCase
     /** @test */
     public function user_can_delete_a_customer()
     {
-        $user     = $this->adminUserSigningIn();
+        $user = $this->adminUserSigningIn();
         $customer = factory(Customer::class)->create();
 
         $this->visit(route('customers.edit', [$customer->id]));

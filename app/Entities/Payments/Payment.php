@@ -2,7 +2,6 @@
 
 namespace App\Entities\Payments;
 
-use App\Entities\Payments\PaymentPresenter;
 use App\Entities\Projects\Project;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;

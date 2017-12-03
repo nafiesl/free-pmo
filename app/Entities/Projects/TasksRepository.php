@@ -5,7 +5,7 @@ namespace App\Entities\Projects;
 use App\Entities\BaseRepository;
 
 /**
- * Tasks Repository Class
+ * Tasks Repository Class.
  */
 class TasksRepository extends BaseRepository
 {
@@ -19,6 +19,7 @@ class TasksRepository extends BaseRepository
     public function createTask($taskData, $jobId)
     {
         $taskData['job_id'] = $jobId;
+
         return $this->storeArray($taskData);
     }
 

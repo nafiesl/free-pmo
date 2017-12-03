@@ -1,7 +1,7 @@
 <?php
 
 Route::group(['namespace' => 'References', 'middleware' => ['web', 'role:admin']], function () {
-    /**
+    /*
      * Options Routes
      */
     Route::get('options', ['as' => 'options.index', 'uses' => 'OptionsController@index']);

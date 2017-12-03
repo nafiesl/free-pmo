@@ -8,7 +8,7 @@ use App\Entities\Users\User;
 use Tests\TestCase;
 
 /**
- * Manage Events API Feature Test
+ * Manage Events API Feature Test.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */

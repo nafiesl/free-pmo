@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateJobsTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -35,5 +34,4 @@ class CreateJobsTable extends Migration
     {
         Schema::drop('jobs');
     }
-
 }

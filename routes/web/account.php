@@ -1,6 +1,6 @@
 <?php
 /**
- * Installation Routes
+ * Installation Routes.
  */
 Route::group(['middleware' => 'web'], function () {
     Route::get('app-install', ['as' => 'app.install', 'uses' => 'InstallationController@index']);

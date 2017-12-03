@@ -2,9 +2,9 @@
 
 namespace Tests\Unit;
 
-use App\Services\InvoiceDrafts\Item;
 use App\Services\InvoiceDrafts\InvoiceDraft;
 use App\Services\InvoiceDrafts\InvoiceDraftCollection;
+use App\Services\InvoiceDrafts\Item;
 use Tests\TestCase;
 
 class InvoiceDraftCollectionTest extends TestCase

@@ -7,7 +7,6 @@ use App\Http\Requests\Request;
 
 class UpdateRequest extends Request
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -16,6 +15,7 @@ class UpdateRequest extends Request
     public function authorize()
     {
         $project = Project::findOrFail($this->segment(2));
+
         return auth()->user()->can('update', $project);
     }
 
@@ -37,5 +37,4 @@ class UpdateRequest extends Request
             'customer_id'    => 'nullable|numeric',
         ];
     }
-
 }

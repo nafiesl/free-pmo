@@ -56,6 +56,7 @@ class InvoicesController extends Controller
 
         if (request('invoice_id') == $invoice->id && $invoice->delete()) {
             flash(trans('invoice.deleted'), 'warning');
+
             return redirect()->route('projects.invoices', $invoice->project_id);
         }
 

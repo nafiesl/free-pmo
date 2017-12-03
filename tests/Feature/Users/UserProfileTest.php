@@ -5,7 +5,7 @@ namespace Tests\Feature\Users;
 use Tests\TestCase;
 
 /**
- * User Profile Feature Test
+ * User Profile Feature Test.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */

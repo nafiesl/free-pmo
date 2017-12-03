@@ -9,13 +9,12 @@ use App\Entities\Projects\Project;
 use App\Entities\Users\User;
 
 /**
- * Base Repository Class
+ * Base Repository Class.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 abstract class BaseRepository extends EloquentRepository
 {
-
     public function getCustomersList()
     {
         return Customer::orderBy('name')->pluck('name', 'id');
@@ -27,6 +26,7 @@ abstract class BaseRepository extends EloquentRepository
             'Customer' => Customer::orderBy('name')->pluck('name', 'id')->all(),
             'Vendor'   => Vendor::orderBy('name')->pluck('name', 'id')->all(),
         ];
+
         return $partners;
     }
 

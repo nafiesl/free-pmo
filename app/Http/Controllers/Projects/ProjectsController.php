@@ -10,7 +10,7 @@ use App\Http\Requests\Projects\UpdateRequest;
 use Illuminate\Http\Request;
 
 /**
- * Projects Controller
+ * Projects Controller.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */
@@ -32,12 +32,14 @@ class ProjectsController extends Controller
         }
 
         $projects = $this->repo->getProjects($request->get('q'), $statusId);
+
         return view('projects.index', compact('projects', 'status'));
     }
 
     public function create()
     {
         $customers = $this->repo->getCustomersList();
+
         return view('projects.create', compact('customers'));
     }
 
@@ -45,12 +47,14 @@ class ProjectsController extends Controller
     {
         $project = $this->repo->create($request->except('_token'));
         flash()->success(trans('project.created'));
+
         return redirect()->route('projects.show', $project->id);
     }
 
     public function show($projectId)
     {
         $project = $this->repo->requireById($projectId);
+
         return view('projects.show', compact('project'));
     }
 
@@ -58,6 +62,7 @@ class ProjectsController extends Controller
     {
         $project = $this->repo->requireById($projectId);
         $customers = $this->repo->getCustomersList();
+
         return view('projects.edit', compact('project', 'customers'));
     }
 
@@ -65,12 +70,14 @@ class ProjectsController extends Controller
     {
         $project = $this->repo->update($request->except(['_method', '_token']), $projectId);
         flash()->success(trans('project.updated'));
+
         return redirect()->route('projects.edit', $projectId);
     }
 
     public function delete($projectId)
     {
         $project = $this->repo->requireById($projectId);
+
         return view('projects.delete', compact('project'));
     }
 
@@ -89,6 +96,7 @@ class ProjectsController extends Controller
     public function subscriptions($projectId)
     {
         $project = $this->repo->requireById($projectId);
+
         return view('projects.subscriptions', compact('project'));
     }
 
@@ -96,6 +104,7 @@ class ProjectsController extends Controller
     {
         $project = $this->repo->requireById($projectId);
         $project->load('payments.partner');
+
         return view('projects.payments', compact('project'));
     }
 
@@ -103,6 +112,7 @@ class ProjectsController extends Controller
     {
         $project = $this->repo->updateStatus($request->get('status_id'), $projectId);
         flash()->success(trans('project.updated'));
+
         return redirect()->route('projects.show', $projectId);
     }
 
@@ -110,9 +120,8 @@ class ProjectsController extends Controller
     {
         if ($request->ajax()) {
             $data = $this->repo->jobsReorder($request->get('postData'));
+
             return 'oke';
         }
-
-        return null;
     }
 }

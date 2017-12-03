@@ -1,7 +1,7 @@
 <?php
 
 Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'], function () {
-    /**
+    /*
      * Projects Routes
      */
     Route::get('projects/{id}/delete', ['as' => 'projects.delete', 'uses' => 'ProjectsController@delete']);
@@ -9,23 +9,23 @@ Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'],
     Route::patch('projects/{id}/status-update', ['as' => 'projects.status-update', 'uses' => 'ProjectsController@statusUpdate']);
     Route::resource('projects', 'ProjectsController');
 
-    /**
+    /*
      * Project Payments Routes
      */
     Route::get('projects/{id}/payments', ['as' => 'projects.payments', 'uses' => 'ProjectsController@payments']);
 
-    /**
+    /*
      * Project Fees Routes
      */
     Route::get('projects/{project}/fees/create', ['as' => 'projects.fees.create', 'uses' => 'FeesController@create']);
     Route::post('projects/{project}/fees/store', ['as' => 'projects.fees.store', 'uses' => 'FeesController@store']);
 
-    /**
+    /*
      * Project Invoices Routes
      */
     Route::get('projects/{project}/invoices', ['as' => 'projects.invoices', 'uses' => 'InvoicesController@index']);
 
-    /**
+    /*
      * Project Jobs Routes
      */
     Route::get('projects/{project}/jobs-export/{type?}', ['as' => 'projects.jobs-export', 'uses' => 'JobsController@jobsExport']);
@@ -36,7 +36,7 @@ Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'],
     Route::get('projects/{project}/jobs', ['as' => 'projects.jobs.index', 'uses' => 'JobsController@index']);
     Route::post('projects/{id}/jobs-reorder', ['as' => 'projects.jobs-reorder', 'uses' => 'ProjectsController@jobsReorder']);
 
-    /**
+    /*
      * Tasks Routes
      */
     Route::get('jobs/{id}/tasks/create', ['as' => 'tasks.create', 'uses' => 'TasksController@create']);
@@ -44,7 +44,7 @@ Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'],
     Route::patch('task/{id}', ['as' => 'tasks.update', 'uses' => 'TasksController@update']);
     Route::delete('task/{id}', ['as' => 'tasks.destroy', 'uses' => 'TasksController@destroy']);
 
-    /**
+    /*
      * Files Routes
      */
     Route::get('projects/{project}/files', ['as' => 'projects.files', 'uses' => 'FilesController@index']);
@@ -55,7 +55,7 @@ Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'],
 
 Route::group(['middleware' => ['web', 'auth']], function () {
 
-    /**
+    /*
      * Jobs Routes
      */
     Route::get('jobs', ['as' => 'jobs.index', 'uses' => 'JobsController@index']);
@@ -64,7 +64,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
 Route::group(['middleware' => ['web', 'role:admin']], function () {
 
-    /**
+    /*
      * Job Actions Routes
      */
     Route::get('jobs/{job}/edit', ['as' => 'jobs.edit', 'uses' => 'JobsController@edit']);

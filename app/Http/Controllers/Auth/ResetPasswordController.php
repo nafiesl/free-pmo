@@ -33,14 +33,15 @@ class ResetPasswordController extends Controller
     /**
      * Reset the given user's password.
      *
-     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
-     * @param  string  $password
+     * @param \Illuminate\Contracts\Auth\CanResetPassword $user
+     * @param string                                      $password
+     *
      * @return void
      */
     protected function resetPassword($user, $password)
     {
         $user->forceFill([
-            'password' => $password,
+            'password'       => $password,
             'remember_token' => str_random(60),
         ])->save();
 

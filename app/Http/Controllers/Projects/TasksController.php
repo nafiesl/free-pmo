@@ -15,7 +15,6 @@ use App\Http\Requests\Tasks\UpdateRequest;
  */
 class TasksController extends Controller
 {
-
     private $repo;
 
     public function __construct(TasksRepository $repo)
@@ -27,6 +26,7 @@ class TasksController extends Controller
     {
         $job = $this->repo->createTask($req->except('_token'), $jobId);
         flash()->success(trans('task.created'));
+
         return redirect()->route('jobs.show', $jobId);
     }
 
@@ -34,6 +34,7 @@ class TasksController extends Controller
     {
         $task = $this->repo->update($req->except(['_method', '_token']), $taskId);
         flash()->success(trans('task.updated'));
+
         return redirect()->route('jobs.show', $task->job_id);
     }
 
@@ -51,5 +52,4 @@ class TasksController extends Controller
 
         return redirect()->route('jobs.show', $jobId);
     }
-
 }

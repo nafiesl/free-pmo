@@ -35,7 +35,6 @@ class ResetPasswordTest extends TestCase
             $user,
             'Illuminate\Auth\Notifications\ResetPassword',
             function ($notification, $channels) use ($user) {
-
                 $userPasswordReset = \DB::table('password_resets')
                     ->where('email', $user->email)->first();
 

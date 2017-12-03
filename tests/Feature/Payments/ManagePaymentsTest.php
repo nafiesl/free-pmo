@@ -9,7 +9,7 @@ use App\Entities\Projects\Project;
 use Tests\TestCase;
 
 /**
- * Manage Payments Feature Test
+ * Manage Payments Feature Test.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */

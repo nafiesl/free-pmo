@@ -11,7 +11,7 @@ use App\Http\Requests\Payments\UpdateRequest;
 use Illuminate\Http\Request;
 
 /**
- * Payments Controller class
+ * Payments Controller class.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
@@ -28,6 +28,7 @@ class PaymentsController extends Controller
     {
         $payments = $this->repo->getPayments($request->only('q', 'partner_id'));
         $partnersList = Customer::pluck('name', 'id')->all();
+
         return view('payments.index', compact('payments', 'partnersList'));
     }
 
@@ -35,6 +36,7 @@ class PaymentsController extends Controller
     {
         $projects = $this->repo->getProjectsList();
         $partners = $this->repo->getCustomersAndVendorsList();
+
         return view('payments.create', compact('projects', 'partners'));
     }
 
@@ -42,6 +44,7 @@ class PaymentsController extends Controller
     {
         $payment = $this->repo->create($request->except('_token'));
         flash()->success(trans('payment.created'));
+
         return redirect()->route('projects.payments', $payment->project_id);
     }
 
@@ -54,6 +57,7 @@ class PaymentsController extends Controller
     {
         $projects = $this->repo->getProjectsList();
         $partners = $this->repo->getCustomersAndVendorsList();
+
         return view('payments.edit', compact('payment', 'projects', 'partners'));
     }
 
@@ -62,6 +66,7 @@ class PaymentsController extends Controller
         $payment->update($request->except(['_method', '_token']));
 
         flash()->success(trans('payment.updated'));
+
         return redirect()->route('payments.show', $payment->id);
     }
 

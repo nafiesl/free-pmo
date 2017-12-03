@@ -35,7 +35,8 @@ class User extends Authenticatable
     /**
      * Assign the given role to the user.
      *
-     * @param  string $role
+     * @param string $role
+     *
      * @return void
      */
     public function assignRole(string $roleName)
@@ -51,7 +52,8 @@ class User extends Authenticatable
     /**
      * Remove the given role from the user.
      *
-     * @param  string $role
+     * @param string $role
+     *
      * @return void
      */
     public function removeRole(string $roleName)
@@ -67,8 +69,9 @@ class User extends Authenticatable
     /**
      * Determine if the user has the given role.
      *
-     * @param  string $role
-     * @return boolean
+     * @param string $role
+     *
+     * @return bool
      */
     public function hasRole(string $roleName)
     {
@@ -80,8 +83,9 @@ class User extends Authenticatable
     /**
      * Determine if the user has the given array of role.
      *
-     * @param  array $role
-     * @return boolean
+     * @param array $role
+     *
+     * @return bool
      */
     public function hasRoles(array $roleNameArray)
     {

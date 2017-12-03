@@ -6,7 +6,7 @@ use App\Exceptions\ReferenceKeyNotFoundException;
 use Illuminate\Support\Arr;
 
 /**
- * Base of References class
+ * Base of References class.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
@@ -57,7 +57,7 @@ abstract class ReferenceAbstract
 
     public static function getColorById($colorId)
     {
-        if (!!static::getById($colorId) && isset(static::$colors[$colorId])) {
+        if ((bool) static::getById($colorId) && isset(static::$colors[$colorId])) {
             return static::$colors[$colorId];
         }
 

@@ -8,7 +8,7 @@ use App\Entities\Projects\Project;
 use DB;
 
 /**
- * Reports Repository Class
+ * Reports Repository Class.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
@@ -31,9 +31,9 @@ class ReportsRepository extends BaseRepository
 
     public function getMonthlyReports($year, $month)
     {
-        $rawQuery = "date, count(`id`) as count";
-        $rawQuery .= ", sum(if(in_out = 1, amount, 0)) AS cashin";
-        $rawQuery .= ", sum(if(in_out = 0, amount, 0)) AS cashout";
+        $rawQuery = 'date, count(`id`) as count';
+        $rawQuery .= ', sum(if(in_out = 1, amount, 0)) AS cashin';
+        $rawQuery .= ', sum(if(in_out = 0, amount, 0)) AS cashout';
 
         $reportsData = DB::table('payments')->select(DB::raw($rawQuery))
             ->where(DB::raw('YEAR(date)'), $year)
@@ -54,10 +54,10 @@ class ReportsRepository extends BaseRepository
 
     public function getYearlyReports($year)
     {
-        $rawQuery = "MONTH(date) as month";
-        $rawQuery .= ", count(`id`) as count";
-        $rawQuery .= ", sum(if(in_out = 1, amount, 0)) AS cashin";
-        $rawQuery .= ", sum(if(in_out = 0, amount, 0)) AS cashout";
+        $rawQuery = 'MONTH(date) as month';
+        $rawQuery .= ', count(`id`) as count';
+        $rawQuery .= ', sum(if(in_out = 1, amount, 0)) AS cashin';
+        $rawQuery .= ', sum(if(in_out = 0, amount, 0)) AS cashout';
 
         $reportsData = DB::table('payments')->select(DB::raw($rawQuery))
             ->where(DB::raw('YEAR(date)'), $year)
@@ -80,9 +80,9 @@ class ReportsRepository extends BaseRepository
     {
         // On Progress, Done, On Hold
         $projects = Project::whereIn('status_id', [2, 3, 6])->with('payments', 'customer')->get();
+
         return $projects->filter(function ($project) {
             return $project->cashInTotal() < $project->project_value;
         })->values();
     }
-
 }

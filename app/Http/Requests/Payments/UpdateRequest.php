@@ -6,7 +6,6 @@ use App\Http\Requests\Request;
 
 class UpdateRequest extends Request
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -34,5 +33,4 @@ class UpdateRequest extends Request
             'description' => 'required|max:255',
         ];
     }
-
 }

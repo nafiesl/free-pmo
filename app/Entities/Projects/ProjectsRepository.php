@@ -8,7 +8,7 @@ use DB;
 use ProjectStatus;
 
 /**
- * Projects Repository Class
+ * Projects Repository Class.
  */
 class ProjectsRepository extends BaseRepository
 {
@@ -29,7 +29,6 @@ class ProjectsRepository extends BaseRepository
                 if ($statusId && in_array($statusId, $statusIds)) {
                     $query->where('status_id', $statusId);
                 }
-
             })
             ->withCount('payments')
             ->with('customer')
@@ -50,6 +49,7 @@ class ProjectsRepository extends BaseRepository
 
         $project = $this->storeArray($projectData);
         DB::commit();
+
         return $project;
     }
 
@@ -60,7 +60,7 @@ class ProjectsRepository extends BaseRepository
 
     public function createNewCustomer($customerName, $customerEmail)
     {
-        $newCustomer = new Customer;
+        $newCustomer = new Customer();
         $newCustomer->name = $customerName;
         $newCustomer->email = $customerEmail;
         $newCustomer->save();
@@ -88,6 +88,7 @@ class ProjectsRepository extends BaseRepository
         $project->delete();
 
         DB::commit();
+
         return 'deleted';
     }
 

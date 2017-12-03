@@ -2,13 +2,11 @@
 
 namespace App\Entities\Projects;
 
-use App\Entities\Projects\TaskPresenter;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
 class Task extends Model
 {
-
     use PresentableTrait;
 
     protected $presenter = TaskPresenter::class;
@@ -18,5 +16,4 @@ class Task extends Model
     {
         return $this->belongsTo(Job::class, 'project_id');
     }
-
 }

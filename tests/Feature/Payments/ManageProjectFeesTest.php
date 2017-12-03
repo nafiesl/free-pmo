@@ -43,5 +43,4 @@ class ManageProjectFeesTest extends TestCase
             'partner_id'   => $worker->id,
         ]);
     }
-
 }

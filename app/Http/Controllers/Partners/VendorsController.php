@@ -16,7 +16,7 @@ class VendorsController extends Controller
     public function index()
     {
         $editableVendor = null;
-        $vendors        = Vendor::where(function ($query) {
+        $vendors = Vendor::where(function ($query) {
             $query->where('name', 'like', '%'.request('q').'%');
         })->paginate(25);
 
@@ -30,7 +30,8 @@ class VendorsController extends Controller
     /**
      * Store a newly created vendor in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,14 +45,16 @@ class VendorsController extends Controller
         Vendor::create($newVendorData);
 
         flash(trans('vendor.created'), 'success');
+
         return redirect()->route('vendors.index');
     }
 
     /**
      * Update the specified vendor in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Entities\Partners\Vendor  $vendor
+     * @param \Illuminate\Http\Request      $request
+     * @param \App\Entities\Partners\Vendor $vendor
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Vendor $vendor)
@@ -68,13 +71,15 @@ class VendorsController extends Controller
         $vendor = $vendor->update($vendorData);
 
         flash(trans('vendor.updated'), 'success');
+
         return redirect()->route('vendors.index', $routeParam);
     }
 
     /**
      * Remove the specified vendor from storage.
      *
-     * @param  \App\Entities\Partners\Vendor  $vendor
+     * @param \App\Entities\Partners\Vendor $vendor
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Vendor $vendor)
@@ -87,10 +92,12 @@ class VendorsController extends Controller
 
         if (request('vendor_id') == $vendor->id && $vendor->delete()) {
             flash(trans('vendor.deleted'), 'warning');
+
             return redirect()->route('vendors.index', $routeParam);
         }
 
         flash(trans('vendor.undeleted'), 'danger');
+
         return back();
     }
 }

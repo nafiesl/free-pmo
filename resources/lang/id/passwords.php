@@ -13,9 +13,9 @@ return [
     |
     */
 
-    "password"  => "Password harus minimal enam karakter dan cocok dengan konfirmasi.",
-    "user"      => "Kami tidak dapat menemukan pengguna dengan email tersebut.",
-    "token"     => "Token Reset Password tidak sah.",
-    "sent"      => "Kami sudah mengirim email yang berisi tautan untuk mereset Password Anda!",
-    "reset"     => "Password Anda sudah direset!",
+    'password'  => 'Password harus minimal enam karakter dan cocok dengan konfirmasi.',
+    'user'      => 'Kami tidak dapat menemukan pengguna dengan email tersebut.',
+    'token'     => 'Token Reset Password tidak sah.',
+    'sent'      => 'Kami sudah mengirim email yang berisi tautan untuk mereset Password Anda!',
+    'reset'     => 'Password Anda sudah direset!',
 ];

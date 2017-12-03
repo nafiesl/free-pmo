@@ -1,27 +1,28 @@
 <?php
 
 /**
- * Vue js Trial
+ * Vue js Trial.
  */
 /** Index Page */
-Route::get('options-vue', function() {
+Route::get('options-vue', function () {
     return view('options.index-vue');
 });
 
-Route::group(['prefix'=>'api/options'], function() {
-    Route::match(['GET','POST'], '/', function() {
-        if (Request::isMethod('GET'))
+Route::group(['prefix'=>'api/options'], function () {
+    Route::match(['GET', 'POST'], '/', function () {
+        if (Request::isMethod('GET')) {
             return App\Entities\Options\Option::all();
-        else {
-            return App\Entities\Options\Option::create(Request::only('key','value'));
+        } else {
+            return App\Entities\Options\Option::create(Request::only('key', 'value'));
         }
     });
 
-    Route::match(['GET','PATCH','DELETE'], '/{id}', function($id) {
-        if (Request::isMethod('GET'))
+    Route::match(['GET', 'PATCH', 'DELETE'], '/{id}', function ($id) {
+        if (Request::isMethod('GET')) {
             return App\Entities\Options\Option::findOrFail($id);
-        else if (Request::isMethod('PATCH')) {
-            App\Entities\Options\Option::findOrFail($id)->update(Request::only('key','value'));
+        } elseif (Request::isMethod('PATCH')) {
+            App\Entities\Options\Option::findOrFail($id)->update(Request::only('key', 'value'));
+
             return Response::json(Request::all());
         } else {
             return App\Entities\Options\Option::destroy($id);
@@ -57,5 +58,4 @@ Route::group(['prefix'=>'api/options'], function() {
 //     return 'ok';
 // });
 
-
-/** end of Vue js Trial */
+/* end of Vue js Trial */

@@ -8,7 +8,7 @@ use Auth;
 use DB;
 
 /**
- * Installation Controller
+ * Installation Controller.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */
@@ -24,6 +24,7 @@ class InstallationController extends Controller
         if (User::count()) {
             return redirect()->route('auth.login');
         }
+
         return view('auth.app-install');
     }
 
@@ -31,7 +32,6 @@ class InstallationController extends Controller
     {
         $agencyData = collect($request->only('agency_name', 'agency_website', 'email'))
             ->map(function ($value, $key) {
-
                 if ($key == 'email') {
                     $key = 'agency_email';
                 }
@@ -57,6 +57,7 @@ class InstallationController extends Controller
         DB::commit();
 
         flash()->success(trans('auth.welcome', ['name' => $admin->name]));
+
         return redirect()->route('home');
     }
 }

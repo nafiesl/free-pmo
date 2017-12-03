@@ -1,15 +1,13 @@
 <?php
 
-use App\Entities\Agencies\Agency;
 use App\Entities\Partners\Customer;
 use App\Entities\Projects\Project;
 use Faker\Generator as Faker;
 
 $factory->define(Project::class, function (Faker $faker) {
-
     $proposalDate = $faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d');
-    $startDate    = Carbon::parse($proposalDate)->addDays(10);
-    $endDate      = $startDate->addDays(rand(1, 13) * 7);
+    $startDate = Carbon::parse($proposalDate)->addDays(10);
+    $endDate = $startDate->addDays(rand(1, 13) * 7);
 
     return [
         'name'           => $faker->sentence(3),

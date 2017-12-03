@@ -4,11 +4,9 @@ namespace App\Http\Requests;
 
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
-use App\Http\Requests\Request;
 
 class SubscriptionRequest extends Request
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -47,28 +45,28 @@ class SubscriptionRequest extends Request
     public function getCreateRules()
     {
         return [
-            'name' => 'required|max:60',
-            'price' => 'required|numeric',
+            'name'       => 'required|max:60',
+            'price'      => 'required|numeric',
             'start_date' => 'required|date|date_format:Y-m-d',
-            'due_date' => 'required|date|date_format:Y-m-d',
+            'due_date'   => 'required|date|date_format:Y-m-d',
             'project_id' => 'required|numeric|exists:projects,id',
-            'vendor_id' => 'required|numeric|exists:vendors,id',
-            'type_id' => 'required|numeric',
-            'remark' => 'max:255',
+            'vendor_id'  => 'required|numeric|exists:vendors,id',
+            'type_id'    => 'required|numeric',
+            'remark'     => 'max:255',
         ];
     }
 
     public function getUpdateRules()
     {
         return [
-            'name' => 'required|max:60',
-            'price' => 'required|numeric',
+            'name'       => 'required|max:60',
+            'price'      => 'required|numeric',
             'start_date' => 'required|date|date_format:Y-m-d',
-            'due_date' => 'required|date|date_format:Y-m-d',
+            'due_date'   => 'required|date|date_format:Y-m-d',
             'project_id' => 'required|numeric|exists:projects,id',
-            'vendor_id' => 'required|numeric|exists:vendors,id',
-            'type_id' => 'required|numeric',
-            'remark' => 'max:255',
+            'vendor_id'  => 'required|numeric|exists:vendors,id',
+            'type_id'    => 'required|numeric',
+            'remark'     => 'max:255',
         ];
     }
 
@@ -90,9 +88,7 @@ class SubscriptionRequest extends Request
             $subscriptionData['customer_id'] = $project->customer_id;
 
             $subscription->update($subscriptionData);
-
         } else {
-
             $subscription->project_id = $project->id;
             $subscription->vendor_id = $this->get('vendor_id');
             $subscription->customer_id = $project->customer_id;
@@ -113,5 +109,4 @@ class SubscriptionRequest extends Request
     {
         $subscription->delete();
     }
-
 }

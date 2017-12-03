@@ -16,10 +16,11 @@ use Carbon\Carbon;
 class AdminDashboardQuery
 {
     /**
-     * Get total money earned on an year
+     * Get total money earned on an year.
      *
-     * @param  string|integer $year
-     * @return integer       Amount of earnings
+     * @param string|int $year
+     *
+     * @return int Amount of earnings
      */
     public function totalEarnings($year)
     {
@@ -32,14 +33,16 @@ class AdminDashboardQuery
                 $totalEarnings -= $payment->amount;
             }
         }
+
         return $totalEarnings;
     }
 
     /**
-     * Get number of projects that has been finished on a year
+     * Get number of projects that has been finished on a year.
      *
-     * @param  string|integer $year
-     * @return integer       Number of finished projects
+     * @param string|int $year
+     *
+     * @return int Number of finished projects
      */
     public function totalFinishedProjects($year)
     {
@@ -47,10 +50,11 @@ class AdminDashboardQuery
     }
 
     /**
-     * Get current outstanding customer payment amount
+     * Get current outstanding customer payment amount.
      *
-     * @param  string|integer $year Year of queried payment records
-     * @return integer       Amount of outstanding customer payment
+     * @param string|int $year Year of queried payment records
+     *
+     * @return int Amount of outstanding customer payment
      */
     public function currentOutstandingCustomerPayment($year)
     {
@@ -74,7 +78,7 @@ class AdminDashboardQuery
     }
 
     /**
-     * Get list of customer subscriptions that expires on next 60 days
+     * Get list of customer subscriptions that expires on next 60 days.
      *
      * @return \Illuminate\Support\Collection Collection of filtered subscriptions
      */
@@ -91,9 +95,9 @@ class AdminDashboardQuery
     }
 
     /**
-     * Get on progress project jobs count
+     * Get on progress project jobs count.
      *
-     * @return integer
+     * @return int
      */
     public function onProgressJobCount()
     {

@@ -10,7 +10,7 @@ class ProjectStatusTest extends TestCase
     /** @test */
     public function retrieve_project_status_list()
     {
-        $projectStatus = new Status;
+        $projectStatus = new Status();
 
         $this->assertEquals([
             1 => trans('project.planned'),
@@ -25,7 +25,7 @@ class ProjectStatusTest extends TestCase
     /** @test */
     public function retrieve_project_status_name_by_id()
     {
-        $projectStatus = new Status;
+        $projectStatus = new Status();
 
         $this->assertEquals(trans('project.planned'), $projectStatus->getNameById(1));
         $this->assertEquals(trans('project.progress'), $projectStatus->getNameById(2));
@@ -38,7 +38,7 @@ class ProjectStatusTest extends TestCase
     /** @test */
     public function retrieve_project_status_icon_by_id()
     {
-        $projectStatus = new Status;
+        $projectStatus = new Status();
 
         $this->assertEquals('paperclip', $projectStatus->getIconById(1));
         $this->assertEquals('tasks', $projectStatus->getIconById(2));
@@ -51,7 +51,7 @@ class ProjectStatusTest extends TestCase
     /** @test */
     public function retrieve_project_status_color_class_by_id()
     {
-        $projectStatus = new Status;
+        $projectStatus = new Status();
 
         $this->assertEquals('default', $projectStatus->getColorById(1));
         $this->assertEquals('yellow', $projectStatus->getColorById(2));

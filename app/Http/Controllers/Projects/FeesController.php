@@ -8,7 +8,7 @@ use App\Entities\Users\User;
 use App\Http\Controllers\Controller;
 
 /**
- * Project Fees Controller
+ * Project Fees Controller.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */
@@ -17,6 +17,7 @@ class FeesController extends Controller
     public function create(Project $project)
     {
         $partners = User::pluck('name', 'id')->all();
+
         return view('projects.fees.create', compact('project', 'partners'));
     }
 
@@ -36,6 +37,7 @@ class FeesController extends Controller
         Payment::create($newPaymentData);
 
         flash()->success(trans('payment.created'));
+
         return redirect()->route('projects.payments', $project->id);
     }
 }

@@ -8,6 +8,6 @@ class SubscriptionPresenter extends Presenter
 {
     public function customerNameAndEmail()
     {
-        return $this->customer_id ? $this->customer->name  . ' (' . $this->customer->email . ')' : '-';
+        return $this->customer_id ? $this->customer->name.' ('.$this->customer->email.')' : '-';
     }
 }

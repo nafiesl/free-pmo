@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 
 /**
- * User Profile Controller
+ * User Profile Controller.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
@@ -14,6 +14,7 @@ class ProfileController extends Controller
     public function show()
     {
         $user = auth()->user();
+
         return view('users.profile.show', compact('user'));
     }
 

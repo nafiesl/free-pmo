@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Option;
 
 /**
- * Agency Profile Controller
+ * Agency Profile Controller.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
@@ -64,6 +64,7 @@ class AgencyController extends Controller
         Option::set('agency_logo_path', $filename);
 
         flash(trans('agency.updated'), 'success');
+
         return redirect()->route('users.agency.show');
     }
 }

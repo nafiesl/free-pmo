@@ -5,7 +5,7 @@ namespace Tests\Feature\Users;
 use Tests\TestCase;
 
 /**
- * Agency Profile Controller
+ * Agency Profile Controller.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */

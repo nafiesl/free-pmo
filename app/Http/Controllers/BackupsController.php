@@ -62,6 +62,7 @@ class BackupsController extends Controller
         }
 
         flash(trans('backup.deleted', ['filename' => $fileName]), 'warning');
+
         return redirect()->route('backups.index');
     }
 
@@ -79,6 +80,7 @@ class BackupsController extends Controller
         }
 
         flash(trans('backup.restored', ['filename' => $fileName]), 'success');
+
         return redirect()->route('backups.index');
     }
 
@@ -98,6 +100,7 @@ class BackupsController extends Controller
         }
 
         flash(trans('backup.uploaded', ['filename' => $fileName]), 'success');
+
         return redirect()->route('backups.index');
     }
 }

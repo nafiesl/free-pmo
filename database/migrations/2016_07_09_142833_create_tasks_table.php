@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 
 class CreateTasksTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -33,5 +32,4 @@ class CreateTasksTable extends Migration
     {
         Schema::drop('tasks');
     }
-
 }

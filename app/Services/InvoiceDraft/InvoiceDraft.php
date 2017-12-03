@@ -35,7 +35,8 @@ class InvoiceDraft
         unset($this->items[$itemKey]);
     }
 
-    function empty() {
+    public function empty()
+    {
         $this->items = [];
     }
 

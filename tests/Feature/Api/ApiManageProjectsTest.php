@@ -6,7 +6,7 @@ use App\Entities\Projects\Project;
 use Tests\TestCase;
 
 /**
- * Manage Projects API Feature Test
+ * Manage Projects API Feature Test.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */

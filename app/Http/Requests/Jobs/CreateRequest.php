@@ -15,6 +15,7 @@ class CreateRequest extends Request
     public function authorize()
     {
         $project = Project::findOrFail($this->segment(2));
+
         return auth()->user()->can('manage_jobs', $project);
     }
 
@@ -33,5 +34,4 @@ class CreateRequest extends Request
             'description' => 'max:255',
         ];
     }
-
 }

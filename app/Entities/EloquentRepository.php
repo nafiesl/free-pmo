@@ -6,7 +6,7 @@ use App\Exceptions\EntityNotFoundException;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Eloquent Repository Class
+ * Eloquent Repository Class.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
@@ -71,29 +71,30 @@ abstract class EloquentRepository
                 if ($data[$key] == '') {
                     $data[$key] = null;
                 }
-
             }
+
             return $this->storeArray($data);
         }
     }
 
-    public function update($data = [], $modelId)
+    public function update($data, $modelId)
     {
         foreach ($data as $key => $value) {
             if (!$data[$key]) {
                 $data[$key] = null;
             }
-
         }
 
         $model = $this->requireById($modelId);
         $model->update($data);
+
         return $model;
     }
 
     public function delete($modelId)
     {
         $model = $this->requireById($modelId);
+
         return $model->delete();
     }
 
@@ -110,6 +111,7 @@ abstract class EloquentRepository
     {
         $model = $this->getNewInstance($data);
         $this->storeEloquentModel($model);
+
         return $model;
     }
 }

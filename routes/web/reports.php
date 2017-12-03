@@ -1,7 +1,7 @@
 <?php
 
 Route::group(['middleware' => ['web', 'role:admin'], 'prefix' => 'reports'], function () {
-    /**
+    /*
      * Reports Routes
      */
     Route::get('payments', ['as' => 'reports.payments.index', 'uses' => 'ReportsController@monthly']);

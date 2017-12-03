@@ -23,13 +23,14 @@ class OptionsController extends Controller
     public function store(Request $req)
     {
         $newOptionData = $req->validate([
-            'key' => 'required|max:255|alpha_dash',
+            'key'   => 'required|max:255|alpha_dash',
             'value' => 'max:255',
         ]);
 
         $option = Option::create($newOptionData);
 
         flash()->success(trans('option.created'));
+
         return redirect()->route('options.index');
     }
 
@@ -55,7 +56,7 @@ class OptionsController extends Controller
         }
 
         flash()->success(trans('option.updated'));
+
         return redirect()->route('options.index');
     }
-
 }

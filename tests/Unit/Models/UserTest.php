@@ -6,7 +6,7 @@ use App\Entities\Users\User;
 use Tests\TestCase;
 
 /**
- * User Model Unit Test
+ * User Model Unit Test.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */

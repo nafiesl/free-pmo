@@ -5,7 +5,7 @@ namespace App\Entities\Payments;
 use App\Entities\BaseRepository;
 
 /**
- * Payments Repository Class
+ * Payments Repository Class.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */

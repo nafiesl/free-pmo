@@ -6,7 +6,7 @@ use App\Entities\Users\User;
 use Tests\TestCase;
 
 /**
- * Installation Feature Test
+ * Installation Feature Test.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */

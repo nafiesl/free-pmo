@@ -22,7 +22,7 @@ Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Invoices'],
     Route::get('invoices/{invoice}/pdf', ['as' => 'invoices.pdf', 'uses' => 'InvoicesController@pdf']);
     Route::resource('invoices', 'InvoicesController');
 
-    /**
+    /*
      * Invoice Items Routes
      */
     Route::post('invoices/{invoice}/items', ['as' => 'invoices.items.store', 'uses' => 'ItemsController@store']);

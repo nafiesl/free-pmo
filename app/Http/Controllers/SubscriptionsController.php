@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Entities\Subscriptions\Subscription;
 use App\Entities\Subscriptions\SubscriptionsRepository;
 use App\Entities\Subscriptions\Type;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\SubscriptionRequest as FormRequest;
 use Illuminate\Http\Request;
 
@@ -43,9 +42,10 @@ class SubscriptionsController extends Controller
 
     public function store(FormRequest $subscriptionCreateRequest)
     {
-        $subscriptionCreateRequest->approveFor(new Subscription);
+        $subscriptionCreateRequest->approveFor(new Subscription());
 
         flash()->success(trans('subscription.created'));
+
         return redirect()->route('subscriptions.index');
     }
 
@@ -71,6 +71,7 @@ class SubscriptionsController extends Controller
         $subscriptionUpdateRequest->approveFor($subscription);
 
         flash()->success(trans('subscription.updated'));
+
         return redirect()->route('subscriptions.edit', $subscription->id);
     }
 
@@ -79,6 +80,7 @@ class SubscriptionsController extends Controller
         $subscriptionDeleteRequest->approveToDelete($subscription);
 
         flash()->success(trans('subscription.deleted'));
+
         return redirect()->route('subscriptions.index');
     }
 
@@ -91,5 +93,4 @@ class SubscriptionsController extends Controller
     {
         return trans('subscription.'.$pageType).' - '.$subscription->name.' - '.$subscription->customer->name;
     }
-
 }

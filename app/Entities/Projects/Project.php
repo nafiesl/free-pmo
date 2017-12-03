@@ -5,8 +5,6 @@ namespace App\Entities\Projects;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
-use App\Entities\Projects\ProjectPresenter;
-use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -131,5 +129,4 @@ class Project extends Model
             ->with('worker', 'tasks')
             ->get();
     }
-
 }

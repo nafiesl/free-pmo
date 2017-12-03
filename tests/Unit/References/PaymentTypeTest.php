@@ -10,7 +10,7 @@ class PaymentTypeTest extends TestCase
     /** @test */
     public function retrieve_payment_type_list()
     {
-        $paymentType = new Type;
+        $paymentType = new Type();
 
         $this->assertEquals([
             1 => trans('payment.types.project'),
@@ -22,7 +22,7 @@ class PaymentTypeTest extends TestCase
     /** @test */
     public function retrieve_payment_type_name_by_id()
     {
-        $paymentType = new Type;
+        $paymentType = new Type();
 
         $this->assertEquals(trans('payment.types.project'), $paymentType->getNameById(1));
         $this->assertEquals(trans('payment.types.add_job'), $paymentType->getNameById(2));
@@ -32,7 +32,7 @@ class PaymentTypeTest extends TestCase
     /** @test */
     public function retrieve_payment_type_color_class_by_id()
     {
-        $paymentType = new Type;
+        $paymentType = new Type();
 
         $this->assertEquals('#337ab7', $paymentType->getColorById(1));
         $this->assertEquals('#4caf50', $paymentType->getColorById(2));

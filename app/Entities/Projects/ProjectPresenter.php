@@ -35,5 +35,4 @@ class ProjectPresenter extends Presenter
 
         return $workDuration.' Hari';
     }
-
 }

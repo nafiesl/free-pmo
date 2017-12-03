@@ -1,8 +1,8 @@
 <?php
 
-Route::group(['prefix' => 'v1','namespace' => 'Api', 'as' => 'api.', 'middleware' => ['auth:api']], function() {
-    require __DIR__ . '/api/projects.php';
-    /**
+Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'as' => 'api.', 'middleware' => ['auth:api']], function () {
+    require __DIR__.'/api/projects.php';
+    /*
      * Calendar
      */
     Route::get('get-events', ['as' => 'events.index', 'uses' => 'EventsController@index']);

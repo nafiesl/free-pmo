@@ -8,7 +8,6 @@ use App\Entities\Users\User;
 use Faker\Generator as Faker;
 
 $factory->define(Payment::class, function (Faker $faker) {
-
     return [
         'project_id'   => function () {
             return factory(Project::class)->create()->id;
@@ -26,12 +25,10 @@ $factory->define(Payment::class, function (Faker $faker) {
 });
 
 $factory->state(Payment::class, 'customer', function (Faker $faker) {
-
     return [];
 });
 
 $factory->state(Payment::class, 'vendor', function (Faker $faker) {
-
     return [
         'in_out'       => 0,
         'type_id'      => 1,
@@ -43,7 +40,6 @@ $factory->state(Payment::class, 'vendor', function (Faker $faker) {
 });
 
 $factory->state(Payment::class, 'fee', function (Faker $faker) {
-
     return [
         'in_out'       => 0,
         'type_id'      => 1,

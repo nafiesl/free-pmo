@@ -37,7 +37,8 @@ class CustomersController extends Controller
     /**
      * Store a newly created customer in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -62,7 +63,8 @@ class CustomersController extends Controller
     /**
      * Show the specified customer.
      *
-     * @param  \App\Entities\Partners\Customer  $customer
+     * @param \App\Entities\Partners\Customer $customer
+     *
      * @return \Illuminate\Http\Response
      */
     public function show(Customer $customer)
@@ -73,7 +75,8 @@ class CustomersController extends Controller
     /**
      * Show the edit customer form.
      *
-     * @param  \App\Entities\Partners\Customer  $customer
+     * @param \App\Entities\Partners\Customer $customer
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customer)
@@ -84,8 +87,9 @@ class CustomersController extends Controller
     /**
      * Update the specified customer in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Entities\Partners\Customer  $customer
+     * @param \Illuminate\Http\Request        $request
+     * @param \App\Entities\Partners\Customer $customer
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Customer $customer)
@@ -111,7 +115,8 @@ class CustomersController extends Controller
     /**
      * Remove the specified customer from storage.
      *
-     * @param  \App\Entities\Partners\Customer  $customer
+     * @param \App\Entities\Partners\Customer $customer
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(Customer $customer)
@@ -125,10 +130,12 @@ class CustomersController extends Controller
 
         if (request('customer_id') == $customer->id && $customer->delete()) {
             flash(trans('customer.deleted'), 'warning');
+
             return redirect()->route('customers.index', $routeParam);
         }
 
         flash(trans('customer.undeleted'), 'danger');
+
         return back();
     }
 }

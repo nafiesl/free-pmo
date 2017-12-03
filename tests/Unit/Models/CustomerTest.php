@@ -13,7 +13,7 @@ class CustomerTest extends TestCase
     public function a_customer_has_many_projects()
     {
         $customer = factory(Customer::class)->create();
-        $project  = factory(Project::class)->create(['customer_id' => $customer->id]);
+        $project = factory(Project::class)->create(['customer_id' => $customer->id]);
 
         $this->assertInstanceOf(Collection::class, $customer->projects);
         $this->assertInstanceOf(Project::class, $customer->projects->first());

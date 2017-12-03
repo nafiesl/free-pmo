@@ -1,9 +1,11 @@
 <?php
 
 /**
- * Rupiah Format
- * @param  int $number money in integer format
- * @return string         money in string format
+ * Rupiah Format.
+ *
+ * @param int $number money in integer format
+ *
+ * @return string money in string format
  */
 function formatNo($number)
 {
@@ -12,7 +14,9 @@ function formatNo($number)
 
 function formatRp($number)
 {
-    if ($number == 0) {return 'Rp. 0';}
+    if ($number == 0) {
+        return 'Rp. 0';
+    }
     if ($number < 0) {
         return '- Rp. '.formatNo(abs($number));
     }
@@ -26,11 +30,13 @@ function formatDecimal($number)
 }
 
 /**
- * Delete button
- * @param  array $form_params Delete form attribute
- * @param  string $button_label   Button text
- * @param  array $button_options  Button option
- * @return string                 Delete Button Form
+ * Delete button.
+ *
+ * @param array  $form_params    Delete form attribute
+ * @param string $button_label   Button text
+ * @param array  $button_options Button option
+ *
+ * @return string Delete Button Form
  */
 function delete_button($form_params = [], $button_label = 'Delete', $button_options = [], $hiddenFields = [])
 {
@@ -61,14 +67,14 @@ function delete_button($form_params = [], $button_label = 'Delete', $button_opti
 function formatDate($date)
 {
     if (!$date || $date == '0000-00-00') {
-        return null;
+        return;
     }
 
     $explodedDate = explode('-', $date);
 
     if (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[0], $explodedDate[2])) {
         return $explodedDate[2].'-'.$explodedDate[1].'-'.$explodedDate[0];
-    } else if (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[2], $explodedDate[0])) {
+    } elseif (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[2], $explodedDate[0])) {
         return $explodedDate[2].'-'.$explodedDate[1].'-'.$explodedDate[0];
     }
 
@@ -85,6 +91,7 @@ function dateId($date)
 
     if (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[2], $explodedDate[0])) {
         $months = getMonths();
+
         return $explodedDate[2].' '.$months[$explodedDate[1]].' '.$explodedDate[0];
     }
 
@@ -93,7 +100,7 @@ function dateId($date)
 
 function monthNumber($number)
 {
-    return str_pad($number, 2, "0", STR_PAD_LEFT);
+    return str_pad($number, 2, '0', STR_PAD_LEFT);
 }
 
 function monthId($monthNumber)
@@ -104,6 +111,7 @@ function monthId($monthNumber)
 
     $months = getMonths();
     $monthNumber = monthNumber($monthNumber);
+
     return $months[$monthNumber];
 }
 
@@ -131,6 +139,7 @@ function getYears()
     foreach ($yearRange as $year) {
         $years[$year] = $year;
     }
+
     return $years;
 }
 
@@ -179,11 +188,12 @@ function formatSizeUnits($bytes)
 }
 
 /**
- * Overide Laravel Collective  link_to_route helper function
- * @param  string $name       Name of route
- * @param  string $title      Text that displayed on view
- * @param  array  $parameters URL Parameter
- * @param  array  $attributes The anchor tag atributes
+ * Overide Laravel Collective  link_to_route helper function.
+ *
+ * @param string $name       Name of route
+ * @param string $title      Text that displayed on view
+ * @param array  $parameters URL Parameter
+ * @param array  $attributes The anchor tag atributes
  */
 function html_link_to_route($name, $title = null, $parameters = [], $attributes = [])
 {

@@ -7,7 +7,7 @@ use App\Entities\Users\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**
- * Project model policy class
+ * Project model policy class.
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
@@ -18,8 +18,9 @@ class ProjectPolicy
     /**
      * Determine whether the user can view the project.
      *
-     * @param  \App\Entities\Users\User  $user
-     * @param  \App\Entities\Projects\Project  $project
+     * @param \App\Entities\Users\User       $user
+     * @param \App\Entities\Projects\Project $project
+     *
      * @return mixed
      */
     public function view(User $user, Project $project)
@@ -31,8 +32,9 @@ class ProjectPolicy
     /**
      * Determine whether the user can create projects.
      *
-     * @param  \App\Entities\Users\User  $user
-     * @param  \App\Entities\Projects\Project  $project
+     * @param \App\Entities\Users\User       $user
+     * @param \App\Entities\Projects\Project $project
+     *
      * @return mixed
      */
     public function create(User $user, Project $project)
@@ -44,8 +46,9 @@ class ProjectPolicy
     /**
      * Determine whether the user can update the project.
      *
-     * @param  \App\Entities\Users\User  $user
-     * @param  \App\Entities\Projects\Project  $project
+     * @param \App\Entities\Users\User       $user
+     * @param \App\Entities\Projects\Project $project
+     *
      * @return mixed
      */
     public function update(User $user, Project $project)
@@ -56,8 +59,9 @@ class ProjectPolicy
     /**
      * Determine whether the user can delete the project.
      *
-     * @param  \App\Entities\Users\User  $user
-     * @param  \App\Entities\Projects\Project  $project
+     * @param \App\Entities\Users\User       $user
+     * @param \App\Entities\Projects\Project $project
+     *
      * @return mixed
      */
     public function delete(User $user, Project $project)

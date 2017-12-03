@@ -6,7 +6,6 @@ use App\Http\Requests\Request;
 
 class DeleteRequest extends Request
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -29,5 +28,4 @@ class DeleteRequest extends Request
             'job_id'  => 'required',
         ];
     }
-
 }

@@ -5,13 +5,12 @@ namespace App\Services;
 use App\Entities\Options\Option as SiteOption;
 
 /**
- * Option Class (Site Option Service)
+ * Option Class (Site Option Service).
  *
  * @author Nafies Luthfi <nafiesL@gmail.com>
  */
 class Option
 {
-
     protected $option;
 
     public function __construct()
@@ -31,6 +30,7 @@ class Option
         if ($option) {
             return $option->value;
         }
+
         return $default;
     }
 
@@ -42,8 +42,8 @@ class Option
             $option->value = $value;
             $option->save();
         } else {
-            $option        = new SiteOption;
-            $option->key   = $key;
+            $option = new SiteOption();
+            $option->key = $key;
             $option->value = $value;
             $option->save();
         }

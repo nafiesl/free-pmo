@@ -47,6 +47,7 @@ class JobsController extends Controller
         if ($req->has('project_id')) {
             $selectedProject = $this->repo->requireProjectById($req->get('project_id'));
         }
+
         return view('jobs.add-from-other-project', compact('project', 'workers', 'projects', 'selectedProject'));
     }
 

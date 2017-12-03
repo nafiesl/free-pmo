@@ -25,8 +25,8 @@ class ChangePasswordController extends Controller
     public function update(Request $request)
     {
         $input = $request->validate([
-            'old_password' => 'required',
-            'password' => 'required|between:6,15|confirmed',
+            'old_password'          => 'required',
+            'password'              => 'required|between:6,15|confirmed',
             'password_confirmation' => 'required',
         ]);
 
@@ -36,10 +36,12 @@ class ChangePasswordController extends Controller
             $user->save();
 
             flash(trans('auth.password_changed'), 'success');
+
             return back();
         }
 
         flash(trans('auth.old_password_failed'), 'danger');
+
         return back();
     }
 }

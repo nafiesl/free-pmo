@@ -17,7 +17,6 @@ $factory->define(User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Job::class, function (Faker\Generator $faker) {
-
     return [
         'project_id'  => function () {
             return factory(Project::class)->create()->id;
@@ -34,7 +33,6 @@ $factory->define(Job::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Task::class, function (Faker\Generator $faker) {
-
     return [
         'job_id'      => function () {
             return factory(Job::class)->create()->id;
@@ -47,7 +45,6 @@ $factory->define(Task::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Event::class, function (Faker\Generator $faker) {
-
     return [
         'user_id'    => function () {
             return factory(User::class)->create()->id;

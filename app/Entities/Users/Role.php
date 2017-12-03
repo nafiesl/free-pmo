@@ -5,7 +5,7 @@ namespace App\Entities\Users;
 use App\Entities\ReferenceAbstract;
 
 /**
- * Role Class
+ * Role Class.
  */
 class Role extends ReferenceAbstract
 {

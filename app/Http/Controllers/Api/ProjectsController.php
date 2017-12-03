@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 /**
- * Projects Controller
+ * Projects Controller.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */
@@ -19,6 +19,7 @@ class ProjectsController extends Controller
     {
         $this->repo = $repo;
     }
+
     public function index(Request $request)
     {
         return $this->repo->getProjects($request->get('q'), $request->get('status_id'));
@@ -39,6 +40,7 @@ class ProjectsController extends Controller
                 return $project;
             })
             ->toArray();
+
         return $response;
     }
 }

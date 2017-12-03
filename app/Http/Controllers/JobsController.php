@@ -86,9 +86,8 @@ class JobsController extends Controller
     {
         if ($req->ajax()) {
             $data = $this->repo->tasksReorder($req->get('postData'));
+
             return 'oke';
         }
-
-        return null;
     }
 }

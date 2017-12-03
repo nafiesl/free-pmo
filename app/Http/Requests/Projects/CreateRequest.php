@@ -7,7 +7,6 @@ use App\Http\Requests\Request;
 
 class CreateRequest extends Request
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -15,7 +14,7 @@ class CreateRequest extends Request
      */
     public function authorize()
     {
-        return auth()->user()->can('create', new Project);
+        return auth()->user()->can('create', new Project());
     }
 
     /**
@@ -43,5 +42,4 @@ class CreateRequest extends Request
             'customer_email.required_without' => 'Email Customer Wajib diisi.',
         ];
     }
-
 }

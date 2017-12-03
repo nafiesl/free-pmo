@@ -21,8 +21,8 @@ class AdminDashboardQueryTest extends TestCase
         factory(Payment::class, 2)->create(['in_out' => 0, 'amount' => 200, 'date' => '2015-09-04']);
         factory(Payment::class)->create(['in_out' => 1, 'amount' => 500, 'date' => '2016-01-04']);
 
-        $this->assertEquals(2100, (new AdminDashboardQuery)->totalEarnings('2015'));
-        $this->assertEquals(500, (new AdminDashboardQuery)->totalEarnings('2016'));
+        $this->assertEquals(2100, (new AdminDashboardQuery())->totalEarnings('2015'));
+        $this->assertEquals(500, (new AdminDashboardQuery())->totalEarnings('2016'));
     }
 
     /** @test */
@@ -33,8 +33,8 @@ class AdminDashboardQueryTest extends TestCase
         factory(Project::class, 2)->create(['status_id' => 5, 'start_date' => '2015-09-04']);
         factory(Project::class)->create(['status_id' => 4, 'start_date' => '2016-01-04']);
 
-        $this->assertEquals(3, (new AdminDashboardQuery)->totalFinishedProjects('2015'));
-        $this->assertEquals(1, (new AdminDashboardQuery)->totalFinishedProjects('2016'));
+        $this->assertEquals(3, (new AdminDashboardQuery())->totalFinishedProjects('2015'));
+        $this->assertEquals(1, (new AdminDashboardQuery())->totalFinishedProjects('2016'));
     }
 
     /** @test */
@@ -52,8 +52,8 @@ class AdminDashboardQueryTest extends TestCase
         $project = factory(Project::class)->create(['project_value' => 2000, 'status_id' => 3, 'start_date' => '2016-01-04']);
         factory(Payment::class)->create(['project_id' => $project->id, 'amount' => 1000]);
 
-        $this->assertEquals(2000, (new AdminDashboardQuery)->currentOutstandingCustomerPayment('2015'));
-        $this->assertEquals(1000, (new AdminDashboardQuery)->currentOutstandingCustomerPayment('2016'));
+        $this->assertEquals(2000, (new AdminDashboardQuery())->currentOutstandingCustomerPayment('2015'));
+        $this->assertEquals(1000, (new AdminDashboardQuery())->currentOutstandingCustomerPayment('2016'));
     }
 
     /** @test */
@@ -66,7 +66,7 @@ class AdminDashboardQueryTest extends TestCase
         factory(Subscription::class)->create(['due_date' => $dueDate, 'status_id' => 0]);
         factory(Subscription::class)->create(['due_date' => Carbon::now()->addMonths(3)->format('Y-m-d')]);
 
-        $this->assertCount(2, (new AdminDashboardQuery)->upcomingSubscriptionDueDatesList());
+        $this->assertCount(2, (new AdminDashboardQuery())->upcomingSubscriptionDueDatesList());
     }
 
     /** @test */
@@ -93,6 +93,6 @@ class AdminDashboardQueryTest extends TestCase
         $this->assertCount(2, Project::all());
         $this->assertCount(4, Job::all());
         $this->assertCount(8, Task::all());
-        $this->assertEquals(3, (new AdminDashboardQuery)->onProgressJobCount());
+        $this->assertEquals(3, (new AdminDashboardQuery())->onProgressJobCount());
     }
 }

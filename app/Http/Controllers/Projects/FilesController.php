@@ -53,7 +53,6 @@ class FilesController extends Controller
             } else {
                 flash()->error('Upload file gagal, coba kembali.');
             }
-
         } else {
             flash()->error('Upload file gagal, coba kembali.');
         }
@@ -67,6 +66,7 @@ class FilesController extends Controller
 
         if ($file && file_exists(storage_path('app/public/files/'.$file->filename))) {
             $extension = FileSystem::extension('public/files/'.$file->filename);
+
             return response()->download(storage_path('app/public/files/'.$file->filename), $file->title.'.'.$extension);
         }
 

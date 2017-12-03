@@ -41,6 +41,7 @@ class DraftsController extends Controller
         }
 
         $projects = Project::pluck('name', 'id');
+
         return view('invoice-drafts.index', compact('draft', 'projects'));
     }
 

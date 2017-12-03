@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Reports\ReportsRepository;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 /**
@@ -23,6 +22,7 @@ class ReportsController extends Controller
     public function index(Request $req)
     {
         $reports = $this->repo->getAll($req->get('q'));
+
         return view('reports.payments.index', compact('reports'));
     }
 
@@ -32,6 +32,7 @@ class ReportsController extends Controller
         $date = $req->get('date', date('Y-m-d'));
 
         $payments = $this->repo->getDailyReports($date, $q);
+
         return view('reports.payments.daily', compact('payments', 'date'));
     }
 
@@ -46,6 +47,7 @@ class ReportsController extends Controller
         $reports = $this->repo->getMonthlyReports($year, $month);
         $months = \getMonths();
         $years = \getYears();
+
         return view('reports.payments.monthly', compact('reports', 'months', 'years', 'month', 'year'));
     }
 
@@ -55,13 +57,14 @@ class ReportsController extends Controller
 
         $reports = $this->repo->getYearlyReports($year);
         $years = \getYears();
+
         return view('reports.payments.yearly', compact('reports', 'years', 'year'));
     }
 
     public function currentCredits()
     {
         $projects = $this->repo->getCurrentCredits();
+
         return view('reports.current-credits', compact('projects'));
     }
-
 }

@@ -12,7 +12,7 @@ require __DIR__.'/web/options-vue.php';
 require __DIR__.'/web/calendar.php';
 
 Route::group(['middleware' => ['web', 'auth']], function () {
-    /**
+    /*
      * Subscriptions Routes
      */
     Route::resource('subscriptions', 'SubscriptionsController');

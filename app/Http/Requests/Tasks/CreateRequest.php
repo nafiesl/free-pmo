@@ -30,5 +30,4 @@ class CreateRequest extends Request
             'route_name'  => 'max:255',
         ];
     }
-
 }

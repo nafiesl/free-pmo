@@ -13,7 +13,7 @@ class UploadFilesTest extends TestCase
     public function user_can_upload_document_to_a_project()
     {
         Storage::fake('avatar');
-        $user    = $this->adminUserSigningIn();
+        $user = $this->adminUserSigningIn();
         $project = factory(Project::class)->create();
         $this->visit(route('projects.files', $project->id));
         $this->seeElement('form', ['id' => 'upload-file']);
@@ -42,7 +42,7 @@ class UploadFilesTest extends TestCase
     public function user_can_edit_document_file_on_a_project()
     {
         Storage::fake('avatar');
-        $user    = $this->adminUserSigningIn();
+        $user = $this->adminUserSigningIn();
         $project = factory(Project::class)->create();
         // $file = factory(File::class, 'project')->create(['fileable_id' => $project->id]);
         // dd(get_class_methods((new FileFactory)->create('123.txt')));

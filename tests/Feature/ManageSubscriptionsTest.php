@@ -21,28 +21,28 @@ class ManageSubscriptionsTest extends TestCase
 
         // Fill Form
         $this->submitForm(trans('subscription.create'), [
-            'name' => 'www.domain.com',
-            'price' => 100000,
+            'name'       => 'www.domain.com',
+            'price'      => 100000,
             'start_date' => '2015-05-02',
-            'due_date' => '2016-05-02',
+            'due_date'   => '2016-05-02',
             'project_id' => $project->id,
-            'vendor_id' => $vendor->id,
-            'type_id' => 1,
-            'notes' => 'epp_code:EPPCODE',
+            'vendor_id'  => $vendor->id,
+            'type_id'    => 1,
+            'notes'      => 'epp_code:EPPCODE',
         ]);
 
         $this->see(trans('subscription.created'));
         $this->seePageIs(route('subscriptions.index'));
 
         $this->seeInDatabase('subscriptions', [
-            'name' => 'www.domain.com',
-            'price' => 100000,
+            'name'       => 'www.domain.com',
+            'price'      => 100000,
             'start_date' => '2015-05-02',
-            'due_date' => '2016-05-02',
+            'due_date'   => '2016-05-02',
             'project_id' => $project->id,
-            'vendor_id' => $vendor->id,
-            'type_id' => 1,
-            'notes' => 'epp_code:EPPCODE',
+            'vendor_id'  => $vendor->id,
+            'type_id'    => 1,
+            'notes'      => 'epp_code:EPPCODE',
         ]);
     }
 
@@ -60,12 +60,12 @@ class ManageSubscriptionsTest extends TestCase
         // Fill Form
         $this->submitForm(trans('subscription.update'), [
             'start_date' => '2015-05-02',
-            'due_date' => '2016-05-02',
+            'due_date'   => '2016-05-02',
             'project_id' => $project->id,
-            'vendor_id' => $vendor->id,
-            'type_id' => 1,
-            'status_id' => 1,
-            'notes' => 'epp_code:EPPCODE1',
+            'vendor_id'  => $vendor->id,
+            'type_id'    => 1,
+            'status_id'  => 1,
+            'notes'      => 'epp_code:EPPCODE1',
         ]);
 
         $this->seePageIs(route('subscriptions.edit', $subscription->id));
@@ -73,12 +73,12 @@ class ManageSubscriptionsTest extends TestCase
 
         $this->seeInDatabase('subscriptions', [
             'start_date' => '2015-05-02',
-            'due_date' => '2016-05-02',
+            'due_date'   => '2016-05-02',
             'project_id' => $project->id,
-            'vendor_id' => $vendor->id,
-            'type_id' => 1,
-            'status_id' => 1,
-            'notes' => 'epp_code:EPPCODE1',
+            'vendor_id'  => $vendor->id,
+            'type_id'    => 1,
+            'status_id'  => 1,
+            'notes'      => 'epp_code:EPPCODE1',
         ]);
     }
 

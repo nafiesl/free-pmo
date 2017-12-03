@@ -2,15 +2,12 @@
 
 namespace App\Entities\Projects;
 
-use App\Entities\Projects\JobPresenter;
-use App\Entities\Projects\Project;
 use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
 class Job extends Model
 {
-
     use PresentableTrait;
 
     protected $presenter = JobPresenter::class;
@@ -35,5 +32,4 @@ class Job extends Model
     {
         return $this->type_id == 1 ? 'Project' : 'Additional';
     }
-
 }

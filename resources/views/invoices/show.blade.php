@@ -5,8 +5,9 @@
 @section('content')
 <h1 class="page-header">
     <div class="pull-right">
-        {{ link_to_route('invoices.edit', trans('invoice.edit'), [$invoice->number], ['class' => 'btn btn-warning']) }}
-        {{ link_to_route('invoices.pdf', trans('invoice.print'), [$invoice->number], ['class' => 'btn btn-default']) }}
+        {{ link_to_route('invoices.edit', trans('invoice.edit'), [$invoice], ['class' => 'btn btn-warning']) }}
+        {{ link_to_route('invoices.pdf', trans('invoice.print'), [$invoice], ['class' => 'btn btn-default']) }}
+        {{ link_to_route('projects.invoices', trans('invoice.back_to_project'), [$invoice->project_id], ['class' => 'btn btn-default']) }}
     </div>
     {{ $invoice->number }} <small>{{ trans('invoice.detail') }}</small>
 </h1>

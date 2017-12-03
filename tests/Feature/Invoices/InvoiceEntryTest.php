@@ -43,6 +43,25 @@ class InvoiceEntryTest extends TestCase
     }
 
     /** @test */
+    public function user_can_create_invoice_draft_from_project_invoices_page()
+    {
+        $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+
+        $this->visit(route('projects.invoices', $project));
+
+        $this->press(trans('invoice.create'));
+
+        $cart = new InvoiceDraftCollection();
+        $draft = $cart->content()->last();
+
+        $this->assertEquals($draft->projectId, $project->id);
+        $this->seePageIs(route('invoice-drafts.show', $draft->draftKey));
+        $this->see($project->name);
+        $this->see($project->customer->name);
+    }
+
+    /** @test */
     public function user_can_add_item_to_invoice_draft()
     {
         $this->adminUserSigningIn();
@@ -145,8 +164,12 @@ class InvoiceEntryTest extends TestCase
 
         $this->seePageIs(route('invoice-drafts.show', [$draft->draftKey, 'action' => 'confirm']));
 
-        $this->see(trans('invoice.confirm_instruction'));
+        $this->see(trans('invoice.confirm_instruction', [
+            'back_link' => link_to_route('invoice-drafts.show', trans('app.back'), $draft->draftKey),
+        ]));
+
         $this->see($project->name);
+        $this->see($project->customer->name);
         $this->see($draft->notes);
         $this->see(formatRp(3000));
         $this->seeElement('input', ['id' => 'save-invoice-draft']);

@@ -10,6 +10,7 @@ return [
     'empty'            => 'Belum ada Invoice',
     'back_to_show'     => 'Kembali ke Detail Invoice',
     'back_to_index'    => 'Kembali ke daftar Invoice',
+    'back_to_project'  => 'Kembali ke Invoice Project',
     'draft_list'       => 'List Draft Invoice',
     'draft_list_empty' => 'Draft Invoice kosong.',
     'draft_not_found'  => 'Draft Invoice tidak ditemukan.',
@@ -34,7 +35,7 @@ return [
     'item_added'          => 'Item berhasil ditambahkan.',
     'item_updated'        => 'Item berhasil diupdate.',
     'item_removed'        => 'Item berhasil dihapus.',
-    'confirm_instruction' => 'Silakan periksa rincian di bawah ini, jika belum sesuai, silakan klik kembali.',
+    'confirm_instruction' => 'Silakan periksa rincian di bawah ini, jika belum sesuai, silakan klik :back_link.',
 
     // Attributes
     'number'           => 'No. Invoice',

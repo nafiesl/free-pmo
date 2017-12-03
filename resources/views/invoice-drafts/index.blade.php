@@ -35,3 +35,34 @@
     ]) !!}
 @endif
 @endsection
+
+@section('ext_css')
+    {!! Html::style(url('assets/css/plugins/jquery.datetimepicker.css')) !!}
+    {!! Html::style(url('assets/css/plugins/select2.min.css')) !!}
+    <style>
+    .form-control.select2-hidden-accessible {
+        width: 80%;
+    }
+    </style>
+@endsection
+
+@section('ext_js')
+    {!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
+    {!! Html::script(url('assets/js/plugins/select2.min.js')) !!}
+@endsection
+
+@section('script')
+<script>
+(function() {
+    $('#date,#due_date').datetimepicker({
+        timepicker:false,
+        format:'Y-m-d',
+        closeOnDateSelect: true,
+        scrollInput: false
+    });
+    $('#project_id').select2({
+        placeholder: '-- {{ trans('project.select') }} --'
+    });
+})();
+</script>
+@endsection

@@ -1,16 +1,25 @@
-<div class="row" style="margin-top: 10px">
+<div class="alert alert-warning">
+    {!! trans('invoice.confirm_instruction', [
+        'back_link' => link_to_route('invoice-drafts.show', trans('app.back'), $draft->draftKey)
+    ]) !!}
+</div>
+<div class="row">
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('invoice.detail') }}</h3></div>
+            @php
+                $project = App\Entities\Projects\Project::findOrFail($draft->projectId);
+            @endphp
             <table class="table">
                 <tbody>
+                    <tr><td>{{ trans('invoice.project') }}</td><td>{{ $project->name }}</td></tr>
+                    <tr><td>{{ trans('customer.customer') }}</td><td>{{ $project->customer->name }}</td></tr>
+                    <tr><td>{{ trans('invoice.date') }}</td><td>{{ $draft->date }}</td></tr>
+                    <tr><td>{{ trans('invoice.due_date') }}</td><td>{{ $draft->dueDate }}</td></tr>
                     <tr>
-                        <td>{{ trans('invoice.project') }}</td>
-                        <td>
-                            {{ App\Entities\Projects\Project::findOrFail($draft->projectId)->name }}
-                        </td>
+                        <td>{{ trans('invoice.total') }}</td>
+                        <th class="text-right lead">{{ formatRp($draft->getTotal()) }}</th>
                     </tr>
-                    <tr><td>{{ trans('invoice.total') }}</td><th class="text-right">{{ formatRp($draft->getTotal()) }}</th></tr>
                     <tr><td>{{ trans('invoice.notes') }}</td><td>{{ $draft->notes }}</td></tr>
                 </tbody>
             </table>

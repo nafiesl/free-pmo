@@ -1,5 +1,5 @@
 <?php use Facades\App\Services\InvoiceDrafts\InvoiceDraftCollection;?>
-<ul class="nav nav-tabs transaction-draft-tabs">
+<ul class="nav nav-tabs transaction-draft-tabs" style="margin-bottom: 15px">
     @foreach(InvoiceDraftCollection::content() as $key => $content)
         <?php $active = ($draft->draftKey == $key) ? 'class=active' : ''?>
         <li {{ $active }} role="presentation">

@@ -7,6 +7,6 @@
         <tr><th>{{ trans('invoice.customer') }}</th><td>{{ $invoice->project->customer->nameLink() }}</td></tr>
         <tr><th>{{ trans('invoice.items_count') }}</th><td>{{ $invoice->items_count }}</td></tr>
         <tr><th>{{ trans('invoice.creator') }}</th><td>{{ $invoice->creator->name }}</td></tr>
-        <tr><th>{{ trans('invoice.amount') }}</th><td class="text-right strong">{{ formatRp($invoice->amount) }}</td></tr>
+        <tr><th>{{ trans('invoice.amount') }}</th><td class="text-right lead">{{ formatRp($invoice->amount) }}</td></tr>
     </tbody>
 </table>

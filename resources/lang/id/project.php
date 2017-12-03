@@ -10,6 +10,7 @@ return [
     'search'         => 'Cari Project',
     'found'          => 'Project ditemukan',
     'not_found'      => 'Project tidak ditemukan',
+    'select'         => 'Pilih Project',
     'empty'          => 'Belum ada Project',
     'back_to_index'  => 'Kembali ke daftar Project',
 

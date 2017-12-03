@@ -11,6 +11,8 @@
             'class' => 'btn btn-success',
             'name' => 'create-invoice-draft',
             'id' => 'invoice-draft-create-button'
+        ], [
+            'project_id' => $project->id
         ]) !!}
     </div>
     {{ $project->name }} <small>{{ trans('project.invoices') }}</small>
@@ -34,7 +36,7 @@
             @forelse($project->invoices as $key => $invoice)
             <tr>
                 <td class="text-center">{{ 1 + $key }}</td>
-                <td class="text-center">{{ $invoice->number }}</td>
+                <td class="text-center">{{ $invoice->numberLink() }}</td>
                 <td class="text-center">{{ $invoice->date }}</td>
                 <td class="text-center">{{ $invoice->due_date }}</td>
                 <td>{{ $project->customer->nameLink() }}</td>

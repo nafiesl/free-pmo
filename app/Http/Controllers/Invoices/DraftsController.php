@@ -46,7 +46,13 @@ class DraftsController extends Controller
 
     public function create(Request $request)
     {
-        $this->draftCollection->add(new InvoiceDraft());
+        $draft = new InvoiceDraft();
+
+        if ($request->has('project_id')) {
+            $draft->projectId = $request->get('project_id');
+        }
+
+        $this->draftCollection->add($draft);
 
         return redirect()->route('invoice-drafts.show', $this->draftCollection->content()->last()->draftKey);
     }
@@ -136,8 +142,6 @@ class DraftsController extends Controller
 
             return redirect()->route('invoice-drafts.show', [$draftKey]);
         }
-
-        flash(trans('invoice.confirm_instruction'), 'warning')->important();
 
         return redirect()->route('invoice-drafts.show', [$draftKey, 'action' => 'confirm']);
     }

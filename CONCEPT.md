@@ -129,13 +129,23 @@ Dashboard Admin Agensi berisi :
     - Jumlah pendapatan yang akan datang (akan dibayar oleh Customer)
 3. List Langganan Customer yang akan berakhir dalam 60 hari ke depan.
 
-### 10. Invoice (TODO)
+### 10. Invoice
 
 Invoice adalah tagihan pembayaran yang dibuat oleh Agensi kepada diberikan Customer.
 
 1. **Invoice** adalah milik sebuah **project**
-2. **Invoice** memiliki beberapa **pembayaran** (misal invoice dibayar dicicil)
-3. **Invoice** bisa diupdate status Lunas
+2. **Invoice** memiliki beberapa **pembayaran** (misal invoice dibayar dicicil) (TODO)
+3. **Invoice** bisa diupdate status Lunas (TODO)
+4. **Invoice** memiliki Atribut:
+    - Nomor Invoice
+    - Project
+    - Tanggal
+    - Jatuh Tempo
+    - Item Invoice
+    - Jumlah tagihan (amount)
+    - Catatan
+    - Status
+    - User Pembuat Invoice
 
 ### 11. Meeting (TODO)
 

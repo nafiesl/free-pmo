@@ -35,11 +35,18 @@ Pada project ini sangat mungkin terjadi kesalahan penulisan pada `halaman web` s
 
 Jenis **pull request** ini akan menambahkan fitur baru pada Free PMO. Jika Anda ingin melakukan pull request jenis ini, kami harapkan agar memenuhi ketentuan berikut :
 
-1. Sebelumnya fitur ini sudah diusulkan dan dibahas pada [**Issue**](https://github.com/nafiesl/free-pmo/issues).
+1. Fitur baru sudah diusulkan dan dibahas sebelumnya pada [**Issue**](https://github.com/nafiesl/free-pmo/issues).
 2. Fitur tambahan dilengkapi dengan Feature Test atau Unit Test sesuai keperluan (terutama jika ada interaksi perubahan pada database).
-3. Semua **testing passed**
+3. Semua **testing passed**.
 
 Kita akan **review dan uji** fitur baru tersebut sebelum **pull request** disetujui.
+
+> **Catatan**
+>
+> Jika pada fitur baru terdapat **perubahan struktur** pada tabel yang sudah ada, silakan **langsung ubah pada file migration** yang bersangkutan, karena aplikasi Free PMO masih dalam tahap pengembangan. **Misal**: fitur baru memerlukan perubahan struktur tabel `payments`, silakan update file `2016_11_15_151228_create_payments_table.php`.
+>
+> Kemudian **mohon** diinformasikan **script sql** dari perubahan struktur tabel tersebut melalui **Komentar Commit** yang bersangkutan (seperti [contoh ini](https://github.com/nafiesl/free-pmo/commit/a813524f680e9926d64f1006a1c615acf86c24f1#commitcomment-26166267)). Hal ini dilakukan untuk mempermudah pengguna Free PMO existing jika ingin meng-update aplikasinya.
+
 
 #### 4. Lang File
 

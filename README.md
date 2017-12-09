@@ -18,7 +18,7 @@ Free PMO (Project Management Office), software management project untuk *freelan
 7. [Cara Berkontrobusi](#cara-berkontribusi)
 8. [Screenshots](#screenshots)
 
-<hr>
+***
 
 ## Tentang
 
@@ -29,6 +29,9 @@ Free PMO (Project Management Office), software management project untuk *freelan
 2. **PMO** singkatan dari ***Project Management Office***, ibarat kantor untuk pengelolaan project.
 
 Fitur utama Free PMO adalah pengelolaan project dan transaksi pembayaran setiap project. Fitur-fitur lain software ini tertuang dalam file [konsep](CONCEPT.md).
+
+> **Development in progress**
+> Dalam proses development, perubahan struktur tabel existing akan **diubah langsung pada file migration** yang sesuai, lihat [panduan kontribusi](CONTRIBUTING.md#catatan).
 
 ## Tujuan
 

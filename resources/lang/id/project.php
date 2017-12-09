@@ -2,17 +2,19 @@
 
 return [
     // Labels
-    'project'        => 'Project',
-    'projects'       => 'Daftar Project',
-    'work_duration'  => 'Durasi',
-    'cash_in_total'  => 'Total Pemasukan',
-    'cash_out_total' => 'Total Pengeluaran',
-    'search'         => 'Cari Project',
-    'found'          => 'Project ditemukan',
-    'not_found'      => 'Project tidak ditemukan',
-    'select'         => 'Pilih Project',
-    'empty'          => 'Belum ada Project',
-    'back_to_index'  => 'Kembali ke daftar Project',
+    'project'              => 'Project',
+    'projects'             => 'Daftar Project',
+    'work_duration'        => 'Durasi',
+    'cash_in_total'        => 'Total Pemasukan',
+    'cash_out_total'       => 'Total Pengeluaran',
+    'search'               => 'Cari Project',
+    'found'                => 'Project ditemukan',
+    'not_found'            => 'Project tidak ditemukan',
+    'select'               => 'Pilih Project',
+    'empty'                => 'Belum ada Project',
+    'back_to_index'        => 'Kembali ke daftar Project',
+    'receiveable_earnings' => 'Pendapatan',
+    'earnings_calculation' => 'Rumus Pendapatan',
 
     // Actions
     'create'    => 'Input Project Baru',
@@ -26,10 +28,10 @@ return [
     'undeleted' => 'Data Project gagal dihapus.',
     'show_jobs' => 'Lihat Job',
 
-    'jobs_export_html'           => 'Export HTML',
-    'jobs_export_excel'          => 'Export Excel',
-    'jobs_export_progress_excel' => 'Export Progress',
-    'sort_jobs'                  => 'Urutkan Prioritas Job',
+    'jobs_list_export_html'     => 'Export HTML',
+    'jobs_export_excel'         => 'Export Excel',
+    'jobs_progress_export_html' => 'Export Progress',
+    'sort_jobs'                 => 'Urutkan Prioritas Job',
 
     // Attributes
     'name'           => 'Nama Project',

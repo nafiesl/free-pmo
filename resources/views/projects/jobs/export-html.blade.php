@@ -1,5 +1,5 @@
 <?php
-    // $filename = str_slug(trans('project.jobs') . '-' . $project->name) . '.xls';
+    // $filename = str_slug(__('project.jobs') . '-' . $project->name) . '.xls';
     // header("Content-Disposition: attachment; filename=\"$filename\"");
     // header("Content-Type: application/vnd.ms-excel");
 ?>
@@ -9,25 +9,25 @@
     <meta charset="utf-8">
     {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{{ trans('project.jobs') }} {{ $project->name }}</title>
+    <title>{{ __('project.jobs') }} {{ $project->name }}</title>
     {!! Html::style('assets/css/app.css') !!}
 </head>
 <body style="font-family:'Liberation Serif'">
     <div class="container">
-        <h1 class="page-header text-center">{{ trans('project.jobs') }} {{ $project->name }}</h1>
+        <h1 class="page-header text-center">{{ __('project.jobs') }} {{ $project->name }}</h1>
 
         @foreach($jobs as $key => $job)
         <h2 class="job-title">{{ $job->name }}</h2>
         <table width="100%" class="table table-condensed table-bordered">
             <tbody>
-                <tr style="background-color: #ffd298"><th colspan="2">{{ trans('app.description') }}</th></tr>
+                <tr style="background-color: #ffd298"><th colspan="2">{{ __('app.description') }}</th></tr>
                 <tr><td colspan="2">{!! nl2br($job->description) !!}</td></tr>
 
                 @if ($job->tasks->count())
                 <tr><td colspan="2">&nbsp;</td></tr>
                 <tr style="background-color: #ffd298">
-                    <th class="col-md-3">{{ trans('task.list') }}</th>
-                    <th class="col-md-6">{{ trans('app.description') }}</th>
+                    <th class="col-md-3">{{ __('task.list') }}</th>
+                    <th class="col-md-6">{{ __('app.description') }}</th>
                 </tr>
                     @foreach($job->tasks as $task)
                     <tr>
@@ -40,13 +40,13 @@
         </table>
         @endforeach
 
-        <h1 class="page-header text-center">{{ trans('project.cost_proposal') }}</h1>
+        <h1 class="page-header text-center">{{ __('project.cost_proposal') }}</h1>
         <table width="100%" class="table table-condensed table-bordered">
             <tbody>
                 <tr>
-                    <th class="text-center">{{ trans('app.table_no') }}</th>
-                    <th>{{ trans('job.name') }}</th>
-                    <th class="text-center">{{ trans('job.price') }}</th>
+                    <th class="text-center">{{ __('app.table_no') }}</th>
+                    <th>{{ __('job.name') }}</th>
+                    <th class="text-center">{{ __('job.price') }}</th>
                 </tr>
                 @foreach($jobs as $key => $job)
                 <tr>

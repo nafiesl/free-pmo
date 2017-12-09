@@ -6,6 +6,11 @@ use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 
+/**
+ * Job Model.
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
+ */
 class Job extends Model
 {
     use PresentableTrait;
@@ -31,5 +36,15 @@ class Job extends Model
     public function type()
     {
         return $this->type_id == 1 ? 'Project' : 'Additional';
+    }
+
+    public function getProgressAttribute()
+    {
+        return $this->tasks->isEmpty() ? 0 : $this->tasks->avg('progress');
+    }
+
+    public function getReceiveableEarningAttribute()
+    {
+        return $this->price * ($this->progress / 100);
     }
 }

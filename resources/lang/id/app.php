@@ -16,6 +16,7 @@ return [
     'type'              => 'Jenis',
     'total'             => 'Total',
     'count'             => 'Jumlah',
+    'remark'            => 'Keterangan',
 
     // Action
     'add'                   => 'Tambah',

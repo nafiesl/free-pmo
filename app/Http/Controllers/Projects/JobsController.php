@@ -71,6 +71,13 @@ class JobsController extends Controller
     {
         $jobs = $project->getJobList(request('job_type', 1));
 
-        return view('projects.jobs-export-html', compact('project', 'jobs'));
+        return view('projects.jobs.export-html', compact('project', 'jobs'));
+    }
+
+    public function jobProgressExport(Project $project, $exportType = 'html')
+    {
+        $jobs = $project->getJobList(request('job_type', 1));
+
+        return view('projects.jobs.progress-export-html', compact('project', 'jobs'));
     }
 }

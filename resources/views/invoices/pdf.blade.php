@@ -5,7 +5,8 @@
     <title>{{ trans('invoice.print') }} - {{ $invoice->number }}</title>
     <style>
         html {
-            margin: 10px 20px 0px 20px;
+            /*margin: 10px 20px 0px 20px;*/
+            font-family: 'Trebuchet MS';
         }
         p {
             margin: 10px 0px;
@@ -41,7 +42,7 @@
                     {!! appLogoImage(['style' => 'width:100%']) !!}
                 </td>
                 <td style="width:380px">
-                    <div style="width:280px">
+                    <div style="width:300px">
                         <h4 style="margin:0px; border-bottom: 3px; font-size: 21.5px">
                             {{ Option::get('agency_name') }}
                         </h4>
@@ -59,8 +60,8 @@
                 </td>
                 <td style="width:270px; text-align: center;">
                     <h3 style="margin: 3px 0; font-size: 24px">{{ trans('invoice.invoice') }}</h3>
-                    <div>{{ trans('invoice.number') }} : INV-{{ $invoice->number }}</div>
-                    <div>{{ trans('app.date') }} : {{ dateId($invoice->created_at->format('Y-m-d')) }}</div>
+                    <div style="margin: 5px">{{ trans('invoice.number') }} : INV-{{ $invoice->number }}</div>
+                    <div>{{ trans('app.date') }} : {{ dateId($invoice->date) }}</div>
                 </td>
             </tr>
             <tr>
@@ -125,26 +126,32 @@
                     {{ ucwords(Terbilang::make($invoice->amount)) }} Rupiah
                 </td>
             </tr>
+            @if ($invoice->notes)
             <tr style="vertical-align: top;">
                 <td colspan="3">
                     <p style="font-style: italic;"><strong>Catatan</strong> : {!! nl2br($invoice->notes) !!}</p>
                 </td>
             </tr>
+            @endif
             {{-- TODO : Add dynamic bank account based on agency bank account. --}}
             <tr style="vertical-align: top;">
                 <td colspan="3">
-                    {{--
+
                     <p>Pembayaran dapat dilakukan melalui transfer ke rekening berikut:</p>
-                    No. Rek : <strong>BCA // 782-0088-543</strong><br>
-                    An. <strong>NAFIES LUTHFI</strong>
-                    --}}
+
+                    <table>
+                        <tr><td>Bank</td><td>: <strong>BCA</strong></td></tr>
+                        <tr><td>No. Rek</td><td>: <strong>782-0088-543</strong></td></tr>
+                        <tr><td>Atas nama</td><td>: <strong>NAFIES LUTHFI</strong></td></tr>
+                    </table>
+
                     <p>Terima kasih atas kerjasamanya.</p>
                 </td>
             </tr>
             <tr>
                 <td colspan="3" class="text-center">
                     {{ Option::get('agency_city') ? Option::get('agency_city').', ' : '' }}
-                    {{ dateId($invoice->created_at->format('Y-m-d')) }} <br><br><br><br>
+                    {{ dateId($invoice->date) }} <br><br><br><br>
                     <div style="font-weight: bold;">{{ Option::get('agency_name') }}</div>
                 </td>
             </tr>

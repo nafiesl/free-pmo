@@ -8,4 +8,9 @@ Route::group(['namespace' => 'References', 'middleware' => ['web', 'role:admin']
     Route::post('options/store', ['as' => 'options.store', 'uses' => 'OptionsController@store']);
     Route::patch('options/save', ['as' => 'options.save', 'uses' => 'OptionsController@save']);
     Route::delete('options/{optionId}/destroy', ['as' => 'options.destroy', 'uses' => 'OptionsController@destroy']);
+
+    /**
+     * Bank Accounts Routes
+     */
+    Route::apiResource('bank-accounts', 'BankAccountsController');
 });

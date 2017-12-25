@@ -44,7 +44,8 @@ class BankAccountsController extends Controller
     /**
      * Store a newly created bank account in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -83,8 +84,9 @@ class BankAccountsController extends Controller
     /**
      * Update the specified bank account in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Entities\Invoices\BankAccount  $bankAccount
+     * @param \Illuminate\Http\Request           $request
+     * @param \App\Entities\Invoices\BankAccount $bankAccount
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $bankAccountId)
@@ -117,7 +119,8 @@ class BankAccountsController extends Controller
     /**
      * Remove the specified bank account from storage.
      *
-     * @param  \App\Entities\Invoices\BankAccount  $bankAccount
+     * @param \App\Entities\Invoices\BankAccount $bankAccount
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($bankAccountId)
@@ -127,7 +130,6 @@ class BankAccountsController extends Controller
         ]);
 
         if (request('bank_account_id') == $bankAccountId) {
-
             $bankAccounts = Option::where('key', 'bank_accounts')->first();
 
             $bankAccounts = $bankAccounts->value;

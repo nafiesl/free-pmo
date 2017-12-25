@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Invoices;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Projects\Project;
 use App\Http\Controllers\Controller;
+use Option;
 
 /**
  * Invoices Controller.
@@ -67,6 +68,8 @@ class InvoicesController extends Controller
 
     public function pdf(Invoice $invoice)
     {
-        return view('invoices.pdf', compact('invoice'));
+        $bankAccounts = json_decode(Option::get('bank_accounts')) ?: [];
+
+        return view('invoices.pdf', compact('invoice', 'bankAccounts'));
     }
 }

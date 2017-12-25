@@ -6,6 +6,11 @@ use App\Entities\Options\Option;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+/**
+ * Bank Account Controller.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class BankAccountsController extends Controller
 {
     /**
@@ -21,12 +26,16 @@ class BankAccountsController extends Controller
         if (!is_null($bankAccounts)) {
             $bankAccounts = $bankAccounts->value;
             $bankAccounts = json_decode($bankAccounts, true);
+            $bankAccounts = collect($bankAccounts)
+                ->map(function ($bankAccount) {
+                    return (object) $bankAccount;
+                });
 
             if (in_array(request('action'), ['edit', 'delete']) && request('id') != null) {
-                $editableBankAccount = (object) $bankAccounts[request('id')];
+                $editableBankAccount = $bankAccounts[request('id')];
             }
         } else {
-            $bankAccounts = [];
+            $bankAccounts = collect([]);
         }
 
         return view('bank-accounts.index', compact('bankAccounts', 'editableBankAccount'));

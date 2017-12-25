@@ -13,6 +13,9 @@
         <li class="{{ Request::segment(1) == 'users' ? 'active' : '' }}">
             {!! link_to_route('users.index', trans('user.list')) !!}
         </li>
+        <li class="{{ Request::segment(1) == 'bank-accounts' ? 'active' : '' }}">
+            {!! link_to_route('bank-accounts.index', trans('bank_account.list')) !!}
+        </li>
     @endcan
 </ul>
 <br>

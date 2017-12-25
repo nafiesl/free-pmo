@@ -6,6 +6,11 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Option;
 use Tests\TestCase as TestCase;
 
+/**
+ * Manage Bank Account Feature Test.
+ *
+ * @author Nafies Luthfi <nafiesL@gmail.com>
+ */
 class ManageBankAccountsTest extends TestCase
 {
     use DatabaseMigrations;

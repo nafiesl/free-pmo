@@ -136,14 +136,19 @@
             {{-- TODO : Add dynamic bank account based on agency bank account. --}}
             <tr style="vertical-align: top;">
                 <td colspan="3">
-
-                    <p>Pembayaran dapat dilakukan melalui transfer ke rekening berikut:</p>
-
-                    <table>
-                        <tr><td>Bank</td><td>: <strong>BCA</strong></td></tr>
-                        <tr><td>No. Rek</td><td>: <strong>782-0088-543</strong></td></tr>
-                        <tr><td>Atas nama</td><td>: <strong>NAFIES LUTHFI</strong></td></tr>
-                    </table>
+                    @empty ($bankAccounts)
+                    @else
+                        <p>Pembayaran dapat dilakukan melalui transfer ke rekening berikut:</p>
+                        @foreach ($bankAccounts as $key => $bankAccount)
+                            @php $bankAccount = (object) $bankAccount; @endphp
+                            <table style="border: 1px solid #ccc;width: 330px">
+                                <tr><td style="width: 100px">{{ trans('bank_account.name') }}</td><td>: <strong>{{ $bankAccount->name }}</strong></td></tr>
+                                <tr><td>{{ trans('bank_account.number') }}</td><td>: <strong>{{ $bankAccount->number }}</strong></td></tr>
+                                <tr><td>{{ trans('bank_account.account_name') }}</td><td>: <strong>{{ $bankAccount->account_name }}</strong></td></tr>
+                            </table>
+                            @if ($key == count($bankAccounts)) <br> @endif
+                        @endforeach
+                    @endempty
 
                     <p>Terima kasih atas kerjasamanya.</p>
                 </td>

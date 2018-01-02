@@ -4,9 +4,11 @@ return [
     // Labels
     'project'              => 'Project',
     'projects'             => 'Daftar Project',
+    'index_title'          => 'Daftar :status Project',
     'work_duration'        => 'Durasi',
     'cash_in_total'        => 'Total Pemasukan',
     'cash_out_total'       => 'Total Pengeluaran',
+    'all'                  => 'Semua Project',
     'search'               => 'Cari Project',
     'found'                => 'Project ditemukan',
     'not_found'            => 'Project tidak ditemukan',

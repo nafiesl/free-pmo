@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Piutang Saat Ini')
+@section('title', trans('dashboard.receiveable_earnings'))
 
 @section('content')
 <ul class="breadcrumb hidden-print">
@@ -13,7 +13,7 @@
         <th class="col-md-2">{{ trans('project.project') }}</th>
         <th class="col-md-2 text-right">{{ trans('project.project_value') }}</th>
         <th class="col-md-2 text-right">{{ trans('project.cash_in_total') }}</th>
-        <th class="col-md-2 text-right">{{ trans('project.receiveable_cash') }}</th>
+        <th class="col-md-2 text-right">{{ trans('project.payment_remaining') }}</th>
         <th class="col-md-2">{{ trans('project.customer') }}</th>
         <th class="col-md-2 text-center">{{ trans('project.status') }}</th>
     </thead>

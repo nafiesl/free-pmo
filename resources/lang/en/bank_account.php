@@ -3,7 +3,7 @@
 return [
     // Labels
     'bank_account'  => 'Bank Account',
-    'list'          => 'Bank Account list',
+    'list'          => 'Bank Account List',
     'empty'         => 'Bank Account list is empty',
     'back_to_index' => 'Back to Bank Account list',
 

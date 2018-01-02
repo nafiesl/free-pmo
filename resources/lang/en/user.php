@@ -27,6 +27,7 @@ return [
     // Attributes
     'name'          => 'User Name',
     'email'         => 'Email',
+    'lang'          => 'Language',
     'api_token'     => 'API Token',
     'registered_at' => 'Registered at',
 

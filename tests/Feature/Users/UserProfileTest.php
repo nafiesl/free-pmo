@@ -36,6 +36,7 @@ class UserProfileTest extends TestCase
         $this->submitForm(trans('auth.update_profile'), [
             'name'  => 'Nama Saya',
             'email' => 'me@domain.com',
+            'lang'  => 'en', // en, id
         ]);
 
         $this->see(trans('auth.profile_updated'));
@@ -45,6 +46,7 @@ class UserProfileTest extends TestCase
             'id'    => $user->id,
             'name'  => 'Nama Saya',
             'email' => 'me@domain.com',
+            'lang'  => 'en',
         ]);
     }
 }

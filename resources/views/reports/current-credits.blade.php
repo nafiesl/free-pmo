@@ -4,7 +4,7 @@
 
 @section('content')
 <ul class="breadcrumb hidden-print">
-    <li class="active">Piutang Saat Ini</li>
+    <li class="active">{{ trans('dashboard.receiveable_earnings') }}</li>
 </ul>
 
 <table class="table table-condensed table-hover">
@@ -13,12 +13,12 @@
         <th class="col-md-2">{{ trans('project.project') }}</th>
         <th class="col-md-2 text-right">{{ trans('project.project_value') }}</th>
         <th class="col-md-2 text-right">{{ trans('project.cash_in_total') }}</th>
-        <th class="col-md-2 text-right">Sisa</th>
+        <th class="col-md-2 text-right">{{ trans('project.receiveable_cash') }}</th>
         <th class="col-md-2">{{ trans('project.customer') }}</th>
         <th class="col-md-2 text-center">{{ trans('project.status') }}</th>
     </thead>
     <tbody>
-        <?php $total = 0 ?>
+        <?php $total = 0?>
         @forelse($projects as $key => $project)
         <tr>
             <td>{{ 1 + $key }}</td>

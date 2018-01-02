@@ -14,6 +14,7 @@ return [
     'empty'                => 'Belum ada Project',
     'back_to_index'        => 'Kembali ke daftar Project',
     'receiveable_earnings' => 'Pendapatan',
+    'payment_remaining'    => 'Sisa',
     'earnings_calculation' => 'Rumus Pendapatan',
 
     // Actions

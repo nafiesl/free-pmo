@@ -21,9 +21,9 @@
                 {!! html_link_to_route('projects.index', trans('project.projects') . ' <span class="fa arrow"></span>', [], ['icon' => 'table']) !!}
                 @include('view-components.sidebar-project-list-links')
             </li>
-            <li>{!! html_link_to_route('reports.payments.yearly', 'Penghasilan', [], ['icon' => 'line-chart']) !!}</li>
-            <li>{!! html_link_to_route('reports.current-credits', 'Piutang', [], ['icon' => 'money']) !!}</li>
-            <li>{!! html_link_to_route('users.calendar', 'Calendar', [], ['icon' => 'calendar']) !!}</li>
+            <li>{!! html_link_to_route('reports.payments.yearly', trans('dashboard.yearly_earnings'), [], ['icon' => 'line-chart']) !!}</li>
+            <li>{!! html_link_to_route('reports.current-credits', trans('dashboard.receiveable_earnings'), [], ['icon' => 'money']) !!}</li>
+            <li>{!! html_link_to_route('users.calendar', trans('nav_menu.calendar'), [], ['icon' => 'calendar']) !!}</li>
             <li>{!! html_link_to_route('subscriptions.index', trans('subscription.subscription'), [], ['icon' => 'retweet']) !!}</li>
             <li>{!! html_link_to_route('invoices.index', trans('invoice.list'), [], ['icon' => 'table']) !!}</li>
             <li>{!! html_link_to_route('payments.index', trans('payment.payments'), [], ['icon' => 'money']) !!}</li>
@@ -31,7 +31,7 @@
             <li>{!! html_link_to_route('vendors.index', trans('vendor.list'), [], ['icon' => 'users']) !!}</li>
             @endcan
             @can('manage_backups')
-            <li><a href="{{ route('backups.index') }}"><i class="fa fa-refresh fa-fw"></i> Backup/Restore DB</a></li>
+            <li><a href="{{ route('backups.index') }}"><i class="fa fa-refresh fa-fw"></i> {{ trans('backup.list') }}</a></li>
             @endcan
             <li>{!! html_link_to_route('auth.change-password', trans('auth.change_password'), [], ['icon' => 'lock']) !!}</li>
             <li>{!! html_link_to_route('auth.logout', trans('auth.logout'), [], ['icon' => 'sign-out']) !!}</li>

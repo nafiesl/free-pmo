@@ -1,0 +1,65 @@
+<?php
+
+return [
+    // Labels
+    'project'              => 'Project',
+    'projects'             => 'Project List',
+    'work_duration'        => 'Work Duration',
+    'cash_in_total'        => 'Cash in Total',
+    'cash_out_total'       => 'Cash out Total',
+    'search'               => 'Search Project',
+    'found'                => 'Project found.',
+    'not_found'            => 'Project not found.',
+    'select'               => 'Select Project',
+    'empty'                => 'Project list is empty.',
+    'back_to_index'        => 'Back to Project List',
+    'receiveable_earnings' => 'Receiveable Earning',
+    'payment_remaining'    => 'Payment Remaining',
+    'earnings_calculation' => 'Earnings Calculation',
+
+    // Actions
+    'create'    => 'Create new Project',
+    'created'   => 'New Project has been created.',
+    'show'      => 'Project Detail',
+    'edit'      => 'Edit Project',
+    'update'    => 'Update Project',
+    'updated'   => 'Project has been updated.',
+    'delete'    => 'Delete Project',
+    'deleted'   => 'Project has been deleted.',
+    'undeleted' => 'Project not deleted.',
+    'show_jobs' => 'Show Job',
+
+    'jobs_list_export_html'     => 'Export HTML',
+    'jobs_export_excel'         => 'Export Excel',
+    'jobs_progress_export_html' => 'Export Progress',
+    'sort_jobs'                 => 'Sort Job Priority',
+
+    // Attributes
+    'name'           => 'Project Name',
+    'description'    => 'Project Description',
+    'start_date'     => 'Start Date',
+    'end_date'       => 'End Date',
+    'proposal_date'  => 'Proposal Date',
+    'project_value'  => 'Project Value',
+    'proposal_value' => 'Proposal Value',
+
+    // Relations
+    'files'         => 'Document List',
+    'jobs'          => 'Job List',
+    'no_jobs'       => 'Job list is empty.',
+    'cost_proposal' => 'Cost Proposal',
+    'invoices'      => 'Invoice List',
+    'customer'      => 'Customer',
+    'worker'        => 'Worker',
+    'subscriptions' => 'Subscriptions',
+    'status'        => 'Project Status',
+    'payments'      => 'Payments',
+
+    // Statuses
+    'planned'  => 'Planned',
+    'progress' => 'Progress',
+    'done'     => 'Done',
+    'closed'   => 'Closed',
+    'canceled' => 'Canceled',
+    'on_hold'  => 'On Hold',
+];

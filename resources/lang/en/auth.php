@@ -1,19 +1,38 @@
 <?php
 
 return [
+    // Profile
+    'profile'         => 'My Profile',
+    'profile_edit'    => 'Edit My Profile',
+    'update_profile'  => 'Update Profile',
+    'profile_updated' => 'Profile has been updated.',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
+    // Registration
+    'register'        => 'Create new Account',
+    'need_account'    => 'Need an Account?',
+    'have_an_account' => 'I have an Account',
 
-    'failed'   => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    // Login & Logout
+    'login'      => 'Login',
+    'welcome'    => 'Welcome :name.',
+    'failed'     => 'These credentials do not match our records.',
+    'throttle'   => 'Too many login attempts. Please try again in :seconds seconds.',
+    'logout'     => 'Logout',
+    'logged_out' => 'You have logged out.',
 
+    // Password
+    'change_password'          => 'Change Password',
+    'password_changed'         => 'Your password has been changed.',
+    'forgot_password'          => 'Forgot Password?',
+    'reset_password'           => 'Reset Password',
+    'send_reset_password_link' => 'Send reset password link',
+    'old_password_failed'      => 'Old password does not match!',
+
+    // Attributes
+    'email'                     => 'Email',
+    'password'                  => 'Password',
+    'password_confirmation'     => 'Confirm Password',
+    'old_password'              => 'Old Password',
+    'new_password'              => 'New Password',
+    'new_password_confirmation' => 'Confirm new Password',
 ];

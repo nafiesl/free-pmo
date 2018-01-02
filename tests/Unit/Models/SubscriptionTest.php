@@ -30,7 +30,7 @@ class SubscriptionTest extends TestCase
     /** @test */
     public function it_has_near_of_due_date_method()
     {
-        $next3Months = Carbon::now()->addMonths(2)->format('Y-m-d');
+        $next3Months = Carbon::now()->addMonths(3)->format('Y-m-d');
         $subscription = factory(Subscription::class)->make(['due_date' => $next3Months]);
 
         $this->assertFalse($subscription->nearOfDueDate());
@@ -45,7 +45,7 @@ class SubscriptionTest extends TestCase
     public function it_has_near_of_due_date_sign_method()
     {
         // Due date within next 3 months
-        $next3Months = Carbon::now()->addMonths(2)->format('Y-m-d');
+        $next3Months = Carbon::now()->addMonths(3)->format('Y-m-d');
         $subscription = factory(Subscription::class)->make(['due_date' => $next3Months]);
 
         $this->assertEquals('', $subscription->nearOfDueDateSign());

@@ -2,7 +2,7 @@
 
 return [
     // Labels
-    'master'        => 'Customer',
+    'customer'      => 'Customer',
     'list'          => 'Customer List',
     'search'        => 'Search Customer',
     'detail'        => 'Customer Detail',

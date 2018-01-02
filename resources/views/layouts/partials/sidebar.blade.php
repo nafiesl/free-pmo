@@ -13,6 +13,20 @@
             {{ appLogoImage(['class' => 'sidebar-logo']) }}
             <div class="small" style="margin-top:10px">{{ config('app.name') }}</div>
         </a>
+        <div class="text-center" style="border-bottom: 1px solid #e7e7e7; padding-bottom: 10px">
+            {!! FormField::formButton(
+                ['route' => 'users.profile.switch-lang', 'method' => 'patch'],
+                'EN',
+                ['class' => 'btn btn-default btn-xs', 'id' => 'switch_lang_en'],
+                ['lang' => 'en']
+            ) !!}
+            {!! FormField::formButton(
+                ['route' => 'users.profile.switch-lang', 'method' => 'patch'],
+                'ID',
+                ['class' => 'btn btn-default btn-xs', 'id' => 'switch_lang_id'],
+                ['lang' => 'id']
+            ) !!}
+        </div>
         <ul class="nav" id="side-menu">
             <li>{!! html_link_to_route('home', trans('nav_menu.dashboard'), [], ['icon' => 'dashboard']) !!}</li>
             @can('manage_agency')

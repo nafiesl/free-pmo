@@ -13,6 +13,7 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'password'       => 'member',
         'remember_token' => str_random(10),
         'api_token'      => str_random(32),
+        'lang'           => 'en',
     ];
 });
 

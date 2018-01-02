@@ -49,4 +49,36 @@ class UserProfileTest extends TestCase
             'lang'  => 'en',
         ]);
     }
+
+    /** @test */
+    public function user_get_locale_bases_on_their_lang_profile_value()
+    {
+        $user = $this->userSigningIn(['lang' => 'en']);
+        $this->visit(route('home'));
+
+        $this->assertEquals('en', app()->getLocale());
+
+        $user = $this->userSigningIn(['lang' => 'id']);
+        $this->visit(route('home'));
+
+        $this->assertEquals('id', app()->getLocale());
+    }
+
+    /** @test */
+    public function user_can_switch_lang_from_sidebar()
+    {
+        $user = $this->userSigningIn(['lang' => 'id']);
+
+        $this->visit('/');
+
+        $this->submitForm('switch_lang_en', ['lang' => 'en']);
+
+        $this->assertEquals('en', app()->getLocale());
+        $this->assertEquals('en', $user->fresh()->lang);
+
+        $this->submitForm('switch_lang_id', ['lang' => 'id']);
+
+        $this->assertEquals('id', app()->getLocale());
+        $this->assertEquals('id', $user->fresh()->lang);
+    }
 }

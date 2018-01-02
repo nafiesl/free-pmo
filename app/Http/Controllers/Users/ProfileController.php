@@ -30,7 +30,7 @@ class ProfileController extends Controller
         request()->validate([
             'name'  => 'required|string|max:100',
             'email' => 'required|email|max:255',
-            'lang'  => 'required|string',
+            'lang'  => 'required|string|in:en,id',
         ]);
 
         $user = auth()->user();
@@ -40,10 +40,21 @@ class ProfileController extends Controller
         $user->lang = request('lang');
         $user->save();
 
-        session(['lang' => $user->lang]);
-
         flash(trans('auth.profile_updated'), 'success');
 
         return redirect()->route('users.profile.show');
+    }
+
+    public function switchLang()
+    {
+        $userData = request()->validate([
+            'lang' => 'required|string|in:en,id',
+        ]);
+
+        $user = request()->user();
+        $user->lang = $userData['lang'];
+        $user->save();
+
+        return back();
     }
 }

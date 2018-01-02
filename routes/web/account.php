@@ -41,6 +41,12 @@ Route::patch('profile/update', [
     'middleware' => ['web', 'auth'],
 ]);
 
+Route::patch('profile/switch-lang', [
+    'as'         => 'users.profile.switch-lang',
+    'uses'       => 'Users\ProfileController@switchLang',
+    'middleware' => ['web', 'auth'],
+]);
+
 // User's Agency routes
 Route::get('agency', [
     'as'         => 'users.agency.show',

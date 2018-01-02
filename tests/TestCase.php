@@ -20,25 +20,25 @@ abstract class TestCase extends BaseTestCase
         }
     }
 
-    protected function adminUserSigningIn()
+    protected function adminUserSigningIn($userDataOverrides = [])
     {
-        $user = $this->createUser();
+        $user = $this->createUser('admin', $userDataOverrides);
         $this->actingAs($user);
 
         return $user;
     }
 
-    protected function userSigningIn()
+    protected function userSigningIn($userDataOverrides = [])
     {
-        $user = $this->createUser('worker');
+        $user = $this->createUser('worker', $userDataOverrides);
         $this->actingAs($user);
 
         return $user;
     }
 
-    protected function createUser($role = 'admin')
+    protected function createUser($role = 'admin', $userDataOverrides = [])
     {
-        $user = factory(User::class)->create();
+        $user = factory(User::class)->create($userDataOverrides);
         $user->assignRole($role);
 
         return $user;

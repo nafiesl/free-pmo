@@ -45,7 +45,7 @@
         </tr>
         @empty
         <tr>
-            <td colspan="5">{{ $status }} {{ trans('project.not_found') }}</td>
+            <td colspan="9">{{ $status }} {{ trans('project.not_found') }}</td>
         </tr>
         @endforelse
     </tbody>

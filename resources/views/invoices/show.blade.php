@@ -25,9 +25,9 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th>{{ trans('app.table_no') }}</th>
-                            <th>{{ trans('invoice.item_description') }}</th>
-                            <th class="text-right">{{ trans('invoice.item_amount') }}</th>
+                            <th width="5%">{{ trans('app.table_no') }}</th>
+                            <th width="70%">{{ trans('invoice.item_description') }}</th>
+                            <th width="25%" class="text-right">{{ trans('invoice.item_amount') }}</th>
                         </tr>
                     </thead>
                     <tbody>

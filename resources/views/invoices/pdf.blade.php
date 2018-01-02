@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{{ trans('invoice.print') }} - {{ $invoice->number }}</title>
+    <title>INV-{{ $invoice->number }}</title>
     <style>
         html {
             /*margin: 10px 20px 0px 20px;*/
@@ -72,7 +72,7 @@
                     @endphp
                     <p><strong>{{ $customer->name }}</strong></p>
                     @if ($customer->address)
-                    <p style="max-width: 250px">{!! nl2br($customer->address) !!}</p>
+                    <p style="max-width: 250px;font-size: 14px">{!! nl2br($customer->address) !!}</p>
                     @endif
                     @if ($customer->phone)
                     <p>{{ trans('contact.phone') }} : {{ $customer->phone }}</p>
@@ -94,12 +94,12 @@
             <tr><td colspan="3">{{ trans('invoice.items') }} :</td></tr>
             <tr>
                 <td colspan="3">
-                <table border="1" class="receipt-table" style="width: 100%">
+                <table border="1" class="receipt-table" style="width: 100%;font-size: 14px">
                     <thead style="background-color: #FFC800">
                         <tr>
-                            <th>{{ trans('app.table_no') }}</th>
-                            <th class="text-left">{{ trans('invoice.item_description') }}</th>
-                            <th>{{ trans('invoice.item_amount') }}</th>
+                            <th width="5%">{{ trans('app.table_no') }}</th>
+                            <th width="70%" class="text-left">{{ trans('invoice.item_description') }}</th>
+                            <th width="25%">{{ trans('invoice.item_amount') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,8 +121,8 @@
                 </td>
             </tr>
             <tr style="vertical-align: top;">
-                <td>{{ trans('payment.words_amount') }} : </td>
-                <td colspan="2" style="font-weight: bold;">
+                <td style="padding-top: 20px;">{{ trans('payment.words_amount') }} : </td>
+                <td colspan="2" style="font-weight: bold; padding-top: 20px">
                     {{ ucwords(Terbilang::make($invoice->amount)) }} Rupiah
                 </td>
             </tr>

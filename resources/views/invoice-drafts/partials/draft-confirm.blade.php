@@ -46,9 +46,9 @@
                     <tbody>
                         @forelse($draft->items() as $key => $item)
                         <tr>
-                            <td>{{ $key + 1 }}</td>
-                            <td>{!! nl2br($item->description) !!}</td>
-                            <td class="text-right">{{ formatRp($item->amount) }}</td>
+                            <td width="5%">{{ $key + 1 }}</td>
+                            <td width="70%">{!! nl2br($item->description) !!}</td>
+                            <td width="25%" class="text-right">{{ formatRp($item->amount) }}</td>
                         </tr>
                         @empty
                         @endforelse

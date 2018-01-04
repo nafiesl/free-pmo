@@ -1,7 +1,8 @@
 <?php
 
 return [
-    'lang' => 'Bahasa',
-    'en'   => 'Bahasa Inggris',
-    'id'   => 'Bahasa Indonesia',
+    'lang'           => 'Bahasa',
+    'switch_tooltip' => 'Ubah bahasa ke :lang',
+    'en'             => 'Bahasa Inggris',
+    'id'             => 'Bahasa Indonesia',
 ];

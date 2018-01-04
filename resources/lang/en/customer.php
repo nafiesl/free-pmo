@@ -5,11 +5,12 @@ return [
     'customer'      => 'Customer',
     'list'          => 'Customer List',
     'search'        => 'Search Customer',
-    'detail'        => 'Customer Detail',
     'not_found'     => 'Customer not found.',
     'empty'         => 'Customer is empty.',
     'back_to_show'  => 'Back to Customer Detail',
     'back_to_index' => 'Back to Customer List',
+    'detail'        => 'Customer Detail',
+    'contact'       => 'Customer Contact',
 
     // Actions
     'create'         => 'Create new Customer',

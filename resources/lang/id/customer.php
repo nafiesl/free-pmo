@@ -2,16 +2,15 @@
 
 return [
     // Labels
-    'customer'       => 'Customer',
-    'list'           => 'Daftar Customer',
-    'search'         => 'Cari Customer',
-    'not_found'      => 'Customer tidak ditemukan',
-    'empty'          => 'Belum ada Customer',
-    'back_to_show'   => 'Kembali ke detail Customer',
-    'back_to_index'  => 'Kembali ke daftar Customer',
-    'type'           => 'Jenis Customer',
-    'detail'         => 'Detail Customer',
-    'contact'        => 'Kontak Customer',
+    'customer'      => 'Customer',
+    'list'          => 'Daftar Customer',
+    'search'        => 'Cari Customer',
+    'not_found'     => 'Customer tidak ditemukan',
+    'empty'         => 'Belum ada Customer',
+    'back_to_show'  => 'Kembali ke detail Customer',
+    'back_to_index' => 'Kembali ke daftar Customer',
+    'detail'        => 'Detail Customer',
+    'contact'       => 'Kontak Customer',
 
     // Actions
     'create'         => 'Input Customer Baru',

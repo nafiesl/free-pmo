@@ -17,15 +17,15 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::radios('in_out',['Pengeluaran', 'Pemasukan'],['label' => trans('payment.in_out'),'value' => 1]) !!}
+                        {!! FormField::radios('in_out', [trans('payment.out'), trans('payment.in')], ['label' => trans('payment.in_out'), 'value' => 1]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label'=> trans('payment.type'),'value' => 1,'list_style' => 'unstyled']) !!}
+                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label'=> trans('payment.type'), 'value' => 1, 'list_style' => 'unstyled']) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::text('date',['label'=> trans('payment.date')]) !!}
+                        {!! FormField::text('date', ['label'=> trans('payment.date')]) !!}
                     </div>
                     <div class="col-md-6">
                         {!! FormField::price('amount', ['label'=> trans('payment.amount')]) !!}
@@ -33,13 +33,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project'),'value' => Request::get('project_id')]) !!}
+                        {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project'), 'value' => Request::get('project_id')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::select('partner_id', $partners, ['label'=> trans('payment.customer'),'value' => Request::get('customer_id')]) !!}
+                        {!! FormField::select('partner_id', $partners, ['label'=> trans('payment.customer'), 'value' => Request::get('customer_id')]) !!}
                     </div>
                 </div>
-                {!! FormField::textarea('description',['label'=> trans('payment.description'),'rows' => 3]) !!}
+                {!! FormField::textarea('description', ['label'=> trans('payment.description'), 'rows' => 3]) !!}
             </div>
 
             <div class="panel-footer">

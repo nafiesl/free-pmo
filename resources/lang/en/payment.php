@@ -29,11 +29,13 @@ return [
     'search'     => 'Search Project Payment',
     'print'      => 'Print Receipt',
 
-    // Attrubutes
+    // Attributes
     'id'          => 'Payment ID',
-    'description' => 'description',
+    'description' => 'Description',
     'date'        => 'Payment Date',
     'in_out'      => 'Transaction Type',
+    'in'          => 'Cash in',
+    'out'         => 'Cash out',
     'type'        => 'Payment Type',
     'project'     => 'Project',
     'customer'    => 'Customer',

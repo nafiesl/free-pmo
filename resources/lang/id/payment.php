@@ -29,11 +29,13 @@ return [
     'search'     => 'Cari Pembayaran Project',
     'print'      => 'Cetak Kuitansi',
 
-    // Attrubutes
+    // Attributes
     'id'          => 'ID Pembayaran',
     'description' => 'Untuk Pembayaran',
     'date'        => 'Tanggal Pembayaran',
     'in_out'      => 'Jenis Transaksi',
+    'in'          => 'Pemasukan',
+    'out'         => 'Pengeluaran',
     'type'        => 'Jenis Pembayaran',
     'project'     => 'Project',
     'customer'    => 'Dari/Kepada',

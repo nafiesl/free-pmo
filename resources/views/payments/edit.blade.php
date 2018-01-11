@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('payments.partials.breadcrumb',['title' => trans('payment.edit')])
+@include('payments.partials.breadcrumb', ['title' => trans('payment.edit')])
 
 <div class="row">
     <div class="col-md-6">
@@ -14,18 +14,18 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::radios('in_out',['Pengeluaran','Pemasukan'],['label'=> trans('payment.in_out'),'value' => 1]) !!}
+                        {!! FormField::radios('in_out', [trans('payment.out'), trans('payment.in')], ['label'=> trans('payment.in_out'), 'value' => 1]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label'=> trans('payment.type'),'value' => 1,'list_style' => 'unstyled']) !!}
+                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label' => trans('payment.type'), 'value' => 1, 'list_style' => 'unstyled']) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::text('date',['label'=> trans('app.date')]) !!}
+                        {!! FormField::text('date', ['label'=> trans('app.date')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::price('amount',['label'=> trans('payment.amount')]) !!}
+                        {!! FormField::price('amount', ['label'=> trans('payment.amount')]) !!}
                     </div>
                 </div>
                 <div class="row">
@@ -36,7 +36,7 @@
                         {!! FormField::select('partner_id', $partners, ['label'=> trans('payment.customer')]) !!}
                     </div>
                 </div>
-                {!! FormField::textarea('description',['label'=> trans('payment.description')]) !!}
+                {!! FormField::textarea('description', ['label'=> trans('payment.description')]) !!}
             </div>
 
             <div class="panel-footer">

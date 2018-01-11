@@ -19,6 +19,14 @@ return [
     'payment_remaining'    => 'Sisa',
     'earnings_calculation' => 'Rumus Pendapatan',
 
+    // Payments
+    'payment_summary'  => 'Summary Pembayaran',
+    'payment_status'   => 'Status',
+    'payment_statuses' => [
+        'paid'        => 'Lunas',
+        'outstanding' => 'Belum Lunas',
+    ],
+
     // Actions
     'create'    => 'Input Project Baru',
     'created'   => 'Input Project baru telah berhasil.',

@@ -19,6 +19,14 @@ return [
     'payment_remaining'    => 'Payment Remaining',
     'earnings_calculation' => 'Earnings Calculation',
 
+    // Payments
+    'payment_summary'  => 'Payment Summary',
+    'payment_status'   => 'Payment Status',
+    'payment_statuses' => [
+        'paid'        => 'Paid',
+        'outstanding' => 'Outstanding',
+    ],
+
     // Actions
     'create'    => 'Create new Project',
     'created'   => 'New Project has been created.',

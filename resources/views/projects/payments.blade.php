@@ -14,66 +14,52 @@
 </h1>
 
 @include('projects.partials.nav-tabs')
-
 <div class="row">
-    <div class="col-md-9">
-
-        <?php $groupedPayments = $project->payments->groupBy('in_out');?>
-        @foreach ($groupedPayments as $key => $payments)
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ $key == 1 ? 'Pemasukan' : 'Pengeluaran' }}</h3></div>
-            <table class="table table-condensed">
-                <thead>
-                    <th>{{ trans('app.table_no') }}</th>
-                    <th class="col-md-2 text-center">{{ trans('app.date') }}</th>
-                    <th class="col-md-2 text-right">{{ trans('payment.amount') }}</th>
-                    <th class="col-md-2">{{ $key == 1 ? trans('app.from') : trans('app.to') }}</th>
-                    <th class="col-md-4">{{ trans('payment.description') }}</th>
-                    <th class="text-center">{{ trans('app.action') }}</th>
-                </thead>
-                <tbody>
-                    @forelse($payments as $key => $payment)
-                    <tr>
-                        <td>{{ 1 + $key }}</td>
-                        <td class="text-center">{{ $payment->date }}</td>
-                        <td class="text-right">{{ formatRp($payment->amount) }}</td>
-                        <td>{{ $payment->partner->name }}</td>
-                        <td>{{ $payment->description }} [{{ $payment->type() }}]</td>
-                        <td class="text-center">
-                            {!! html_link_to_route('payments.show','',[$payment->id],['class' => 'btn btn-info btn-xs','icon' => 'search','title' => 'Lihat ' . trans('payment.show')]) !!}
-                            @if ($payment->in_out == 1)
-                            {!! html_link_to_route('payments.pdf','',[$payment->id],['class' => 'btn btn-success btn-xs','icon' => 'print','title' => trans('payment.print')]) !!}
-                            @endif
-                        </td>
-                    </tr>
-                    @empty
-                    <tr><td colspan="6">{{ trans('payment.empty') }}</td></tr>
-                    @endforelse
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th colspan="2" class="text-right">{{ trans('app.total') }}</th>
-                        <th class="text-right">{{ formatRp($payments->sum('amount')) }}</th>
-                        <th colspan="5"></th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        @endforeach
-    </div>
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">Summary</h3></div>
-            <table class="table table-condensed">
-                <tbody>
-                    <tr><th class="col-xs-6">{{ trans('project.project_value') }}</th><td class="text-right">{{ formatRp($project->project_value) }}</td></tr>
-                    <tr><th>{{ trans('project.cash_in_total') }}</th><td class="text-right">{{ formatRp($project->cashInTotal()) }}</td></tr>
-                    <tr><th>{{ trans('project.cash_out_total') }}</th><td class="text-right">{{ formatRp($project->cashOutTotal()) }}</td></tr>
-                    <tr><th>{{ trans('project.payment_remaining') }}</th><td class="text-right">{{ formatRp($balance = $project->project_value - $project->cashInTotal()) }}</td></tr>
-                    <tr><th>{{ trans('project.payment_status') }}</th><td class="text-center">{{ $balance > 0 ? trans('project.payment_statuses.outstanding') : trans('project.payment_statuses.paid') }}</td></tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <div class="col-md-4 col-md-offset-4">@include('projects.partials.payment-summary')</div>
 </div>
+
+<?php $groupedPayments = $project->payments->groupBy('in_out');?>
+@foreach ($groupedPayments as $key => $payments)
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ $key == 1 ? trans('payment.in') : trans('payment.out') }} ({{ $payments->count() }})</h3>
+    </div>
+    <table class="table table-condensed">
+        <thead>
+            <th class="text-center">{{ trans('app.table_no') }}</th>
+            <th class="col-xs-1 text-center">{{ trans('app.date') }}</th>
+            <th class="col-xs-2 text-right">{{ trans('payment.amount') }}</th>
+            <th class="col-xs-3">{{ $key == 1 ? trans('app.from') : trans('app.to') }}</th>
+            <th class="col-xs-5">{{ trans('payment.description') }}</th>
+            <th class="col-xs-1 text-center">{{ trans('app.action') }}</th>
+        </thead>
+        <tbody>
+            @forelse($payments as $key => $payment)
+            <tr>
+                <td class="text-center">{{ 1 + $key }}</td>
+                <td class="text-center">{{ $payment->date }}</td>
+                <td class="text-right">{{ formatRp($payment->amount) }}</td>
+                <td>{{ $payment->partner->name }}</td>
+                <td>{{ $payment->description }} [{{ $payment->type() }}]</td>
+                <td class="text-center">
+                    {!! html_link_to_route('payments.show','',[$payment->id],['class' => 'btn btn-info btn-xs','icon' => 'search','title' => 'Lihat ' . trans('payment.show')]) !!}
+                    @if ($payment->in_out == 1)
+                    {!! html_link_to_route('payments.pdf','',[$payment->id],['class' => 'btn btn-success btn-xs','icon' => 'print','title' => trans('payment.print')]) !!}
+                    @endif
+                </td>
+            </tr>
+            @empty
+            <tr><td colspan="6">{{ trans('payment.empty') }}</td></tr>
+            @endforelse
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="2" class="text-right">{{ trans('app.total') }}</th>
+                <th class="text-right">{{ formatRp($payments->sum('amount')) }}</th>
+                <th colspan="5"></th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+@endforeach
 @endsection

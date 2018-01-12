@@ -1,85 +1,81 @@
-# Kontribusi ke Free PMO
+# Contributing to Free PMO
 
-Terima kasih karena telah berkenan mempertimbangkan untuk berkontribusi pada project ini. Mari kita buat software Free PMO menjadi jauh lebih baik.
+Thanks for considering to contribute to this project. Let's make it better.
+
+> [Baca versi Bahasa Indonesia](CONTRIBUTING.id.md)
 
 ### Submit Issue
-Project ini masih terus dikembangkan. Sebagian besar fitur yang telah dibuat memiliki **Feature** atau **Unit Testing**, namun sangat mungkin masih ada **bug** yang terlewat dari pengujian tersebut. Jika selama menggunakan software ini Anda temukan **bug** atau **error**, silakan [melaporkan **Issue**](https://github.com/nafiesl/free-pmo/issues/new) dengan **prefix Subject : [BUG]**.
+This project is still being developed. Most of the features have **Feature** or **Unit Testing**, but it is very likely that there are **bugs** that have missed the tests. If you find **bug** or **error** when you use this application, please [report Issue](https://github.com/nafiesl/free-pmo/issues/new) with subject **prefix: [BUG]**.
 
-Kita akan mencoba minimalisir **bug** sebisa mungkin.
+We try to minimize **errors** and **bugs** as much as possible.
 
-> Sebelum submit sebuah issue, ada baiknya Anda mencari pada daftar issue sudah dilaporkan oleh kontributor lain, siapa tahu sudah ada yang melaporkan :)
+> Before submitting an issue, you should look at the list of issues already reported by other contributors, your issue have been reported. :)
 
-### Usulan Fitur Baru
-Pada dasarnya Free PMO sudah mencakup fitur-fitur dasar dalam pengelolaan project (terutama dari sudut pandang *freelancer*). Sangat mungkin beberapa fitur ditambahkan pada masa akan datang. Jika Anda memiliki **ide** yang ingin diusulkan dan dituangkan menjadi sebuah fitur pada project ini agar semua dapat menikmatinya, silakan usulkan dengan **submit Issue** dengan **prefix Subject : [PROPOSAL]**.
+### New Feature Proposal
+Basically Free PMO already includes basic features in project management (especially from a **freelancer** perspective). Very likely some features are added in the future. If you have an **idea** that you want proposed as a feature on this project, please suggest it by submit issue with **subject prefix: [PROPOSAL]**.
 
-Dengan senang hati kita akan diskusikan.
+We will be happy to discuss it.
 
-### Membuat Pull Request
+### Create new Pull Request
 
-Wah, bagian ini adalah kontribusi yang luar biasa, Anda sudah berkenan meluangkan waktu dan pikiran untuk membantu banyak orang, terima kasih banyak. Ada beberapa **kategori pull request** yang dapat Anda berikan :
+Wow, this part is a remarkable contribution, you have spent time and thoughts to help many people, thanks very much. There are some **Pull Request categories** that you can make :
 
 #### 1. Bugfix
 
-Di mana Anda membantu dalam **perbaikan error** yang dilaporkan oleh kontributor lain melalui [**Issue**](https://github.com/nafiesl/free-pmo/issues). Jika perbaikan error ini berkaitan dengan interaksi ke database (CRUD Operation), mohon agar Anda :
+You help in the bugfix (error fixing) that reported by other contributors through Issue. If this bugfix is related **database interaction** (CRUD Operation) or **form submission**, please fulfill these requirements :
 
-1. Membuat **testing**, terkait fitur yang memiliki bug.
-2. Pastikan **semua testing passed** pada saat Anda melakukan **pull request**.
+1. Create **tests**, related to fixed bug.
+2. Make sure **all tests are passed** when you create **Pull Request** (assisted by [travis-ci](https://travis-ci.org)).
 
-Kita akan review sama-sama terhadap perubahan yang Anda lakukan. Sekedar memastikan tidak ada konflik yang terjadi saat **pull request** ini disetujui.
+We will review your changes together. Just to make sure thare are no conflict that effect on existing features when your **Pull Request** are merged.
 
-#### 2. Kesalahan Penulisan
+#### 2. Typo Fix
 
-Pada project ini sangat mungkin terjadi kesalahan penulisan pada `halaman web` software, bagian `komentar`, `dokumentasi`, maupun pada file `lang` yang banyak kita gunakan pada sistem. Jika Anda menemukan kesalahan itu, silakan lakukan **pull request** untuk kita perbaiki sama-sama.
+Very likely we have some typos on the software `web pages`, source code `comments`, `documentation` files, or on `lang` file that we use widely on the system. If you want to contribute to fix the **typo** on this project, please create new **Pull Request** to fix it, we will review it together.
 
 #### 3. New Feature
 
-Jenis **pull request** ini akan menambahkan fitur baru pada Free PMO. Jika Anda ingin melakukan pull request jenis ini, kami harapkan agar memenuhi ketentuan berikut :
+This **Pull Request** will create **new feature** on Free PMO project. If you want to create this type of **Pull Request**, please be sure that you meet these requirements :
 
-1. Fitur baru sudah diusulkan dan dibahas sebelumnya pada [**Issue**](https://github.com/nafiesl/free-pmo/issues).
-2. Fitur tambahan dilengkapi dengan Feature Test atau Unit Test sesuai keperluan (terutama jika ada interaksi perubahan pada database).
-3. Semua **testing passed**.
+1. The new feature has been [proposed and discussed on **Issue**](#new-feature-proposal).
+2. New features that has any **database interaction** or **form submission** requires **Feature Test** and/or **Unit Test**.
+3. All **tests are passed** (assisted by [travis-ci](https://travis-ci.org)).
 
-Kita akan **review dan uji** fitur baru tersebut sebelum **pull request** disetujui.
+We will **review and test** your new feature **Pull Request** before it merged to master branch.
 
-> **Catatan**
+> **Notes**
 >
-> Jika pada fitur baru terdapat **perubahan struktur** pada tabel yang sudah ada, silakan **langsung ubah pada file migration** yang bersangkutan, karena aplikasi Free PMO masih dalam tahap pengembangan. **Misal**: fitur baru memerlukan perubahan struktur tabel `payments`, silakan update file `2016_11_15_151228_create_payments_table.php`.
+> If you **change** some **table structure** on new feature, just change corresponding **migration file** directly (since this project is still in development). **For example**: your new feature need have some `payments` table structure changes, just update `2016_11_15_151228_create_payments_table.php` migration file directly.
 >
-> Kemudian **mohon** diinformasikan **script sql** dari perubahan struktur tabel tersebut melalui **Komentar Commit** yang bersangkutan (seperti [contoh ini](https://github.com/nafiesl/free-pmo/commit/a813524f680e9926d64f1006a1c615acf86c24f1#commitcomment-26166267)). Hal ini dilakukan untuk mempermudah pengguna Free PMO existing jika ingin meng-update aplikasinya.
-
+> Then **please** inform the **alter table sql script** (of table structure changes) through **commit comment** (like [this example](https://github.com/nafiesl/free-pmo/commit/a813524f680e9926d64f1006a1c615acf86c24f1#commitcomment-26166267)). So existing Free PMO users can update their table structure easily.
 
 #### 4. Lang File
 
-Jenis **pull request** ini akan menambahkan **lang** file pada direktori `resources/lang` sesuai dengan konfigurasi `locale`-nya (misal `lang/en` untuk Bahasa Inggris). Saat ini file-file `lang` yang lengkap hanya pada direktori `locale` `id` untuk Bahasa Indonesia.
+This type of **Pull Request** will add new **lang** files on `resources/lang` directory based on system `locale` configuration (eg: `lang/en` for English). Currenty, we have `lang` files only in `id` for Bahasa Indonesia and `en` for English.
 
-Jika Anda ingin menambahkan bahasa locale lainnya, terutama `locale` `en` (Bahasa Inggris). Silakan melakukan **pull request** untuk kita **review** bersama.
+If you are considering to create/add another language based on your locale or want to fix existing `lang` files. Please create new **Pull Request** so web can **review** it together.
 
-### Kontribusi Donasi
+### Donation
 
-Free PMO adalah software management project yang bebas (merdeka) dan gratis. **Pengembang sudah ridho** jika Anda menggunakan dan memodifikasinya untuk tujuan pribadi maupun komersil (sesuai dengan [lisensi](LICENSE)).
+Just for reminder, Free PMO is free and open-sourced project management software under [MIT license](LICENSE). It doesn't matter if you want to **use or modify** this project for **private or commercial** purposes as long as you do not remove the [license](LICENSE) file from the project.
 
-Tetapi jika ada merasa sangat terbantu dengan software ini, dan berniat untuk mendonasikan sebagai rezeki Anda kepada pengembang, silakan mengirimkan donasi melalui jalur berikut :
+If you are considering to donate for this project development, you can send your donation via :
 
+#### Bank Transfer (Indonesian Bank)
 
-#### Rekening Transfer
-
-| No. Rekening | BCA // 7820088543 |
+| Account Number | BCA // 7820088543 |
 | --- | --- |
-| Atas nama | **Nafies Luthfi** |
-| Kode Transfer | 014 |
+| Account Name | **Nafies Luthfi** |
+| Transfer Code | 014 |
 
-#### atau
+#### or
 
 [![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/nafiesl/)
 
-Terima kasih banyak saya ucapan.
+Thank you, again, for considering to contribute for Free PMO project.
 
-### Penutup
-
-Terima kasih atas kontribusinya, semoga menjadi kebaikan untuk semua.
-
-Salam hangat,
+Best Regards,
 
 <br>
 Nafies Luthfi,
-Pengembang Free PMO
+Free PMO Developer

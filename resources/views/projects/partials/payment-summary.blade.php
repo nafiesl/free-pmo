@@ -1,27 +1,26 @@
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ trans('project.payment_summary') }}</h3></div>
-    <table class="table table-condensed">
-        <tbody>
-            <tr>
-                <th class="col-xs-6">{{ trans('project.project_value') }}</th>
-                <td class="text-right">{{ formatRp($project->project_value) }}</td>
-            </tr>
-            <tr>
-                <th>{{ trans('project.cash_in_total') }}</th>
-                <td class="text-right">{{ formatRp($project->cashInTotal()) }}</td>
-            </tr>
-            <tr>
-                <th>{{ trans('project.cash_out_total') }}</th>
-                <td class="text-right">{{ formatRp($project->cashOutTotal()) }}</td>
-            </tr>
-            <tr>
-                <th>{{ trans('project.payment_remaining') }}</th>
-                <td class="text-right">{{ formatRp($balance = $project->project_value - $project->cashInTotal()) }}</td>
-            </tr>
-            <tr>
-                <th>{{ trans('project.payment_status') }}</th>
-                <td class="text-center">{{ $balance > 0 ? trans('project.payment_statuses.outstanding') : trans('project.payment_statuses.paid') }}</td>
-            </tr>
-        </tbody>
+<div class="panel panel-default table-responsive hidden-xs">
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <td class="col-xs-2 text-center">{{ trans('project.project_value') }}</td>
+            <td class="col-xs-2 text-center">{{ trans('project.cash_in_total') }}</td>
+            <td class="col-xs-2 text-center">{{ trans('project.cash_out_total') }}</td>
+            <td class="col-xs-2 text-center">{{ trans('project.payment_remaining') }}</td>
+            <td class="col-xs-2 text-center">{{ trans('project.payment_status') }}</td>
+        </tr>
+        <tr>
+            <td class="text-center lead" style="border-top: none;">{{ formatRp($project->project_value) }}</td>
+            <td class="text-center lead" style="border-top: none;">{{ formatRp($project->cashInTotal()) }}</td>
+            <td class="text-center lead" style="border-top: none;">{{ formatRp($project->cashOutTotal()) }}</td>
+            <td class="text-center lead" style="border-top: none;">{{ formatRp($balance = $project->project_value - $project->cashInTotal()) }}</td>
+            <td class="text-center lead" style="border-top: none;">{{ $balance > 0 ? trans('project.payment_statuses.outstanding') : trans('project.payment_statuses.paid') }}</td>
+        </tr>
     </table>
 </div>
+
+<ul class="list-group visible-xs">
+    <li class="list-group-item">{{ trans('project.project_value') }} <span class="pull-right">{{ formatRp($project->project_value) }}</span></li>
+    <li class="list-group-item">{{ trans('project.cash_in_total') }} <span class="pull-right">{{ formatRp($project->cashInTotal()) }}</span></li>
+    <li class="list-group-item">{{ trans('project.cash_out_total') }} <span class="pull-right">{{ formatRp($project->cashOutTotal()) }}</span></li>
+    <li class="list-group-item">{{ trans('project.payment_remaining') }} <span class="pull-right">{{ formatRp($balance = $project->project_value - $project->cashInTotal()) }}</span></li>
+    <li class="list-group-item">{{ trans('project.payment_status') }} <span class="pull-right">{{ $balance > 0 ? trans('project.payment_statuses.outstanding') : trans('project.payment_statuses.paid') }}</span></li>
+</ul>

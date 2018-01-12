@@ -14,9 +14,7 @@
 </h1>
 
 @include('projects.partials.nav-tabs')
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">@include('projects.partials.payment-summary')</div>
-</div>
+@include('projects.partials.payment-summary')
 
 <?php $groupedPayments = $project->payments->groupBy('in_out');?>
 @foreach ($groupedPayments as $key => $payments)

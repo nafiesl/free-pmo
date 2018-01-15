@@ -4,84 +4,86 @@
 [![Build Status](https://travis-ci.org/nafiesl/free-pmo.svg?branch=master)](https://travis-ci.org/nafiesl/free-pmo)
 [![StyleCI](https://styleci.io/repos/111558421/shield?branch=develop)](https://styleci.io/repos/111558421)
 
-Free PMO (Project Management Office), software management project untuk *freelancer* dan agensi, dibangun dengan Framework **Laravel 5**.
+Free PMO (Project Management Office), management project software for *freelancer* and agency, built with **Laravel 5** Framework.
 
-### Daftar Isi
-1. [Tentang Free PMO](#tentang)
-2. [Tujuan](#tujuan)
-3. [Cara Install](#cara-install)
-    - [Spesifikasi yang Dibutuhkan](#spesifikasi-minimum-server)
-    - [Tahap Install](#tahap-install)
-4. [Developer dan Kontributor](#developer-dan-kontributor)
-5. [Ingredients (Ramuan)](#ramuan)
-6. [Lisensi](#license)
-7. [Cara Berkontrobusi](#cara-berkontribusi)
+> [Baca versi Bahasa Indonesia](README.id.md)
+
+### Content
+1. [About Free PMO](#about)
+2. [Goals](#goals)
+3. [Getting Started](#getting-started)
+    - [Server Requirements](#server-requirements)
+    - [Installation Steps](#installation-steps)
+4. [Maintainers and Contributors](#maintainers-and-contributors)
+5. [Ingredients](#ingredients)
+6. [License](#license)
+7. [Contributing](#contributing)
 8. [Screenshots](#screenshots)
 
 ***
 
-## Tentang
+## About
 
-**Free PMO** adalah software yang bertujuan untuk mempermudah pengelolaan dan monitor project. Software ini cocok untuk *Freelancer* dan Agensi/*Software House*, atau perusahaan yang memiliki layanan *project based* kepada customernya.
+**Free PMO** is a project management and project monitoring software. This software is suitable for Freelancer or Agencies, or any company that has project based services for thier customers.
 
-**Free PMO** terdiri dari dua kata, yaitu *Free* dan *PMO*.
-1. **Free** bisa jadi singkatan dari **Freelancer**, bisa juga **Free Software** (merdeka), dan tentunya **Free (gratis)**.
-2. **PMO** singkatan dari ***Project Management Office***, ibarat kantor untuk pengelolaan project.
+**Free PMO** consists of two words, *Free* and *PMO*.
+1. **Free** can be stands for **Freelancer**, or **Free Software**, and off course **Free (of charge)**.
+2. **PMO** stands for ***Project Management Office***, like office of project management activities.
 
-Fitur utama Free PMO adalah pengelolaan project dan transaksi pembayaran setiap project. Fitur-fitur lain software ini tertuang dalam file [konsep](CONCEPT.md).
+Main features on Free PMO are project management and project payment trasanctions. Other features are explaied on this [concept](CONCEPT.md) file.
 
 > **Development in progress**
-> Dalam proses development, perubahan struktur tabel existing akan **diubah langsung pada file migration** yang sesuai, lihat [panduan kontribusi](CONTRIBUTING.md#catatan).
+> In development progress, any table structure changes will directly **updated on coresponding migration file**, see [contributing guidelines](CONTRIBUTING.md#notes).
 
-## Tujuan
+## Goals
 
-Tujuan utama Free PMO adalah membantu pengelolaan data project dengan mudah dan profesional.
+Free PMO was built for easy and professional project management.
 
-## Cara Install
-Aplikasi ini dapat dipasang dalam server lokal (PC/Laptop) dan server online, dengan spesifikasi berikut :
+## Getting Started
+This application can be installed on local server and online server with these specifications :
 
-#### Spesifikasi minimum server
-1. PHP 7.0 (dan memenuhi [server requirement Laravel 5.5](https://laravel.com/docs/5.5#server-requirements)),
-2. MySQL atau MariaDB,
-3. SQlite (untuk automated testing).
+#### Server Requirements
+1. PHP 7.0 (and meet [Laravel 5.5 server requirements](https://laravel.com/docs/5.5#server-requirements)),
+2. MySQL or MariaDB database,
+3. SQlite (for automated testing).
 
-#### Tahap Install
+#### Installation Steps
 
-1. Clone Repo, pada terminal : `git clone https://github.com/nafiesl/free-pmo.git`
+1. Clone the repo : `git clone https://github.com/nafiesl/free-pmo.git`
 2. `$ cd free-pmo`
 3. `$ composer install`
 4. `$ cp .env.example .env`
 5. `$ php artisan key:generate`
-6. Buat database pada MySQL untuk aplikasi ini
-7. Setting database pada file `.env`
+6. Create new MySQL database for this application
+7. Set database credentials on `.env` file
 8. `$ php artisan migrate`
 9. `$ php artisan serve`
-10. Kunjungi web : `http://localhost:8000/app-install`
-11. Isi formulir installasi.
-12. Selesai, Anda akan login sebagai admin.
+10. Visit `http://localhost:8000/app-install` via web browser
+11. Fill out the forms
+12. Done, you are logged in as Administrator.
 
 ![Install Free PMO](public/screenshots/pmo-install-free-pmo.jpg)
 
 
-## Developer dan Kontributor
+## Maintainers and Contributors
 
-Project ini dikembangkan oleh [Nafies Luthfi](https://github.com/nafiesl) dan para [kontributor](https://github.com/nafiesl/free-pmo/graphs/contributors).
+This project maintained by [Nafies Luthfi](https://github.com/nafiesl) and developed by [contributors](https://github.com/nafiesl/free-pmo/graphs/contributors).
 
-## Ramuan
+## Ingredients
 
-Free PMO dibangun menggunakan [metode TDD](https://blog.nafies.id/laravel/testing-laravel-tentang-automated-testing) dengan bahan dan dukungan dari paket-paket berikut ini :
+Free PMO built with [TDD metode](https://blog.nafies.id/laravel/testing-laravel-tentang-automated-testing) with these ingredients support :
 
 ##### Dependencies
-* [Framework Laravel](https://laravel.com/docs/5.5) (versi 5.2 s/d 5.5).
-* [luthfi/formfield](https://github.com/nafiesl/FormField), Wrapper Form dari [laravelcollective/html](https://github.com/laravelcollective/html) dengan Bootstrap 3.
-* [riskihajar/terbilang](https://github.com/riskihajar/terbilang), membuat angka terbilang (pada fitur cetak kuitansi) dan romawi.
+* [Framework Laravel](https://laravel.com/docs/5.5) (version 5.2 to 5.5).
+* [luthfi/formfield](https://github.com/nafiesl/FormField), Bootstrap 3 Form Wrapper for [laravelcollective/html](https://github.com/laravelcollective/html).
+* [riskihajar/terbilang](https://github.com/riskihajar/terbilang), create indonesian in-word number (for payment receipt) and roman numeral.
 
 ##### Dev Dependencies
 
 * [PHPUnit](https://github.com/sebastianbergmann/phpunit), PHP testing framework.
-* [laravel/browser-kit-testing](https://github.com/laravel/browser-kit-testing), paket browserkit testing untuk Laravel ^5.4.
-* [luthfi/simple-crud-generator](https://github.com/nafiesl/SimpleCrudGenerator), CRUD generator berupa artisan command untuk mempercepat workflow TDD.
-* [johnkary/phpunit-speedtrap](https://github.com/johnkary/phpunit-speedtrap), pengecekan testing yang lambat (karena query atau proses yang kurang efektif).
+* [laravel/browser-kit-testing](https://github.com/laravel/browser-kit-testing), browserkit testing package for Laravel ^5.4.
+* [luthfi/simple-crud-generator](https://github.com/nafiesl/SimpleCrudGenerator), CRUD generator artisan command for faster TDD Workflow.
+* [johnkary/phpunit-speedtrap](https://github.com/johnkary/phpunit-speedtrap), checks for slow testing (because of ineffective query or proccess).
 
 ##### Frontend
 
@@ -91,31 +93,31 @@ Free PMO dibangun menggunakan [metode TDD](https://blog.nafies.id/laravel/testin
 * [select2](https://github.com/select2/select2)
 * [rangeslider.js](http://rangeslider.js.org)
 * [FullCalendar](https://fullcalendar.io)
-* [morris.js](http://morrisjs.github.io/morris.js), Grafik laporan pendapatan tahunan dan bulanan.
+* [morris.js](http://morrisjs.github.io/morris.js), yearly and monthly earning report graph.
 
-## Lisensi
+## License
 
-Project Free PMO merupakan software free dan open source di bawah [lisensi MIT](LICENSE).
+Free PMO Project is a free and open-source under [MIT license](LICENSE).
 
-## Cara Berkontribusi
+## Contributing
 
-Jika ingin berkontribusi terhadap project ini, baik untuk membuat *Issue*, usulan Fitur tambahan, *Pull Request*, maupun donasi, silakan melihat [panduan kontribusi](CONTRIBUTING.md).
+If you want to contribute to this project, by creating *Issue*, new feature proposal, *Pull Request*, or donation, please see this [contributing guidelines](CONTRIBUTING.md).
 
 ## Screenshots
 
 #### Dashboard
 ![Free PMO Dashboard](public/screenshots/pmo-dashboard-01.jpg)
 
-#### Detail Project
+#### Project Detail
 ![Free PMO Project Detail](public/screenshots/pmo-project-detail-01.jpg)
 
-#### List Job Project
+#### Project Job List
 ![Free PMO Project Job List](public/screenshots/pmo-project-jobs-01.jpg)
 
-#### Detail Job Project
+#### Project Job Detail
 ![Free PMO Job Tasks](public/screenshots/pmo-job-tasks-01.jpg)
 
-#### Laporan Tahunan
+#### Yearly Report
 ![Free PMO Yearly Report](public/screenshots/pmo-yearly-report-01.jpg)
 
 #### Automated Testing

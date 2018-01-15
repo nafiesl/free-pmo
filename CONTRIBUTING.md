@@ -43,7 +43,7 @@ This **Pull Request** will create **new feature** on Free PMO project. If you wa
 
 We will **review and test** your new feature **Pull Request** before it merged to master branch.
 
-> **Notes**
+> ##### Notes
 >
 > If you **change** some **table structure** on new feature, just change corresponding **migration file** directly (since this project is still in development). **For example**: your new feature need have some `payments` table structure changes, just update `2016_11_15_151228_create_payments_table.php` migration file directly.
 >

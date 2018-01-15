@@ -41,7 +41,7 @@ Jenis **pull request** ini akan menambahkan fitur baru pada Free PMO. Jika Anda 
 
 Kita akan **review dan uji** fitur baru tersebut sebelum **pull request** disetujui.
 
-> **Catatan**
+> ##### Catatan
 >
 > Jika pada fitur baru terdapat **perubahan struktur** pada tabel yang sudah ada, silakan **langsung ubah pada file migration** yang bersangkutan, karena aplikasi Free PMO masih dalam tahap pengembangan. **Misal**: fitur baru memerlukan perubahan struktur tabel `payments`, silakan update file `2016_11_15_151228_create_payments_table.php`.
 >

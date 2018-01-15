@@ -1,160 +1,155 @@
 # Free PMO
 
-Free PMO adalah sebuah alat bantu untuk mempermudah pengelolaan dan monitor project bagi *feelancer* dan agensi/*software house* atau perusahaan yang memiliki layanan berupa project untuk customernya.
+Free PMO is a tool simplify project management and monitoring for freelancers and agencies, or any company that has project-based services for their customers.
 
-## Konsep
+## Concepts
 
-Berikut ini adalah konsep-konsep fitur yang telah dan akan diimplementasikan pada Free PMO.
+These are feature list that already or will be implemented on Free PMO application. This application runs by our agency, so **agency** terms in this document means **us** (freelancer, agency, or company who runs the business).
 
-### 1. User dan Jenis Pengguna
+### 1. User and Roles
 
-Free PMO memiliki dua jenis pengguna/tipe user :
+Free PMO has two types of user :
 
-1. **Administrator** (mengendalikan dan mengelola seluruh data)
-2. **Worker** (pekerja yang ditugasi job dan diberikan pembayaran fee)
+1. **Administrator** (control all system data)
+2. **Worker** (worker that will be assigned to project jobs and paid on each project)
 
-Tidak menutup kemungkinan jika jenis pengguna ini ditambah lagi.
+Most likely more user roles will be implemented in the future.
 
 ### 2. Project
 
-Project adalah pekerjaan yang dikerjakan oleh agensi untuk customernya
+Projects are jobs managed by agency for their customers.
 
-1. Sebuah **project** milik satu **Customer**
-2. **Project** memiliki beberapa **Job**/Item pekerjaan
-3. **Project** memiliki beberapa **Invoice** (TODO)
-4. **Project** memiliki beberapa **Pembayaran** (dengan atau tanpa invoice)
-5. **Project** memiliki beberapa **Meeting** (pertemuan dengan customer)
-6. **Project** memiliki beberapa **Langganan** (subscription)
-7. **Project** memiliki beberapa **File** Dokumen (TODO)
+1. A **project** belongs to one **Customer**
+2. A **project** has many **Jobs** (Job items)
+3. A **project** has many **Invoices**
+4. A **project** has many **Payments** (with or without invoice)
+5. A **project** has many **Meetings** (with customer, TODO)
+6. A **project** has many **Subscriptions** (eg. domains, hostings, maintenance services)
+7. A **project** has many **Files** Dokumen (TODO)
 
-#### Relasi
+#### Model Relatons
 
 1. **Project** belongs to a **Customer**; Customer has 0 to many Projects
-2. **Project** has 0 to many **Jobs**/Project Items; Feature belongs to a Project
+2. **Project** has 0 to many **Jobs**/Project Items; Job belongs to a Project
 3. **Project** has 0 to many **Invoices**; Invoice belongs to a Project
 4. **Project** has 0 to many **Payments**; Payment belongs to a Project
 5. **Project** has 0 to many **Meetings**; Meeting belongs to a Project
 6. **Project** has 0 to many **Subscriptions**; Subscription belongs to a Project
 7. **Project** has 0 to many **Files**; File belongs to a Project
 
-### 3. Job/Item pekerjaan
+### 3. Job
 
-1. **Job** memiliki harga/biaya (misal untuk membayar pekerja)
-2. **Job** memiliki seorang **User** sebagai pekerja/penanggung jawab
-3. **Job** memiliki beberapa **task** (semacam checklist progress pekerjaan)
-4. **Job** memiliki Atribut:
-    - Nama job
-    - Deskripsi
-    - PIC (pekerja/worker)
-    - Biaya/Fee
-    - Prioritas
-    - tanggal mulai (TODO)
-    - tanggal selesai (TODO)
-    - tanggal batal (TODO)
-5. **Job** memiliki beberapa dependency terhadap job lain (TODO)
-    - Misal Job A merupakan dependency dari Job B
-    - Maka Job A harus diselesaikan dulu sebelum job B dikerjakan
-6. Progress pengerjaan job dihitung otomatis berdasarkan rata-rata  **progress Task** (dalam %)
-7. **Job** dapat diurutkan berdasarkan prioritas
+1. **Job** has price/cost (eg. for worker payments).
+2. **Job** has one **User** sebagai as worker or person in-charge.
+3. **Job** has many **Tasks** (just like job progress checklist).
+4. **Job** has these attributes :
+    - Job name
+    - Description
+    - PIC (worker/person in-charge)
+    - Cost/Fee
+    - Priority
+    - start date (TODO)
+    - end date (TODO)
+    - cancel date (TODO).
+5. **Job** has many dependencies to other jobs (TODO), Eg. Job A is dependency of job B, then job A must be finished before Job B is starting.
+6. Job progress is calculated based on the average progress of the task (in %).
+7. **Job** list can be prioritized.
 
 ### 4. Task
 
-Task adalah item tugas yang dilakukan oleh PIC/Pekerja untuk mengerjakan 1 job.
+Tasks are job items that must be monitor by Job PICs or done by job worker.
 
-1. **Task** dimiliki oleh sebuah **Job**/Item pekerjaan
-2. **Task** dapat diurutkan berdasarkan prioritas
-3. **Task** memiliki Atribut :
-    - Nama Task
-    - Deskripsi
+1. **Task** belongs to a **Job**
+2. **Task** can be prioritized
+3. **Task** has these attributes :
+    - Task name
+    - Description
     - Progress (0 - 100 %)
-    - Prioritas
+    - Priority
 
-### 5. Pembayaran
+### 5. Payment
 
-Adalah pembayaran yang dilakukan dari Customer kepada Agensi (pemasukan), atau Agensi kepada vendor (pengeluaran), atau Agensi kepada pekerja/user (pengeluaran).
+Payments are any payment transactions by customer to agency (as income), or from agency to vendor (outcome), or from agency to worker/user (outcome).
 
-1. Satu **Project** memiliki beberapa **Pembayaran**
-2. **Pembayaran** memiliki 1 Project
-3. **Pembayaran** memiliki 1 Invoice (TODO)
-4. **Pembayaran** dapat cetak **Kuitansi**/Bukti pembayaran
-5. **Pembayaran** memiliki 1 partner berupa : vendor/customer/user (Relasi Morph)
+1. A **Project** has many **Payments**
+2. **Payment** belongs to a **Project**
+3. **Payment** belongs to an **Invoice** (TODO)
+4. **Payment** can be printed out as **Receipt**
+5. **Payment** belongs to a partner : Vendor or Customer or User (Polymorphic Relations)
 
 ### 6. Vendor
 
-Adalah penyedia/supplier/provider yang digunakan oleh Agensi saat ada pengeluaran biaya project.
+Vendors are suppliers or providers that provides services for our agency. Agency will pay Vendors as outcome payment/transaction.
 
-1. **Vendor** memiliki beberapa **pembayaran**
+1. **Vendor** has many **Payments**.
 
-### 7. Subscription/Langganan
+### 7. Subscription
 
-Adalah langganan yang dibayar oleh customer secara berkala, yaitu Hosting, Domain dan Maintenance.
+Subscriptions are any services that being used by customer's project, subscriptions are paid regularly by customer. This feature main purpose is to remind us for our customer/client's regular payment.
 
-1. **Subscription** memiliki 1 **project**
-2. **Subscription** memiliki 1 **customer**
-3. **Subscription** memiliki 1 **vendor**
+1. **Subscription** belongs to a **Project**
+2. **Subscription** belongs to a **Customer**
+3. **Subscription** belongs to a **Vendor**
 
-### 7. Laporan Penghasilan
+### 7. Earning reports
 
-Laporan penghasilan pada Free PMO adalah rekap transaksi pengeluaran dan pemasukan agensi dari project-project yang telah dikerjakan. Halaman ini hanya diakses oleh Admin Agensi.
+Earning reports are agency outcome and income transaction summary.
 
-#### Laporan Tahunan
+#### Yearly Report
 
-Adalah laporan berupa **grafik profit** dan **tabel detail laporan** berupa : Nama Bulan, Jumlah Transaksi Pembayaran, Jumlah Uang Masuk, Jumlah Uang Keluar dan Profit (selisih pemasukan dan pengeluaran), serta tombol action untuk melihat **Laporan Bulanan**.
+Yearly report consist of profit graph and income-outcome summary table based on monthly transaction summary. We can select year to filter transaction by selected year. Current year is default. We can also see monthly report from this yearly report page.
 
-Pada Laporan Tahunan, Admin Agensi dapat memilih tahun yang ingin dilihat.
+#### Monthly Report
 
+Monthly report consist of profit graph and income-outcome summary table based on daily transaction summary. We can select month and year to filter transaction by selected year-month. Current month is default. We can also see daily report from this monthly report page.
 
-#### Laporan Bulanan
+#### Daily Report
 
-Adalah laporan berupa **grafik profit** dan **tabel detail laporan** berupa : Tanggal, Jumlah Transaksi Pembayaran, Jumlah Uang Masuk, Jumlah Uang Keluar dan Profit (selisih pemasukan dan pengeluaran), serta tombol action untuk melihat **Laporan Harian**.
+Daily report is list of payments or transactions that happens on selected date. We can select date to see transaction list on selected date. Today is default.
 
-Pada Laporan Bulanan, Admin Agensi dapat memilih tahun dan bulan yang ingin dilihat.
+### 8. Receiveable Earnings Report
 
-#### Laporan Harian
+This report contains list of project with customer's payments that we will be received if project has been completed.
 
-Laporan Harian adalah tabel **daftar transaksi** pembayaran yang terjadi pada tanggal yang dipilih tersebut.
+### 9. Admin Dashboard
 
-### 8. Laporan Piutang
+Agency Administrator's Dashboard consists of :
 
-Laporan ini adalah tabel daftar project dengan pembayaran Customer yang akan diterima oleh Agensi jika project telah selesai dikerjakan.
-
-### 9. Dashboard Admin Agensi
-
-Dashboard Admin Agensi berisi :
-
-1. Statistik jumlah project sesuai dengan statusnya saat ini.
-2. Statistik pendapatan :
-    - Pendapatan total tahun ini
-    - Jumlah Project selesai tahun ini
-    - Jumlah pendapatan yang akan datang (akan dibayar oleh Customer)
-3. List Langganan Customer yang akan berakhir dalam 60 hari ke depan.
+1. List of project status based on current project stat.
+2. Earning stat :
+    - Current year total earnings
+    - Current year completed projects count
+    - Receiveable earnings summary
+3. List of customer's subscriptions that will expire within next 60 days.
 
 ### 10. Invoice
 
-Invoice adalah tagihan pembayaran yang dibuat oleh Agensi kepada diberikan Customer.
+Invoices are customer's payments bill.
 
-1. **Invoice** adalah milik sebuah **project**
-2. **Invoice** memiliki beberapa **pembayaran** (misal invoice dibayar dicicil) (TODO)
-3. **Invoice** bisa diupdate status Lunas (TODO)
-4. **Invoice** memiliki Atribut:
-    - Nomor Invoice
+1. **Invoice** belongs to a **Project**
+2. **Invoice** has many **Payments** (eg. the invoice is paid in installments) (TODO)
+3. **Invoice** status can be updated as "Paid" (TODO)
+4. **Invoice** has attributes :
+    - Invoice Number
     - Project
-    - Tanggal
-    - Jatuh Tempo
-    - Item Invoice
-    - Jumlah tagihan (amount)
-    - Catatan
+    - Date
+    - Due date
+    - Invoice items
+    - Invoice (billed) Amount
+    - Notes
     - Status
-    - User Pembuat Invoice
+    - Invoice creator (user)
 
 ### 11. Meeting (TODO)
 
-Meeting adalah pertemuan yang dilakukan bersama Customer.
+Meetings are any meeting or discussion between us (the agency) with our customer based on project.
 
-1. **Meeting** dilakukan untuk 1 project
-2. **Meeting** memiliki satu Berita Acara Pertemuan (BAP)
-3. BAP terdiri dari :
-    - tanggal
-    - daftar hadir
-    - agenda
-    - hasil pertemuan
+1. **Meeting** belongs to a **Project**
+2. **Meeting** can be printed out as Minutes of Meeting (MoM)
+3. BAP has attributes :
+    - Date
+    - Project
+    - List of attendees
+    - Meeting agenda
+    - Meeting results
+    - Notes

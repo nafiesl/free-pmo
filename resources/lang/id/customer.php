@@ -30,4 +30,7 @@ return [
     'description'    => 'Deskripsi Customer',
     'pic'            => 'PIC',
     'projects_count' => 'Jml Project',
+
+    // Relations
+    'projects' => 'List Project',
 ];

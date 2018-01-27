@@ -21,7 +21,7 @@
     <div class="col-md-6">
         <div class="row">
             <div class="col-lg-6 col-md-12">
-                <a href="#" title="@lang('customer.projects_count')">
+                <a href="{{ route('customers.projects', $customer) }}" title="@lang('customer.projects_count')">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <div class="row">

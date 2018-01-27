@@ -1,16 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.customer')
 
-@section('title', trans('customer.show'))
-
-@section('content')
-<h1 class="page-header">
-    <div class="pull-right">
-        {!! link_to_route('customers.edit', trans('customer.edit'), [$customer->id], ['id' => 'edit-customer-' . $customer->id, 'class' => 'btn btn-warning']) !!}
-        {!! link_to_route('customers.index', trans('customer.back_to_index'), [], ['class' => 'btn btn-default']) !!}
-    </div>
-
-    {{ $customer->name }} <small>{{ trans('customer.show') }}</small>
-</h1>
+@section('content-customer')
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">

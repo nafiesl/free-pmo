@@ -29,6 +29,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
      * Customers Routes
      */
     Route::get('customers/{customer}/projects', ['as' => 'customers.projects', 'uses' => 'Customers\ProjectsController@index']);
+    Route::get('customers/{customer}/payments', ['as' => 'customers.payments', 'uses' => 'Customers\PaymentsController@index']);
     Route::resource('customers', 'Partners\CustomersController');
 
     /*

@@ -33,4 +33,5 @@ return [
 
     // Relations
     'projects' => 'List Project',
+    'payments' => 'History Pembayaran',
 ];

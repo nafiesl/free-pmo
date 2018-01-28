@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Entities\Partners\Customer;
+use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use Illuminate\Support\Collection;
 use Tests\TestCase as TestCase;
@@ -17,6 +18,16 @@ class CustomerTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $customer->projects);
         $this->assertInstanceOf(Project::class, $customer->projects->first());
+    }
+
+    /** @test */
+    public function a_customer_has_many_payments_relation()
+    {
+        $customer = factory(Customer::class)->create();
+        $payment = factory(Payment::class)->create(['partner_id' => $customer->id]);
+
+        $this->assertInstanceOf(Collection::class, $customer->payments);
+        $this->assertInstanceOf(Payment::class, $customer->payments->first());
     }
 
     /** @test */

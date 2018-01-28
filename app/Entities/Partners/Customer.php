@@ -10,7 +10,12 @@ class Customer extends Model
 
     public function projects()
     {
-        return $this->hasMany('App\Entities\Projects\Project', 'customer_id');
+        return $this->hasMany('App\Entities\Projects\Project');
+    }
+
+    public function payments()
+    {
+        return $this->hasMany('App\Entities\Payments\Payment', 'partner_id');
     }
 
     public function nameLink()

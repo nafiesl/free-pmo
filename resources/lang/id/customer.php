@@ -32,6 +32,7 @@ return [
     'projects_count' => 'Jml Project',
 
     // Relations
-    'projects' => 'List Project',
-    'payments' => 'History Pembayaran',
+    'projects'      => 'List Project',
+    'payments'      => 'History Pembayaran',
+    'subscriptions' => 'List Langganan',
 ];

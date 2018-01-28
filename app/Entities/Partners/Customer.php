@@ -18,6 +18,11 @@ class Customer extends Model
         return $this->hasMany('App\Entities\Payments\Payment', 'partner_id');
     }
 
+    public function subscriptions()
+    {
+        return $this->hasMany('App\Entities\Subscriptions\Subscription');
+    }
+
     public function nameLink()
     {
         return link_to_route('customers.show', $this->name, [$this->id], [

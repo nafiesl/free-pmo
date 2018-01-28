@@ -32,6 +32,7 @@ return [
     'projects_count' => 'Projects count',
 
     // Relations
-    'projects' => 'Project List',
-    'payments' => 'Payment History',
+    'projects'      => 'Project List',
+    'payments'      => 'Payment History',
+    'subscriptions' => 'Subscription List',
 ];

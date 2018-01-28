@@ -9,7 +9,7 @@
         {!! link_to_route('customers.index', trans('customer.back_to_index'), [], ['class' => 'btn btn-default']) !!}
     </div>
 
-    {{ $customer->name }} <small>{{ trans('customer.show') }}</small>
+    {{ $customer->name }} <small>@yield('title')</small>
 </h1>
 @include('customers.partials.nav-tabs')
 @yield('content-customer')

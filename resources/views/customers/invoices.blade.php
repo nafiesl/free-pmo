@@ -1,6 +1,6 @@
 @extends('layouts.customer')
 
-@section('title', trans('invoice.list'))
+@section('title', trans('customer.invoices'))
 
 @section('content-customer')
 <div class="panel panel-default">

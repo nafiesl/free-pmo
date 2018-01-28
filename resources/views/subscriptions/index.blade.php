@@ -31,11 +31,7 @@
         <tr>
             <td>{{ $subscriptions->firstItem() + $key }}</td>
             <td>{{ $subscription->nameLink() }}</td>
-            <td class="text-center">
-                <span class="badge" style="background-color: {{ $subscription->type_color }};">
-                    {{ $subscription->type }}
-                </span>
-            </td>
+            <td class="text-center">{!! $subscription->type_label !!}</td>
             <td>{{ $subscription->customer->name }}</td>
             <td class="text-right" title="{!! $subscription->dueDateDescription() !!}">
                 {{ dateId($subscription->due_date) }} {!! $subscription->nearOfDueDateSign() !!}

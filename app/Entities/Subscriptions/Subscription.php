@@ -70,4 +70,9 @@ class Subscription extends Model
     {
         return Type::getColorById($this->type_id);
     }
+
+    public function getTypeLabelAttribute()
+    {
+        return '<span class="badge" style="background-color: '.$this->type_color.'">'.$this->type.'</span>';
+    }
 }

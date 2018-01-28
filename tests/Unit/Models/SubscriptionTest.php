@@ -120,4 +120,22 @@ class SubscriptionTest extends TestCase
         $this->assertEquals(2, $subscription->type_id);
         $this->assertEquals(Type::getColorById(2), $subscription->type_color);
     }
+
+    /** @test */
+    public function a_subscription_has_type_label_attribute()
+    {
+        $subscription = factory(Subscription::class)->make();
+
+        $type = Type::getNameById(1);
+        $color = Type::getColorById(1);
+        $label = '<span class="badge" style="background-color: '.$color.'">'.$type.'</span>';
+        $this->assertEquals($label, $subscription->type_label);
+
+        $subscription = factory(Subscription::class)->make(['type_id' => 2]);
+
+        $type = Type::getNameById(2);
+        $color = Type::getColorById(2);
+        $label = '<span class="badge" style="background-color: '.$color.'">'.$type.'</span>';
+        $this->assertEquals($label, $subscription->type_label);
+    }
 }

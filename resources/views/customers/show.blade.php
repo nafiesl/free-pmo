@@ -4,7 +4,6 @@
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('customer.show') }}</h3></div>
             <table class="table table-condensed">
                 <tbody>
                     <tr><td class="col-xs-3">{{ trans('customer.name') }}</td><td>{{ $customer->name }}</td></tr>

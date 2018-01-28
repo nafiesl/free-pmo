@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', trans('customer.show'))
+@section('title', trans('customer.detail'))
 
 @section('content')
 <h1 class="page-header">

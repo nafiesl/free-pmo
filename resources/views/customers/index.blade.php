@@ -37,8 +37,12 @@
                 <td>{{ $customer->nameLink() }}</td>
                 <td>{{ $customer->email }}</td>
                 <td>{{ $customer->phone }}</td>
-                <td class="text-center">{{ $customer->projects_count }}</td>
-                <td class="text-center">{{ $customer->is_active }}</td>
+                <td class="text-center">
+                    @if ($customer->projects_count)
+                    {{ link_to_route('customers.projects', $customer->projects_count, $customer) }}
+                    @endif
+                </td>
+                <td class="text-center">{!! $customer->status_label !!}</td>
                 </tr>
                 @endforeach
             </tbody>

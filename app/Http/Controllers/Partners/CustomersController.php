@@ -18,6 +18,7 @@ class CustomersController extends Controller
         $customers = Customer::where(function ($query) {
             $query->where('name', 'like', '%'.request('q').'%');
         })
+            ->latest()
             ->withCount('projects')
             ->paginate(25);
 

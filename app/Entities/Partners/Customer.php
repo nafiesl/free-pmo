@@ -37,4 +37,16 @@ class Customer extends Model
             ),
         ]);
     }
+
+    public function getStatusAttribute()
+    {
+        return $this->is_active == 1 ? trans('app.active') : trans('app.in_active');
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        $color = $this->is_active == 1 ? ' style="background-color: #337ab7"' : '';
+
+        return '<span class="badge"'.$color.'>'.$this->status.'</span>';
+    }
 }

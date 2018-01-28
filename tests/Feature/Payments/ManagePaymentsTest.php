@@ -115,7 +115,7 @@ class ManagePaymentsTest extends TestCase
         $user = $this->adminUserSigningIn();
         $payment = factory(Payment::class)->create();
 
-        $this->visit(route('payments.index'));
+        $this->visit(route('payments.show', $payment));
         $this->click(trans('app.edit'));
         $this->click(trans('payment.delete'));
         $this->press(trans('app.delete_confirm_button'));
@@ -130,7 +130,7 @@ class ManagePaymentsTest extends TestCase
         $payment = factory(Payment::class)->create();
 
         $this->visit(route('payments.index'));
-        $this->click(trans('app.show'));
+        $this->click($payment->number);
         $this->seePageIs(route('payments.show', $payment->id));
         $this->see(trans('payment.detail'));
         $this->see($payment->date);

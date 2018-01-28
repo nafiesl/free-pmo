@@ -12,7 +12,7 @@
                     <tr><td>{{ trans('contact.phone') }}</td><td>{{ $customer->phone }}</td></tr>
                     <tr><td>{{ trans('customer.pic') }}</td><td>{{ $customer->pic }}</td></tr>
                     <tr><td>{{ trans('address.address') }}</td><td>{{ $customer->address }}</td></tr>
-                    <tr><td>{{ trans('app.status') }}</td><td>{{ $customer->is_active }}</td></tr>
+                    <tr><td>{{ trans('app.status') }}</td><td>{!! $customer->status_label !!}</td></tr>
                     <tr><td>{{ trans('app.notes') }}</td><td>{!! nl2br($customer->notes) !!}</td></tr>
                 </tbody>
             </table>

@@ -35,4 +35,5 @@ return [
     'projects'      => 'Project List',
     'payments'      => 'Payment History',
     'subscriptions' => 'Subscription List',
+    'invoices'      => 'Invoice List',
 ];

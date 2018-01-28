@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Entities\Invoices\Invoice;
 use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
@@ -39,6 +40,17 @@ class CustomerTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $customer->subscriptions);
         $this->assertInstanceOf(Subscription::class, $customer->subscriptions->first());
+    }
+
+    /** @test */
+    public function a_customer_has_many_invoices_through_projects_relation()
+    {
+        $customer = factory(Customer::class)->create();
+        $project = factory(Project::class)->create(['customer_id' => $customer->id]);
+        $invoice = factory(Invoice::class)->create(['project_id' => $project->id]);
+
+        $this->assertInstanceOf(Collection::class, $customer->invoices);
+        $this->assertInstanceOf(Invoice::class, $customer->invoices->first());
     }
 
     /** @test */

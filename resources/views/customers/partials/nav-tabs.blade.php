@@ -12,5 +12,8 @@
     <li class="{{ Request::segment(3) == 'subscriptions' ? 'active' : '' }}">
         {!! link_to_route('customers.subscriptions', trans('customer.subscriptions').' ('.$customer->subscriptions->count().')', [$customer]) !!}
     </li>
+    <li class="{{ Request::segment(3) == 'invoices' ? 'active' : '' }}">
+        {!! link_to_route('customers.invoices', trans('customer.invoices').' ('.$customer->invoices->count().')', [$customer]) !!}
+    </li>
 </ul>
 <br>

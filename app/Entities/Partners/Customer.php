@@ -23,6 +23,11 @@ class Customer extends Model
         return $this->hasMany('App\Entities\Subscriptions\Subscription');
     }
 
+    public function invoices()
+    {
+        return $this->hasManyThrough('App\Entities\Invoices\Invoice', 'App\Entities\Projects\Project');
+    }
+
     public function nameLink()
     {
         return link_to_route('customers.show', $this->name, [$this->id], [

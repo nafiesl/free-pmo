@@ -14,14 +14,17 @@ function formatNo($number)
 
 function formatRp($number)
 {
+    $moneySign = Option::get('money_sign', 'Rp.');
+
     if ($number == 0) {
-        return 'Rp. 0';
-    }
-    if ($number < 0) {
-        return '- Rp. '.formatNo(abs($number));
+        return $moneySign.' 0';
     }
 
-    return 'Rp. '.formatNo($number);
+    if ($number < 0) {
+        return '- '.$moneySign.' '.formatNo(abs($number));
+    }
+
+    return $moneySign.' '.formatNo($number);
 }
 
 function formatDecimal($number)

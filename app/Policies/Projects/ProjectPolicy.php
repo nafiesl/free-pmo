@@ -40,7 +40,7 @@ class ProjectPolicy
     public function create(User $user, Project $project)
     {
         // User can create a project if they owns an agency.
-        return true;
+        return $user->hasRole('admin');
     }
 
     /**
@@ -53,7 +53,7 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        return $this->view($user, $project);
+        return $user->hasRole('admin');
     }
 
     /**
@@ -66,6 +66,6 @@ class ProjectPolicy
      */
     public function delete(User $user, Project $project)
     {
-        return $this->view($user, $project);
+        return $user->hasRole('admin');
     }
 }

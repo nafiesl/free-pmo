@@ -51,7 +51,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         return [
             'manage_agency',
-            'manage_backups',
             'manage_options',
             'manage_payments',
             'manage_subscriptions',

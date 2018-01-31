@@ -24,7 +24,7 @@ class JobsController extends Controller
 
     public function index()
     {
-        $jobs = $this->repo->getUnfinishedJobs();
+        $jobs = $this->repo->getUnfinishedJobs(auth()->user());
 
         return view('jobs.unfinished', compact('jobs'));
     }

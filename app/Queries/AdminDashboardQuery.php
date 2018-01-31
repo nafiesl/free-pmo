@@ -6,6 +6,7 @@ use App\Entities\Payments\Payment;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
+use App\Entities\Users\User;
 use Carbon\Carbon;
 
 /**
@@ -99,14 +100,18 @@ class AdminDashboardQuery
      *
      * @return int
      */
-    public function onProgressJobCount()
+    public function onProgressJobCount(User $user)
     {
-        return Job::whereHas('tasks', function ($query) {
+        $jobQuery = Job::whereHas('tasks', function ($query) {
             return $query->where('progress', '<', 100);
-        })
-            ->whereHas('project', function ($query) {
-                return $query->whereIn('status_id', [2, 3]);
-            })
-            ->count();
+        })->whereHas('project', function ($query) {
+            return $query->whereIn('status_id', [2, 3]);
+        });
+
+        if ($user->hasRole('admin') == false) {
+            $jobQuery->where('worker_id', $user->id);
+        }
+
+        return $jobQuery->count();
     }
 }

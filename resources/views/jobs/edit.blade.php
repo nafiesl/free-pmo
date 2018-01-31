@@ -15,7 +15,7 @@
                         {!! FormField::price('price', ['label'=> trans('job.price')]) !!}
                     </div>
                     <div class="col-sm-4">
-                        {!! FormField::select('worker_id', $workers, ['label'=> trans('job.worker'),'value' => 1]) !!}
+                        {!! FormField::select('worker_id', $workers, ['label'=> trans('job.worker')]) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! FormField::radios('type_id', [1 => 'Project','Tambahan'], ['value' => 1,'label'=> trans('job.type'),'list_style' => 'unstyled']) !!}

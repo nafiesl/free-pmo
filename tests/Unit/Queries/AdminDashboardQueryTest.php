@@ -72,27 +72,28 @@ class AdminDashboardQueryTest extends TestCase
     /** @test */
     public function retrieve_job_on_progress_count()
     {
+        $worker = $this->createUser('worker');
         $project1 = factory(Project::class)->create(['status_id' => 2]);
-        $project1job1 = factory(Job::class)->create(['project_id' => $project1->id]);
+        $project1job1 = factory(Job::class)->create(['project_id' => $project1->id, 'worker_id' => $worker->id]);
         $project1job1Task1 = factory(Task::class)->create(['job_id' => $project1job1->id, 'progress' => 50]);
         $project1job1Task2 = factory(Task::class)->create(['job_id' => $project1job1->id, 'progress' => 100]);
 
-        $project1job2 = factory(Job::class)->create(['project_id' => $project1->id]);
+        $project1job2 = factory(Job::class)->create(['project_id' => $project1->id, 'worker_id' => $worker->id]);
         $project1job2Task1 = factory(Task::class)->create(['job_id' => $project1job2->id, 'progress' => 100]);
         $project1job2Task2 = factory(Task::class)->create(['job_id' => $project1job2->id, 'progress' => 100]);
 
         $project2 = factory(Project::class)->create(['status_id' => 2]);
-        $project2job1 = factory(Job::class)->create(['project_id' => $project2->id]);
+        $project2job1 = factory(Job::class)->create(['project_id' => $project2->id, 'worker_id' => $worker->id]);
         $project2job1Task1 = factory(Task::class)->create(['job_id' => $project2job1->id, 'progress' => 50]);
         $project2job1Task2 = factory(Task::class)->create(['job_id' => $project2job1->id, 'progress' => 100]);
 
-        $project2job2 = factory(Job::class)->create(['project_id' => $project2->id]);
+        $project2job2 = factory(Job::class)->create(['project_id' => $project2->id, 'worker_id' => $worker->id]);
         $project2job2Task1 = factory(Task::class)->create(['job_id' => $project2job2->id, 'progress' => 50]);
         $project2job2Task2 = factory(Task::class)->create(['job_id' => $project2job2->id, 'progress' => 100]);
 
         $this->assertCount(2, Project::all());
         $this->assertCount(4, Job::all());
         $this->assertCount(8, Task::all());
-        $this->assertEquals(3, (new AdminDashboardQuery())->onProgressJobCount());
+        $this->assertEquals(3, (new AdminDashboardQuery())->onProgressJobCount($worker));
     }
 }

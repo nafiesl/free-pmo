@@ -3,6 +3,7 @@
 namespace App\Entities\Projects;
 
 use App\Entities\BaseRepository;
+use App\Entities\Users\User;
 use DB;
 
 /**
@@ -19,16 +20,19 @@ class JobsRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function getUnfinishedJobs()
+    public function getUnfinishedJobs(User $user)
     {
-        return $this->model->whereHas('tasks', function ($query) {
+        $jobsQuery = $this->model->whereHas('tasks', function ($query) {
             return $query->where('progress', '<', 100);
-        })
-            ->whereHas('project', function ($query) {
-                return $query->whereIn('status_id', [2, 3]);
-            })
-            ->with(['tasks', 'project'])
-            ->get();
+        })->whereHas('project', function ($query) {
+            return $query->whereIn('status_id', [2, 3]);
+        })->with(['tasks', 'project']);
+
+        if ($user->hasRole('admin') == false) {
+            $jobsQuery->where('worker_id', $user->id);
+        }
+
+        return $jobsQuery->get();
     }
 
     public function requireProjectById($projectId)

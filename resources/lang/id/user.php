@@ -5,12 +5,13 @@ return [
     'user'          => 'User',
     'list'          => 'Daftar User',
     'user_id'       => 'User ID',
-    'profile'       => 'Profil User',
+    'profile'       => 'Profil',
     'search'        => 'Cari User: ketik nama',
     'search'        => 'Ketik nama user lalu tekan Enter..',
     'found'         => 'User ditemukan',
     'not_found'     => 'User tidak ditemukan',
     'empty'         => 'Belum ada User',
+    'back_to_show'  => 'Kembali ke Profil User',
     'back_to_index' => 'Kembali ke Daftar User',
 
     // Actions

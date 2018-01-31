@@ -68,7 +68,9 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
 
-        return view('users.edit', compact('user'));
+        $langList = ['en' => trans('lang.en'), 'id' => trans('lang.id')];
+
+        return view('users.edit', compact('user', 'langList'));
     }
 
     public function update(Request $request, User $user)
@@ -80,6 +82,7 @@ class UsersController extends Controller
             'email'    => 'required|email|unique:users,email,'.$request->segment(2),
             'password' => 'nullable|required_with:password_confirmation|between:6,15',
             'role'     => 'required|array',
+            'lang'     => 'required|string|in:en,id',
         ]);
 
         $user->update($userData);

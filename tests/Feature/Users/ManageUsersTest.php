@@ -87,6 +87,7 @@ class ManageUsersTest extends TestCase
             'email'    => 'member@mail.dev',
             'password' => 'password',
             'role'     => [1, 2], // Administrator, Worker
+            'lang'     => 'id',
         ]);
 
         $this->seePageIs(route('users.edit', $user2->id));
@@ -97,6 +98,7 @@ class ManageUsersTest extends TestCase
             'id'    => $user2->id,
             'name'  => 'Ganti nama User',
             'email' => 'member@mail.dev',
+            'lang'  => 'id',
         ]);
 
         $this->seeInDatabase('user_roles', [

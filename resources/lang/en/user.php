@@ -5,12 +5,13 @@ return [
     'user'          => 'User',
     'list'          => 'User List',
     'user_id'       => 'User ID',
-    'profile'       => 'User Profile',
+    'profile'       => 'Profile',
     'search'        => 'Search User: ketik nama',
     'search'        => 'Type user name then hit Enter..',
     'found'         => 'User found.',
     'not_found'     => 'User not found.',
     'empty'         => 'User list is empty.',
+    'back_to_show'  => 'Back to User Profile',
     'back_to_index' => 'Back to User List',
 
     // Actions

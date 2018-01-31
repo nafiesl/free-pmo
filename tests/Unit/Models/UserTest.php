@@ -2,7 +2,9 @@
 
 namespace Tests\Unit\Models;
 
+use App\Entities\Projects\Job;
 use App\Entities\Users\User;
+use Illuminate\Support\Collection;
 use Tests\TestCase;
 
 /**
@@ -89,5 +91,15 @@ class UserTest extends TestCase
         $roleList .= '</ul>';
 
         $this->assertEquals($roleList, $user->roleList());
+    }
+
+    /** @test */
+    public function a_user_has_many_jobs_relation()
+    {
+        $user = factory(User::class)->create();
+        $job = factory(Job::class)->create(['worker_id' => $user->id]);
+
+        $this->assertInstanceOf(Collection::class, $user->jobs);
+        $this->assertInstanceOf(Job::class, $user->jobs->first());
     }
 }

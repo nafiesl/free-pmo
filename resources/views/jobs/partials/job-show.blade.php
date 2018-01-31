@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ trans('job.show') }}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title">{{ trans('job.detail') }}</h3></div>
     <table class="table table-condensed">
         <tbody>
             <tr><th class="col-md-4">{{ trans('job.name') }}</th><td class="col-md-8">{{ $job->name }}</td></tr>

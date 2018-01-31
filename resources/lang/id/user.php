@@ -32,10 +32,12 @@ return [
     'registered_at' => 'Terdaftar sejak',
 
     // Roles
-
     'role'  => 'Role',
     'roles' => [
         'admin'  => 'Administrator',
         'worker' => 'Worker',
     ],
+
+    // Relations
+    'jobs' => 'Daftar Job',
 ];

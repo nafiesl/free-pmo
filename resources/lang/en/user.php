@@ -33,10 +33,12 @@ return [
     'registered_at' => 'Registered at',
 
     // Roles
-
     'role'  => 'Role',
     'roles' => [
         'admin'  => 'Administrator',
         'worker' => 'Worker',
     ],
+
+    // Relations
+    'jobs' => 'Job List',
 ];

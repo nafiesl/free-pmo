@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', trans('job.show') . ' | ' . $job->name . ' | ' . $job->project->name)
+@section('title', trans('job.detail') . ' | ' . $job->name . ' | ' . $job->project->name)
 
 @section('content')
 @include('jobs.partials.breadcrumb')
@@ -11,7 +11,7 @@
         {!! link_to_route('jobs.edit', trans('job.edit'), [$job->id], ['class' => 'btn btn-warning']) !!}
         {!! link_to_route('projects.jobs.index', trans('job.back_to_index'), [$job->project_id, '#' . $job->id], ['class' => 'btn btn-default']) !!}
     </div>
-    {{ $job->name }} <small>{{ trans('job.show') }}</small>
+    {{ $job->name }} <small>{{ trans('job.detail') }}</small>
 </h1>
 <div class="row">
     <div class="col-md-5">

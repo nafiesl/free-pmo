@@ -6,6 +6,7 @@ return [
     'list'          => 'Job List',
     'additional'    => 'Additional Job List',
     'on_progress'   => 'Job on Progress',
+    'detail'        => 'Job Detail',
     'search'        => 'Ssearch Job',
     'found'         => 'Job found.',
     'not_found'     => 'Job not found.',
@@ -18,7 +19,7 @@ return [
     // Actions
     'create'                 => 'Create new Job',
     'created'                => 'New Job has been created.',
-    'show'                   => 'Job Detail',
+    'show'                   => 'View Job Detail',
     'edit'                   => 'Edit Job',
     'update'                 => 'Update Job',
     'updated'                => 'Job data has been updated.',

@@ -15,7 +15,7 @@ class JobsController extends Controller
 {
     public function index(User $user)
     {
-        $jobs = (new AdminDashboardQuery)->onProgressJobs($user);
+        $jobs = (new AdminDashboardQuery())->onProgressJobs($user);
 
         return view('users.jobs', compact('user', 'jobs'));
     }

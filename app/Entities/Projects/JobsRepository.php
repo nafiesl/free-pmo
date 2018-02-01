@@ -23,7 +23,7 @@ class JobsRepository extends BaseRepository
 
     public function getUnfinishedJobs(User $user)
     {
-        return (new AdminDashboardQuery)
+        return (new AdminDashboardQuery())
             ->onProgressJobs($user, ['project', 'worker']);
     }
 

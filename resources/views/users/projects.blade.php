@@ -5,8 +5,8 @@
 @section('content-user')
 <div class="well well-sm text-right">
     {!! Form::open(['method' => 'get', 'class' => 'form-inline']) !!}
-    {!! FormField::select('status', ProjectStatus::toArray(), ['value' => Request::get('status'), 'placeholder' => trans('project.all')]) !!}
-    {!! Form::text('q', Request::get('q'), ['class' => 'form-control index-search-field', 'placeholder' => trans('project.search'), 'style' => 'width:100%;max-width:350px']) !!}
+    {!! FormField::select('status', ProjectStatus::toArray(), ['value' => request('status', 2), 'placeholder' => trans('project.all')]) !!}
+    {!! Form::text('q', request('q'), ['class' => 'form-control index-search-field', 'placeholder' => trans('project.search'), 'style' => 'width:100%;max-width:350px']) !!}
     {!! Form::submit(trans('project.search'), ['class' => 'btn btn-info btn-sm']) !!}
     {!! link_to_route('users.projects', trans('app.reset'), [$user], ['class' => 'btn btn-default btn-sm']) !!}
     {!! Form::close() !!}

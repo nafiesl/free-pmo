@@ -6,6 +6,7 @@ return [
     'list'          => 'User List',
     'user_id'       => 'User ID',
     'profile'       => 'Profile',
+    'current_jobs'  => 'Current Jobs',
     'search'        => 'Search User: ketik nama',
     'search'        => 'Type user name then hit Enter..',
     'found'         => 'User found.',
@@ -40,6 +41,7 @@ return [
     ],
 
     // Relations
-    'jobs'     => 'Job List',
-    'projects' => 'Project List',
+    'jobs'       => 'Job List',
+    'jobs_count' => 'Job Count',
+    'projects'   => 'Project List',
 ];

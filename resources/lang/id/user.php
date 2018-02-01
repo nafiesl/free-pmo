@@ -6,6 +6,7 @@ return [
     'list'          => 'Daftar User',
     'user_id'       => 'User ID',
     'profile'       => 'Profil',
+    'current_jobs'  => 'Job on progress',
     'search'        => 'Cari User: ketik nama',
     'search'        => 'Ketik nama user lalu tekan Enter..',
     'found'         => 'User ditemukan',
@@ -39,6 +40,7 @@ return [
     ],
 
     // Relations
-    'jobs'     => 'Daftar Job',
-    'projects' => 'Daftar Project',
+    'jobs'       => 'Daftar Job',
+    'jobs_count' => 'Jumlah Job',
+    'projects'   => 'Daftar Project',
 ];

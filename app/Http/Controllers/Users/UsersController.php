@@ -61,7 +61,12 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $userCurrentJobs = $user->jobs()
+            ->whereHas('project', function ($query) {
+                $query->whereIn('status_id', [2, 3]);
+            })->with('tasks')->get();
+
+        return view('users.show', compact('user', 'userCurrentJobs'));
     }
 
     public function edit(User $user)

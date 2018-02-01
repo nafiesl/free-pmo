@@ -17,9 +17,7 @@ class ProjectsController extends Controller
         $projects = $user->projects()
             ->where(function ($query) {
                 $query->where('projects.name', 'like', '%'.request('q').'%');
-                if (request('status')) {
-                    $query->where('status_id', request('status'));
-                }
+                $query->where('status_id', request('status', 2));
             })
             ->latest()
             ->with(['customer'])

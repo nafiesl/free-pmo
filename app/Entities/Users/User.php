@@ -2,7 +2,6 @@
 
 namespace App\Entities\Users;
 
-use App\Entities\Projects\Job;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -128,7 +127,7 @@ class User extends Authenticatable
 
     public function jobs()
     {
-        return $this->hasMany(Job::class, 'worker_id');
+        return $this->hasMany('App\Entities\Projects\Job', 'worker_id');
     }
 
     public function projects()

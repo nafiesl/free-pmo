@@ -130,4 +130,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Job::class, 'worker_id');
     }
+
+    public function projects()
+    {
+        return $this->belongsToMany('App\Entities\Projects\Project', 'jobs', 'worker_id')
+            ->groupBy('worker_id')
+            ->groupBy('project_id');
+    }
 }

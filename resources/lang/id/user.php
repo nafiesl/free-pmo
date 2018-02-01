@@ -39,5 +39,6 @@ return [
     ],
 
     // Relations
-    'jobs' => 'Daftar Job',
+    'jobs'     => 'Daftar Job',
+    'projects' => 'Daftar Project',
 ];

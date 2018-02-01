@@ -40,5 +40,6 @@ return [
     ],
 
     // Relations
-    'jobs' => 'Job List',
+    'jobs'     => 'Job List',
+    'projects' => 'Project List',
 ];

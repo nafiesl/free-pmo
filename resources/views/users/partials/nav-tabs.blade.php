@@ -6,5 +6,8 @@
     <li class="{{ Request::segment(3) == 'jobs' ? 'active' : '' }}">
         {!! link_to_route('users.jobs', trans('user.jobs').' ('.$user->jobs()->count().')', [$user]) !!}
     </li>
+    <li class="{{ Request::segment(3) == 'projects' ? 'active' : '' }}">
+        {!! link_to_route('users.projects', trans('user.projects').' ('.$user->projects->count().')', [$user]) !!}
+    </li>
 </ul>
 <br>

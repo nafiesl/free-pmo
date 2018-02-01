@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $user->name }} - @yield('subtitle', trans('user.profile'))
+@yield('subtitle', trans('user.profile')) | {{ $user->name }}
 @endsection
 
 @section('content')

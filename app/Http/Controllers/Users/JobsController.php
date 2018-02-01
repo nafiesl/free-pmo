@@ -14,8 +14,11 @@ class JobsController extends Controller
 {
     public function index(User $user)
     {
-        $jobs = $user->jobs()
-            ->latest()
+        $jobs = $user->jobs()->whereHas('tasks', function ($query) {
+            return $query->where('progress', '<', 100);
+        })->whereHas('project', function ($query) {
+            return $query->whereIn('status_id', [2, 3]);
+        })->where('worker_id', $user->id)
             ->with(['tasks', 'project'])
             ->paginate();
 

@@ -47,6 +47,15 @@ class JobTest extends TestCase
     }
 
     /** @test */
+    public function a_job_with_no_tasks_will_return_0_on_progress_attribute()
+    {
+        $job = factory(Job::class)->create();
+
+        // Job progress = job tasks average progress
+        $this->assertEquals(0, $job->progress);
+    }
+
+    /** @test */
     public function a_job_has_receiveable_earning_attribute()
     {
         $job = factory(Job::class)->create(['price' => 1000]);

@@ -24,7 +24,7 @@ class JobsController extends Controller
 
     public function index(Project $project)
     {
-        $jobs = $project->jobs;
+        $jobs = $project->jobs()->with(['tasks'])->get();
 
         return view('projects.jobs.index', compact('project', 'jobs'));
     }

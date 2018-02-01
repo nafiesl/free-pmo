@@ -16,6 +16,21 @@ use Tests\TestCase;
 class JobTest extends TestCase
 {
     /** @test */
+    public function a_job_has_name_link_method()
+    {
+        $job = factory(Job::class)->make();
+
+        $this->assertEquals(
+            link_to_route('jobs.show', $job->name, [$job->id], [
+                'title' => trans(
+                    'app.show_detail_title',
+                    ['name' => $job->name, 'type' => trans('job.job')]
+                ),
+            ]), $job->nameLink()
+        );
+    }
+
+    /** @test */
     public function a_job_belongs_to_a_project()
     {
         $project = factory(Project::class)->create();

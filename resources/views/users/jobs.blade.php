@@ -17,10 +17,10 @@
         <tbody>
             @forelse($jobs as $key => $job)
             <tr>
-                <td>{{ $jobs->firstItem() + $key }}</td>
+                <td>{{ 1 + $key }}</td>
                 <td>{{ $job->project->nameLink() }}</td>
                 <td>
-                    {{ link_to_route('jobs.show', $job->name, [$job], ['title' => trans('job.show')]) }}
+                    {{ $job->nameLink() }}
                     @if ($job->tasks->isEmpty() == false)
                     <ul>
                         @foreach($job->tasks as $task)
@@ -49,5 +49,4 @@
         </tbody>
     </table>
 </div>
-{{ $jobs->appends(Request::except('page'))->render() }}
 @endsection

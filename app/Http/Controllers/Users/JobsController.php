@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Entities\Users\User;
 use App\Http\Controllers\Controller;
+use App\Queries\AdminDashboardQuery;
 
 /**
  * User Jobs Controller.
@@ -14,13 +15,7 @@ class JobsController extends Controller
 {
     public function index(User $user)
     {
-        $jobs = $user->jobs()->whereHas('tasks', function ($query) {
-            return $query->where('progress', '<', 100);
-        })->whereHas('project', function ($query) {
-            return $query->whereIn('status_id', [2, 3]);
-        })->where('worker_id', $user->id)
-            ->with(['tasks', 'project'])
-            ->paginate();
+        $jobs = (new AdminDashboardQuery)->onProgressJobs($user);
 
         return view('users.jobs', compact('user', 'jobs'));
     }

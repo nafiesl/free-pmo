@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', trans('project.jobs'))
+@section('title', trans('job.on_progress'))
 
 @section('content')
 <h1 class="page-header">{{ trans('job.on_progress') }}</h1>
@@ -21,9 +21,9 @@
             @forelse($jobs as $key => $job)
             <tr>
                 <td>{{ 1 + $key }}</td>
-                <td>{{ $job->project->name }}</td>
+                <td>{{ $job->project->nameLink() }}</td>
                 <td>
-                    {{ $job->name }}
+                    {{ $job->nameLink() }}
                     @if ($job->tasks->isEmpty() == false)
                     <ul>
                         @foreach($job->tasks as $task)
@@ -36,7 +36,7 @@
                     @endif
                 </td>
                 <td class="text-center">{{ $job->tasks_count = $job->tasks->count() }}</td>
-                <td class="text-center">{{ formatDecimal($job->progress = $job->tasks->avg('progress')) }} %</td>
+                <td class="text-center">{{ formatDecimal($job->progress) }} %</td>
                 <td class="text-right">{{ formatRp($job->price) }}</td>
                 <td>{{ $job->worker->name }}</td>
                 <td>

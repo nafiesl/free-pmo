@@ -4,6 +4,7 @@ namespace App\Entities\Projects;
 
 use App\Entities\BaseRepository;
 use App\Entities\Users\User;
+use App\Queries\AdminDashboardQuery;
 use DB;
 
 /**
@@ -22,17 +23,8 @@ class JobsRepository extends BaseRepository
 
     public function getUnfinishedJobs(User $user)
     {
-        $jobsQuery = $this->model->whereHas('tasks', function ($query) {
-            return $query->where('progress', '<', 100);
-        })->whereHas('project', function ($query) {
-            return $query->whereIn('status_id', [2, 3]);
-        })->with(['tasks', 'project']);
-
-        if ($user->hasRole('admin') == false) {
-            $jobsQuery->where('worker_id', $user->id);
-        }
-
-        return $jobsQuery->get();
+        return (new AdminDashboardQuery)
+            ->onProgressJobs($user, ['project', 'worker']);
     }
 
     public function requireProjectById($projectId)

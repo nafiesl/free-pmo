@@ -96,22 +96,35 @@ class AdminDashboardQuery
     }
 
     /**
+     * Get on progress project jobs list.
+     *
+     * @return int
+     */
+    public function onProgressJobs(User $user, array $eagerLoads = [])
+    {
+        $eagerLoads = array_merge(['tasks'], $eagerLoads);
+        $jobQuery = Job::whereHas('project', function ($query) {
+            return $query->whereIn('status_id', [2, 3]);
+        })->with($eagerLoads);
+
+        if ($user->hasRole('admin') == false) {
+            $jobQuery->where('worker_id', $user->id);
+        }
+
+        $jobs = $jobQuery->get()
+            ->where('progress', '<', 100)
+            ->values();
+
+        return $jobs;
+    }
+
+    /**
      * Get on progress project jobs count.
      *
      * @return int
      */
     public function onProgressJobCount(User $user)
     {
-        $jobQuery = Job::whereHas('tasks', function ($query) {
-            return $query->where('progress', '<', 100);
-        })->whereHas('project', function ($query) {
-            return $query->whereIn('status_id', [2, 3]);
-        });
-
-        if ($user->hasRole('admin') == false) {
-            $jobQuery->where('worker_id', $user->id);
-        }
-
-        return $jobQuery->count();
+        return $this->onProgressJobs($user)->count();
     }
 }

@@ -18,6 +18,16 @@ class Job extends Model
     protected $presenter = JobPresenter::class;
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    public function nameLink()
+    {
+        return link_to_route('jobs.show', $this->name, [$this->id], [
+            'title' => trans(
+                'app.show_detail_title',
+                ['name' => $this->name, 'type' => trans('job.job')]
+            ),
+        ]);
+    }
+
     public function project()
     {
         return $this->belongsTo(Project::class, 'project_id');

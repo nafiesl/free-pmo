@@ -25,7 +25,7 @@
             @forelse($users as $key => $user)
             <tr>
                 <td>{{ 1 + $key }}</td>
-                <td>{{ $user->name }}</td>
+                <td>{{ $user->nameLink() }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{!! $user->roleList() !!}</td>
                 <td>

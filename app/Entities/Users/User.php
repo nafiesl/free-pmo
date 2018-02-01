@@ -20,7 +20,7 @@ class User extends Authenticatable
 
     public function nameLink()
     {
-        return link_to_route('users.show', $this->name, [$this->id], ['target' => '_blank']);
+        return link_to_route('users.show', $this->name, [$this]);
     }
 
     /**

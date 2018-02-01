@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+@include('users.partials.breadcrumb')
 <h1 class="page-header">
     <div class="pull-right">
         {!! link_to_route('users.edit', trans('user.edit'), [$user], ['id' => 'edit-user-' . $user->id, 'class' => 'btn btn-warning']) !!}

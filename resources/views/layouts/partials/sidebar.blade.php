@@ -31,7 +31,6 @@
             <li>{!! html_link_to_route('customers.index', trans('customer.list'), [], ['icon' => 'users']) !!}</li>
             <li>{!! html_link_to_route('vendors.index', trans('vendor.list'), [], ['icon' => 'users']) !!}</li>
             <li>{!! html_link_to_route('backups.index', trans('backup.list'), [], ['icon' => 'refresh']) !!}</li>
-            <li><a href="{{ route('backups.index') }}"><i class="fa fa-refresh fa-fw"></i> {{ trans('backup.list') }}</a></li>
             @endcan
             <li>{!! html_link_to_route('auth.change-password', trans('auth.change_password'), [], ['icon' => 'lock']) !!}</li>
             <li>{!! html_link_to_route('auth.logout', trans('auth.logout'), [], ['icon' => 'sign-out']) !!}</li>

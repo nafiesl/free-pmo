@@ -21,7 +21,11 @@
         @include('jobs.partials.job-tasks-operation')
     </div>
 </div>
-@include('jobs.partials.job-tasks')
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        @include('jobs.partials.job-tasks')
+    </div>
+</div>
 @endsection
 
 @section('ext_css')

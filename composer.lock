@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6dbdc665baa1b50b8e237190ed93c8b9",
+    "content-hash": "e541fa86b99ccc2b462dd9245eb9b516",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -2953,22 +2953,22 @@
         },
         {
             "name": "luthfi/simple-crud-generator",
-            "version": "0.1.8",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
-                "reference": "d1c79adcc5cc29d35e96e789708971cb8882b31f"
+                "reference": "72713e74f67ce3589a9cf135aae5485ef465d512"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/d1c79adcc5cc29d35e96e789708971cb8882b31f",
-                "reference": "d1c79adcc5cc29d35e96e789708971cb8882b31f",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/72713e74f67ce3589a9cf135aae5485ef465d512",
+                "reference": "72713e74f67ce3589a9cf135aae5485ef465d512",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "5.3.* || 5.4.* || 5.5.*",
+                "illuminate/support": "5.4.* || 5.5.*",
                 "laravel/browser-kit-testing": "^2.0",
-                "php": ">=5.6.4"
+                "php": ">=7.0.0"
             },
             "require-dev": {
                 "orchestra/testbench": "~3.0"
@@ -2996,7 +2996,7 @@
                     "email": "nafiesl@gmail.com"
                 }
             ],
-            "description": "A simple CRUD generator for Laravel 5.3, 5.4, and 5.5.",
+            "description": "A simple CRUD generator for Laravel 5.4 and 5.5.",
             "keywords": [
                 "artisan-command",
                 "crud",
@@ -3005,7 +3005,7 @@
                 "tdd-workflow",
                 "testing"
             ],
-            "time": "2017-12-15T02:47:46+00:00"
+            "time": "2018-02-16T23:56:44+00:00"
         },
         {
             "name": "maximebf/debugbar",

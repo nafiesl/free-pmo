@@ -14,7 +14,11 @@
                 {!! FormField::text('name', ['label' => trans('job.name')]) !!}
                 <div class="row">
                     <div class="col-sm-4">
-                        {!! FormField::price('price', ['label' => trans('job.price'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
+                        {!! FormField::price('price', [
+                            'label' => trans('job.price'),
+                            'currency' => Option::get('money_sign', 'Rp'),
+                            'value' => 0,
+                        ]) !!}
                     </div>
                     <div class="col-sm-4">
                         {!! FormField::select('worker_id', $workers, ['label' => trans('job.worker'), 'value' => 1]) !!}

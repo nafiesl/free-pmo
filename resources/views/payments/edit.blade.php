@@ -25,7 +25,7 @@
                         {!! FormField::text('date', ['label'=> trans('app.date')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::price('amount', ['label'=> trans('payment.amount')]) !!}
+                        {!! FormField::price('amount', ['label'=> trans('payment.amount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
                     </div>
                 </div>
                 <div class="row">

@@ -6,6 +6,7 @@ return [
     'list'          => 'Daftar Job',
     'additional'    => 'Daftar Job Tambahan',
     'on_progress'   => 'Job on Progress',
+    'detail'        => 'Detail Job',
     'search'        => 'Cari Job',
     'found'         => 'Job ditemukan',
     'not_found'     => 'Job tidak ditemukan',

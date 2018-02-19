@@ -31,7 +31,12 @@
                 <td class="col-md-3">
                     {!! FormField::price(
                         'amount['.$key.']',
-                        ['id' => 'amount-'.$key, 'value' => $item->amount, 'label' => false]
+                        [
+                            'id' => 'amount-'.$key,
+                            'value' => $item->amount,
+                            'label' => false,
+                            'currency' => Option::get('money_sign', 'Rp')
+                        ]
                     ) !!}
                     {{ Form::submit('Update', ['id' => 'update-item-'.$key, 'class' => 'btn btn-success btn-xs pull-right']) }}
                 </td>
@@ -59,7 +64,12 @@
                 <td colspan="2">
                     {!! FormField::price(
                         'new_item_amount',
-                        ['id' => 'new_item_amount', 'label' => false, 'placeholder' => trans('invoice.item_amount')]
+                        [
+                            'id' => 'new_item_amount',
+                            'label' => false,
+                            'placeholder' => trans('invoice.item_amount'),
+                            'currency' => Option::get('money_sign', 'Rp')
+                        ]
                     ) !!}
                     {{ Form::submit(trans('invoice.add_item'), ['class' => 'btn btn-primary btn-block']) }}
                 </td>

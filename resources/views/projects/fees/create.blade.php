@@ -35,10 +35,10 @@
                         ) !!}
                     </div>
                     <div class="col-md-4">
-                        {!! FormField::text('date',['label'=> trans('payment.date')]) !!}
+                        {!! FormField::text('date', ['label' => trans('payment.date')]) !!}
                     </div>
                     <div class="col-md-4">
-                        {!! FormField::price('amount', ['label'=> trans('payment.amount')]) !!}
+                        {!! FormField::price('amount', ['label' => trans('payment.amount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
                     </div>
                 </div>
                 <div class="row">
@@ -56,8 +56,8 @@
             </div>
 
             <div class="panel-footer">
-                {!! Form::submit(trans('payment.create'), ['class'=>'btn btn-primary']) !!}
-                {{ link_to_route('projects.payments', trans('app.cancel'), [$project->id], ['class'=>'btn btn-default']) }}
+                {!! Form::submit(trans('payment.create'), ['class' => 'btn btn-primary']) !!}
+                {{ link_to_route('projects.payments', trans('app.cancel'), [$project->id], ['class' => 'btn btn-default']) }}
             </div>
         </div>
         {!! Form::close() !!}

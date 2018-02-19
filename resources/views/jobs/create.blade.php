@@ -3,7 +3,7 @@
 @section('title', trans('job.create'))
 
 @section('content')
-@include('projects.partials.breadcrumb',['title' => trans('job.create')])
+@include('projects.partials.breadcrumb', ['title' => trans('job.create')])
 
 <div class="row">
     <div class="col-sm-6">
@@ -11,24 +11,24 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('job.create') }}</h3></div>
             <div class="panel-body">
-                {!! FormField::text('name',['label'=> trans('job.name')]) !!}
+                {!! FormField::text('name', ['label' => trans('job.name')]) !!}
                 <div class="row">
                     <div class="col-sm-4">
-                        {!! FormField::price('price', ['label'=> trans('job.price')]) !!}
+                        {!! FormField::price('price', ['label' => trans('job.price'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
                     </div>
                     <div class="col-sm-4">
-                        {!! FormField::select('worker_id', $workers, ['label'=> trans('job.worker'),'value' => 1]) !!}
+                        {!! FormField::select('worker_id', $workers, ['label' => trans('job.worker'), 'value' => 1]) !!}
                     </div>
                     <div class="col-sm-4">
-                        {!! FormField::radios('type_id', [1 => 'Project','Tambahan'], ['value' => 1,'label'=> trans('job.type'),'list_style' => 'unstyled']) !!}
+                        {!! FormField::radios('type_id', [1 => 'Project', 'Tambahan'], ['value' => 1, 'label' => trans('job.type'), 'list_style' => 'unstyled']) !!}
                     </div>
                 </div>
-                {!! FormField::textarea('description',['label'=> trans('job.description')]) !!}
+                {!! FormField::textarea('description', ['label' => trans('job.description')]) !!}
             </div>
 
             <div class="panel-footer">
-                {!! Form::submit(trans('job.create'), ['class'=>'btn btn-primary']) !!}
-                {!! link_to_route('projects.jobs.index', trans('app.cancel'), [$project->id], ['class'=>'btn btn-default']) !!}
+                {!! Form::submit(trans('job.create'), ['class' => 'btn btn-primary']) !!}
+                {!! link_to_route('projects.jobs.index', trans('app.cancel'), [$project->id], ['class' => 'btn btn-default']) !!}
             </div>
         </div>
         {!! Form::close() !!}

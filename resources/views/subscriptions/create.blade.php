@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        {!! Form::open(['route'=>'subscriptions.store']) !!}
+        {!! Form::open(['route' => 'subscriptions.store']) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('subscription.create') }}</h3></div>
             <div class="panel-body">
@@ -20,7 +20,7 @@
                         {!! FormField::text('name', ['label' => trans('subscription.name')]) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! FormField::price('price', ['label' => trans('subscription.price')]) !!}
+                        {!! FormField::price('price', ['label' => trans('subscription.price'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
                     </div>
                 </div>
                 <div class="row">
@@ -38,8 +38,8 @@
             </div>
 
             <div class="panel-footer">
-                {!! Form::submit(trans('subscription.create'), ['class'=>'btn btn-primary']) !!}
-                {!! link_to_route('subscriptions.index', trans('app.cancel'), [], ['class'=>'btn btn-default']) !!}
+                {!! Form::submit(trans('subscription.create'), ['class' => 'btn btn-primary']) !!}
+                {!! link_to_route('subscriptions.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) !!}
             </div>
         </div>
         {!! Form::close() !!}

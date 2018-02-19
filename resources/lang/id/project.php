@@ -18,6 +18,7 @@ return [
     'receiveable_earnings' => 'Pendapatan',
     'payment_remaining'    => 'Sisa',
     'earnings_calculation' => 'Rumus Pendapatan',
+    'additional_jobs'      => 'Daftar Job Tambahan',
 
     // Payments
     'payment_summary'  => 'Summary Pembayaran',

@@ -45,7 +45,7 @@ class Job extends Model
 
     public function type()
     {
-        return $this->type_id == 1 ? 'Project' : 'Additional';
+        return $this->type_id == 1 ? trans('job.main') : trans('job.additional');
     }
 
     public function getProgressAttribute()

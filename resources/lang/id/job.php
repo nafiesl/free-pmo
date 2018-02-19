@@ -4,7 +4,6 @@ return [
     // Labels
     'job'           => 'Job',
     'list'          => 'Daftar Job',
-    'additional'    => 'Daftar Job Tambahan',
     'on_progress'   => 'Job on Progress',
     'detail'        => 'Detail Job',
     'search'        => 'Cari Job',
@@ -36,4 +35,8 @@ return [
     'worker'      => 'Pekerja',
     'price'       => 'Biaya Pengerjaan',
     'type'        => 'Jenis Job',
+
+    // Types
+    'main'       => 'Utama',
+    'additional' => 'Tambahan',
 ];

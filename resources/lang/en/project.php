@@ -18,6 +18,7 @@ return [
     'receiveable_earnings' => 'Receiveable Earning',
     'payment_remaining'    => 'Payment Remaining',
     'earnings_calculation' => 'Earnings Calculation',
+    'additional_jobs'      => 'Additional Job List',
 
     // Payments
     'payment_summary'  => 'Payment Summary',

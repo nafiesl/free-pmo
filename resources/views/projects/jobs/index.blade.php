@@ -29,7 +29,7 @@
             @endif
         </div>
         <h3 class="panel-title">
-            {{ $key == 1 ? trans('job.list') : trans('job.additional') }}
+            {{ $key == 1 ? trans('project.jobs') : trans('project.additional_jobs') }}
         </h3>
     </div>
     <table class="table table-condensed table-striped">

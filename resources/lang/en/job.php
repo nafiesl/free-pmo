@@ -4,7 +4,6 @@ return [
     // Labels
     'job'           => 'Job',
     'list'          => 'Job List',
-    'additional'    => 'Additional Job List',
     'on_progress'   => 'Job on Progress',
     'detail'        => 'Job Detail',
     'search'        => 'Ssearch Job',
@@ -36,4 +35,8 @@ return [
     'worker'      => 'Worker',
     'price'       => 'Price',
     'type'        => 'Job Type',
+
+    // Types
+    'main'       => 'Main',
+    'additional' => 'Additional',
 ];

@@ -14,6 +14,8 @@ class InvoicesController extends Controller
 {
     public function index(Project $project)
     {
+        $this->authorize('view-invoices', $project);
+
         return view('projects.invoices', compact('project'));
     }
 }

@@ -29,23 +29,21 @@ class JobsController extends Controller
         return view('projects.jobs.index', compact('project', 'jobs'));
     }
 
-    public function create($projectId)
+    public function create(Project $project)
     {
-        $project = $this->repo->requireProjectById($projectId);
         $workers = $this->repo->getWorkersList();
 
         return view('jobs.create', compact('project', 'workers'));
     }
 
-    public function addFromOtherProject(Request $req, $projectId)
+    public function addFromOtherProject(Request $request, Project $project)
     {
         $selectedProject = null;
-        $project = $this->repo->requireProjectById($projectId);
         $workers = $this->repo->getWorkersList();
         $projects = $this->repo->getProjectsList();
 
-        if ($req->has('project_id')) {
-            $selectedProject = $this->repo->requireProjectById($req->get('project_id'));
+        if ($request->has('project_id')) {
+            $selectedProject = $this->repo->requireProjectById($request->get('project_id'));
         }
 
         return view('jobs.add-from-other-project', compact('project', 'workers', 'projects', 'selectedProject'));

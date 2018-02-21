@@ -104,11 +104,15 @@ class ProjectsController extends Controller
 
     public function subscriptions(Project $project)
     {
+        $this->authorize('view-subscriptions', $project);
+
         return view('projects.subscriptions', compact('project'));
     }
 
     public function payments(Project $project)
     {
+        $this->authorize('view-payments', $project);
+
         $project->load('payments.partner');
 
         return view('projects.payments', compact('project'));

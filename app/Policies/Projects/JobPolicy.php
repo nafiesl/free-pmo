@@ -25,8 +25,8 @@ class JobPolicy
      */
     public function view(User $user, Job $job)
     {
-        // User can only view the job if he is the job's agency owner.
-        return true;
+        return $user->hasRole('admin')
+            || ($user->hasRole('worker') && $job->worker_id == $user->id);
     }
 
     /**
@@ -39,7 +39,6 @@ class JobPolicy
      */
     public function create(User $user, Job $job)
     {
-        // User can create a job if they owns an agency.
         return $user->hasRole('admin');
     }
 
@@ -53,8 +52,7 @@ class JobPolicy
      */
     public function update(User $user, Job $job)
     {
-        return $user->hasRole('admin')
-            || ($user->hasRole('worker') && $job->worker_id == $user->id);
+        return $user->hasRole('admin');
     }
 
     /**

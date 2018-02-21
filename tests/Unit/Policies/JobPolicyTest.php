@@ -33,42 +33,41 @@ class JobPolicyTest extends TestCase
     }
 
     /** @test */
-    public function an_admin_can_update_job()
-    {
-        $admin = $this->createUser('admin');
-        $job = factory(Job::class)->create();
-
-        $this->assertTrue($admin->can('update', $job));
-    }
-
-    /** @test */
-    public function a_worker_can_only_update_job_that_assigned_to_them()
-    {
-        $assignedWorker = $this->createUser('worker');
-        $job = factory(Job::class)->create(['worker_id' => $assignedWorker->id]);
-
-        $this->assertTrue($assignedWorker->can('update', $job));
-
-        $otherWorker = $this->createUser('worker');
-
-        $this->assertFalse($otherWorker->can('update', $job));
-    }
-
-    /** @test */
-    public function an_admin_can_delete_job()
-    {
-        $admin = $this->createUser('admin');
-        $job = factory(Job::class)->create();
-
-        $this->assertTrue($admin->can('delete', $job));
-    }
-
-    /** @test */
-    public function a_worker_cannot_delete_job()
+    public function a_worker_only_can_view_jobs_that_has_been_assigned_to_them()
     {
         $worker = $this->createUser('worker');
         $job = factory(Job::class)->create();
 
-        $this->assertFalse($worker->can('delete', $job));
+        // Worker cannot view the job
+        $this->assertFalse($worker->can('view', $job));
+
+        // Assign the job to the worker
+        $job->worker_id = $worker->id;
+        $job->save();
+
+        // Worker can view the job
+        $this->assertTrue($worker->can('view', $job));
+    }
+
+    /** @test */
+    public function only_admin_can_update_job()
+    {
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
+        $job = factory(Job::class)->create(['worker_id' => $worker->id]);
+
+        $this->assertTrue($admin->can('update', $job));
+        $this->assertFalse($worker->can('update', $job));
+    }
+
+    /** @test */
+    public function only_admin_can_delete_job()
+    {
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
+        $job = factory(Job::class)->create(['worker_id' => $worker->id]);
+
+        $this->assertTrue($admin->can('update', $job));
+        $this->assertFalse($worker->can('update', $job));
     }
 }

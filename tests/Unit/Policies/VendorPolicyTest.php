@@ -3,41 +3,55 @@
 namespace Tests\Unit\Policies;
 
 use App\Entities\Partners\Vendor;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase as TestCase;
 
+/**
+ * Vendor Policy Test.
+ *
+ * @author Nafies Luthfi <nafiesl@gmail.com>
+ */
 class VendorPolicyTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /** @test */
-    public function user_can_create_vendor()
+    public function only_admin_can_create_vendor()
     {
-        $user = $this->adminUserSigningIn();
-        $this->assertTrue($user->can('create', new Vendor()));
+        $admin = $this->createUser('admin');
+        $this->assertTrue($admin->can('create', new Vendor()));
+
+        $worker = $this->createUser('worker');
+        $this->assertFalse($worker->can('create', new Vendor()));
     }
 
     /** @test */
-    public function user_can_view_vendor()
+    public function only_admin_can_view_vendor()
     {
-        $user = $this->adminUserSigningIn();
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
         $vendor = factory(Vendor::class)->create();
-        $this->assertTrue($user->can('view', $vendor));
+
+        $this->assertTrue($admin->can('view', $vendor));
+        $this->assertFalse($worker->can('view', $vendor));
     }
 
     /** @test */
-    public function user_can_update_vendor()
+    public function only_admin_can_update_vendor()
     {
-        $user = $this->adminUserSigningIn();
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
         $vendor = factory(Vendor::class)->create();
-        $this->assertTrue($user->can('update', $vendor));
+
+        $this->assertTrue($admin->can('update', $vendor));
+        $this->assertFalse($worker->can('update', $vendor));
     }
 
     /** @test */
-    public function user_can_delete_vendor()
+    public function only_admin_can_delete_vendor()
     {
-        $user = $this->adminUserSigningIn();
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
         $vendor = factory(Vendor::class)->create();
-        $this->assertTrue($user->can('delete', $vendor));
+
+        $this->assertTrue($admin->can('delete', $vendor));
+        $this->assertFalse($worker->can('delete', $vendor));
     }
 }

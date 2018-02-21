@@ -3,8 +3,10 @@
 @section('subtitle', trans('project.jobs'))
 
 @section('action-buttons')
-{!! html_link_to_route('projects.jobs.create', trans('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-{!! html_link_to_route('projects.jobs.add-from-other-project', trans('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+@can('create', new App\Entities\Projects\Job)
+    {!! html_link_to_route('projects.jobs.create', trans('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.add-from-other-project', trans('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+@endcan
 @endsection
 
 @section('content-project')
@@ -65,8 +67,12 @@
                 <td class="text-right">{{ formatRp($job->price) }}</td>
                 {{-- <td>{{ $job->worker->name }}</td> --}}
                 <td class="text-center">
+                    @can('view', $job)
                     {!! html_link_to_route('jobs.show', '',[$job->id],['icon' => 'search', 'title' => 'Lihat ' . trans('job.show'), 'class' => 'btn btn-info btn-xs','id' => 'show-job-' . $job->id]) !!}
+                    @endcan
+                    @can('edit', $job)
                     {!! html_link_to_route('jobs.edit', '',[$job->id],['icon' => 'edit', 'title' => trans('job.edit'), 'class' => 'btn btn-warning btn-xs']) !!}
+                    @endcan
                 </td>
             </tr>
             @empty

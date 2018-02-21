@@ -11,7 +11,7 @@ require __DIR__.'/web/invoices.php';
 require __DIR__.'/web/options-vue.php';
 require __DIR__.'/web/calendar.php';
 
-Route::group(['middleware' => ['web', 'auth']], function () {
+Route::group(['middleware' => ['role:admin']], function () {
     /*
      * Subscriptions Routes
      */

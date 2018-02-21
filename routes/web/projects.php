@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'], function () {
+Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () {
     /*
      * Projects Routes
      */
@@ -54,7 +54,7 @@ Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'],
     Route::patch('files/{file}', ['as' => 'files.update', 'uses' => 'FilesController@update']);
 });
 
-Route::group(['middleware' => ['web', 'auth']], function () {
+Route::group(['middleware' => ['auth']], function () {
 
     /*
      * Jobs Routes
@@ -63,7 +63,7 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('jobs/{job}', ['as' => 'jobs.show', 'uses' => 'JobsController@show']);
 });
 
-Route::group(['middleware' => ['web', 'role:admin']], function () {
+Route::group(['middleware' => ['auth']], function () {
 
     /*
      * Job Actions Routes

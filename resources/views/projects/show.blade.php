@@ -1,7 +1,9 @@
 @extends('layouts.project')
 
 @section('action-buttons')
-{!! link_to_route('projects.edit', trans('project.edit'), [$project->id], ['class' => 'btn btn-warning']) !!}
+@can('update', $project)
+    {!! link_to_route('projects.edit', trans('project.edit'), [$project->id], ['class' => 'btn btn-warning']) !!}
+@endcan
 {!! link_to_route('projects.index', trans('project.back_to_index'), ['status' => $project->status_id], ['class' => 'btn btn-default']) !!}
 @endsection
 

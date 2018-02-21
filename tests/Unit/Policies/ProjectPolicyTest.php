@@ -2,29 +2,24 @@
 
 namespace Tests\Unit\Policies;
 
+use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
 use Tests\TestCase as TestCase;
 
 class ProjectPolicyTest extends TestCase
 {
     /** @test */
-    public function an_admin_can_create_project()
+    public function only_admin_can_create_project()
     {
         $admin = $this->createUser('admin');
-
-        $this->assertTrue($admin->can('create', new Project()));
-    }
-
-    /** @test */
-    public function a_worker_cannot_create_project()
-    {
         $worker = $this->createUser('worker');
 
+        $this->assertTrue($admin->can('create', new Project()));
         $this->assertFalse($worker->can('create', new Project()));
     }
 
     /** @test */
-    public function an_admin_can_view_project()
+    public function an_admin_can_view_all_project_detail()
     {
         $admin = $this->createUser('admin');
         $project = factory(Project::class)->create();
@@ -33,38 +28,42 @@ class ProjectPolicyTest extends TestCase
     }
 
     /** @test */
-    public function an_admin_can_update_project()
-    {
-        $admin = $this->createUser('admin');
-        $project = factory(Project::class)->create();
-
-        $this->assertTrue($admin->can('update', $project));
-    }
-
-    /** @test */
-    public function a_worker_cannot_update_project()
+    public function a_worker_can_only_view_the_project_in_which_they_are_involved()
     {
         $worker = $this->createUser('worker');
         $project = factory(Project::class)->create();
 
-        $this->assertFalse($worker->can('update', $project));
+        // Worker cannot view the project
+        $this->assertFalse($worker->can('view', $project));
+
+        // Assign a job to worker on the project
+        factory(Job::class)->create([
+            'project_id' => $project->id,
+            'worker_id'  => $worker->id,
+        ]);
+
+        // Worker can view the project after assignment
+        $this->assertTrue($worker->fresh()->can('view', $project));
     }
 
     /** @test */
-    public function an_admin_can_delete_project()
+    public function only_admin_can_update_project()
     {
         $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
+
+        $this->assertTrue($admin->can('update', new Project()));
+        $this->assertFalse($worker->can('update', new Project()));
+    }
+
+    /** @test */
+    public function only_admin_can_delete_project()
+    {
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
         $project = factory(Project::class)->create();
 
         $this->assertTrue($admin->can('delete', $project));
-    }
-
-    /** @test */
-    public function a_worker_cannot_delete_project()
-    {
-        $worker = $this->createUser('worker');
-        $project = factory(Project::class)->create();
-
         $this->assertFalse($worker->can('delete', $project));
     }
 }

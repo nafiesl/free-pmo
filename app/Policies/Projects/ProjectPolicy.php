@@ -25,8 +25,8 @@ class ProjectPolicy
      */
     public function view(User $user, Project $project)
     {
-        // User can only view the project if he is the project's agency owner.
-        return true;
+        return $user->hasRole('admin')
+            || ($user->hasRole('worker') && $user->projects->contains($project->id));
     }
 
     /**
@@ -39,7 +39,6 @@ class ProjectPolicy
      */
     public function create(User $user, Project $project)
     {
-        // User can create a project if they owns an agency.
         return $user->hasRole('admin');
     }
 

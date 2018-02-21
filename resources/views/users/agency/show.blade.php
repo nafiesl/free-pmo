@@ -11,7 +11,9 @@
         <h3 class="text-primary">{{ Option::get('agency_name') }}</h3>
         <p>{{ Option::get('agency_tagline') }}</p>
         <br>
-        {{ link_to_route('users.agency.edit', trans('agency.edit'), [], ['class' => 'btn btn-info']) }}
+        @can('manage_agency')
+            {{ link_to_route('users.agency.edit', trans('agency.edit'), [], ['class' => 'btn btn-info']) }}
+        @endcan
     </div>
     <div class="col-md-8">
         <legend style="border-bottom: none;margin-bottom: 10px; margin-left: 6px;">

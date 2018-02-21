@@ -26,48 +26,48 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('reset
 Route::get('profile', [
     'as'         => 'users.profile.show',
     'uses'       => 'Users\ProfileController@show',
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['auth'],
 ]);
 
 Route::get('profile/edit', [
     'as'         => 'users.profile.edit',
     'uses'       => 'Users\ProfileController@edit',
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['auth'],
 ]);
 
 Route::patch('profile/update', [
     'as'         => 'users.profile.update',
     'uses'       => 'Users\ProfileController@update',
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['auth'],
 ]);
 
 Route::patch('profile/switch-lang', [
     'as'         => 'users.profile.switch-lang',
     'uses'       => 'Users\ProfileController@switchLang',
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['auth'],
 ]);
 
 // User's Agency routes
 Route::get('agency', [
     'as'         => 'users.agency.show',
     'uses'       => 'Users\AgencyController@show',
-    'middleware' => ['web', 'auth'],
+    'middleware' => ['auth'],
 ]);
 
 Route::get('agency/edit', [
     'as'         => 'users.agency.edit',
     'uses'       => 'Users\AgencyController@edit',
-    'middleware' => ['web', 'role:admin'],
+    'middleware' => ['role:admin'],
 ]);
 
 Route::patch('agency/update', [
     'as'         => 'users.agency.update',
     'uses'       => 'Users\AgencyController@update',
-    'middleware' => ['web', 'role:admin'],
+    'middleware' => ['role:admin'],
 ]);
 
 Route::patch('agency/logo-upload', [
     'as'         => 'users.agency.logo-upload',
     'uses'       => 'Users\AgencyController@logoUpload',
-    'middleware' => ['web', 'role:admin'],
+    'middleware' => ['role:admin'],
 ]);

@@ -24,6 +24,7 @@
                 </td>
                 <td class="text-center">{{ $task->progress }} %</td>
                 <td class="text-center">
+                @can('update', $task)
                     {!! html_link_to_route('jobs.show', '', [
                         $job->id,
                         'action' => 'task_edit',
@@ -34,6 +35,8 @@
                         'id' => $task->id . '-tasks-edit',
                         'icon' => 'edit'
                     ]) !!}
+                @endcan
+                @can('delete', $task)
                     {!! html_link_to_route('jobs.show', '', [
                         $job->id,
                         'action' => 'task_delete',
@@ -44,6 +47,7 @@
                         'id' => $task->id . '-tasks-delete',
                         'icon' => 'close'
                     ]) !!}
+                @endcan
                 </td>
             </tr>
             @empty

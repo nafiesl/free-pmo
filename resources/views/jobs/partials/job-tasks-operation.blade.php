@@ -1,4 +1,5 @@
 @if (Request::has('action') == false)
+@can('create', new App\Entities\Projects\Task)
 {!! Form::open(['route' => ['tasks.store', $job->id]])!!}
 <div class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">{{ trans('task.create') }}</h3></div>
@@ -7,11 +8,8 @@
             <div class="col-sm-6">{!! FormField::text('name', ['label' => trans('task.name')]) !!}</div>
             <div class="col-md-4">
                 {!! Form::label('progress', trans('task.progress'), ['class' => 'control-label']) !!}
-
                 {!! Form::input('range', 'progress', 0, [
-                    'min' => '0',
-                    'max' => '100',
-                    'step' => '10',
+                    'min' => '0', 'max' => '100', 'step' => '10',
                 ]) !!}
             </div>
             <div class="col-md-2" style="font-size: 28px; margin-top: 15px;">
@@ -23,8 +21,11 @@
         {!! Form::close() !!}
     </div>
 </div>
+@endcan
 @endif
+
 @if (Request::get('action') == 'task_edit' && $editableTask)
+@can('update', $editableTask)
 {!! Form::model($editableTask, ['route' => ['tasks.update', $editableTask->id],'method' => 'patch'])!!}
 <div class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">{{ trans('task.edit') }}</h3></div>
@@ -55,8 +56,11 @@
         {!! Form::close() !!}
     </div>
 </div>
+@endcan
 @endif
+
 @if (Request::get('action') == 'task_delete' && $editableTask)
+@can('delete', $editableTask)
 <div class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">{{ trans('task.delete') }}</h3></div>
     <div class="panel-body">
@@ -78,4 +82,5 @@
             </div>
         </div>
 </div>
+@endcan
 @endif

@@ -58,6 +58,5 @@ class TaskPolicyTest extends TestCase
         $task = factory(Task::class)->create(['job_id' => $job->id]);
 
         $this->assertFalse($worker->can('delete', $task));
-
     }
 }

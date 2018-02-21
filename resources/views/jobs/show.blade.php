@@ -7,7 +7,7 @@
 
 <h1 class="page-header">
     <div class="pull-right">
-        @can('create', $job)
+        @can('create', new App\Entities\Projects\Job)
             {!! html_link_to_route('projects.jobs.create', trans('job.create'), [$job->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
         @endcan
         @can('update', $job)

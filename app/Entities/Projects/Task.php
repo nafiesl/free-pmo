@@ -14,6 +14,6 @@ class Task extends Model
 
     public function job()
     {
-        return $this->belongsTo(Job::class, 'project_id');
+        return $this->belongsTo(Job::class, 'job_id');
     }
 }

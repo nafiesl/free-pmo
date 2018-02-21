@@ -16,7 +16,7 @@ class FeesController extends Controller
 {
     public function create(Project $project)
     {
-        $this->authorize('create', new Payment);
+        $this->authorize('create', new Payment());
 
         $partners = User::pluck('name', 'id')->all();
 
@@ -25,7 +25,7 @@ class FeesController extends Controller
 
     public function store(Project $project)
     {
-        $this->authorize('create', new Payment);
+        $this->authorize('create', new Payment());
 
         $newPaymentData = request()->validate([
             'type_id'     => 'required|numeric',

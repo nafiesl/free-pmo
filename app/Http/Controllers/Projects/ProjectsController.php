@@ -38,7 +38,7 @@ class ProjectsController extends Controller
 
     public function create()
     {
-        $this->authorize('create', new Project);
+        $this->authorize('create', new Project());
 
         $customers = $this->repo->getCustomersList();
 
@@ -47,7 +47,7 @@ class ProjectsController extends Controller
 
     public function store(CreateRequest $request)
     {
-        $this->authorize('create', new Project);
+        $this->authorize('create', new Project());
 
         $project = $this->repo->create($request->except('_token'));
         flash()->success(trans('project.created'));

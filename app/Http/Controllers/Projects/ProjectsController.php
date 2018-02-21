@@ -6,7 +6,6 @@ use App\Entities\Projects\Project;
 use App\Entities\Projects\ProjectsRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Projects\CreateRequest;
-use App\Http\Requests\Projects\DeleteRequest;
 use App\Http\Requests\Projects\UpdateRequest;
 use Illuminate\Http\Request;
 
@@ -39,6 +38,8 @@ class ProjectsController extends Controller
 
     public function create()
     {
+        $this->authorize('create', new Project);
+
         $customers = $this->repo->getCustomersList();
 
         return view('projects.create', compact('customers'));
@@ -46,6 +47,8 @@ class ProjectsController extends Controller
 
     public function store(CreateRequest $request)
     {
+        $this->authorize('create', new Project);
+
         $project = $this->repo->create($request->except('_token'));
         flash()->success(trans('project.created'));
 
@@ -54,11 +57,15 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
+        $this->authorize('view', $project);
+
         return view('projects.show', compact('project'));
     }
 
     public function edit(Project $project)
     {
+        $this->authorize('update', $project);
+
         $customers = $this->repo->getCustomersList();
 
         return view('projects.edit', compact('project', 'customers'));
@@ -66,6 +73,8 @@ class ProjectsController extends Controller
 
     public function update(UpdateRequest $request, Project $project)
     {
+        $this->authorize('update', $project);
+
         $project = $this->repo->update($request->except(['_method', '_token']), $project->id);
         flash()->success(trans('project.updated'));
 
@@ -74,12 +83,16 @@ class ProjectsController extends Controller
 
     public function delete(Project $project)
     {
+        $this->authorize('delete', $project);
+
         return view('projects.delete', compact('project'));
     }
 
-    public function destroy(DeleteRequest $request, Project $project)
+    public function destroy(Project $project)
     {
-        if ($project->id == $request->get('project_id')) {
+        $this->authorize('delete', $project);
+
+        if ($project->id == request('project_id')) {
             $this->repo->delete($project->id);
             flash()->success(trans('project.deleted'));
         } else {

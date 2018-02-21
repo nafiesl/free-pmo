@@ -4,7 +4,9 @@
 
 @section('content')
 <h1 class="page-header">
+    @can('create', new App\Entities\Projects\Project)
     {!! link_to_route('projects.create', trans('project.create'), [], ['class' => 'btn btn-success pull-right']) !!}
+    @endcan
     {{ trans('project.index_title', ['status' => $status]) }} <small>{{ $projects->total() }} {{ trans('project.found') }}</small>
 </h1>
 <div class="well well-sm text-right">

@@ -47,7 +47,9 @@
                 {!! Form::submit(trans('project.update'), ['class' =>'btn btn-primary']) !!}
                 {!! link_to_route('projects.show', trans('app.show'), [$project->id], ['class' => 'btn btn-info']) !!}
                 {!! link_to_route('projects.index', trans('project.back_to_index'), ['status' => $project->status_id], ['class' => 'btn btn-default']) !!}
+                @can('delete', $project)
                 {!! link_to_route('projects.delete', trans('app.delete'), [$project->id], ['class' =>'btn btn-danger pull-right']) !!}
+                @endcan
             </div>
         </div>
         {!! Form::close() !!}

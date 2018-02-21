@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Projects;
 
+use App\Entities\Projects\Project;
 use App\Entities\Projects\ProjectsRepository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Projects\CreateRequest;
@@ -48,43 +49,38 @@ class ProjectsController extends Controller
         $project = $this->repo->create($request->except('_token'));
         flash()->success(trans('project.created'));
 
-        return redirect()->route('projects.show', $project->id);
+        return redirect()->route('projects.show', $project);
     }
 
-    public function show($projectId)
+    public function show(Project $project)
     {
-        $project = $this->repo->requireById($projectId);
-
         return view('projects.show', compact('project'));
     }
 
-    public function edit($projectId)
+    public function edit(Project $project)
     {
-        $project = $this->repo->requireById($projectId);
         $customers = $this->repo->getCustomersList();
 
         return view('projects.edit', compact('project', 'customers'));
     }
 
-    public function update(UpdateRequest $request, $projectId)
+    public function update(UpdateRequest $request, Project $project)
     {
-        $project = $this->repo->update($request->except(['_method', '_token']), $projectId);
+        $project = $this->repo->update($request->except(['_method', '_token']), $project->id);
         flash()->success(trans('project.updated'));
 
-        return redirect()->route('projects.edit', $projectId);
+        return redirect()->route('projects.edit', $project);
     }
 
-    public function delete($projectId)
+    public function delete(Project $project)
     {
-        $project = $this->repo->requireById($projectId);
-
         return view('projects.delete', compact('project'));
     }
 
-    public function destroy(DeleteRequest $request, $projectId)
+    public function destroy(DeleteRequest $request, Project $project)
     {
-        if ($projectId == $request->get('project_id')) {
-            $this->repo->delete($projectId);
+        if ($project->id == $request->get('project_id')) {
+            $this->repo->delete($project->id);
             flash()->success(trans('project.deleted'));
         } else {
             flash()->error(trans('project.undeleted'));
@@ -93,30 +89,27 @@ class ProjectsController extends Controller
         return redirect()->route('projects.index');
     }
 
-    public function subscriptions($projectId)
+    public function subscriptions(Project $project)
     {
-        $project = $this->repo->requireById($projectId);
-
         return view('projects.subscriptions', compact('project'));
     }
 
-    public function payments($projectId)
+    public function payments(Project $project)
     {
-        $project = $this->repo->requireById($projectId);
         $project->load('payments.partner');
 
         return view('projects.payments', compact('project'));
     }
 
-    public function statusUpdate(Request $request, $projectId)
+    public function statusUpdate(Request $request, Project $project)
     {
-        $project = $this->repo->updateStatus($request->get('status_id'), $projectId);
+        $project = $this->repo->updateStatus($request->get('status_id'), $project->id);
         flash()->success(trans('project.updated'));
 
-        return redirect()->route('projects.show', $projectId);
+        return redirect()->route('projects.show', $project);
     }
 
-    public function jobsReorder(Request $request, $projectId)
+    public function jobsReorder(Request $request, Project $project)
     {
         if ($request->ajax()) {
             $data = $this->repo->jobsReorder($request->get('postData'));

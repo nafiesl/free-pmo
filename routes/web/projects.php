@@ -4,15 +4,15 @@ Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'],
     /*
      * Projects Routes
      */
-    Route::get('projects/{id}/delete', ['as' => 'projects.delete', 'uses' => 'ProjectsController@delete']);
-    Route::get('projects/{id}/subscriptions', ['as' => 'projects.subscriptions', 'uses' => 'ProjectsController@subscriptions']);
-    Route::patch('projects/{id}/status-update', ['as' => 'projects.status-update', 'uses' => 'ProjectsController@statusUpdate']);
+    Route::get('projects/{project}/delete', ['as' => 'projects.delete', 'uses' => 'ProjectsController@delete']);
+    Route::get('projects/{project}/subscriptions', ['as' => 'projects.subscriptions', 'uses' => 'ProjectsController@subscriptions']);
+    Route::patch('projects/{project}/status-update', ['as' => 'projects.status-update', 'uses' => 'ProjectsController@statusUpdate']);
     Route::resource('projects', 'ProjectsController');
 
     /*
      * Project Payments Routes
      */
-    Route::get('projects/{id}/payments', ['as' => 'projects.payments', 'uses' => 'ProjectsController@payments']);
+    Route::get('projects/{project}/payments', ['as' => 'projects.payments', 'uses' => 'ProjectsController@payments']);
 
     /*
      * Project Fees Routes
@@ -30,12 +30,12 @@ Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Projects'],
      */
     Route::get('projects/{project}/jobs-export/{type?}', ['as' => 'projects.jobs-export', 'uses' => 'JobsController@jobsExport']);
     Route::get('projects/{project}/job-progress-export/{type?}', ['as' => 'projects.job-progress-export', 'uses' => 'JobsController@jobProgressExport']);
-    Route::get('projects/{id}/jobs/create', ['as' => 'projects.jobs.create', 'uses' => 'JobsController@create']);
-    Route::post('projects/{id}/jobs', ['as' => 'projects.jobs.store', 'uses' => 'JobsController@store']);
-    Route::get('projects/{id}/jobs/add-from-other-project', ['as' => 'projects.jobs.add-from-other-project', 'uses' => 'JobsController@addFromOtherProject']);
-    Route::post('projects/{id}/jobs/store-from-other-project', ['as' => 'projects.jobs.store-from-other-project', 'uses' => 'JobsController@storeFromOtherProject']);
+    Route::get('projects/{project}/jobs/create', ['as' => 'projects.jobs.create', 'uses' => 'JobsController@create']);
+    Route::post('projects/{project}/jobs', ['as' => 'projects.jobs.store', 'uses' => 'JobsController@store']);
+    Route::get('projects/{project}/jobs/add-from-other-project', ['as' => 'projects.jobs.add-from-other-project', 'uses' => 'JobsController@addFromOtherProject']);
+    Route::post('projects/{project}/jobs/store-from-other-project', ['as' => 'projects.jobs.store-from-other-project', 'uses' => 'JobsController@storeFromOtherProject']);
     Route::get('projects/{project}/jobs', ['as' => 'projects.jobs.index', 'uses' => 'JobsController@index']);
-    Route::post('projects/{id}/jobs-reorder', ['as' => 'projects.jobs-reorder', 'uses' => 'ProjectsController@jobsReorder']);
+    Route::post('projects/{project}/jobs-reorder', ['as' => 'projects.jobs-reorder', 'uses' => 'ProjectsController@jobsReorder']);
 
     /*
      * Tasks Routes

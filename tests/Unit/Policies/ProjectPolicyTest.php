@@ -66,4 +66,63 @@ class ProjectPolicyTest extends TestCase
         $this->assertTrue($admin->can('delete', $project));
         $this->assertFalse($worker->can('delete', $project));
     }
+
+    /** @test */
+    public function admin_and_worker_view_project_job_list()
+    {
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
+
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create([
+            'project_id' => $project->id,
+            'worker_id'  => $worker->id,
+        ]);
+
+        $this->assertTrue($admin->can('view-jobs', $project));
+        $this->assertTrue($worker->can('view-jobs', $project));
+    }
+
+    /** @test */
+    public function only_admin_view_project_payment_list()
+    {
+        $admin = $this->createUser('admin');
+        $project = factory(Project::class)->create();
+
+        $this->assertTrue($admin->can('view-payments', $project));
+    }
+
+    /** @test */
+    public function only_admin_view_project_subscription_list()
+    {
+        $admin = $this->createUser('admin');
+        $project = factory(Project::class)->create();
+
+        $this->assertTrue($admin->can('view-subscriptions', $project));
+    }
+
+    /** @test */
+    public function only_admin_view_project_invoice_list()
+    {
+        $admin = $this->createUser('admin');
+        $project = factory(Project::class)->create();
+
+        $this->assertTrue($admin->can('view-invoices', $project));
+    }
+
+    /** @test */
+    public function admin_and_worker_view_project_file_list()
+    {
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
+
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create([
+            'project_id' => $project->id,
+            'worker_id'  => $worker->id,
+        ]);
+
+        $this->assertTrue($admin->can('view-files', $project));
+        $this->assertTrue($worker->can('view-files', $project));
+    }
 }

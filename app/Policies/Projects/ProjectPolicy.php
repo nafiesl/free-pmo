@@ -67,4 +67,71 @@ class ProjectPolicy
     {
         return $user->hasRole('admin');
     }
+
+    /**
+     * Determine whether the user can view project jobs.
+     *
+     * @param \App\Entities\Users\User       $user
+     * @param \App\Entities\Projects\Project $project
+     *
+     * @return mixed
+     */
+    public function viewJobs(User $user, Project $project)
+    {
+        return $user->hasRole('admin')
+            || ($user->hasRole('worker') && $user->projects->contains($project->id));
+    }
+
+    /**
+     * Determine whether the user can view project payments.
+     *
+     * @param \App\Entities\Users\User       $user
+     * @param \App\Entities\Projects\Project $project
+     *
+     * @return mixed
+     */
+    public function viewPayments(User $user, Project $project)
+    {
+        return $user->hasRole('admin');
+    }
+
+    /**
+     * Determine whether the user can view project subscriptions.
+     *
+     * @param \App\Entities\Users\User       $user
+     * @param \App\Entities\Projects\Project $project
+     *
+     * @return mixed
+     */
+    public function viewSubscriptions(User $user, Project $project)
+    {
+        return $user->hasRole('admin');
+    }
+
+    /**
+     * Determine whether the user can view project invoices.
+     *
+     * @param \App\Entities\Users\User       $user
+     * @param \App\Entities\Projects\Project $project
+     *
+     * @return mixed
+     */
+    public function viewInvoices(User $user, Project $project)
+    {
+        return $user->hasRole('admin');
+    }
+
+    /**
+     * Determine whether the user can view project files.
+     *
+     * @param \App\Entities\Users\User       $user
+     * @param \App\Entities\Projects\Project $project
+     *
+     * @return mixed
+     */
+    public function viewFiles(User $user, Project $project)
+    {
+        return $user->hasRole('admin')
+            || ($user->hasRole('worker') && $user->projects->contains($project->id));
+    }
 }

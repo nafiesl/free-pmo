@@ -86,32 +86,27 @@ class ManageJobsTest extends TestCase
     /** @test */
     public function admin_can_delete_a_job()
     {
-        $user = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
-        $project = factory(Project::class)->create(['customer_id' => $customer->id]);
-        $job = factory(Job::class)->create(['project_id' => $project->id]);
+        $this->adminUserSigningIn();
+
+        $job = factory(Job::class)->create();
         $tasks = factory(Task::class, 2)->create(['job_id' => $job->id]);
 
         $this->seeInDatabase('jobs', [
-            'name'       => $job->name,
-            'price'      => $job->price,
-            'project_id' => $project->id,
+            'id' => $job->id,
         ]);
 
-        $this->visit(route('jobs.show', $job->id));
+        $this->visit(route('jobs.show', $job));
 
         $this->click(trans('app.edit'));
         $this->click(trans('job.delete'));
         $this->press(trans('app.delete_confirm_button'));
 
-        $this->seePageIs(route('projects.jobs.index', $project->id));
+        $this->seePageIs(route('projects.jobs.index', $job->project_id));
 
         $this->see(trans('job.deleted'));
 
         $this->notSeeInDatabase('jobs', [
-            'name'       => $job->name,
-            'price'      => $job->price,
-            'project_id' => $project->id,
+            'id' => $job->id,
         ]);
 
         $this->notSeeInDatabase('tasks', [

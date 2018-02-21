@@ -31,6 +31,8 @@ class JobsController extends Controller
 
     public function show(Request $request, Job $job)
     {
+        $this->authorize('view', $job);
+
         $editableTask = null;
 
         if ($request->get('action') == 'task_edit' && $request->has('task_id')) {
@@ -44,34 +46,33 @@ class JobsController extends Controller
         return view('jobs.show', compact('job', 'editableTask'));
     }
 
-    public function edit($jobId)
+    public function edit(Job $job)
     {
-        $job = $this->repo->requireById($jobId);
+        $this->authorize('view', $job);
+
         $workers = $this->repo->getWorkersList();
 
         return view('jobs.edit', compact('job', 'workers'));
     }
 
-    public function update(UpdateRequest $req, $jobId)
+    public function update(UpdateRequest $request, Job $job)
     {
-        $job = $this->repo->update($req->except(['_method', '_token']), $jobId);
+        $job = $this->repo->update($request->except(['_method', '_token']), $job->id);
         flash()->success(trans('job.updated'));
 
-        return redirect()->route('jobs.show', $job->id);
+        return redirect()->route('jobs.show', $job);
     }
 
-    public function delete($jobId)
+    public function delete(Job $job)
     {
-        $job = $this->repo->requireById($jobId);
-
         return view('jobs.delete', compact('job'));
     }
 
-    public function destroy(DeleteRequest $req, $jobId)
+    public function destroy(DeleteRequest $request, Job $job)
     {
-        $job = $this->repo->requireById($jobId);
         $projectId = $job->project_id;
-        if ($jobId == $req->get('job_id')) {
+
+        if ($job->id == $request->get('job_id')) {
             $job->tasks()->delete();
             $job->delete();
             flash()->success(trans('job.deleted'));
@@ -82,10 +83,10 @@ class JobsController extends Controller
         return redirect()->route('projects.jobs.index', $projectId);
     }
 
-    public function tasksReorder(Request $req, $jobId)
+    public function tasksReorder(Request $request, Job $job)
     {
         if ($req->ajax()) {
-            $data = $this->repo->tasksReorder($req->get('postData'));
+            $data = $this->repo->tasksReorder($request->get('postData'));
 
             return 'oke';
         }

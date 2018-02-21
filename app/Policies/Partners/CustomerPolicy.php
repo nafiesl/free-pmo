@@ -25,8 +25,7 @@ class CustomerPolicy
      */
     public function view(User $user, Customer $customer)
     {
-        // Update $user authorization to view $customer here.
-        return true;
+        return $user->hasRole('admin');
     }
 
     /**
@@ -39,8 +38,7 @@ class CustomerPolicy
      */
     public function create(User $user, Customer $customer)
     {
-        // Update $user authorization to create $customer here.
-        return true;
+        return $user->hasRole('admin');
     }
 
     /**
@@ -53,8 +51,7 @@ class CustomerPolicy
      */
     public function update(User $user, Customer $customer)
     {
-        // Update $user authorization to update $customer here.
-        return true;
+        return $this->view($user, $customer);
     }
 
     /**
@@ -67,7 +64,6 @@ class CustomerPolicy
      */
     public function delete(User $user, Customer $customer)
     {
-        // Update $user authorization to delete $customer here.
-        return true;
+        return $this->view($user, $customer);
     }
 }

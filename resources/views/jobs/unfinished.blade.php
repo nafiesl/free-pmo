@@ -13,7 +13,9 @@
             <th>{{ trans('job.name') }}</th>
             <th class="text-center">{{ trans('job.tasks_count') }}</th>
             <th class="text-center">{{ trans('job.progress') }}</th>
+            @if(auth()->user()->hasRole('admin'))
             <th class="text-right">{{ trans('job.price') }}</th>
+            @endauth
             <th>{{ trans('job.worker') }}</th>
             <th>{{ trans('app.action') }}</th>
         </thead>
@@ -37,7 +39,9 @@
                 </td>
                 <td class="text-center">{{ $job->tasks_count = $job->tasks->count() }}</td>
                 <td class="text-center">{{ formatDecimal($job->progress) }} %</td>
+                @if(auth()->user()->hasRole('admin'))
                 <td class="text-right">{{ formatRp($job->price) }}</td>
+                @endif
                 <td>{{ $job->worker->name }}</td>
                 <td>
                     {!! link_to_route('jobs.show', trans('app.show'),[$job->id],['class' => 'btn btn-info btn-xs']) !!}

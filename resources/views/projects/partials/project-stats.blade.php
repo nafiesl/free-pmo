@@ -29,6 +29,7 @@
         </div>
         </a>
     </div>
+    @can('see-pricings', $project)
     <div class="col-lg-6 col-md-12">
         <a href="{{ route('projects.jobs.index',[$project->id]) }}" title="Collectible Earnings">
         <div class="panel panel-success">
@@ -44,5 +45,6 @@
         </div>
         </a>
     </div>
+    @endcan
     <div class="clearfix"></div>
 </div>

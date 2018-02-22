@@ -22,13 +22,17 @@
 <div id="project-jobs" class="panel panel-default table-responsive">
     <div class="panel-heading">
         <div class="pull-right">
-            @if (request('action') == 'sort_jobs')
-                {{ link_to_route('projects.jobs.index', trans('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
-            @else
-                {{ link_to_route('projects.jobs.index', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
-                {!! link_to_route('projects.jobs-export', trans('project.jobs_list_export_html'), [$project->id, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!} |
-                {!! link_to_route('projects.job-progress-export', trans('project.jobs_progress_export_html'), [$project->id, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!}
-            @endif
+            @can('update', $project)
+                @if (request('action') == 'sort_jobs')
+                    {{ link_to_route('projects.jobs.index', trans('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
+                @else
+                    {{ link_to_route('projects.jobs.index', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
+                    @can('see-pricings', $project)
+                    {!! link_to_route('projects.jobs-export', trans('project.jobs_list_export_html'), [$project->id, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!} |
+                    {!! link_to_route('projects.job-progress-export', trans('project.jobs_progress_export_html'), [$project->id, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!}
+                    @endcan
+                @endif
+            @endcan
         </div>
         <h3 class="panel-title">
             {{ $key == 1 ? trans('project.jobs') : trans('project.additional_jobs') }}
@@ -89,11 +93,13 @@
                 </th>
                 <th class="text-right">{{ formatRp($groupedJobs->sum('price')) }}</th>
                 <th colspan="2">
-                    @if (request('action') == 'sort_jobs')
-                        {{ link_to_route('projects.jobs.index', trans('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right']) }}
-                    @else
-                        {{ link_to_route('projects.jobs.index', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right']) }}
-                    @endif
+                    @can('update', $project)
+                        @if (request('action') == 'sort_jobs')
+                            {{ link_to_route('projects.jobs.index', trans('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                        @else
+                            {{ link_to_route('projects.jobs.index', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                        @endif
+                    @endcan
                 </th>
             </tr>
         </tfoot>
@@ -104,6 +110,7 @@
 @endif
 @endsection
 
+@can('update', $project)
 @if (request('action') == 'sort_jobs')
 
 @section('ext_js')
@@ -125,3 +132,4 @@
 @endsection
 
 @endif
+@endcan

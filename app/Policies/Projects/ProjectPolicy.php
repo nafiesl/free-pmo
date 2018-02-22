@@ -134,4 +134,17 @@ class ProjectPolicy
         return $user->hasRole('admin')
             || ($user->hasRole('worker') && $user->projects->contains($project->id));
     }
+
+    /**
+     * Determine whether the user can see project pricings.
+     *
+     * @param \App\Entities\Users\User       $user
+     * @param \App\Entities\Projects\Project $project
+     *
+     * @return mixed
+     */
+    public function seePricings(User $user, Project $project)
+    {
+        return $user->hasRole('admin');
+    }
 }

@@ -120,6 +120,8 @@ class ProjectsController extends Controller
 
     public function statusUpdate(Request $request, Project $project)
     {
+        $this->authorize('update', $project);
+
         $project = $this->repo->updateStatus($request->get('status_id'), $project->id);
         flash()->success(trans('project.updated'));
 
@@ -128,6 +130,8 @@ class ProjectsController extends Controller
 
     public function jobsReorder(Request $request, Project $project)
     {
+        $this->authorize('update', $project);
+
         if ($request->ajax()) {
             $data = $this->repo->jobsReorder($request->get('postData'));
 

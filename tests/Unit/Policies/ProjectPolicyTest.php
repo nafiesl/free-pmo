@@ -125,4 +125,20 @@ class ProjectPolicyTest extends TestCase
         $this->assertTrue($admin->can('view-files', $project));
         $this->assertTrue($worker->can('view-files', $project));
     }
+
+    /** @test */
+    public function only_admin_can_see_project_pricings()
+    {
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
+
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create([
+            'project_id' => $project->id,
+            'worker_id'  => $worker->id,
+        ]);
+
+        $this->assertTrue($admin->can('see-pricings', $project));
+        $this->assertFalse($worker->can('see-pricings', $project));
+    }
 }

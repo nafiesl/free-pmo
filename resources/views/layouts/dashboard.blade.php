@@ -10,10 +10,12 @@
         'style' => 'width:100%;max-width:350px'
     ]) !!}
     {!! Form::submit(trans('project.search'), ['class' => 'btn btn-info btn-sm']) !!}
-    {{ link_to_route('projects.create', trans('project.create'), [], [
-        'class' => 'btn btn-success pull-right',
-        'style' => 'margin: -2px 0px;'
-    ]) }}
+    @can('create', new App\Entities\Projects\Project)
+        {{ link_to_route('projects.create', trans('project.create'), [], [
+            'class' => 'btn btn-success pull-right',
+            'style' => 'margin: -2px 0px;'
+        ]) }}
+    @endcan
     {!! Form::close() !!}
 </div>
 

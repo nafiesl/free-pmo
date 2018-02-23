@@ -4,7 +4,7 @@
         <tbody>
             <tr><th class="col-md-4">{{ trans('job.name') }}</th><td class="col-md-8">{{ $job->name }}</td></tr>
             <tr><th>{{ trans('job.type') }}</th><td>{{ $job->type() }}</td></tr>
-            @can('see-pricings', $job->project)
+            @can('see-pricings', $job)
             <tr><th>{{ trans('job.price') }}</th><td>{{ formatRp($job->price) }}</td></tr>
             @endcan
             <tr><th>{{ trans('job.progress') }}</th><td>{{ formatDecimal($job->tasks->avg('progress')) }}%</td></tr>

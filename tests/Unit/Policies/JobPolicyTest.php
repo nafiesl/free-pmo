@@ -70,4 +70,15 @@ class JobPolicyTest extends TestCase
         $this->assertTrue($admin->can('update', $job));
         $this->assertFalse($worker->can('update', $job));
     }
+
+    /** @test */
+    public function only_admin_can_see_job_pricings()
+    {
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
+        $job = factory(Job::class)->create(['worker_id' => $worker->id]);
+
+        $this->assertTrue($admin->can('see-pricings', $job));
+        $this->assertFalse($worker->can('see-pricings', $job));
+    }
 }

@@ -67,4 +67,17 @@ class JobPolicy
     {
         return $user->hasRole('admin');
     }
+
+    /**
+     * Determine whether the user can see job pricings.
+     *
+     * @param \App\Entities\Users\User   $user
+     * @param \App\Entities\Projects\Job $job
+     *
+     * @return mixed
+     */
+    public function seePricings(User $user, Job $job)
+    {
+        return $user->hasRole('admin');
+    }
 }

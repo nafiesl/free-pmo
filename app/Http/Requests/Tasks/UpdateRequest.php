@@ -15,6 +15,7 @@ class UpdateRequest extends Request
     public function authorize()
     {
         $task = Task::findOrFail($this->segment(2));
+
         return auth()->user()->can('update', $task);
     }
 

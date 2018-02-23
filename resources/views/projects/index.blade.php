@@ -12,7 +12,7 @@
 <div class="well well-sm text-right">
     <div class="pull-left hidden-xs">{{ $projects->appends(Request::except('page'))->render() }}</div>
     {!! Form::open(['method' => 'get', 'class' => 'form-inline']) !!}
-    {!! FormField::select('status', ProjectStatus::toArray(), ['value' => Request::get('status'), 'placeholder' => trans('project.all')]) !!}
+    {!! FormField::select('status_id', ProjectStatus::toArray(), ['value' => $statusId, 'placeholder' => trans('project.all')]) !!}
     {!! Form::text('q', Request::get('q'), ['class' => 'form-control index-search-field', 'placeholder' => trans('project.search'), 'style' => 'width:100%;max-width:350px']) !!}
     {!! Form::submit(trans('project.search'), ['class' => 'btn btn-info btn-sm']) !!}
     {!! link_to_route('projects.index', 'Reset', [], ['class' => 'btn btn-default btn-sm']) !!}

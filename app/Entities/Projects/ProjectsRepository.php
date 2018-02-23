@@ -4,6 +4,7 @@ namespace App\Entities\Projects;
 
 use App\Entities\BaseRepository;
 use App\Entities\Partners\Customer;
+use App\Entities\Users\User;
 use DB;
 use ProjectStatus;
 
@@ -19,18 +20,32 @@ class ProjectsRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function getProjects($q, $statusId)
+    public function getProjects($q, $statusId, User $user)
     {
         $statusIds = array_keys(ProjectStatus::toArray());
+
+        if ($user->hasRole('admin') == false) {
+            return $user->projects()
+                ->where(function ($query) use ($q, $statusId, $statusIds) {
+                    $query->where('projects.name', 'like', '%'.$q.'%');
+
+                    if ($statusId && in_array($statusId, $statusIds)) {
+                        $query->where('status_id', $statusId);
+                    }
+                })
+                ->latest()
+                ->with(['customer'])
+                ->paginate($this->_paginate);
+        }
 
         return $this->model->latest()
             ->where(function ($query) use ($q, $statusId, $statusIds) {
                 $query->where('name', 'like', '%'.$q.'%');
+
                 if ($statusId && in_array($statusId, $statusIds)) {
                     $query->where('status_id', $statusId);
                 }
             })
-            ->withCount('payments')
             ->with('customer')
             ->paginate($this->_paginate);
     }

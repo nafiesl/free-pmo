@@ -22,7 +22,7 @@ class ProjectsController extends Controller
 
     public function index(Request $request)
     {
-        return $this->repo->getProjects($request->get('q'), $request->get('status_id'));
+        return $this->repo->getProjects($request->get('q'), $request->get('status_id'), auth()->user());
     }
 
     public function show($id)

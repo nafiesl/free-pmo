@@ -26,14 +26,14 @@ class ProjectsController extends Controller
     public function index(Request $request)
     {
         $status = null;
-        $statusId = $request->get('status');
+        $statusId = $request->get('status_id', 2);
         if ($statusId) {
             $status = $this->repo->getStatusName($statusId);
         }
 
-        $projects = $this->repo->getProjects($request->get('q'), $statusId);
+        $projects = $this->repo->getProjects($request->get('q'), $statusId, auth()->user());
 
-        return view('projects.index', compact('projects', 'status'));
+        return view('projects.index', compact('projects', 'status', 'statusId'));
     }
 
     public function create()

@@ -26,7 +26,7 @@ class ProjectsController extends Controller
     public function index(Request $request)
     {
         $status = null;
-        $statusId = $request->get('status_id', 2);
+        $statusId = $request->get('status_id');
         if ($statusId) {
             $status = $this->repo->getStatusName($statusId);
         }

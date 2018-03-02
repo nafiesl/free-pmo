@@ -25,7 +25,9 @@
             <th>{{ trans('project.name') }}</th>
             <th class="text-center">{{ trans('project.start_date') }}</th>
             <th class="text-center">{{ trans('project.work_duration') }}</th>
+            @can('see-pricings', new App\Entities\Projects\Project)
             <th class="text-right">{{ trans('project.project_value') }}</th>
+            @endcan
             <th class="text-center">{{ trans('app.status') }}</th>
             <th>{{ trans('project.customer') }}</th>
             <th>{{ trans('app.action') }}</th>
@@ -37,7 +39,9 @@
                 <td>{{ $project->nameLink() }}</td>
                 <td class="text-center">{{ $project->start_date }}</td>
                 <td class="text-right">{{ $project->present()->workDuration }}</td>
+                @can('see-pricings', new App\Entities\Projects\Project)
                 <td class="text-right">{{ formatRp($project->project_value) }}</td>
+                @endcan
                 <td class="text-center">{{ $project->present()->status }}</td>
                 <td>{{ $project->customer->name }}</td>
                 <td>

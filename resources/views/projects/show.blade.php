@@ -4,7 +4,7 @@
 @can('update', $project)
     {!! link_to_route('projects.edit', trans('project.edit'), [$project->id], ['class' => 'btn btn-warning']) !!}
 @endcan
-{!! link_to_route('projects.index', trans('project.back_to_index'), ['status' => $project->status_id], ['class' => 'btn btn-default']) !!}
+{!! link_to_route('projects.index', trans('project.back_to_index'), ['status_id' => $project->status_id], ['class' => 'btn btn-default']) !!}
 @endsection
 
 @section('content-project')

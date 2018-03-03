@@ -5,7 +5,7 @@
 
 @section('content-dashboard')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-2">
         {!! Form::open(['route'=>'users.store']) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('user.create') }}</h3></div>
@@ -30,5 +30,10 @@
         {!! Form::close() !!}
     </div>
 </div>
+@endsection
 
+@section('script')
+<script>
+    $('#password').attr('autocomplete', 'new-password');
+</script>
 @endsection

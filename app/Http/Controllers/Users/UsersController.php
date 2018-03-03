@@ -54,7 +54,7 @@ class UsersController extends Controller
 
         \DB::table('user_roles')->insert($rolesData);
 
-        flash()->success(trans('user.created'));
+        flash(trans('user.created'), 'success');
 
         return redirect()->route('users.index');
     }
@@ -103,7 +103,7 @@ class UsersController extends Controller
 
         \DB::table('user_roles')->insert($rolesData);
 
-        flash()->success(trans('user.updated'));
+        flash(trans('user.updated'), 'success');
 
         return redirect()->route('users.edit', $user->id);
     }

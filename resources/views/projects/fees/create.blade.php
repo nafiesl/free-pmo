@@ -17,7 +17,7 @@
 </ul>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 col-md-offset-2">
         {!! Form::open(['route' => ['projects.fees.store', $project->id]]) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ trans('payment.create_fee') }}</h3></div>

@@ -15,7 +15,7 @@
                     'icon' => ProjectStatus::getIconById($statusId),
                     'number' => array_key_exists($statusId, $projectStatusStats) ? $projectStatusStats[$statusId] : 0,
                     'text' => ProjectStatus::getNameById($statusId),
-                    'linkRoute' => route('projects.index', ['status' => $statusId]),
+                    'linkRoute' => route('projects.index', ['status_id' => $statusId]),
                 ])
             </div>
             @endforeach

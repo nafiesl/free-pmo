@@ -30,15 +30,15 @@
                             <a href="{{ route('backups.index', ['action' => 'restore', 'file_name' => $backup->getFilename()]) }}"
                                 id="restore_{{ str_replace('.gz', '', $backup->getFilename()) }}"
                                 class="btn btn-warning btn-xs"
-                                title="@lang('backup.download')">@lang('backup.restore')</a>
+                                title="@lang('backup.download')"><i class="fa fa-rotate-left"></i></a>
                             <a href="{{ route('backups.download', [$backup->getFilename()]) }}"
                                 id="download_{{ str_replace('.gz', '', $backup->getFilename()) }}"
                                 class="btn btn-info btn-xs"
-                                title="@lang('backup.download')">@lang('backup.download')</a>
+                                title="@lang('backup.download')"><i class="fa fa-download"></i></a>
                             <a href="{{ route('backups.index', ['action' => 'delete', 'file_name' => $backup->getFilename()]) }}"
                                 id="del_{{ str_replace('.gz', '', $backup->getFilename()) }}"
                                 class="btn btn-danger btn-xs"
-                                title="@lang('backup.delete')">@lang('backup.delete')</a>
+                                title="@lang('backup.delete')"><i class="fa fa-remove"></i></a>
                         </td>
                     </tr>
                     @empty

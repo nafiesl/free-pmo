@@ -1,5 +1,10 @@
 @extends('layouts.user')
 
+@section('action-buttons')
+{!! link_to_route('users.edit', trans('user.edit'), [$user], ['id' => 'edit-user-' . $user->id, 'class' => 'btn btn-warning']) !!}
+{!! link_to_route('users.index', trans('user.back_to_index'), [], ['class' => 'btn btn-default']) !!}
+@endsection
+
 @section('content-user')
 <div class="row">
     <div class="col-md-6">

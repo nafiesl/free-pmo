@@ -1,8 +1,8 @@
-@extends('layouts.dashboard')
+@extends('layouts.user')
 
 @section('title', trans('user.delete'))
 
-@section('content-dashboard')
+@section('content-user')
 <div class="row">
     <div class="col-md-4 col-lg-offset-3">
         <div class="panel panel-danger">

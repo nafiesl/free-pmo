@@ -136,4 +136,9 @@ class User extends Authenticatable
             ->groupBy('worker_id')
             ->groupBy('project_id');
     }
+
+    public function payments()
+    {
+        return $this->morphMany('App\Entities\Payments\Payment', 'partner');
+    }
 }

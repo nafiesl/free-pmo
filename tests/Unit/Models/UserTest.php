@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Entities\Payments\Payment;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
 use App\Entities\Users\User;
@@ -124,5 +125,19 @@ class UserTest extends TestCase
         $this->assertInstanceOf(Collection::class, $user->projects);
         $this->assertInstanceOf(Project::class, $user->projects->first());
         $this->assertCount(1, $user->projects);
+    }
+
+    /** @test */
+    public function a_user_has_many_payments_with_morph_relation()
+    {
+        $user = factory(User::class)->create();
+        $payment = factory(Payment::class)->create([
+            'partner_type' => 'App\Entities\Users\User',
+            'partner_id'   => $user->id,
+        ]);
+
+        $this->assertInstanceOf(Collection::class, $user->payments);
+        $this->assertInstanceOf(Payment::class, $user->payments->first());
+        $this->assertCount(1, $user->payments);
     }
 }

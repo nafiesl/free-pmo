@@ -64,6 +64,8 @@ class UserPolicy
      */
     public function delete(User $user, Worker $worker)
     {
-        return $user->hasRole('admin') && $worker->jobs->isEmpty();
+        return $user->hasRole('admin')
+        && $worker->jobs()->count() == 0
+        && $worker->payments()->count() == 0;
     }
 }

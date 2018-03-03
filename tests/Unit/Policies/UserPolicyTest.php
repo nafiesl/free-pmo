@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Policies;
 
+use App\Entities\Payments\Payment;
 use App\Entities\Projects\Job;
 use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -52,6 +53,19 @@ class UserPolicyTest extends TestCase
         $admin = $this->adminUserSigningIn();
         $user = factory(User::class)->create();
         $job = factory(Job::class)->create(['worker_id' => $user->id]);
+
+        $this->assertFalse($admin->can('delete', $user));
+    }
+
+    /** @test */
+    public function admin_cannot_delete_a_user_if_user_has_been_paid()
+    {
+        $admin = $this->adminUserSigningIn();
+        $user = factory(User::class)->create();
+        $payment = factory(Payment::class)->create([
+            'partner_type' => 'App\Entities\Users\User',
+            'partner_id'   => $user->id,
+        ]);
 
         $this->assertFalse($admin->can('delete', $user));
     }

@@ -12,11 +12,17 @@ class EventsController extends Controller
     {
         $start = $request->get('start');
         $end = $request->get('end');
-        $events = Event::where(function ($query) use ($start, $end) {
+        $eventQuery = Event::where(function ($query) use ($start, $end) {
             if ($start && $end) {
                 $query->whereBetween('start', [$start, $end]);
             }
-        })->with('user')->get();
+        })->with('user');
+
+        if (auth()->user()->hasRole('admin') == false) {
+            $eventQuery->where('user_id', auth()->id());
+        }
+
+        $events = $eventQuery->get();
 
         $response = fractal()
             ->collection($events)
@@ -65,8 +71,8 @@ class EventsController extends Controller
         $event->save();
 
         $response = [
-                'message' => trans('event.created'),
-            ] + fractal()->item($event)
+            'message' => trans('event.created'),
+        ] + fractal()->item($event)
             ->transformWith(function ($event) {
                 return [
                     'id'         => $event->id,
@@ -110,8 +116,8 @@ class EventsController extends Controller
         $event->save();
 
         $response = [
-                'message' => trans('event.updated'),
-            ] + fractal()->item($event)
+            'message' => trans('event.updated'),
+        ] + fractal()->item($event)
             ->transformWith(function ($event) {
                 return [
                     'id'         => $event->id,
@@ -162,8 +168,8 @@ class EventsController extends Controller
         $event->save();
 
         $response = [
-                'message' => trans('event.rescheduled'),
-            ] + fractal()->item($event)
+            'message' => trans('event.rescheduled'),
+        ] + fractal()->item($event)
             ->transformWith(function ($event) {
                 return [
                     'id'     => $event->id,

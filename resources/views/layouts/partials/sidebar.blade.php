@@ -33,6 +33,7 @@
             <li>{!! html_link_to_route('backups.index', trans('backup.list'), [], ['icon' => 'refresh']) !!}</li>
             @else
             <li>{!! html_link_to_route('projects.index', trans('project.projects'), [], ['icon' => 'table']) !!}</li>
+            <li>{!! html_link_to_route('users.calendar', trans('nav_menu.calendar'), [], ['icon' => 'calendar']) !!}</li>
             @endcan
             <li>{!! html_link_to_route('auth.change-password', trans('auth.change_password'), [], ['icon' => 'lock']) !!}</li>
             <li>{!! html_link_to_route('auth.logout', trans('auth.logout'), [], ['icon' => 'sign-out']) !!}</li>

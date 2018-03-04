@@ -5,7 +5,7 @@
 @section('content')
 <div class="col-md-4 col-md-offset-4">
 	<div class="login-panel panel panel-default">
-		<div class="panel-heading"><h3 class="panel-title">Reset Password</h3></div>
+		<div class="panel-heading"><h3 class="panel-title">{{ trans('auth.reset_password') }}</h3></div>
 		<div class="panel-body">
             @include('auth.partials._notifications')
 			{!! Form::open(['route'=>'auth.reset-email']) !!}

@@ -27,6 +27,7 @@ return [
     'reset_password'           => 'Reset Password',
     'send_reset_password_link' => 'Send reset password link',
     'old_password_failed'      => 'Old password does not match!',
+    'reset_password_hint'      => 'Please reset your password by filling out this form',
 
     // Attributes
     'email'                     => 'Email',

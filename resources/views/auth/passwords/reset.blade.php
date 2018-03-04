@@ -5,11 +5,11 @@
 @section('content')
 <div class="col-md-6 col-md-offset-3">
     <div class="login-panel panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title">Reset Password</h3></div>
+        <div class="panel-heading"><h3 class="panel-title">{{ trans('auth.reset_password') }}</h3></div>
         {!! Form::open(['route' => 'reset-password']) !!}
         <div class="panel-body">
             @include('auth.partials._notifications')
-            <p>Silakan melakukan reset password dengan mengisi form berikut :</p>
+            <p>{{ trans('auth.reset_password_instruction') }} :</p>
             {!! FormField::email('email') !!}
             {!! FormField::password('password', ['label' => trans('auth.new_password')]) !!}
             {!! FormField::password('password_confirmation', ['label' => trans('auth.new_password_confirmation')]) !!}

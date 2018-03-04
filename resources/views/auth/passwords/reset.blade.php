@@ -6,7 +6,7 @@
 <div class="col-md-6 col-md-offset-3">
     <div class="login-panel panel panel-default">
         <div class="panel-heading"><h3 class="panel-title">Reset Password</h3></div>
-        {!! Form::open(['route'=>'auth.reset-password']) !!}
+        {!! Form::open(['route' => 'reset-password']) !!}
         <div class="panel-body">
             @include('auth.partials._notifications')
             <p>Silakan melakukan reset password dengan mengisi form berikut :</p>

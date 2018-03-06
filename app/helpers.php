@@ -32,41 +32,6 @@ function formatDecimal($number)
     return number_format($number, 2, ',', '.');
 }
 
-/**
- * Delete button.
- *
- * @param array  $form_params    Delete form attribute
- * @param string $button_label   Button text
- * @param array  $button_options Button option
- *
- * @return string Delete Button Form
- */
-function delete_button($form_params = [], $button_label = 'Delete', $button_options = [], $hiddenFields = [])
-{
-    $form_params['method'] = 'delete';
-    $form_params['class'] = isset($form_params['class']) ? $form_params['class'] : 'del-form';
-    $form_params['style'] = isset($form_params['style']) ? $form_params['style'] : 'display:inline';
-
-    if (!isset($button_options['class'])) {
-        $button_options['class'] = 'pull-right';
-    }
-
-    if (!isset($button_options['title'])) {
-        $button_options['title'] = 'Delete this record';
-    }
-
-    $htmlForm = Form::open($form_params);
-    if (!empty($hiddenFields)) {
-        foreach ($hiddenFields as $k => $v) {
-            $htmlForm .= Form::hidden($k, $v);
-        }
-    }
-    $htmlForm .= Form::submit($button_label, $button_options);
-    $htmlForm .= Form::close();
-
-    return $htmlForm;
-}
-
 function formatDate($date)
 {
     if (!$date || $date == '0000-00-00') {

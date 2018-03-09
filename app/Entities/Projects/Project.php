@@ -92,10 +92,13 @@ class Project extends Model
         $this->load('jobs.tasks');
         $totalPrice = $this->jobs->sum('price');
 
+        if ($totalPrice == 0) {
+            return $this->jobs->avg('progress');
+        }
+
         foreach ($this->jobs as $job) {
-            $progress = $job->tasks->avg('progress');
-            $index = $totalPrice ? ($job->price / $totalPrice) : 1;
-            $overalProgress += $progress * $index;
+            $index = $job->price / $totalPrice;
+            $overalProgress += $job->progress * $index;
         }
 
         return $overalProgress;

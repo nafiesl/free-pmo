@@ -130,6 +130,24 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
+    public function project_job_overall_progress_returns_average_job_progress_if_job_prices_is_zero()
+    {
+        $project = factory(Project::class)->create();
+
+        $job = factory(Job::class)->create(['project_id' => $project->id, 'type_id' => 1, 'price' => 0]);
+        factory(Task::class)->create(['job_id' => $job->id, 'progress' => 20]);
+        factory(Task::class)->create(['job_id' => $job->id, 'progress' => 30]);
+
+        $job = factory(Job::class)->create(['project_id' => $project->id, 'type_id' => 1, 'price' => 0]);
+        factory(Task::class)->create(['job_id' => $job->id, 'progress' => 100]);
+
+        $job = factory(Job::class)->create(['project_id' => $project->id, 'type_id' => 1, 'price' => 0]);
+        factory(Task::class)->create(['job_id' => $job->id, 'progress' => 100]);
+
+        $this->assertEquals(75, $project->getJobOveralProgress());
+    }
+
+    /** @test */
     public function a_project_returns_0_on_job_overall_progress_method_if_all_job_is_free()
     {
         $project = factory(Project::class)->create();

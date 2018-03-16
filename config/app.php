@@ -172,7 +172,6 @@ return [
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
-        App\Providers\OptionServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
         Laracasts\Flash\FlashServiceProvider::class,
@@ -225,7 +224,6 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
 
         'Carbon'    => Carbon\Carbon::class,
-        'Option'    => App\Services\Facades\Option::class,
         'Terbilang' => Riskihajar\Terbilang\Facades\Terbilang::class,
 
         // Reference Facades
@@ -233,6 +231,7 @@ return [
         'SubscriptionType' => App\Entities\Subscriptions\Type::class,
         'ProjectStatus'    => App\Entities\Projects\Status::class,
         'AdminDashboard'   => Facades\App\Queries\AdminDashboardQuery::class,
+        'Option'           => Facades\App\Services\Option::class,
     ],
 
 ];

@@ -1526,16 +1526,16 @@
         },
         {
             "name": "riskihajar/terbilang",
-            "version": "1.2.2",
+            "version": "1.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/riskihajar/terbilang.git",
-                "reference": "8294ee3a854bd71e16f5e9c1516e8b5eebc1f497"
+                "reference": "e43c7f90851736c6e929cba99a19a4adfcb57c4e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/riskihajar/terbilang/zipball/8294ee3a854bd71e16f5e9c1516e8b5eebc1f497",
-                "reference": "8294ee3a854bd71e16f5e9c1516e8b5eebc1f497",
+                "url": "https://api.github.com/repos/riskihajar/terbilang/zipball/e43c7f90851736c6e929cba99a19a4adfcb57c4e",
+                "reference": "e43c7f90851736c6e929cba99a19a4adfcb57c4e",
                 "shasum": ""
             },
             "require": {
@@ -1543,6 +1543,16 @@
                 "php": ">=5.4.0"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Riskihajar\\Terbilang\\TerbilangServiceProvider"
+                    ],
+                    "aliases": {
+                        "Terbilang": "Riskihajar\\Terbilang\\Facades\\Terbilang"
+                    }
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Riskihajar\\Terbilang\\": "src"
@@ -1568,7 +1578,7 @@
                 "number to words",
                 "terbilang"
             ],
-            "time": "2017-09-08T07:28:55+00:00"
+            "time": "2018-03-19T00:13:25+00:00"
         },
         {
             "name": "spatie/fractalistic",

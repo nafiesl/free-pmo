@@ -175,7 +175,6 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Laracasts\Flash\FlashServiceProvider::class,
-        Riskihajar\Terbilang\TerbilangServiceProvider::class,
     ],
 
     /*
@@ -222,9 +221,7 @@ return [
         'URL'          => Illuminate\Support\Facades\URL::class,
         'Validator'    => Illuminate\Support\Facades\Validator::class,
         'View'         => Illuminate\Support\Facades\View::class,
-
-        'Carbon'    => Carbon\Carbon::class,
-        'Terbilang' => Riskihajar\Terbilang\Facades\Terbilang::class,
+        'Carbon'       => Carbon\Carbon::class,
 
         // Reference Facades
         'PaymentType'      => App\Entities\Payments\Type::class,

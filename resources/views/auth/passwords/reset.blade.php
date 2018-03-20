@@ -1,22 +1,21 @@
 @extends('layouts.guest')
 
-@section('title', trans('auth.reset_password'))
+@section('title', __('auth.reset_password'))
 
 @section('content')
 <div class="col-md-6 col-md-offset-3">
     <div class="login-panel panel panel-default">
-        <div class="panel-heading"><h3 class="panel-title">{{ trans('auth.reset_password') }}</h3></div>
+        <div class="panel-heading"><h3 class="panel-title">{{ __('auth.reset_password') }}</h3></div>
         {!! Form::open(['route' => 'reset-password']) !!}
         <div class="panel-body">
-            @include('auth.partials._notifications')
-            <p>{{ trans('auth.reset_password_instruction') }} :</p>
+            <p>{{ __('auth.reset_password_hint') }} :</p>
             {!! FormField::email('email') !!}
-            {!! FormField::password('password', ['label' => trans('auth.new_password')]) !!}
-            {!! FormField::password('password_confirmation', ['label' => trans('auth.new_password_confirmation')]) !!}
+            {!! FormField::password('password', ['label' => __('auth.new_password')]) !!}
+            {!! FormField::password('password_confirmation', ['label' => __('auth.new_password_confirmation')]) !!}
             {!! Form::hidden('token', $token) !!}
         </div>
         <div class="panel-footer">
-            {!! Form::submit(trans('auth.reset_password'), ['class'=>'btn btn-info']) !!}
+            {!! Form::submit(__('auth.reset_password'), ['class'=>'btn btn-info']) !!}
         </div>
         {!! Form::close() !!}
     </div>

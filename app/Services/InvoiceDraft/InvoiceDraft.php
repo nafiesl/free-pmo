@@ -115,7 +115,7 @@ class InvoiceDraft
     /**
      * Update an invoice item.
      *
-     * @param int $itemKey       The item key
+     * @param int   $itemKey     The item key
      * @param array $newItemData The item attributes.
      *
      * @return null|\App\Services\InvoiceDrafts\Item

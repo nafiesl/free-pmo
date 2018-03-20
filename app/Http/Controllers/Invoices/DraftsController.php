@@ -89,12 +89,16 @@ class DraftsController extends Controller
 
         $this->draftCollection->updateDraftItem($draftKey, $itemData['item_key'], $itemData);
 
+        flash(trans('invoice.item_updated'), 'success');
+
         return back();
     }
 
     public function removeDraftItem(Request $request, $draftKey)
     {
         $this->draftCollection->removeItemFromDraft($draftKey, $request->item_index);
+
+        flash(trans('invoice.item_removed'), 'warning');
 
         return back();
     }

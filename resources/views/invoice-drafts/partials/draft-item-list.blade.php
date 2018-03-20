@@ -8,10 +8,10 @@
     <table class="table">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Deskripsi</th>
-                <th class="text-center">Biaya</th>
-                <th class="text-center">Action</th>
+                <th>{{ __('app.table_no') }}</th>
+                <th>{{ __('app.description') }}</th>
+                <th class="text-center">{{ __('invoice.item_amount') }}</th>
+                <th class="text-center">{{ __('app.action') }}</th>
             </tr>
         </thead>
         <tbody>
@@ -38,20 +38,24 @@
                             'currency' => Option::get('money_sign', 'Rp')
                         ]
                     ) !!}
-                    {{ Form::submit('Update', ['id' => 'update-item-'.$key, 'class' => 'btn btn-success btn-xs pull-right']) }}
+                    {{ Form::submit(__('app.update'), ['id' => 'update-item-'.$key, 'class' => 'btn btn-success btn-xs pull-right']) }}
                 </td>
                     {{ Form::close() }}
                 <td class="col-md-1 text-center show-on-hover-parent">
                     {!! FormField::delete([
                         'route' => ['invoice-drafts.remove-draft-item', $draft->draftKey],
-                        'onsubmit' => 'Yakin ingin menghapus Item ini?',
                         'class' => '',
-                    ], 'x', ['id' => 'remove-item-'.$key, 'class' => 'btn btn-danger btn-xs show-on-hover','title' => 'Hapus item ini'], ['item_index' => $key]) !!}
+                    ], 'x', ['id' => 'remove-item-'.$key, 'class' => 'btn btn-danger btn-xs show-on-hover', 'title' => __('invoice.item_remove')], ['item_index' => $key]) !!}
                 </td>
             </tr>
             @endforeach
             <tr>
-                <th colspan="4">Tambah Item Invoice</th>
+                <th colspan="2" class="text-right">{{ trans('invoice.amount') }} :</th>
+                <th class="text-right">{{ formatRp($draft->getTotal()) }}</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tr>
+                <th colspan="4">{{ __('app.add') }} {{ __('invoice.items') }}</th>
             </tr>
             <tr>
                 {{ Form::open(['route' => ['invoice-drafts.add-draft-item', $draft->draftKey]]) }}
@@ -76,12 +80,5 @@
                 {{ Form::close() }}
             </tr>
         </tbody>
-        <tfoot>
-            <tr>
-                <th colspan="2" class="text-right">{{ trans('invoice.amount') }} :</th>
-                <th class="text-right">{{ formatRp($draft->getTotal()) }}</th>
-                <th></th>
-            </tr>
-        </tfoot>
     </table>
 </div>

@@ -34,8 +34,10 @@ return [
     'add_item'            => 'Add Item',
     'item_added'          => 'Item added.',
     'item_updated'        => 'Item updated.',
-    'item_removed'        => 'Item deleted.',
+    'item_remove'         => 'Remove Item',
+    'item_removed'        => 'Item removed.',
     'confirm_instruction' => 'Please check this Invoice detail, hit :back_link to edit the detail.',
+    'draft_del_confirm'   => 'Are you sure to remove this Invoice Draft?',
 
     // Attributes
     'number'           => 'Invocie No.',

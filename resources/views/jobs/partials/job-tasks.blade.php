@@ -56,7 +56,7 @@
         </tbody>
         <tfoot>
             <tr>
-                <th class="text-right" colspan="2">Total</th>
+                <th class="text-right" colspan="2">{{ __('app.total') }}</th>
                 <th class="text-center">{{ formatDecimal($job->tasks->avg('progress')) }} %</th>
                 <th>
                     @if (request('action') == 'sort_tasks')

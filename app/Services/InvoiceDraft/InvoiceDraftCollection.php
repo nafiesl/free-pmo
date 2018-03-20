@@ -204,9 +204,9 @@ class InvoiceDraftCollection
     /**
      * Update invoice draft item attributes.
      *
-     * @param string $draftKey   Invoice draft key.
-     * @param string $itemKey    Invoice item key.
-     * @param array $newItemData Array of item attribute.
+     * @param string $draftKey    Invoice draft key.
+     * @param string $itemKey     Invoice item key.
+     * @param array  $newItemData Array of item attribute.
      *
      * @return void
      */
@@ -247,7 +247,7 @@ class InvoiceDraftCollection
     /**
      * Check if current invoice draft is empty.
      *
-     * @return boolean
+     * @return bool
      */
     public function isEmpty()
     {
@@ -257,7 +257,7 @@ class InvoiceDraftCollection
     /**
      * Check if current invoice draft has content.
      *
-     * @return boolean
+     * @return bool
      */
     public function hasContent()
     {

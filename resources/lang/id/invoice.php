@@ -34,8 +34,10 @@ return [
     'add_item'            => 'Tambah Item',
     'item_added'          => 'Item berhasil ditambahkan.',
     'item_updated'        => 'Item berhasil diupdate.',
+    'item_remove'         => 'Hapus Item',
     'item_removed'        => 'Item berhasil dihapus.',
     'confirm_instruction' => 'Silakan periksa rincian di bawah ini, jika belum sesuai, silakan klik :back_link.',
+    'draft_del_confirm'   => 'Yakin ingin menghapus Draft Invoice ini?',
 
     // Attributes
     'number'           => 'No. Invoice',

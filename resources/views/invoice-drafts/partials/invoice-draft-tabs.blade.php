@@ -5,7 +5,7 @@
         <li {{ $active }} role="presentation">
             <a href="{{ route('invoice-drafts.show', $key) }}">
                 {{ trans('invoice.invoice') }} - {{ $key }}
-                <form action="{{ route('invoice-drafts.remove', $key) }}" method="post" style="display:inline" onsubmit="return confirm('Yakin ingin menghapus Draft Transaksi ini?')">
+                <form action="{{ route('invoice-drafts.remove', $key) }}" method="post" style="display:inline" onsubmit="return confirm('{{ __('invoice.draft_del_confirm') }}')">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
                     <input type="hidden" name="draft_key" value="{{ $key }}">

@@ -17,6 +17,7 @@ return [
 
     // Actions
     'create'                 => 'Create new Job',
+    'add'                    => 'Add Jobs',
     'created'                => 'New Job has been created.',
     'show'                   => 'View Job Detail',
     'edit'                   => 'Edit Job',
@@ -26,6 +27,7 @@ return [
     'deleted'                => 'Job has been deleted.',
     'undeleted'              => 'Job not deleted.',
     'add_from_other_project' => 'Add Job from another Project',
+    'select_project'         => 'Select a project.',
     'sort_tasks'             => 'Sort Task Priority',
 
     // Attributes

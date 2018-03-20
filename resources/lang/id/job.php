@@ -26,10 +26,12 @@ return [
     'deleted'                => 'Hapus data Job telah berhasil.',
     'undeleted'              => 'Data Job gagal dihapus.',
     'add_from_other_project' => 'Tambah Job dari Project Lain',
+    'select_project'         => 'Pilih salah satu project.',
     'sort_tasks'             => 'Urutkan Prioritas Task',
 
     // Attributes
     'name'        => 'Nama Job',
+    'add'         => 'Tambahkan Job',
     'description' => 'Deskripsi',
     'progress'    => 'Progress',
     'worker'      => 'Pekerja',

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', trans('job.detail') . ' | ' . $job->name . ' | ' . $job->project->name)
+@section('title', __('job.detail') . ' | ' . $job->name . ' | ' . $job->project->name)
 
 @section('content')
 @include('jobs.partials.breadcrumb')
@@ -8,14 +8,14 @@
 <h1 class="page-header">
     <div class="pull-right">
         @can('create', new App\Entities\Projects\Job)
-            {!! html_link_to_route('projects.jobs.create', trans('job.create'), [$job->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+            {!! html_link_to_route('projects.jobs.create', __('job.create'), [$job->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
         @endcan
         @can('update', $job)
-            {!! link_to_route('jobs.edit', trans('job.edit'), [$job->id], ['class' => 'btn btn-warning']) !!}
+            {{ link_to_route('jobs.edit', __('job.edit'), [$job], ['class' => 'btn btn-warning']) }}
         @endcan
-        {!! link_to_route('projects.jobs.index', trans('job.back_to_index'), [$job->project_id, '#' . $job->id], ['class' => 'btn btn-default']) !!}
+        {{ link_to_route('projects.jobs.index', __('job.back_to_index'), [$job->project_id, '#' . $job->id], ['class' => 'btn btn-default']) }}
     </div>
-    {{ $job->name }} <small>{{ trans('job.detail') }}</small>
+    {{ $job->name }} <small>{{ __('job.detail') }}</small>
 </h1>
 <div class="row">
     <div class="col-md-5">

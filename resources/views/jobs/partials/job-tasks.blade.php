@@ -1,18 +1,18 @@
 <div id="job-tasks" class="panel panel-default">
     <div class="panel-heading">
         @if (request('action') == 'sort_tasks')
-            {{ link_to_route('jobs.show', trans('app.done'), [$job->id], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
+            {{ link_to_route('jobs.show', __('app.done'), [$job], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
         @else
-            {{ link_to_route('jobs.show', trans('job.sort_tasks'), [$job->id, 'action' => 'sort_tasks', '#job-tasks'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
+            {{ link_to_route('jobs.show', __('job.sort_tasks'), [$job, 'action' => 'sort_tasks', '#job-tasks'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
         @endif
-        <h3 class="panel-title">{{ trans('job.tasks') }}</h3>
+        <h3 class="panel-title">{{ __('job.tasks') }}</h3>
     </div>
     <table class="table table-condensed">
         <thead>
-            <th class="col-md-1 text-center">{{ trans('app.table_no') }}</th>
-            <th class="col-md-6">{{ trans('task.name') }}</th>
-            <th class="text-center col-md-1">{{ trans('task.progress') }}</th>
-            <th class="col-md-2 text-center">{{ trans('app.action') }}</th>
+            <th class="col-md-1 text-center">{{ __('app.table_no') }}</th>
+            <th class="col-md-6">{{ __('task.name') }}</th>
+            <th class="text-center col-md-1">{{ __('task.progress') }}</th>
+            <th class="col-md-2 text-center">{{ __('app.action') }}</th>
         </thead>
         <tbody id="sort-tasks">
             @forelse($job->tasks as $key => $task)
@@ -26,24 +26,24 @@
                 <td class="text-center">
                 @can('update', $task)
                     {!! html_link_to_route('jobs.show', '', [
-                        $job->id,
+                        $job,
                         'action' => 'task_edit',
                         'task_id' => $task->id
                     ],[
                         'class' => 'btn btn-warning btn-xs',
-                        'title' => trans('task.edit'),
+                        'title' => __('task.edit'),
                         'id' => $task->id . '-tasks-edit',
                         'icon' => 'edit'
                     ]) !!}
                 @endcan
                 @can('delete', $task)
                     {!! html_link_to_route('jobs.show', '', [
-                        $job->id,
+                        $job,
                         'action' => 'task_delete',
                         'task_id' => $task->id
                     ],[
                         'class' => 'btn btn-danger btn-xs',
-                        'title' => trans('task.delete'),
+                        'title' => __('task.delete'),
                         'id' => $task->id . '-tasks-delete',
                         'icon' => 'close'
                     ]) !!}
@@ -51,7 +51,7 @@
                 </td>
             </tr>
             @empty
-            <tr><td colspan="4">{{ trans('task.empty') }}</td></tr>
+            <tr><td colspan="4">{{ __('task.empty') }}</td></tr>
             @endforelse
         </tbody>
         <tfoot>
@@ -60,9 +60,9 @@
                 <th class="text-center">{{ formatDecimal($job->tasks->avg('progress')) }} %</th>
                 <th>
                     @if (request('action') == 'sort_tasks')
-                        {{ link_to_route('jobs.show', trans('app.done'), [$job->id], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                        {{ link_to_route('jobs.show', __('app.done'), [$job], ['class' => 'btn btn-default btn-xs pull-right']) }}
                     @else
-                        {{ link_to_route('jobs.show', trans('job.sort_tasks'), [$job->id, 'action' => 'sort_tasks', '#job-tasks'], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                        {{ link_to_route('jobs.show', __('job.sort_tasks'), [$job, 'action' => 'sort_tasks', '#job-tasks'], ['class' => 'btn btn-default btn-xs pull-right']) }}
                     @endif
                 </th>
             </tr>

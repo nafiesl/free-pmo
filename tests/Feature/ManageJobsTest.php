@@ -150,7 +150,7 @@ class ManageJobsTest extends TestCase
         $this->press(trans('project.show_jobs'));
         $this->seePageIs(route('projects.jobs.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]));
 
-        $this->submitForm(trans('job.create'), [
+        $this->submitForm(trans('job.add'), [
             'job_ids['.$jobs[0]->id.']' => $jobs[0]->id,
 
             $jobs[0]->id.'_task_ids['.$tasks1[0]->id.']' => $tasks1[0]->id,

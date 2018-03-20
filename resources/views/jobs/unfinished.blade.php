@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
-@section('title', trans('job.on_progress'))
+@section('title', __('job.on_progress'))
 
 @section('content')
-<h1 class="page-header">{{ trans('job.on_progress') }}</h1>
+<h1 class="page-header">{{ __('job.on_progress') }}</h1>
 
 <div class="panel panel-default">
     <table class="table table-condensed">
         <thead>
-            <th>{{ trans('app.table_no') }}</th>
-            <th>{{ trans('project.name') }}</th>
-            <th>{{ trans('job.name') }}</th>
-            <th class="text-center">{{ trans('job.tasks_count') }}</th>
-            <th class="text-center">{{ trans('job.progress') }}</th>
+            <th>{{ __('app.table_no') }}</th>
+            <th>{{ __('project.name') }}</th>
+            <th>{{ __('job.name') }}</th>
+            <th class="text-center">{{ __('job.tasks_count') }}</th>
+            <th class="text-center">{{ __('job.progress') }}</th>
             @can('see-pricings', new App\Entities\Projects\Job)
-            <th class="text-right">{{ trans('job.price') }}</th>
+            <th class="text-right">{{ __('job.price') }}</th>
             @endcan
-            <th>{{ trans('job.worker') }}</th>
-            <th>{{ trans('app.action') }}</th>
+            <th>{{ __('job.worker') }}</th>
+            <th>{{ __('app.action') }}</th>
         </thead>
         <tbody>
             @forelse($jobs as $key => $job)
@@ -44,16 +44,16 @@
                 @endcan
                 <td>{{ $job->worker->name }}</td>
                 <td>
-                    {!! link_to_route('jobs.show', trans('app.show'),[$job->id],['class' => 'btn btn-info btn-xs']) !!}
+                    {{ link_to_route('jobs.show', __('app.show'), [$job], ['class' => 'btn btn-info btn-xs']) }}
                 </td>
             </tr>
             @empty
-            <tr><td colspan="8">{{ trans('job.empty') }}</td></tr>
+            <tr><td colspan="8">{{ __('job.empty') }}</td></tr>
             @endforelse
         </tbody>
         <tfoot>
             <tr>
-                <th class="text-right" colspan="3">Total</th>
+                <th class="text-right" colspan="3">{{ __('app.total') }}</th>
                 <th class="text-center">{{ $jobs->sum('tasks_count') }}</th>
                 <th class="text-center">{{ formatDecimal($jobs->avg('progress')) }} %</th>
                 @can('see-pricings', new App\Entities\Projects\Job)

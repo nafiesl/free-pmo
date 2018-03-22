@@ -5,8 +5,17 @@
         @else
             {{ link_to_route('jobs.show', __('job.sort_tasks'), [$job, 'action' => 'sort_tasks', '#job-tasks'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin: -2px -8px']) }}
         @endif
-        <h3 class="panel-title">{{ __('job.tasks') }}</h3>
+        <h3 class="panel-title">{{ request('action') == 'sort_tasks' ? __('job.sort_tasks') : __('job.tasks') }}</h3>
     </div>
+    @if (request('action') == 'sort_tasks')
+        <ul id="sort-tasks" class="list-group">
+            @foreach($job->tasks as $key => $task)
+                <li id="{{ $task->id }}" class="list-group-item">
+                    <i class="fa fa-arrows-v" style="margin-right: 15px"></i> {{ $key + 1 }}. {{ $task->name }}
+                </li>
+            @endforeach
+        </ul>
+    @else
     <table class="table table-condensed">
         <thead>
             <th class="col-md-1 text-center">{{ __('app.table_no') }}</th>
@@ -14,7 +23,7 @@
             <th class="text-center col-md-1">{{ __('task.progress') }}</th>
             <th class="col-md-2 text-center">{{ __('app.action') }}</th>
         </thead>
-        <tbody id="sort-tasks">
+        <tbody>
             @forelse($job->tasks as $key => $task)
             <tr id="{{ $task->id }}">
                 <td class="text-center">{{ 1 + $key }}</td>
@@ -68,6 +77,7 @@
             </tr>
         </tfoot>
     </table>
+    @endif
 </div>
 
 @if (request('action') == 'sort_tasks')

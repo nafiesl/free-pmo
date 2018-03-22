@@ -36,8 +36,20 @@
         </div>
         <h3 class="panel-title">
             {{ $key == 1 ? trans('project.jobs') : trans('project.additional_jobs') }}
+            @if (request('action') == 'sort_jobs')
+            <em>: {{ trans('project.sort_jobs') }}</em>
+            @endif
         </h3>
     </div>
+    @if (request('action') == 'sort_jobs')
+        <ul class="sort-jobs list-group">
+            @foreach($groupedJobs as $key => $job)
+                <li id="{{ $job->id }}" class="list-group-item">
+                    <i class="fa fa-arrows-v" style="margin-right: 15px"></i> {{ $key + 1 }}. {{ $job->name }}
+                </li>
+            @endforeach
+        </ul>
+    @else
     <table class="table table-condensed table-striped">
         <thead>
             <th>{{ trans('app.table_no') }}</th>
@@ -48,7 +60,7 @@
             {{-- <th>{{ trans('job.worker') }}</th> --}}
             <th class="text-center">{{ trans('app.action') }}</th>
         </thead>
-        <tbody class="sort-jobs">
+        <tbody>
             @forelse($groupedJobs as $key => $job)
             @php
             $no = 1 + $key;
@@ -104,6 +116,7 @@
             </tr>
         </tfoot>
     </table>
+    @endif
 </div>
 @endforeach
 

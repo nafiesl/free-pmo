@@ -56,7 +56,9 @@
             <th>{{ trans('job.name') }}</th>
             <th class="text-center">{{ trans('job.tasks_count') }}</th>
             <th class="text-center">{{ trans('job.progress') }}</th>
+            @can('see-pricings', new App\Entities\Projects\Job)
             <th class="text-right">{{ trans('job.price') }}</th>
+            @endcan
             {{-- <th>{{ trans('job.worker') }}</th> --}}
             <th class="text-center">{{ trans('app.action') }}</th>
         </thead>
@@ -80,7 +82,9 @@
                 </td>
                 <td class="text-center">{{ $job->tasks_count = $job->tasks->count() }}</td>
                 <td class="text-center">{{ formatDecimal($job->progress) }} %</td>
+                @can('see-pricings', $job)
                 <td class="text-right">{{ formatRp($job->price) }}</td>
+                @endcan
                 {{-- <td>{{ $job->worker->name }}</td> --}}
                 <td class="text-center">
                     @can('view', $job)
@@ -103,7 +107,9 @@
                     <span title="Total Progress">{{ formatDecimal($groupedJobs->sum('progress') / $groupedJobs->count()) }} %</span>
                     <span title="Overal Progress" style="font-weight:300">({{ formatDecimal($project->getJobOveralProgress()) }} %)</span>
                 </th>
+                @can('see-pricings', new App\Entities\Projects\Job)
                 <th class="text-right">{{ formatRp($groupedJobs->sum('price')) }}</th>
+                @endcan
                 <th colspan="2">
                     @can('update', $project)
                         @if (request('action') == 'sort_jobs')

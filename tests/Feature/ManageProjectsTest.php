@@ -164,7 +164,7 @@ class ManageProjectsTest extends TestCase
         $this->press(trans('project.create'));
 
         $this->seePageIs(route('projects.create'));
-        $this->see('Mohon periksa kembali form isian Anda.');
+        $this->see(__('validation.flash_message'));
     }
 
     /** @test */

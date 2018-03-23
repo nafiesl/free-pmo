@@ -36,4 +36,7 @@ return [
     'old_password'              => 'Password Lama',
     'new_password'              => 'Password Baru',
     'new_password_confirmation' => 'Ulangi Password Baru',
+
+    // Authorization
+    'unauthorized_access' => 'Anda tidak dapat mengakses halaman :url.',
 ];

@@ -36,4 +36,7 @@ return [
     'old_password'              => 'Old Password',
     'new_password'              => 'New Password',
     'new_password_confirmation' => 'Confirm new Password',
+
+    // Authorization
+    'unauthorized_access' => 'You cannot access :url page.',
 ];

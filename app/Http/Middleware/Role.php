@@ -29,7 +29,7 @@ class Role
 
         // Cek apakah grup user ada di dalam array $nameArray?
         if (auth()->user()->hasRoles($nameArray) == false) {
-            flash()->error('Anda tidak dapat mengakses halaman '.$request->path().'.');
+            flash(__('auth.unauthorized_access', ['url' => $request->path()]), 'danger');
 
             return redirect()->route('home');
         }

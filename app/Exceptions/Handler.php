@@ -54,7 +54,7 @@ class Handler extends ExceptionHandler
                 return response()->json(['error' => 'Forbidden Action.'], 403);
             }
 
-            flash()->error('Invalid access');
+            flash(__('auth.unauthorized_access', ['url' => $request->path()]), 'danger');
 
             return redirect()->home();
         }
@@ -64,7 +64,7 @@ class Handler extends ExceptionHandler
                 return response()->json(['error' => 'Data not found.'], 404);
             }
 
-            flash()->error('Data not found.');
+            flash('Data not found.', 'danger');
 
             return redirect()->home();
         }

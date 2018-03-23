@@ -49,12 +49,12 @@ class FilesController extends Controller
             $file = $this->proccessPhotoUpload($request->except('_token'), $request->get('fileable_type'), $fileableId);
 
             if ($file->exists) {
-                flash()->success('Upload file berhasil.');
+                flash('Upload file berhasil.', 'success');
             } else {
-                flash()->error('Upload file gagal, coba kembali.');
+                flash('Upload file gagal, coba kembali.', 'danger');
             }
         } else {
-            flash()->error('Upload file gagal, coba kembali.');
+            flash('Upload file gagal, coba kembali.', 'danger');
         }
 
         return back();

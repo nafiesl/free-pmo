@@ -29,7 +29,7 @@ class OptionsController extends Controller
 
         $option = Option::create($newOptionData);
 
-        flash()->success(trans('option.created'));
+        flash(trans('option.created'), 'success');
 
         return redirect()->route('options.index');
     }
@@ -38,9 +38,9 @@ class OptionsController extends Controller
     {
         if ($optionId == $req->get('option_id')) {
             Option::findOrFail($optionId)->delete();
-            flash()->success(trans('option.deleted'));
+            flash(trans('option.deleted'), 'success');
         } else {
-            flash()->error(trans('option.undeleted'));
+            flash(trans('option.undeleted'), 'danger');
         }
 
         return redirect()->route('options.index');
@@ -55,7 +55,7 @@ class OptionsController extends Controller
             $option->save();
         }
 
-        flash()->success(trans('option.updated'));
+        flash(trans('option.updated'), 'success');
 
         return redirect()->route('options.index');
     }

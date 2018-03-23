@@ -127,7 +127,7 @@ class UsersController extends Controller
             $user->delete();
             flash(trans('user.deleted'), 'success');
         } else {
-            flash(trans('user.undeleted'), 'error');
+            flash(trans('user.undeleted'), 'danger');
         }
 
         return redirect()->route('users.index');

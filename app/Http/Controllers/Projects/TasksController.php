@@ -25,7 +25,7 @@ class TasksController extends Controller
     public function store(CreateRequest $req, $jobId)
     {
         $job = $this->repo->createTask($req->except('_token'), $jobId);
-        flash()->success(trans('task.created'));
+        flash(trans('task.created'), 'success');
 
         return redirect()->route('jobs.show', $jobId);
     }
@@ -33,7 +33,7 @@ class TasksController extends Controller
     public function update(UpdateRequest $req, $taskId)
     {
         $task = $this->repo->update($req->except(['_method', '_token']), $taskId);
-        flash()->success(trans('task.updated'));
+        flash(trans('task.updated'), 'success');
 
         return redirect()->route('jobs.show', $task->job_id);
     }
@@ -45,9 +45,9 @@ class TasksController extends Controller
 
         if ($taskId == $req->get('task_id')) {
             $task->delete();
-            flash()->success(trans('task.deleted'));
+            flash(trans('task.deleted'), 'success');
         } else {
-            flash()->error(trans('task.undeleted'));
+            flash(trans('task.undeleted'), 'danger');
         }
 
         return redirect()->route('jobs.show', $jobId);

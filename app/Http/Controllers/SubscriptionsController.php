@@ -44,7 +44,7 @@ class SubscriptionsController extends Controller
     {
         $subscriptionCreateRequest->approveFor(new Subscription());
 
-        flash()->success(trans('subscription.created'));
+        flash(trans('subscription.created'), 'success');
 
         return redirect()->route('subscriptions.index');
     }
@@ -70,7 +70,7 @@ class SubscriptionsController extends Controller
     {
         $subscriptionUpdateRequest->approveFor($subscription);
 
-        flash()->success(trans('subscription.updated'));
+        flash(trans('subscription.updated'), 'success');
 
         return redirect()->route('subscriptions.edit', $subscription->id);
     }
@@ -79,7 +79,7 @@ class SubscriptionsController extends Controller
     {
         $subscriptionDeleteRequest->approveToDelete($subscription);
 
-        flash()->success(trans('subscription.deleted'));
+        flash(trans('subscription.deleted'), 'success');
 
         return redirect()->route('subscriptions.index');
     }

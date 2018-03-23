@@ -52,7 +52,7 @@ class JobsController extends Controller
     public function store(CreateRequest $req, $projectId)
     {
         $job = $this->repo->createJob($req->except('_token'), $projectId);
-        flash()->success(trans('job.created'));
+        flash(trans('job.created'), 'success');
 
         return redirect()->route('jobs.show', $job->id);
     }
@@ -60,7 +60,7 @@ class JobsController extends Controller
     public function storeFromOtherProject(Request $req, $projectId)
     {
         $this->repo->createJobs($req->except('_token'), $projectId);
-        flash()->success(trans('job.created_from_other_project'));
+        flash(trans('job.created_from_other_project'), 'success');
 
         return redirect()->route('projects.jobs.index', $projectId);
     }

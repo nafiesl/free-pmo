@@ -56,7 +56,7 @@ class InstallationController extends Controller
         Auth::login($admin);
         DB::commit();
 
-        flash()->success(trans('auth.welcome', ['name' => $admin->name]));
+        flash(trans('auth.welcome', ['name' => $admin->name]), 'success');
 
         return redirect()->route('home');
     }

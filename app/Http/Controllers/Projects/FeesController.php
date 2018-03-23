@@ -40,7 +40,7 @@ class FeesController extends Controller
 
         Payment::create($newPaymentData);
 
-        flash()->success(trans('payment.created'));
+        flash(trans('payment.created'), 'success');
 
         return redirect()->route('projects.payments', $project->id);
     }

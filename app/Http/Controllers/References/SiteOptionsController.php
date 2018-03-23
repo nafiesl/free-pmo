@@ -28,7 +28,7 @@ class SiteOptionsController extends Controller
         $option->value = $request->get('money_sign');
         $option->save();
 
-        flash()->success(trans('option.updated'));
+        flash(trans('option.updated'), 'success');
 
         return redirect()->route('site-options.page-1');
     }

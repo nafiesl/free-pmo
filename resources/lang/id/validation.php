@@ -13,6 +13,7 @@ return [
     |
     */
 
+    'flash_message'        => 'Mohon periksa kembali form isian Anda.',
     'accepted'             => 'Isian :attribute harus diterima.',
     'active_url'           => 'Isian :attribute bukan URL yang valid.',
     'after'                => 'Isian :attribute harus tanggal setelah :date.',

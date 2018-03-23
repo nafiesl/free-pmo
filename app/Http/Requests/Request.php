@@ -12,7 +12,7 @@ abstract class Request extends FormRequest
      */
     protected function failedValidation(Validator $validator)
     {
-        flash()->error('Mohon periksa kembali form isian Anda.');
+        flash(__('validation.flash_message'), 'danger');
         parent::failedValidation($validator);
     }
 }

@@ -17,6 +17,7 @@ return [
 
     // Actions
     'create'                 => 'Input Job Baru',
+    'add'                    => 'Tambahkan Job',
     'created'                => 'Input Job baru telah berhasil.',
     'show'                   => 'Detail Job',
     'edit'                   => 'Edit Job',
@@ -31,7 +32,6 @@ return [
 
     // Attributes
     'name'        => 'Nama Job',
-    'add'         => 'Tambahkan Job',
     'description' => 'Deskripsi',
     'progress'    => 'Progress',
     'worker'      => 'Pekerja',

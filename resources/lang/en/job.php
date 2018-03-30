@@ -32,7 +32,7 @@ return [
 
     // Attributes
     'name'        => 'Job Name',
-    'description' => 'Deskripsi',
+    'description' => 'Description',
     'progress'    => 'Progress',
     'worker'      => 'Worker',
     'price'       => 'Price',

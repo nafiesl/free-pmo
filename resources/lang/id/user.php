@@ -29,6 +29,7 @@ return [
     // Attributes
     'name'          => 'Nama User',
     'email'         => 'Alamat Email',
+    'lang'          => 'Bahasa',
     'api_token'     => 'API Token',
     'registered_at' => 'Terdaftar sejak',
 

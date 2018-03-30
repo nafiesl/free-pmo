@@ -10,7 +10,7 @@ return [
     'to'                => 'To',
     'from'              => 'From',
     'active'            => 'Active',
-    'in_active'         => 'In Aktif',
+    'in_active'         => 'In Active',
     'show_detail_title' => 'Show :name :type detail',
     'status'            => 'Status',
     'type'              => 'Type',

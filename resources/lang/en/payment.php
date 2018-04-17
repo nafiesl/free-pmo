@@ -38,7 +38,7 @@ return [
     'out'         => 'Cash out',
     'type'        => 'Payment Type',
     'project'     => 'Project',
-    'customer'    => 'Customer',
+    'customer'    => 'From/To',
     'amount'      => 'Amount',
     'cash_in'     => 'Cash In',
     'cash_out'    => 'Cash Out',

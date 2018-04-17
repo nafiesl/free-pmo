@@ -23,7 +23,7 @@ class CreateRequest extends Request
      */
     public function rules()
     {
-        return [
+        $rules = [
             'date'        => 'required|date|date_format:Y-m-d',
             'in_out'      => 'required|numeric',
             'amount'      => 'required',
@@ -32,5 +32,13 @@ class CreateRequest extends Request
             'partner_id'  => 'required|numeric',
             'description' => 'required|max:255',
         ];
+
+        if ($this->get('in_out') == 0) {
+            $rules['partner_id'] = 'required|numeric|exists:vendors,id';
+        } else {
+            $rules['partner_id'] = 'required|numeric|exists:customers,id';
+        }
+
+        return $rules;
     }
 }

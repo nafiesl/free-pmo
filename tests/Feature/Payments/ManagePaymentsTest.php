@@ -83,6 +83,41 @@ class ManagePaymentsTest extends TestCase
     }
 
     /** @test */
+    public function payment_entry_validation_check()
+    {
+        $user = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+
+        // Submit Form
+        $this->post(route('payments.store'), [
+            'date'        => '2015-05-01',
+            'in_out'      => 0,
+            'type_id'     => 3,
+            'amount'      => 1000000,
+            'project_id'  => $project->id,
+            'partner_id'  => $project->customer_id,
+            'description' => 'Pembayaran DP',
+        ]);
+
+        $this->assertSessionHasErrors('partner_id');
+
+        factory(Vendor::class)->create();
+        $vendor = factory(Vendor::class)->create();
+        // Submit Form
+        $this->post(route('payments.store'), [
+            'date'        => '2015-05-01',
+            'in_out'      => 1,
+            'type_id'     => 3,
+            'amount'      => 1000000,
+            'project_id'  => $project->id,
+            'partner_id'  => $vendor->id,
+            'description' => 'Pembayaran DP',
+        ]);
+
+        $this->assertSessionHasErrors('partner_id');
+    }
+
+    /** @test */
     public function admin_can_edit_payment_data()
     {
         $user = $this->adminUserSigningIn();

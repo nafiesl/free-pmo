@@ -19,7 +19,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^2.0",
         "fzaninotto/faker": "~1.4",
-        "johnkary/phpunit-speedtrap": "dev-master",
+        "johnkary/phpunit-speedtrap": "^2.0",
         "laravel/browser-kit-testing": "^2.0",
         "luthfi/simple-crud-generator": "^1.0",
         "mockery/mockery": "0.9.*",

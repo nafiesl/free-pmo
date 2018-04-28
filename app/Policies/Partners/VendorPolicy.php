@@ -64,6 +64,6 @@ class VendorPolicy
      */
     public function delete(User $user, Vendor $vendor)
     {
-        return $this->view($user, $vendor);
+        return $user->hasRole('admin') && $vendor->payments->isEmpty();
     }
 }

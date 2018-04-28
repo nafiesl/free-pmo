@@ -3,7 +3,8 @@
 namespace Tests\Unit\Policies;
 
 use App\Entities\Partners\Vendor;
-use Tests\TestCase as TestCase;
+use App\Entities\Payments\Payment;
+use Tests\TestCase;
 
 /**
  * Vendor Policy Test.
@@ -53,5 +54,20 @@ class VendorPolicyTest extends TestCase
 
         $this->assertTrue($admin->can('delete', $vendor));
         $this->assertFalse($worker->can('delete', $vendor));
+    }
+
+    /** @test */
+    public function admin_cannot_delete_vendor_if_it_has_dependent_records()
+    {
+        $admin = $this->createUser('admin');
+        $vendor = factory(Vendor::class)->create();
+        $this->assertTrue($admin->can('delete', $vendor));
+
+        $payment = factory(Payment::class)->create([
+            'partner_type' => Vendor::class,
+            'partner_id'   => $vendor->id,
+        ]);
+
+        $this->assertFalse($admin->can('delete', $vendor->fresh()));
     }
 }

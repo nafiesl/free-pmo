@@ -32,8 +32,13 @@
             {!! $errors->first('vendor_id', '<span class="form-error small">:message</span>') !!}
         </div>
         <hr style="margin:0">
-        <div class="panel-body">{{ trans('app.delete_confirm') }}</div>
+        @can('delete', $editableVendor)
+            <div class="panel-body">{{ trans('app.delete_confirm') }}</div>
+        @else
+            <div class="panel-body">{{ trans('vendor.undeleteable') }}</div>
+        @endcan
         <div class="panel-footer">
+            @can('delete', $editableVendor)
             {!! FormField::delete(
                 ['route'=>['vendors.destroy',$editableVendor->id]],
                 trans('app.delete_confirm_button'),
@@ -44,6 +49,7 @@
                     'q' => request('q'),
                 ]
             ) !!}
+            @endcan
             {{ link_to_route('vendors.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
         </div>
     </div>

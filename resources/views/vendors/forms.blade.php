@@ -21,6 +21,14 @@
     @endif
     {!! Form::submit(trans('vendor.update'), ['class' => 'btn btn-success']) !!}
     {{ link_to_route('vendors.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
+    @can('delete', $editableVendor)
+        {!! link_to_route(
+            'vendors.index',
+            trans('app.delete'),
+            ['action' => 'delete', 'id' => $editableVendor->id] + Request::only('page', 'q'),
+            ['id' => 'del-vendor-' . $editableVendor->id, 'class' => 'btn btn-danger pull-right']
+        ) !!}
+    @endcan
     {!! Form::close() !!}
 @endif
 @if (Request::get('action') == 'delete' && $editableVendor)

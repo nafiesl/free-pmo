@@ -41,12 +41,6 @@
                                 trans('app.edit'),
                                 ['action' => 'edit', 'id' => $vendor->id] + Request::only('page', 'q'),
                                 ['id' => 'edit-vendor-' . $vendor->id]
-                            ) !!} |
-                            {!! link_to_route(
-                                'vendors.index',
-                                trans('app.delete'),
-                                ['action' => 'delete', 'id' => $vendor->id] + Request::only('page', 'q'),
-                                ['id' => 'del-vendor-' . $vendor->id]
                             ) !!}
                         </td>
                     </tr>

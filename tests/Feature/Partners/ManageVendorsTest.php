@@ -78,7 +78,7 @@ class ManageVendorsTest extends TestCase
         $this->adminUserSigningIn();
         $vendor = factory(Vendor::class)->create();
 
-        $this->visit(route('vendors.index', [$vendor->id]));
+        $this->visit(route('vendors.index', ['action' => 'edit', 'id' => $vendor->id]));
         $this->click('del-vendor-'.$vendor->id);
         $this->seePageIs(route('vendors.index', ['action' => 'delete', 'id' => $vendor->id]));
 

@@ -32,8 +32,9 @@ return [
     'projects_count' => 'Projects count',
 
     // Relations
-    'projects'      => 'Project List',
-    'payments'      => 'Payment History',
-    'subscriptions' => 'Subscription List',
-    'invoices'      => 'Invoice List',
+    'projects'            => 'Project List',
+    'payments'            => 'Payment History',
+    'subscriptions'       => 'Subscription List',
+    'subscriptions_count' => 'Subscriptions Count',
+    'invoices'            => 'Invoice List',
 ];

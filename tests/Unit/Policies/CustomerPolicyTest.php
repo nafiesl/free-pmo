@@ -3,7 +3,7 @@
 namespace Tests\Unit\Policies;
 
 use App\Entities\Partners\Customer;
-use Tests\TestCase as TestCase;
+use Tests\TestCase;
 
 /**
  * Customer Policy Test.
@@ -53,5 +53,15 @@ class CustomerPolicyTest extends TestCase
 
         $this->assertTrue($admin->can('delete', $customer));
         $this->assertFalse($worker->can('delete', $customer));
+    }
+
+    /** @test */
+    public function admin_cannot_delete_customer_if_it_has_dependent_records()
+    {
+        $admin = $this->createUser('admin');
+        $customer = factory(Customer::class)->create();
+
+        $this->assertTrue($admin->can('delete', [$customer, 0]));
+        $this->assertFalse($admin->can('delete', [$customer, 1]));
     }
 }

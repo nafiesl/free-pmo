@@ -10,8 +10,9 @@
     {{ $customer->name }} <small>{{ trans('customer.edit') }}</small>
 </h1>
 
-@includeWhen(Request::has('action'), 'customers.forms')
-
+@if (Request::has('action'))
+    @include('customers.forms')
+@else
 {!! Form::model($customer, ['route' => ['customers.update', $customer->id],'method' => 'patch']) !!}
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
@@ -50,4 +51,5 @@
     </div>
 </div>
 {!! Form::close() !!}
+@endif
 @endsection

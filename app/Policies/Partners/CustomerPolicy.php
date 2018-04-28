@@ -59,11 +59,12 @@ class CustomerPolicy
      *
      * @param \App\Entities\Users\User        $user
      * @param \App\Entities\Partners\Customer $customer
+     * @param int                             $dependentRecordsCount
      *
      * @return mixed
      */
-    public function delete(User $user, Customer $customer)
+    public function delete(User $user, Customer $customer, int $dependentRecordsCount = 0)
     {
-        return $this->view($user, $customer);
+        return $user->hasRole('admin') && $dependentRecordsCount == 0;
     }
 }

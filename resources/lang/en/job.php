@@ -30,6 +30,8 @@ return [
     'select_project'         => 'Select a project.',
     'sort_tasks'             => 'Sort Task Priority',
 
+    'created_from_other_project' => 'Job has been added from other Project.',
+
     // Attributes
     'name'        => 'Job Name',
     'description' => 'Description',

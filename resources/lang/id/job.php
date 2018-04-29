@@ -30,6 +30,8 @@ return [
     'select_project'         => 'Pilih salah satu project.',
     'sort_tasks'             => 'Urutkan Prioritas Task',
 
+    'created_from_other_project' => 'Berhasil tambah job dari Project lain.',
+
     // Attributes
     'name'        => 'Nama Job',
     'description' => 'Deskripsi',

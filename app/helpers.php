@@ -46,7 +46,7 @@ function formatDate($date)
         return $explodedDate[2].'-'.$explodedDate[1].'-'.$explodedDate[0];
     }
 
-    throw new App\Exceptions\InvalidDateException('Kesalahan format tanggal');
+    throw new App\Exceptions\InvalidDateException('Invalid date format.');
 }
 
 function dateId($date)
@@ -63,7 +63,7 @@ function dateId($date)
         return $explodedDate[2].' '.$months[$explodedDate[1]].' '.$explodedDate[0];
     }
 
-    throw new App\Exceptions\InvalidDateException('Kesalahan format tanggal');
+    throw new App\Exceptions\InvalidDateException('Invalid date format.');
 }
 
 function monthNumber($number)
@@ -86,18 +86,18 @@ function monthId($monthNumber)
 function getMonths()
 {
     return [
-        '01' => 'Januari',
-        '02' => 'Pebruari',
-        '03' => 'Maret',
-        '04' => 'April',
-        '05' => 'Mei',
-        '06' => 'Juni',
-        '07' => 'Juli',
-        '08' => 'Agustus',
-        '09' => 'September',
-        '10' => 'Oktober',
-        '11' => 'Nopember',
-        '12' => 'Desember',
+        '01' => __('time.month.01'),
+        '02' => __('time.month.02'),
+        '03' => __('time.month.03'),
+        '04' => __('time.month.04'),
+        '05' => __('time.month.05'),
+        '06' => __('time.month.06'),
+        '07' => __('time.month.07'),
+        '08' => __('time.month.08'),
+        '09' => __('time.month.09'),
+        '10' => __('time.month.10'),
+        '11' => __('time.month.11'),
+        '12' => __('time.month.12'),
     ];
 }
 
@@ -116,26 +116,13 @@ function str_split_ucwords($string)
     return ucwords(str_replace('_', ' ', $string));
 }
 
-function getDays()
-{
-    return $days = [1 => 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-}
-
-function getDay($dayIndex = null)
-{
-    $days = getDays();
-    if (!is_null($dayIndex) && in_array($dayIndex, range(1, 7))) {
-        return $days[$dayIndex];
-    }
-
-    return '-';
-}
-
-function sanitizeNumber($number)
-{
-    return str_replace(',', '.', $number);
-}
-
+/**
+ * Convert file size to have unit string.
+ *
+ * @param int $bytes File size.
+ *
+ * @return string Converted file size with unit.
+ */
 function formatSizeUnits($bytes)
 {
     if ($bytes >= 1073741824) {

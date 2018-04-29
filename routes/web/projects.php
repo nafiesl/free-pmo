@@ -40,10 +40,10 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     /*
      * Tasks Routes
      */
-    Route::get('jobs/{id}/tasks/create', ['as' => 'tasks.create', 'uses' => 'TasksController@create']);
-    Route::post('jobs/{id}/tasks', ['as' => 'tasks.store', 'uses' => 'TasksController@store']);
-    Route::patch('task/{id}', ['as' => 'tasks.update', 'uses' => 'TasksController@update']);
-    Route::delete('task/{id}', ['as' => 'tasks.destroy', 'uses' => 'TasksController@destroy']);
+    Route::get('jobs/{job}/tasks/create', ['as' => 'tasks.create', 'uses' => 'TasksController@create']);
+    Route::post('jobs/{job}/tasks', ['as' => 'tasks.store', 'uses' => 'TasksController@store']);
+    Route::patch('tasks/{task}', ['as' => 'tasks.update', 'uses' => 'TasksController@update']);
+    Route::delete('tasks/{task}', ['as' => 'tasks.destroy', 'uses' => 'TasksController@destroy']);
 
     /*
      * Files Routes

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Tasks;
 
-use App\Entities\Projects\Task;
 use App\Http\Requests\Request;
 
 class UpdateRequest extends Request
@@ -14,9 +13,9 @@ class UpdateRequest extends Request
      */
     public function authorize()
     {
-        $task = Task::findOrFail($this->segment(2));
-
-        return auth()->user()->can('update', $task);
+        return auth()->user()->can(
+            'update', $this->route('task')
+        );
     }
 
     /**
@@ -28,9 +27,9 @@ class UpdateRequest extends Request
     {
         return [
             'name'        => 'required|max:60',
-            'description' => 'max:255',
-            'progress'    => 'numeric|max:100',
-            'route_name'  => 'max:255',
+            'description' => 'nullable|max:255',
+            'progress'    => 'required|numeric|max:100',
+            'job_id'      => 'required|numeric|exists:jobs,id',
         ];
     }
 }

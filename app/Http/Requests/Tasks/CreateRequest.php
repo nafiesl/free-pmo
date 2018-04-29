@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Tasks;
 
+use App\Entities\Projects\Task;
 use App\Http\Requests\Request;
 
 class CreateRequest extends Request
@@ -13,7 +14,7 @@ class CreateRequest extends Request
      */
     public function authorize()
     {
-        return auth()->user()->can('manage_agency');
+        return auth()->user()->can('create', new Task());
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Tasks;
 
+use App\Entities\Projects\Task;
 use App\Http\Requests\Request;
 
 class DeleteRequest extends Request
@@ -13,7 +14,9 @@ class DeleteRequest extends Request
      */
     public function authorize()
     {
-        return auth()->user()->can('manage_agency');
+        $task = Task::findOrFail($this->segment(2));
+
+        return auth()->user()->can('delete', $task);
     }
 
     /**

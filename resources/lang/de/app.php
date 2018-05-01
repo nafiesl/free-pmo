@@ -1,0 +1,52 @@
+<?php
+
+return [
+    // Labels
+    'table_no'          => '#',
+    'no'                => 'Nr.',
+    'label'             => 'Label',
+    'action'            => 'Aktion',
+    'welcome'           => 'Willkommen',
+    'to'                => 'Zu',
+    'from'              => 'Von',
+    'active'            => 'aktiv',
+    'in_active'         => 'in Bearbeitung',
+    'show_detail_title' => 'Zeige :name :type detail',
+    'status'            => 'Status',
+    'type'              => 'Typ',
+    'total'             => 'gesamt',
+    'count'             => 'Summe',
+    'remark'            => 'Remark',
+
+    // Action
+    'add'                   => 'Hinzufügen',
+    'submit'                => 'absenden',
+    'update'                => 'aktualisieren',
+    'delete'                => 'löschen',
+    'back'                  => 'zurück',
+    'cancel'                => 'abbrechen',
+    'reset'                 => 'zurücksetzen',
+    'show'                  => 'zeige Details',
+    'edit'                  => 'bearbeiten',
+    'print'                 => 'drucken',
+    'search'                => 'suchen',
+    'filter'                => 'filtern',
+    'pick'                  => 'auswählen',
+    'close'                 => 'schließen',
+    'delete_confirm_button' => 'Ja, bitte lösche es',
+    'delete_confirm'        => 'Wollen Sie das wirklich löschen?',
+    'change_photo'          => 'Foto ändern',
+    'done'                  => 'fertig',
+
+    // Attributes
+    'name'        => 'Name',
+    'notes'       => 'Notizen',
+    'description' => 'Beschreibung',
+    'code'        => 'Code',
+    'date'        => 'Datum',
+    'time'        => 'Zeit',
+    'created_at'  => 'erstellt am',
+    'created_by'  => 'erstellt von',
+    'start_date'  => 'Startdatum',
+    'end_date'    => 'Enddatum',
+];

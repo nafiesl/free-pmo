@@ -22,4 +22,15 @@
         + (auth()->user()->lang == 'id' ? ['disabled' => 'disabled'] : []),
         ['lang' => 'id']
     ) !!}
+    {!! FormField::formButton(
+        [
+            'route'  => 'users.profile.switch-lang',
+            'method' => 'patch',
+            'title'  => auth()->user()->lang != 'de' ? trans('lang.switch_tooltip', ['lang' => trans('lang.de')]) : ''
+        ],
+        'DE',
+        ['class' => 'btn btn-default btn-xs', 'de' => 'switch_lang_de']
+        + (auth()->user()->lang == 'de' ? ['disabled' => 'disabled'] : []),
+        ['lang' => 'de']
+    ) !!}
 </div>

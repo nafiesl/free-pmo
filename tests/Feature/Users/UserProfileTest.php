@@ -36,7 +36,7 @@ class UserProfileTest extends TestCase
         $this->submitForm(trans('auth.update_profile'), [
             'name'  => 'Nama Saya',
             'email' => 'me@domain.com',
-            'lang'  => 'en', // en, id
+            'lang'  => 'en', // en, id, de
         ]);
 
         $this->see(trans('auth.profile_updated'));
@@ -80,5 +80,10 @@ class UserProfileTest extends TestCase
 
         $this->assertEquals('id', app()->getLocale());
         $this->assertEquals('id', $user->fresh()->lang);
+
+        $this->submitForm('switch_lang_id', ['lang' => 'de']);
+
+        $this->assertEquals('de', app()->getLocale());
+        $this->assertEquals('de', $user->fresh()->lang);
     }
 }

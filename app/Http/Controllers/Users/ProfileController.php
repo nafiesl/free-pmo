@@ -20,7 +20,11 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        $langList = ['en' => trans('lang.en'), 'id' => trans('lang.id')];
+        $langList = [
+            'en' => trans('lang.en'),
+            'id' => trans('lang.id'),
+            'de' => trans('lang.de'),
+        ];
 
         return view('users.profile.edit', compact('langList'));
     }
@@ -30,7 +34,7 @@ class ProfileController extends Controller
         request()->validate([
             'name'  => 'required|string|max:100',
             'email' => 'required|email|max:255',
-            'lang'  => 'required|string|in:en,id',
+            'lang'  => 'required|string|in:en,id,de',
         ]);
 
         $user = auth()->user();
@@ -48,7 +52,7 @@ class ProfileController extends Controller
     public function switchLang()
     {
         $userData = request()->validate([
-            'lang' => 'required|string|in:en,id',
+            'lang' => 'required|string|in:en,id,de',
         ]);
 
         $user = request()->user();

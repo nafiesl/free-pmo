@@ -7,8 +7,8 @@
 
 <h1 class="page-header">
     <div class="pull-right">
-        {!! html_link_to_route('payments.create', trans('payment.create'), ['project_id' => $project->id,'customer_id' => $project->customer_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-        {!! html_link_to_route('projects.fees.create', trans('payment.create_fee'), ['project_id' => $project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+        {!! html_link_to_route('payments.create', trans('payment.create'), ['project_id' => $project->id, 'customer_id' => $project->customer_id], ['class' => 'btn btn-success', 'icon' => 'plus']) !!}
+        {!! html_link_to_route('projects.fees.create', trans('payment.create_fee'), ['project_id' => $project->id], ['class' => 'btn btn-default', 'icon' => 'plus']) !!}
     </div>
     {{ $project->name }} <small>{{ trans('project.payments') }}</small>
 </h1>
@@ -40,9 +40,9 @@
                 <td>{{ $payment->partner->name }}</td>
                 <td>{{ $payment->description }} [{{ $payment->type() }}]</td>
                 <td class="text-center">
-                    {!! html_link_to_route('payments.show','',[$payment->id],['class' => 'btn btn-info btn-xs','icon' => 'search','title' => 'Lihat ' . trans('payment.show')]) !!}
+                    {!! html_link_to_route('payments.show', '',[$payment->id],['class' => 'btn btn-info btn-xs', 'icon' => 'search', 'title' => trans('payment.show')]) !!}
                     @if ($payment->in_out == 1)
-                    {!! html_link_to_route('payments.pdf','',[$payment->id],['class' => 'btn btn-success btn-xs','icon' => 'print','title' => trans('payment.print')]) !!}
+                    {!! html_link_to_route('payments.pdf', '',[$payment->id],['class' => 'btn btn-success btn-xs', 'icon' => 'print', 'title' => trans('payment.print')]) !!}
                     @endif
                 </td>
             </tr>

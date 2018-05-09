@@ -15,8 +15,8 @@
         <legend>@lang('app.action')</legend>
         <p>{!! link_to_route('payments.pdf', trans('payment.print'), [$payment->id], ['class' => 'btn btn-success']) !!}</p>
         <p>{!! link_to_route('payments.edit', trans('payment.edit'), [$payment->id], ['class' => 'btn btn-warning']) !!}</p>
-        <p>{!! link_to_route('projects.payments', 'Kembali ke Daftar Pembayaran Project', [$payment->project_id], ['class' => 'btn btn-default']) !!}</p>
-        <p>{!! link_to_route('payments.index', 'Lihat Semua Pembayaran', [], ['class' => 'btn btn-default']) !!}</p>
+        <p>{!! link_to_route('projects.payments', __('project.view_payments'), [$payment->project_id], ['class' => 'btn btn-default']) !!}</p>
+        <p>{!! link_to_route('payments.index', __('payment.back_to_index'), [], ['class' => 'btn btn-default']) !!}</p>
     </div>
 </div>
 @endsection

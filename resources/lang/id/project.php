@@ -21,6 +21,7 @@ return [
     'additional_jobs'      => 'Daftar Job Tambahan',
 
     // Payments
+    'view_payments'    => 'Lihat Semua Pembayaran Project',
     'payment_summary'  => 'Summary Pembayaran',
     'payment_status'   => 'Status',
     'payment_statuses' => [

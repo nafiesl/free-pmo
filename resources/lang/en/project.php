@@ -21,6 +21,7 @@ return [
     'additional_jobs'      => 'Additional Job List',
 
     // Payments
+    'view_payments'    => 'View All Project Payments',
     'payment_summary'  => 'Payment Summary',
     'payment_status'   => 'Payment Status',
     'payment_statuses' => [

@@ -21,6 +21,7 @@ return [
     'additional_jobs'      => 'Zusätzliche Beschäftigungsliste',
 
     // Payments
+    'view_payments'    => 'View All Project Payments',
     'payment_summary'  => 'Zahlungssumme',
     'payment_status'   => 'Zahlungsstatus',
     'payment_statuses' => [

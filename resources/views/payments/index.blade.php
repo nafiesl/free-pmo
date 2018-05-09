@@ -38,7 +38,7 @@
                     'projects.payments',
                     $payment->project->name,
                     [$payment->project_id],
-                    ['title' => 'Lihat seluruh Pembayaran Project ini']
+                    ['title' => __('project.view_payments')]
                 ) }}<br>
                 <strong class="text-success">{{ $payment->type() }}</strong>
             </td>

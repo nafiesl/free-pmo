@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'date'  => 'Datum',
+    'month' => 'Monat',
+
     'months' => [
         '01' => 'Januar',
         '02' => 'Februari',

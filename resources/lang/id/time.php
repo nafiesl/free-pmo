@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'date'  => 'Tanggal',
+    'month' => 'Bulan',
+
     'months' => [
         '01' => 'Januari',
         '02' => 'Pebruari',

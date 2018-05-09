@@ -2,17 +2,17 @@
 
 return [
     'months' => [
-        '01' => 'January',
+        '01' => 'Januar',
         '02' => 'Februari',
-        '03' => 'March',
+        '03' => 'März',
         '04' => 'April',
-        '05' => 'May',
+        '05' => 'Kann',
         '06' => 'June',
         '07' => 'July',
         '08' => 'August',
         '09' => 'September',
-        '10' => 'October',
+        '10' => 'Oktober',
         '11' => 'November',
-        '12' => 'December',
+        '12' => 'Dezember',
     ],
 ];

@@ -129,16 +129,15 @@
             @if ($invoice->notes)
             <tr style="vertical-align: top;">
                 <td colspan="3">
-                    <p style="font-style: italic;"><strong>Catatan</strong> : {!! nl2br($invoice->notes) !!}</p>
+                    <p style="font-style: italic;"><strong>{{ __('app.notes') }}</strong> : {!! nl2br($invoice->notes) !!}</p>
                 </td>
             </tr>
             @endif
-            {{-- TODO : Add dynamic bank account based on agency bank account. --}}
             <tr style="vertical-align: top;">
                 <td colspan="3">
                     @empty ($bankAccounts)
                     @else
-                        <p>Pembayaran dapat dilakukan melalui transfer ke rekening berikut:</p>
+                        <p>{{ __('invoice.payment_instruction') }}</p>
                         @foreach ($bankAccounts as $key => $bankAccount)
                             @php $bankAccount = (object) $bankAccount; @endphp
                             <table style="border: 1px solid #ccc;width: 330px">
@@ -150,7 +149,7 @@
                         @endforeach
                     @endempty
 
-                    <p>Terima kasih atas kerjasamanya.</p>
+                    <p>{{ __('invoice.thanks_text') }}</p>
                 </td>
             </tr>
             <tr>

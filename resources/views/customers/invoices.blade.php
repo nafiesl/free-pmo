@@ -29,7 +29,7 @@
                         [
                             'icon' => 'search',
                             'class' => 'btn btn-info btn-xs',
-                            'title' => 'Lihat ' . trans('invoice.show')
+                            'title' =>  __('invoice.show'),
                         ]
                     ) !!}
                     {!! html_link_to_route(

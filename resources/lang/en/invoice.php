@@ -21,7 +21,7 @@ return [
     'create'              => 'Create new Invoice',
     'save'                => 'Save Invoice',
     'created'             => 'New Invoice has been created.',
-    'show'                => 'Invoice Detail',
+    'show'                => 'View Invoice Detail',
     'edit'                => 'Edit Invoice',
     'update'              => 'Update Invoice',
     'updated'             => 'Invoice data has been updated.',
@@ -38,6 +38,8 @@ return [
     'item_removed'        => 'Item removed.',
     'confirm_instruction' => 'Please check this Invoice detail, hit :back_link to edit the detail.',
     'draft_del_confirm'   => 'Are you sure to remove this Invoice Draft?',
+    'payment_instruction' => 'Payment can be transfered via our bank account(s):',
+    'thanks_text'         => 'Thank you for using our services.',
 
     // Attributes
     'number'           => 'Invocie No.',

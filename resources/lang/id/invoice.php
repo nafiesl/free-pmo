@@ -21,7 +21,7 @@ return [
     'create'              => 'Input Invoice Baru',
     'save'                => 'Simpan Invoice',
     'created'             => 'Input Invoice baru telah berhasil.',
-    'show'                => 'Detail Invoice',
+    'show'                => 'Lihat Detail Invoice',
     'edit'                => 'Edit Invoice',
     'update'              => 'Update Invoice',
     'updated'             => 'Update data Invoice telah berhasil.',
@@ -38,6 +38,8 @@ return [
     'item_removed'        => 'Item berhasil dihapus.',
     'confirm_instruction' => 'Silakan periksa rincian di bawah ini, jika belum sesuai, silakan klik :back_link.',
     'draft_del_confirm'   => 'Yakin ingin menghapus Draft Invoice ini?',
+    'payment_instruction' => 'Pembayaran dapat dilakukan melalui transfer ke rekening berikut:',
+    'thanks_text'         => 'Terima kasih atas kerjasamanya.',
 
     // Attributes
     'number'           => 'No. Invoice',

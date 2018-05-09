@@ -42,12 +42,27 @@
                 <td>{{ $project->customer->nameLink() }}</td>
                 <td class="text-right">{{ formatRp($invoice->amount) }}</td>
                 <td class="text-center">
-                    {!! html_link_to_route('invoices.show', '', [$invoice->number], ['class' => 'btn btn-info btn-xs','icon' => 'search','title' => 'Lihat ' . trans('invoice.show')]) !!}
-                    {!! html_link_to_route('invoices.pdf', '', [$invoice->number], ['class' => 'btn btn-default btn-xs','icon' => 'print','title' => trans('invoice.print'), 'target' => '_blank']) !!}
+                    {!! html_link_to_route(
+                        'invoices.show', '', [$invoice->number],
+                        [
+                            'class' => 'btn btn-info btn-xs',
+                            'icon' => 'search',
+                            'title' =>  __('invoice.show'),
+                        ]
+                    ) !!}
+                    {!! html_link_to_route(
+                        'invoices.pdf', '', [$invoice->number],
+                        [
+                            'class' => 'btn btn-default btn-xs',
+                            'icon' => 'print',
+                            'title' => __('invoice.print'),
+                            'target' => '_blank'
+                        ]
+                    ) !!}
                 </td>
             </tr>
             @empty
-            <tr><td colspan="6">{{ trans('invoice.empty') }}</td></tr>
+            <tr><td colspan="7">{{ trans('invoice.empty') }}</td></tr>
             @endforelse
         </tbody>
         <tfoot>

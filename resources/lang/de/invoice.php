@@ -38,6 +38,8 @@ return [
     'item_removed'        => 'Position gelöscht.',
     'confirm_instruction' => 'Bitte übeprüfen Sie diese Rechnungsposition, tippe :back_link zum Bearbeiten.',
     'draft_del_confirm'   => 'Wollen Sie wirklich diesen Entwurf löschen?',
+    'payment_instruction' => 'Payment can be transfered via our bank account(s):',
+    'thanks_text'         => 'Thank you for using our services.',
 
     // Attributes
     'number'           => 'Rechnungsnr.',

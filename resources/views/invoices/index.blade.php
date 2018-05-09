@@ -41,7 +41,7 @@
                         [
                             'icon' => 'search',
                             'class' => 'btn btn-info btn-xs',
-                            'title' => 'Lihat ' . trans('invoice.show')
+                            'title' =>  __('invoice.show'),
                         ]
                     ) !!}
                     {!! html_link_to_route(
@@ -62,7 +62,7 @@
             <tr>
                 <th colspan="5" class="text-right">{{ trans('app.total') }}</th>
                 <th class="text-right">{{ formatRp($invoices->sum('amount')) }}</th>
-                <th></th>
+                <th>&nbsp;</th>
             </tr>
         </tfoot>
     </table>

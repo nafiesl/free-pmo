@@ -4,7 +4,7 @@
 
 @section('content')
 <ul class="breadcrumb hidden-print">
-    <li>{{ link_to_route('reports.payments.yearly', __('report.yearly', ['year' => $year])) }}</li>
+    <li>{{ link_to_route('reports.payments.yearly', __('report.yearly', ['year' => $year]), ['year' => $year]) }}</li>
     <li class="active">{{ $months[$month] }}</li>
 </ul>
 

@@ -7,7 +7,7 @@
 @php $dt = Carbon\Carbon::parse($date); @endphp
 
 <ul class="breadcrumb hidden-print">
-    <li>{{ link_to_route('reports.payments.yearly', 'Laporan Tahun ' . $dt->year, ['year' => $dt->year]) }}</li>
+    <li>{{ link_to_route('reports.payments.yearly', __('report.yearly', ['year' => $dt->year]), ['year' => $dt->year]) }}</li>
     <li>{{ link_to_route('reports.payments.monthly', getMonths()[monthNumber($dt->month)], ['year' => $dt->year,'month' => monthNumber($dt->month)]) }}</li>
     <li class="active">{{ $dt->format('d') }}</li>
 </ul>

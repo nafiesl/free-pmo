@@ -69,6 +69,8 @@
                 <tr>
                     <th class="text-center">{{ trans('app.total') }}</th>
                     <th class="text-center">{{ $reports->sum('count') }}</th>
+                    <th class="text-right">{{ formatRp($reports->sum('cashin')) }}</th>
+                    <th class="text-right">{{ formatRp($reports->sum('cashout')) }}</th>
                     <th class="text-right">{{ formatRp($reports->sum('profit')) }}</th>
                     <td>&nbsp;</td>
                 </tr>

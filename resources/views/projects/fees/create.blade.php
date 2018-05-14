@@ -9,7 +9,7 @@
         {{ link_to_route(
             'projects.index',
             trans('project.projects'),
-            ['status' => request('status', $project->status_id)]
+            ['status_id' => request('status_id', $project->status_id)]
         ) }}</li>
     <li>{{ $project->nameLink() }}</li>
     <li>{{ link_to_route('projects.payments', trans('payment.list'), [$project->id]) }}</li>

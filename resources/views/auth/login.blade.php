@@ -3,7 +3,7 @@
 @section('title', __('auth.login'))
 
 @section('content')
-@include('flash::message')
+
 <div class="login-panel col-md-4 col-md-offset-4 text-center">
     {!! appLogoImage() !!}
     <h3>{{ config('app.name') }}</h3>

@@ -22,6 +22,7 @@
 
     {!! Html::script(url('assets/js/jquery.js')) !!}
     {!! Html::script(url('assets/js/bootstrap.min.js')) !!}
+    @include('layouts.partials.noty')
     @yield('ext_js')
 
     <script type="text/javascript">

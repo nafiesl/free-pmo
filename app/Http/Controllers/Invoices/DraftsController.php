@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Invoices;
 
+use Illuminate\Http\Request;
 use App\Entities\Projects\Project;
 use App\Http\Controllers\Controller;
+use App\Services\InvoiceDrafts\Item;
 use App\Services\InvoiceDrafts\InvoiceDraft;
 use App\Services\InvoiceDrafts\InvoiceDraftCollection;
-use App\Services\InvoiceDrafts\Item;
-use Illuminate\Http\Request;
 
 /**
  * Invoice Drafts Controller.
@@ -143,7 +143,7 @@ class DraftsController extends Controller
         $draft = $this->draftCollection->updateDraftAttributes($draftKey, $invoiceData);
 
         if ($draft->getItemsCount() == 0) {
-            flash(trans('invoice.item_list_empty'), 'warning')->important();
+            flash(trans('invoice.item_list_empty'), 'warning');
 
             return redirect()->route('invoice-drafts.show', [$draftKey]);
         }
@@ -160,7 +160,7 @@ class DraftsController extends Controller
 
         $invoice = $draft->store();
         $draft->destroy();
-        flash(trans('invoice.created', ['number' => $invoice->number]), 'success')->important();
+        flash(trans('invoice.created', ['number' => $invoice->number]), 'success');
 
         return redirect()->route('invoices.show', $invoice->number);
     }

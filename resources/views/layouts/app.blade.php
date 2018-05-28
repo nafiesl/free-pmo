@@ -18,7 +18,6 @@
         @include('layouts.partials.sidebar')
 
         <div id="page-wrapper">
-            @include('flash::message')
             <div class="container-fluid">
                 @yield('content')
             </div>
@@ -31,6 +30,7 @@
 
     {!! Html::script(url('assets/js/jquery.js')) !!}
     {!! Html::script(url('assets/js/bootstrap.min.js')) !!}
+    @include('layouts.partials.noty')
     {!! Html::script(url('assets/js/plugins/metisMenu/metisMenu.min.js')) !!}
     @yield('ext_js')
     {!! Html::script(url('assets/js/sb-admin-2.js')) !!}

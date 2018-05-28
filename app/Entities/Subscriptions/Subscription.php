@@ -4,13 +4,9 @@ namespace App\Entities\Subscriptions;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Laracasts\Presenter\PresentableTrait;
 
 class Subscription extends Model
 {
-    use PresentableTrait;
-
-    protected $presenter = 'App\Entities\Subscriptions\SubscriptionPresenter';
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function nameLink()

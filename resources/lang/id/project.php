@@ -19,6 +19,7 @@ return [
     'payment_remaining'    => 'Sisa',
     'earnings_calculation' => 'Rumus Pendapatan',
     'additional_jobs'      => 'Daftar Job Tambahan',
+    'overall_progress'     => 'Overall Progress',
 
     // Payments
     'view_payments'    => 'Lihat Semua Pembayaran Project',

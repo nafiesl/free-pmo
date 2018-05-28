@@ -19,6 +19,7 @@ return [
     'payment_remaining'    => 'Verbleibende Zahlung',
     'earnings_calculation' => 'Ergebnisberechnung',
     'additional_jobs'      => 'Zusätzliche Beschäftigungsliste',
+    'overall_progress'     => 'Overall Progress',
 
     // Payments
     'view_payments'    => 'View All Project Payments',

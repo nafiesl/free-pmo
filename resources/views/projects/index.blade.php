@@ -15,7 +15,7 @@
     {!! FormField::select('status_id', ProjectStatus::toArray(), ['value' => $statusId, 'placeholder' => trans('project.all')]) !!}
     {!! Form::text('q', Request::get('q'), ['class' => 'form-control index-search-field', 'placeholder' => trans('project.search'), 'style' => 'width:100%;max-width:350px']) !!}
     {!! Form::submit(trans('project.search'), ['class' => 'btn btn-info btn-sm']) !!}
-    {!! link_to_route('projects.index', __('app.reset'), [], ['class' => 'btn btn-default btn-sm']) !!}
+    {!! link_to_route('projects.index', __('app.reset'), Request::only(['status_id']), ['class' => 'btn btn-default btn-sm']) !!}
     {!! Form::close() !!}
 </div>
 <div class="table-responsive">
@@ -25,6 +25,9 @@
             <th>{{ trans('project.name') }}</th>
             <th class="text-center">{{ trans('project.start_date') }}</th>
             <th class="text-center">{{ trans('project.work_duration') }}</th>
+            @if (request('status_id') == 2)
+            <th class="text-right">{{ trans('project.overall_progress') }}</th>
+            @endif
             @can('see-pricings', new App\Entities\Projects\Project)
             <th class="text-right">{{ trans('project.project_value') }}</th>
             @endcan
@@ -39,6 +42,9 @@
                 <td>{{ $project->nameLink() }}</td>
                 <td class="text-center">{{ $project->start_date }}</td>
                 <td class="text-right">{{ $project->present()->workDuration }}</td>
+                @if (request('status_id') == 2)
+                <td class="text-right">{{ formatDecimal($project->getJobOveralProgress()) }} %</td>
+                @endif
                 @can('see-pricings', new App\Entities\Projects\Project)
                 <td class="text-right">{{ formatRp($project->project_value) }}</td>
                 @endcan

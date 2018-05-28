@@ -19,6 +19,7 @@ return [
     'payment_remaining'    => 'Payment Remaining',
     'earnings_calculation' => 'Earnings Calculation',
     'additional_jobs'      => 'Additional Job List',
+    'overall_progress'     => 'Overall Progress',
 
     // Payments
     'view_payments'    => 'View All Project Payments',

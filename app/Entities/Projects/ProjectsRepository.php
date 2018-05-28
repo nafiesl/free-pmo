@@ -2,11 +2,11 @@
 
 namespace App\Entities\Projects;
 
-use App\Entities\BaseRepository;
-use App\Entities\Partners\Customer;
-use App\Entities\Users\User;
 use DB;
 use ProjectStatus;
+use App\Entities\Users\User;
+use App\Entities\BaseRepository;
+use App\Entities\Partners\Customer;
 
 /**
  * Projects Repository Class.
@@ -34,7 +34,7 @@ class ProjectsRepository extends BaseRepository
                     }
                 })
                 ->latest()
-                ->with(['customer'])
+                ->with(['customer', 'jobs'])
                 ->paginate($this->_paginate);
         }
 

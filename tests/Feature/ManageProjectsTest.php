@@ -2,12 +2,12 @@
 
 namespace Tests\Feature;
 
-use App\Entities\Partners\Customer;
-use App\Entities\Payments\Payment;
-use App\Entities\Projects\Job;
-use App\Entities\Projects\Project;
-use App\Entities\Projects\Task;
 use Tests\TestCase;
+use App\Entities\Projects\Job;
+use App\Entities\Projects\Task;
+use App\Entities\Payments\Payment;
+use App\Entities\Projects\Project;
+use App\Entities\Partners\Customer;
 
 class ManageProjectsTest extends TestCase
 {
@@ -19,7 +19,7 @@ class ManageProjectsTest extends TestCase
 
         $this->visit(route('projects.create'));
 
-        $this->submitForm(trans('project.create'), [
+        $this->submitForm(__('project.create'), [
             'name'           => 'Project Baru',
             'customer_id'    => $customer->id,
             'proposal_date'  => '2016-04-15',
@@ -27,7 +27,7 @@ class ManageProjectsTest extends TestCase
             'description'    => 'Deskripsi project baru',
         ]);
 
-        $this->see(trans('project.created'));
+        $this->see(__('project.created'));
         $this->see('Project Baru');
         $this->seeInDatabase('projects', [
             'name'           => 'Project Baru',
@@ -43,7 +43,7 @@ class ManageProjectsTest extends TestCase
         $this->visit(route('projects.create'));
 
         // Invalid entry
-        $this->submitForm(trans('project.create'), [
+        $this->submitForm(__('project.create'), [
             'name'           => 'Project Baru',
             'customer_id'    => '',
             'proposal_date'  => '2016-04-15',
@@ -58,11 +58,12 @@ class ManageProjectsTest extends TestCase
             'proposal_value' => '2000000',
         ]);
 
-        $this->type('Customer Baru', 'customer_name');
-        $this->type('email@customer.baru', 'customer_email');
-        $this->press(trans('project.create'));
+        $this->submitForm(__('project.create'), [
+            'customer_name'  => 'Customer Baru',
+            'customer_email' => 'email@customer.baru',
+        ]);
 
-        $this->see(trans('project.created'));
+        $this->see(__('project.created'));
 
         $this->seeInDatabase('customers', [
             'name'  => 'Customer Baru',
@@ -81,20 +82,20 @@ class ManageProjectsTest extends TestCase
     /** @test */
     public function admin_can_delete_a_project()
     {
-        $user = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
+        $this->adminUserSigningIn();
 
-        $project = factory(Project::class)->create(['customer_id' => $customer->id]);
+        $project = factory(Project::class)->create();
+        $payment = factory(Payment::class)->create(['project_id' => $project->id]);
         $job = factory(Job::class)->create(['project_id' => $project->id]);
         $task = factory(Task::class)->create(['job_id' => $job->id]);
-        $payment = factory(Payment::class)->create(['project_id' => $project->id]);
 
-        $this->visit('projects/'.$project->id);
-        $this->click(trans('app.edit'));
-        $this->click(trans('app.delete'));
-        $this->press(trans('app.delete_confirm_button'));
+        $this->visit(route('projects.edit', $project));
+
+        $this->click(__('app.delete'));
+        $this->press(__('app.delete_confirm_button'));
+
         $this->seePageIs(route('projects.index'));
-        $this->see(trans('project.deleted'));
+        $this->see(__('project.deleted'));
 
         $this->notSeeInDatabase('projects', [
             'name'           => $project->name,
@@ -121,28 +122,34 @@ class ManageProjectsTest extends TestCase
         $customer = factory(Customer::class)->create();
         $project = factory(Project::class)->create(['customer_id' => $customer->id]);
 
-        $this->visit('projects/'.$project->id.'/edit');
-        $this->seePageIs('projects/'.$project->id.'/edit');
+        $this->visit(route('projects.edit', $project));
+        $this->seePageIs(route('projects.edit', $project));
 
-        $this->type('Edit Project', 'name');
-        $this->type('2016-04-15', 'proposal_date');
-        $this->type('2016-04-25', 'start_date');
-        $this->type('2016-05-05', 'end_date');
-        $this->type(2000000, 'proposal_value');
-        $this->type(2000000, 'project_value');
-        $this->select(4, 'status_id');
-        $this->select($customer->id, 'customer_id');
-        $this->type('Edit deskripsi project', 'description');
-        $this->press(trans('project.update'));
+        $this->submitForm(__('project.update'), [
+            'name'           => 'Edit Project',
+            'proposal_date'  => '2016-04-15',
+            'start_date'     => '2016-04-25',
+            'end_date'       => '2016-05-05',
+            'proposal_value' => 2000000,
+            'project_value'  => 2000000,
+            'status_id'      => 4,
+            'customer_id'    => $customer->id,
+            'description'    => 'Edit deskripsi project',
+        ]);
+
+        $this->seePageIs(route('projects.edit', $project));
+        $this->see(__('project.updated'));
 
         $this->seeInDatabase('projects', [
-            'id'            => $project->id,
-            'name'          => 'Edit Project',
-            'proposal_date' => '2016-04-15',
-            'start_date'    => '2016-04-25',
-            'end_date'      => '2016-05-05',
-            'customer_id'   => $customer->id,
-            'description'   => 'Edit deskripsi project',
+            'id'             => $project->id,
+            'name'           => 'Edit Project',
+            'proposal_date'  => '2016-04-15',
+            'start_date'     => '2016-04-25',
+            'end_date'       => '2016-05-05',
+            'proposal_value' => 2000000,
+            'project_value'  => 2000000,
+            'customer_id'    => $customer->id,
+            'description'    => 'Edit deskripsi project',
         ]);
     }
 
@@ -154,34 +161,35 @@ class ManageProjectsTest extends TestCase
 
         $this->visit(route('projects.index'));
         $this->seePageIs(route('projects.index'));
-        $this->click(trans('project.create'));
+
+        $this->click(__('project.create'));
         $this->seePageIs(route('projects.create'));
-        $this->type('', 'name');
-        $this->select($customer->id, 'customer_id');
-        $this->type('2016-04-15aa', 'proposal_date');
-        $this->type('', 'proposal_value');
-        $this->type('Deskripsi project baru', 'description');
-        $this->press(trans('project.create'));
+
+        $this->press(__('project.create'), [
+            'name'           => '',
+            'customer_id'    => $customer->id,
+            'proposal_date'  => '2016-04-15aa',
+            'proposal_value' => '',
+            'description'    => 'Deskripsi project baru',
+        ]);
 
         $this->seePageIs(route('projects.create'));
         $this->see(__('validation.flash_message'));
     }
 
     /** @test */
-    public function admin_can_update_project_status_on_project_detail_page()
+    public function admin_can_change_project_status_on_project_detail_page()
     {
-        $user = $this->adminUserSigningIn();
-        $customer = factory(Customer::class)->create();
-        $project = factory(Project::class)->create([
-            'customer_id' => $customer->id,
-            'status_id'   => 1,
-        ]);
+        $this->adminUserSigningIn();
+        $project = factory(Project::class)->create(['status_id' => 1]);
 
         $this->visit(route('projects.show', $project->id));
         $this->seePageIs(route('projects.show', $project->id));
+
         $this->select(2, 'status_id');
-        $this->press('Update Project Status');
-        $this->see(trans('project.updated'));
+        $this->press(__('project.update_status'));
+
+        $this->see(__('project.updated'));
         $this->seePageIs(route('projects.show', $project->id));
 
         $this->seeInDatabase('projects', [

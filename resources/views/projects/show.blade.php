@@ -17,7 +17,7 @@
         @can('update', $project)
         {!! Form::model($project, ['route' => ['projects.status-update', $project->id], 'method' => 'patch','class' => 'well well-sm form-inline']) !!}
         {!! FormField::select('status_id', ProjectStatus::toArray(), ['label' => trans('project.status')]) !!}
-        {!! Form::submit('Update Project Status', ['class' => 'btn btn-info btn-sm']) !!}
+        {!! Form::submit(__('project.update_status'), ['class' => 'btn btn-info btn-sm']) !!}
         {!! Form::close() !!}
         @endcan
         @include('projects.partials.project-stats')

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Projects;
 
+use Illuminate\Http\Request;
 use App\Entities\Projects\Project;
-use App\Entities\Projects\ProjectsRepository;
 use App\Http\Controllers\Controller;
+use App\Entities\Projects\ProjectsRepository;
 use App\Http\Requests\Projects\CreateRequest;
 use App\Http\Requests\Projects\UpdateRequest;
-use Illuminate\Http\Request;
 
 /**
  * Projects Controller.
@@ -75,7 +75,7 @@ class ProjectsController extends Controller
     {
         $this->authorize('update', $project);
 
-        $project = $this->repo->update($request->except(['_method', '_token']), $project->id);
+        $project = $this->repo->update($request->validated(), $project->id);
         flash(trans('project.updated'), 'success');
 
         return redirect()->route('projects.edit', $project);

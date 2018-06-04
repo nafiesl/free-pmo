@@ -27,6 +27,7 @@
             <th class="text-center">{{ trans('project.work_duration') }}</th>
             @if (request('status_id') == 2)
             <th class="text-right">{{ trans('project.overall_progress') }}</th>
+            <th class="text-center">{{ trans('project.due_date') }}</th>
             @endif
             @can('see-pricings', new App\Entities\Projects\Project)
             <th class="text-right">{{ trans('project.project_value') }}</th>
@@ -44,6 +45,7 @@
                 <td class="text-right">{{ $project->present()->workDuration }}</td>
                 @if (request('status_id') == 2)
                 <td class="text-right">{{ formatDecimal($project->getJobOveralProgress()) }} %</td>
+                <td class="text-center">{{ $project->due_date }}</td>
                 @endif
                 @can('see-pricings', new App\Entities\Projects\Project)
                 <td class="text-right">{{ formatRp($project->project_value) }}</td>

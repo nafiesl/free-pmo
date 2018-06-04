@@ -12,6 +12,7 @@
                 @endcan
                 <tr><td>{{ trans('project.start_date') }}</td><td>{{ dateId($project->start_date) }}</td></tr>
                 <tr><td>{{ trans('project.end_date') }}</td><td>{{ dateId($project->end_date) }}</td></tr>
+                <tr><td>{{ trans('project.due_date') }}</td><td>{{ dateId($project->due_date) }}</td></tr>
                 <tr><td>{{ trans('app.status') }}</td><td>{{ $project->present()->status }}</td></tr>
                 <tr>
                     <td>{{ trans('project.customer') }}</td>

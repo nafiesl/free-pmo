@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Projects;
 
-use App\Entities\Projects\Project;
 use App\Http\Requests\Request;
+use App\Entities\Projects\Project;
 
 class UpdateRequest extends Request
 {
@@ -33,6 +33,7 @@ class UpdateRequest extends Request
             'proposal_value' => 'nullable|numeric',
             'start_date'     => 'nullable|date|date_format:Y-m-d',
             'end_date'       => 'nullable|date|date_format:Y-m-d',
+            'due_date'       => 'nullable|date|date_format:Y-m-d',
             'project_value'  => 'nullable|numeric',
             'customer_id'    => 'nullable|numeric',
         ];

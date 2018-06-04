@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateProjectsTable extends Migration
 {
@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->date('proposal_date')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
+            $table->date('due_date')->nullable();
             $table->integer('project_value')->unsigned();
             $table->integer('proposal_value')->unsigned()->nullable();
             $table->boolean('status_id')->default(1)->comment('1: planned, 2: on progress, 3: done, 4: closed, 5: canceled, 6: on hold ');

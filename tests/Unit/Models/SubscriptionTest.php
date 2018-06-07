@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Models;
 
-use App\Entities\Partners\Customer;
-use App\Entities\Partners\Vendor;
-use App\Entities\Projects\Project;
-use App\Entities\Subscriptions\Subscription;
-use App\Entities\Subscriptions\Type;
 use Carbon\Carbon;
 use Tests\TestCase as TestCase;
+use App\Entities\Partners\Vendor;
+use App\Entities\Projects\Project;
+use App\Entities\Partners\Customer;
+use App\Entities\Subscriptions\Type;
+use App\Entities\Subscriptions\Subscription;
 
 class SubscriptionTest extends TestCase
 {

@@ -2,8 +2,8 @@
 
 namespace App\Entities\Invoices;
 
-use App\Entities\Projects\Project;
 use App\Entities\Users\User;
+use App\Entities\Projects\Project;
 use Illuminate\Database\Eloquent\Model;
 
 /**

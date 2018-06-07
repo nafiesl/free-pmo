@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Payments;
 
-use App\Entities\Partners\Customer;
+use Tests\TestCase;
 use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
-use Tests\TestCase;
+use App\Entities\Partners\Customer;
 
 /**
  * Manage Payments Feature Test.

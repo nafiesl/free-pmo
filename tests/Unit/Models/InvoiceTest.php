@@ -2,10 +2,10 @@
 
 namespace Tests\Unit\Models;
 
+use Tests\TestCase;
+use App\Entities\Users\User;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Projects\Project;
-use App\Entities\Users\User;
-use Tests\TestCase;
 
 /**
  * Invoice Model Test.

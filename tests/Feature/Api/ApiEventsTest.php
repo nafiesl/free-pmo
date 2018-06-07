@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Api;
 
-use App\Entities\Projects\Project;
-use App\Entities\Users\Event;
-use App\Entities\Users\User;
 use Tests\TestCase;
+use App\Entities\Users\User;
+use App\Entities\Users\Event;
+use App\Entities\Projects\Project;
 
 /**
  * Manage Events API Feature Test.

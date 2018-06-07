@@ -3,8 +3,8 @@
 namespace Tests\Unit\Policies;
 
 use App\Entities\Projects\Job;
-use App\Entities\Projects\Project;
 use Tests\TestCase as TestCase;
+use App\Entities\Projects\Project;
 
 class ProjectPolicyTest extends TestCase
 {

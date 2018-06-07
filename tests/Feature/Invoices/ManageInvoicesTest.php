@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Invoices;
 
-use App\Entities\Invoices\Invoice;
 use Tests\TestCase;
+use App\Entities\Invoices\Invoice;
 
 /**
  * Manage Invoices Feature Test.

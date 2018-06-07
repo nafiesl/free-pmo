@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Projects;
 
-use App\Entities\Projects\Project;
-use Illuminate\Http\UploadedFile;
 use Storage;
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
+use App\Entities\Projects\Project;
 
 class UploadFilesTest extends TestCase
 {

@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Policies;
 
-use App\Entities\Partners\Customer;
 use Tests\TestCase;
+use App\Entities\Partners\Customer;
 
 /**
  * Customer Policy Test.

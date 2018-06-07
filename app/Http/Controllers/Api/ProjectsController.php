@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Entities\Projects\ProjectsRepository;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Entities\Projects\ProjectsRepository;
 
 /**
  * Projects Controller.

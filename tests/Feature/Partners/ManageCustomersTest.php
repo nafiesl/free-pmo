@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase as TestCase;
 use App\Entities\Partners\Customer;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase as TestCase;
 
 class ManageCustomersTest extends TestCase
 {

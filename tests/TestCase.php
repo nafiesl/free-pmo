@@ -3,8 +3,8 @@
 namespace Tests;
 
 use App\Entities\Users\User;
-use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 use Tests\Traits\DatabaseMigrateSeeds;
+use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {

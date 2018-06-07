@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Models;
 
+use Tests\TestCase as TestCase;
 use App\Entities\Invoices\Invoice;
-use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
-use App\Entities\Subscriptions\Subscription;
 use Illuminate\Support\Collection;
-use Tests\TestCase as TestCase;
+use App\Entities\Partners\Customer;
+use App\Entities\Subscriptions\Subscription;
 
 class CustomerTest extends TestCase
 {

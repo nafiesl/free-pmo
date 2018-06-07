@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Payments;
 
+use Tests\TestCase;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
-use Tests\TestCase;
 
 class PaymentSearchTest extends TestCase
 {

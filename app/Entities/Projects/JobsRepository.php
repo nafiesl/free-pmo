@@ -2,10 +2,10 @@
 
 namespace App\Entities\Projects;
 
-use App\Entities\BaseRepository;
-use App\Entities\Users\User;
-use App\Queries\AdminDashboardQuery;
 use DB;
+use App\Entities\Users\User;
+use App\Entities\BaseRepository;
+use App\Queries\AdminDashboardQuery;
 
 /**
  * Jobs Repository.

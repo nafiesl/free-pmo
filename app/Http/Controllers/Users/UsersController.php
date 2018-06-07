@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Users;
 
 use App\Entities\Users\User;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 /**
  * Users Controller.

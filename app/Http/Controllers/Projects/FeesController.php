@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Projects;
 
+use App\Entities\Users\User;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
-use App\Entities\Users\User;
 use App\Http\Controllers\Controller;
 
 /**

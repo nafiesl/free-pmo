@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Invoices;
 
+use Option;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Projects\Project;
 use App\Http\Controllers\Controller;
-use Option;
 
 /**
  * Invoices Controller.

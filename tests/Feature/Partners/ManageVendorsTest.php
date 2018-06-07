@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Partners;
 
-use App\Entities\Partners\Vendor;
 use Tests\TestCase as TestCase;
+use App\Entities\Partners\Vendor;
 
 class ManageVendorsTest extends TestCase
 {

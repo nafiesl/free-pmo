@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Entities\Users\Event;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class EventsController extends Controller
 {

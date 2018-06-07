@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Policies;
 
-use App\Entities\Payments\Payment;
 use Tests\TestCase as TestCase;
+use App\Entities\Payments\Payment;
 
 /**
  * Payment Policy Test.

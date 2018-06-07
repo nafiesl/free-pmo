@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Invoices;
 
-use App\Entities\Partners\Customer;
+use Tests\TestCase;
 use App\Entities\Projects\Project;
+use App\Entities\Partners\Customer;
+use App\Services\InvoiceDrafts\Item;
 use App\Services\InvoiceDrafts\InvoiceDraft;
 use App\Services\InvoiceDrafts\InvoiceDraftCollection;
-use App\Services\InvoiceDrafts\Item;
-use Tests\TestCase;
 
 /**
  * Invoice Entry Feature Test.

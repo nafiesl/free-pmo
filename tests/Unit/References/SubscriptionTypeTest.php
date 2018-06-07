@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Reference;
 
-use App\Entities\Subscriptions\Type;
 use Tests\TestCase;
+use App\Entities\Subscriptions\Type;
 
 class SubscriptionTypeTest extends TestCase
 {

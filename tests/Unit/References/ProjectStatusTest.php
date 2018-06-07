@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Reference;
 
-use App\Entities\Projects\Status;
 use Tests\TestCase;
+use App\Entities\Projects\Status;
 
 class ProjectStatusTest extends TestCase
 {

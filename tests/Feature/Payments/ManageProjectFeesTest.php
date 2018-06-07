@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Payments;
 
-use App\Entities\Projects\Project;
-use App\Entities\Users\User;
 use Tests\TestCase;
+use App\Entities\Users\User;
+use App\Entities\Projects\Project;
 
 class ManageProjectFeesTest extends TestCase
 {

@@ -1,8 +1,8 @@
 <?php
 
-use App\Entities\Partners\Customer;
-use App\Entities\Projects\Project;
 use Faker\Generator as Faker;
+use App\Entities\Projects\Project;
+use App\Entities\Partners\Customer;
 
 $factory->define(Project::class, function (Faker $faker) {
     $proposalDate = $faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d');

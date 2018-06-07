@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Entities\Users\User;
 use Tests\TestCase;
+use App\Entities\Users\User;
 
 class LoginTest extends TestCase
 {

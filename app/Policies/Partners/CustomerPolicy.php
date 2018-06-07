@@ -2,8 +2,8 @@
 
 namespace App\Policies\Partners;
 
-use App\Entities\Partners\Customer;
 use App\Entities\Users\User;
+use App\Entities\Partners\Customer;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**

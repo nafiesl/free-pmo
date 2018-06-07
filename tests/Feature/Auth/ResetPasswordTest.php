@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Entities\Users\User;
 use Notification;
 use Tests\TestCase;
+use App\Entities\Users\User;
 
 class ResetPasswordTest extends TestCase
 {

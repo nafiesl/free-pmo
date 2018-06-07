@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use BackupManager\Filesystems\Destination;
 use BackupManager\Manager;
 use Illuminate\Http\Request;
 use League\Flysystem\FileExistsException;
+use BackupManager\Filesystems\Destination;
 use League\Flysystem\FileNotFoundException;
 
 /**
@@ -15,6 +15,12 @@ use League\Flysystem\FileNotFoundException;
  */
 class BackupsController extends Controller
 {
+    /**
+     * List of backup files.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
     public function index(Request $request)
     {
         if (!file_exists(storage_path('app/backup/db'))) {
@@ -31,6 +37,12 @@ class BackupsController extends Controller
         return view('backups.index', compact('backups'));
     }
 
+    /**
+     * Create new backup file.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Routing\Redirector
+     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -55,6 +67,12 @@ class BackupsController extends Controller
         }
     }
 
+    /**
+     * Delete a backup file from storage.
+     *
+     * @param  string  $fileName
+     * @return \Illuminate\Routing\Redirector
+     */
     public function destroy($fileName)
     {
         if (file_exists(storage_path('app/backup/db/').$fileName)) {
@@ -66,11 +84,23 @@ class BackupsController extends Controller
         return redirect()->route('backups.index');
     }
 
+    /**
+     * Download a backup file.
+     *
+     * @param  string $fileName
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function download($fileName)
     {
         return response()->download(storage_path('app/backup/db/').$fileName);
     }
 
+    /**
+     * Restore database from a backup file.
+     *
+     * @param  string  $fileName
+     * @return \Illuminate\Routing\Redirector
+     */
     public function restore($fileName)
     {
         try {
@@ -84,6 +114,12 @@ class BackupsController extends Controller
         return redirect()->route('backups.index');
     }
 
+    /**
+     * Upload a backup file to the storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Routing\Redirector
+     */
     public function upload(Request $request)
     {
         $data = $request->validate([

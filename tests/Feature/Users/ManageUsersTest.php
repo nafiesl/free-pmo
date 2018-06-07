@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Users;
 
-use App\Entities\Users\User;
 use Tests\TestCase;
+use App\Entities\Users\User;
 
 /**
  * Manage Users Feature Test.

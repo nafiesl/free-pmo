@@ -2,8 +2,8 @@
 
 namespace App\Entities\Projects;
 
-use Laracasts\Presenter\Presenter;
 use ProjectStatus;
+use Laracasts\Presenter\Presenter;
 
 class ProjectPresenter extends Presenter
 {

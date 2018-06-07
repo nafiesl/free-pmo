@@ -3,11 +3,11 @@
 namespace App\Entities\Projects;
 
 use App\Entities\Invoices\Invoice;
-use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
-use App\Entities\Subscriptions\Subscription;
+use App\Entities\Partners\Customer;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
+use App\Entities\Subscriptions\Subscription;
 
 /**
  * Project Model.

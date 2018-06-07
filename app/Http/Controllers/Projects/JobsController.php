@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Projects;
 
-use App\Entities\Projects\JobsRepository;
+use Illuminate\Http\Request;
 use App\Entities\Projects\Project;
 use App\Http\Controllers\Controller;
+use App\Entities\Projects\JobsRepository;
 use App\Http\Requests\Jobs\CreateRequest;
-use Illuminate\Http\Request;
 
 /**
  * Project Jobs Controller.

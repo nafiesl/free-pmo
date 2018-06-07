@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Entities\Users\User;
 use Tests\TestCase;
+use App\Entities\Users\User;
 
 /**
  * Installation Feature Test.

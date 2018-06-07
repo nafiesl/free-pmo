@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\References;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Option;
 use Tests\TestCase as TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
  * Manage Bank Account Feature Test.

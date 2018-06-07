@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Api;
 
-use App\Entities\Projects\Project;
 use Tests\TestCase;
+use App\Entities\Projects\Project;
 
 /**
  * Manage Projects API Feature Test.

@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Jobs;
 
-use App\Entities\Projects\Project;
 use App\Http\Requests\Request;
+use App\Entities\Projects\Project;
 
 class DeleteRequest extends Request
 {

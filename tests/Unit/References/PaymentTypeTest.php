@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Reference;
 
-use App\Entities\Payments\Type;
 use Tests\TestCase;
+use App\Entities\Payments\Type;
 
 class PaymentTypeTest extends TestCase
 {

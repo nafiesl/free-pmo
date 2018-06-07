@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Projects;
 
-use App\Entities\Projects\File;
-use App\Http\Controllers\Controller;
 use File as FileSystem;
 use Illuminate\Http\Request;
+use App\Entities\Projects\File;
+use App\Http\Controllers\Controller;
 
 /**
  * Project Files Controller.

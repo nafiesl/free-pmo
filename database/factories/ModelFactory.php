@@ -1,10 +1,10 @@
 <?php
 
-use App\Entities\Projects\Job;
-use App\Entities\Projects\Project;
-use App\Entities\Projects\Task;
-use App\Entities\Users\Event;
 use App\Entities\Users\User;
+use App\Entities\Users\Event;
+use App\Entities\Projects\Job;
+use App\Entities\Projects\Task;
+use App\Entities\Projects\Project;
 
 $factory->define(User::class, function (Faker\Generator $faker) {
     return [

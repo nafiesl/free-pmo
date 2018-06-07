@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Models;
 
+use Tests\TestCase as TestCase;
 use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Collection;
-use Tests\TestCase as TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class VendorTest extends TestCase
 {

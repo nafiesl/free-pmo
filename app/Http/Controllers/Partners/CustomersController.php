@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Partners;
 
+use Illuminate\Http\Request;
 use App\Entities\Partners\Customer;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {

@@ -2,11 +2,11 @@
 
 namespace App\Entities;
 
-use App\Entities\Partners\Customer;
-use App\Entities\Partners\Vendor;
-use App\Entities\Projects\Job;
-use App\Entities\Projects\Project;
 use App\Entities\Users\User;
+use App\Entities\Projects\Job;
+use App\Entities\Partners\Vendor;
+use App\Entities\Projects\Project;
+use App\Entities\Partners\Customer;
 
 /**
  * Base Repository Class.

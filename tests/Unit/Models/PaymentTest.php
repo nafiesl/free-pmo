@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Models;
 
-use App\Entities\Partners\Customer;
+use Tests\TestCase;
+use App\Entities\Users\User;
 use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
-use App\Entities\Users\User;
-use Tests\TestCase;
+use App\Entities\Partners\Customer;
 
 class PaymentTest extends TestCase
 {

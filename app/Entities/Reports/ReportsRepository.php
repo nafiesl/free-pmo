@@ -2,10 +2,10 @@
 
 namespace App\Entities\Reports;
 
+use DB;
 use App\Entities\BaseRepository;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
-use DB;
 
 /**
  * Reports Repository Class.

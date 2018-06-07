@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Models;
 
-use App\Entities\Projects\Job;
-use App\Entities\Projects\Project;
-use App\Entities\Projects\Task;
-use Illuminate\Support\Collection;
 use Tests\TestCase;
+use App\Entities\Projects\Job;
+use App\Entities\Projects\Task;
+use App\Entities\Projects\Project;
+use Illuminate\Support\Collection;
 
 /**
  * Job Model Unit Test.

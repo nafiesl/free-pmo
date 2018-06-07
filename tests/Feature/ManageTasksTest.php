@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
-use Tests\TestCase;
 
 class ManageTasksTest extends TestCase
 {

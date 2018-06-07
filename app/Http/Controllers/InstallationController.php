@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Auth;
 use App\Entities\Users\User;
 use App\Http\Requests\Accounts\RegisterRequest;
-use Auth;
-use DB;
 
 /**
  * Installation Controller.

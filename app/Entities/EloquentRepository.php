@@ -2,8 +2,8 @@
 
 namespace App\Entities;
 
-use App\Exceptions\EntityNotFoundException;
 use Illuminate\Database\Eloquent\Model;
+use App\Exceptions\EntityNotFoundException;
 
 /**
  * Eloquent Repository Class.

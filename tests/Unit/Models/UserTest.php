@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Models;
 
-use App\Entities\Payments\Payment;
-use App\Entities\Projects\Job;
-use App\Entities\Projects\Project;
-use App\Entities\Users\User;
-use Illuminate\Support\Collection;
 use Tests\TestCase;
+use App\Entities\Users\User;
+use App\Entities\Projects\Job;
+use App\Entities\Payments\Payment;
+use App\Entities\Projects\Project;
+use Illuminate\Support\Collection;
 
 /**
  * User Model Unit Test.

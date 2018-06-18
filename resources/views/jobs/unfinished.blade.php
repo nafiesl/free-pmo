@@ -3,9 +3,17 @@
 @section('title', __('job.on_progress'))
 
 @section('content')
-<h1 class="page-header">{{ __('job.on_progress') }}</h1>
+
+<ul class="breadcrumb hidden-print"><li>{{ __('job.on_progress') }}</li></ul>
 
 <div class="panel panel-default">
+    <div class="panel-heading">
+        {{ Form::open(['method' => 'get', 'class' => 'form-inline']) }}
+        {!! FormField::select('project_id', $projects, ['label' => __('project.select'), 'placeholder' => __('project.all')]) !!}
+        {{ Form::submit(__('app.filter'), ['class' => 'btn btn-info btn-sm']) }}
+        {{ link_to_route('jobs.index', __('app.reset'), [], ['class' => 'btn btn-default btn-sm']) }}
+        {{ Form::close() }}
+    </div>
     <table class="table table-condensed">
         <thead>
             <th>{{ __('app.table_no') }}</th>

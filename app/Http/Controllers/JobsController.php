@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entities\Projects\Job;
+use App\Entities\Projects\Project;
 use App\Entities\Projects\JobsRepository;
 use App\Http\Requests\Jobs\DeleteRequest;
 use App\Http\Requests\Jobs\UpdateRequest;
@@ -24,9 +25,10 @@ class JobsController extends Controller
 
     public function index()
     {
-        $jobs = $this->repo->getUnfinishedJobs(auth()->user());
+        $projects = Project::whereIn('status_id', [2, 3])->pluck('name','id');
+        $jobs = $this->repo->getUnfinishedJobs(auth()->user(), request('project_id'));
 
-        return view('jobs.unfinished', compact('jobs'));
+        return view('jobs.unfinished', compact('jobs', 'projects'));
     }
 
     public function show(Request $request, Job $job)

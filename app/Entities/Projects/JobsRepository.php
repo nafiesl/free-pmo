@@ -21,10 +21,10 @@ class JobsRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function getUnfinishedJobs(User $user)
+    public function getUnfinishedJobs(User $user, $projectId = null)
     {
         return (new AdminDashboardQuery())
-            ->onProgressJobs($user, ['project', 'worker']);
+            ->onProgressJobs($user, ['project', 'worker'], $projectId);
     }
 
     public function requireProjectById($projectId)

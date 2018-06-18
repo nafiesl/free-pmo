@@ -100,7 +100,7 @@ class AdminDashboardQuery
      *
      * @return int
      */
-    public function onProgressJobs(User $user, array $eagerLoads = [])
+    public function onProgressJobs(User $user, array $eagerLoads = [], $projectId = null)
     {
         $eagerLoads = array_merge(['tasks'], $eagerLoads);
         $jobQuery = Job::whereHas('project', function ($query) {
@@ -109,6 +109,10 @@ class AdminDashboardQuery
 
         if ($user->hasRole('admin') == false) {
             $jobQuery->where('worker_id', $user->id);
+        }
+
+        if ($projectId) {
+            $jobQuery->where('project_id', $projectId);
         }
 
         $jobs = $jobQuery->get()

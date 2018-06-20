@@ -63,7 +63,15 @@ class PaymentsController extends Controller
 
     public function update(UpdateRequest $request, Payment $payment)
     {
-        $payment->update($request->except(['_method', '_token']));
+        $paymentData = $request->validated();
+
+        if ($paymentData['in_out'] == 0) {
+            $paymentData['partner_type'] = 'App\Entities\Partners\Vendor';
+        } else {
+            $paymentData['partner_type'] = 'App\Entities\Partners\Customer';
+        }
+
+        $payment->update($paymentData);
 
         flash(trans('payment.updated'), 'success');
 

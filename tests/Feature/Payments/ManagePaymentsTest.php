@@ -122,14 +122,19 @@ class ManagePaymentsTest extends TestCase
     {
         $user = $this->adminUserSigningIn();
 
-        $payment = factory(Payment::class)->create();
+        $vendor = factory(Vendor::class)->create();
+        $payment = factory(Payment::class)->create([
+            'in_out'       => 0, // Outcome
+            'partner_type' => Vendor::class,
+            'partner_id'   => $vendor->id,
+        ]);
 
         $this->visit(route('payments.edit', $payment->id));
         $this->seePageIs(route('payments.edit', $payment->id));
 
         $this->submitForm(trans('payment.update'), [
             'date'        => '2016-05-20',
-            'in_out'      => 0,
+            'in_out'      => 0, // Outcome
             'type_id'     => 3,
             'amount'      => 1000000,
             'description' => 'Pembayaran DP',
@@ -139,8 +144,47 @@ class ManagePaymentsTest extends TestCase
 
         $this->see(trans('payment.updated'));
         $this->seeInDatabase('payments', [
-            'date'   => '2016-05-20',
-            'amount' => 1000000,
+            'date'         => '2016-05-20',
+            'in_out'       => 0, // Outcome
+            'partner_type' => Vendor::class,
+            'partner_id'   => $payment->partner_id,
+            'amount'       => 1000000,
+        ]);
+    }
+
+    /** @test */
+    public function admin_can_change_payment_type_from_expanse_to_income()
+    {
+        $user = $this->adminUserSigningIn();
+
+        $vendor = factory(Vendor::class)->create();
+        $payment = factory(Payment::class)->create([
+            'in_out'       => 0, // Outcome
+            'partner_type' => Vendor::class,
+            'partner_id'   => $vendor->id,
+        ]);
+        $customer = factory(Customer::class)->create();
+
+        $this->visit(route('payments.edit', $payment->id));
+        $this->seePageIs(route('payments.edit', $payment->id));
+
+        $this->submitForm(trans('payment.update'), [
+            'date'        => '2016-05-20',
+            'in_out'      => 1, // Income
+            'type_id'     => 3,
+            'amount'      => 1000000,
+            'partner_id'  => $customer->id,
+            'description' => 'Pembayaran DP',
+        ]);
+
+        $this->seePageIs(route('payments.show', $payment->id));
+
+        $this->see(trans('payment.updated'));
+        $this->seeInDatabase('payments', [
+            'date'         => '2016-05-20',
+            'in_out'       => 1, // Income
+            'partner_type' => Customer::class,
+            'amount'       => 1000000,
         ]);
     }
 

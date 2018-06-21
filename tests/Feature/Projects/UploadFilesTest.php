@@ -44,10 +44,6 @@ class UploadFilesTest extends TestCase
         Storage::fake('avatar');
         $user = $this->adminUserSigningIn();
         $project = factory(Project::class)->create();
-        // $file = factory(File::class, 'project')->create(['fileable_id' => $project->id]);
-        // dd(get_class_methods((new FileFactory)->create('123.txt')));
-        // $result = Storage::disk('avatar')->put('public/files', (new FileFactory)->create('123.txt'));
-        // dd($result);
 
         $this->visit(route('projects.files', [$project->id]));
 

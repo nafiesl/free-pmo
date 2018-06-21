@@ -25,7 +25,7 @@ class JobsController extends Controller
 
     public function index()
     {
-        $projects = Project::whereIn('status_id', [2, 3])->pluck('name','id');
+        $projects = Project::whereIn('status_id', [2, 3])->pluck('name', 'id');
         $jobs = $this->repo->getUnfinishedJobs(auth()->user(), request('project_id'));
 
         return view('jobs.unfinished', compact('jobs', 'projects'));

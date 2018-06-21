@@ -18,4 +18,6 @@ return [
         '11' => 'November',
         '12' => 'Dezember',
     ],
+
+    'updated_at' => 'Last Update',
 ];

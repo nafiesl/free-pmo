@@ -60,6 +60,7 @@
             <th class="text-right">{{ trans('job.price') }}</th>
             @endcan
             {{-- <th>{{ trans('job.worker') }}</th> --}}
+            <th class="text-center">{{ trans('time.updated_at') }}</th>
             <th class="text-center">{{ trans('app.action') }}</th>
         </thead>
         <tbody>
@@ -86,6 +87,7 @@
                 <td class="text-right">{{ formatRp($job->price) }}</td>
                 @endcan
                 {{-- <td>{{ $job->worker->name }}</td> --}}
+                <td class="text-center">{{ $job->updated_at->diffForHumans() }}</td>
                 <td class="text-center">
                     @can('view', $job)
                     {!! html_link_to_route('jobs.show', '',[$job->id],['icon' => 'search', 'title' => __('job.show'), 'class' => 'btn btn-info btn-xs','id' => 'show-job-' . $job->id]) !!}

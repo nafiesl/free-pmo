@@ -3,22 +3,12 @@
 namespace Tests;
 
 use App\Entities\Users\User;
-use Tests\Traits\DatabaseMigrateSeeds;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseMigrateSeeds;
-
-    protected function setUpTraits()
-    {
-        parent::setUpTraits();
-        $uses = array_flip(class_uses_recursive(static::class));
-
-        if (isset($uses[DatabaseMigrateSeeds::class])) {
-            $this->runDatabaseMigrateSeeds();
-        }
-    }
+    use CreatesApplication, DatabaseMigrations;
 
     protected function adminUserSigningIn($userDataOverrides = [])
     {

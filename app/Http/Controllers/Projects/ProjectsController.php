@@ -16,6 +16,11 @@ use App\Http\Requests\Projects\UpdateRequest;
  */
 class ProjectsController extends Controller
 {
+    /**
+     * Projects Repository class.
+     *
+     * @var \App\Entities\Projects\ProjectsRepository
+     */
     private $repo;
 
     public function __construct(ProjectsRepository $repo)
@@ -23,6 +28,12 @@ class ProjectsController extends Controller
         $this->repo = $repo;
     }
 
+    /**
+     * List of projects.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Contracts\View\View
+     */
     public function index(Request $request)
     {
         $status = null;
@@ -36,6 +47,11 @@ class ProjectsController extends Controller
         return view('projects.index', compact('projects', 'status', 'statusId'));
     }
 
+    /**
+     * Show create project form.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function create()
     {
         $this->authorize('create', new Project());
@@ -45,6 +61,12 @@ class ProjectsController extends Controller
         return view('projects.create', compact('customers'));
     }
 
+    /**
+     * Create new project.
+     *
+     * @param  \App\Http\Requests\Projects\CreateRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(CreateRequest $request)
     {
         $this->authorize('create', new Project());
@@ -55,6 +77,12 @@ class ProjectsController extends Controller
         return redirect()->route('projects.show', $project);
     }
 
+    /**
+     * Show project detail page.
+     *
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\Contracts\View\View
+     */
     public function show(Project $project)
     {
         $this->authorize('view', $project);
@@ -62,6 +90,12 @@ class ProjectsController extends Controller
         return view('projects.show', compact('project'));
     }
 
+    /**
+     * Show project edit page.
+     *
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\Contracts\View\View
+     */
     public function edit(Project $project)
     {
         $this->authorize('update', $project);
@@ -71,6 +105,13 @@ class ProjectsController extends Controller
         return view('projects.edit', compact('project', 'customers'));
     }
 
+    /**
+     * Update project data.
+     *
+     * @param  \App\Http\Requests\Projects\UpdateRequest  $request
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(UpdateRequest $request, Project $project)
     {
         $this->authorize('update', $project);
@@ -81,6 +122,12 @@ class ProjectsController extends Controller
         return redirect()->route('projects.edit', $project);
     }
 
+    /**
+     * Show project deletion confirmation page.
+     *
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\Contracts\View\View
+     */
     public function delete(Project $project)
     {
         $this->authorize('delete', $project);
@@ -88,6 +135,12 @@ class ProjectsController extends Controller
         return view('projects.delete', compact('project'));
     }
 
+    /**
+     * Delete project record from the system.
+     *
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Project $project)
     {
         $this->authorize('delete', $project);
@@ -102,6 +155,12 @@ class ProjectsController extends Controller
         return redirect()->route('projects.index');
     }
 
+    /**
+     * Project subscription list page.
+     *
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\Contracts\View\View
+     */
     public function subscriptions(Project $project)
     {
         $this->authorize('view-subscriptions', $project);
@@ -109,6 +168,12 @@ class ProjectsController extends Controller
         return view('projects.subscriptions', compact('project'));
     }
 
+    /**
+     * Project payment list page.
+     *
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\Contracts\View\View
+     */
     public function payments(Project $project)
     {
         $this->authorize('view-payments', $project);
@@ -118,6 +183,13 @@ class ProjectsController extends Controller
         return view('projects.payments', compact('project'));
     }
 
+    /**
+     * Update project status.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function statusUpdate(Request $request, Project $project)
     {
         $this->authorize('update', $project);
@@ -128,6 +200,13 @@ class ProjectsController extends Controller
         return redirect()->route('projects.show', $project);
     }
 
+    /**
+     * Project jobs reorder action.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Entities\Projects\Project  $project
+     * @return string|null
+     */
     public function jobsReorder(Request $request, Project $project)
     {
         $this->authorize('update', $project);

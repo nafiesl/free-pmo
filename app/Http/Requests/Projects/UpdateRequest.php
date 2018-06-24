@@ -36,6 +36,7 @@ class UpdateRequest extends Request
             'due_date'       => 'nullable|date|date_format:Y-m-d',
             'project_value'  => 'nullable|numeric',
             'customer_id'    => 'nullable|numeric',
+            'status_id'      => 'required|numeric',
         ];
     }
 }

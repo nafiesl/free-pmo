@@ -211,7 +211,7 @@ class ProjectsController extends Controller
     {
         $this->authorize('update', $project);
 
-        if ($request->ajax()) {
+        if ($request->expectsJson()) {
             $data = $this->repo->jobsReorder($request->get('postData'));
 
             return 'oke';

@@ -29,7 +29,7 @@ $factory->define(Job::class, function (Faker\Generator $faker) {
             return factory(User::class)->create()->id;
         },
         'type_id'     => 1, // Main job
-        'position'    => rand(1, 10),
+        'position'    => 1,
     ];
 });
 

@@ -87,7 +87,7 @@ class JobsController extends Controller
 
     public function tasksReorder(Request $request, Job $job)
     {
-        if ($request->ajax()) {
+        if ($request->expectsJson()) {
             $data = $this->repo->tasksReorder($request->get('postData'));
 
             return 'oke';

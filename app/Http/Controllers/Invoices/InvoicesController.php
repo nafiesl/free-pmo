@@ -68,7 +68,7 @@ class InvoicesController extends Controller
 
     public function pdf(Invoice $invoice)
     {
-        $bankAccounts = json_decode(Option::get('bank_accounts')) ?: [];
+        $bankAccounts = json_decode(Option::get('bank_accounts'), true) ?: [];
 
         return view('invoices.pdf', compact('invoice', 'bankAccounts'));
     }

@@ -16,13 +16,26 @@ use App\Http\Requests\Jobs\UpdateRequest;
  */
 class JobsController extends Controller
 {
+    /**
+     * @var \App\Entities\Projects\JobsRepository
+     */
     private $repo;
 
+    /**
+     * Create new Jobs Controller.
+     *
+     * @param \App\Entities\Projects\JobsRepository  $repo
+     */
     public function __construct(JobsRepository $repo)
     {
         $this->repo = $repo;
     }
 
+    /**
+     * Show unfinished job list.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $projects = Project::whereIn('status_id', [2, 3])->pluck('name', 'id');
@@ -31,6 +44,13 @@ class JobsController extends Controller
         return view('jobs.unfinished', compact('jobs', 'projects'));
     }
 
+    /**
+     * Show a job detail.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Entities\Projects\Job  $job
+     * @return \Illuminate\View\View
+     */
     public function show(Request $request, Job $job)
     {
         $this->authorize('view', $job);
@@ -48,6 +68,12 @@ class JobsController extends Controller
         return view('jobs.show', compact('job', 'editableTask'));
     }
 
+    /**
+     * Show a job edit form.
+     *
+     * @param  \App\Entities\Projects\Job  $job
+     * @return \Illuminate\View\View
+     */
     public function edit(Job $job)
     {
         $this->authorize('view', $job);
@@ -57,6 +83,13 @@ class JobsController extends Controller
         return view('jobs.edit', compact('job', 'workers'));
     }
 
+    /**
+     * Update a job on database.
+     *
+     * @param  \App\Http\Requests\Jobs\UpdateRequest  $request
+     * @param  \App\Entities\Projects\Job  $job
+     * @return \Illuminate\Routing\Redirector
+     */
     public function update(UpdateRequest $request, Job $job)
     {
         $job = $this->repo->update($request->except(['_method', '_token']), $job->id);
@@ -65,11 +98,24 @@ class JobsController extends Controller
         return redirect()->route('jobs.show', $job);
     }
 
+    /**
+     * Show job delete confirmation page.
+     *
+     * @param  \App\Entities\Projects\Job  $job
+     * @return \Illuminate\View\View
+     */
     public function delete(Job $job)
     {
         return view('jobs.delete', compact('job'));
     }
 
+    /**
+     * Show job delete confirmation page.
+     *
+     * @param  \App\Http\Requests\Jobs\DeleteRequest  $request
+     * @param  \App\Entities\Projects\Job  $job
+     * @return \Illuminate\View\View
+     */
     public function destroy(DeleteRequest $request, Job $job)
     {
         $projectId = $job->project_id;
@@ -85,6 +131,13 @@ class JobsController extends Controller
         return redirect()->route('projects.jobs.index', $projectId);
     }
 
+    /**
+     * Reorder job task position.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Entities\Projects\Job  $job
+     * @return string|null
+     */
     public function tasksReorder(Request $request, Job $job)
     {
         if ($request->expectsJson()) {

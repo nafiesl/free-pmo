@@ -12,6 +12,12 @@ use App\Http\Controllers\Controller;
  */
 class ProjectsController extends Controller
 {
+    /**
+     * Project list of a customer.
+     *
+     * @param  \App\Entities\Partners\Customer $customer
+     * @return \Illuminate\View\View
+     */
     public function index(Customer $customer)
     {
         $projects = $customer->projects;

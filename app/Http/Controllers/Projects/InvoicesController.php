@@ -12,6 +12,12 @@ use App\Http\Controllers\Controller;
  */
 class InvoicesController extends Controller
 {
+    /**
+     * Invoice list of a project.
+     *
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\View\View
+     */
     public function index(Project $project)
     {
         $this->authorize('view-invoices', $project);

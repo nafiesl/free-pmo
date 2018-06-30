@@ -14,6 +14,12 @@ use App\Http\Controllers\Controller;
  */
 class FeesController extends Controller
 {
+    /**
+     * Show create project fee form.
+     *
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\View\View
+     */
     public function create(Project $project)
     {
         $this->authorize('create', new Payment());
@@ -23,6 +29,12 @@ class FeesController extends Controller
         return view('projects.fees.create', compact('project', 'partners'));
     }
 
+    /**
+     * Store new fee entry to the database.
+     *
+     * @param  \App\Entities\Projects\Project  $project
+     * @return \Illuminate\Routing\Redirector
+     */
     public function store(Project $project)
     {
         $this->authorize('create', new Payment());

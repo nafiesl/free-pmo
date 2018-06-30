@@ -12,6 +12,12 @@ use App\Http\Controllers\Controller;
  */
 class InvoicesController extends Controller
 {
+    /**
+     * Invoice list of a customer.
+     *
+     * @param  \App\Entities\Partners\Customer  $customer
+     * @return \Illuminate\View\View
+     */
     public function index(Customer $customer)
     {
         $invoices = $customer->invoices()->orderBy('due_date')->get();

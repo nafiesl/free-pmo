@@ -12,6 +12,12 @@ use App\Http\Controllers\Controller;
  */
 class SubscriptionsController extends Controller
 {
+    /**
+     * Subscription list of a customer.
+     *
+     * @param  \App\Entities\Partners\Customer $customer
+     * @return \Illuminate\View\View
+     */
     public function index(Customer $customer)
     {
         $subscriptions = $customer->subscriptions()->orderBy('due_date')->get();

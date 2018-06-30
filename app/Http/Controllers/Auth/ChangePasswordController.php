@@ -17,11 +17,22 @@ class ChangePasswordController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Show user change password form.
+     *
+     * @return \Illuminate\View\View
+     */
     public function show()
     {
         return view('auth.passwords.change');
     }
 
+    /**
+     * Update user password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Routing\Redirector
+     */
     public function update(Request $request)
     {
         $input = $request->validate([

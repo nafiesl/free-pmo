@@ -33,6 +33,11 @@ class RegisterRequest extends Request
         ];
     }
 
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array
+     */
     public function messages()
     {
         return [

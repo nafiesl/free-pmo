@@ -43,8 +43,8 @@ class CreateRequest extends Request
     public function messages()
     {
         return [
-            'customer_name.required_without'  => 'Nama Customer Wajib diisi.',
-            'customer_email.required_without' => 'Email Customer Wajib diisi.',
+            'customer_name.required_without'  => __('validation.project.customer_name.required_without'),
+            'customer_email.required_without' => __('validation.project.customer_email.required_without'),
         ];
     }
 }

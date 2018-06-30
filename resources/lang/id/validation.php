@@ -90,9 +90,12 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+    'project' => [
+        'customer_name'  => [
+            'required_without' => 'Nama customer wajib diisi.',
+        ],
+        'customer_email' => [
+            'required_without' => 'Email customer wajib diisi.',
         ],
     ],
 

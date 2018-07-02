@@ -14,6 +14,11 @@ return [
     'tasks_count'   => 'Tasks Count',
     'empty'         => 'Job list is empty.',
     'back_to_index' => 'Back to Job List',
+    'starts'        => 'Starts',
+    'ends'          => 'Ends',
+    'target'        => 'Target',
+    'actual'        => 'Actual',
+    'duration'      => 'Duration',
 
     // Actions
     'create'                 => 'Create new Job',

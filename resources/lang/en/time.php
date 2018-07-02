@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'days'  => 'Day(s)',
     'date'  => 'Date',
     'month' => 'Month',
 

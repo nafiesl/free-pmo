@@ -22,6 +22,7 @@
         @include('jobs.partials.job-show')
     </div>
     <div class="col-sm-7">
+        @include('jobs.partials.job-dates')
         @include('jobs.partials.job-tasks-operation')
     </div>
 </div>

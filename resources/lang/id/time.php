@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'days'  => 'Hari',
     'date'  => 'Tanggal',
     'month' => 'Bulan',
 

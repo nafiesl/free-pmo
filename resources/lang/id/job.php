@@ -14,6 +14,11 @@ return [
     'tasks_count'   => 'Jumlah Task',
     'empty'         => 'Belum ada Job',
     'back_to_index' => 'Kembali ke daftar Job',
+    'starts'        => 'Mulai',
+    'ends'          => 'Selesai',
+    'target'        => 'Target',
+    'actual'        => 'Aktual',
+    'duration'      => 'Durasi',
 
     // Actions
     'create'                 => 'Input Job Baru',

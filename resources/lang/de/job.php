@@ -14,6 +14,11 @@ return [
     'tasks_count'   => 'Beschäftigungsanzahl',
     'empty'         => 'Beschäftigungsliste ist leer.',
     'back_to_index' => 'zurück zur Beschäftigungsliste',
+    'starts'        => 'Starts',
+    'ends'          => 'Ends',
+    'target'        => 'Target',
+    'actual'        => 'Actual',
+    'duration'      => 'Duration',
 
     // Actions
     'create'                 => 'Neue Beschäftigung anlegen',

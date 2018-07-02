@@ -21,6 +21,14 @@
                         {!! FormField::radios('type_id', [1 => __('job.main'), __('job.additional')], ['value' => 1, 'label' => __('job.type'), 'list_style' => 'unstyled']) !!}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-4">{!! FormField::text('target_start_date', ['label' => __('job.target_start_date'), 'class' => 'date-select']) !!}</div>
+                    <div class="col-md-4">{!! FormField::text('target_end_date', ['label' => __('job.target_end_date'), 'class' => 'date-select']) !!}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">{!! FormField::text('actual_start_date', ['label' => __('job.actual_start_date'), 'class' => 'date-select']) !!}</div>
+                    <div class="col-md-4">{!! FormField::text('actual_end_date', ['label' => __('job.actual_end_date'), 'class' => 'date-select']) !!}</div>
+                </div>
                 {!! FormField::textarea('description', ['label' => __('job.description')]) !!}
             </div>
 
@@ -40,6 +48,23 @@
 </div>
 @endsection
 
+@section('ext_css')
+    {!! Html::style(url('assets/css/plugins/jquery.datetimepicker.css')) !!}
+@endsection
+
 @section('ext_js')
-    {!! Html::script(url('assets/js/plugins/autoNumeric.min.js')) !!}
+    {!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
+@endsection
+
+@section('script')
+<script>
+(function() {
+    $('.date-select').datetimepicker({
+        timepicker:false,
+        format:'Y-m-d',
+        closeOnDateSelect: true,
+        scrollInput: false
+    });
+})();
+</script>
 @endsection

@@ -43,11 +43,13 @@ class ManageJobsTest extends TestCase
         $this->see(trans('job.created'));
 
         $this->seeInDatabase('jobs', [
-            'name'       => 'Nama Fitur Baru',
-            'price'      => 100000,
-            'worker_id'  => $worker->id,
-            'type_id'    => 1,
-            'project_id' => $project->id,
+            'name'              => 'Nama Fitur Baru',
+            'price'             => 100000,
+            'worker_id'         => $worker->id,
+            'type_id'           => 1,
+            'project_id'        => $project->id,
+            'target_start_date' => '2017-04-04',
+            'target_end_date'   => '2017-07-07',
         ]);
     }
 
@@ -66,10 +68,14 @@ class ManageJobsTest extends TestCase
         $this->visit(route('jobs.edit', $job->id));
 
         $this->submitForm(trans('job.update'), [
-            'name'      => 'Nama Fitur Edit',
-            'price'     => 33333,
-            'worker_id' => $users[2]->id,
-            'type_id'   => 2,
+            'name'              => 'Nama Fitur Edit',
+            'price'             => 33333,
+            'worker_id'         => $users[2]->id,
+            'type_id'           => 2,
+            'target_start_date' => '2017-04-04',
+            'target_end_date'   => '2017-07-07',
+            'actual_start_date' => '2017-04-04',
+            'actual_end_date'   => '2017-07-07',
         ]);
 
         $this->seePageIs(route('jobs.show', $job->id));
@@ -77,11 +83,15 @@ class ManageJobsTest extends TestCase
         $this->see(trans('job.updated'));
 
         $this->seeInDatabase('jobs', [
-            'name'       => 'Nama Fitur Edit',
-            'price'      => 33333,
-            'worker_id'  => $users[2]->id,
-            'project_id' => $project->id,
-            'type_id'    => 2,
+            'name'              => 'Nama Fitur Edit',
+            'price'             => 33333,
+            'worker_id'         => $users[2]->id,
+            'project_id'        => $project->id,
+            'type_id'           => 2,
+            'target_start_date' => '2017-04-04',
+            'target_end_date'   => '2017-07-07',
+            'actual_start_date' => '2017-04-04',
+            'actual_end_date'   => '2017-07-07',
         ]);
     }
 

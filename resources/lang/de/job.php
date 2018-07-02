@@ -39,6 +39,8 @@ return [
     'type'              => 'Beschäftigungstyp',
     'target_start_date' => 'Target Start Date',
     'target_end_date'   => 'Target End Date',
+    'actual_start_date' => 'Actual Start Date',
+    'actual_end_date'   => 'Actual End Date',
 
     // Types
     'main'       => 'Haupt',

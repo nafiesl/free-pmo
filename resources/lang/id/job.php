@@ -39,8 +39,10 @@ return [
     'worker'            => 'Pekerja',
     'price'             => 'Biaya Pengerjaan',
     'type'              => 'Jenis Job',
-    'target_start_date' => 'Tanggal Target Mulai',
-    'target_end_date'   => 'Tanggal Target Selesai',
+    'target_start_date' => 'Tanggal Mulai Target',
+    'target_end_date'   => 'Tanggal Selesai Target',
+    'actual_start_date' => 'Tanggal Mulai Aktual',
+    'actual_end_date'   => 'Tanggal Selesai Aktual',
 
     // Types
     'main'       => 'Utama',

@@ -33,12 +33,14 @@ return [
     'created_from_other_project' => 'Job has been added from other Project.',
 
     // Attributes
-    'name'        => 'Job Name',
-    'description' => 'Description',
-    'progress'    => 'Progress',
-    'worker'      => 'Worker',
-    'price'       => 'Price',
-    'type'        => 'Job Type',
+    'name'              => 'Job Name',
+    'description'       => 'Description',
+    'progress'          => 'Progress',
+    'worker'            => 'Worker',
+    'price'             => 'Price',
+    'type'              => 'Job Type',
+    'target_start_date' => 'Target Start Date',
+    'target_end_date'   => 'Target End Date',
 
     // Types
     'main'       => 'Main',

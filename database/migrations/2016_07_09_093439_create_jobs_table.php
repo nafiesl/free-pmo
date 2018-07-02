@@ -20,7 +20,11 @@ class CreateJobsTable extends Migration
             $table->integer('worker_id')->unsigned()->nullable();
             $table->integer('price')->unsigned()->default(0);
             $table->boolean('type_id')->default(1)->comment('1: main, 2: additional');
-            $table->boolean('position')->default(0);
+            $table->unsignedTinyInteger('position')->default(0);
+            $table->date('target_start_date')->nullable();
+            $table->date('target_end_date')->nullable();
+            $table->date('actual_start_date')->nullable();
+            $table->date('actual_end_date')->nullable();
             $table->timestamps();
         });
     }

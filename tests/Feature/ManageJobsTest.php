@@ -31,11 +31,13 @@ class ManageJobsTest extends TestCase
         $this->seePageIs(route('projects.jobs.create', $project->id));
 
         $this->submitForm(trans('job.create'), [
-            'name'        => 'Nama Fitur Baru',
-            'price'       => 100000,
-            'worker_id'   => $worker->id,
-            'type_id'     => 1,
-            'description' => 'Similique, eligendi fuga animi?',
+            'name'              => 'Nama Fitur Baru',
+            'price'             => 100000,
+            'worker_id'         => $worker->id,
+            'type_id'           => 1,
+            'target_start_date' => '2017-04-04',
+            'target_end_date'   => '2017-07-07',
+            'description'       => 'Similique, eligendi fuga animi?',
         ]);
 
         $this->see(trans('job.created'));

@@ -33,12 +33,14 @@ return [
     'created_from_other_project' => 'Berhasil tambah job dari Project lain.',
 
     // Attributes
-    'name'        => 'Nama Job',
-    'description' => 'Deskripsi',
-    'progress'    => 'Progress',
-    'worker'      => 'Pekerja',
-    'price'       => 'Biaya Pengerjaan',
-    'type'        => 'Jenis Job',
+    'name'              => 'Nama Job',
+    'description'       => 'Deskripsi',
+    'progress'          => 'Progress',
+    'worker'            => 'Pekerja',
+    'price'             => 'Biaya Pengerjaan',
+    'type'              => 'Jenis Job',
+    'target_start_date' => 'Tanggal Target Mulai',
+    'target_end_date'   => 'Tanggal Target Selesai',
 
     // Types
     'main'       => 'Utama',

@@ -31,12 +31,14 @@ return [
     'sort_tasks'             => 'sortiere Aufgabenpriorität',
 
     // Attributes
-    'name'        => 'Beschäftigungsname',
-    'description' => 'Beschreibung',
-    'progress'    => 'Fortschritt',
-    'worker'      => 'Bearbeiter',
-    'price'       => 'Preis',
-    'type'        => 'Beschäftigungstyp',
+    'name'              => 'Beschäftigungsname',
+    'description'       => 'Beschreibung',
+    'progress'          => 'Fortschritt',
+    'worker'            => 'Bearbeiter',
+    'price'             => 'Preis',
+    'type'              => 'Beschäftigungstyp',
+    'target_start_date' => 'Target Start Date',
+    'target_end_date'   => 'Target End Date',
 
     // Types
     'main'       => 'Haupt',

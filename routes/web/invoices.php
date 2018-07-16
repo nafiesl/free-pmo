@@ -28,4 +28,9 @@ Route::group(['middleware' => ['web', 'role:admin'], 'namespace' => 'Invoices'],
     Route::post('invoices/{invoice}/items', ['as' => 'invoices.items.store', 'uses' => 'ItemsController@store']);
     Route::patch('invoices/{invoice}/items', ['as' => 'invoices.items.update', 'uses' => 'ItemsController@update']);
     Route::delete('invoices/{invoice}/items', ['as' => 'invoices.items.destroy', 'uses' => 'ItemsController@destroy']);
+
+    /*
+     * Invoice Duplication Route
+     */
+    Route::post('invoices/{invoice}/duplicate', ['as' => 'invoices.duplication.store', 'uses' => 'DuplicationController@store']);
 });

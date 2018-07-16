@@ -22,6 +22,7 @@ return [
     'save'                => 'Save Invoice',
     'created'             => 'New Invoice has been created.',
     'show'                => 'View Invoice Detail',
+    'duplicate'           => 'Duplicate Invoice',
     'edit'                => 'Edit Invoice',
     'update'              => 'Update Invoice',
     'updated'             => 'Invoice data has been updated.',

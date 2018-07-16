@@ -22,6 +22,7 @@ return [
     'save'                => 'Simpan Invoice',
     'created'             => 'Input Invoice baru telah berhasil.',
     'show'                => 'Lihat Detail Invoice',
+    'duplicate'           => 'Duplikat Invoice',
     'edit'                => 'Edit Invoice',
     'update'              => 'Update Invoice',
     'updated'             => 'Update data Invoice telah berhasil.',

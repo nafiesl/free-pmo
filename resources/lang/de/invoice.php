@@ -22,6 +22,7 @@ return [
     'save'                => 'Rechnung speichern',
     'created'             => 'Neue Rechnung wurde erstellt.',
     'show'                => 'Rechnungsdetails',
+    'duplicate'           => 'Duplicate Invoice',
     'edit'                => 'Rechnung bearbeiten',
     'update'              => 'Rechnung aktualisieren',
     'updated'             => 'Rechnungsdetails wurden aktualisiert.',

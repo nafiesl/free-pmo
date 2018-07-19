@@ -38,8 +38,17 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $projects = Project::whereIn('status_id', [2, 3])->pluck('name', 'id');
-        $jobs = $this->repo->getUnfinishedJobs(auth()->user(), request('project_id'));
+        $user = auth()->user();
+
+        if ($user->hasRole('admin')) {
+            $projects = Project::whereIn('status_id', [2, 3])->pluck('name', 'id');
+        } else {
+            $projects = $user->projects()
+                ->whereIn('status_id', [2, 3])
+                ->pluck('projects.name', 'projects.id');
+        }
+
+        $jobs = $this->repo->getUnfinishedJobs($user, request('project_id'));
 
         return view('jobs.unfinished', compact('jobs', 'projects'));
     }

@@ -1,27 +1,25 @@
-@extends('layouts.app')
+@extends('layouts.project')
 
-@section('title', __('job.add_from_other_project').' | '.$project->name)
+@section('subtitle', __('job.create'))
 
-@section('content')
-@include('projects.partials.breadcrumb',['title' => __('job.add_from_other_project')])
+@section('action-buttons')
+@can('create', new App\Entities\Projects\Job)
+    {!! html_link_to_route('projects.jobs.create', trans('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.add-from-other-project', trans('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+@endcan
+@endsection
+
+@section('content-project')
 
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-sm-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ __('job.add_from_other_project') }}</h3></div>
             <div class="panel-body">
-                {!! Form::open(['method' => 'get']) !!}
-                <div class="form-group">
-                    <label for="project_id" class="text-primary">{{ __('project.project') }}</label>
-                    <div class="input-group">
-                        {!! Form::select('project_id', $projects, request('project_id'), [
-                            'class'       => 'form-control customer-select',
-                            'placeholder' => '-- '.__('project.select').' --'
-                        ]) !!}
-                        <span class="input-group-btn"><button class="btn btn-default btn-sm" type="submit">{{ __('project.show_jobs') }}</button></span>
-                    </div>
-                </div>
-                {!! Form::close() !!}
+                {{ Form::open(['method' => 'get', 'class' => 'form-inline', 'style' => 'margin-bottom:20px']) }}
+                {!! FormField::select('project_id', $projects, ['label' => false, 'placeholder' => __('project.select')]) !!}
+                {{ Form::submit(__('project.show_jobs'), ['class' => 'btn btn-default btn-sm']) }}
+                {{ Form::close() }}
                 @if ($selectedProject)
                 {!! Form::open(['route' => ['projects.jobs.store-from-other-project', $project->id]]) !!}
                 <ul class="list-unstyled">
@@ -56,8 +54,24 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
-        @include('projects.partials.project-show')
-    </div>
 </div>
+@endsection
+
+@section('ext_css')
+    {!! Html::style(url('assets/css/plugins/select2.min.css')) !!}
+    <style>
+    .select2-selection.select2-selection--single {
+        border-radius: 0;
+        height: 30px;
+    }
+    </style>
+@endsection
+
+@section('script')
+{!! Html::script(url('assets/js/plugins/select2.min.js')) !!}
+<script>
+(function() {
+    $('select[name=project_id]').select2();
+})();
+</script>
 @endsection

@@ -33,7 +33,7 @@ class JobsController extends Controller
     {
         $workers = $this->repo->getWorkersList();
 
-        return view('jobs.create', compact('project', 'workers'));
+        return view('projects.jobs.create', compact('project', 'workers'));
     }
 
     public function addFromOtherProject(Request $request, Project $project)
@@ -43,10 +43,10 @@ class JobsController extends Controller
         $projects = $this->repo->getProjectsList();
 
         if ($request->has('project_id')) {
-            $selectedProject = $this->repo->requireProjectById($request->get('project_id'));
+            $selectedProject = Project::find($request->get('project_id'));
         }
 
-        return view('jobs.add-from-other-project', compact('project', 'workers', 'projects', 'selectedProject'));
+        return view('projects.jobs.add-from-other-project', compact('project', 'workers', 'projects', 'selectedProject'));
     }
 
     public function store(CreateRequest $req, $projectId)

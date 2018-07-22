@@ -1,12 +1,18 @@
-@extends('layouts.app')
+@extends('layouts.project')
 
-@section('title', __('job.create'))
+@section('subtitle', __('job.create'))
 
-@section('content')
-@include('projects.partials.breadcrumb', ['title' => __('job.create')])
+@section('action-buttons')
+@can('create', new App\Entities\Projects\Job)
+    {!! html_link_to_route('projects.jobs.create', trans('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.add-from-other-project', trans('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+@endcan
+@endsection
+
+@section('content-project')
 
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 col-sm-offset-2">
         {!! Form::open(['route' => ['projects.jobs.store', $project->id]]) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ __('job.create') }}</h3></div>
@@ -40,9 +46,6 @@
             </div>
         </div>
         {!! Form::close() !!}
-    </div>
-    <div class="col-sm-6">
-        @include('projects.partials.project-show')
     </div>
 </div>
 @endsection

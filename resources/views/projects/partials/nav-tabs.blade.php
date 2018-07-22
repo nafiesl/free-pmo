@@ -1,31 +1,31 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
     <li class="{{ Request::segment(3) == null ? 'active' : '' }}">
-        {!! link_to_route('projects.show', trans('project.show'), [$project->id]) !!}
+        {!! link_to_route('projects.show', __('project.detail'), $project) !!}
     </li>
     @can('view-jobs', $project)
     <li class="{{ Request::segment(3) == 'jobs' ? 'active' : '' }}">
-        {!! link_to_route('projects.jobs.index', trans('project.jobs').' ('.$project->jobs->count().')', [$project->id]) !!}
+        {!! link_to_route('projects.jobs.index', __('project.jobs').' ('.$project->jobs->count().')', $project) !!}
     </li>
     @endcan
     @can('view-payments', $project)
     <li class="{{ Request::segment(3) == 'payments' ? 'active' : '' }}">
-        {!! link_to_route('projects.payments', trans('project.payments').' ('.$project->payments->count().')', [$project->id]) !!}
+        {!! link_to_route('projects.payments', __('project.payments').' ('.$project->payments->count().')', $project) !!}
     </li>
     @endcan
     @can('view-subscriptions', $project)
     <li class="{{ Request::segment(3) == 'subscriptions' ? 'active' : '' }}">
-        {!! link_to_route('projects.subscriptions', trans('project.subscriptions').' ('.$project->subscriptions->count().')', [$project->id]) !!}
+        {!! link_to_route('projects.subscriptions', __('project.subscriptions').' ('.$project->subscriptions->count().')', $project) !!}
     </li>
     @endcan
     @can('view-invoices', $project)
     <li class="{{ Request::segment(3) == 'invoices' ? 'active' : '' }}">
-        {!! link_to_route('projects.invoices', trans('project.invoices').' ('.$project->invoices->count().')', [$project->id]) !!}
+        {!! link_to_route('projects.invoices', __('project.invoices').' ('.$project->invoices->count().')', $project) !!}
     </li>
     @endcan
     @can('view-files', $project)
     <li class="{{ Request::segment(3) == 'files' ? 'active' : '' }}">
-        {!! link_to_route('projects.files', trans('project.files').' ('.$project->files->count().')', [$project->id]) !!}
+        {!! link_to_route('projects.files', __('project.files').' ('.$project->files->count().')', $project) !!}
     </li>
     @endcan
 </ul>

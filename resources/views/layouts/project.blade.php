@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-{{ $project->name }} - @yield('subtitle', trans('project.show'))
+@yield('subtitle', __('project.detail')) - {{ $project->name }}
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
     <div class="pull-right">
         @yield('action-buttons')
     </div>
-    {{ $project->name }} <small>@yield('subtitle', trans('project.show'))</small>
+    {{ $project->name }} <small>@yield('subtitle', __('project.detail'))</small>
 </h1>
 
 @include('projects.partials.nav-tabs')

@@ -56,4 +56,7 @@ return [
     'item_description' => 'Deskripsi',
     'item_amount'      => 'Biaya',
     'items_count'      => 'Jumlah Item',
+    'subtotal'         => 'Subtotal',
+    'discount'         => 'Diskon',
+    'discount_notes'   => 'Catatan Diskon',
 ];

@@ -56,6 +56,8 @@
                     <div class="col-md-6">{!! FormField::text('due_date', ['label' => trans('invoice.due_date')]) !!}</div>
                 </div>
                 {!! FormField::textarea('notes', ['label' => trans('invoice.notes')]) !!}
+                {!! FormField::price('discount', ['label' => __('invoice.discount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
+                {!! FormField::text('discount_notes', ['label' => __('invoice.discount_notes')]) !!}
             </div>
             <div class="panel-footer">
                 {{ Form::submit(trans('invoice.update'), ['class' => 'btn btn-info']) }}

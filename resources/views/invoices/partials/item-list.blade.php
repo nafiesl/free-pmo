@@ -77,7 +77,7 @@
         <tfoot>
             <tr>
                 <th colspan="2" class="text-right">{{ trans('invoice.amount') }} :</th>
-                <th class="text-right">{{ formatRp($invoice->amount) }}</th>
+                <th class="text-right">{{ formatRp(collect($invoice->items)->sum('amount')) }}</th>
                 <th></th>
             </tr>
         </tfoot>

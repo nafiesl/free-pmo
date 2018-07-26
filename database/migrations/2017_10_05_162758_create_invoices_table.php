@@ -21,6 +21,8 @@ class CreateInvoicesTable extends Migration
             $table->date('due_date')->nullable();
             $table->text('items');
             $table->unsignedInteger('amount');
+            $table->unsignedInteger('discount')->nullable();
+            $table->string('discount_notes')->nullable();
             $table->string('notes')->nullable();
             $table->unsignedTinyInteger('status_id');
             $table->unsignedInteger('creator_id');

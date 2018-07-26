@@ -20,10 +20,10 @@ class ItemsController extends Controller
             'amount'      => $itemData['new_item_amount'],
         ];
         $invoice->items = $items;
-        $invoice->amount = collect($items)->sum('amount');
+        $invoice->amount = (int) collect($items)->sum('amount') - $invoice->discount;
         $invoice->save();
 
-        flash(trans('invoice.item_added'));
+        flash(__('invoice.item_added'));
 
         return back();
     }
@@ -46,10 +46,10 @@ class ItemsController extends Controller
             'amount'      => $amount,
         ];
         $invoice->items = $items;
-        $invoice->amount = collect($items)->sum('amount');
+        $invoice->amount = (int) collect($items)->sum('amount') - $invoice->discount;
         $invoice->save();
 
-        flash(trans('invoice.item_updated'));
+        flash(__('invoice.item_updated'));
 
         return back();
     }
@@ -65,10 +65,10 @@ class ItemsController extends Controller
         $items = $invoice->items;
         unset($items[$itemIndex]);
         $invoice->items = $items;
-        $invoice->amount = (int) collect($items)->sum('amount');
+        $invoice->amount = (int) collect($items)->sum('amount') - $invoice->discount;
         $invoice->save();
 
-        flash(trans('invoice.item_removed'));
+        flash(__('invoice.item_removed'));
 
         return back();
     }

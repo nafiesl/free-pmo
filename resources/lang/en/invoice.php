@@ -56,4 +56,7 @@ return [
     'item_description' => 'Description',
     'item_amount'      => 'Amount',
     'items_count'      => 'Item Count',
+    'subtotal'         => 'Subtotal',
+    'discount'         => 'Discount',
+    'discount_notes'   => 'Discount Notes',
 ];

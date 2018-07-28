@@ -3010,16 +3010,16 @@
         },
         {
             "name": "luthfi/simple-crud-generator",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
-                "reference": "47e1e2a3b8b30035e70ec25db89e34cc6169837d"
+                "reference": "91ad06ac5ed51de4bdc92096ff3d221e6842eb7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/47e1e2a3b8b30035e70ec25db89e34cc6169837d",
-                "reference": "47e1e2a3b8b30035e70ec25db89e34cc6169837d",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/91ad06ac5ed51de4bdc92096ff3d221e6842eb7b",
+                "reference": "91ad06ac5ed51de4bdc92096ff3d221e6842eb7b",
                 "shasum": ""
             },
             "require": {
@@ -3062,7 +3062,7 @@
                 "tdd-workflow",
                 "testing"
             ],
-            "time": "2018-07-25T15:23:18+00:00"
+            "time": "2018-07-27T13:09:28+00:00"
         },
         {
             "name": "maximebf/debugbar",

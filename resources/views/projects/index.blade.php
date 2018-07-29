@@ -10,15 +10,15 @@
     {{ trans('project.index_title', ['status' => $status]) }} <small>{{ $projects->total() }} {{ trans('project.found') }}</small>
 </h1>
 <div class="well well-sm text-right">
-    <div class="pull-left hidden-xs">{{ $projects->appends(Request::except('page'))->render() }}</div>
+    <div class="pull-left hidden-xs">@include('projects.partials.index-nav-tabs')</div>
     {!! Form::open(['method' => 'get', 'class' => 'form-inline']) !!}
-    {!! FormField::select('status_id', ProjectStatus::toArray(), ['value' => $statusId, 'placeholder' => trans('project.all')]) !!}
+    {{ Form::hidden('status_id') }}
     {!! Form::text('q', Request::get('q'), ['class' => 'form-control index-search-field', 'placeholder' => trans('project.search'), 'style' => 'width:100%;max-width:350px']) !!}
     {!! Form::submit(trans('project.search'), ['class' => 'btn btn-info btn-sm']) !!}
     {!! link_to_route('projects.index', __('app.reset'), Request::only(['status_id']), ['class' => 'btn btn-default btn-sm']) !!}
     {!! Form::close() !!}
 </div>
-<div class="table-responsive">
+<div class="panel panel-default table-responsive">
     <table class="table table-condensed table-hover">
         <thead>
             <th>{{ trans('app.table_no') }}</th>

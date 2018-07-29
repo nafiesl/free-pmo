@@ -73,10 +73,10 @@ return [
     'payments'      => 'Pembayaran',
 
     // Statuses
-    'planned'  => 'Planned',
-    'progress' => 'Progress',
-    'done'     => 'Done',
-    'closed'   => 'Closed',
-    'canceled' => 'Canceled',
-    'on_hold'  => 'On Hold',
+    'planned'  => 'Rencana',
+    'progress' => 'Berlangsung',
+    'done'     => 'Selesai',
+    'closed'   => 'Lunas',
+    'canceled' => 'Batal',
+    'on_hold'  => 'Ditunda',
 ];

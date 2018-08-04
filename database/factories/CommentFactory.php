@@ -6,7 +6,6 @@ use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
 
 $factory->define(Comment::class, function (Faker $faker) {
-
     return [
         'commentable_type' => 'projects',
         'commentable_id'   => function () {

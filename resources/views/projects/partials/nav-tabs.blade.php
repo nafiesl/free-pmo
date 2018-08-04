@@ -8,6 +8,9 @@
         {!! link_to_route('projects.jobs.index', __('project.jobs').' ('.$project->jobs->count().')', $project) !!}
     </li>
     @endcan
+    <li class="{{ Request::segment(3) == 'comments' ? 'active' : '' }}">
+        {!! link_to_route('projects.comments.index', __('comment.list').' ('.$project->comments->count().')', $project) !!}
+    </li>
     @can('view-payments', $project)
     <li class="{{ Request::segment(3) == 'payments' ? 'active' : '' }}">
         {!! link_to_route('projects.payments', __('project.payments').' ('.$project->payments->count().')', $project) !!}

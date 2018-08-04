@@ -38,6 +38,12 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     Route::post('projects/{project}/jobs-reorder', ['as' => 'projects.jobs-reorder', 'uses' => 'ProjectsController@jobsReorder']);
 
     /*
+     * Project Comments Routes
+     */
+    Route::get('projects/{project}/comments', 'CommentsController@index')->name('projects.comments.index');
+    Route::post('projects/{project}/comments', 'CommentsController@store')->name('projects.comments.store');
+
+    /*
      * Tasks Routes
      */
     Route::get('jobs/{job}/tasks/create', ['as' => 'tasks.create', 'uses' => 'TasksController@create']);

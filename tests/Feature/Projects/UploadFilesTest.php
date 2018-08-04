@@ -29,7 +29,7 @@ class UploadFilesTest extends TestCase
 
         $this->seeInDatabase('files', [
             'fileable_id'   => $project->id,
-            'fileable_type' => 'App\Entities\Projects\Project',
+            'fileable_type' => 'projects',
             'title'         => 'Judul file',
             'description'   => 'Deskripsi file yang diuplod.',
         ]);
@@ -67,7 +67,7 @@ class UploadFilesTest extends TestCase
 
         $this->seeInDatabase('files', [
             'fileable_id'   => $project->id,
-            'fileable_type' => 'App\Entities\Projects\Project',
+            'fileable_type' => 'projects',
             'title'         => 'Edit Judul file',
             'description'   => 'Edit Deskripsi file yang diuplod.',
         ]);

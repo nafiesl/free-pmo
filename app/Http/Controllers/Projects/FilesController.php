@@ -43,10 +43,10 @@ class FilesController extends Controller
             'description'   => 'nullable|max:255',
         ]);
 
-        $fileableExist = array_search($request->get('fileable_type'), $this->fileableTypes);
+        $fileableType = array_search($request->get('fileable_type'), $this->fileableTypes);
 
-        if ($fileableExist) {
-            $file = $this->proccessPhotoUpload($request->except('_token'), $request->get('fileable_type'), $fileableId);
+        if ($fileableType) {
+            $file = $this->proccessPhotoUpload($request->except('_token'), $fileableType, $fileableId);
 
             if ($file->exists) {
                 flash('Upload file berhasil.', 'success');
@@ -87,9 +87,7 @@ class FilesController extends Controller
 
         flash(trans('file.updated'), 'success');
 
-        $resourceName = array_search($file->fileable_type, $this->fileableTypes);
-
-        return redirect()->route($resourceName.'.files', $file->fileable_id);
+        return redirect()->route($file->fileable_type.'.files', $file->fileable_id);
     }
 
     private function proccessPhotoUpload($data, $fileableType, $fileableId)

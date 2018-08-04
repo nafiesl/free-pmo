@@ -50,4 +50,35 @@ class ProjectCommentsTest extends TestCase
             'creator_id'       => $admin->id,
         ]);
     }
+
+    /** @test */
+    public function user_can_edit_comment()
+    {
+        $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'projects',
+            'commentable_id'   => $project->id,
+            'body'             => 'This is project comment.',
+        ]);
+
+        $this->visitRoute('projects.comments.index', $project);
+        $this->seeElement('a', ['id' => 'edit-comment-'.$comment->id]);
+        $this->click('edit-comment-'.$comment->id);
+        $this->seeRouteIs('projects.comments.index', [$project, 'action' => 'comment-edit', 'comment_id' => $comment->id]);
+
+        $this->submitForm(__('comment.update'), [
+            'body' => 'Komentar pertama.',
+        ]);
+
+        $this->seePageIs(route('projects.comments.index', $project));
+        $this->see(__('comment.updated'));
+
+        $this->seeInDatabase('comments', [
+            'id'               => $comment->id,
+            'commentable_type' => 'projects',
+            'commentable_id'   => $project->id,
+            'body'             => 'Komentar pertama.',
+        ]);
+    }
 }

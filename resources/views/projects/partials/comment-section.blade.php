@@ -12,7 +12,7 @@
         <span class="label label-default pull-right">{{ $comment->created_at }}</span>
         <strong>{{ $comment->creator->name }}</strong>
     </legend>
-
+    {{ link_to_route('projects.comments.index', __('app.edit'), [$project, 'action' => 'comment-edit', 'comment_id' => $comment->id], ['id' => 'edit-comment-'.$comment->id, 'class' => 'small pull-right', 'title' => __('comment.edit')]) }}
     {!! nl2br($comment->body) !!}
 </div>
 @endforeach

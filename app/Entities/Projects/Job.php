@@ -71,6 +71,16 @@ class Job extends Model
     }
 
     /**
+     * Job has many comments relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    /**
      * Get the job type.
      *
      * @return string

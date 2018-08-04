@@ -22,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
 
         Relation::morphMap([
             'projects' => 'App\Entities\Projects\Project',
+            'jobs'     => 'App\Entities\Projects\Job',
         ]);
     }
 

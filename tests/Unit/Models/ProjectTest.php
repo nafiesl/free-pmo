@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
 use App\Entities\Payments\Payment;
+use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
 use Illuminate\Support\Collection;
 use App\Entities\Partners\Customer;
@@ -194,5 +195,18 @@ class ProjectTest extends TestCase
         // $collectibeEarnings = 400 + 900 + 1500 + 1500;
 
         $this->assertEquals($collectibeEarnings, $project->getCollectibeEarnings());
+    }
+
+    /** @test */
+    public function a_project_has_many_comments_relation()
+    {
+        $project = factory(Project::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'projects',
+            'commentable_id'   => $project->id,
+        ]);
+
+        $this->assertInstanceOf(Collection::class, $project->comments);
+        $this->assertInstanceOf(Comment::class, $project->comments->first());
     }
 }

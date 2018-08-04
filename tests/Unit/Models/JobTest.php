@@ -5,6 +5,7 @@ namespace Tests\Unit\Models;
 use Tests\TestCase;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
+use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
 use Illuminate\Support\Collection;
 
@@ -79,5 +80,18 @@ class JobTest extends TestCase
 
         // Job receiveable earning = job tasks average progress (%) * job price
         $this->assertEquals(750, $job->receiveable_earning);
+    }
+
+    /** @test */
+    public function a_job_has_many_comments_relation()
+    {
+        $job = factory(Job::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'jobs',
+            'commentable_id'   => $job->id,
+        ]);
+
+        $this->assertInstanceOf(Collection::class, $job->comments);
+        $this->assertInstanceOf(Comment::class, $job->comments->first());
     }
 }

@@ -4,7 +4,6 @@ namespace App\Entities\Projects;
 
 use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
-use App\Entities\Projects\Comment;
 use App\Entities\Partners\Customer;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;

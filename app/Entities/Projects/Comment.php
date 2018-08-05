@@ -13,4 +13,13 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getTimeDisplayAttribute()
+    {
+        if (now()->format('Y-m-d') != $this->created_at->format('Y-m-d')) {
+            return $this->created_at;
+        }
+
+        return $this->created_at->diffForHumans();
+    }
 }

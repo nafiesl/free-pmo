@@ -17,8 +17,10 @@ class CommentsController extends Controller
      */
     public function index(Project $project)
     {
+        $this->authorize('view-comments', $project);
+
         $editableComment = null;
-        $comments = $project->comments()->latest()->paginate();
+        $comments = $project->comments()->with('creator')->latest()->paginate();
 
         if (request('action') == 'comment-edit' && request('comment_id') != null) {
             $editableComment = Comment::find(request('comment_id'));
@@ -36,7 +38,7 @@ class CommentsController extends Controller
      */
     public function store(Request $request, Project $project)
     {
-        $this->authorize('view', $project);
+        $this->authorize('comment-on', $project);
 
         $newComment = $request->validate([
             'body' => 'required|string|max:255',
@@ -62,6 +64,8 @@ class CommentsController extends Controller
      */
     public function update(Request $request, Project $project, Comment $comment)
     {
+        $this->authorize('update', $comment);
+
         $commentData = $request->validate([
             'body' => 'required|string|max:255',
         ]);

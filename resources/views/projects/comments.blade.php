@@ -36,6 +36,12 @@
 @endif
 @endsection
 
+@section('ext_css')
+<style>
+    ul.pagination { margin-top: 0px }
+</style>
+@endsection
+
 @section('script')
 <script>
 (function () {

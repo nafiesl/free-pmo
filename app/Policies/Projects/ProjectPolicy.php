@@ -147,4 +147,31 @@ class ProjectPolicy
     {
         return $user->hasRole('admin');
     }
+
+    /**
+     * Determine whether the user can view project comments.
+     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
+     * @return bool
+     */
+    public function viewComments(User $user, Project $project)
+    {
+        // Admin and project workers can commenting on their project.
+        return $user->hasRole('admin')
+            || ($user->hasRole('worker') && $user->projects->contains($project->id));
+    }
+
+    /**
+     * Determine whether the user can add comment to a project.
+     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
+     * @return bool
+     */
+    public function commentOn(User $user, Project $project)
+    {
+        // Admin and project workers can commenting on their project.
+        return $this->viewComments($user, $project);
+    }
 }

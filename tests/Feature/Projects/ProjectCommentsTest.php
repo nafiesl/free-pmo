@@ -81,4 +81,27 @@ class ProjectCommentsTest extends TestCase
             'body'             => 'Komentar pertama.',
         ]);
     }
+
+    /** @test */
+    public function user_can_delete_comment()
+    {
+        $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'projects',
+            'commentable_id'   => $project->id,
+            'body'             => 'This is project comment.',
+        ]);
+
+        $this->visitRoute('projects.comments.index', $project);
+        $this->seeElement('button', ['id' => 'delete-comment-'.$comment->id]);
+        $this->press('delete-comment-'.$comment->id);
+
+        $this->seePageIs(route('projects.comments.index', $project));
+        $this->see(__('comment.deleted'));
+
+        $this->dontSeeInDatabase('comments', [
+            'id' => $comment->id,
+        ]);
+    }
 }

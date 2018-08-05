@@ -74,4 +74,29 @@ class CommentsController extends Controller
 
         return redirect()->route('projects.comments.index', [$project] + request(['page']));
     }
+
+    /**
+     * Remove the specified comment.
+     *
+     * @param  \App\Entities\Projects\Comment  $comment
+     * @return \Illuminate\Routing\Redirector
+     */
+    public function destroy(Project $project, Comment $comment)
+    {
+        $this->authorize('delete', $comment);
+
+        request()->validate([
+            'comment_id' => 'required|exists:comments,id',
+        ]);
+
+        if (request('comment_id') == $comment->id && $comment->delete()) {
+            $routeParam = [$project] + request(['page']);
+            flash(__('comment.deleted'), 'warning');
+
+            return redirect()->route('projects.comments.index', $routeParam);
+        }
+        flash(__('comment.undeleted'), 'error');
+
+        return back();
+    }
 }

@@ -43,6 +43,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     Route::get('projects/{project}/comments', 'CommentsController@index')->name('projects.comments.index');
     Route::post('projects/{project}/comments', 'CommentsController@store')->name('projects.comments.store');
     Route::patch('projects/{project}/comments/{comment}', 'CommentsController@update')->name('projects.comments.update');
+    Route::delete('projects/{project}/comments/{comment}', 'CommentsController@destroy')->name('projects.comments.destroy');
 
     /*
      * Tasks Routes

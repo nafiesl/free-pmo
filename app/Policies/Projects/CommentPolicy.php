@@ -24,7 +24,21 @@ class CommentPolicy
      */
     public function update(User $user, Comment $comment)
     {
+        // Only admin and comment creator can update comment.
         return $user->hasRole('admin')
             || ($user->hasRole('worker') && $comment->creator_id == $user->id);
+    }
+
+    /**
+     * Determine whether the user can delete the comment.
+     *
+     * @param \App\Entities\Users\User  $user
+     * @param \App\Entities\Projects\Comment  $comment
+     * @return bool
+     */
+    public function delete(User $user, Comment $comment)
+    {
+        // Only admin and comment creator can delete comment.
+        return $this->update($user, $comment);
     }
 }

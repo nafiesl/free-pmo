@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Policies;
 
+use Tests\TestCase;
 use App\Entities\Projects\Job;
-use Tests\TestCase as TestCase;
 
 class JobPolicyTest extends TestCase
 {
@@ -80,5 +80,33 @@ class JobPolicyTest extends TestCase
 
         $this->assertTrue($admin->can('see-pricings', $job));
         $this->assertFalse($worker->can('see-pricings', $job));
+    }
+
+    /** @test */
+    public function admin_and_worker_view_job_comment_list()
+    {
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
+
+        $job = factory(Job::class)->create([
+            'worker_id' => $worker->id,
+        ]);
+
+        $this->assertTrue($admin->can('view-comments', $job));
+        $this->assertTrue($worker->can('view-comments', $job));
+    }
+
+    /** @test */
+    public function admin_and_job_workers_can_add_comment_to_job()
+    {
+        $admin = $this->createUser('admin');
+        $worker = $this->createUser('worker');
+
+        $job = factory(Job::class)->create([
+            'worker_id' => $worker->id,
+        ]);
+
+        $this->assertTrue($admin->can('comment-on', $job));
+        $this->assertTrue($worker->can('comment-on', $job));
     }
 }

@@ -69,9 +69,6 @@ Route::group(['middleware' => ['auth']], function () {
      */
     Route::get('jobs', ['as' => 'jobs.index', 'uses' => 'JobsController@index']);
     Route::get('jobs/{job}', ['as' => 'jobs.show', 'uses' => 'JobsController@show']);
-});
-
-Route::group(['middleware' => ['auth']], function () {
 
     /*
      * Job Actions Routes
@@ -81,4 +78,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('jobs/{job}/delete', ['as' => 'jobs.delete', 'uses' => 'JobsController@delete']);
     Route::delete('jobs/{job}', ['as' => 'jobs.destroy', 'uses' => 'JobsController@destroy']);
     Route::post('jobs/{id}/tasks-reorder', ['as' => 'jobs.tasks-reorder', 'uses' => 'JobsController@tasksReorder']);
+
+    /*
+     * Project Comments Routes
+     */
+    Route::post('jobs/{job}/comments', 'Jobs\CommentsController@store')->name('jobs.comments.store');
+    Route::patch('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@update')->name('jobs.comments.update');
+    Route::delete('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@destroy')->name('jobs.comments.destroy');
 });

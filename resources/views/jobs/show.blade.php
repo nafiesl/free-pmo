@@ -29,6 +29,39 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         @include('jobs.partials.job-tasks')
+        @can('view-comments', $job)
+        <div class="row">
+            <div class="col-md-12">
+                {{ $comments->links() }}
+                @include('jobs.partials.comment-section')
+                {{ $comments->links() }}
+            </div>
+        </div>
+
+        @if (Request::get('action') == 'comment-edit' && $editableComment)
+            <div id="commentModal" class="modal" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            {{ link_to_route('jobs.show', '&times;', [$job] + request(['page']), ['class' => 'close']) }}
+                            <h4 class="modal-title">{{ __('comment.edit') }}</h4>
+                        </div>
+                        {!! Form::model($editableComment, ['route' => ['jobs.comments.update', $job, $editableComment->id],'method' => 'patch']) !!}
+                        <div class="modal-body">
+                            {!! FormField::textarea('body', ['label' => __('comment.body')]) !!}
+                            {{ Form::hidden('page', request('page')) }}
+                        </div>
+                        <div class="modal-footer">
+                            {!! Form::submit(__('comment.update'), ['class' => 'btn btn-success']) !!}
+                            {{ link_to_route('jobs.show', __('app.cancel'), [$job] + request(['page']), ['class' => 'btn btn-default']) }}
+                        </div>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+            </div>
+        @endif
+        @endcan
     </div>
 </div>
 @endsection
@@ -50,6 +83,7 @@
             width: 8px;
             height: 8px;
         }
+        ul.pagination { margin-top: 0px }
     </style>
 @endsection
 
@@ -65,6 +99,11 @@
     $(document).on('input', 'input[type="range"]', function(e) {
         var ap_weight = e.currentTarget.value;
         $('#ap_weight').text(ap_weight);
+    });
+
+    $('#commentModal').modal({
+        show: true,
+        backdrop: 'static',
     });
 })();
 </script>

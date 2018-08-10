@@ -6,7 +6,7 @@
 
 <ul class="breadcrumb hidden-print"><li>{{ __('job.on_progress') }}</li></ul>
 
-<div class="panel panel-default">
+<div class="panel panel-default table-responsive">
     <div class="panel-heading">
         {{ Form::open(['method' => 'get', 'class' => 'form-inline']) }}
         {!! FormField::select('project_id', $projects, ['label' => __('project.select'), 'placeholder' => __('project.all')]) !!}

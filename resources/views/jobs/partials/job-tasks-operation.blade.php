@@ -1,45 +1,19 @@
-@if (Request::has('action') == false)
-@can('create', new App\Entities\Projects\Task)
-{!! Form::open(['route' => ['tasks.store', $job->id]])!!}
-<div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('task.create') }}</h3></div>
-    <div class="panel-body">
-        <div class="row">
-            <div class="col-sm-6">{!! FormField::text('name', ['label' => __('task.name')]) !!}</div>
-            <div class="col-md-4">
-                {!! Form::label('progress', __('task.progress'), ['class' => 'control-label']) !!}
-                {!! Form::input('range', 'progress', 0, [
-                    'min' => '0', 'max' => '100', 'step' => '10',
-                ]) !!}
-            </div>
-            <div class="col-md-2" style="font-size: 28px; margin-top: 15px;">
-                <strong id="ap_weight">0</strong>%
-            </div>
-        </div>
-        {!! FormField::textarea('description', ['label' => __('task.description')]) !!}
-        {!! Form::submit(__('task.create'), ['class' => 'btn btn-primary']) !!}
-        {!! Form::close() !!}
-    </div>
-</div>
-@endcan
-@endif
-
 @if (Request::get('action') == 'task_edit' && $editableTask)
 @can('update', $editableTask)
-{!! Form::model($editableTask, ['route' => ['tasks.update', $editableTask], 'method' => 'patch'])!!}
+{{ Form::model($editableTask, ['route' => ['tasks.update', $editableTask], 'method' => 'patch']) }}
 <div class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">{{ __('task.edit') }}</h3></div>
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-6">{!! FormField::text('name') !!}</div>
             <div class="col-md-4">
-                {!! Form::label('progress', __('task.progress'), ['class' => 'control-label']) !!}
+                {{ Form::label('progress', __('task.progress'), ['class' => 'control-label']) }}
 
-                {!! Form::input('range', 'progress', null, [
+                {{ Form::input('range', 'progress', null, [
                     'min' => '0',
                     'max' => '100',
                     'step' => '10',
-                ]) !!}
+                ]) }}
             </div>
             <div class="col-md-2" style="font-size: 28px; margin-top: 15px;">
                 <strong id="ap_weight">{{ $editableTask->progress }}</strong>%
@@ -50,10 +24,12 @@
             <div class="col-md-6">
                 {!! FormField::select('job_id', $job->project->jobs->pluck('name', 'id'), ['label' => __('task.move_to_other_job')]) !!}
             </div>
+            <div class="col-md-6 text-right"><br>
+                {{ Form::submit(__('task.update'), ['class' => 'btn btn-warning']) }}
+                {{ link_to_route('jobs.show', __('app.cancel'), [$job], ['class' => 'btn btn-default']) }}
+            </div>
         </div>
-        {!! Form::submit(__('task.update'), ['class' => 'btn btn-warning']) !!}
-        {{ link_to_route('jobs.show', __('app.cancel'), [$job], ['class' => 'btn btn-default']) }}
-        {!! Form::close() !!}
+        {{ Form::close() }}
     </div>
 </div>
 @endcan

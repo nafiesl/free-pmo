@@ -15,15 +15,15 @@
 <div class="row">
     <div class="col-md-5">
         @include('jobs.partials.job-show')
+        @include('jobs.partials.job-dates')
     </div>
     <div class="col-sm-7">
-        @include('jobs.partials.job-dates')
         @include('jobs.partials.job-tasks-operation')
+        @include('jobs.partials.job-tasks')
     </div>
 </div>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        @include('jobs.partials.job-tasks')
     </div>
 </div>
 @endsection

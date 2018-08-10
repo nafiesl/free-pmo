@@ -19,8 +19,8 @@ class JobCommentsTest extends TestCase
             'body'             => 'This is job comment.',
         ]);
 
-        $this->visitRoute('jobs.show', $job);
-        $this->seeRouteIs('jobs.show', $job);
+        $this->visitRoute('jobs.comments.index', $job);
+        $this->seeRouteIs('jobs.comments.index', $job);
 
         $this->seeText('This is job comment.');
     }
@@ -31,13 +31,13 @@ class JobCommentsTest extends TestCase
         $admin = $this->adminUserSigningIn();
         $job = factory(Job::class)->create();
 
-        $this->visitRoute('jobs.show', $job);
+        $this->visitRoute('jobs.comments.index', $job);
 
         $this->submitForm(__('comment.create'), [
             'body' => 'Komentar pertama.',
         ]);
 
-        $this->seePageIs(route('jobs.show', $job));
+        $this->seePageIs(route('jobs.comments.index', $job));
         $this->see(__('comment.created'));
 
         $this->seeInDatabase('comments', [
@@ -59,16 +59,16 @@ class JobCommentsTest extends TestCase
             'body'             => 'This is job comment.',
         ]);
 
-        $this->visitRoute('jobs.show', $job);
+        $this->visitRoute('jobs.comments.index', $job);
         $this->seeElement('a', ['id' => 'edit-comment-'.$comment->id]);
         $this->click('edit-comment-'.$comment->id);
-        $this->seeRouteIs('jobs.show', [$job, 'action' => 'comment-edit', 'comment_id' => $comment->id]);
+        $this->seeRouteIs('jobs.comments.index', [$job, 'action' => 'comment-edit', 'comment_id' => $comment->id]);
 
         $this->submitForm(__('comment.update'), [
             'body' => 'Komentar pertama.',
         ]);
 
-        $this->seePageIs(route('jobs.show', $job));
+        $this->seePageIs(route('jobs.comments.index', $job));
         $this->see(__('comment.updated'));
 
         $this->seeInDatabase('comments', [
@@ -90,11 +90,11 @@ class JobCommentsTest extends TestCase
             'body'             => 'This is job comment.',
         ]);
 
-        $this->visitRoute('jobs.show', $job);
+        $this->visitRoute('jobs.comments.index', $job);
         $this->seeElement('button', ['id' => 'delete-comment-'.$comment->id]);
         $this->press('delete-comment-'.$comment->id);
 
-        $this->seePageIs(route('jobs.show', $job));
+        $this->seePageIs(route('jobs.comments.index', $job));
         $this->see(__('comment.deleted'));
 
         $this->dontSeeInDatabase('comments', [

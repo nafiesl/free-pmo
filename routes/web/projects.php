@@ -82,6 +82,7 @@ Route::group(['middleware' => ['auth']], function () {
     /*
      * Project Comments Routes
      */
+    Route::get('jobs/{job}/comments', 'Jobs\CommentsController@index')->name('jobs.comments.index');
     Route::post('jobs/{job}/comments', 'Jobs\CommentsController@store')->name('jobs.comments.store');
     Route::patch('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@update')->name('jobs.comments.update');
     Route::delete('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@destroy')->name('jobs.comments.destroy');

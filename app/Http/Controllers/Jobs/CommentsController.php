@@ -10,6 +10,26 @@ use App\Http\Controllers\Controller;
 class CommentsController extends Controller
 {
     /**
+     * Display a listing of the job comments.
+     *
+     * @param  \App\Entities\Projects\Job  $job
+     * @return \Illuminate\View\View
+     */
+    public function index(Job $job)
+    {
+        $this->authorize('view-comments', $job);
+
+        $editableComment = null;
+        $comments = $job->comments()->with('creator')->latest()->paginate();
+
+        if (request('action') == 'comment-edit' && request('comment_id') != null) {
+            $editableComment = Comment::find(request('comment_id'));
+        }
+
+        return view('jobs.comments', compact('job', 'comments', 'editableComment'));
+    }
+
+    /**
      * Store a new comment in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -52,7 +72,7 @@ class CommentsController extends Controller
         $comment->update($commentData);
         flash(__('comment.updated'), 'success');
 
-        return redirect()->route('jobs.show', [$job] + request(['page']));
+        return redirect()->route('jobs.comments.index', [$job] + request(['page']));
     }
 
     /**
@@ -73,7 +93,7 @@ class CommentsController extends Controller
             $routeParam = [$job] + request(['page']);
             flash(__('comment.deleted'), 'warning');
 
-            return redirect()->route('jobs.show', $routeParam);
+            return redirect()->route('jobs.comments.index', $routeParam);
         }
         flash(__('comment.undeleted'), 'error');
 

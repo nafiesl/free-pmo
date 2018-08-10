@@ -1,22 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.job')
 
-@section('title', __('job.detail') . ' | ' . $job->name . ' | ' . $job->project->name)
+@section('subtitle', __('job.detail'))
 
-@section('content')
-@include('jobs.partials.breadcrumb')
+@section('action-buttons')
+@can('create', new App\Entities\Projects\Job)
+    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$job->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+@endcan
+@can('update', $job)
+    {{ link_to_route('jobs.edit', __('job.edit'), [$job], ['class' => 'btn btn-warning']) }}
+@endcan
+@endsection
+@section('content-job')
 
-<h1 class="page-header">
-    <div class="pull-right">
-        @can('create', new App\Entities\Projects\Job)
-            {!! html_link_to_route('projects.jobs.create', __('job.create'), [$job->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-        @endcan
-        @can('update', $job)
-            {{ link_to_route('jobs.edit', __('job.edit'), [$job], ['class' => 'btn btn-warning']) }}
-        @endcan
-        {{ link_to_route('projects.jobs.index', __('job.back_to_index'), [$job->project_id, '#' . $job->id], ['class' => 'btn btn-default']) }}
-    </div>
-    {{ $job->name }} <small>{{ __('job.detail') }}</small>
-</h1>
 <div class="row">
     <div class="col-md-5">
         @include('jobs.partials.job-show')
@@ -29,39 +24,6 @@
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         @include('jobs.partials.job-tasks')
-        @can('view-comments', $job)
-        <div class="row">
-            <div class="col-md-12">
-                {{ $comments->links() }}
-                @include('jobs.partials.comment-section')
-                {{ $comments->links() }}
-            </div>
-        </div>
-
-        @if (Request::get('action') == 'comment-edit' && $editableComment)
-            <div id="commentModal" class="modal" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            {{ link_to_route('jobs.show', '&times;', [$job] + request(['page']), ['class' => 'close']) }}
-                            <h4 class="modal-title">{{ __('comment.edit') }}</h4>
-                        </div>
-                        {!! Form::model($editableComment, ['route' => ['jobs.comments.update', $job, $editableComment->id],'method' => 'patch']) !!}
-                        <div class="modal-body">
-                            {!! FormField::textarea('body', ['label' => __('comment.body')]) !!}
-                            {{ Form::hidden('page', request('page')) }}
-                        </div>
-                        <div class="modal-footer">
-                            {!! Form::submit(__('comment.update'), ['class' => 'btn btn-success']) !!}
-                            {{ link_to_route('jobs.show', __('app.cancel'), [$job] + request(['page']), ['class' => 'btn btn-default']) }}
-                        </div>
-                        {!! Form::close() !!}
-                    </div>
-                </div>
-            </div>
-        @endif
-        @endcan
     </div>
 </div>
 @endsection

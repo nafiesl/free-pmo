@@ -16,7 +16,7 @@
     </legend>
     <div class="pull-right">
         @can('update', $comment)
-            {{ link_to_route('jobs.show', __('app.edit'), [$job, 'action' => 'comment-edit', 'comment_id' => $comment->id], ['id' => 'edit-comment-'.$comment->id, 'class' => 'small', 'title' => __('comment.edit')]) }}
+            {{ link_to_route('jobs.comments.index', __('app.edit'), [$job, 'action' => 'comment-edit', 'comment_id' => $comment->id], ['id' => 'edit-comment-'.$comment->id, 'class' => 'small', 'title' => __('comment.edit')]) }}
         @endcan
         @can('delete', $comment)
             {!! FormField::delete(

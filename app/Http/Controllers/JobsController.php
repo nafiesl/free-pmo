@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entities\Projects\Job;
+use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\JobsRepository;
 use App\Http\Requests\Jobs\DeleteRequest;
@@ -65,6 +66,8 @@ class JobsController extends Controller
         $this->authorize('view', $job);
 
         $editableTask = null;
+        $editableComment = null;
+        $comments = $job->comments()->with('creator')->latest()->paginate();
 
         if ($request->get('action') == 'task_edit' && $request->has('task_id')) {
             $editableTask = $this->repo->requireTaskById($request->get('task_id'));
@@ -74,7 +77,11 @@ class JobsController extends Controller
             $editableTask = $this->repo->requireTaskById($request->get('task_id'));
         }
 
-        return view('jobs.show', compact('job', 'editableTask'));
+        if (request('action') == 'comment-edit' && request('comment_id') != null) {
+            $editableComment = Comment::find(request('comment_id'));
+        }
+
+        return view('jobs.show', compact('job', 'editableTask', 'comments', 'editableComment'));
     }
 
     /**

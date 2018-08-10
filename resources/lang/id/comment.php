@@ -15,9 +15,9 @@ return [
     'updated'        => 'Update data Komentar telah berhasil.',
     'delete'         => 'Hapus Komentar',
     'delete_confirm' => 'Anda yakin akan menghapus Komentar ini?',
-    'deleted'        => 'Hapus data Komentar telah berhasil.',
-    'undeleted'      => 'Data Komentar gagal dihapus.',
-    'undeleteable'   => 'Data Komentar tidak dapat dihapus.',
+    'deleted'        => 'Komentar berhasil dihapus.',
+    'undeleted'      => 'Komentar gagal dihapus.',
+    'undeleteable'   => 'Komentar tidak dapat dihapus.',
 
     // Attributes
     'body' => 'Komentar',

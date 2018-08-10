@@ -1,19 +1,19 @@
 @extends('layouts.project')
 
-@section('subtitle', trans('project.jobs'))
+@section('subtitle', __('project.jobs'))
 
 @section('action-buttons')
 @can('create', new App\Entities\Projects\Job)
-    {!! html_link_to_route('projects.jobs.create', trans('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-    {!! html_link_to_route('projects.jobs.add-from-other-project', trans('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$project], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.add-from-other-project', __('job.add_from_other_project'), [$project], ['class' => 'btn btn-default','icon' => 'plus']) !!}
 @endcan
 @endsection
 
 @section('content-project')
 
 @if ($jobs->isEmpty())
-<p>{{ trans('project.no_jobs') }},
-    {{ link_to_route('projects.jobs.create', trans('job.create'), [$project->id]) }}.
+<p>{{ __('project.no_jobs') }},
+    {{ link_to_route('projects.jobs.create', __('job.create'), [$project]) }}.
 </p>
 @else
 
@@ -24,20 +24,20 @@
         <div class="pull-right">
             @can('update', $project)
                 @if (request('action') == 'sort_jobs')
-                    {{ link_to_route('projects.jobs.index', trans('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
+                    {{ link_to_route('projects.jobs.index', __('app.done'), [$project], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
                 @else
-                    {{ link_to_route('projects.jobs.index', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
+                    {{ link_to_route('projects.jobs.index', __('project.sort_jobs'), [$project, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
                     @can('see-pricings', $project)
-                    {!! link_to_route('projects.jobs-export', trans('project.jobs_list_export_html'), [$project->id, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!} |
-                    {!! link_to_route('projects.job-progress-export', trans('project.jobs_progress_export_html'), [$project->id, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!}
+                    {!! link_to_route('projects.jobs-export', __('project.jobs_list_export_html'), [$project, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!} |
+                    {!! link_to_route('projects.job-progress-export', __('project.jobs_progress_export_html'), [$project, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!}
                     @endcan
                 @endif
             @endcan
         </div>
         <h3 class="panel-title">
-            {{ $key == 1 ? trans('project.jobs') : trans('project.additional_jobs') }}
+            {{ $key == 1 ? __('project.jobs') : __('project.additional_jobs') }}
             @if (request('action') == 'sort_jobs')
-            <em>: {{ trans('project.sort_jobs') }}</em>
+            <em>: {{ __('project.sort_jobs') }}</em>
             @endif
         </h3>
     </div>
@@ -52,16 +52,16 @@
     @else
     <table class="table table-condensed table-striped">
         <thead>
-            <th>{{ trans('app.table_no') }}</th>
-            <th>{{ trans('job.name') }}</th>
-            <th class="text-center">{{ trans('job.tasks_count') }}</th>
-            <th class="text-center">{{ trans('job.progress') }}</th>
+            <th>{{ __('app.table_no') }}</th>
+            <th>{{ __('job.name') }}</th>
+            <th class="text-center">{{ __('job.tasks_count') }}</th>
+            <th class="text-center">{{ __('job.progress') }}</th>
             @can('see-pricings', new App\Entities\Projects\Job)
-            <th class="text-right">{{ trans('job.price') }}</th>
+            <th class="text-right">{{ __('job.price') }}</th>
             @endcan
-            {{-- <th>{{ trans('job.worker') }}</th> --}}
-            <th class="text-center">{{ trans('time.updated_at') }}</th>
-            <th class="text-center">{{ trans('app.action') }}</th>
+            {{-- <th>{{ __('job.worker') }}</th> --}}
+            <th class="text-center">{{ __('time.updated_at') }}</th>
+            <th class="text-center">{{ __('app.action') }}</th>
         </thead>
         <tbody>
             @forelse($groupedJobs as $key => $job)
@@ -86,19 +86,21 @@
                 @can('see-pricings', $job)
                 <td class="text-right">{{ formatRp($job->price) }}</td>
                 @endcan
-                {{-- <td>{{ $job->worker->name }}</td> --}}
-                <td class="text-center">{{ $job->updated_at->diffForHumans() }}</td>
+                <td class="text-center">
+                    {{ $job->updated_at->diffForHumans() }} <br>
+                    {{ __('job.worker') }} : {{ $job->worker->name }}
+                </td>
                 <td class="text-center">
                     @can('view', $job)
                     {!! html_link_to_route('jobs.show', '',[$job->id],['icon' => 'search', 'title' => __('job.show'), 'class' => 'btn btn-info btn-xs','id' => 'show-job-' . $job->id]) !!}
                     @endcan
                     @can('edit', $job)
-                    {!! html_link_to_route('jobs.edit', '',[$job->id],['icon' => 'edit', 'title' => trans('job.edit'), 'class' => 'btn btn-warning btn-xs']) !!}
+                    {!! html_link_to_route('jobs.edit', '',[$job->id],['icon' => 'edit', 'title' => __('job.edit'), 'class' => 'btn btn-warning btn-xs']) !!}
                     @endcan
                 </td>
             </tr>
             @empty
-            <tr><td colspan="7">{{ trans('job.empty') }}</td></tr>
+            <tr><td colspan="7">{{ __('job.empty') }}</td></tr>
             @endforelse
         </tbody>
         <tfoot>
@@ -115,9 +117,9 @@
                 <th colspan="2">
                     @can('update', $project)
                         @if (request('action') == 'sort_jobs')
-                            {{ link_to_route('projects.jobs.index', trans('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                            {{ link_to_route('projects.jobs.index', __('app.done'), [$project->id], ['class' => 'btn btn-default btn-xs pull-right']) }}
                         @else
-                            {{ link_to_route('projects.jobs.index', trans('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right']) }}
+                            {{ link_to_route('projects.jobs.index', __('project.sort_jobs'), [$project->id, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right']) }}
                         @endif
                     @endcan
                 </th>

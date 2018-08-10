@@ -4,8 +4,8 @@
 
 @section('action-buttons')
 @can('create', new App\Entities\Projects\Job)
-    {!! html_link_to_route('projects.jobs.create', trans('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-    {!! html_link_to_route('projects.jobs.add-from-other-project', trans('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.add-from-other-project', __('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
 @endcan
 @endsection
 
@@ -21,18 +21,18 @@
                 {{ Form::submit(__('project.show_jobs'), ['class' => 'btn btn-default btn-sm']) }}
                 {{ Form::close() }}
                 @if ($selectedProject)
-                {!! Form::open(['route' => ['projects.jobs.store-from-other-project', $project->id]]) !!}
+                {{ Form::open(['route' => ['projects.jobs.store-from-other-project', $project->id]]) }}
                 <ul class="list-unstyled">
                     @forelse($selectedProject->jobs as $key => $job)
                     <li>
                         <label for="job_id_{{ $job->id }}">
-                        {!! Form::checkbox('job_ids['.$job->id.']', $job->id, null, ['id' => 'job_id_'.$job->id]) !!}
+                        {{ Form::checkbox('job_ids['.$job->id.']', $job->id, null, ['id' => 'job_id_'.$job->id]) }}
                         {{ $job->name }}</label>
                         <ul style="list-style-type:none">
                             @foreach($job->tasks as $task)
                             <li>
                                 <label for="{{ $job->id }}_task_id_{{ $task->id }}" style="font-weight:normal">
-                                {!! Form::checkbox($job->id.'_task_ids['.$task->id.']', $task->id, null, ['id' => $job->id.'_task_id_'.$task->id]) !!}
+                                {{ Form::checkbox($job->id.'_task_ids['.$task->id.']', $task->id, null, ['id' => $job->id.'_task_id_'.$task->id]) }}
                                 {{ $task->name }}</label>
                             </li>
                             @endforeach
@@ -45,8 +45,8 @@
                 @else
                     <div class="alert alert-info">{{ __('job.select_project') }}</div>
                 @endif
-                {!! Form::submit(__('job.add'), ['class' => 'btn btn-primary']) !!}
-                {!! Form::close() !!}
+                {{ Form::submit(__('job.add'), ['class' => 'btn btn-primary']) }}
+                {{ Form::close() }}
             </div>
 
             <div class="panel-footer">
@@ -58,7 +58,7 @@
 @endsection
 
 @section('ext_css')
-    {!! Html::style(url('assets/css/plugins/select2.min.css')) !!}
+    {{ Html::style(url('assets/css/plugins/select2.min.css')) }}
     <style>
     .select2-selection.select2-selection--single {
         border-radius: 0;
@@ -68,7 +68,7 @@
 @endsection
 
 @section('script')
-{!! Html::script(url('assets/js/plugins/select2.min.js')) !!}
+{{ Html::script(url('assets/js/plugins/select2.min.js')) }}
 <script>
 (function() {
     $('select[name=project_id]').select2();

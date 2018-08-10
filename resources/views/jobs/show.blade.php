@@ -1,34 +1,29 @@
-@extends('layouts.app')
+@extends('layouts.job')
 
-@section('title', __('job.detail') . ' | ' . $job->name . ' | ' . $job->project->name)
+@section('subtitle', __('job.detail'))
 
-@section('content')
-@include('jobs.partials.breadcrumb')
+@section('action-buttons')
+@can('create', new App\Entities\Projects\Job)
+    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$job->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+@endcan
+@can('update', $job)
+    {{ link_to_route('jobs.edit', __('job.edit'), [$job], ['class' => 'btn btn-warning']) }}
+@endcan
+@endsection
+@section('content-job')
 
-<h1 class="page-header">
-    <div class="pull-right">
-        @can('create', new App\Entities\Projects\Job)
-            {!! html_link_to_route('projects.jobs.create', __('job.create'), [$job->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-        @endcan
-        @can('update', $job)
-            {{ link_to_route('jobs.edit', __('job.edit'), [$job], ['class' => 'btn btn-warning']) }}
-        @endcan
-        {{ link_to_route('projects.jobs.index', __('job.back_to_index'), [$job->project_id, '#' . $job->id], ['class' => 'btn btn-default']) }}
-    </div>
-    {{ $job->name }} <small>{{ __('job.detail') }}</small>
-</h1>
 <div class="row">
     <div class="col-md-5">
         @include('jobs.partials.job-show')
+        @include('jobs.partials.job-dates')
     </div>
     <div class="col-sm-7">
-        @include('jobs.partials.job-dates')
         @include('jobs.partials.job-tasks-operation')
+        @include('jobs.partials.job-tasks')
     </div>
 </div>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        @include('jobs.partials.job-tasks')
     </div>
 </div>
 @endsection
@@ -50,6 +45,7 @@
             width: 8px;
             height: 8px;
         }
+        ul.pagination { margin-top: 0px }
     </style>
 @endsection
 
@@ -65,6 +61,11 @@
     $(document).on('input', 'input[type="range"]', function(e) {
         var ap_weight = e.currentTarget.value;
         $('#ap_weight').text(ap_weight);
+    });
+
+    $('#commentModal').modal({
+        show: true,
+        backdrop: 'static',
     });
 })();
 </script>

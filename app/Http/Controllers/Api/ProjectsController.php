@@ -33,7 +33,6 @@ class ProjectsController extends Controller
     public function jobs($id)
     {
         $project = $this->repo->requireById($id);
-        // $project->load('jobs.tasks');
         $response = fractal()
             ->item($project->toArray())
             ->transformWith(function ($project) {

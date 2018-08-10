@@ -4,8 +4,8 @@
 
 @section('action-buttons')
 @can('create', new App\Entities\Projects\Job)
-    {!! html_link_to_route('projects.jobs.create', trans('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-    {!! html_link_to_route('projects.jobs.add-from-other-project', trans('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$project], ['class' => 'btn btn-success', 'icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.add-from-other-project', __('job.add_from_other_project'), [$project], ['class' => 'btn btn-default', 'icon' => 'plus']) !!}
 @endcan
 @endsection
 
@@ -13,7 +13,7 @@
 
 <div class="row">
     <div class="col-sm-6 col-sm-offset-2">
-        {!! Form::open(['route' => ['projects.jobs.store', $project->id]]) !!}
+        {{ Form::open(['route' => ['projects.jobs.store', $project]]) }}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ __('job.create') }}</h3></div>
             <div class="panel-body">
@@ -41,11 +41,11 @@
             </div>
 
             <div class="panel-footer">
-                {!! Form::submit(__('job.create'), ['class' => 'btn btn-primary']) !!}
+                {{ Form::submit(__('job.create'), ['class' => 'btn btn-primary']) }}
                 {{ link_to_route('projects.jobs.index', __('app.cancel'), [$project], ['class' => 'btn btn-default']) }}
             </div>
         </div>
-        {!! Form::close() !!}
+        {{ Form::close() }}
     </div>
 </div>
 @endsection
@@ -54,11 +54,8 @@
     {!! Html::style(url('assets/css/plugins/jquery.datetimepicker.css')) !!}
 @endsection
 
-@section('ext_js')
-    {!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
-@endsection
-
 @section('script')
+{!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
 <script>
 (function() {
     $('.date-select').datetimepicker({

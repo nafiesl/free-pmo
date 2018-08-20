@@ -68,4 +68,26 @@ class TasksController extends Controller
 
         return redirect()->route('jobs.show', $task->job_id);
     }
+
+    /**
+     * Set a task to become a job.
+     *
+     * @param \App\Entities\Projects\Task $task
+     * @return \Illuminate\Routing\Redirector
+     */
+    public function setAsJob(Task $task)
+    {
+        $oldJob = $task->job;
+
+        $job = new Job;
+        $job->name = $task->name;
+        $job->description = $task->description;
+        $job->project_id = $oldJob->project_id;
+        $job->worker_id = $oldJob->worker_id;
+        $job->save();
+
+        flash(__('task.upgraded_to_job'), 'success');
+
+        return redirect()->route('jobs.show', $job);
+    }
 }

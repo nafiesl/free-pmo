@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     Route::post('jobs/{job}/tasks', ['as' => 'tasks.store', 'uses' => 'TasksController@store']);
     Route::patch('tasks/{task}', ['as' => 'tasks.update', 'uses' => 'TasksController@update']);
     Route::delete('tasks/{task}', ['as' => 'tasks.destroy', 'uses' => 'TasksController@destroy']);
+    Route::post('tasks/{task}/set-as-job', ['as' => 'tasks.set-as-job', 'uses' => 'TasksController@setAsJob']);
 
     /*
      * Files Routes

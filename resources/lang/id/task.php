@@ -22,6 +22,10 @@ return [
     'deleted'   => 'Hapus data Task telah berhasil.',
     'undeleted' => 'Data Task gagal dihapus.',
 
+    'set_as_job'         => 'Set Menjadi Job',
+    'set_as_job_confirm' => 'Anda yakin mengubah task ini menjadi sebuah Job?',
+    'upgraded_as_job'    => 'Task telah menjadi Job.',
+
     // Attributes
     'name'        => 'Nama Task',
     'progress'    => 'Progress',

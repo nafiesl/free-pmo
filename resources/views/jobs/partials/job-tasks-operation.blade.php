@@ -31,6 +31,16 @@
         </div>
         {{ Form::close() }}
     </div>
+    <div class="panel-footer">
+        {!! FormField::formButton(
+            [
+                'route' => ['tasks.set-as-job', $editableTask],
+                'onsubmit' => __('task.set_as_job_confirm'),
+            ],
+            __('task.set_as_job'),
+            ['class' => 'btn btn-warning', 'id' => 'set-as-job-'.$editableTask->id]
+        ) !!}
+    </div>
 </div>
 @endcan
 @endif

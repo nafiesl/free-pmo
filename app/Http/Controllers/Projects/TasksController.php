@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Projects;
 
+use DB;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
 use App\Http\Controllers\Controller;
@@ -84,7 +85,11 @@ class TasksController extends Controller
         $job->description = $task->description;
         $job->project_id = $oldJob->project_id;
         $job->worker_id = $oldJob->worker_id;
+
+        DB::beginTransaction();
         $job->save();
+        $task->delete();
+        DB::commit();
 
         flash(__('task.upgraded_to_job'), 'success');
 

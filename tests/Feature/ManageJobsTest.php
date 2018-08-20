@@ -212,12 +212,12 @@ class ManageJobsTest extends TestCase
         $project = factory(Project::class)->create();
         $job = factory(Job::class)->create([
             'project_id' => $project->id,
-            'type_id' => 1,
-            'worker_id' => $user->id,
+            'type_id'    => 1,
+            'worker_id'  => $user->id,
         ]);
         $task = factory(Task::class)->create([
-            'name' => 'This is a Task',
-            'job_id' => $job->id,
+            'name'        => 'This is a Task',
+            'job_id'      => $job->id,
             'description' => 'Task description.',
         ]);
 
@@ -227,8 +227,12 @@ class ManageJobsTest extends TestCase
         $this->press('set-as-job-'.$task->id);
 
         $this->seeInDatabase('jobs', [
-            'name' => 'This is a Task',
+            'name'        => 'This is a Task',
             'description' => 'Task description.',
+        ]);
+
+        $this->dontSeeInDatabase('tasks', [
+            'id' => $task->id,
         ]);
     }
 }

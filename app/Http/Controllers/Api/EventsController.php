@@ -153,7 +153,7 @@ class EventsController extends Controller
         $this->validate($request, [
             'id'    => 'required|numeric|exists:user_events,id',
             'start' => 'required|date|date_format:Y-m-d H:i:s',
-            'end'   => 'date|date_format:Y-m-d H:i:s',
+            'end'   => 'nullable|date|date_format:Y-m-d H:i:s',
         ]);
 
         $event = Event::findOrFail($request->get('id'));

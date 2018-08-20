@@ -1,8 +1,20 @@
 @if (Request::get('action') == 'task_edit' && $editableTask)
 @can('update', $editableTask)
-{{ Form::model($editableTask, ['route' => ['tasks.update', $editableTask], 'method' => 'patch']) }}
 <div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('task.edit') }}</h3></div>
+    <div class="panel-heading">
+        <div class="pull-right" style="margin-top: -2px;margin-right: -8px">
+            {!! FormField::formButton(
+                [
+                    'route' => ['tasks.set-as-job', $editableTask],
+                    'onsubmit' => __('task.set_as_job_confirm'),
+                ],
+                __('task.set_as_job'),
+                ['class' => 'btn btn-success btn-xs', 'id' => 'set-as-job-'.$editableTask->id]
+            ) !!}
+        </div>
+        <h3 class="panel-title">{{ __('task.edit') }}</h3>
+    </div>
+    {{ Form::model($editableTask, ['route' => ['tasks.update', $editableTask], 'method' => 'patch']) }}
     <div class="panel-body">
         <div class="row">
             <div class="col-sm-6">{!! FormField::text('name') !!}</div>
@@ -29,18 +41,8 @@
                 {{ link_to_route('jobs.show', __('app.cancel'), [$job], ['class' => 'btn btn-default']) }}
             </div>
         </div>
-        {{ Form::close() }}
     </div>
-    <div class="panel-footer">
-        {!! FormField::formButton(
-            [
-                'route' => ['tasks.set-as-job', $editableTask],
-                'onsubmit' => __('task.set_as_job_confirm'),
-            ],
-            __('task.set_as_job'),
-            ['class' => 'btn btn-warning', 'id' => 'set-as-job-'.$editableTask->id]
-        ) !!}
-    </div>
+    {{ Form::close() }}
 </div>
 @endcan
 @endif

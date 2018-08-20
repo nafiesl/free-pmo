@@ -137,25 +137,53 @@ class ApiEventsTest extends TestCase
         $event = factory(Event::class)->create(['user_id' => $user->id, 'start' => '2016-11-17 12:00:00']);
 
         $this->patchJson(route('api.events.reschedule'), [
-            'id'    => $event->id,
-            'start' => '2016-11-07 13:00:00',
-            'end'   => '2016-11-07 15:00:00',
+            'id'        => $event->id,
+            'start'     => '2016-11-07 13:00:00',
+            'end'       => '2016-11-07 15:00:00',
+            'is_allday' => 'false',
         ], [
             'Authorization' => 'Bearer '.$user->api_token,
         ]);
 
-        // $this->dump();
         $this->seeStatusCode(200);
+        $this->seeJson(['message' => trans('event.rescheduled')]);
+        $this->seeInDatabase('user_events', [
+            'id'        => $event->id,
+            'user_id'   => $user->id,
+            'start'     => '2016-11-07 13:00:00',
+            'end'       => '2016-11-07 15:00:00',
+            'is_allday' => 0,
+        ]);
+    }
 
-        $this->seeJson([
-            'message' => trans('event.rescheduled'),
+    /** @test */
+    public function event_can_be_set_as_all_day_event()
+    {
+        $user = factory(User::class)->create();
+        $event = factory(Event::class)->create([
+            'user_id'   => $user->id,
+            'start'     => '2016-11-17 12:00:00',
+            'end'       => '2016-11-17 14:00:00',
+            'is_allday' => 0,
         ]);
 
+        $this->patchJson(route('api.events.reschedule'), [
+            'id'        => $event->id,
+            'start'     => '2016-11-07 13:00:00',
+            'end'       => '2016-11-07 15:00:00',
+            'is_allday' => 'true',
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $this->seeJson(['message' => trans('event.rescheduled')]);
         $this->seeInDatabase('user_events', [
-            'id'      => $event->id,
-            'user_id' => $user->id,
-            'start'   => '2016-11-07 13:00:00',
-            'end'     => '2016-11-07 15:00:00',
+            'id'        => $event->id,
+            'user_id'   => $user->id,
+            'start'     => '2016-11-07 13:00:00',
+            'end'       => null,
+            'is_allday' => 1,
         ]);
     }
 }

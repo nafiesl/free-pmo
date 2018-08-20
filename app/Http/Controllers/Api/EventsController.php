@@ -150,10 +150,11 @@ class EventsController extends Controller
 
     public function reschedule(Request $request)
     {
-        $this->validate($request, [
-            'id'    => 'required|numeric|exists:user_events,id',
-            'start' => 'required|date|date_format:Y-m-d H:i:s',
-            'end'   => 'nullable|date|date_format:Y-m-d H:i:s',
+        $request->validate([
+            'id'        => 'required|numeric|exists:user_events,id',
+            'start'     => 'required|date|date_format:Y-m-d H:i:s',
+            'end'       => 'nullable|date|date_format:Y-m-d H:i:s',
+            'is_allday' => 'required|in:true,false',
         ]);
 
         $event = Event::findOrFail($request->get('id'));
@@ -163,6 +164,11 @@ class EventsController extends Controller
         if ($request->has('end')) {
             $event->end = $request->get('end');
             $event->is_allday = false;
+        }
+
+        if ($request->get('is_allday') == 'true') {
+            $event->end = null;
+            $event->is_allday = true;
         }
 
         $event->save();

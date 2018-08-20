@@ -300,7 +300,7 @@
                 $.ajax({
                     url: "{{ route('api.events.reschedule') }}",
                     method: "PATCH",
-                    data: { id: calEvent.id, start: start, end: end },
+                    data: { id: calEvent.id, start: start, end: end, is_allday: calEvent.allDay },
                     success: function(response){
                         if(response.message != 'event.rescheduled')
                             revertFunc();

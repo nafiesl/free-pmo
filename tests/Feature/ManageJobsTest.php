@@ -224,13 +224,17 @@ class ManageJobsTest extends TestCase
         $this->visitRoute('jobs.show', [$job, 'action' => 'task_edit', 'task_id' => $task->id]);
         $this->seeRouteIs('jobs.show', [$job, 'action' => 'task_edit', 'task_id' => $task->id]);
         $this->seeElement('button', ['id' => 'set-as-job-'.$task->id]);
+
         $this->press('set-as-job-'.$task->id);
 
+        $newJob = Job::where('name', 'This is a Task')->first();
+        $this->seeRouteIs('jobs.edit', $newJob);
+
         $this->seeInDatabase('jobs', [
+            'id'          => $newJob->id,
             'name'        => 'This is a Task',
             'description' => 'Task description.',
         ]);
-
         $this->dontSeeInDatabase('tasks', [
             'id' => $task->id,
         ]);

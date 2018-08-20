@@ -91,8 +91,8 @@ class TasksController extends Controller
         $task->delete();
         DB::commit();
 
-        flash(__('task.upgraded_to_job'), 'success');
+        flash(__('task.upgraded_as_job'), 'success');
 
-        return redirect()->route('jobs.show', $job);
+        return redirect()->route('jobs.edit', $job);
     }
 }

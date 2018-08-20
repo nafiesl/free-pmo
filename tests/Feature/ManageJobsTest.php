@@ -203,4 +203,40 @@ class ManageJobsTest extends TestCase
         $this->visit(route('jobs.index'));
         $this->seePageIs(route('jobs.index'));
     }
+
+    /** @test */
+    public function admin_can_upgrade_a_task_to_become_job()
+    {
+        $user = $this->adminUserSigningIn();
+
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create([
+            'project_id' => $project->id,
+            'type_id'    => 1,
+            'worker_id'  => $user->id,
+        ]);
+        $task = factory(Task::class)->create([
+            'name'        => 'This is a Task',
+            'job_id'      => $job->id,
+            'description' => 'Task description.',
+        ]);
+
+        $this->visitRoute('jobs.show', [$job, 'action' => 'task_edit', 'task_id' => $task->id]);
+        $this->seeRouteIs('jobs.show', [$job, 'action' => 'task_edit', 'task_id' => $task->id]);
+        $this->seeElement('button', ['id' => 'set-as-job-'.$task->id]);
+
+        $this->press('set-as-job-'.$task->id);
+
+        $newJob = Job::where('name', 'This is a Task')->first();
+        $this->seeRouteIs('jobs.edit', $newJob);
+
+        $this->seeInDatabase('jobs', [
+            'id'          => $newJob->id,
+            'name'        => 'This is a Task',
+            'description' => 'Task description.',
+        ]);
+        $this->dontSeeInDatabase('tasks', [
+            'id' => $task->id,
+        ]);
+    }
 }

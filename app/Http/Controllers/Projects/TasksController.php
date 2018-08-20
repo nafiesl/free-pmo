@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Projects;
 
+use DB;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
 use App\Http\Controllers\Controller;
@@ -67,5 +68,31 @@ class TasksController extends Controller
         }
 
         return redirect()->route('jobs.show', $task->job_id);
+    }
+
+    /**
+     * Set a task to become a job.
+     *
+     * @param \App\Entities\Projects\Task $task
+     * @return \Illuminate\Routing\Redirector
+     */
+    public function setAsJob(Task $task)
+    {
+        $oldJob = $task->job;
+
+        $job = new Job;
+        $job->name = $task->name;
+        $job->description = $task->description;
+        $job->project_id = $oldJob->project_id;
+        $job->worker_id = $oldJob->worker_id;
+
+        DB::beginTransaction();
+        $job->save();
+        $task->delete();
+        DB::commit();
+
+        flash(__('task.upgraded_as_job'), 'success');
+
+        return redirect()->route('jobs.edit', $job);
     }
 }

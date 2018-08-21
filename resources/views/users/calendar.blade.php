@@ -4,14 +4,23 @@
 
 @section('content')
 
-<div class="">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="x_panel">
-                <div class="x_title"><h3>User Calendar <small>Click to add/edit events</small></h3></div>
-                <div class="x_content">
-                    <div id='calendar'></div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <div class="pull-right">
+                    @if (request('action') == 'edit')
+                        {{ link_to_route('users.calendar', __('app.done'), [], ['class' => 'btn btn-default btn-xs']) }}
+                    @else
+                        {{ link_to_route('users.calendar', __('event.edit'), ['action' => 'edit'], ['class' => 'btn btn-warning btn-xs']) }}
+                    @endif
                 </div>
+                <h3>
+                    User Calendar <small>Click to add/edit events</small>
+                </h3>
+            </div>
+            <div class="x_content">
+                <div id='calendar'></div>
             </div>
         </div>
     </div>
@@ -147,6 +156,7 @@
         y = date.getFullYear(),
         started,
         categoryClass;
+        var selectable = "{{ request('action') }}" == 'edit';
 
         var calendar = $('#calendar').fullCalendar({
             header: {
@@ -156,7 +166,7 @@
             },
             defaultView: 'agendaWeek',
             height: 550,
-            selectable: true,
+            selectable: selectable,
             selectHelper: true,
             minTime: '06:00:00',
             // eventLimit: true,
@@ -165,7 +175,7 @@
             slotLabelFormat: 'HH:mm',
             slotDuration: '01:00:00',
             events: {
-                url: "{{ route('api.events.index') }}",
+                url: "{{ route('api.events.index', request(['action'])) }}",
                 type: "GET",
                 error: function() {
                     alert('there was an error while fetching events!');

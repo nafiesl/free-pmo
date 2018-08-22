@@ -28,6 +28,7 @@ class EventsController extends Controller
             ->collection($events)
             ->transformWith(function ($event) {
                 $isOwnEvent = $event->user_id == auth()->id();
+                $editable = request('action') == 'edit' ? true : false;
 
                 return [
                     'id'         => $event->id,
@@ -39,7 +40,7 @@ class EventsController extends Controller
                     'start'      => $event->start,
                     'end'        => $event->end,
                     'allDay'     => $event->is_allday,
-                    'editable'   => true,
+                    'editable'   => $editable,
                     'color'      => $isOwnEvent ? '' : '#B7B7B7',
                 ];
             })

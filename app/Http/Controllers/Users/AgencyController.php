@@ -12,16 +12,31 @@ use App\Http\Controllers\Controller;
  */
 class AgencyController extends Controller
 {
+    /**
+     * Show agency detail page.
+     *
+     * @return \Illuminate\View\View
+     */
     public function show()
     {
         return view('users.agency.show');
     }
 
+    /**
+     * Show agency edit form.
+     *
+     * @return \Illuminate\View\View
+     */
     public function edit()
     {
         return view('users.agency.edit');
     }
 
+    /**
+     * Process agency detail update.
+     *
+     * @return \Illuminate\Routing\Redirector
+     */
     public function update()
     {
         request()->validate([
@@ -42,11 +57,16 @@ class AgencyController extends Controller
         Option::set('agency_city', request('city'));
         Option::set('agency_phone', request('phone'));
 
-        flash(trans('agency.updated'), 'success');
+        flash(__('agency.updated'), 'success');
 
         return redirect()->route('users.agency.show');
     }
 
+    /**
+     * Process agency logo upload.
+     *
+     * @return \Illuminate\Routing\Redirector
+     */
     public function logoUpload()
     {
         $file = request()->validate([
@@ -58,12 +78,9 @@ class AgencyController extends Controller
         \File::delete(public_path('assets/imgs/'.Option::get('agency_logo_path')));
 
         $filename = $file['logo']->getClientOriginalName();
-
         $file['logo']->move(public_path('assets/imgs'), $filename);
-
         Option::set('agency_logo_path', $filename);
-
-        flash(trans('agency.updated'), 'success');
+        flash(__('agency.updated'), 'success');
 
         return redirect()->route('users.agency.show');
     }

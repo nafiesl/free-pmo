@@ -98,6 +98,11 @@ return [
             'required_without' => 'Email customer wajib diisi.',
         ],
     ],
+    'agency'  => [
+        'logo' => [
+            'file_extension' => 'Silakan upload file format <strong>.png</strong>',
+        ],
+    ],
 
     /*
     |---------------------------------------------------------------------------------------

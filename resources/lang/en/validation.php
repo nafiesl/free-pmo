@@ -98,6 +98,11 @@ return [
             'required_without' => 'Customer email is required.',
         ],
     ],
+    'agency'  => [
+        'logo' => [
+            'file_extension' => 'Please upload an image with <strong>.png</strong> format.',
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------

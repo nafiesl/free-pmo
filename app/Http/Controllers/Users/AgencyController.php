@@ -72,7 +72,7 @@ class AgencyController extends Controller
         $file = request()->validate([
             'logo' => 'required|file_extension:png|max:100|dimensions:min_width=100,max_width=200',
         ], [
-            'file_extension' => 'Silakan upload file format <strong>.png</strong>',
+            'logo.file_extension' => __('validation.agency.logo.file_extension'),
         ]);
 
         \File::delete(public_path('assets/imgs/'.Option::get('agency_logo_path')));

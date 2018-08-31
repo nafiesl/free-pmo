@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce794c0f3010842685536b7dc4c2b7f2",
+    "content-hash": "2bc96e7774d2ea1a74f716dc9d8dee43",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -3010,16 +3010,16 @@
         },
         {
             "name": "luthfi/simple-crud-generator",
-            "version": "1.1.6",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
-                "reference": "91ad06ac5ed51de4bdc92096ff3d221e6842eb7b"
+                "reference": "35b697edc2cee4524eb98509590eacd60139102e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/91ad06ac5ed51de4bdc92096ff3d221e6842eb7b",
-                "reference": "91ad06ac5ed51de4bdc92096ff3d221e6842eb7b",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/35b697edc2cee4524eb98509590eacd60139102e",
+                "reference": "35b697edc2cee4524eb98509590eacd60139102e",
                 "shasum": ""
             },
             "require": {
@@ -3062,7 +3062,7 @@
                 "tdd-workflow",
                 "testing"
             ],
-            "time": "2018-07-27T13:09:28+00:00"
+            "time": "2018-08-30T02:07:29+00:00"
         },
         {
             "name": "maximebf/debugbar",

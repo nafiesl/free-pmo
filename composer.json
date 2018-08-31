@@ -19,7 +19,7 @@
         "barryvdh/laravel-debugbar": "^3.1",
         "fzaninotto/faker": "~1.4",
         "johnkary/phpunit-speedtrap": "^2.0",
-        "luthfi/simple-crud-generator": "^1.1",
+        "luthfi/simple-crud-generator": "^1.2",
         "mockery/mockery": "~1.0",
         "phpunit/phpunit": "~6.0"
     },

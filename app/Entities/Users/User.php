@@ -9,14 +9,35 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ['name', 'email', 'password', 'api_token', 'lang'];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array
+     */
     protected $hidden = ['password', 'remember_token', 'api_token'];
 
+    /**
+     * Set user password attribute on save.
+     *
+     * @param void
+     */
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
     }
 
+    /**
+     * Show user name with link to user detail.
+     *
+     * @return Illuminate\Support\HtmlString
+     */
     public function nameLink()
     {
         return link_to_route('users.show', $this->name, [$this]);
@@ -35,8 +56,7 @@ class User extends Authenticatable
     /**
      * Assign the given role to the user.
      *
-     * @param string $role
-     *
+     * @param  string  $roleName
      * @return void
      */
     public function assignRole(string $roleName)
@@ -52,8 +72,7 @@ class User extends Authenticatable
     /**
      * Remove the given role from the user.
      *
-     * @param string $role
-     *
+     * @param  string  $roleName
      * @return void
      */
     public function removeRole(string $roleName)
@@ -69,8 +88,7 @@ class User extends Authenticatable
     /**
      * Determine if the user has the given role.
      *
-     * @param string $role
-     *
+     * @param  string  $roleName
      * @return bool
      */
     public function hasRole(string $roleName)
@@ -83,8 +101,7 @@ class User extends Authenticatable
     /**
      * Determine if the user has the given array of role.
      *
-     * @param array $role
-     *
+     * @param  array  $roleNameArray
      * @return bool
      */
     public function hasRoles(array $roleNameArray)
@@ -101,6 +118,13 @@ class User extends Authenticatable
             });
     }
 
+    /**
+     * User query scope based on role names.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  array  $roleNameArray
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     public function scopeHasRoles($query, array $roleNameArray)
     {
         return $query->whereHas('roles', function ($q) use ($roleNameArray) {
@@ -114,6 +138,11 @@ class User extends Authenticatable
         });
     }
 
+    /**
+     * List of user roles in html list items.
+     *
+     * @return string
+     */
     public function roleList()
     {
         $roleList = '<ul>';
@@ -125,11 +154,21 @@ class User extends Authenticatable
         return $roleList;
     }
 
+    /**
+     * User has many Jobs relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function jobs()
     {
         return $this->hasMany('App\Entities\Projects\Job', 'worker_id');
     }
 
+    /**
+     * User belongs to many Projects based on Job assignments.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function projects()
     {
         return $this->belongsToMany('App\Entities\Projects\Project', 'jobs', 'worker_id')
@@ -137,6 +176,11 @@ class User extends Authenticatable
             ->groupBy('project_id');
     }
 
+    /**
+     * User has many Payment as fee.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function payments()
     {
         return $this->morphMany('App\Entities\Payments\Payment', 'partner');

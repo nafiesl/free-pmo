@@ -12,19 +12,47 @@ use App\Exceptions\EntityNotFoundException;
  */
 abstract class EloquentRepository
 {
+    /**
+     * Default paginated items on each page.
+     *
+     * @var int
+     */
     protected $_paginate = 25;
+
+    /**
+     * Corresponding model of repository.
+     *
+     * @var \Illuminate\Database\Eloquent\Model
+     */
     protected $model;
 
+    /**
+     * Create repository instance.
+     *
+     * @param \Illuminate\Database\Eloquent\Model  $model
+     */
     public function __construct(Model $model)
     {
         $this->model = $model;
     }
 
+    /**
+     * Set model of repository.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @return void
+     */
     public function setModel(Model $model)
     {
         $this->model = $model;
     }
 
+    /**
+     * Get all records filtered by $q (search query).
+     *
+     * @param  string  $q
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
+     */
     public function getAll($q)
     {
         return $this->model->latest()
@@ -32,11 +60,24 @@ abstract class EloquentRepository
             ->paginate($this->_paginate);
     }
 
+    /**
+     * Get model record by id.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function getById($id)
     {
         return $this->getBy($this->model->getKeyName(), $id);
     }
 
+    /**
+     * Get model record by column and value.
+     *
+     * @param  string  $column
+     * @param  string  $value
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function getBy($column, $value)
     {
         $model = $this->model->newQuery()->where($column, $value)->get();
@@ -47,6 +88,11 @@ abstract class EloquentRepository
         return $model->first();
     }
 
+    /**
+     * Get model record by Id and throws exception if not found.
+     * @param  int  $id
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function requireById($id)
     {
         $model = $this->getById($id);
@@ -57,11 +103,23 @@ abstract class EloquentRepository
         return $model;
     }
 
+    /**
+     * Create new instance of model with given attributes.
+     *
+     * @param  array  $attributes
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function getNewInstance($attributes = [])
     {
         return $this->model->newInstance($attributes);
     }
 
+    /**
+     * Create new record on database based on given data attributes.
+     *
+     * @param  array $data
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function create($data)
     {
         if ($data instanceof Model) {
@@ -77,6 +135,13 @@ abstract class EloquentRepository
         }
     }
 
+    /**
+     * Update $data attributes on database based on given $modelId/
+     *
+     * @param  array  $data
+     * @param  int  $modelId
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function update($data, $modelId)
     {
         foreach ($data as $key => $value) {
@@ -91,6 +156,12 @@ abstract class EloquentRepository
         return $model;
     }
 
+    /**
+     * Delete record based on given id.
+     *
+     * @param  int  $modelId
+     * @return bool
+     */
     public function delete($modelId)
     {
         $model = $this->requireById($modelId);
@@ -98,6 +169,12 @@ abstract class EloquentRepository
         return $model->delete();
     }
 
+    /**
+     * Save instance of eloquent model data to database.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @return bool
+     */
     protected function storeEloquentModel(Model $model)
     {
         if ($model->getDirty()) {
@@ -107,6 +184,12 @@ abstract class EloquentRepository
         }
     }
 
+    /**
+     * Store instance of model to database with given data.
+     *
+     * @param  array $data
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     protected function storeArray($data)
     {
         $model = $this->getNewInstance($data);

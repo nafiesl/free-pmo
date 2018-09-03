@@ -75,6 +75,11 @@ class VendorsController extends Controller
         return redirect()->route('vendors.index', $routeParam);
     }
 
+    public function show(Vendor $vendor)
+    {
+        return view('vendors.show', compact('vendor'));
+    }
+
     /**
      * Remove the specified vendor from storage.
      *

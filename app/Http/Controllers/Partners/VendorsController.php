@@ -76,6 +76,17 @@ class VendorsController extends Controller
     }
 
     /**
+     * Show vendor detail page.
+     *
+     * @param  \App\Entities\Partners\Vendor  $vendor
+     * @return \Illuminate\View\View
+     */
+    public function show(Vendor $vendor)
+    {
+        return view('vendors.show', compact('vendor'));
+    }
+
+    /**
      * Remove the specified vendor from storage.
      *
      * @param \App\Entities\Partners\Vendor $vendor

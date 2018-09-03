@@ -4,6 +4,7 @@ return [
     // Labels
     'vendor'        => 'Vendor',
     'list'          => 'Vendor List',
+    'detail'        => 'Vendor Detail',
     'search'        => 'Search Vendor',
     'not_found'     => 'Vendor not found.',
     'empty'         => 'Vendor list is empty.',
@@ -25,5 +26,6 @@ return [
 
     // Attributes
     'name'        => 'Vendor Name',
+    'website'     => 'Vendor Website',
     'description' => 'Vendor Description',
 ];

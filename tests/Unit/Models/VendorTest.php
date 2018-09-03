@@ -28,4 +28,14 @@ class VendorTest extends TestCase
         $this->assertInstanceOf(Collection::class, $vendor->payments);
         $this->assertInstanceOf(Payment::class, $vendor->payments->first());
     }
+
+    /** @test */
+    public function a_vendor_has_status_attribute()
+    {
+        $vendor = factory(Vendor::class)->make(['is_active' => 1]);
+        $this->assertEquals(__('app.active'), $vendor->status);
+
+        $vendor->is_active = 0;
+        $this->assertEquals(__('app.in_active'), $vendor->status);
+    }
 }

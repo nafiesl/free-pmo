@@ -75,6 +75,12 @@ class VendorsController extends Controller
         return redirect()->route('vendors.index', $routeParam);
     }
 
+    /**
+     * Show vendor detail page.
+     *
+     * @param  \App\Entities\Partners\Vendor  $vendor
+     * @return \Illuminate\View\View
+     */
     public function show(Vendor $vendor)
     {
         return view('vendors.show', compact('vendor'));

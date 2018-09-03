@@ -16,11 +16,11 @@ class Vendor extends Model
     /**
      * Vendor has many payments relation.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
     public function payments()
     {
-        return $this->hasMany('App\Entities\Payments\Payment', 'partner_id');
+        return $this->morphMany('App\Entities\Payments\Payment', 'partner');
     }
 
     /**

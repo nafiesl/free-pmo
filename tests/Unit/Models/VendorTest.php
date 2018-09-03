@@ -20,10 +20,13 @@ class VendorTest extends TestCase
     }
 
     /** @test */
-    public function a_vendor_has_many_payments_relation()
+    public function a_vendor_has_morph_many_payments_relation()
     {
         $vendor = factory(Vendor::class)->create();
-        $payment = factory(Payment::class)->create(['partner_id' => $vendor->id]);
+        $payment = factory(Payment::class)->create([
+            'partner_id'   => $vendor->id,
+            'partner_type' => 'App\Entities\Partners\Vendor',
+        ]);
 
         $this->assertInstanceOf(Collection::class, $vendor->payments);
         $this->assertInstanceOf(Payment::class, $vendor->payments->first());

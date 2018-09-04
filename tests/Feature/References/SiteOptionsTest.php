@@ -26,7 +26,8 @@ class SiteOptionsTest extends TestCase
         $this->visit(route('site-options.page-1'));
 
         $this->submitForm(trans('app.update'), [
-            'money_sign' => '$',
+            'money_sign'         => '$',
+            'money_sign_in_word' => 'Dollars',
         ]);
 
         $this->see(trans('option.updated'));
@@ -35,6 +36,11 @@ class SiteOptionsTest extends TestCase
         $this->seeInDatabase('site_options', [
             'key'   => 'money_sign',
             'value' => '$',
+        ]);
+
+        $this->seeInDatabase('site_options', [
+            'key'   => 'money_sign_in_word',
+            'value' => 'Dollars',
         ]);
     }
 }

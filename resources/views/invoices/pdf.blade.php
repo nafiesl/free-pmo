@@ -142,7 +142,7 @@
             <tr style="vertical-align: top;">
                 <td style="padding-top: 20px;">{{ trans('payment.words_amount') }} : </td>
                 <td colspan="2" style="font-weight: bold; padding-top: 20px">
-                    {{ ucwords(Terbilang::make($invoice->amount)) }} Rupiah
+                    {{ ucwords(Terbilang::make($invoice->amount)) }} {{ Option::get('money_sign_in_word', 'Rupiah') }}
                 </td>
             </tr>
             @if ($invoice->notes)

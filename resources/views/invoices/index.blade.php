@@ -19,10 +19,10 @@
     <table class="table table-condensed">
         <thead>
             <th class="text-center">{{ trans('app.table_no') }}</th>
-            <th class="col-md-2 text-center">{{ trans('invoice.number') }}</th>
-            <th class="col-md-2 text-center">{{ trans('app.date') }}</th>
-            <th class="col-md-2">{{ trans('project.project') }}</th>
-            <th class="col-md-2">{{ trans('invoice.customer') }}</th>
+            <th class="col-md-1 text-center">{{ trans('invoice.number') }}</th>
+            <th class="col-md-1 text-center">{{ trans('app.date') }}</th>
+            <th class="col-md-3">{{ trans('project.project') }}</th>
+            <th class="col-md-3">{{ trans('invoice.customer') }}</th>
             <th class="col-md-2 text-right">{{ trans('invoice.amount') }}</th>
             <th class="col-md-2 text-center">{{ trans('app.action') }}</th>
         </thead>

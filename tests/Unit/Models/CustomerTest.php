@@ -26,7 +26,10 @@ class CustomerTest extends TestCase
     public function a_customer_has_many_payments_relation()
     {
         $customer = factory(Customer::class)->create();
-        $payment = factory(Payment::class)->create(['partner_id' => $customer->id]);
+        $payment = factory(Payment::class)->create([
+            'partner_id'   => $customer->id,
+            'partner_type' => 'App\Entities\Partners\Customer',
+        ]);
 
         $this->assertInstanceOf(Collection::class, $customer->payments);
         $this->assertInstanceOf(Payment::class, $customer->payments->first());

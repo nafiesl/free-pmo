@@ -23,7 +23,7 @@ class PaymentsController extends Controller
         $payments = $customer->payments()
             ->latest()
             ->with('project')
-            ->paginate();
+            ->get();
 
         return view('customers.payments', compact('customer', 'payments'));
     }

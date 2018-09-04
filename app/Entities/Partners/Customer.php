@@ -15,7 +15,7 @@ class Customer extends Model
 
     public function payments()
     {
-        return $this->hasMany('App\Entities\Payments\Payment', 'partner_id');
+        return $this->morphMany('App\Entities\Payments\Payment', 'partner');
     }
 
     public function subscriptions()

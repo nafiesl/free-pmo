@@ -22,6 +22,19 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="col-xs-5" style="vertical-align: top">{{ trans('option.money_sign_in_word') }}</td>
+                    <td class="col-xs-7">
+                        {{ Form::text(
+                            'money_sign_in_word',
+                            Option::get('money_sign_in_word', 'Rupiah'),
+                            ['class' => 'form-control', 'maxlength' => 15]
+                        ) }}
+                        <span class="text-info small">
+                            Money sign in word like :<br>One Hundred <strong>{{ Option::get('money_sign_in_word', 'Rupiah') }}</strong>.
+                        </span>
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         {{ Form::submit(trans('app.update'), ['class' => 'btn btn-warning']) }}
                     </td>

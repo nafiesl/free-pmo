@@ -13,5 +13,6 @@ return [
     'value'     => 'Value',
 
     // Keys
-    'money_sign' => 'Money Sign',
+    'money_sign'         => 'Money Sign',
+    'money_sign_in_word' => 'Money Sign in Word',
 ];

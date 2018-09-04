@@ -13,5 +13,6 @@ return [
     'value'     => 'Value',
 
     // Keys
-    'money_sign' => 'Tanda Mata Uang',
+    'money_sign'         => 'Tanda Mata Uang',
+    'money_sign_in_word' => 'Tanda Mata Uang Terbilang',
 ];

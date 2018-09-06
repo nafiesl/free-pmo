@@ -136,7 +136,7 @@ abstract class EloquentRepository
     }
 
     /**
-     * Update $data attributes on database based on given $modelId/
+     * Update $data attributes on database based on given $modelId.
      *
      * @param  array  $data
      * @param  int  $modelId

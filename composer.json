@@ -10,7 +10,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "laracasts/presenter": "^0.2.1",
         "laravel/framework": "5.5.*",
-        "luthfi/formfield": "^0.2.7",
+        "luthfi/formfield": "dev-master",
         "riskihajar/terbilang": "^1.2",
         "spatie/laravel-fractal": "^5.0"
     },

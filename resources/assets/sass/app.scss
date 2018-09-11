@@ -10,10 +10,6 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-body {
-    // font-family: "trebuchet ms", Helvetica, serif;
-}
-
 ul, ol {
     margin-bottom: 0;
     padding-left: 20px;
@@ -78,10 +74,6 @@ label.control-label {
         padding: 0;
         position: relative;
     }
-/*
-    .hidden-xs {
-        display: block;
-    }*/
 
     nav.hidden-md {
         display: none;
@@ -100,19 +92,10 @@ label.control-label {
     .index-search-form {
         width: 50%;
     }
-
-    /*.dropdown:hover .dropdown-menu {
-        display: block;
-    }
-    .navbar-default .navbar-nav>li>a:hover {
-        color: #555;
-        background-color: #eee;
-    }*/
 }
 
 .form-error {
     color: #d9534f;
-    /*font-weight: 700;*/
 }
 
 div.notifier {
@@ -176,18 +159,24 @@ h3.site-description {
     height: 30px;
     padding: 3px 6px;
 }
-/*
-.btn {
-    padding: 3px 6px;
-}
-
-.btn-xs {
-    padding: 1px 5px;
-}*/
-
 
 @media print {
     #page-wrapper {
         margin-left: 0;
     }
+}
+
+.radio input[type=radio] {
+    margin-left: 0;
+}
+.checkbox input[type=checkbox] {
+    margin-left: 0;
+}
+.checkbox-inline, .radio-inline {
+    margin-top: 0;
+    margin-right: 10px;
+    padding-left: 0;
+}
+.checkbox-inline+.checkbox-inline, .radio-inline+.radio-inline {
+    margin-left: 0;
 }

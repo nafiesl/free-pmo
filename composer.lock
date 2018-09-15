@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bc96e7774d2ea1a74f716dc9d8dee43",
+    "content-hash": "fd28a38cbcaf3bccc1d6fb34444372ee",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -938,20 +938,20 @@
         },
         {
             "name": "luthfi/formfield",
-            "version": "0.2.8",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/FormField.git",
-                "reference": "ee183f6ff92b34eecb18ca5335073de5061b76be"
+                "reference": "4cde2467fa8dd4b5411d33176adab986d8c1050a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/FormField/zipball/ee183f6ff92b34eecb18ca5335073de5061b76be",
-                "reference": "ee183f6ff92b34eecb18ca5335073de5061b76be",
+                "url": "https://api.github.com/repos/nafiesl/FormField/zipball/4cde2467fa8dd4b5411d33176adab986d8c1050a",
+                "reference": "4cde2467fa8dd4b5411d33176adab986d8c1050a",
                 "shasum": ""
             },
             "require": {
-                "laravelcollective/html": "5.3.* || 5.4.* || 5.5.* || 5.6.*",
+                "laravelcollective/html": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.*",
                 "php": ">=5.6.4"
             },
             "require-dev": {
@@ -985,8 +985,8 @@
                     "email": "nafiesl@gmail.com"
                 }
             ],
-            "description": "Laravel Form Field the extension of Laravelcollective Form for Laravel 5.3, 5.4 and 5.5 with Twitter Bootstrap 3",
-            "time": "2018-06-25T14:09:59+00:00"
+            "description": "Laravel Form Field the extension of Laravelcollective Form for Laravel 5.3 and newer with Twitter Bootstrap 3",
+            "time": "2018-09-11T16:00:18+00:00"
         },
         {
             "name": "monolog/monolog",

@@ -18,7 +18,7 @@
                 <div class="col-sm-6">
                     <p>{{ __('app_install.agency_info_text') }}</p>
                     {!! FormField::text('agency_name', ['required' => true, 'label' => __('agency.name')]) !!}
-                    {!! FormField::text('agency_website', ['required' => true, 'label' => __('agency.website')]) !!}
+                    {!! FormField::text('agency_website', ['label' => __('agency.website'), 'placeholder' => 'https://yourdomain.com']) !!}
                 </div>
             </div>
             <hr style="margin: 10px 0;">

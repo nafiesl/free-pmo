@@ -77,7 +77,7 @@ return [
     'string'               => 'Das :attribute muss ein String sein.',
     'timezone'             => 'Das :attribute muss eine gültige Zeitzone sein.',
     'unique'               => 'Das :attribute ist bereits vergeben.',
-    'url'                  => 'Das :attribute Format ist ungültig.',
+    'url'                  => 'Bitte geben Sie eine gültige Domain mit http/https ein.',
 
     /*
     |--------------------------------------------------------------------------

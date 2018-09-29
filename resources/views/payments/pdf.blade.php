@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>{{ trans('payment.print') }}</title>
+    <title>{{ __('payment.print') }}</title>
     <style>
         html {
             margin: 10px 20px 0px 20px;
@@ -50,7 +50,7 @@
             <tr style="vertical-align: top;">
                 <td>@lang('payment.words_amount') : </td>
                 <td colspan="2" style="border-bottom: 1px solid #ccc;height: 35px">
-                    {{ ucwords(Terbilang::make($payment->amount)) }} Rupiah 
+                    {{ ucwords(Terbilang::make($payment->amount)) }} Rupiah
                 </td>
             </tr>
             <tr style="vertical-align: top;">

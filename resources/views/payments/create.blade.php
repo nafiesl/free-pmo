@@ -1,50 +1,50 @@
 @extends('layouts.app')
 
-@section('title', trans('payment.create'))
+@section('title', __('payment.create'))
 
 @section('content')
 
 <ul class="breadcrumb hidden-print">
-    <li>{{ link_to_route('payments.index', trans('payment.payments')) }}</li>
-    <li class="active">{{ trans('payment.create') }}</li>
+    <li>{{ link_to_route('payments.index', __('payment.payments')) }}</li>
+    <li class="active">{{ __('payment.create') }}</li>
 </ul>
 
 <div class="row">
     <div class="col-md-6">
         {!! Form::open(['route'=>'payments.store']) !!}
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('payment.create') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ __('payment.create') }}</h3></div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::radios('in_out', [trans('payment.out'), trans('payment.in')], ['label' => trans('payment.in_out'), 'value' => 1]) !!}
+                        {!! FormField::radios('in_out', [__('payment.out'), __('payment.in')], ['label' => __('payment.in_out'), 'value' => 1]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label'=> trans('payment.type'), 'value' => 1, 'list_style' => 'unstyled']) !!}
+                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label'=> __('payment.type'), 'value' => 1, 'list_style' => 'unstyled']) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::text('date', ['label'=> trans('payment.date')]) !!}
+                        {!! FormField::text('date', ['label'=> __('payment.date')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::price('amount', ['label'=> trans('payment.amount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
+                        {!! FormField::price('amount', ['label'=> __('payment.amount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project'), 'value' => Request::get('project_id')]) !!}
+                        {!! FormField::select('project_id', $projects, ['label'=> __('payment.project'), 'value' => Request::get('project_id')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::select('partner_id', $partners, ['label'=> trans('payment.customer'), 'value' => Request::get('customer_id')]) !!}
+                        {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer'), 'value' => Request::get('customer_id')]) !!}
                     </div>
                 </div>
-                {!! FormField::textarea('description', ['label'=> trans('payment.description'), 'rows' => 3]) !!}
+                {!! FormField::textarea('description', ['label'=> __('payment.description'), 'rows' => 3]) !!}
             </div>
 
             <div class="panel-footer">
-                {!! Form::submit(trans('payment.create'), ['class'=>'btn btn-primary']) !!}
-                {{ link_to_route('payments.index', trans('app.cancel'), [], ['class'=>'btn btn-default']) }}
+                {!! Form::submit(__('payment.create'), ['class'=>'btn btn-primary']) !!}
+                {{ link_to_route('payments.index', __('app.cancel'), [], ['class'=>'btn btn-default']) }}
                 @if ($project)
                 {{ link_to_route('projects.payments', __('project.back_to_show'), $project, ['class'=>'btn btn-default pull-right']) }}
                 @endif

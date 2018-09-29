@@ -1,48 +1,48 @@
 @extends('layouts.app')
 
-@section('title', trans('payment.edit'))
+@section('title', __('payment.edit'))
 
 @section('content')
 
-@include('payments.partials.breadcrumb', ['title' => trans('payment.edit')])
+@include('payments.partials.breadcrumb', ['title' => __('payment.edit')])
 
 <div class="row">
     <div class="col-md-6">
         {!! Form::model($payment, ['route'=>['payments.update', $payment->id], 'method' => 'patch']) !!}
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('payment.edit') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ __('payment.edit') }}</h3></div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::radios('in_out', [trans('payment.out'), trans('payment.in')], ['label'=> trans('payment.in_out'), 'value' => 1]) !!}
+                        {!! FormField::radios('in_out', [__('payment.out'), __('payment.in')], ['label'=> __('payment.in_out'), 'value' => 1]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label' => trans('payment.type'), 'value' => 1, 'list_style' => 'unstyled']) !!}
+                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label' => __('payment.type'), 'value' => 1, 'list_style' => 'unstyled']) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::text('date', ['label'=> trans('app.date')]) !!}
+                        {!! FormField::text('date', ['label'=> __('app.date')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::price('amount', ['label'=> trans('payment.amount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
+                        {!! FormField::price('amount', ['label'=> __('payment.amount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! FormField::select('project_id', $projects, ['label'=> trans('payment.project')]) !!}
+                        {!! FormField::select('project_id', $projects, ['label'=> __('payment.project')]) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! FormField::select('partner_id', $partners, ['label'=> trans('payment.customer')]) !!}
+                        {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}
                     </div>
                 </div>
-                {!! FormField::textarea('description', ['label'=> trans('payment.description')]) !!}
+                {!! FormField::textarea('description', ['label'=> __('payment.description')]) !!}
             </div>
 
             <div class="panel-footer">
-                {!! Form::submit(trans('payment.update'), ['class'=>'btn btn-primary']) !!}
-                {!! link_to_route('projects.payments', trans('payment.back_to_index'), [$payment->project_id], ['class' => 'btn btn-default']) !!}
-                {!! link_to_route('payments.delete', trans('payment.delete'), [$payment->id], ['class'=>'btn btn-danger pull-right']) !!}
+                {!! Form::submit(__('payment.update'), ['class'=>'btn btn-primary']) !!}
+                {!! link_to_route('projects.payments', __('payment.back_to_index'), [$payment->project_id], ['class' => 'btn btn-default']) !!}
+                {!! link_to_route('payments.delete', __('payment.delete'), [$payment->id], ['class'=>'btn btn-danger pull-right']) !!}
             </div>
         </div>
         {!! Form::close() !!}

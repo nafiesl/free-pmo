@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">{{ trans('project.show') }}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title">{{ trans('project.detail') }}</h3></div>
     <div class="panel-body">
         <table class="table table-condensed">
             <tbody>

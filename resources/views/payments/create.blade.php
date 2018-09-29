@@ -45,10 +45,18 @@
             <div class="panel-footer">
                 {!! Form::submit(trans('payment.create'), ['class'=>'btn btn-primary']) !!}
                 {{ link_to_route('payments.index', trans('app.cancel'), [], ['class'=>'btn btn-default']) }}
+                @if ($project)
+                {{ link_to_route('projects.payments', __('project.back_to_show'), $project, ['class'=>'btn btn-default pull-right']) }}
+                @endif
             </div>
         </div>
         {!! Form::close() !!}
     </div>
+    @if ($project)
+        <div class="col-md-6">
+             @include('projects.partials.project-show')
+        </div>
+    @endif
 </div>
 @endsection
 

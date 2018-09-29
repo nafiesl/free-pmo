@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Entities\Payments\Payment;
+use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
 use App\Entities\Payments\PaymentsRepository;
 use App\Http\Requests\Payments\CreateRequest;
@@ -55,8 +56,9 @@ class PaymentsController extends Controller
     {
         $projects = $this->repo->getProjectsList();
         $partners = $this->repo->getCustomersAndVendorsList();
+        $project = Project::find(request('project_id'));
 
-        return view('payments.create', compact('projects', 'partners'));
+        return view('payments.create', compact('projects', 'partners', 'project'));
     }
 
     /**

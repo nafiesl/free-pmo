@@ -227,6 +227,21 @@ class Project extends Model
 
     public function getWorkDurationAttribute()
     {
-        return $this->present()->workDuration;
+        $startDate = $this->start_date;
+        $endDate = $this->end_date;
+
+        if (is_null($endDate)) {
+            return '-';
+        }
+
+        $workDuration = dateDifference($startDate, $endDate);
+
+        if ((int) $workDuration > 365) {
+            return dateDifference($startDate, $endDate, '%y Year(s) %m Month(s)');
+        } elseif ((int) $workDuration > 30) {
+            return dateDifference($startDate, $endDate, '%m Month(s) %d Day(s)');
+        }
+
+        return $workDuration.' Day(s)';
     }
 }

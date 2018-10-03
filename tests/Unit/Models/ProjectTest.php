@@ -229,6 +229,6 @@ class ProjectTest extends TestCase
             'end_date'   => '2017-07-21',
         ]);
 
-        $this->assertEquals('2 Year(s) 3 Month(s) 11 Day(s)', $project->work_duration);
+        $this->assertEquals('2 Year(s) 3 Month(s)', $project->work_duration);
     }
 }

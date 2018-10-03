@@ -224,4 +224,9 @@ class Project extends Model
             ->with('worker', 'tasks')
             ->get();
     }
+
+    public function getWorkDurationAttribute()
+    {
+        return $this->present()->workDuration;
+    }
 }

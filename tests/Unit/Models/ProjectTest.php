@@ -209,4 +209,26 @@ class ProjectTest extends TestCase
         $this->assertInstanceOf(Collection::class, $project->comments);
         $this->assertInstanceOf(Comment::class, $project->comments->first());
     }
+
+    /** @test */
+    public function project_has_work_duration_attribute()
+    {
+        $project = factory(Project::class)->create([
+            'start_date' => '2016-06-10',
+            'end_date'   => '2016-07-21',
+        ]);
+
+        $this->assertEquals('1 Month(s) 11 Day(s)', $project->work_duration);
+    }
+
+    /** @test */
+    public function project_work_duration_attribute_returns_proper_multi_years_work_duration()
+    {
+        $project = factory(Project::class)->create([
+            'start_date' => '2015-04-10',
+            'end_date'   => '2017-07-21',
+        ]);
+
+        $this->assertEquals('2 Year(s) 3 Month(s) 11 Day(s)', $project->work_duration);
+    }
 }

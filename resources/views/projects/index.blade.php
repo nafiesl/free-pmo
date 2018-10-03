@@ -42,7 +42,7 @@
                 <td>{{ $projects->firstItem() + $key }}</td>
                 <td>{{ $project->nameLink() }}</td>
                 <td class="text-center">{{ $project->start_date }}</td>
-                <td class="text-right">{{ $project->present()->workDuration }}</td>
+                <td class="text-right">{{ $project->work_duration }}</td>
                 @if (request('status_id') == 2)
                 <td class="text-right">{{ formatDecimal($project->getJobOveralProgress()) }} %</td>
                 <td class="text-center">{{ $project->due_date }}</td>

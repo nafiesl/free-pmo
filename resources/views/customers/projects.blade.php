@@ -20,7 +20,7 @@
                 <td>{{ 1 + $key }}</td>
                 <td>{{ $project->nameLink() }}</td>
                 <td class="text-center">{{ $project->start_date }}</td>
-                <td class="text-right">{{ $project->present()->workDuration }}</td>
+                <td class="text-right">{{ $project->work_duration }}</td>
                 <td class="text-right">{{ formatRp($project->project_value) }}</td>
                 <td class="text-center">{{ $project->present()->status }}</td>
                 <td class="text-center">

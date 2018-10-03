@@ -21,18 +21,4 @@ class ProjectPresenter extends Presenter
     {
         return ProjectStatus::getNameById($this->entity->status_id);
     }
-
-    public function workDuration()
-    {
-        if (is_null($this->entity->end_date)) {
-            return '-';
-        }
-
-        $workDuration = dateDifference($this->entity->start_date, $this->entity->end_date);
-        if ((int) $workDuration > 30) {
-            return dateDifference($this->entity->start_date, $this->entity->end_date, '%m Bulan %d Hari');
-        }
-
-        return $workDuration.' Hari';
-    }
 }

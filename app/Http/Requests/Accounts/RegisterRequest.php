@@ -32,23 +32,4 @@ class RegisterRequest extends Request
             'password_confirmation' => 'required',
         ];
     }
-
-    /**
-     * Get custom messages for validator errors.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'name.required'                  => 'Nama harus diisi.',
-            'email.required'                 => 'Email harus diisi.',
-            'email.email'                    => 'Email tidak valid.',
-            'email.unique'                   => 'Email ini sudah terdaftar.',
-            'password.required'              => 'Password harus diisi.',
-            'password.between'               => 'Password baru harus antara 6 - 15 karakter.',
-            'password.confirmed'             => 'Konfirmasi password tidak sesuai.',
-            'password_confirmation.required' => 'Konfirmasi password harus diisi.',
-        ];
-    }
 }

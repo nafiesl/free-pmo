@@ -159,6 +159,14 @@ function html_link_to_route($name, $title = null, $parameters = [], $attributes 
     return app('html')->decode(link_to_route($name, $title, $parameters, $attributes));
 }
 
+/**
+ * Period between two dates.
+ *
+ * @param  string  $date1
+ * @param  string  $date2
+ * @param  string  $differenceFormat
+ * @return int|string
+ */
 function dateDifference($date1, $date2, $differenceFormat = '%a')
 {
     $datetime1 = date_create($date1);

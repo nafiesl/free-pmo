@@ -33,6 +33,12 @@ class DateDifferenceTest extends TestCase
     public function date_difference_returns_proper_months_and_days_format()
     {
         // TODO: Need to fix, this should returns 1 months 9 days
-        $this->assertEquals('1 months 12 days', dateDifference('2018-03-01', '2018-04-10', '%m months %d days'));
+        $this->assertEquals('1 month 12 days', dateDifference('2018-03-01', '2018-04-10', '%m month %d days'));
+    }
+
+    /** @test */
+    public function date_difference_returns_proper_years_months_and_days_format()
+    {
+        $this->assertEquals('1 year 1 month 12 days', dateDifference('2017-03-01', '2018-04-10', '%y year %m month %d days'));
     }
 }

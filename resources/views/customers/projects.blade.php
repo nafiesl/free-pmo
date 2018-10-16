@@ -30,7 +30,7 @@
             </tr>
             @empty
             <tr>
-                <td colspan="7">{{ $status }} {{ trans('project.not_found') }}</td>
+                <td colspan="7">{{ trans('project.not_found') }}</td>
             </tr>
             @endforelse
         </tbody>

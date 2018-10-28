@@ -112,7 +112,11 @@ class PaymentsController extends Controller
         $paymentData = $request->validated();
 
         if ($paymentData['in_out'] == 0) {
-            $paymentData['partner_type'] = 'App\Entities\Partners\Vendor';
+            if (isset($paymentData['partner_type']) && $paymentData['partner_type'] == 'users') {
+                $paymentData['partner_type'] = 'App\Entities\Users\User';
+            } else {
+                $paymentData['partner_type'] = 'App\Entities\Partners\Vendor';
+            }
         } else {
             $paymentData['partner_type'] = 'App\Entities\Partners\Customer';
         }

@@ -24,13 +24,14 @@ class UpdateRequest extends Request
     public function rules()
     {
         return [
-            'date'        => 'required|date|date_format:Y-m-d',
-            'in_out'      => 'required|numeric',
-            'amount'      => 'required',
-            'project_id'  => 'required|numeric',
-            'type_id'     => 'required|numeric',
-            'partner_id'  => 'required|numeric',
-            'description' => 'required|max:255',
+            'date'         => 'required|date|date_format:Y-m-d',
+            'in_out'       => 'required|numeric',
+            'amount'       => 'required',
+            'project_id'   => 'required|numeric',
+            'type_id'      => 'required|numeric',
+            'partner_type' => 'nullable|string',
+            'partner_id'   => 'required|numeric',
+            'description'  => 'required|max:255',
         ];
     }
 }

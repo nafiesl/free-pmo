@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-sm-6">
                         @if ($payment->partner_type == 'App\Entities\Users\User')
-                            {!! FormField::select('partner_id', App\Entities\Users\User::pluck('name', 'id'), ['label'=> __('payment.partner')]) !!}
+                            {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}
                             {{ Form::hidden('partner_type', 'users') }}
                         @else
                             {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}

@@ -95,7 +95,12 @@ class PaymentsController extends Controller
     public function edit(Payment $payment)
     {
         $projects = $this->repo->getProjectsList();
-        $partners = $this->repo->getCustomersAndVendorsList();
+
+        if ($payment->partner_type == 'App\Entities\Users\User') {
+            $partners = $this->repo->getWorkersList();
+        } else {
+            $partners = $this->repo->getCustomersAndVendorsList();
+        }
 
         return view('payments.edit', compact('payment', 'projects', 'partners'));
     }

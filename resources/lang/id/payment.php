@@ -8,7 +8,7 @@ return [
     'found'         => 'Pembayaran ditemukan',
     'not_found'     => 'Pembayaran tidak ditemukan',
     'empty'         => 'Belum ada Pembayaran',
-    'back_to_index' => 'Kembali ke daftar Pembayaran',
+    'back_to_index' => 'Kembali ke list Pembayaran',
     'receipt'       => 'Bukti Pembayaran',
     'from'          => 'Terima dari',
     'cash_amount'   => 'Uang Sejumlah',

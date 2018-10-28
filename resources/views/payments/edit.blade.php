@@ -14,10 +14,10 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::radios('in_out', [__('payment.out'), __('payment.in')], ['label'=> __('payment.in_out'), 'value' => 1]) !!}
+                        {!! FormField::radios('in_out', [__('payment.out'), __('payment.in')], ['label'=> __('payment.in_out')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label' => __('payment.type'), 'value' => 1, 'list_style' => 'unstyled']) !!}
+                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label' => __('payment.type'), 'list_style' => 'unstyled']) !!}
                     </div>
                 </div>
                 <div class="row">
@@ -33,7 +33,12 @@
                         {!! FormField::select('project_id', $projects, ['label'=> __('payment.project')]) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}
+                        @if ($payment->partner_type == 'App\Entities\Users\User')
+                            {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}
+                            {{ Form::hidden('partner_type', 'users') }}
+                        @else
+                            {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}
+                        @endif
                     </div>
                 </div>
                 {!! FormField::textarea('description', ['label'=> __('payment.description')]) !!}

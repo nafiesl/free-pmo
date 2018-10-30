@@ -5,6 +5,7 @@ namespace App\Http\Controllers\References;
 use Illuminate\Http\Request;
 use App\Entities\Options\Option;
 use App\Http\Controllers\Controller;
+use App\Entities\Invoices\BankAccount;
 
 /**
  * Bank Account Controller.
@@ -21,21 +22,10 @@ class BankAccountsController extends Controller
     public function index()
     {
         $editableBankAccount = null;
-        $bankAccounts = Option::where('key', 'bank_accounts')->first();
+        $bankAccounts = BankAccount::all();
 
-        if (!is_null($bankAccounts)) {
-            $bankAccounts = $bankAccounts->value;
-            $bankAccounts = json_decode($bankAccounts, true);
-            $bankAccounts = collect($bankAccounts)
-                ->map(function ($bankAccount) {
-                    return (object) $bankAccount;
-                });
-
-            if (in_array(request('action'), ['edit', 'delete']) && request('id') != null) {
-                $editableBankAccount = $bankAccounts[request('id')];
-            }
-        } else {
-            $bankAccounts = collect([]);
+        if (in_array(request('action'), ['edit', 'delete']) && request('id') != null) {
+            $editableBankAccount = BankAccount::find(request('id'));
         }
 
         return view('bank-accounts.index', compact('bankAccounts', 'editableBankAccount'));

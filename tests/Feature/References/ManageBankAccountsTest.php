@@ -3,6 +3,7 @@
 namespace Tests\Feature\References;
 
 use Tests\TestCase;
+use App\Entities\Invoices\BankAccount;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**

@@ -14,9 +14,9 @@ use App\Entities\Invoices\BankAccount;
 class BankAccountsController extends Controller
 {
     /**
-     * Display a listing of the bankAccount.
+     * Display a listing of the bank account.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -33,9 +33,8 @@ class BankAccountsController extends Controller
     /**
      * Store a newly created bank account in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -56,10 +55,9 @@ class BankAccountsController extends Controller
     /**
      * Update the specified bank account in storage.
      *
-     * @param \Illuminate\Http\Request           $request
-     * @param \App\Entities\Invoices\BankAccount $bankAccount
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Entities\Invoices\BankAccount  $bankAccount
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, BankAccount $bankAccount)
     {
@@ -80,9 +78,8 @@ class BankAccountsController extends Controller
     /**
      * Remove the specified bank account from storage.
      *
-     * @param \App\Entities\Invoices\BankAccount $bankAccount
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \App\Entities\Invoices\BankAccount  $bankAccount
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(BankAccount $bankAccount)
     {
@@ -91,7 +88,6 @@ class BankAccountsController extends Controller
         ]);
 
         if (request('bank_account_id') == $bankAccount->id && $bankAccount->delete()) {
-
             flash(trans('bank_account.deleted'), 'success');
 
             return redirect()->route('bank-accounts.index');

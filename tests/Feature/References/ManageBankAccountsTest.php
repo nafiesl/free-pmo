@@ -60,7 +60,10 @@ class ManageBankAccountsTest extends TestCase
 
         $this->visit(route('bank-accounts.index'));
         $this->click('edit-bank_account-1');
-        $this->seePageIs(route('bank-accounts.index', ['action' => 'edit', 'id' => $bankAccount->id]));
+
+        $this->seePageIs(route('bank-accounts.index', [
+            'action' => 'edit', 'id' => $bankAccount->id,
+        ]));
 
         $this->submitForm(__('bank_account.update'), [
             'name'         => 'BankAccount 2 name',
@@ -88,7 +91,10 @@ class ManageBankAccountsTest extends TestCase
 
         $this->visit(route('bank-accounts.index'));
         $this->click('del-bank_account-'.$bankAccount->id);
-        $this->seePageIs(route('bank-accounts.index', ['action' => 'delete', 'id' => $bankAccount->id]));
+
+        $this->seePageIs(route('bank-accounts.index', [
+            'action' => 'delete', 'id' => $bankAccount->id,
+        ]));
 
         $this->press(__('app.delete_confirm_button'));
 

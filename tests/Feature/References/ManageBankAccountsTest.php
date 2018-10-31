@@ -88,7 +88,7 @@ class ManageBankAccountsTest extends TestCase
 
         $this->visit(route('bank-accounts.index'));
         $this->click('del-bank_account-'.$bankAccount->id);
-        $this->seePageIs(route('bank-accounts.index', ['action' => 'delete', 'id' => '2']));
+        $this->seePageIs(route('bank-accounts.index', ['action' => 'delete', 'id' => $bankAccount->id]));
 
         $this->press(__('app.delete_confirm_button'));
 

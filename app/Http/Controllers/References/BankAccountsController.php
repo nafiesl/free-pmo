@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\References;
 
 use Illuminate\Http\Request;
-use App\Entities\Options\Option;
 use App\Http\Controllers\Controller;
 use App\Entities\Invoices\BankAccount;
 
@@ -47,24 +46,7 @@ class BankAccountsController extends Controller
             'description'  => 'nullable|max:255',
         ]);
 
-        $option = Option::firstOrNew(['key' => 'bank_accounts']);
-        if ($option->exists) {
-            $bankAccounts = $option->value;
-            $bankAccounts = json_decode($bankAccounts, true);
-            if ($bankAccounts == []) {
-                $bankAccounts[1] = $newBankAccount;
-            } else {
-                $bankAccounts[] = $newBankAccount;
-            }
-        } else {
-            $bankAccounts = [];
-            $bankAccounts[1] = $newBankAccount;
-        }
-
-        $bankAccounts = json_encode($bankAccounts);
-
-        $option->value = $bankAccounts;
-        $option->save();
+        BankAccount::create($newBankAccount);
 
         flash(trans('bank_account.created'), 'success');
 
@@ -79,7 +61,7 @@ class BankAccountsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $bankAccountId)
+    public function update(Request $request, BankAccount $bankAccount)
     {
         $bankAccountData = $request->validate([
             'name'         => 'required|max:60',
@@ -88,18 +70,7 @@ class BankAccountsController extends Controller
             'description'  => 'nullable|max:255',
         ]);
 
-        $bankAccounts = Option::where('key', 'bank_accounts')->first();
-
-        $bankAccounts = $bankAccounts->value;
-        $bankAccounts = json_decode($bankAccounts, true);
-
-        $bankAccounts[$bankAccountId] = $bankAccountData;
-
-        $bankAccounts = json_encode($bankAccounts);
-
-        $option = Option::where('key', 'bank_accounts')->first();
-        $option->value = $bankAccounts;
-        $option->save();
+        $bankAccount->update($bankAccountData);
 
         flash(trans('bank_account.updated'), 'success');
 
@@ -113,25 +84,13 @@ class BankAccountsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($bankAccountId)
+    public function destroy(BankAccount $bankAccount)
     {
         request()->validate([
             'bank_account_id' => 'required',
         ]);
 
-        if (request('bank_account_id') == $bankAccountId) {
-            $bankAccounts = Option::where('key', 'bank_accounts')->first();
-
-            $bankAccounts = $bankAccounts->value;
-            $bankAccounts = json_decode($bankAccounts, true);
-
-            unset($bankAccounts[$bankAccountId]);
-
-            $bankAccounts = json_encode($bankAccounts);
-
-            $option = Option::where('key', 'bank_accounts')->first();
-            $option->value = $bankAccounts;
-            $option->save();
+        if (request('bank_account_id') == $bankAccount->id && $bankAccount->delete()) {
 
             flash(trans('bank_account.deleted'), 'success');
 

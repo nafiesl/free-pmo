@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-8">
-        @foreach ($bankAccounts as $key => $bankAccount)
+        @foreach ($bankAccounts as $bankAccount)
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading text-center"><h3 class="panel-title">{{ $bankAccount->name }}</h3></div>
@@ -21,14 +21,14 @@
                         {!! link_to_route(
                             'bank-accounts.index',
                             trans('app.edit'),
-                            ['action' => 'edit', 'id' => $key],
-                            ['id' => 'edit-bank_account-' . $key]
+                            ['action' => 'edit', 'id' => $bankAccount->id],
+                            ['id' => 'edit-bank_account-' . $bankAccount->id]
                         ) !!}
                         {!! link_to_route(
                             'bank-accounts.index',
                             trans('app.delete'),
-                            ['action' => 'delete', 'id' => $key],
-                            ['id' => 'del-bank_account-' . $key, 'class' => 'pull-right']
+                            ['action' => 'delete', 'id' => $bankAccount->id],
+                            ['id' => 'del-bank_account-' . $bankAccount->id, 'class' => 'pull-right']
                         ) !!}
                     </div>
                 </div>

@@ -24,6 +24,7 @@
         {!! FormField::text('number', ['required' => true, 'label' => trans('bank_account.number')]) !!}
         {!! FormField::text('account_name', ['required' => true, 'label' => trans('bank_account.account_name')]) !!}
         {!! FormField::textarea('description', ['label' => trans('bank_account.description')]) !!}
+        {!! FormField::radios('is_active', [__('app.in_active'), __('app.active')], ['label' => __('app.status')]) !!}
     </div>
     <div class="panel-footer">
         {!! Form::submit(trans('bank_account.update'), ['class' => 'btn btn-success']) !!}

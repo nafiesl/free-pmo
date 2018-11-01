@@ -13,6 +13,7 @@
                     <div class="panel-body">
                         <p>{{ trans('bank_account.number') }}:<br><strong class="lead">{{ $bankAccount->number }}</strong></p>
                         <p>{{ trans('bank_account.account_name') }}:<br><strong class="lead">{{ $bankAccount->account_name }}</strong></p>
+                        <p>{{ __('app.status') }}:<br><strong class="lead">{{ $bankAccount->status }}</strong></p>
                         @if ($bankAccount->description)
                         <p>{{ trans('app.description') }}:<br>{{ $bankAccount->description }}</p>
                         @endif

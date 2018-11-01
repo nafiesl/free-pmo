@@ -70,6 +70,7 @@ class ManageBankAccountsTest extends TestCase
             'number'       => '1234567890',
             'account_name' => 'John Doe',
             'description'  => 'BankAccount 2 description',
+            'is_active'    => 0,
         ]);
 
         $this->seePageIs(route('bank-accounts.index'));
@@ -79,6 +80,7 @@ class ManageBankAccountsTest extends TestCase
             'number'       => '1234567890',
             'account_name' => 'John Doe',
             'description'  => 'BankAccount 2 description',
+            'is_active'    => 0,
         ]);
     }
 
@@ -101,5 +103,11 @@ class ManageBankAccountsTest extends TestCase
         $this->dontSeeInDatabase('bank_accounts', [
             'id' => $bankAccount->id,
         ]);
+    }
+
+    /** @test */
+    public function user_can_import_existing_bank_account_list()
+    {
+        $this->visit('/');
     }
 }

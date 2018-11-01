@@ -66,6 +66,7 @@ class BankAccountsController extends Controller
             'number'       => 'required|max:60',
             'account_name' => 'required|max:60',
             'description'  => 'nullable|max:255',
+            'is_active'    => 'required|in:0,1',
         ]);
 
         $bankAccount->update($bankAccountData);

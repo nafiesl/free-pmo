@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\References;
 
 use Illuminate\Http\Request;
+use App\Entities\Options\Option;
 use App\Http\Controllers\Controller;
 use App\Entities\Invoices\BankAccount;
 
@@ -92,6 +93,25 @@ class BankAccountsController extends Controller
             flash(trans('bank_account.deleted'), 'success');
 
             return redirect()->route('bank-accounts.index');
+        }
+
+        return back();
+    }
+
+    /**
+     * Import bank account from site_options table.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function import()
+    {
+        $bankAccounts = Option::where('key', 'bank_accounts')->first();
+        if ($bankAccounts && $bankAccounts->value) {
+            foreach (json_decode($bankAccounts->value, true) as $bankAccountData) {
+                $bankAccount = new BankAccount($bankAccountData);
+                $bankAccount->save();
+            }
+            $bankAccounts->delete();
         }
 
         return back();

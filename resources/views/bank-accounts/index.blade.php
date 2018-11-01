@@ -3,7 +3,7 @@
 @section('title', trans('bank_account.list'))
 
 @section('content-dashboard')
-
+{!! FormField::formButton(['route' => 'bank-accounts.import'], __('bank_account.import'), ['id' => 'import-bank-accounts']) !!}
 <div class="row">
     <div class="col-md-8">
         @foreach ($bankAccounts as $bankAccount)

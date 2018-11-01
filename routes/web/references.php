@@ -19,4 +19,5 @@ Route::group(['namespace' => 'References', 'middleware' => ['web', 'role:admin']
      * Bank Accounts Routes
      */
     Route::apiResource('bank-accounts', 'BankAccountsController');
+    Route::post('bank-accounts/import', 'BankAccountsController@import')->name('bank-accounts.import');
 });

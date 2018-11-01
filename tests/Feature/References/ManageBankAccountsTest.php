@@ -3,6 +3,7 @@
 namespace Tests\Feature\References;
 
 use Tests\TestCase;
+use Facades\App\Services\Option;
 use App\Entities\Invoices\BankAccount;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -108,6 +109,34 @@ class ManageBankAccountsTest extends TestCase
     /** @test */
     public function user_can_import_existing_bank_account_list()
     {
-        $this->visit('/');
+        $this->adminUserSigningIn();
+
+        $bankAccounts = [];
+        $bankAccounts[1] = [
+            'name'         => 'BankAccount 1 name',
+            'number'       => '1234567890',
+            'account_name' => 'John Doe',
+            'description'  => 'BankAccount 1 description',
+        ];
+
+        Option::set('bank_accounts', json_encode($bankAccounts));
+
+        $this->visit(route('bank-accounts.index'));
+        $this->seeElement('button', ['id' => 'import-bank-accounts']);
+
+        $this->press('import-bank-accounts');
+        $this->seePageIs(route('bank-accounts.index'));
+
+        $this->dontSeeInDatabase('site_options', [
+            'value' => json_encode($bankAccounts),
+        ]);
+
+        $this->seeInDatabase('bank_accounts', [
+            'name'         => 'BankAccount 1 name',
+            'number'       => '1234567890',
+            'account_name' => 'John Doe',
+            'description'  => 'BankAccount 1 description',
+            'is_active'    => 1,
+        ]);
     }
 }

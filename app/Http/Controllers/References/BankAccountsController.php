@@ -107,11 +107,13 @@ class BankAccountsController extends Controller
     {
         $bankAccounts = Option::where('key', 'bank_accounts')->first();
         if ($bankAccounts && $bankAccounts->value) {
-            foreach (json_decode($bankAccounts->value, true) as $bankAccountData) {
+            $bankAccountList = json_decode($bankAccounts->value, true);
+            foreach ($bankAccountList as $bankAccountData) {
                 $bankAccount = new BankAccount($bankAccountData);
                 $bankAccount->save();
             }
             $bankAccounts->delete();
+            flash(__('bank_account.imported', ['count' => count($bankAccountList)]), 'success');
         }
 
         return back();

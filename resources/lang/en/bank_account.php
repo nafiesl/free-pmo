@@ -8,6 +8,8 @@ return [
     'back_to_index' => 'Back to Bank Account list',
 
     // Actions
+    'import'         => 'Import Bank Account',
+    'imported'       => ':count bank account(s) has imported.',
     'create'         => 'Create new Bank Account',
     'created'        => 'New Bank Account has been created.',
     'show'           => 'Show Bank Account detail',

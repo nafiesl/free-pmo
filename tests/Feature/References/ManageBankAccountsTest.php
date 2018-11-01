@@ -3,7 +3,7 @@
 namespace Tests\Feature\References;
 
 use Tests\TestCase;
-use Facades\App\Services\Option;
+use App\Entities\Options\Option;
 use App\Entities\Invoices\BankAccount;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -119,14 +119,17 @@ class ManageBankAccountsTest extends TestCase
             'description'  => 'BankAccount 1 description',
         ];
 
-        Option::set('bank_accounts', json_encode($bankAccounts));
+        Option::create([
+            'key'   => 'bank_accounts',
+            'value' => json_encode($bankAccounts),
+        ]);
 
         $this->visit(route('bank-accounts.index'));
         $this->seeElement('button', ['id' => 'import-bank-accounts']);
 
         $this->press('import-bank-accounts');
         $this->seePageIs(route('bank-accounts.index'));
-
+        $this->seeText(__('bank_account.imported', ['count' => 1]));
         $this->dontSeeInDatabase('site_options', [
             'value' => json_encode($bankAccounts),
         ]);

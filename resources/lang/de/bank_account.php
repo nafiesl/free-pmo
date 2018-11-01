@@ -8,6 +8,8 @@ return [
     'back_to_index' => 'Zurück zur Bankverbindunsliste',
 
     // Actions
+    'import'         => 'Import Bank Account',
+    'imported'       => ':count bank account(s) has imported.',
     'create'         => 'Neue Bankverbindung erstellen',
     'created'        => 'Neue Bankverbindung wurde erstellt.',
     'show'           => 'Zeige Bankverbindung Details',

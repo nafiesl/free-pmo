@@ -5,6 +5,7 @@ namespace App\Http\Controllers\References;
 use Illuminate\Http\Request;
 use App\Entities\Options\Option;
 use App\Http\Controllers\Controller;
+use App\Entities\Invoices\BankAccount;
 
 /**
  * Bank Account Controller.
@@ -14,28 +15,17 @@ use App\Http\Controllers\Controller;
 class BankAccountsController extends Controller
 {
     /**
-     * Display a listing of the bankAccount.
+     * Display a listing of the bank account.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
         $editableBankAccount = null;
-        $bankAccounts = Option::where('key', 'bank_accounts')->first();
+        $bankAccounts = BankAccount::all();
 
-        if (!is_null($bankAccounts)) {
-            $bankAccounts = $bankAccounts->value;
-            $bankAccounts = json_decode($bankAccounts, true);
-            $bankAccounts = collect($bankAccounts)
-                ->map(function ($bankAccount) {
-                    return (object) $bankAccount;
-                });
-
-            if (in_array(request('action'), ['edit', 'delete']) && request('id') != null) {
-                $editableBankAccount = $bankAccounts[request('id')];
-            }
-        } else {
-            $bankAccounts = collect([]);
+        if (in_array(request('action'), ['edit', 'delete']) && request('id') != null) {
+            $editableBankAccount = BankAccount::find(request('id'));
         }
 
         return view('bank-accounts.index', compact('bankAccounts', 'editableBankAccount'));
@@ -44,9 +34,8 @@ class BankAccountsController extends Controller
     /**
      * Store a newly created bank account in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -57,24 +46,7 @@ class BankAccountsController extends Controller
             'description'  => 'nullable|max:255',
         ]);
 
-        $option = Option::firstOrNew(['key' => 'bank_accounts']);
-        if ($option->exists) {
-            $bankAccounts = $option->value;
-            $bankAccounts = json_decode($bankAccounts, true);
-            if ($bankAccounts == []) {
-                $bankAccounts[1] = $newBankAccount;
-            } else {
-                $bankAccounts[] = $newBankAccount;
-            }
-        } else {
-            $bankAccounts = [];
-            $bankAccounts[1] = $newBankAccount;
-        }
-
-        $bankAccounts = json_encode($bankAccounts);
-
-        $option->value = $bankAccounts;
-        $option->save();
+        BankAccount::create($newBankAccount);
 
         flash(trans('bank_account.created'), 'success');
 
@@ -84,32 +56,21 @@ class BankAccountsController extends Controller
     /**
      * Update the specified bank account in storage.
      *
-     * @param \Illuminate\Http\Request           $request
-     * @param \App\Entities\Invoices\BankAccount $bankAccount
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Entities\Invoices\BankAccount  $bankAccount
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $bankAccountId)
+    public function update(Request $request, BankAccount $bankAccount)
     {
         $bankAccountData = $request->validate([
             'name'         => 'required|max:60',
             'number'       => 'required|max:60',
             'account_name' => 'required|max:60',
             'description'  => 'nullable|max:255',
+            'is_active'    => 'required|in:0,1',
         ]);
 
-        $bankAccounts = Option::where('key', 'bank_accounts')->first();
-
-        $bankAccounts = $bankAccounts->value;
-        $bankAccounts = json_decode($bankAccounts, true);
-
-        $bankAccounts[$bankAccountId] = $bankAccountData;
-
-        $bankAccounts = json_encode($bankAccounts);
-
-        $option = Option::where('key', 'bank_accounts')->first();
-        $option->value = $bankAccounts;
-        $option->save();
+        $bankAccount->update($bankAccountData);
 
         flash(trans('bank_account.updated'), 'success');
 
@@ -119,33 +80,40 @@ class BankAccountsController extends Controller
     /**
      * Remove the specified bank account from storage.
      *
-     * @param \App\Entities\Invoices\BankAccount $bankAccount
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \App\Entities\Invoices\BankAccount  $bankAccount
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($bankAccountId)
+    public function destroy(BankAccount $bankAccount)
     {
         request()->validate([
             'bank_account_id' => 'required',
         ]);
 
-        if (request('bank_account_id') == $bankAccountId) {
-            $bankAccounts = Option::where('key', 'bank_accounts')->first();
-
-            $bankAccounts = $bankAccounts->value;
-            $bankAccounts = json_decode($bankAccounts, true);
-
-            unset($bankAccounts[$bankAccountId]);
-
-            $bankAccounts = json_encode($bankAccounts);
-
-            $option = Option::where('key', 'bank_accounts')->first();
-            $option->value = $bankAccounts;
-            $option->save();
-
+        if (request('bank_account_id') == $bankAccount->id && $bankAccount->delete()) {
             flash(trans('bank_account.deleted'), 'success');
 
             return redirect()->route('bank-accounts.index');
+        }
+
+        return back();
+    }
+
+    /**
+     * Import bank account from site_options table.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function import()
+    {
+        $bankAccounts = Option::where('key', 'bank_accounts')->first();
+        if ($bankAccounts && $bankAccounts->value) {
+            $bankAccountList = json_decode($bankAccounts->value, true);
+            foreach ($bankAccountList as $bankAccountData) {
+                $bankAccount = new BankAccount($bankAccountData);
+                $bankAccount->save();
+            }
+            $bankAccounts->delete();
+            flash(__('bank_account.imported', ['count' => count($bankAccountList)]), 'success');
         }
 
         return back();

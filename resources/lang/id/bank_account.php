@@ -8,6 +8,8 @@ return [
     'back_to_index' => 'Kembali ke daftar Rekening Bank',
 
     // Actions
+    'import'         => 'Import Rekening Bank',
+    'imported'       => ':count rekening bank telah diimport.',
     'create'         => 'Input Rekening Bank Baru',
     'created'        => 'Input Rekening Bank baru telah berhasil.',
     'show'           => 'Lihat Detail Rekening Bank',

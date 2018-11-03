@@ -116,8 +116,6 @@
                                 $subtotal += $item['amount'];
                             @endphp
                         @endforeach
-                    </tbody>
-                    <tfoot>
                         @if ($invoice->discount)
                         <tr>
                             <th colspan="2" class="text-right">{{ __('invoice.subtotal') }} :</th>
@@ -135,7 +133,7 @@
                             <th colspan="2" class="text-right">{{ trans('app.total') }}</th>
                             <th colspan="2" class="text-right">{{ formatRp($invoice->amount) }}</th>
                         </tr>
-                    </tfoot>
+                    </tbody>
                 </table>
                 </td>
             </tr>

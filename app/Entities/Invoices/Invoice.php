@@ -13,26 +13,62 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Invoice extends Model
 {
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
     protected $casts = ['items' => 'array'];
+
+    /**
+     * The number of models to return for pagination.
+     *
+     * @var int
+     */
     protected $perPage = 25;
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
     public function getRouteKeyName()
     {
         return 'number';
     }
 
+    /**
+     * Invoice belongs to project.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function project()
     {
         return $this->belongsTo(Project::class);
     }
 
+    /**
+     * Invoice belongs to creator (user).
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function creator()
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Generate invoice (incrementing) number.
+     *
+     * @return string
+     */
     public function generateNewNumber()
     {
         $prefix = date('ym');
@@ -49,13 +85,21 @@ class Invoice extends Model
         return $prefix.'001';
     }
 
-    public function getItemsCountAttribute($value)
+    /**
+     * Get invoice items count attribute.
+     *
+     * @return int
+     */
+    public function getItemsCountAttribute()
     {
-        $pcsCount = 0;
-
         return count($this->items);
     }
 
+    /**
+     * Get invoice number in html link format.
+     *
+     * @return \Illuminate\Support\HtmlString
+     */
     public function numberLink()
     {
         return link_to_route('invoices.show', $this->number, [$this->number], [

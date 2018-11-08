@@ -97,18 +97,13 @@ class CustomersController extends Controller
     public function destroy(Customer $customer)
     {
         // TODO: user cannot delete customer that has been used in other table
-        request()->validate([
-            'customer_id' => 'required',
-        ]);
-
-        $routeParam = request()->only('page', 'q');
+        request()->validate(['customer_id' => 'required']);
 
         if (request('customer_id') == $customer->id && $customer->delete()) {
             flash(__('customer.deleted'), 'warning');
 
-            return redirect()->route('customers.index', $routeParam);
+            return redirect()->route('customers.index', request(['page', 'q']));
         }
-
         flash(__('customer.undeleted'), 'danger');
 
         return back();

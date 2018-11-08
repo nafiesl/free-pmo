@@ -17,12 +17,9 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        $customers = Customer::where(function ($query) {
-            $query->where('name', 'like', '%'.request('q').'%');
-        })
-            ->latest()
-            ->withCount('projects')
-            ->paginate(25);
+        $customerQuery = Customer::latest()->withCount('projects');
+        $customerQuery->where('name', 'like', '%'.request('q').'%');
+        $customers = $customerQuery->paginate(25);
 
         return view('customers.index', compact('customers'));
     }

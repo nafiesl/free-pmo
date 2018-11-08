@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Entities\Partners\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Partners\CustomerCreateRequest;
+use App\Http\Requests\Partners\CustomerUpdateRequest;
 
 class CustomersController extends Controller
 {
@@ -75,25 +76,13 @@ class CustomersController extends Controller
     /**
      * Update the specified customer in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\Partners\CustomerUpdateRequest  $customerUpdateForm
      * @param  \App\Entities\Partners\Customer  $customer
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Customer $customer)
+    public function update(CustomerUpdateRequest $customerUpdateForm, Customer $customer)
     {
-        $customerData = $this->validate($request, [
-            'name'      => 'required|max:60',
-            'email'     => 'nullable|email|unique:customers,email,'.$customer->id,
-            'phone'     => 'nullable|max:255',
-            'pic'       => 'nullable|max:255',
-            'address'   => 'nullable|max:255',
-            'website'   => 'nullable|url|max:255',
-            'notes'     => 'nullable|max:255',
-            'is_active' => 'required|boolean',
-        ]);
-
-        $customer->update($customerData);
-
+        $customer->update($customerUpdateForm->validated());
         flash(__('customer.updated'), 'success');
 
         return redirect()->route('customers.show', $customer->id);

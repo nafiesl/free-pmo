@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Partners;
 use Illuminate\Http\Request;
 use App\Entities\Partners\Customer;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Partners\CustomerCreateRequest;
 
 class CustomersController extends Controller
 {
     /**
      * Display a listing of the customer.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -28,7 +29,7 @@ class CustomersController extends Controller
     /**
      * Show the create customer form.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -38,25 +39,13 @@ class CustomersController extends Controller
     /**
      * Store a newly created customer in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\Partners\CustomerCreateRequest  $customerCreateForm
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CustomerCreateRequest $customerCreateForm)
     {
-        $newCustomerData = $this->validate($request, [
-            'name'    => 'required|max:60',
-            'email'   => 'nullable|email|unique:customers,email',
-            'phone'   => 'nullable|max:255',
-            'pic'     => 'nullable|max:255',
-            'address' => 'nullable|max:255',
-            'website' => 'nullable|url|max:255',
-            'notes'   => 'nullable|max:255',
-        ]);
-
-        Customer::create($newCustomerData);
-
-        flash(trans('customer.created'), 'success');
+        Customer::create($customerCreateForm->validated());
+        flash(__('customer.created'), 'success');
 
         return redirect()->route('customers.index');
     }
@@ -64,9 +53,8 @@ class CustomersController extends Controller
     /**
      * Show the specified customer.
      *
-     * @param \App\Entities\Partners\Customer $customer
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \App\Entities\Partners\Customer  $customer
+     * @return \Illuminate\View\View
      */
     public function show(Customer $customer)
     {
@@ -76,9 +64,8 @@ class CustomersController extends Controller
     /**
      * Show the edit customer form.
      *
-     * @param \App\Entities\Partners\Customer $customer
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \App\Entities\Partners\Customer  $customer
+     * @return \Illuminate\View\View
      */
     public function edit(Customer $customer)
     {
@@ -88,10 +75,9 @@ class CustomersController extends Controller
     /**
      * Update the specified customer in storage.
      *
-     * @param \Illuminate\Http\Request        $request
-     * @param \App\Entities\Partners\Customer $customer
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Entities\Partners\Customer  $customer
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Customer $customer)
     {
@@ -108,7 +94,7 @@ class CustomersController extends Controller
 
         $customer->update($customerData);
 
-        flash(trans('customer.updated'), 'success');
+        flash(__('customer.updated'), 'success');
 
         return redirect()->route('customers.show', $customer->id);
     }
@@ -116,26 +102,25 @@ class CustomersController extends Controller
     /**
      * Remove the specified customer from storage.
      *
-     * @param \App\Entities\Partners\Customer $customer
-     *
-     * @return \Illuminate\Http\Response
+     * @param  \App\Entities\Partners\Customer  $customer
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Customer $customer)
     {
         // TODO: user cannot delete customer that has been used in other table
-        $this->validate(request(), [
+        request()->validate([
             'customer_id' => 'required',
         ]);
 
         $routeParam = request()->only('page', 'q');
 
         if (request('customer_id') == $customer->id && $customer->delete()) {
-            flash(trans('customer.deleted'), 'warning');
+            flash(__('customer.deleted'), 'warning');
 
             return redirect()->route('customers.index', $routeParam);
         }
 
-        flash(trans('customer.undeleted'), 'danger');
+        flash(__('customer.undeleted'), 'danger');
 
         return back();
     }

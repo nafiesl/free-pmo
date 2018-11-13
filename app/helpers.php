@@ -1,10 +1,9 @@
 <?php
 
 /**
- * Rupiah Format.
+ * get number in Indonesian number format.
  *
- * @param int $number money in integer format
- *
+ * @param  int  $number money in integer format
  * @return string money in string format
  */
 function formatNo($number)
@@ -12,6 +11,11 @@ function formatNo($number)
     return number_format($number, 0, ',', '.');
 }
 
+/**
+ * Get number in money currency format
+ * @param  int|string  $number
+ * @return string
+ */
 function formatRp($number)
 {
     $moneySign = Option::get('money_sign', 'Rp.');
@@ -27,11 +31,23 @@ function formatRp($number)
     return $moneySign.' '.formatNo($number);
 }
 
+/**
+ * Format number to decimal format.
+ *
+ * @param  int|string  $number
+ * @return string
+ */
 function formatDecimal($number)
 {
     return number_format($number, 2, ',', '.');
 }
 
+/**
+ * Format date in indonesian format dd-mm-yyyy.
+ *
+ * @param  string  $date
+ * @return string
+ */
 function formatDate($date)
 {
     if (!$date || $date == '0000-00-00') {
@@ -49,6 +65,12 @@ function formatDate($date)
     throw new App\Exceptions\InvalidDateException('Invalid date format.');
 }
 
+/**
+ * Get Indonesian date format.
+ *
+ * @param  string  $date
+ * @return string
+ */
 function dateId($date)
 {
     if (is_null($date) || $date == '0000-00-00') {
@@ -66,11 +88,23 @@ function dateId($date)
     throw new App\Exceptions\InvalidDateException('Invalid date format.');
 }
 
+/**
+ * Get two digits of month.
+ *
+ * @param  int|string $number
+ * @return string
+ */
 function monthNumber($number)
 {
     return str_pad($number, 2, '0', STR_PAD_LEFT);
 }
 
+/**
+ * Get month name from given month number.
+ *
+ * @param  int|string  $monthNumber
+ * @return string
+ */
 function monthId($monthNumber)
 {
     if (is_null($monthNumber)) {
@@ -83,6 +117,11 @@ function monthId($monthNumber)
     return $months[$monthNumber];
 }
 
+/**
+ * Get array of month list.
+ *
+ * @return array
+ */
 function getMonths()
 {
     return [
@@ -101,6 +140,11 @@ function getMonths()
     ];
 }
 
+/**
+ * Get array of year list starting from 2014.
+ *
+ * @return array
+ */
 function getYears()
 {
     $yearRange = range(2014, date('Y'));
@@ -111,6 +155,12 @@ function getYears()
     return $years;
 }
 
+/**
+ * Split and ucword string.
+ *
+ * @param  string  $string
+ * @return string
+ */
 function str_split_ucwords($string)
 {
     return ucwords(str_replace('_', ' ', $string));
@@ -119,8 +169,7 @@ function str_split_ucwords($string)
 /**
  * Convert file size to have unit string.
  *
- * @param int $bytes File size.
- *
+ * @param  int  $bytes File size.
  * @return string Converted file size with unit.
  */
 function formatSizeUnits($bytes)
@@ -145,10 +194,11 @@ function formatSizeUnits($bytes)
 /**
  * Overide Laravel Collective  link_to_route helper function.
  *
- * @param string $name       Name of route
- * @param string $title      Text that displayed on view
- * @param array  $parameters URL Parameter
- * @param array  $attributes The anchor tag atributes
+ * @param  string  $name  Name of route
+ * @param  string  $title  Text that displayed on view
+ * @param  array  $parameters  URL Parameter
+ * @param  array  $attributes  The anchor tag atributes
+ * @return string
  */
 function html_link_to_route($name, $title = null, $parameters = [], $attributes = [])
 {
@@ -177,6 +227,12 @@ function dateDifference($date1, $date2, $differenceFormat = '%a')
     return $interval->format($differenceFormat);
 }
 
+/**
+ * Get logo image on html img tag format.
+ *
+ * @param  array  $attributes
+ * @return \Illuminate\Support\HtmlString
+ */
 function appLogoImage($attributes = [])
 {
     return Html::image(
@@ -186,6 +242,11 @@ function appLogoImage($attributes = [])
     );
 }
 
+/**
+ * Get logo image path.
+ *
+ * @return string
+ */
 function appLogoPath()
 {
     $defaultLogoImagePath = 'default-logo.png';
@@ -198,6 +259,13 @@ function appLogoPath()
     return asset('assets/imgs/'.$defaultLogoImagePath);
 }
 
+/**
+ * Get array of dates in a month.
+ *
+ * @param  string  $year
+ * @param  string  $month
+ * @return array
+ */
 function monthDateArray($year, $month)
 {
     $dateCount = Carbon::parse($year.'-'.$month)->format('t');
@@ -212,9 +280,8 @@ function monthDateArray($year, $month)
 /**
  * Function helper to add flash notification.
  *
- * @param null|string $message The flashed message.
- * @param string      $level   Level/type of message
- *
+ * @param  null|string  $message The flashed message.
+ * @param  string  $level   Level/type of message
  * @return void
  */
 function flash($message = null, $level = 'info')

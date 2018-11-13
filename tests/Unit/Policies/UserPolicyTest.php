@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Policies;
 
+use Tests\TestCase;
 use App\Entities\Users\User;
 use App\Entities\Projects\Job;
-use Tests\TestCase as TestCase;
 use App\Entities\Payments\Payment;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 

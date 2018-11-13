@@ -3,9 +3,12 @@
 namespace Tests\Feature\Auth;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ChangePasswordTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function member_can_change_password()
     {

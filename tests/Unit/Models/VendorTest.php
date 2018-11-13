@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Models;
 
-use Tests\TestCase as TestCase;
+use Tests\TestCase;
 use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
 use Illuminate\Support\Collection;

@@ -2,12 +2,15 @@
 
 namespace Tests\Unit\Policies;
 
+use Tests\TestCase;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
-use Tests\TestCase as TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class TaskPolicyTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function only_admin_can_create_task_on_a_job()
     {

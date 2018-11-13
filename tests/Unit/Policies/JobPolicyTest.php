@@ -4,9 +4,12 @@ namespace Tests\Unit\Policies;
 
 use Tests\TestCase;
 use App\Entities\Projects\Job;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class JobPolicyTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function an_admin_can_create_job_on_a_project()
     {

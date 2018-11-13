@@ -3,6 +3,7 @@
 namespace Tests\Feature\Users;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
  * User Profile Feature Test.
@@ -11,6 +12,8 @@ use Tests\TestCase;
  */
 class UserProfileTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function a_user_can_visit_their_profile_page()
     {

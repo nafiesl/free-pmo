@@ -3,12 +3,11 @@
 namespace Tests;
 
 use App\Entities\Users\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
-    use CreatesApplication, DatabaseMigrations;
+    use CreatesApplication;
 
     protected function adminUserSigningIn($userDataOverrides = [])
     {

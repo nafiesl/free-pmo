@@ -5,9 +5,12 @@ namespace Tests\Feature\Payments;
 use Tests\TestCase;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class PaymentSearchTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function user_can_find_payment_by_project_name()
     {

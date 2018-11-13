@@ -6,9 +6,12 @@ use Storage;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use App\Entities\Projects\Project;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class UploadFilesTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function user_can_upload_document_to_a_project()
     {

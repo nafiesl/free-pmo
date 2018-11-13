@@ -4,9 +4,12 @@ namespace Tests\Unit\Services;
 
 use Option;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class SiteOptionTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function option_can_be_set()
     {

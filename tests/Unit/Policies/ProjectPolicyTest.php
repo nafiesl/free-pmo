@@ -2,12 +2,15 @@
 
 namespace Tests\Unit\Policies;
 
+use Tests\TestCase;
 use App\Entities\Projects\Job;
-use Tests\TestCase as TestCase;
 use App\Entities\Projects\Project;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ProjectPolicyTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function only_admin_can_create_project()
     {

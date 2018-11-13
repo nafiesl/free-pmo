@@ -7,6 +7,7 @@ use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
 use App\Services\InvoiceDrafts\Item;
 use App\Services\InvoiceDrafts\InvoiceDraft;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use App\Services\InvoiceDrafts\InvoiceDraftCollection;
 
 /**
@@ -16,6 +17,8 @@ use App\Services\InvoiceDrafts\InvoiceDraftCollection;
  */
 class InvoiceEntryTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function user_can_visit_invoice_drafts_page()
     {

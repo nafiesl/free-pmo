@@ -6,9 +6,12 @@ use Tests\TestCase;
 use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ManageSubscriptionsTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function admin_can_entry_subscription()
     {

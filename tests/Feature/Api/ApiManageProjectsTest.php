@@ -4,6 +4,7 @@ namespace Tests\Feature\Api;
 
 use Tests\TestCase;
 use App\Entities\Projects\Project;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
  * Manage Projects API Feature Test.
@@ -12,6 +13,8 @@ use App\Entities\Projects\Project;
  */
 class ApiManageProjectsTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function user_can_get_project_lists()
     {

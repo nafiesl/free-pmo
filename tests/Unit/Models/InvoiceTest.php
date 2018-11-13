@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Entities\Users\User;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Projects\Project;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
  * Invoice Model Test.
@@ -14,6 +15,8 @@ use App\Entities\Projects\Project;
  */
 class InvoiceTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function it_has_project_relation()
     {

@@ -5,9 +5,12 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ManageTasksTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function admin_can_entry_task()
     {

@@ -2,16 +2,19 @@
 
 namespace Tests\Unit\Models;
 
-use Tests\TestCase as TestCase;
+use Tests\TestCase;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use Illuminate\Support\Collection;
 use App\Entities\Partners\Customer;
 use App\Entities\Subscriptions\Subscription;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class CustomerTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function a_customer_has_many_projects()
     {

@@ -3,6 +3,7 @@
 namespace Tests\Unit\Helpers;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
  * Money Format Helper Unit Test.
@@ -11,6 +12,8 @@ use Tests\TestCase;
  */
 class MoneyFormatTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function format_money_returns_string_with_default_money_sign()
     {

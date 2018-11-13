@@ -4,6 +4,7 @@ namespace Tests\Feature\Users;
 
 use Tests\TestCase;
 use App\Entities\Users\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
  * Manage Users Feature Test.
@@ -12,6 +13,8 @@ use App\Entities\Users\User;
  */
 class ManageUsersTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function user_can_see_user_list_from_dashboard_tab()
     {

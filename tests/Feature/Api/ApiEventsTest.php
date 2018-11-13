@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Entities\Users\User;
 use App\Entities\Users\Event;
 use App\Entities\Projects\Project;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
  * Manage Events API Feature Test.
@@ -14,6 +15,8 @@ use App\Entities\Projects\Project;
  */
 class ApiEventsTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function it_can_get_all_existing_events()
     {

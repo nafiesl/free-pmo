@@ -5,6 +5,7 @@ namespace Tests\Unit\Policies;
 use Tests\TestCase;
 use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
  * Vendor Policy Test.
@@ -13,6 +14,8 @@ use App\Entities\Payments\Payment;
  */
 class VendorPolicyTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function only_admin_can_create_vendor()
     {

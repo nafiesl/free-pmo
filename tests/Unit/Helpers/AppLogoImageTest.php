@@ -3,9 +3,12 @@
 namespace Tests\Unit\Helpers;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AppLogoImageTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function app_logo_path_function_returns_correct_logo_image_path_based_on_agency_logo_path_setting()
     {

@@ -4,9 +4,12 @@ namespace Tests\Feature\Auth;
 
 use Tests\TestCase;
 use App\Entities\Users\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class LoginTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function user_can_login_and_logout()
     {

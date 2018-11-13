@@ -3,6 +3,7 @@
 namespace Tests\Feature\Users;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
  * Site Options Feature Test.
@@ -11,6 +12,8 @@ use Tests\TestCase;
  */
 class SiteOptionsTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function admin_user_can_visit_site_options_page()
     {

@@ -2,8 +2,9 @@
 
 namespace Tests\Unit\Policies;
 
-use Tests\TestCase as TestCase;
+use Tests\TestCase;
 use App\Entities\Payments\Payment;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
  * Payment Policy Test.
@@ -12,6 +13,8 @@ use App\Entities\Payments\Payment;
  */
 class PaymentPolicyTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /** @test */
     public function only_admin_can_create_payment()
     {

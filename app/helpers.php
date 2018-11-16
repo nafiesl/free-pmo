@@ -12,7 +12,7 @@ function formatNo($number)
 }
 
 /**
- * Get number in money currency format
+ * Get number in money currency format.
  * @param  int|string  $number
  * @return string
  */

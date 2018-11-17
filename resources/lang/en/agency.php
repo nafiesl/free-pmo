@@ -22,4 +22,5 @@ return [
     'address' => 'Agency Address',
     'phone'   => 'Agency Phone',
     'logo'    => 'Agency Logo',
+    'tax_id'  => 'Tax ID Number',
 ];

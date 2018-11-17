@@ -47,6 +47,7 @@ class AgencyController extends Controller
             'address' => 'required|string|max:255',
             'city'    => 'required|string|max:100',
             'phone'   => 'required|string|max:255',
+            'tax_id'  => 'nullable|string|max:255',
         ]);
 
         Option::set('agency_name', request('name'));
@@ -56,6 +57,7 @@ class AgencyController extends Controller
         Option::set('agency_address', request('address'));
         Option::set('agency_city', request('city'));
         Option::set('agency_phone', request('phone'));
+        Option::set('agency_tax_id', request('tax_id'));
 
         flash(__('agency.updated'), 'success');
 

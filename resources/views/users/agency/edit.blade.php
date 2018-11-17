@@ -21,8 +21,11 @@
             <div class="col-md-6">{!! FormField::text('phone', ['value' => Option::get('agency_phone')]) !!}</div>
         </div>
         {!! FormField::textarea('address', ['value' => Option::get('agency_address')]) !!}
-        {!! FormField::text('city', ['value' => Option::get('agency_city')]) !!}
-        {!! FormField::text('website', ['value' => Option::get('agency_website')]) !!}
+        <div class="row">
+            <div class="col-md-6">{!! FormField::text('city', ['value' => Option::get('agency_city')]) !!}</div>
+            <div class="col-md-6">{!! FormField::text('website', ['value' => Option::get('agency_website')]) !!}</div>
+        </div>
+        {!! FormField::text('tax_id', ['label' => __('agency.tax_id'), 'value' => Option::get('agency_tax_id')]) !!}
     </div>
     {{ Form::close() }}
     <div class="col-md-3 text-center">

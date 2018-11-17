@@ -86,8 +86,12 @@
                 </td>
                 <td class="text-center text-top">
                     @if ($invoice->due_date)
-                    <h4 style="margin: 30px 3px 0;">{{ trans('invoice.due_date') }}</h4>
-                    <p>{{ dateId($invoice->due_date) }}</p>
+                        <h4 style="margin: 30px 3px 0;">{{ trans('invoice.due_date') }}</h4>
+                        <p>{{ dateId($invoice->due_date) }}</p>
+                    @endif
+                    @if ($taxId = Option::get('agency_tax_id'))
+                        <h4 style="margin: 30px 3px 0;">{{ __('agency.tax_id') }}</h4>
+                        <p>{{ $taxId }}</p>
                     @endif
                 </td>
             </tr>

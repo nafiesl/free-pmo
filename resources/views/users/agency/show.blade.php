@@ -28,6 +28,7 @@
                 <tr><th>{{ trans('address.address') }}</th><td>{!! nl2br(Option::get('agency_address')) !!}</td></tr>
                 <tr><th>{{ trans('address.city') }}</th><td>{{ Option::get('agency_city') }}</td></tr>
                 <tr><th>{{ trans('contact.website') }}</th><td>{{ Option::get('agency_website') }}</td></tr>
+                <tr><th>{{ trans('agency.tax_id') }}</th><td>{{ Option::get('agency_tax_id') }}</td></tr>
             </table>
         </div>
     </div>

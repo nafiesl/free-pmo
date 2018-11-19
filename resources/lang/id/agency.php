@@ -22,4 +22,5 @@ return [
     'address' => 'Alamat Agensi',
     'phone'   => 'Telp. Agensi',
     'logo'    => 'Logo Agensi',
+    'tax_id'  => 'NPWP',
 ];

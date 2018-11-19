@@ -59,14 +59,14 @@
                     </div>
                 </td>
                 <td style="width:270px; text-align: center;">
-                    <h3 style="margin: 3px 0; font-size: 24px">{{ trans('invoice.invoice') }}</h3>
-                    <div style="margin: 5px">{{ trans('invoice.number') }} : INV-{{ $invoice->number }}</div>
-                    <div>{{ trans('app.date') }} : {{ dateId($invoice->date) }}</div>
+                    <h3 style="margin: 3px 0; font-size: 24px">{{ __('invoice.invoice') }}</h3>
+                    <div style="margin: 5px">{{ __('invoice.number') }} : INV-{{ $invoice->number }}</div>
+                    <div>{{ __('app.date') }} : {{ dateId($invoice->date) }}</div>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <h4 style="margin: 3px 0;">{{ trans('app.to') }} :</h4>
+                    <h4 style="margin: 3px 0;">{{ __('app.to') }} :</h4>
                     @php
                         $customer = $invoice->project->customer;
                     @endphp
@@ -75,7 +75,7 @@
                     <p style="max-width: 250px;font-size: 14px">{!! nl2br($customer->address) !!}</p>
                     @endif
                     @if ($customer->phone)
-                    <p>{{ trans('contact.phone') }} : {{ $customer->phone }}</p>
+                    <p>{{ __('contact.phone') }} : {{ $customer->phone }}</p>
                     @endif
                     @if ($customer->website)
                     <p>{{ $customer->website }}</p>
@@ -86,20 +86,24 @@
                 </td>
                 <td class="text-center text-top">
                     @if ($invoice->due_date)
-                    <h4 style="margin: 30px 3px 0;">{{ trans('invoice.due_date') }}</h4>
-                    <p>{{ dateId($invoice->due_date) }}</p>
+                        <h4 style="margin: 30px 3px 0;">{{ __('invoice.due_date') }}</h4>
+                        <p>{{ dateId($invoice->due_date) }}</p>
+                    @endif
+                    @if ($taxId = Option::get('agency_tax_id'))
+                        <h4 style="margin: 30px 3px 0;">{{ __('agency.tax_id') }}</h4>
+                        <p>{{ $taxId }}</p>
                     @endif
                 </td>
             </tr>
-            <tr><td colspan="3">{{ trans('invoice.items') }} :</td></tr>
+            <tr><td colspan="3">{{ __('invoice.items') }} :</td></tr>
             <tr>
                 <td colspan="3">
                 <table border="1" class="receipt-table" style="width: 100%;font-size: 14px">
                     <thead style="background-color: #FFC800">
                         <tr>
-                            <th width="5%">{{ trans('app.table_no') }}</th>
-                            <th width="70%" class="text-left">{{ trans('invoice.item_description') }}</th>
-                            <th width="25%">{{ trans('invoice.item_amount') }}</th>
+                            <th width="5%">{{ __('app.table_no') }}</th>
+                            <th width="70%" class="text-left">{{ __('invoice.item_description') }}</th>
+                            <th width="25%">{{ __('invoice.item_amount') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -130,7 +134,7 @@
                         </tr>
                         @endif
                         <tr>
-                            <th colspan="2" class="text-right">{{ trans('app.total') }}</th>
+                            <th colspan="2" class="text-right">{{ __('app.total') }}</th>
                             <th colspan="2" class="text-right">{{ formatRp($invoice->amount) }}</th>
                         </tr>
                     </tbody>
@@ -138,7 +142,7 @@
                 </td>
             </tr>
             <tr style="vertical-align: top;">
-                <td style="padding-top: 20px;">{{ trans('payment.words_amount') }} : </td>
+                <td style="padding-top: 20px;">{{ __('payment.words_amount') }} : </td>
                 <td colspan="2" style="font-weight: bold; padding-top: 20px">
                     {{ ucwords(Terbilang::make($invoice->amount)) }} {{ Option::get('money_sign_in_word', 'Rupiah') }}
                 </td>
@@ -158,9 +162,9 @@
                         @foreach ($bankAccounts as $key => $bankAccount)
                             @php $bankAccount = (object) $bankAccount; @endphp
                             <table style="border: 1px solid #ccc;width: 330px">
-                                <tr><td style="width: 100px">{{ trans('bank_account.name') }}</td><td>: <strong>{{ $bankAccount->name }}</strong></td></tr>
-                                <tr><td>{{ trans('bank_account.number') }}</td><td>: <strong>{{ $bankAccount->number }}</strong></td></tr>
-                                <tr><td>{{ trans('bank_account.account_name') }}</td><td>: <strong>{{ $bankAccount->account_name }}</strong></td></tr>
+                                <tr><td style="width: 100px">{{ __('bank_account.name') }}</td><td>: <strong>{{ $bankAccount->name }}</strong></td></tr>
+                                <tr><td>{{ __('bank_account.number') }}</td><td>: <strong>{{ $bankAccount->number }}</strong></td></tr>
+                                <tr><td>{{ __('bank_account.account_name') }}</td><td>: <strong>{{ $bankAccount->account_name }}</strong></td></tr>
                             </table>
                             @if ($key == count($bankAccounts)) <br> @endif
                         @endforeach

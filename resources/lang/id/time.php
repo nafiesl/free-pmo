@@ -16,7 +16,7 @@ return [
         '08' => 'Agustus',
         '09' => 'September',
         '10' => 'Oktober',
-        '11' => 'Nopember',
+        '11' => 'November',
         '12' => 'Desember',
     ],
 

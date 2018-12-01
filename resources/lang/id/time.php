@@ -7,7 +7,7 @@ return [
 
     'months' => [
         '01' => 'Januari',
-        '02' => 'Pebruari',
+        '02' => 'Februari',
         '03' => 'Maret',
         '04' => 'April',
         '05' => 'Mei',

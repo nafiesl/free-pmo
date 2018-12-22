@@ -80,7 +80,7 @@ function dateId($date)
     $explodedDate = explode('-', $date);
 
     if (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[2], $explodedDate[0])) {
-        $months = getMonths();
+        $months = get_months();
 
         return $explodedDate[2].' '.$months[$explodedDate[1]].' '.$explodedDate[0];
     }
@@ -111,7 +111,7 @@ function monthId($monthNumber)
         return $monthNumber;
     }
 
-    $months = getMonths();
+    $months = get_months();
     $monthNumber = monthNumber($monthNumber);
 
     return $months[$monthNumber];
@@ -122,7 +122,7 @@ function monthId($monthNumber)
  *
  * @return array
  */
-function getMonths()
+function get_months()
 {
     return [
         '01' => __('time.months.01'),

@@ -145,7 +145,7 @@ function get_months()
  *
  * @return array
  */
-function getYears()
+function get_years()
 {
     $yearRange = range(2014, date('Y'));
     foreach ($yearRange as $year) {

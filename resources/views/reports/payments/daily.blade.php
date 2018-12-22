@@ -8,7 +8,7 @@
 
 <ul class="breadcrumb hidden-print">
     <li>{{ link_to_route('reports.payments.yearly', __('report.yearly', ['year' => $dt->year]), ['year' => $dt->year]) }}</li>
-    <li>{{ link_to_route('reports.payments.monthly', get_months()[monthNumber($dt->month)], ['year' => $dt->year,'month' => monthNumber($dt->month)]) }}</li>
+    <li>{{ link_to_route('reports.payments.monthly', get_months()[month_number($dt->month)], ['year' => $dt->year,'month' => month_number($dt->month)]) }}</li>
     <li class="active">{{ $dt->format('d') }}</li>
 </ul>
 
@@ -20,7 +20,7 @@
 {{ link_to_route(
     'reports.payments.monthly',
     __('report.view_monthly'),
-    ['month' => monthNumber($dt->month), 'year' => $dt->year],
+    ['month' => month_number($dt->month), 'year' => $dt->year],
     ['class' => 'btn btn-default btn-sm']
 ) }}
 {{ Form::close() }}

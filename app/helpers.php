@@ -94,7 +94,7 @@ function dateId($date)
  * @param  int|string $number
  * @return string
  */
-function monthNumber($number)
+function month_number($number)
 {
     return str_pad($number, 2, '0', STR_PAD_LEFT);
 }
@@ -112,7 +112,7 @@ function month_id($monthNumber)
     }
 
     $months = get_months();
-    $monthNumber = monthNumber($monthNumber);
+    $monthNumber = month_number($monthNumber);
 
     return $months[$monthNumber];
 }

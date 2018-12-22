@@ -105,7 +105,7 @@ function monthNumber($number)
  * @param  int|string  $monthNumber
  * @return string
  */
-function monthId($monthNumber)
+function month_id($monthNumber)
 {
     if (is_null($monthNumber)) {
         return $monthNumber;

@@ -42,7 +42,7 @@
                     $any = isset($reports[$monthNumber]);
                 @endphp
                 <tr>
-                    <td class="text-center">{{ monthId($monthNumber) }}</td>
+                    <td class="text-center">{{ month_id($monthNumber) }}</td>
                     <td class="text-center">{{ $any ? $reports[$monthNumber]->count : 0 }}</td>
                     <td class="text-right">{{ formatRp($any ? $reports[$monthNumber]->cashin : 0) }}</td>
                     <td class="text-right">{{ formatRp($any ? $reports[$monthNumber]->cashout : 0) }}</td>
@@ -54,14 +54,14 @@
                             ['month' => $monthNumber, 'year' => $year],
                             [
                                 'class' => 'btn btn-info btn-xs',
-                                'title' => __('report.monthly', ['year_month' => monthId($monthNumber)]),
-                                'title' => __('report.monthly', ['year_month' => monthId($monthNumber).' '.$year]),
+                                'title' => __('report.monthly', ['year_month' => month_id($monthNumber)]),
+                                'title' => __('report.monthly', ['year_month' => month_id($monthNumber).' '.$year]),
                             ]
                         ) }}
                     </td>
                 </tr>
                 @php
-                    $chartData[] = ['month' => monthId($monthNumber), 'value' => $profit];
+                    $chartData[] = ['month' => month_id($monthNumber), 'value' => $profit];
                 @endphp
                 @endforeach
             </tbody>

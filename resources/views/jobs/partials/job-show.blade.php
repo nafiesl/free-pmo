@@ -7,7 +7,7 @@
             @can('see-pricings', $job)
             <tr><th>{{ __('job.price') }}</th><td>{{ formatRp($job->price) }}</td></tr>
             @endcan
-            <tr><th>{{ __('job.progress') }}</th><td>{{ formatDecimal($job->progress) }}%</td></tr>
+            <tr><th>{{ __('job.progress') }}</th><td>{{ format_decimal($job->progress) }}%</td></tr>
             <tr><th>{{ __('job.worker') }}</th><td>{{ $job->worker->name }}</td></tr>
             <tr><th>{{ __('time.updated_at') }}</th><td>{{ $job->updated_at }}</td></tr>
             <tr><th>{{ __('job.description') }}</th><td>{!! nl2br($job->description) !!}</td></tr>

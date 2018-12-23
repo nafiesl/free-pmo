@@ -37,7 +37,7 @@ function formatRp($number)
  * @param  int|string  $number
  * @return string
  */
-function formatDecimal($number)
+function format_decimal($number)
 {
     return number_format($number, 2, ',', '.');
 }

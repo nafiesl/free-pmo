@@ -44,7 +44,7 @@
                 <td class="text-center">{{ $project->start_date }}</td>
                 <td class="text-right">{{ $project->work_duration }}</td>
                 @if (request('status_id') == 2)
-                <td class="text-right">{{ formatDecimal($project->getJobOveralProgress()) }} %</td>
+                <td class="text-right">{{ format_decimal($project->getJobOveralProgress()) }} %</td>
                 <td class="text-center">{{ $project->due_date }}</td>
                 @endif
                 @can('see-pricings', new App\Entities\Projects\Project)

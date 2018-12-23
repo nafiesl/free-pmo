@@ -150,7 +150,7 @@ function str_split_ucwords($string)
  * @param  int  $bytes File size.
  * @return string Converted file size with unit.
  */
-function formatSizeUnits($bytes)
+function format_size_units($bytes)
 {
     if ($bytes >= 1073741824) {
         $bytes = number_format($bytes / 1073741824, 2).' GB';

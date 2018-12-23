@@ -24,7 +24,7 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $backup->getFilename() }}</td>
-                        <td>{{ formatSizeUnits($backup->getSize()) }}</td>
+                        <td>{{ format_size_units($backup->getSize()) }}</td>
                         <td>{{ date('Y-m-d H:i:s', $backup->getMTime()) }}</td>
                         <td class="text-center">
                             <a href="{{ route('backups.index', ['action' => 'restore', 'file_name' => $backup->getFilename()]) }}"

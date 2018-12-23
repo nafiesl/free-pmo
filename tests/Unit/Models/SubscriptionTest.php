@@ -3,7 +3,7 @@
 namespace Tests\Unit\Models;
 
 use Carbon\Carbon;
-use Tests\TestCase as TestCase;
+use Tests\TestCase;
 use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
@@ -69,8 +69,8 @@ class SubscriptionTest extends TestCase
         $next3Months = Carbon::now()->addMonths(2)->format('Y-m-d');
         $subscription = factory(Subscription::class)->make(['due_date' => $next3Months]);
 
-        $dueDateDescription = trans('subscription.start_date').' : '.dateId($subscription->start_date)."\n";
-        $dueDateDescription .= trans('subscription.due_date').' : '.dateId($subscription->due_date);
+        $dueDateDescription = trans('subscription.start_date').' : '.date_id($subscription->start_date)."\n";
+        $dueDateDescription .= trans('subscription.due_date').' : '.date_id($subscription->due_date);
 
         $this->assertEquals($dueDateDescription, $subscription->dueDateDescription());
     }

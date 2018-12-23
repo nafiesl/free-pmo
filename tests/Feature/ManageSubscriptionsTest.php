@@ -112,7 +112,7 @@ class ManageSubscriptionsTest extends TestCase
 
         $this->see($subscription->name);
         $this->see(formatRp($subscription->price));
-        $this->see(dateId($subscription->start_date));
-        $this->see(dateId($subscription->due_date));
+        $this->see(date_id($subscription->start_date));
+        $this->see(date_id($subscription->due_date));
     }
 }

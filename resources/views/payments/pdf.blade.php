@@ -63,7 +63,7 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td style="text-align: center;">
-                    {{ Option::get('agency_city') ? Option::get('agency_city').', ' : '' }} {{ dateId($payment->date) }}
+                    {{ Option::get('agency_city') ? Option::get('agency_city').', ' : '' }} {{ date_id($payment->date) }}
                 </td>
             </tr>
             <tr>

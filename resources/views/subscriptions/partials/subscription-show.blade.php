@@ -3,8 +3,8 @@
         <tr><td>{{ trans('subscription.name') }}</td><td>{{ $subscription->name }}</td></tr>
         <tr><td>{{ trans('subscription.price') }}</td><td>{{ formatRp($subscription->price) }}</td></tr>
         <tr><td>{{ trans('subscription.type') }}</td><td>{{ $subscription->type }}</td></tr>
-        <tr><td>{{ trans('subscription.start_date') }}</td><td>{{ dateId($subscription->start_date) }}</td></tr>
-        <tr><td>{{ trans('subscription.due_date') }}</td><td>{{ dateId($subscription->due_date) }}</td></tr>
+        <tr><td>{{ trans('subscription.start_date') }}</td><td>{{ date_id($subscription->start_date) }}</td></tr>
+        <tr><td>{{ trans('subscription.due_date') }}</td><td>{{ date_id($subscription->due_date) }}</td></tr>
         <tr><td>{{ trans('subscription.customer') }}</td><td>{{ $subscription->customer->nameLink() }}</td></tr>
         <tr>
             <td>{{ trans('subscription.project') }}</td>

@@ -48,7 +48,7 @@
                 @endphp
                 @if ($any)
                     <tr>
-                        <td class="text-center">{{ dateId($date = $year.'-'.$month.'-'.$dateNumber) }}</td>
+                        <td class="text-center">{{ date_id($date = $year.'-'.$month.'-'.$dateNumber) }}</td>
                         <td class="text-center">{{ $count }}</td>
                         <td class="text-right">{{ formatRp($any ? $reports[$dateNumber]->cashin : 0) }}</td>
                         <td class="text-right">{{ formatRp($any ? $reports[$dateNumber]->cashout : 0) }}</td>
@@ -60,7 +60,7 @@
                                 ['date' => $date],
                                 [
                                     'class' => 'btn btn-info btn-xs',
-                                    'title' => __('report.daily', ['date' => dateId($date)]),
+                                    'title' => __('report.daily', ['date' => date_id($date)]),
                                 ]
                             ) }}
                         </td>

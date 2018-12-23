@@ -61,8 +61,8 @@ class Subscription extends Model
      */
     public function dueDateDescription()
     {
-        $dueDateDescription = __('subscription.start_date').' : '.dateId($this->start_date)."\n";
-        $dueDateDescription .= __('subscription.due_date').' : '.dateId($this->due_date);
+        $dueDateDescription = __('subscription.start_date').' : '.date_id($this->start_date)."\n";
+        $dueDateDescription .= __('subscription.due_date').' : '.date_id($this->due_date);
 
         return $dueDateDescription;
     }

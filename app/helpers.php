@@ -71,7 +71,7 @@ function formatDate($date)
  * @param  string  $date
  * @return string
  */
-function dateId($date)
+function date_id($date)
 {
     if (is_null($date) || $date == '0000-00-00') {
         return '-';

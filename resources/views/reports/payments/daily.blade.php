@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('report.daily', ['date' => dateId($date)]))
+@section('title', __('report.daily', ['date' => date_id($date)]))
 
 @section('content')
 

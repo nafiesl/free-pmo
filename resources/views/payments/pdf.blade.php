@@ -69,7 +69,7 @@
             <tr>
                 <td style="font-size: 20px; font-weight: bold; text-align: center;height: 100px;vertical-align: bottom;">@lang('payment.cash_amount')</td>
                 <td style="font-size: 20px; font-weight: bold; vertical-align: bottom;">
-                {{ formatRp($payment->amount) }},-
+                {{ format_money($payment->amount) }},-
                 </td>
                 <td style="text-align: center;vertical-align: bottom;">
                     <strong>{{ auth()->user()->name }}</strong> <br>

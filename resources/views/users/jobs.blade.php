@@ -34,7 +34,7 @@
                 </td>
                 <td class="text-center">{{ $job->tasks_count = $job->tasks->count() }}</td>
                 <td class="text-center">{{ format_decimal($job->progress = $job->progress) }} %</td>
-                <td class="text-right">{{ formatRp($job->price) }}</td>
+                <td class="text-right">{{ format_money($job->price) }}</td>
                 <td class="text-center">
                     {!! html_link_to_route('jobs.show', '', [$job], [
                         'icon' => 'search',

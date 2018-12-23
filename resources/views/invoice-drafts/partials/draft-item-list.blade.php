@@ -51,7 +51,7 @@
             @endforeach
             <tr>
                 <th colspan="2" class="text-right">{{ trans('invoice.amount') }} :</th>
-                <th class="text-right">{{ formatRp($draft->getTotal()) }}</th>
+                <th class="text-right">{{ format_money($draft->getTotal()) }}</th>
                 <th>&nbsp;</th>
             </tr>
             <tr>

@@ -44,9 +44,9 @@
                 <tr>
                     <td class="text-center">{{ month_id($monthNumber) }}</td>
                     <td class="text-center">{{ $any ? $reports[$monthNumber]->count : 0 }}</td>
-                    <td class="text-right">{{ formatRp($any ? $reports[$monthNumber]->cashin : 0) }}</td>
-                    <td class="text-right">{{ formatRp($any ? $reports[$monthNumber]->cashout : 0) }}</td>
-                    <td class="text-right">{{ formatRp($profit = $any ? $reports[$monthNumber]->profit : 0) }}</td>
+                    <td class="text-right">{{ format_money($any ? $reports[$monthNumber]->cashin : 0) }}</td>
+                    <td class="text-right">{{ format_money($any ? $reports[$monthNumber]->cashout : 0) }}</td>
+                    <td class="text-right">{{ format_money($profit = $any ? $reports[$monthNumber]->profit : 0) }}</td>
                     <td class="text-center">
                         {{ link_to_route(
                             'reports.payments.monthly',
@@ -69,9 +69,9 @@
                 <tr>
                     <th class="text-center">{{ trans('app.total') }}</th>
                     <th class="text-center">{{ $reports->sum('count') }}</th>
-                    <th class="text-right">{{ formatRp($reports->sum('cashin')) }}</th>
-                    <th class="text-right">{{ formatRp($reports->sum('cashout')) }}</th>
-                    <th class="text-right">{{ formatRp($reports->sum('profit')) }}</th>
+                    <th class="text-right">{{ format_money($reports->sum('cashin')) }}</th>
+                    <th class="text-right">{{ format_money($reports->sum('cashout')) }}</th>
+                    <th class="text-right">{{ format_money($reports->sum('profit')) }}</th>
                     <td>&nbsp;</td>
                 </tr>
             </tfoot>

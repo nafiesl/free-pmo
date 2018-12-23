@@ -114,7 +114,7 @@
                             <tr>
                                 <td class="text-center text-top">{{ 1 + $key }}</td>
                                 <td>{!! nl2br($item['description']) !!}</td>
-                                <td class="text-right text-top">{{ formatRp($item['amount']) }}</td>
+                                <td class="text-right text-top">{{ format_money($item['amount']) }}</td>
                             </tr>
                             @php
                                 $subtotal += $item['amount'];
@@ -123,19 +123,19 @@
                         @if ($invoice->discount)
                         <tr>
                             <th colspan="2" class="text-right">{{ __('invoice.subtotal') }} :</th>
-                            <th class="text-right">{{ formatRp($subtotal) }}</th>
+                            <th class="text-right">{{ format_money($subtotal) }}</th>
                         </tr>
                         <tr>
                             <td colspan="2" class="text-right">
                                 <strong>{{ __('invoice.discount') }}</strong>
                                 {{ $invoice->discount_notes ? '('.$invoice->discount_notes.')': '' }} :
                             </td>
-                            <th class="text-right">- {{ formatRp($invoice->discount) }}</th>
+                            <th class="text-right">- {{ format_money($invoice->discount) }}</th>
                         </tr>
                         @endif
                         <tr>
                             <th colspan="2" class="text-right">{{ __('app.total') }}</th>
-                            <th colspan="2" class="text-right">{{ formatRp($invoice->amount) }}</th>
+                            <th colspan="2" class="text-right">{{ format_money($invoice->amount) }}</th>
                         </tr>
                     </tbody>
                 </table>

@@ -38,7 +38,7 @@
                     <div class="col-xs-12 text-right">
                         <i class="fa fa-money fa-2x pull-left"></i>
                         <div class="lead">Collectibe Earnings</div>
-                        <div class="lead" style="font-size: 30px;">{{ formatRp($project->getCollectibeEarnings()) }}</div>
+                        <div class="lead" style="font-size: 30px;">{{ format_money($project->getCollectibeEarnings()) }}</div>
                     </div>
                 </div>
             </div>

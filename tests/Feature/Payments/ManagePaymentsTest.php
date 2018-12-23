@@ -216,7 +216,7 @@ class ManagePaymentsTest extends TestCase
         $this->seePageIs(route('payments.show', $payment->id));
         $this->see(trans('payment.detail'));
         $this->see($payment->date);
-        $this->see(formatRp($payment->amount));
+        $this->see(format_money($payment->amount));
         $this->see($payment->description);
         $this->see($payment->partner->name);
     }

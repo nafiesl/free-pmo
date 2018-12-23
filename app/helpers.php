@@ -13,10 +13,11 @@ function formatNo($number)
 
 /**
  * Get number in money currency format.
+ *
  * @param  int|string  $number
  * @return string
  */
-function formatRp($number)
+function format_money($number)
 {
     $moneySign = Option::get('money_sign', 'Rp.');
 

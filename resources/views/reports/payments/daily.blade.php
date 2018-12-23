@@ -67,7 +67,7 @@
         <tfoot>
             <tr>
                 <th class="text-right" colspan="3">{{ __('app.total') }}</th>
-                <th class="text-right">{{ formatRp($total) }}</th>
+                <th class="text-right">{{ format_money($total) }}</th>
                 <th colspan="3">&nbsp;</th>
             </tr>
         </tfoot>

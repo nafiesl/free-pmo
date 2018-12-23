@@ -48,7 +48,7 @@
                 <td class="text-center">{{ $project->due_date }}</td>
                 @endif
                 @can('see-pricings', new App\Entities\Projects\Project)
-                <td class="text-right">{{ formatRp($project->project_value) }}</td>
+                <td class="text-right">{{ format_money($project->project_value) }}</td>
                 @endcan
                 <td class="text-center">{{ $project->present()->status }}</td>
                 <td>{{ $project->customer->name }}</td>

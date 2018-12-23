@@ -30,18 +30,18 @@
                 <tr>
                     <td class="text-center">{{ 1 + $key }}</td>
                     <td>{{ $job->name }}</td>
-                    <td class="text-right">{{ formatRp($job->price) }}</td>
+                    <td class="text-right">{{ format_money($job->price) }}</td>
                     <td class="text-right">{{ format_decimal($job->progress) }} %</td>
-                    <td class="text-right">{{ formatRp($job->receiveable_earning) }}</td>
+                    <td class="text-right">{{ format_money($job->receiveable_earning) }}</td>
                 </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
                     <th class="text-right" colspan="2">{{ __('app.total') }}</th>
-                    <th class="text-right">{{ formatRp($jobs->sum('price')) }}</th>
+                    <th class="text-right">{{ format_money($jobs->sum('price')) }}</th>
                     <th class="text-right">{{ format_decimal($project->getJobOveralProgress()) }} %</th>
-                    <th class="text-right">{{ formatRp($jobs->sum('receiveable_earning')) }}</th>
+                    <th class="text-right">{{ format_money($jobs->sum('receiveable_earning')) }}</th>
                 </tr>
             </tfoot>
         </table>

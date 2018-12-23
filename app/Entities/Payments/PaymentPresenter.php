@@ -8,7 +8,7 @@ class PaymentPresenter extends Presenter
 {
     public function amount()
     {
-        return $this->entity->in_out == 0 ? formatRp(-$this->entity->amount) : formatRp($this->entity->amount);
+        return $this->entity->in_out == 0 ? format_money(-$this->entity->amount) : format_money($this->entity->amount);
     }
 
     public function projectLink()

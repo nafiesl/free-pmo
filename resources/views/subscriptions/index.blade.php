@@ -36,7 +36,7 @@
             <td class="text-right" title="{!! $subscription->dueDateDescription() !!}">
                 {{ date_id($subscription->due_date) }} {!! $subscription->nearOfDueDateSign() !!}
             </td>
-            <td class="text-right">{{ formatRp($subscription->price) }}</td>
+            <td class="text-right">{{ format_money($subscription->price) }}</td>
             <td>{{ $subscription->vendor->name }}</td>
             <td class="text-center">{{ $subscription->status() }}</td>
         </tr>

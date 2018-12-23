@@ -17,7 +17,7 @@
                             ['class' => 'form-control', 'maxlength' => 3]
                         ) }}
                         <span class="text-info small">
-                            Money sign like : <strong>{{ formatRp('9900') }}</strong><br>(Max 3 characters)
+                            Money sign like : <strong>{{ format_money('9900') }}</strong><br>(Max 3 characters)
                         </span>
                     </td>
                 </tr>

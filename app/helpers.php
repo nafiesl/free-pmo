@@ -6,7 +6,7 @@
  * @param  int  $number money in integer format
  * @return string money in string format
  */
-function formatNo($number)
+function format_no($number)
 {
     return number_format($number, 0, ',', '.');
 }
@@ -26,10 +26,10 @@ function format_money($number)
     }
 
     if ($number < 0) {
-        return '- '.$moneySign.' '.formatNo(abs($number));
+        return '- '.$moneySign.' '.format_no(abs($number));
     }
 
-    return $moneySign.' '.formatNo($number);
+    return $moneySign.' '.format_no($number);
 }
 
 /**

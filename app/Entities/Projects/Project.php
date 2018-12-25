@@ -234,12 +234,12 @@ class Project extends Model
             return '-';
         }
 
-        $workDuration = dateDifference($startDate, $endDate);
+        $workDuration = date_difference($startDate, $endDate);
 
         if ((int) $workDuration > 365) {
-            return dateDifference($startDate, $endDate, '%y Year(s) %m Month(s)');
+            return date_difference($startDate, $endDate, '%y Year(s) %m Month(s)');
         } elseif ((int) $workDuration > 30) {
-            return dateDifference($startDate, $endDate, '%m Month(s) %d Day(s)');
+            return date_difference($startDate, $endDate, '%m Month(s) %d Day(s)');
         }
 
         return $workDuration.' Day(s)';

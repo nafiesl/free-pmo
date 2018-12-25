@@ -195,7 +195,7 @@ function html_link_to_route($name, $title = null, $parameters = [], $attributes 
  * @param  string  $differenceFormat
  * @return int|string
  */
-function dateDifference($date1, $date2, $differenceFormat = '%a')
+function date_difference($date1, $date2, $differenceFormat = '%a')
 {
     $datetime1 = date_create($date1);
     $datetime2 = date_create($date2);

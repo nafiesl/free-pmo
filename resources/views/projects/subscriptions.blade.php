@@ -31,9 +31,9 @@
             <td>{{ 1 + $key }}</td>
             <td class="text-center">{{ $subscription->type }}</td>
             <td>{{ $subscription->nameLink() }}</td>
-            <td class="text-right">{{ dateId($subscription->start_date) }}</td>
-            <td class="text-right">{{ dateId($subscription->due_date) }} {!! $subscription->nearOfDueDateSign() !!}</td>
-            <td class="text-right">{{ formatRp($subscription->price) }}</td>
+            <td class="text-right">{{ date_id($subscription->start_date) }}</td>
+            <td class="text-right">{{ date_id($subscription->due_date) }} {!! $subscription->nearOfDueDateSign() !!}</td>
+            <td class="text-right">{{ format_money($subscription->price) }}</td>
             <td>
                 {!! link_to_route('subscriptions.show',trans('app.show'),[$subscription->id],['class'=>'btn btn-info btn-xs']) !!}
                 {!! link_to_route('subscriptions.edit',trans('app.edit'),[$subscription->id],['class'=>'btn btn-warning btn-xs']) !!}

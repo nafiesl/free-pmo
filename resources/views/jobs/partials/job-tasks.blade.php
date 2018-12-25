@@ -66,7 +66,7 @@
         <tfoot>
             <tr>
                 <th class="text-right" colspan="2">{{ __('app.total') }}</th>
-                <th class="text-center">{{ formatDecimal($job->tasks->avg('progress')) }} %</th>
+                <th class="text-center">{{ format_decimal($job->tasks->avg('progress')) }} %</th>
                 <th>
                     @if (request('action') == 'sort_tasks')
                         {{ link_to_route('jobs.show', __('app.done'), [$job], ['class' => 'btn btn-default btn-xs pull-right']) }}

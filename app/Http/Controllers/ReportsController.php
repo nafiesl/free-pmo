@@ -45,8 +45,8 @@ class ReportsController extends Controller
             $month = $req->get('month');
         }
         $reports = $this->repo->getMonthlyReports($year, $month);
-        $months = \getMonths();
-        $years = \getYears();
+        $months = \get_months();
+        $years = \get_years();
 
         return view('reports.payments.monthly', compact('reports', 'months', 'years', 'month', 'year'));
     }
@@ -56,7 +56,7 @@ class ReportsController extends Controller
         $year = $req->get('year', date('Y'));
 
         $reports = $this->repo->getYearlyReports($year);
-        $years = \getYears();
+        $years = \get_years();
 
         return view('reports.payments.yearly', compact('reports', 'years', 'year'));
     }

@@ -21,7 +21,7 @@
                 <td>{{ $project->nameLink() }}</td>
                 <td class="text-center">{{ $project->start_date }}</td>
                 <td class="text-right">{{ $project->work_duration }}</td>
-                <td class="text-right">{{ formatRp($project->project_value) }}</td>
+                <td class="text-right">{{ format_money($project->project_value) }}</td>
                 <td class="text-center">{{ $project->present()->status }}</td>
                 <td class="text-center">
                     {!! html_link_to_route('projects.show', '', [$project->id], ['icon' => 'search', 'class' => 'btn btn-info btn-xs', 'title' => trans('app.show')]) !!}

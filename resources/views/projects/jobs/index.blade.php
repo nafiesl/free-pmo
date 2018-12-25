@@ -82,9 +82,9 @@
                     @endif
                 </td>
                 <td class="text-center">{{ $job->tasks_count = $job->tasks->count() }}</td>
-                <td class="text-center">{{ formatDecimal($job->progress) }} %</td>
+                <td class="text-center">{{ format_decimal($job->progress) }} %</td>
                 @can('see-pricings', $job)
-                <td class="text-right">{{ formatRp($job->price) }}</td>
+                <td class="text-right">{{ format_money($job->price) }}</td>
                 @endcan
                 <td class="text-center">
                     {{ $job->updated_at->diffForHumans() }} <br>
@@ -108,11 +108,11 @@
                 <th class="text-right" colspan="2">Total</th>
                 <th class="text-center">{{ $groupedJobs->sum('tasks_count') }}</th>
                 <th class="text-center">
-                    <span title="Total Progress">{{ formatDecimal($groupedJobs->sum('progress') / $groupedJobs->count()) }} %</span>
-                    <span title="Overal Progress" style="font-weight:300">({{ formatDecimal($project->getJobOveralProgress()) }} %)</span>
+                    <span title="Total Progress">{{ format_decimal($groupedJobs->sum('progress') / $groupedJobs->count()) }} %</span>
+                    <span title="Overal Progress" style="font-weight:300">({{ format_decimal($project->getJobOveralProgress()) }} %)</span>
                 </th>
                 @can('see-pricings', new App\Entities\Projects\Job)
-                <th class="text-right">{{ formatRp($groupedJobs->sum('price')) }}</th>
+                <th class="text-right">{{ format_money($groupedJobs->sum('price')) }}</th>
                 @endcan
                 <th colspan="2">
                     @can('update', $project)

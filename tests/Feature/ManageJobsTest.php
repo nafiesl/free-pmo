@@ -142,7 +142,7 @@ class ManageJobsTest extends TestCase
         $this->seePageIs(route('jobs.show', $project->id));
         $this->see(trans('job.detail'));
         $this->see($job->name);
-        $this->see(formatRp($job->price));
+        $this->see(format_money($job->price));
         $this->see($job->worker->name);
     }
 

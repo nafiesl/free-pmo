@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="login-panel col-md-4 col-md-offset-4 text-center">
-    {!! appLogoImage() !!}
+    {!! app_logo_image() !!}
     <h3>{{ config('app.name') }}</h3>
     <div class="panel panel-default">
         <div class="panel-body">

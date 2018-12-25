@@ -52,14 +52,14 @@
                 <tr>
                     <td class="text-center">{{ 1 + $key }}</td>
                     <td>{{ $job->name }}</td>
-                    <td class="text-right">{{ formatRp($job->price) }}</td>
+                    <td class="text-right">{{ format_money($job->price) }}</td>
                 </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
                     <th class="text-right" colspan="2">Total</th>
-                    <th class="text-right">{{ formatRp($jobs->sum('price')) }}</th>
+                    <th class="text-right">{{ format_money($jobs->sum('price')) }}</th>
                 </tr>
             </tfoot>
         </table>

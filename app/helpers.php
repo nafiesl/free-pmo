@@ -244,7 +244,7 @@ function appLogoPath()
  * @param  string  $month
  * @return array
  */
-function monthDateArray($year, $month)
+function month_date_array($year, $month)
 {
     $dateCount = Carbon::parse($year.'-'.$month)->format('t');
     $dates = [];

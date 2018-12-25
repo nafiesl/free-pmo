@@ -40,7 +40,7 @@
             </thead>
             <tbody>
                 @php $chartData = []; @endphp
-                @foreach(monthDateArray($year, $month) as $dateNumber)
+                @foreach(month_date_array($year, $month) as $dateNumber)
                 @php
                     $any = isset($reports[$dateNumber]);
                     $count = $any ? $reports[$dateNumber]->count : 0;

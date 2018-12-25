@@ -22,7 +22,7 @@
     <table class="receipt-table">
         <tbody>
             <tr>
-                <td style="width:140px;">{{ appLogoImage(['style' => 'width: 100px;']) }}</td>
+                <td style="width:140px;">{{ app_logo_image(['style' => 'width: 100px;']) }}</td>
                 <td style="width:330px">
                     <div style="width:280px">
                         <h4 style="margin:0px; border-bottom: 3px; font-size: 21.5px">{{ Option::get('agency_name') }}</h4>

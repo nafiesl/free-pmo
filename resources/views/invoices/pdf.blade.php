@@ -39,7 +39,7 @@
         <tbody>
             <tr>
                 <td style="width:100px;">
-                    {!! appLogoImage(['style' => 'width:100%']) !!}
+                    {!! app_logo_image(['style' => 'width:100%']) !!}
                 </td>
                 <td style="width:380px">
                     <div style="width:300px">

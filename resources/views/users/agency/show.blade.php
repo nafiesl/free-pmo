@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-md-4 text-center">
 
-        <p>{!! appLogoImage() !!}</p>
+        <p>{!! app_logo_image() !!}</p>
 
         <h3 class="text-primary">{{ Option::get('agency_name') }}</h3>
         <p>{{ Option::get('agency_tagline') }}</p>

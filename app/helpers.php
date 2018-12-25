@@ -211,10 +211,10 @@ function dateDifference($date1, $date2, $differenceFormat = '%a')
  * @param  array  $attributes
  * @return \Illuminate\Support\HtmlString
  */
-function appLogoImage($attributes = [])
+function app_logo_image($attributes = [])
 {
     return Html::image(
-        appLogoPath(),
+        app_logo_path(),
         'Logo '.Option::get('agency_name', 'Laravel'),
         $attributes
     );
@@ -225,7 +225,7 @@ function appLogoImage($attributes = [])
  *
  * @return string
  */
-function appLogoPath()
+function app_logo_path()
 {
     $defaultLogoImagePath = 'default-logo.png';
     $optionLogoImagePath = Option::get('agency_logo_path');

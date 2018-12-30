@@ -6,11 +6,11 @@ use Tests\TestCase;
 use App\Entities\Users\User;
 use App\Entities\Projects\Job;
 use App\Entities\Payments\Payment;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserPolicyTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function admin_can_create_user()

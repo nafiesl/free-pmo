@@ -9,11 +9,11 @@ use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
 use App\Entities\Subscriptions\Type;
 use App\Entities\Subscriptions\Subscription;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SubscriptionTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function it_has_name_link_method()

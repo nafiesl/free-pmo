@@ -6,11 +6,11 @@ use Tests\TestCase;
 use App\Entities\Users\User;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ManageProjectFeesTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function admin_can_entry_project_fee_payment()

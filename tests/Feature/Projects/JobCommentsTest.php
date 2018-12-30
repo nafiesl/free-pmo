@@ -5,11 +5,11 @@ namespace Tests\Feature\Projects;
 use Tests\TestCase;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Comment;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class JobCommentsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function user_can_view_job_comments()

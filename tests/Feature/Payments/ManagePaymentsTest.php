@@ -7,7 +7,7 @@ use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Manage Payments Feature Test.
@@ -16,7 +16,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class ManagePaymentsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function admin_can_entry_project_an_income_payment()

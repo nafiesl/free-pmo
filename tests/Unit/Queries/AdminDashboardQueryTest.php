@@ -10,11 +10,11 @@ use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use App\Queries\AdminDashboardQuery;
 use App\Entities\Subscriptions\Subscription;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AdminDashboardQueryTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function retrieve_total_earnings_on_the_year()

@@ -5,11 +5,11 @@ namespace Tests\Unit\Models;
 use Tests\TestCase;
 use App\Entities\Users\User;
 use App\Entities\Projects\Comment;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CommentTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function a_comment_has_belongs_to_creator_relation()

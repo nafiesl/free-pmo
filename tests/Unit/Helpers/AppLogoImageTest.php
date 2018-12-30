@@ -3,11 +3,11 @@
 namespace Tests\Unit\Helpers;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AppLogoImageTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function app_logo_path_function_returns_correct_logo_image_path_based_on_agency_logo_path_setting()

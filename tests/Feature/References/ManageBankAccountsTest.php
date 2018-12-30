@@ -5,7 +5,7 @@ namespace Tests\Feature\References;
 use Tests\TestCase;
 use App\Entities\Options\Option;
 use App\Entities\Invoices\BankAccount;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Manage Bank Account Feature Test.
@@ -14,7 +14,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class ManageBankAccountsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function user_can_see_bank_account_list_in_bank_account_index_page()

@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Entities\Users\User;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Installation Feature Test.
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class InstallationTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function user_cannot_visit_install_page_if_user_already_exists_in_database()

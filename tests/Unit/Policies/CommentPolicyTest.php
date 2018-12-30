@@ -4,11 +4,11 @@ namespace Tests\Unit\Policies;
 
 use Tests\TestCase;
 use App\Entities\Projects\Comment;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CommentPolicyTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function admin_can_edit_any_comments()

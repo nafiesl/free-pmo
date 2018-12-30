@@ -7,11 +7,11 @@ use App\Entities\Users\User;
 use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
 use App\Entities\Partners\Customer;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PaymentTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function it_can_have_partner_relation_on_customer_model_for_income_payment()

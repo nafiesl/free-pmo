@@ -4,7 +4,7 @@ namespace Tests\Unit\Policies;
 
 use Tests\TestCase;
 use App\Entities\Partners\Customer;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Customer Policy Test.
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class CustomerPolicyTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function only_admin_can_create_customer()

@@ -4,7 +4,7 @@ namespace Tests\Feature\Invoices;
 
 use Tests\TestCase;
 use App\Entities\Invoices\Invoice;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Services\InvoiceDrafts\InvoiceDraftCollection;
 
 /**
@@ -14,7 +14,7 @@ use App\Services\InvoiceDrafts\InvoiceDraftCollection;
  */
 class InvoiceDuplicateTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function user_can_create_invoice_draft_by_duplicate_existing_invoice()

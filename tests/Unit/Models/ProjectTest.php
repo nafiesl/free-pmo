@@ -11,11 +11,11 @@ use App\Entities\Projects\Project;
 use Illuminate\Support\Collection;
 use App\Entities\Partners\Customer;
 use App\Entities\Subscriptions\Subscription;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ProjectTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function a_project_has_name_link_method()

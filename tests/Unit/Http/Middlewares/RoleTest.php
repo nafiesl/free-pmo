@@ -4,7 +4,7 @@ namespace Tests\Unit\Http\Middlewares;
 
 use Tests\TestCase;
 use App\Http\Middleware\Role;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Role middleware test.
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class RoleTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /**
      * Call the given middleware.

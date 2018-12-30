@@ -8,7 +8,7 @@ use App\Entities\Projects\Task;
 use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
 use Illuminate\Support\Collection;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Job Model Unit Test.
@@ -17,7 +17,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class JobTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function a_job_has_name_link_method()

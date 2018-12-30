@@ -4,11 +4,11 @@ namespace Tests\Feature\Partners;
 
 use Tests\TestCase;
 use App\Entities\Partners\Vendor;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ManageVendorsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function user_can_see_vendor_list_in_vendor_index_page()

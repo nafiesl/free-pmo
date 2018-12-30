@@ -6,11 +6,11 @@ use Tests\TestCase;
 use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
 use Illuminate\Support\Collection;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class VendorTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function a_vendor_has_name()

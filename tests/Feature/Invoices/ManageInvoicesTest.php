@@ -4,7 +4,7 @@ namespace Tests\Feature\Invoices;
 
 use Tests\TestCase;
 use App\Entities\Invoices\Invoice;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Manage Invoices Feature Test.
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class ManageInvoicesTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function user_can_browse_invoice_list_page()

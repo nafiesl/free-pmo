@@ -5,11 +5,11 @@ namespace Tests\Feature\Api\Projects;
 use Tests\TestCase;
 use App\Entities\Projects\Task;
 use App\Entities\Projects\Project;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ReorderTaskListTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function admin_can_reorder_task_position()

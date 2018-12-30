@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd28a38cbcaf3bccc1d6fb34444372ee",
+    "content-hash": "8e29e897ae75c796354468fc05a55167",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -2960,16 +2960,16 @@
         },
         {
             "name": "laravel/browser-kit-testing",
-            "version": "v2.0.1",
+            "version": "2.0.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/browser-kit-testing.git",
-                "reference": "f0bb9f200ec35f9d876ded6eacfbc60868d311b9"
+                "reference": "167d459a8b7a1b93b00df675746dccfa1655ef78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/browser-kit-testing/zipball/f0bb9f200ec35f9d876ded6eacfbc60868d311b9",
-                "reference": "f0bb9f200ec35f9d876ded6eacfbc60868d311b9",
+                "url": "https://api.github.com/repos/laravel/browser-kit-testing/zipball/167d459a8b7a1b93b00df675746dccfa1655ef78",
+                "reference": "167d459a8b7a1b93b00df675746dccfa1655ef78",
                 "shasum": ""
             },
             "require": {
@@ -3004,20 +3004,20 @@
                 "laravel",
                 "testing"
             ],
-            "time": "2017-06-21T11:44:53+00:00"
+            "time": "2017-10-12T20:09:38+00:00"
         },
         {
             "name": "luthfi/simple-crud-generator",
-            "version": "1.2.7",
+            "version": "1.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
-                "reference": "0dc629fab1c1708eedf545aa81c428905e7e4864"
+                "reference": "7d6211f13f538e74d83c9b70363349f2131c3cee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/0dc629fab1c1708eedf545aa81c428905e7e4864",
-                "reference": "0dc629fab1c1708eedf545aa81c428905e7e4864",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/7d6211f13f538e74d83c9b70363349f2131c3cee",
+                "reference": "7d6211f13f538e74d83c9b70363349f2131c3cee",
                 "shasum": ""
             },
             "require": {
@@ -3060,7 +3060,7 @@
                 "tdd-workflow",
                 "testing"
             ],
-            "time": "2018-10-23T09:49:27+00:00"
+            "time": "2018-11-24T01:11:20+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -4652,7 +4652,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "laravel/browser-kit-testing": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

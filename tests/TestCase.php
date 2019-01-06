@@ -33,7 +33,7 @@ abstract class TestCase extends BaseTestCase
         return $user;
     }
 
-    protected function assertFileExistsThenDelete($filePath, $message = null)
+    protected function assertFileExistsThenDelete($filePath, $message = '')
     {
         $this->assertTrue(file_exists($filePath), $message);
 

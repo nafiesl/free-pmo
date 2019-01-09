@@ -10,7 +10,7 @@ Route::group(['middleware' => ['web', 'role:admin'], 'prefix' => 'reports'], fun
     Route::get('payments/yearly', ['as' => 'reports.payments.yearly', 'uses' => 'ReportsController@yearly']);
     Route::get('current-credits', ['as' => 'reports.current-credits', 'uses' => 'ReportsController@currentCredits']);
 
-    Route::get('log-files', ['as' => 'log-files.index', 'uses' => 'Reports\LogFileController@index']);
-    Route::get('log-files/{filename}', ['as' => 'log-files.show', 'uses' => 'Reports\LogFileController@show']);
-    Route::get('log-files/{filename}/download', ['as' => 'log-files.download', 'uses' => 'Reports\LogFileController@download']);
+    Route::get('log-files', 'Reports\LogFileController@index')->name('log-files.index');
+    Route::get('log-files/{fileName}', 'Reports\LogFileController@show')->name('log-files.show');
+    Route::get('log-files/{fileName}/download', 'Reports\LogFileController@download')->name('log-files.download');
 });

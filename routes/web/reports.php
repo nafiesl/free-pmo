@@ -10,20 +10,7 @@ Route::group(['middleware' => ['web', 'role:admin'], 'prefix' => 'reports'], fun
     Route::get('payments/yearly', ['as' => 'reports.payments.yearly', 'uses' => 'ReportsController@yearly']);
     Route::get('current-credits', ['as' => 'reports.current-credits', 'uses' => 'ReportsController@currentCredits']);
 
-    Route::get('log-files', ['as' => 'log-files.index', 'uses' => function () {
-        if (!file_exists(storage_path('logs'))) {
-            return [];
-        }
-
-        $logFiles = \File::allFiles(storage_path('logs'));
-
-        // Sort files by modified time DESC
-        usort($logFiles, function ($a, $b) {
-            return -1 * strcmp($a->getMTime(), $b->getMTime());
-        });
-
-        return view('reports.log-files', compact('logFiles'));
-    }]);
+    Route::get('log-files', ['as' => 'log-files.index', 'uses' => 'Reports\LogFileController@index']);
 
     Route::get('log-files/{filename}', ['as' => 'log-files.show', 'uses' => function ($fileName) {
         if (file_exists(storage_path('logs/'.$fileName))) {

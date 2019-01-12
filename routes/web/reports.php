@@ -8,6 +8,7 @@ Route::group(['middleware' => ['web', 'role:admin'], 'prefix' => 'reports'], fun
     Route::get('payments/daily', 'ReportsController@daily')->name('reports.payments.daily');
     Route::get('payments/monthly', 'ReportsController@monthly')->name('reports.payments.monthly');
     Route::get('payments/yearly', 'ReportsController@yearly')->name('reports.payments.yearly');
+    Route::get('payments/year_to_year', 'ReportsController@yearToYear')->name('reports.payments.year_to_year');
     Route::get('current-credits', 'ReportsController@currentCredits')->name('reports.current-credits');
 
     /*

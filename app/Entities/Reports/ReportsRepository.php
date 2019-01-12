@@ -106,6 +106,28 @@ class ReportsRepository extends BaseRepository
         return collect($reports);
     }
 
+    public function getYearToYearReports()
+    {
+        $rawQuery = 'YEAR(date) as year';
+        $rawQuery .= ', count(`id`) as count';
+        $rawQuery .= ', sum(if(in_out = 1, amount, 0)) AS cashin';
+        $rawQuery .= ', sum(if(in_out = 0, amount, 0)) AS cashout';
+
+        $reportsData = DB::table('payments')->select(DB::raw($rawQuery))
+            ->groupBy(DB::raw('YEAR(date)'))
+            ->orderBy('date', 'asc')
+            ->get();
+
+        $reports = [];
+        foreach ($reportsData as $report) {
+            $key = str_pad($report->year, 2, '0', STR_PAD_LEFT);
+            $reports[$key] = $report;
+            $reports[$key]->profit = $report->cashin - $report->cashout;
+        }
+
+        return collect($reports);
+    }
+
     /**
      * Get current credit/receiveble earnings report.
      *

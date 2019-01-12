@@ -1,25 +1,17 @@
 @extends('layouts.app')
 
-@section('title', __('report.yearly', ['year' => $year]))
+@section('title', __('report.year_to_year'))
 
 @section('content')
 <ul class="breadcrumb hidden-print">
-    <li>{{ __('report.yearly', ['year' => $year]) }}</li>
+    <li>{{ __('report.year_to_year') }}</li>
 </ul>
 
-{{ Form::open(['method' => 'get', 'class' => 'form-inline well well-sm']) }}
-{{ Form::label('year', __('report.view_yearly_label'), ['class' => 'control-label']) }}
-{{ Form::select('year', $years, $year, ['class' => 'form-control']) }}
-{{ Form::submit(__('report.view_report'), ['class' => 'btn btn-info btn-sm']) }}
-{{ link_to_route('reports.payments.yearly', __('report.this_year'), [], ['class' => 'btn btn-default btn-sm']) }}
-{{ link_to_route('reports.payments.year_to_year', __('report.view_year_to_year'), [], ['class' => 'btn btn-success btn-sm']) }}
-{{ Form::close() }}
-
 <div class="panel panel-primary">
-    <div class="panel-heading"><h3 class="panel-title">{{ __('report.sales_graph') }} {{ $year }}</h3></div>
+    <div class="panel-heading"><h3 class="panel-title">{{ __('report.sales_graph') }}</h3></div>
     <div class="panel-body">
         <strong>{{ Option::get('money_sign', 'Rp') }}</strong>
-        <div id="yearly-chart" style="height: 250px;"></div>
+        <div id="year_to_year-chart" style="height: 350px;"></div>
         <div class="text-center"><strong>{{ __('time.month') }}</strong></div>
     </div>
 </div>
@@ -38,31 +30,30 @@
             </thead>
             <tbody>
                 @php $chartData = []; @endphp
-                @foreach(get_months() as $monthNumber => $monthName)
+                @foreach(get_years() as $year)
                 @php
-                    $any = isset($reports[$monthNumber]);
+                    $any = isset($reports[$year]);
                 @endphp
                 <tr>
-                    <td class="text-center">{{ month_id($monthNumber) }}</td>
-                    <td class="text-center">{{ $any ? $reports[$monthNumber]->count : 0 }}</td>
-                    <td class="text-right">{{ format_money($any ? $reports[$monthNumber]->cashin : 0) }}</td>
-                    <td class="text-right">{{ format_money($any ? $reports[$monthNumber]->cashout : 0) }}</td>
-                    <td class="text-right">{{ format_money($profit = $any ? $reports[$monthNumber]->profit : 0) }}</td>
+                    <td class="text-center">{{ $year }}</td>
+                    <td class="text-center">{{ $any ? $reports[$year]->count : 0 }}</td>
+                    <td class="text-right">{{ format_money($any ? $reports[$year]->cashin : 0) }}</td>
+                    <td class="text-right">{{ format_money($any ? $reports[$year]->cashout : 0) }}</td>
+                    <td class="text-right">{{ format_money($profit = $any ? $reports[$year]->profit : 0) }}</td>
                     <td class="text-center">
                         {{ link_to_route(
-                            'reports.payments.monthly',
-                            __('report.view_monthly'),
-                            ['month' => $monthNumber, 'year' => $year],
+                            'reports.payments.yearly',
+                            __('report.view_yearly'),
+                            ['month' => $year, 'year' => $year],
                             [
                                 'class' => 'btn btn-info btn-xs',
-                                'title' => __('report.monthly', ['year_month' => month_id($monthNumber)]),
-                                'title' => __('report.monthly', ['year_month' => month_id($monthNumber).' '.$year]),
+                                'title' => __('report.yearly', ['year' => $year]),
                             ]
                         ) }}
                     </td>
                 </tr>
                 @php
-                    $chartData[] = ['month' => month_id($monthNumber), 'value' => $profit];
+                    $chartData[] = ['year' => $year, 'value' => $profit];
                 @endphp
                 @endforeach
             </tbody>
@@ -93,17 +84,14 @@
 @section('script')
 <script>
 (function() {
-    new Morris.Line({
-        element: 'yearly-chart',
+    new Morris.Bar({
+        element: 'year_to_year-chart',
         data: {!! collect($chartData)->toJson() !!},
-        xkey: 'month',
+        xkey: 'year',
         ykeys: ['value'],
         labels: ["{{ __('report.profit') }} {{ Option::get('money_sign', 'Rp') }}"],
-        parseTime:false,
-        goals: [0],
-        goalLineColors : ['red'],
-        smooth: true,
-        lineWidth: 2,
+        parseTime: false,
+        barColors: ['#5CB85C']
     });
 })();
 </script>

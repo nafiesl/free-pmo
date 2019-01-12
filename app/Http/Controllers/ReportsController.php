@@ -61,6 +61,13 @@ class ReportsController extends Controller
         return view('reports.payments.yearly', compact('reports', 'years', 'year'));
     }
 
+    public function yearToYear(Request $request)
+    {
+        $reports = $this->repo->getYearToYearReports();
+
+        return view('reports.payments.year_to_year', compact('reports'));
+    }
+
     public function currentCredits()
     {
         $projects = $this->repo->getCurrentCredits();

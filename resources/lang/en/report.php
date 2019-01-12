@@ -28,5 +28,6 @@ return [
     'view_yearly_label' => 'View Report per',
 
     // Year to year
-    'year_to_year' => 'Year to Year Report',
+    'year_to_year'      => 'Year to Year Report',
+    'view_year_to_year' => 'View Year to Year Report',
 ];

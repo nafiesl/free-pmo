@@ -12,6 +12,7 @@
 {{ Form::select('year', $years, $year, ['class' => 'form-control']) }}
 {{ Form::submit(__('report.view_report'), ['class' => 'btn btn-info btn-sm']) }}
 {{ link_to_route('reports.payments.yearly', __('report.this_year'), [], ['class' => 'btn btn-default btn-sm']) }}
+{{ link_to_route('reports.payments.year_to_year', __('report.view_year_to_year'), [], ['class' => 'btn btn-success btn-sm']) }}
 {{ Form::close() }}
 
 <div class="panel panel-primary">

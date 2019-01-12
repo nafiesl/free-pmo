@@ -28,5 +28,6 @@ return [
     'view_yearly_label' => 'Lihat Tahunan per',
 
     // Year to year
-    'year_to_year' => 'Laponan Tahun ke Tahun',
+    'year_to_year'      => 'Laponan Tahun ke Tahun',
+    'view_year_to_year' => 'Lihat Laporan Tahun ke Tahun',
 ];

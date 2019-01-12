@@ -11,7 +11,7 @@
     <div class="panel-heading"><h3 class="panel-title">{{ __('report.sales_graph') }}</h3></div>
     <div class="panel-body">
         <strong>{{ Option::get('money_sign', 'Rp') }}</strong>
-        <div id="year_to_year-chart" style="height: 250px;"></div>
+        <div id="year_to_year-chart" style="height: 350px;"></div>
         <div class="text-center"><strong>{{ __('time.month') }}</strong></div>
     </div>
 </div>
@@ -84,17 +84,14 @@
 @section('script')
 <script>
 (function() {
-    new Morris.Line({
+    new Morris.Bar({
         element: 'year_to_year-chart',
         data: {!! collect($chartData)->toJson() !!},
         xkey: 'year',
         ykeys: ['value'],
         labels: ["{{ __('report.profit') }} {{ Option::get('money_sign', 'Rp') }}"],
-        parseTime:false,
-        goals: [0],
-        goalLineColors : ['red'],
-        smooth: true,
-        lineWidth: 2,
+        parseTime: false,
+        barColors: ['#5CB85C']
     });
 })();
 </script>

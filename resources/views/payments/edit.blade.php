@@ -34,11 +34,9 @@
                     </div>
                     <div class="col-sm-6">
                         @if ($payment->partner_type == 'App\Entities\Users\User')
-                            {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}
                             {{ Form::hidden('partner_type', 'users') }}
-                        @else
-                            {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}
                         @endif
+                        {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}
                     </div>
                 </div>
                 {!! FormField::textarea('description', ['label'=> __('payment.description')]) !!}
@@ -71,6 +69,32 @@
         format:'Y-m-d',
         closeOnDateSelect: true,
         scrollInput: false
+    });
+    $('#in_out_0').click(function() {
+        $.post("{{ route('api.vendors.index') }}", {},
+            function(data) {
+                var string = '<option value="">-- {{ __('vendor.select') }} --</option>';
+                string = string + `<optgroup label="Vendor">`;
+                $.each(data, function(index, value) {
+                    string = string + `<option value="` + index + `">` + value + `</option>`;
+                });
+                string = string + `</optgroup>`;
+                $("#partner_id").html(string);
+            }
+        );
+    });
+    $('#in_out_1').click(function() {
+        $.post("{{ route('api.customers.index') }}", {},
+            function(data) {
+                var string = '<option value="">-- {{ __('customer.select') }} --</option>';
+                string = string + `<optgroup label="Customer">`;
+                $.each(data, function(index, value) {
+                    string = string + `<option value="` + index + `">` + value + `</option>`;
+                });
+                string = string + `</optgroup>`;
+                $("#partner_id").html(string);
+            }
+        );
     });
 })();
 </script>

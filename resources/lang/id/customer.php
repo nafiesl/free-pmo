@@ -4,12 +4,13 @@ return [
     // Labels
     'customer'      => 'Customer',
     'list'          => 'Daftar Customer',
+    'detail'        => 'Detail Customer',
     'search'        => 'Cari Customer',
+    'select'        => 'Pilih Customer',
     'not_found'     => 'Customer tidak ditemukan',
     'empty'         => 'Belum ada Customer',
     'back_to_show'  => 'Kembali ke detail Customer',
     'back_to_index' => 'Kembali ke daftar Customer',
-    'detail'        => 'Detail Customer',
     'contact'       => 'Kontak Customer',
 
     // Actions

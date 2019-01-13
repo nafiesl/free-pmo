@@ -22,7 +22,9 @@ abstract class BaseRepository extends EloquentRepository
      */
     public function getCustomersList()
     {
-        return Customer::orderBy('name')->pluck('name', 'id');
+        return Customer::where('is_active', 1)
+            ->orderBy('name')
+            ->pluck('name', 'id');
     }
 
     /**
@@ -57,7 +59,9 @@ abstract class BaseRepository extends EloquentRepository
      */
     public function getVendorsList()
     {
-        return Vendor::orderBy('name')->pluck('name', 'id');
+        return Vendor::where('is_active', 1)
+            ->orderBy('name')
+            ->pluck('name', 'id');
     }
 
     /**

@@ -15,4 +15,9 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'as' => 'api.', 'middlewar
      * Customer Route
      */
     Route::post('customers', 'CustomerController@index')->name('customers.index');
+
+    /*
+     * Vendor Route
+     */
+    Route::post('vendors', 'VendorController@index')->name('vendors.index');
 });

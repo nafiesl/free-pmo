@@ -166,7 +166,7 @@ class ManagePaymentsTest extends TestCase
             'partner_type' => Vendor::class,
             'partner_id'   => $vendor->id,
         ]);
-        $customer = factory(Customer::class)->create();
+        $customer = $payment->project->customer;
 
         $this->visit(route('payments.edit', $payment->id));
         $this->seePageIs(route('payments.edit', $payment->id));

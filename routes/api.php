@@ -10,4 +10,14 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'as' => 'api.', 'middlewar
     Route::patch('events/update', ['as' => 'events.update', 'uses' => 'EventsController@update']);
     Route::patch('events/reschedule', ['as' => 'events.reschedule', 'uses' => 'EventsController@reschedule']);
     Route::delete('events/delete', ['as' => 'events.destroy', 'uses' => 'EventsController@destroy']);
+
+    /*
+     * Customer Route
+     */
+    Route::post('customers', 'CustomerController@index')->name('customers.index');
+
+    /*
+     * Vendor Route
+     */
+    Route::post('vendors', 'VendorController@index')->name('vendors.index');
 });

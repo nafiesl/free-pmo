@@ -6,6 +6,7 @@ return [
     'list'          => 'Vendor List',
     'detail'        => 'Vendor Detail',
     'search'        => 'Search Vendor',
+    'select'        => 'Select Vendor',
     'not_found'     => 'Vendor not found.',
     'empty'         => 'Vendor list is empty.',
     'back_to_show'  => 'Back to Vendor Detail',

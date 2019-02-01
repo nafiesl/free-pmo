@@ -1,13 +1,7 @@
-<?php
-    // $filename = str_slug(__('project.jobs') . '-' . $project->name) . '.xls';
-    // header("Content-Disposition: attachment; filename=\"$filename\"");
-    // header("Content-Type: application/vnd.ms-excel");
-?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> --}}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{{ __('project.jobs') }} {{ $project->name }}</title>
     {!! Html::style('assets/css/app.css') !!}
@@ -22,9 +16,15 @@
             <tbody>
                 <tr style="background-color: #ffd298"><th colspan="2">{{ __('app.description') }}</th></tr>
                 <tr><td colspan="2">{!! nl2br($job->description) !!}</td></tr>
+                <tr>
+                    <td colspan="2" class="text-right">
+                        <em>
+                            {{ __('job.price') }}: {{ format_money($job->price) }}
+                        </em>
+                    </td>
+                </tr>
 
                 @if ($job->tasks->count())
-                <tr><td colspan="2">&nbsp;</td></tr>
                 <tr style="background-color: #ffd298">
                     <th class="col-md-3">{{ __('task.list') }}</th>
                     <th class="col-md-6">{{ __('app.description') }}</th>

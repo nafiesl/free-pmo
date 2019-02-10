@@ -32,7 +32,7 @@
                             @foreach($job->tasks as $task)
                             <li>
                                 <label for="{{ $job->id }}_task_id_{{ $task->id }}" style="font-weight:normal">
-                                {{ Form::checkbox($job->id.'_task_ids['.$task->id.']', $task->id, null, ['id' => $job->id.'_task_id_'.$task->id]) }}
+                                {{ Form::checkbox($job->id.'_task_ids['.$task->id.']', $task->id, null, ['id' => $job->id.'_task_id_'.$task->id, 'class' => 'job_id_'.$job->id.'_tasks']) }}
                                 {{ $task->name }}</label>
                             </li>
                             @endforeach
@@ -72,6 +72,14 @@
 <script>
 (function() {
     $('select[name=project_id]').select2();
+
+    @if ($selectedProject)
+        @foreach ($selectedProject->jobs as $job)
+            $('#job_id_{{ $job->id }}').change(function () {
+                $('.job_id_{{ $job->id }}_tasks').prop('checked', this.checked);
+            });
+        @endforeach
+    @endif
 })();
 </script>
 @endsection

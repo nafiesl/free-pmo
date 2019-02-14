@@ -5,6 +5,7 @@ namespace Tests\Unit\Models;
 use Tests\TestCase;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
+use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
@@ -233,5 +234,28 @@ class ProjectTest extends TestCase
         ]);
 
         $this->assertEquals('2 Year(s) 3 Month(s)', $project->work_duration);
+    }
+
+    /** @test */
+    public function a_project_has_many_invoices_relation()
+    {
+        $project = factory(Project::class)->create();
+        $invoice = factory(Invoice::class)->create(['project_id' => $project->id]);
+
+        $this->assertInstanceOf(Collection::class, $project->invoices);
+        $this->assertInstanceOf(Invoice::class, $project->invoices->first());
+    }
+
+    /** @test */
+    public function project_deletion_also_deletes_related_invoices()
+    {
+        $project = factory(Project::class)->create();
+        $invoice = factory(Invoice::class)->create(['project_id' => $project->id]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('invoices', [
+            'project_id' => $project->id,
+        ]);
     }
 }

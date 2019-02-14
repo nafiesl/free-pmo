@@ -244,4 +244,11 @@ class Project extends Model
 
         return $workDuration.' Day(s)';
     }
+
+    public function delete()
+    {
+        $this->invoices()->delete();
+
+        return parent::delete();
+    }
 }

@@ -129,6 +129,19 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
+    public function project_deletion_also_deletes_related_subscriptions()
+    {
+        $project = factory(Project::class)->create();
+        $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('subscriptions', [
+            'project_id' => $project->id,
+        ]);
+    }
+
+    /** @test */
     public function a_project_belongs_to_a_customer()
     {
         $customer = factory(Customer::class)->create();

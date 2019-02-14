@@ -269,6 +269,23 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
+    public function project_deletion_also_deletes_related_comments()
+    {
+        $project = factory(Project::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'projects',
+            'commentable_id'   => $project->id,
+        ]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('comments', [
+            'commentable_type' => 'projects',
+            'commentable_id'   => $project->id,
+        ]);
+    }
+
+    /** @test */
     public function project_has_work_duration_attribute()
     {
         $project = factory(Project::class)->create([

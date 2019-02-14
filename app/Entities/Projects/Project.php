@@ -253,6 +253,7 @@ class Project extends Model
         $this->invoices()->delete();
         $this->payments()->delete();
         $this->subscriptions()->delete();
+        $this->comments()->delete();
         DB::commit();
 
         return parent::delete();

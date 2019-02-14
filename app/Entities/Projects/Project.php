@@ -2,6 +2,7 @@
 
 namespace App\Entities\Projects;
 
+use DB;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Partners\Customer;
@@ -247,9 +248,11 @@ class Project extends Model
 
     public function delete()
     {
+        DB::beginTransaction();
         $this->jobs->each->delete();
         $this->invoices()->delete();
         $this->payments()->delete();
+        DB::commit();
 
         return parent::delete();
     }

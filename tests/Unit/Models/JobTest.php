@@ -55,6 +55,19 @@ class JobTest extends TestCase
     }
 
     /** @test */
+    public function job_deletion_also_deletes_related_tasks()
+    {
+        $job = factory(Job::class)->create();
+        $tasks = factory(Task::class)->create(['job_id' => $job->id]);
+
+        $job->delete();
+
+        $this->dontSeeInDatabase('tasks', [
+            'job_id' => $job->id,
+        ]);
+    }
+
+    /** @test */
     public function a_job_has_progress_attribute()
     {
         $job = factory(Job::class)->create();

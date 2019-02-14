@@ -42,6 +42,19 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
+    public function project_deletion_also_deletes_related_jobs()
+    {
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create(['project_id' => $project->id]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('jobs', [
+            'project_id' => $project->id,
+        ]);
+    }
+
+    /** @test */
     public function a_project_has_many_main_jobs()
     {
         $project = factory(Project::class)->create();
@@ -70,12 +83,40 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function a_project_has_many_payments()
+    public function project_deletion_also_deletes_related_job_tasks()
+    {
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create(['project_id' => $project->id, 'type_id' => 2]);
+        $tasks = factory(Task::class, 2)->create(['job_id' => $job->id]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('tasks', [
+            'job_id' => $job->id,
+        ]);
+    }
+
+    /** @test */
+    public function a_project_has_many_payments_relation()
     {
         $project = factory(Project::class)->create();
         $payment = factory(Payment::class)->create(['project_id' => $project->id]);
+
         $this->assertInstanceOf(Collection::class, $project->payments);
         $this->assertInstanceOf(Payment::class, $project->payments->first());
+    }
+
+    /** @test */
+    public function project_deletion_also_deletes_related_payments()
+    {
+        $project = factory(Project::class)->create();
+        $payment = factory(Payment::class)->create(['project_id' => $project->id]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('payments', [
+            'project_id' => $project->id,
+        ]);
     }
 
     /** @test */

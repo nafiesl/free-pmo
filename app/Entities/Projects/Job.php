@@ -109,4 +109,11 @@ class Job extends Model
     {
         return $this->price * ($this->progress / 100);
     }
+
+    public function delete()
+    {
+        $this->tasks()->delete();
+
+        return parent::delete();
+    }
 }

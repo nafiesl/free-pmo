@@ -247,7 +247,9 @@ class Project extends Model
 
     public function delete()
     {
+        $this->jobs->each->delete();
         $this->invoices()->delete();
+        $this->payments()->delete();
 
         return parent::delete();
     }

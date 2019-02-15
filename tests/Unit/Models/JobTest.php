@@ -58,7 +58,7 @@ class JobTest extends TestCase
     public function job_deletion_also_deletes_related_tasks()
     {
         $job = factory(Job::class)->create();
-        $tasks = factory(Task::class)->create(['job_id' => $job->id]);
+        $task = factory(Task::class)->create(['job_id' => $job->id]);
 
         $job->delete();
 
@@ -109,5 +109,22 @@ class JobTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $job->comments);
         $this->assertInstanceOf(Comment::class, $job->comments->first());
+    }
+
+    /** @test */
+    public function job_deletion_also_deletes_related_comments()
+    {
+        $job = factory(Job::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'jobs',
+            'commentable_id'   => $job->id,
+        ]);
+
+        $job->delete();
+
+        $this->dontSeeInDatabase('comments', [
+            'commentable_type' => 'jobs',
+            'commentable_id'   => $job->id,
+        ]);
     }
 }

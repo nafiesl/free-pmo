@@ -2,6 +2,7 @@
 
 namespace App\Entities\Projects;
 
+use DB;
 use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -112,7 +113,10 @@ class Job extends Model
 
     public function delete()
     {
+        DB::beginTransaction();
         $this->tasks()->delete();
+        $this->comments()->delete();
+        DB::commit();
 
         return parent::delete();
     }

@@ -111,6 +111,11 @@ class Job extends Model
         return $this->price * ($this->progress / 100);
     }
 
+    /**
+     * Delete the model from the database.
+     *
+     * @return bool|null
+     */
     public function delete()
     {
         DB::beginTransaction();

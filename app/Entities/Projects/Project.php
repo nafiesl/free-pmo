@@ -246,6 +246,11 @@ class Project extends Model
         return $workDuration.' Day(s)';
     }
 
+    /**
+     * Delete the model from the database.
+     *
+     * @return bool|null
+     */
     public function delete()
     {
         DB::beginTransaction();

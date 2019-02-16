@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Entities\Subscriptions\Type;
 use App\Entities\Subscriptions\Subscription;
-use App\Entities\Subscriptions\SubscriptionsRepository;
 use App\Http\Requests\SubscriptionRequest as FormRequest;
 
 /**
@@ -16,21 +15,6 @@ use App\Http\Requests\SubscriptionRequest as FormRequest;
 class SubscriptionsController extends Controller
 {
     /**
-     * @var \App\Entities\Subscriptions\SubscriptionsRepository
-     */
-    private $repo;
-
-    /**
-     * Create new Subscription Controller.
-     *
-     * @param \App\Entities\Subscriptions\SubscriptionsRepository $repo
-     */
-    public function __construct(SubscriptionsRepository $repo)
-    {
-        $this->repo = $repo;
-    }
-
-    /**
      * Show subscription list.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -38,7 +22,7 @@ class SubscriptionsController extends Controller
      */
     public function index(Request $request)
     {
-        $subscriptions = $this->repo->getSubscriptions(
+        $subscriptions = $this->getSubscriptionListing(
             $request->get('q'),
             $request->get('vendor_id')
         );
@@ -155,5 +139,28 @@ class SubscriptionsController extends Controller
     private function getPageTitle($pageType, $subscription)
     {
         return trans('subscription.'.$pageType).' - '.$subscription->name.' - '.$subscription->customer->name;
+    }
+
+    /**
+     * Get subscrioption list.
+     *
+     * @param  string  $q
+     * @param  int  $customerId
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    private function getSubscriptionListing($searchQuery, $customerId)
+    {
+        $subscriptionQuery = Subscription::orderBy('status_id', 'desc')
+            ->orderBy('due_date')
+            ->with('customer', 'vendor');
+
+        if ($searchQuery) {
+            $subscriptionQuery->where('name', 'like', '%'.$searchQuery.'%');
+        }
+        if ($customerId) {
+            $subscriptionQuery->where('customer_id', $customerId);
+        }
+
+        return $subscriptionQuery->paginate(25);
     }
 }

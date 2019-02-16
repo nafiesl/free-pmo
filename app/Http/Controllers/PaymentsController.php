@@ -55,7 +55,7 @@ class PaymentsController extends Controller
     public function create()
     {
         $projects = $this->getProjectsList();
-        $partners = $this->repo->getCustomersAndVendorsList();
+        $partners = $this->getCustomersAndVendorsList();
         $project = Project::find(request('project_id'));
 
         return view('payments.create', compact('projects', 'partners', 'project'));

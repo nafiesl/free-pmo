@@ -4,7 +4,6 @@ namespace App\Entities;
 
 use App\Entities\Users\User;
 use App\Entities\Projects\Job;
-use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
 
@@ -25,21 +24,6 @@ abstract class BaseRepository extends EloquentRepository
         return Customer::where('is_active', 1)
             ->orderBy('name')
             ->pluck('name', 'id');
-    }
-
-    /**
-     * Get list of customers and vendors.
-     *
-     * @return array
-     */
-    public function getCustomersAndVendorsList()
-    {
-        $partners = [
-            __('customer.customer') => Customer::orderBy('name')->pluck('name', 'id')->all(),
-            __('vendor.vendor')     => Vendor::orderBy('name')->pluck('name', 'id')->all(),
-        ];
-
-        return $partners;
     }
 
     /**

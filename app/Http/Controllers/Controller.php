@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
+use App\Entities\Partners\Customer;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -33,5 +34,18 @@ class Controller extends BaseController
         return Vendor::where('is_active', 1)
             ->orderBy('name')
             ->pluck('name', 'id');
+    }
+
+    /**
+     * Get list of customers and vendors.
+     *
+     * @return array
+     */
+    public function getCustomersAndVendorsList()
+    {
+        return [
+            __('customer.customer') => Customer::orderBy('name')->pluck('name', 'id')->all(),
+            __('vendor.vendor')     => Vendor::orderBy('name')->pluck('name', 'id')->all(),
+        ];
     }
 }

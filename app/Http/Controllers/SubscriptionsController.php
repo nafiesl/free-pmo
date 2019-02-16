@@ -37,8 +37,8 @@ class SubscriptionsController extends Controller
      */
     public function create()
     {
-        $projects = $this->repo->getProjectsList();
-        $vendors = $this->repo->getVendorsList();
+        $projects = $this->getProjectsList();
+        $vendors = $this->getVendorsList();
 
         return view('subscriptions.create', compact('projects', 'vendors'));
     }
@@ -79,8 +79,8 @@ class SubscriptionsController extends Controller
      */
     public function edit(Subscription $subscription)
     {
-        $projects = $this->repo->getProjectsList();
-        $vendors = $this->repo->getVendorsList();
+        $projects = $this->getProjectsList();
+        $vendors = $this->getVendorsList();
 
         $pageTitle = $this->getPageTitle('edit', $subscription);
 

@@ -51,8 +51,7 @@ class SubscriptionsController extends Controller
      */
     public function store(FormRequest $subscriptionCreateRequest)
     {
-        $subscriptionCreateRequest->approveFor(new Subscription());
-
+        $subscriptionCreateRequest->approveToCreate(new Subscription());
         flash(trans('subscription.created'), 'success');
 
         return redirect()->route('subscriptions.index');
@@ -96,8 +95,7 @@ class SubscriptionsController extends Controller
      */
     public function update(FormRequest $subscriptionUpdateRequest, Subscription $subscription)
     {
-        $subscriptionUpdateRequest->approveFor($subscription);
-
+        $subscriptionUpdateRequest->approveToUpdate($subscription);
         flash(trans('subscription.updated'), 'success');
 
         return redirect()->route('subscriptions.edit', $subscription->id);
@@ -113,7 +111,6 @@ class SubscriptionsController extends Controller
     public function destroy(FormRequest $subscriptionDeleteRequest, Subscription $subscription)
     {
         $subscriptionDeleteRequest->approveToDelete($subscription);
-
         flash(trans('subscription.deleted'), 'success');
 
         return redirect()->route('subscriptions.index');

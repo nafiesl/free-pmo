@@ -101,7 +101,7 @@ class PaymentsController extends Controller
         } elseif ($payment->partner_type == 'App\Entities\Partners\Customer') {
             $partners = [__('customer.customer') => $this->repo->getCustomersList()];
         } else {
-            $partners = [__('vendor.vendor') => $this->repo->getVendorsList()];
+            $partners = [__('vendor.vendor') => $this->getVendorsList()];
         }
 
         return view('payments.edit', compact('payment', 'projects', 'partners'));

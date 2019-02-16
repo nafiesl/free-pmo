@@ -53,18 +53,6 @@ abstract class BaseRepository extends EloquentRepository
     }
 
     /**
-     * Get collection of vendors.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getVendorsList()
-    {
-        return Vendor::where('is_active', 1)
-            ->orderBy('name')
-            ->pluck('name', 'id');
-    }
-
-    /**
      * Get Job by it's id.
      *
      * @param  int  $jobId

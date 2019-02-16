@@ -2,6 +2,7 @@
 
 namespace App\Entities\Projects;
 
+use DB;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Partners\Customer;
@@ -243,5 +244,23 @@ class Project extends Model
         }
 
         return $workDuration.' Day(s)';
+    }
+
+    /**
+     * Delete the model from the database.
+     *
+     * @return bool|null
+     */
+    public function delete()
+    {
+        DB::beginTransaction();
+        $this->jobs->each->delete();
+        $this->invoices()->delete();
+        $this->payments()->delete();
+        $this->subscriptions()->delete();
+        $this->comments()->delete();
+        DB::commit();
+
+        return parent::delete();
     }
 }

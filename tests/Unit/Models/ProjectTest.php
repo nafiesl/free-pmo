@@ -5,6 +5,7 @@ namespace Tests\Unit\Models;
 use Tests\TestCase;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
+use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
@@ -41,6 +42,19 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
+    public function project_deletion_also_deletes_related_jobs()
+    {
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create(['project_id' => $project->id]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('jobs', [
+            'project_id' => $project->id,
+        ]);
+    }
+
+    /** @test */
     public function a_project_has_many_main_jobs()
     {
         $project = factory(Project::class)->create();
@@ -69,12 +83,40 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    public function a_project_has_many_payments()
+    public function project_deletion_also_deletes_related_job_tasks()
+    {
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create(['project_id' => $project->id, 'type_id' => 2]);
+        $tasks = factory(Task::class, 2)->create(['job_id' => $job->id]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('tasks', [
+            'job_id' => $job->id,
+        ]);
+    }
+
+    /** @test */
+    public function a_project_has_many_payments_relation()
     {
         $project = factory(Project::class)->create();
         $payment = factory(Payment::class)->create(['project_id' => $project->id]);
+
         $this->assertInstanceOf(Collection::class, $project->payments);
         $this->assertInstanceOf(Payment::class, $project->payments->first());
+    }
+
+    /** @test */
+    public function project_deletion_also_deletes_related_payments()
+    {
+        $project = factory(Project::class)->create();
+        $payment = factory(Payment::class)->create(['project_id' => $project->id]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('payments', [
+            'project_id' => $project->id,
+        ]);
     }
 
     /** @test */
@@ -84,6 +126,19 @@ class ProjectTest extends TestCase
         $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
         $this->assertInstanceOf(Collection::class, $project->subscriptions);
         $this->assertInstanceOf(Subscription::class, $project->subscriptions->first());
+    }
+
+    /** @test */
+    public function project_deletion_also_deletes_related_subscriptions()
+    {
+        $project = factory(Project::class)->create();
+        $subscription = factory(Subscription::class)->create(['project_id' => $project->id]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('subscriptions', [
+            'project_id' => $project->id,
+        ]);
     }
 
     /** @test */
@@ -214,6 +269,23 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
+    public function project_deletion_also_deletes_related_comments()
+    {
+        $project = factory(Project::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'projects',
+            'commentable_id'   => $project->id,
+        ]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('comments', [
+            'commentable_type' => 'projects',
+            'commentable_id'   => $project->id,
+        ]);
+    }
+
+    /** @test */
     public function project_has_work_duration_attribute()
     {
         $project = factory(Project::class)->create([
@@ -233,5 +305,28 @@ class ProjectTest extends TestCase
         ]);
 
         $this->assertEquals('2 Year(s) 3 Month(s)', $project->work_duration);
+    }
+
+    /** @test */
+    public function a_project_has_many_invoices_relation()
+    {
+        $project = factory(Project::class)->create();
+        $invoice = factory(Invoice::class)->create(['project_id' => $project->id]);
+
+        $this->assertInstanceOf(Collection::class, $project->invoices);
+        $this->assertInstanceOf(Invoice::class, $project->invoices->first());
+    }
+
+    /** @test */
+    public function project_deletion_also_deletes_related_invoices()
+    {
+        $project = factory(Project::class)->create();
+        $invoice = factory(Invoice::class)->create(['project_id' => $project->id]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('invoices', [
+            'project_id' => $project->id,
+        ]);
     }
 }

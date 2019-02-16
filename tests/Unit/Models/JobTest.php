@@ -55,6 +55,19 @@ class JobTest extends TestCase
     }
 
     /** @test */
+    public function job_deletion_also_deletes_related_tasks()
+    {
+        $job = factory(Job::class)->create();
+        $task = factory(Task::class)->create(['job_id' => $job->id]);
+
+        $job->delete();
+
+        $this->dontSeeInDatabase('tasks', [
+            'job_id' => $job->id,
+        ]);
+    }
+
+    /** @test */
     public function a_job_has_progress_attribute()
     {
         $job = factory(Job::class)->create();
@@ -96,5 +109,22 @@ class JobTest extends TestCase
 
         $this->assertInstanceOf(Collection::class, $job->comments);
         $this->assertInstanceOf(Comment::class, $job->comments->first());
+    }
+
+    /** @test */
+    public function job_deletion_also_deletes_related_comments()
+    {
+        $job = factory(Job::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'jobs',
+            'commentable_id'   => $job->id,
+        ]);
+
+        $job->delete();
+
+        $this->dontSeeInDatabase('comments', [
+            'commentable_type' => 'jobs',
+            'commentable_id'   => $job->id,
+        ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Entities\Projects;
 
+use DB;
 use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
@@ -108,5 +109,20 @@ class Job extends Model
     public function getReceiveableEarningAttribute()
     {
         return $this->price * ($this->progress / 100);
+    }
+
+    /**
+     * Delete the model from the database.
+     *
+     * @return bool|null
+     */
+    public function delete()
+    {
+        DB::beginTransaction();
+        $this->tasks()->delete();
+        $this->comments()->delete();
+        DB::commit();
+
+        return parent::delete();
     }
 }

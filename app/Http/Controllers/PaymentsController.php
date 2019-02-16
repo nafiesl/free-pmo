@@ -54,7 +54,7 @@ class PaymentsController extends Controller
      */
     public function create()
     {
-        $projects = $this->repo->getProjectsList();
+        $projects = $this->getProjectsList();
         $partners = $this->repo->getCustomersAndVendorsList();
         $project = Project::find(request('project_id'));
 
@@ -94,7 +94,7 @@ class PaymentsController extends Controller
      */
     public function edit(Payment $payment)
     {
-        $projects = $this->repo->getProjectsList();
+        $projects = $this->getProjectsList();
 
         if ($payment->partner_type == 'App\Entities\Users\User') {
             $partners = $this->repo->getWorkersList();

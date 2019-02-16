@@ -65,16 +65,6 @@ abstract class BaseRepository extends EloquentRepository
     }
 
     /**
-     * Get collection of projects.
-     *
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function getProjectsList()
-    {
-        return Project::orderBy('name')->pluck('name', 'id');
-    }
-
-    /**
      * Get Job by it's id.
      *
      * @param  int  $jobId

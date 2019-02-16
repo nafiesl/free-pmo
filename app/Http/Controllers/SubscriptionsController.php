@@ -52,7 +52,7 @@ class SubscriptionsController extends Controller
     public function store(FormRequest $subscriptionCreateRequest)
     {
         $subscriptionCreateRequest->approveToCreate(new Subscription());
-        flash(trans('subscription.created'), 'success');
+        flash(__('subscription.created'), 'success');
 
         return redirect()->route('subscriptions.index');
     }
@@ -96,7 +96,7 @@ class SubscriptionsController extends Controller
     public function update(FormRequest $subscriptionUpdateRequest, Subscription $subscription)
     {
         $subscriptionUpdateRequest->approveToUpdate($subscription);
-        flash(trans('subscription.updated'), 'success');
+        flash(__('subscription.updated'), 'success');
 
         return redirect()->route('subscriptions.edit', $subscription->id);
     }
@@ -111,7 +111,7 @@ class SubscriptionsController extends Controller
     public function destroy(FormRequest $subscriptionDeleteRequest, Subscription $subscription)
     {
         $subscriptionDeleteRequest->approveToDelete($subscription);
-        flash(trans('subscription.deleted'), 'success');
+        flash(__('subscription.deleted'), 'success');
 
         return redirect()->route('subscriptions.index');
     }
@@ -135,13 +135,13 @@ class SubscriptionsController extends Controller
      */
     private function getPageTitle($pageType, $subscription)
     {
-        return trans('subscription.'.$pageType).' - '.$subscription->name.' - '.$subscription->customer->name;
+        return __('subscription.'.$pageType).' - '.$subscription->name.' - '.$subscription->customer->name;
     }
 
     /**
      * Get subscrioption list.
      *
-     * @param  string  $q
+     * @param  string  $searchQuery
      * @param  int  $customerId
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */

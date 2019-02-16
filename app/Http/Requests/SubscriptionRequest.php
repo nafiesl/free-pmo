@@ -25,10 +25,6 @@ class SubscriptionRequest extends Request
     public function rules()
     {
         switch ($this->method()) {
-            case 'POST':
-                return $this->getCreateRules();
-                break;
-
             case 'PATCH':
                 return $this->getUpdateRules();
                 break;
@@ -38,6 +34,7 @@ class SubscriptionRequest extends Request
                 break;
 
             default:
+                return $this->getCreateRules();
                 break;
         }
     }

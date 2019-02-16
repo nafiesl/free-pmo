@@ -52,7 +52,7 @@ class SubscriptionRequest extends Request
             'project_id' => 'required|numeric|exists:projects,id',
             'vendor_id'  => 'required|numeric|exists:vendors,id',
             'type_id'    => 'required|numeric',
-            'remark'     => 'max:255',
+            'notes'      => 'nullable|max:255',
         ];
     }
 
@@ -66,7 +66,7 @@ class SubscriptionRequest extends Request
             'project_id' => 'required|numeric|exists:projects,id',
             'vendor_id'  => 'required|numeric|exists:vendors,id',
             'type_id'    => 'required|numeric',
-            'remark'     => 'max:255',
+            'notes'      => 'nullable|max:255',
         ];
     }
 

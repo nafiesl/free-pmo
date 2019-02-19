@@ -77,4 +77,35 @@ class UploadFilesTest extends TestCase
 
         Storage::disk('avatar')->assertExists('public/files/'.$file->filename);
     }
+
+    /** @test */
+    public function user_can_delete_document_file_on_a_project()
+    {
+        Storage::fake('avatar');
+        $user = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+
+        $this->visit(route('projects.files', $project));
+
+        $this->attach(UploadedFile::fake()->image('avatar.jpg'), 'file');
+        $this->type('Judul file', 'title');
+        $this->type('Deskripsi file yang diuplod.', 'description');
+        $this->press(__('file.upload'));
+
+        $this->assertCount(1, $project->files);
+
+        $file = $project->files->first();
+        Storage::disk('avatar')->assertExists('public/files/'.$file->filename);
+
+        $this->visit(route('projects.files', $project));
+        $this->click('delete-file-'.$file->id);
+        $this->seePageIs(route('projects.files', [$project, 'action' => 'delete', 'id' => $file->id]));
+
+        $this->press(__('file.delete'));
+
+        $this->seePageIs(route('projects.files', $project));
+        $this->seeText(__('file.deleted'));
+        $this->dontSeeInDatabase('files', ['id' => $file->id]);
+        Storage::disk('avatar')->assertMissing('public/files/'.$file->filename);
+    }
 }

@@ -71,7 +71,7 @@ class FilesController extends Controller
             return response()->download(storage_path('app/public/files/'.$file->filename), $file->title.'.'.$extension);
         }
 
-        flash(trans('file.not_found'), 'danger');
+        flash(__('file.not_found'), 'danger');
 
         if (\URL::previous() != \URL::current()) {
             return back();
@@ -86,17 +86,17 @@ class FilesController extends Controller
         $file->description = $request->get('description');
         $file->save();
 
-        flash(trans('file.updated'), 'success');
+        flash(__('file.updated'), 'success');
 
         return redirect()->route($file->fileable_type.'.files', $file->fileable_id);
     }
 
     public function destroy(Request $request, File $file)
     {
-        Storage::disk('avatar')->delete('public/files/'.$file->filename);
+        Storage::delete('public/files/'.$file->filename);
         $file->delete();
 
-        flash(trans('file.deleted'), 'warning');
+        flash(__('file.deleted'), 'warning');
 
         return redirect()->route($file->fileable_type.'.files', $file->fileable_id);
     }
@@ -112,13 +112,7 @@ class FilesController extends Controller
         $fileData['title'] = $data['title'];
         $fileData['description'] = $data['description'];
         \DB::beginTransaction();
-        // dd(is_dir(storage_path('app/public/files')));
-        if (env('APP_ENV') == 'testing') {
-            $file->store('public/files', 'avatar');
-        } else {
-            $file->store('public/files');
-        }
-        // $file->move(storage_path('app/public/files'));
+        $file->store('public/files');
         $file = File::create($fileData);
         \DB::commit();
 

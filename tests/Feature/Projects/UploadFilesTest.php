@@ -15,7 +15,7 @@ class UploadFilesTest extends TestCase
     /** @test */
     public function user_can_upload_document_to_a_project()
     {
-        Storage::fake('avatar');
+        Storage::fake(config('filesystem.default'));
         $user = $this->adminUserSigningIn();
         $project = factory(Project::class)->create();
         $this->visit(route('projects.files', $project->id));
@@ -38,13 +38,13 @@ class UploadFilesTest extends TestCase
         ]);
 
         $file = $project->files->first();
-        Storage::disk('avatar')->assertExists('public/files/'.$file->filename);
+        Storage::assertExists('public/files/'.$file->filename);
     }
 
     /** @test */
     public function user_can_edit_document_file_on_a_project()
     {
-        Storage::fake('avatar');
+        Storage::fake(config('filesystem.default'));
         $user = $this->adminUserSigningIn();
         $project = factory(Project::class)->create();
 
@@ -75,13 +75,13 @@ class UploadFilesTest extends TestCase
             'description'   => 'Edit Deskripsi file yang diuplod.',
         ]);
 
-        Storage::disk('avatar')->assertExists('public/files/'.$file->filename);
+        Storage::assertExists('public/files/'.$file->filename);
     }
 
     /** @test */
     public function user_can_delete_document_file_on_a_project()
     {
-        Storage::fake('avatar');
+        Storage::fake(config('filesystem.default'));
         $user = $this->adminUserSigningIn();
         $project = factory(Project::class)->create();
 
@@ -95,7 +95,7 @@ class UploadFilesTest extends TestCase
         $this->assertCount(1, $project->files);
 
         $file = $project->files->first();
-        Storage::disk('avatar')->assertExists('public/files/'.$file->filename);
+        Storage::assertExists('public/files/'.$file->filename);
 
         $this->visit(route('projects.files', $project));
         $this->click('delete-file-'.$file->id);
@@ -106,6 +106,6 @@ class UploadFilesTest extends TestCase
         $this->seePageIs(route('projects.files', $project));
         $this->seeText(__('file.deleted'));
         $this->dontSeeInDatabase('files', ['id' => $file->id]);
-        Storage::disk('avatar')->assertMissing('public/files/'.$file->filename);
+        Storage::assertMissing('public/files/'.$file->filename);
     }
 }

@@ -42,7 +42,8 @@
                             {!! html_link_to_route('files.download', '', [$file->id], ['icon' => 'file', 'title' => __('file.download')]) !!}
                         </td>
                         <td class="text-center">
-                            {!! html_link_to_route('projects.files', '', [$project->id, 'action' => 'edit', 'id' => $file->id], ['icon' => 'edit', 'title' => __('file.edit')]) !!}
+                            {!! html_link_to_route('projects.files', '', [$project, 'action' => 'edit', 'id' => $file->id], ['icon' => 'edit', 'title' => __('file.edit')]) !!}
+                            {!! html_link_to_route('projects.files', '', [$project, 'action' => 'delete', 'id' => $file->id], ['icon' => 'delete', 'title' => __('file.delete'), 'id' => 'delete-file-'.$file->id]) !!}
                         </td>
                     </tr>
                     @empty
@@ -79,7 +80,21 @@
                 {!! Form::close() !!}
             </div>
         </div>
-    @endif
+        @endif
+        @if (Request::get('action') == 'delete' && $editableFile)
+        <div class="panel panel-default">
+            <div class="panel-heading"><h3 class="panel-title">{{ __('file.delete') }} : {{ $editableFile->title }}</h3></div>
+            <div class="panel-body">
+                {!! FormField::delete(
+                    ['route' => ['files.destroy', $editableFile->id]],
+                    __('app.delete_confirm_button'),
+                    ['class' => 'btn btn-danger'],
+                    ['file_id' => $editableFile->id, ]
+                ) !!}
+                {{ link_to_route('projects.files', __('app.cancel'), $project, ['class' => 'btn btn-default']) }}
+            </div>
+        </div>
+        @endif
     </div>
 </div>
 

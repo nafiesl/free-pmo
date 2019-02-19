@@ -101,7 +101,7 @@ class UploadFilesTest extends TestCase
         $this->click('delete-file-'.$file->id);
         $this->seePageIs(route('projects.files', [$project, 'action' => 'delete', 'id' => $file->id]));
 
-        $this->press(__('file.delete'));
+        $this->press(__('app.delete_confirm_button'));
 
         $this->seePageIs(route('projects.files', $project));
         $this->seeText(__('file.deleted'));

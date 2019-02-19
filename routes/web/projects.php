@@ -61,6 +61,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     Route::post('files/{fileable}', ['as' => 'files.upload', 'uses' => 'FilesController@create']);
     Route::get('files/{file}', ['as' => 'files.download', 'uses' => 'FilesController@show']);
     Route::patch('files/{file}', ['as' => 'files.update', 'uses' => 'FilesController@update']);
+    Route::delete('files/{file}', ['as' => 'files.destroy', 'uses' => 'FilesController@destroy']);
 });
 
 Route::group(['middleware' => ['auth']], function () {

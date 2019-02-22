@@ -20,21 +20,6 @@ class Subscription extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /**
-     * Show subscription name with link to subscription detail.
-     *
-     * @return Illuminate\Support\HtmlString
-     */
-    public function nameLink()
-    {
-        return link_to_route('subscriptions.show', $this->name, [$this->id], [
-            'title' => __(
-                'app.show_detail_title',
-                ['name' => $this->name, 'type' => __('subscription.subscription')]
-            ),
-        ]);
-    }
-
-    /**
      * Show subscription name with link to subscription detail attribute.
      *
      * @return Illuminate\Support\HtmlString

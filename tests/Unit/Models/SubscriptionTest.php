@@ -16,21 +16,6 @@ class SubscriptionTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_has_name_link_method()
-    {
-        $subscription = factory(Subscription::class)->create();
-
-        $this->assertEquals(
-            link_to_route('subscriptions.show', $subscription->name, [$subscription->id], [
-                'title' => trans(
-                    'app.show_detail_title',
-                    ['name' => $subscription->name, 'type' => trans('subscription.subscription')]
-                ),
-            ]), $subscription->nameLink()
-        );
-    }
-
-    /** @test */
     public function it_has_name_link_attribute()
     {
         $subscription = factory(Subscription::class)->create();

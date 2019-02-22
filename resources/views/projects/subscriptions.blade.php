@@ -30,7 +30,7 @@
         <tr>
             <td>{{ 1 + $key }}</td>
             <td class="text-center">{{ $subscription->type }}</td>
-            <td>{{ $subscription->nameLink() }}</td>
+            <td>{{ $subscription->name_link }}</td>
             <td class="text-right">{{ date_id($subscription->start_date) }}</td>
             <td class="text-right">{{ date_id($subscription->due_date) }} {!! $subscription->nearOfDueDateSign() !!}</td>
             <td class="text-right">{{ format_money($subscription->price) }}</td>

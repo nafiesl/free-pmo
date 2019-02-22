@@ -71,7 +71,7 @@
                 </tr>
                 @forelse(AdminDashboard::upcomingSubscriptionDueDatesList() as $subscription)
                 <tr>
-                    <td>{{ $subscription->nameLink() }}</td>
+                    <td>{{ $subscription->name_link }}</td>
                     <td>{{ $subscription->customer->name }}</td>
                     <td class="text-right">{{ format_money($subscription->price) }}</td>
                     <td class="text-center">

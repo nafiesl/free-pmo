@@ -31,6 +31,21 @@ class SubscriptionTest extends TestCase
     }
 
     /** @test */
+    public function it_has_name_link_attribute()
+    {
+        $subscription = factory(Subscription::class)->create();
+
+        $this->assertEquals(
+            link_to_route('subscriptions.show', $subscription->name, $subscription, [
+                'title' => trans(
+                    'app.show_detail_title',
+                    ['name' => $subscription->name, 'type' => trans('subscription.subscription')]
+                ),
+            ]), $subscription->name_link
+        );
+    }
+
+    /** @test */
     public function it_has_near_of_due_date_method()
     {
         $next3Months = Carbon::now()->addMonths(3)->format('Y-m-d');

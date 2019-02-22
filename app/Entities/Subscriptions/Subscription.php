@@ -35,6 +35,21 @@ class Subscription extends Model
     }
 
     /**
+     * Show subscription name with link to subscription detail attribute.
+     *
+     * @return Illuminate\Support\HtmlString
+     */
+    public function getNameLinkAttribute()
+    {
+        return link_to_route('subscriptions.show', $this->name, $this, [
+            'title' => __(
+                'app.show_detail_title',
+                ['name' => $this->name, 'type' => __('subscription.subscription')]
+            ),
+        ]);
+    }
+
+    /**
      * Check weather the subscription is near it's due date.
      *
      * @return bool

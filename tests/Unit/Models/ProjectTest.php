@@ -4,6 +4,7 @@ namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 use App\Entities\Projects\Job;
+use App\Entities\Projects\File;
 use App\Entities\Projects\Task;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
@@ -223,7 +224,27 @@ class ProjectTest extends TestCase
     public function a_project_has_many_files()
     {
         $project = factory(Project::class)->create();
+
         $this->assertInstanceOf(Collection::class, $project->files);
+    }
+
+    /** @test */
+    public function project_deletion_also_deletes_related_files()
+    {
+        $project = factory(Project::class)->create();
+        $file = File::create([
+            'fileable_id'   => $project->id,
+            'fileable_type' => 'projects',
+            'filename'      => 'filename.jpg',
+            'title'         => 'filename.jpg',
+        ]);
+
+        $project->delete();
+
+        $this->dontSeeInDatabase('files', [
+            'fileable_id'   => $project->id,
+            'fileable_type' => 'projects',
+        ]);
     }
 
     /** @test */

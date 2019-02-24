@@ -2,6 +2,7 @@
 
 namespace App\Entities\Projects;
 
+use Storage;
 use Illuminate\Database\Eloquent\Model;
 
 class File extends Model
@@ -36,5 +37,12 @@ class File extends Model
     public function fileExists()
     {
         return \Storage::exists('public/files/'.$this->filename);
+    }
+
+    public function delete()
+    {
+        Storage::delete('public/files/'.$this->filename);
+
+        return parent::delete();
     }
 }

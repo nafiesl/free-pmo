@@ -255,6 +255,7 @@ class Project extends Model
     {
         DB::beginTransaction();
         $this->jobs->each->delete();
+        $this->files->each->delete();
         $this->invoices()->delete();
         $this->payments()->delete();
         $this->subscriptions()->delete();

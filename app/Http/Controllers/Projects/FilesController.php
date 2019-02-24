@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Projects;
 
-use Storage;
 use File as FileSystem;
 use Illuminate\Http\Request;
 use App\Entities\Projects\File;
@@ -93,9 +92,7 @@ class FilesController extends Controller
 
     public function destroy(Request $request, File $file)
     {
-        Storage::delete('public/files/'.$file->filename);
         $file->delete();
-
         flash(__('file.deleted'), 'warning');
 
         return redirect()->route($file->fileable_type.'.files', $file->fileable_id);

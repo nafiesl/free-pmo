@@ -3,6 +3,7 @@
 namespace App\Entities\Projects;
 
 use DB;
+use App\Entities\Projects\Issue;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Partners\Customer;
@@ -263,5 +264,15 @@ class Project extends Model
         DB::commit();
 
         return parent::delete();
+    }
+
+    /**
+     * Project has many Issues relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function issues()
+    {
+        return $this->hasMany(Issue::class);
     }
 }

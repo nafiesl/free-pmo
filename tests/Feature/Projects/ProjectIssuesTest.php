@@ -3,6 +3,8 @@
 namespace Tests\Feature\Projects;
 
 use Tests\TestCase;
+use App\Entities\Projects\Issue;
+use App\Entities\Projects\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ProjectIssuesTest extends TestCase
@@ -24,7 +26,6 @@ class ProjectIssuesTest extends TestCase
         $this->seeRouteIs('projects.issues.index', $project);
 
         $this->seeText('The issue title.');
-        $this->seeText('This is a project issue.');
     }
 
     /** @test */

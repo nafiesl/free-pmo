@@ -46,6 +46,11 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     Route::delete('projects/{project}/comments/{comment}', 'CommentsController@destroy')->name('projects.comments.destroy');
 
     /*
+     * Project Issues Routes
+     */
+    Route::get('projects/{project}/issues', 'IssueController@index')->name('projects.issues.index');
+
+    /*
      * Tasks Routes
      */
     Route::get('jobs/{job}/tasks/create', ['as' => 'tasks.create', 'uses' => 'TasksController@create']);

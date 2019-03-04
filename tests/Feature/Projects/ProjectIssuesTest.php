@@ -34,7 +34,7 @@ class ProjectIssuesTest extends TestCase
         $admin = $this->adminUserSigningIn();
         $project = factory(Project::class)->create();
 
-        $this->visitRoute('projects.issues.index', $project);
+        $this->visitRoute('projects.issues.create', $project);
 
         $this->submitForm(__('issue.create'), [
             'title' => 'First Issue.',

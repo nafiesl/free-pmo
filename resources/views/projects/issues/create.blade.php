@@ -20,7 +20,7 @@
                 {!! FormField::textarea('body', ['label' => __('issue.body')]) !!}
             </div>
             <div class="panel-footer">
-                {{ Form::submit(__('issue.create'), ['class' => 'btn btn-primary']) }}
+                {{ Form::submit(__('issue.create'), ['class' => 'btn btn-success']) }}
                 {{ link_to_route('projects.issues.index', __('app.cancel'), $project, ['class' => 'btn btn-default']) }}
             </div>
         </div>

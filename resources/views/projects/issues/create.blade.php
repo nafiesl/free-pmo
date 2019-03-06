@@ -3,7 +3,7 @@
 @section('subtitle', __('issue.create'))
 
 @section('action-buttons')
-@can('create', new App\Entities\Projects\Job)
+@can('create', new App\Entities\Projects\Issue)
     {!! html_link_to_route('projects.issues.create', __('issue.create'), $project, ['class' => 'btn btn-success', 'icon' => 'plus']) !!}
 @endcan
 @endsection

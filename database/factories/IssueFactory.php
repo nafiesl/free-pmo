@@ -1,5 +1,6 @@
 <?php
 
+use App\Entities\Users\User;
 use Faker\Generator as Faker;
 use App\Entities\Projects\Issue;
 use App\Entities\Projects\Project;
@@ -11,5 +12,8 @@ $factory->define(Issue::class, function (Faker $faker) {
         },
         'title'      => $faker->words(3, true),
         'body'       => $faker->sentences(3, true),
+        'creator_id' => function () {
+            return factory(User::class)->create()->id;
+        },
     ];
 });

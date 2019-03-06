@@ -53,6 +53,22 @@ class ProjectIssuesTest extends TestCase
     }
 
     /** @test */
+    public function user_can_view_an_issue_detail()
+    {
+        $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+        $issue = factory(Issue::class)->create([
+            'project_id' => $project->id,
+            'title'      => 'The issue title.',
+            'body'       => 'This is a project issue body.',
+        ]);
+
+        $this->visitRoute('projects.issues.show', [$project, $issue]);
+        $this->seeText($issue->title);
+        $this->seeText($issue->body);
+    }
+
+    /** @test */
     public function user_can_edit_issue()
     {
         $this->adminUserSigningIn();

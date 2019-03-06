@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     Route::get('projects/{project}/issues', 'IssueController@index')->name('projects.issues.index');
     Route::get('projects/{project}/issues/create', 'IssueController@create')->name('projects.issues.create');
     Route::post('projects/{project}/issues', 'IssueController@store')->name('projects.issues.store');
+    Route::get('projects/{project}/issues/{issue}', 'IssueController@show')->name('projects.issues.show');
 
     /*
      * Tasks Routes

@@ -21,7 +21,14 @@
             <tr id="{{ $issue->id }}">
                 <td>{{ $no }}</td>
                 <td>{{ $issue->title }}</td>
-                <td class="text-center">&nbsp;</td>
+                <td class="text-center">
+                    {{ link_to_route(
+                        'projects.issues.show',
+                        __('app.show'),
+                        [$project, $issue],
+                        ['class' => 'small', 'title' => __('issue.show')]
+                    ) }}
+                </td>
             </tr>
             @empty
             <tr><td colspan="3">{{ __('issue.empty') }}</td></tr>

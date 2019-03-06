@@ -37,4 +37,9 @@ class IssueController extends Controller
 
         return redirect()->route('projects.issues.index', $project);
     }
+
+    public function show(Project $project, Issue $issue)
+    {
+        return view('projects.issues.show', compact('project', 'issue'));
+    }
 }

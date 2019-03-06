@@ -10,7 +10,7 @@
     <table class="table table-condensed table-striped">
         <thead>
             <th>{{ __('app.table_no') }}</th>
-            <th>{{ __('issue.name') }}</th>
+            <th>{{ __('issue.title') }}</th>
             <th class="text-center">{{ __('app.action') }}</th>
         </thead>
         <tbody>

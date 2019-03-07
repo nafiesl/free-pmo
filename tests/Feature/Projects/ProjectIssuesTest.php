@@ -126,4 +126,24 @@ class ProjectIssuesTest extends TestCase
             'id' => $issue->id,
         ]);
     }
+
+    /** @test */
+    public function user_can_assign_someone_to_an_issue_as_pic()
+    {
+        $this->adminUserSigningIn();
+        $worker = $this->createUser('worker');
+        $issue = factory(Issue::class)->create();
+
+        $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
+        $this->submitForm(__('issue.assign_pic'), [
+            'pic_id' => $worker->id,
+        ]);
+        $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
+        $this->seeText(__('issue.pic_assigned'));
+
+        $this->seeInDatabase('issues', [
+            'id'     => $issue->id,
+            'pic_id' => $worker->id,
+        ]);
+    }
 }

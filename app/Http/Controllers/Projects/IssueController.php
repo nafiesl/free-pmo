@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Projects;
 
+use App\Entities\Users\User;
 use Illuminate\Http\Request;
 use App\Entities\Projects\Issue;
 use App\Entities\Projects\Project;
@@ -40,7 +41,9 @@ class IssueController extends Controller
 
     public function show(Project $project, Issue $issue)
     {
-        return view('projects.issues.show', compact('project', 'issue'));
+        $users = User::all();
+
+        return view('projects.issues.show', compact('project', 'issue', 'users'));
     }
 
     public function edit(Project $project, Issue $issue)

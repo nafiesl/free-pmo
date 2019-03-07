@@ -1,4 +1,7 @@
 <?php
+if (!app()->runningUnitTests()) {
+    auth()->loginUsingId(1);
+}
 
 require __DIR__.'/web/pages.php';
 require __DIR__.'/web/users.php';

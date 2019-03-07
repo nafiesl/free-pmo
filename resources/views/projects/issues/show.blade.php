@@ -5,7 +5,7 @@
 @section('content-project')
 
 <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ __('issue.detail') }}</h3></div>
             <table class="table table-condensed">
@@ -18,6 +18,12 @@
                 {{ link_to_route('projects.issues.edit', __('issue.edit'), [$project, $issue], ['id' => 'edit-issue-'.$issue->id, 'class' => 'btn btn-warning']) }}
             </div>
         </div>
+    </div>
+    <div class="col-md-6">
+        {{ Form::model($issue, ['route' => ['issues.pic.update', $issue], 'method' => 'patch']) }}
+        {!! FormField::select('pic_id', $users, ['label' => __('issue.assign_pic')]) !!}
+        {{ Form::submit(__('issue.assign_pic'), ['class' => 'btn btn-success']) }}
+        {{ Form::close() }}
     </div>
 </div>
 @endsection

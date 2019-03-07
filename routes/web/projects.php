@@ -100,3 +100,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@update')->name('jobs.comments.update');
     Route::delete('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@destroy')->name('jobs.comments.destroy');
 });
+
+/**
+ * Issue PIC Routes
+ */
+Route::patch('issues/{issue}/assign_pic', 'Issues\PicController@update')->name('issues.pic.update');

@@ -19,6 +19,7 @@ class CreateIssuesTable extends Migration
             $table->string('title', 60);
             $table->string('body');
             $table->unsignedInteger('creator_id');
+            $table->unsignedInteger('pic_id')->nullable();
             $table->timestamps();
         });
     }

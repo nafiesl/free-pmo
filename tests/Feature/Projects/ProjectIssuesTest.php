@@ -109,12 +109,18 @@ class ProjectIssuesTest extends TestCase
             'project_id' => $project->id,
         ]);
 
-        $this->visitRoute('projects.issues.index', $project);
+        $this->visitRoute('projects.issues.edit', [$project, $issue]);
+        $this->seeElement('a', ['id' => 'delete-issue-'.$issue->id]);
+
+        $this->click('delete-issue-'.$issue->id);
+
+        $this->seePageIs(route('projects.issues.edit', [$project, $issue, 'action' => 'delete']));
         $this->seeElement('button', ['id' => 'delete-issue-'.$issue->id]);
+
         $this->press('delete-issue-'.$issue->id);
 
         $this->seePageIs(route('projects.issues.index', $project));
-        $this->see(__('issue.deleted'));
+        $this->seeText(__('issue.deleted'));
 
         $this->dontSeeInDatabase('issues', [
             'id' => $issue->id,

@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     Route::get('projects/{project}/issues/{issue}', 'IssueController@show')->name('projects.issues.show');
     Route::get('projects/{project}/issues/{issue}/edit', 'IssueController@edit')->name('projects.issues.edit');
     Route::patch('projects/{project}/issues/{issue}', 'IssueController@update')->name('projects.issues.update');
+    Route::delete('projects/{project}/issues/{issue}', 'IssueController@destroy')->name('projects.issues.destroy');
 
     /*
      * Tasks Routes

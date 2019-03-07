@@ -62,4 +62,18 @@ class IssueController extends Controller
 
         return redirect()->route('projects.issues.show', [$project, $issue]);
     }
+
+    public function destroy(Request $request, Project $project, Issue $issue)
+    {
+        $request->validate(['issue_id' => 'required']);
+
+        if ($request->get('issue_id') == $issue->id && $issue->delete()) {
+            flash(__('issue.deleted'), 'warning');
+
+            return redirect()->route('projects.issues.index', $project);
+        }
+        flash(__('issue.undeleted'), 'danger');
+
+        return back();
+    }
 }

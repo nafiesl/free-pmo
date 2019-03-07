@@ -15,6 +15,11 @@ class Issue extends Model
         return $this->belongsTo(Project::class);
     }
 
+    public function pic()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function creator()
     {
         return $this->belongsTo(User::class);

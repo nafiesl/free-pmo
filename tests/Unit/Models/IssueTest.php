@@ -22,6 +22,16 @@ class IssueTest extends TestCase
     }
 
     /** @test */
+    public function an_issue_has_belongs_to_pic_relation()
+    {
+        $pic = $this->createUser('worker');
+        $issue = factory(Issue::class)->make(['pic_id' => $pic->id]);
+
+        $this->assertInstanceOf(User::class, $issue->pic);
+        $this->assertEquals($issue->pic_id, $issue->pic->id);
+    }
+
+    /** @test */
     public function an_issue_has_belongs_to_creator_relation()
     {
         $issue = factory(Issue::class)->make();

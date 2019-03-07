@@ -14,6 +14,9 @@
                     <tr><th>{{ __('issue.body') }}</th><td>{{ $issue->body }}</td></tr>
                 </tbody>
             </table>
+            <div class="panel-footer">
+                {{ link_to_route('projects.issues.edit', __('issue.edit'), [$project, $issue], ['id' => 'edit-issue-'.$issue->id, 'class' => 'btn btn-warning']) }}
+            </div>
         </div>
     </div>
 </div>

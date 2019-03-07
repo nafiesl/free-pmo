@@ -79,17 +79,17 @@ class ProjectIssuesTest extends TestCase
             'body'       => 'This is a project issue body.',
         ]);
 
-        $this->visitRoute('projects.issues.index', $project);
+        $this->visitRoute('projects.issues.show', [$project, $issue]);
         $this->seeElement('a', ['id' => 'edit-issue-'.$issue->id]);
         $this->click('edit-issue-'.$issue->id);
-        $this->seeRouteIs('projects.issues.index', [$project, 'action' => 'issue-edit', 'issue_id' => $issue->id]);
+        $this->seeRouteIs('projects.issues.edit', [$project, $issue]);
 
         $this->submitForm(__('issue.update'), [
             'title' => 'First Issue.',
             'body'  => 'This is a project issue body.',
         ]);
 
-        $this->seePageIs(route('projects.issues.index', $project));
+        $this->seePageIs(route('projects.issues.show', [$project, $issue]));
         $this->see(__('issue.updated'));
 
         $this->seeInDatabase('issues', [

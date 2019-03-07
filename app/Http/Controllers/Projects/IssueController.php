@@ -42,4 +42,24 @@ class IssueController extends Controller
     {
         return view('projects.issues.show', compact('project', 'issue'));
     }
+
+    public function edit(Project $project, Issue $issue)
+    {
+        return view('projects.issues.edit', compact('project', 'issue'));
+    }
+
+    public function update(Request $request, Project $project, Issue $issue)
+    {
+        $issueData = $request->validate([
+            'title' => 'required|max:60',
+            'body'  => 'required|max:255',
+        ]);
+        $issue->title = $issueData['title'];
+        $issue->body = $issueData['body'];
+        $issue->save();
+
+        flash(__('issue.updated'), 'success');
+
+        return redirect()->route('projects.issues.show', [$project, $issue]);
+    }
 }

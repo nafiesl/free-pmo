@@ -135,7 +135,7 @@ class ProjectIssuesTest extends TestCase
         $issue = factory(Issue::class)->create();
 
         $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
-        $this->submitForm(__('issue.assign_pic'), [
+        $this->submitForm(__('issue.update'), [
             'pic_id' => $worker->id,
         ]);
         $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
@@ -155,7 +155,7 @@ class ProjectIssuesTest extends TestCase
         $issue = factory(Issue::class)->create(['pic_id' => $worker->id]);
 
         $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
-        $this->submitForm(__('issue.assign_pic'), [
+        $this->submitForm(__('issue.update'), [
             'pic_id' => null,
         ]);
         $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);

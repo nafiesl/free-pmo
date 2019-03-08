@@ -29,6 +29,7 @@ return [
     'assign_pic'     => 'Assign PIC',
     'select_pic'     => 'Select a PIC',
     'pic_assigned'   => 'Issue PIC has been assigned.',
+    'pic_removed'    => 'Issue PIC has been removed.',
 
     // Attributes
     'title' => 'Issue Title',

@@ -146,4 +146,24 @@ class ProjectIssuesTest extends TestCase
             'pic_id' => $worker->id,
         ]);
     }
+
+    /** @test */
+    public function user_can_remove_pic_assignment()
+    {
+        $this->adminUserSigningIn();
+        $worker = $this->createUser('worker');
+        $issue = factory(Issue::class)->create(['pic_id' => $worker->id]);
+
+        $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
+        $this->submitForm(__('issue.assign_pic'), [
+            'pic_id' => null,
+        ]);
+        $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
+        $this->seeText(__('issue.pic_removed'));
+
+        $this->seeInDatabase('issues', [
+            'id'     => $issue->id,
+            'pic_id' => null,
+        ]);
+    }
 }

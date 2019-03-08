@@ -29,6 +29,7 @@ return [
     'assign_pic'     => 'Tugaskan PIC',
     'select_pic'     => 'Pilih PIC',
     'pic_assigned'   => 'PIC telah ditugaskan.',
+    'pic_removed'    => 'PIC telah dihapus.',
 
     // Attributes
     'title' => 'Judul Issue',

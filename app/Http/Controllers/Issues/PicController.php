@@ -16,7 +16,11 @@ class PicController extends Controller
         $issue->pic_id = $picData['pic_id'];
         $issue->save();
 
-        flash(__('issue.pic_assigned'), 'success');
+        if ($issue->pic_id) {
+            flash(__('issue.pic_assigned'), 'success');
+        } else {
+            flash(__('issue.pic_removed'), 'warning');
+        }
 
         return back();
     }

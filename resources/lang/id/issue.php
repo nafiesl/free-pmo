@@ -13,6 +13,7 @@ return [
     'empty'         => 'Belum ada Issue',
     'back_to_show'  => 'Kembali ke detail Issue',
     'back_to_index' => 'Kembali ke daftar Issue',
+    'no_pic'        => 'Belum ada PIC',
 
     // Actions
     'create'         => 'Input Issue Baru',
@@ -34,4 +35,9 @@ return [
     // Attributes
     'title' => 'Judul Issue',
     'body'  => 'Deskripsi Issue',
+
+    // Relations
+    'project' => 'Project Issue',
+    'pic'     => 'PIC Issue',
+    'creator' => 'Pembuat Issue',
 ];

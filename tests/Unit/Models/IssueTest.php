@@ -32,6 +32,14 @@ class IssueTest extends TestCase
     }
 
     /** @test */
+    public function issue_pic_name_has_default_value()
+    {
+        $issue = factory(Issue::class)->make(['pic_id' => null]);
+
+        $this->assertEquals(__('issue.no_pic'), $issue->pic->name);
+    }
+
+    /** @test */
     public function an_issue_has_belongs_to_creator_relation()
     {
         $issue = factory(Issue::class)->make();

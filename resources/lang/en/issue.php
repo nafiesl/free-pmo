@@ -13,6 +13,7 @@ return [
     'empty'         => 'Issue is empty.',
     'back_to_show'  => 'Back to Issue Detail',
     'back_to_index' => 'Back to Issue List',
+    'no_pic'        => 'No issue PIC',
 
     // Actions
     'create'         => 'Create new Issue',
@@ -34,4 +35,9 @@ return [
     // Attributes
     'title' => 'Issue Title',
     'body'  => 'Issue Description',
+
+    // Relations
+    'project' => 'Issue Project',
+    'pic'     => 'Issue PIC',
+    'creator' => 'Issue Creator',
 ];

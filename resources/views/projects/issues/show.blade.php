@@ -21,7 +21,7 @@
     </div>
     <div class="col-md-6">
         {{ Form::model($issue, ['route' => ['issues.pic.update', $issue], 'method' => 'patch']) }}
-        {!! FormField::select('pic_id', $users, ['label' => __('issue.assign_pic')]) !!}
+        {!! FormField::select('pic_id', $users, ['label' => __('issue.assign_pic'), 'placeholder' => __('issue.select_pic')]) !!}
         {{ Form::submit(__('issue.assign_pic'), ['class' => 'btn btn-success']) }}
         {{ Form::close() }}
     </div>

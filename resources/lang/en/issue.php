@@ -26,6 +26,9 @@ return [
     'deleted'        => 'Issue has been deleted.',
     'undeleted'      => 'Issue not deleted.',
     'undeleteable'   => 'Issue data cannot be deleted.',
+    'assign_pic'     => 'Assign PIC',
+    'select_pic'     => 'Select a PIC',
+    'pic_assigned'   => 'Issue PIC has been assigned.',
 
     // Attributes
     'title' => 'Issue Title',

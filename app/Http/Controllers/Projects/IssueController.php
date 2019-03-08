@@ -41,7 +41,7 @@ class IssueController extends Controller
 
     public function show(Project $project, Issue $issue)
     {
-        $users = User::all();
+        $users = User::pluck('name', 'id');
 
         return view('projects.issues.show', compact('project', 'issue', 'users'));
     }

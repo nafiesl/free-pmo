@@ -26,6 +26,9 @@ return [
     'deleted'        => 'Hapus data Issue telah berhasil.',
     'undeleted'      => 'Data Issue gagal dihapus.',
     'undeleteable'   => 'Data Issue tidak dapat dihapus.',
+    'assign_pic'     => 'Tugaskan PIC',
+    'select_pic'     => 'Pilih PIC',
+    'pic_assigned'   => 'PIC telah ditugaskan.',
 
     // Attributes
     'title' => 'Judul Issue',

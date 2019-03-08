@@ -11,6 +11,8 @@
         <thead>
             <th>{{ __('app.table_no') }}</th>
             <th>{{ __('issue.title') }}</th>
+            <th>{{ __('issue.pic') }}</th>
+            <th>{{ __('issue.creator') }}</th>
             <th class="text-center">{{ __('app.action') }}</th>
         </thead>
         <tbody>
@@ -21,17 +23,19 @@
             <tr id="{{ $issue->id }}">
                 <td>{{ $no }}</td>
                 <td>{{ $issue->title }}</td>
+                <td>{{ $issue->pic->name }}</td>
+                <td>{{ $issue->creator->name }}</td>
                 <td class="text-center">
                     {{ link_to_route(
                         'projects.issues.show',
                         __('app.show'),
                         [$project, $issue],
-                        ['class' => 'small', 'title' => __('issue.show')]
+                        ['title' => __('issue.show')]
                     ) }}
                 </td>
             </tr>
             @empty
-            <tr><td colspan="3">{{ __('issue.empty') }}</td></tr>
+            <tr><td colspan="5">{{ __('issue.empty') }}</td></tr>
             @endforelse
         </tbody>
     </table>

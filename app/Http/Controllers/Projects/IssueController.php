@@ -12,7 +12,7 @@ class IssueController extends Controller
 {
     public function index(Project $project)
     {
-        $issues = $project->issues;
+        $issues = $project->issues()->with(['pic', 'creator'])->get();
 
         return view('projects.issues', compact('project', 'issues'));
     }

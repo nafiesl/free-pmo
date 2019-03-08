@@ -12,6 +12,8 @@
                 <tbody>
                     <tr><th class="col-md-4">{{ __('issue.title') }}</th><td class="col-md-8">{{ $issue->title }}</td></tr>
                     <tr><th>{{ __('issue.body') }}</th><td>{{ $issue->body }}</td></tr>
+                    <tr><th>{{ __('issue.pic') }}</th><td>{{ $issue->pic->name }}</td></tr>
+                    <tr><th>{{ __('app.created_by') }}</th><td>{{ $issue->creator->name }}</td></tr>
                 </tbody>
             </table>
             <div class="panel-footer">

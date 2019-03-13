@@ -2,8 +2,13 @@
 
 @section('subtitle', __('issue.detail'))
 
-@section('content-project')
+@section('action-buttons')
+@can('create', new App\Entities\Projects\Issue)
+    {!! html_link_to_route('projects.issues.create', __('issue.create'), $project, ['class' => 'btn btn-success', 'icon' => 'plus']) !!}
+@endcan
+@endsection
 
+@section('content-project')
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">

@@ -2,6 +2,12 @@
 
 @section('subtitle', __('project.issues'))
 
+@section('action-buttons')
+@can('create', new App\Entities\Projects\Issue)
+    {!! html_link_to_route('projects.issues.create', __('issue.create'), $project, ['class' => 'btn btn-success', 'icon' => 'plus']) !!}
+@endcan
+@endsection
+
 @section('content-project')
 <div id="project-issues" class="panel panel-default table-responsive">
     <div class="panel-heading">

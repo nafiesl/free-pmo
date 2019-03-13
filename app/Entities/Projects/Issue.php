@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Issue extends Model
 {
-    protected $fillable = ['project_id', 'title', 'body', 'creator_id'];
+    protected $fillable = ['project_id', 'title', 'body', 'pic_id', 'creator_id'];
 
     public function project()
     {

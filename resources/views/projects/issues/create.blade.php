@@ -18,6 +18,7 @@
             <div class="panel-body">
                 {!! FormField::text('title', ['label' => __('issue.title')]) !!}
                 {!! FormField::textarea('body', ['label' => __('issue.body')]) !!}
+                {!! FormField::select('pic_id', $users, ['label' => __('issue.pic')]) !!}
             </div>
             <div class="panel-footer">
                 {{ Form::submit(__('issue.create'), ['class' => 'btn btn-success']) }}

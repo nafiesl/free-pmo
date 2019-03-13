@@ -19,20 +19,24 @@ class IssueController extends Controller
 
     public function create(Project $project)
     {
-        return view('projects.issues.create', compact('project'));
+        $users = User::pluck('name', 'id');
+
+        return view('projects.issues.create', compact('project', 'users'));
     }
 
     public function store(Request $request, Project $project)
     {
         $issueData = $request->validate([
-            'title' => 'required|max:60',
-            'body'  => 'required|max:255',
+            'title'  => 'required|max:60',
+            'body'   => 'required|max:255',
+            'pic_id' => 'nullable|exists:users,id',
         ]);
         Issue::create([
             'project_id' => $project->id,
             'creator_id' => auth()->id(),
             'title'      => $issueData['title'],
             'body'       => $issueData['body'],
+            'pic_id'     => $issueData['pic_id'],
         ]);
         flash(__('issue.created'), 'success');
 

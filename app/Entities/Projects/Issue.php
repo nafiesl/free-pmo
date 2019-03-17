@@ -29,4 +29,9 @@ class Issue extends Model
     {
         return IssueStatus::getNameById($this->status_id);
     }
+
+    public function getStatusLabelAttribute()
+    {
+        return '<span class="badge">'.$this->status.'</span>';
+    }
 }

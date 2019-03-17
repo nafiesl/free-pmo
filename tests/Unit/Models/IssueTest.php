@@ -55,4 +55,12 @@ class IssueTest extends TestCase
 
         $this->assertEquals(__('issue.open'), $issue->status);
     }
+
+    /** @test */
+    public function an_issue_has_status_label_attribute()
+    {
+        $issue = factory(Issue::class)->make();
+
+        $this->assertEquals('<span class="badge">'.$issue->status.'</span>', $issue->status_label);
+    }
 }

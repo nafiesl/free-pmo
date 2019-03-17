@@ -12,7 +12,12 @@
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ __('issue.detail') }}</h3></div>
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <div class="pull-right">{!! $issue->status_label !!}</div>
+                    {{ __('issue.detail') }}
+                </h3>
+            </div>
             <table class="table table-condensed">
                 <tbody>
                     <tr><th class="col-md-4">{{ __('issue.title') }}</th><td class="col-md-8">{{ $issue->title }}</td></tr>

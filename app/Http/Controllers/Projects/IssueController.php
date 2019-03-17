@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Entities\Projects\Issue;
 use App\Entities\Projects\Project;
 use App\Http\Controllers\Controller;
+use App\Entities\Projects\IssueStatus;
 
 class IssueController extends Controller
 {
@@ -45,9 +46,10 @@ class IssueController extends Controller
 
     public function show(Project $project, Issue $issue)
     {
+        $statuses = IssueStatus::toArray();
         $users = User::pluck('name', 'id');
 
-        return view('projects.issues.show', compact('project', 'issue', 'users'));
+        return view('projects.issues.show', compact('project', 'issue', 'users', 'statuses'));
     }
 
     public function edit(Project $project, Issue $issue)

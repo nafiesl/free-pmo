@@ -42,5 +42,9 @@ return [
     'creator' => 'Pembuat Issue',
 
     // Statuses
-    'open' => 'Open',
+    'open'     => 'Open',
+    'resolved' => 'Selesai',
+    'closed'   => 'Ditutup',
+    'on_hold'  => 'Ditunda',
+    'invalid'  => 'Tidak Valid',
 ];

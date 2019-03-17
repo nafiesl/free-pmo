@@ -42,5 +42,9 @@ return [
     'creator' => 'Issue Creator',
 
     // Statuses
-    'open' => 'Open',
+    'open'     => 'Open',
+    'resolved' => 'Resolved',
+    'closed'   => 'Closed',
+    'on_hold'  => 'On Hold',
+    'invalid'  => 'Invalid',
 ];

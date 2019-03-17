@@ -11,8 +11,10 @@ class PicController extends Controller
     public function update(Request $request, Issue $issue)
     {
         $picData = $request->validate([
-            'pic_id' => 'nullable|exists:users,id',
+            'status_id' => 'required|in:0,1,2,3,4',
+            'pic_id'    => 'nullable|exists:users,id',
         ]);
+        $issue->status_id = $picData['status_id'];
         $issue->pic_id = $picData['pic_id'];
         $issue->save();
 

@@ -40,4 +40,7 @@ return [
     'project' => 'Issue Project',
     'pic'     => 'Issue PIC',
     'creator' => 'Issue Creator',
+
+    // Statuses
+    'open' => 'Open',
 ];

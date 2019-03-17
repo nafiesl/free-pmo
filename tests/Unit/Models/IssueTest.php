@@ -47,4 +47,12 @@ class IssueTest extends TestCase
         $this->assertInstanceOf(User::class, $issue->creator);
         $this->assertEquals($issue->creator_id, $issue->creator->id);
     }
+
+    /** @test */
+    public function an_issue_has_status_attribute()
+    {
+        $issue = factory(Issue::class)->make();
+
+        $this->assertEquals(__('issue.open'), $issue->status);
+    }
 }

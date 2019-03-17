@@ -24,4 +24,9 @@ class Issue extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getStatusAttribute()
+    {
+        return IssueStatus::getNameById($this->status_id);
+    }
 }

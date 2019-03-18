@@ -40,4 +40,11 @@ return [
     'project' => 'Project Issue',
     'pic'     => 'PIC Issue',
     'creator' => 'Pembuat Issue',
+
+    // Statuses
+    'open'     => 'Open',
+    'resolved' => 'Selesai',
+    'closed'   => 'Ditutup',
+    'on_hold'  => 'Ditunda',
+    'invalid'  => 'Tidak Valid',
 ];

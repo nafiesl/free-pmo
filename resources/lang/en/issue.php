@@ -40,4 +40,11 @@ return [
     'project' => 'Issue Project',
     'pic'     => 'Issue PIC',
     'creator' => 'Issue Creator',
+
+    // Statuses
+    'open'     => 'Open',
+    'resolved' => 'Resolved',
+    'closed'   => 'Closed',
+    'on_hold'  => 'On Hold',
+    'invalid'  => 'Invalid',
 ];

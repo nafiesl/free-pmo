@@ -15,5 +15,6 @@ $factory->define(Issue::class, function (Faker $faker) {
         'creator_id' => function () {
             return factory(User::class)->create()->id;
         },
+        'status_id'  => 0,
     ];
 });

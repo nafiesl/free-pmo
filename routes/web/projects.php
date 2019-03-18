@@ -102,6 +102,6 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 /**
- * Issue PIC Routes
+ * Issue Options Routes
  */
-Route::patch('issues/{issue}/assign_pic', 'Issues\PicController@update')->name('issues.pic.update');
+Route::patch('issues/{issue}/options', 'Issues\OptionController@update')->name('issues.options.update');

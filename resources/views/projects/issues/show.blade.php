@@ -12,7 +12,12 @@
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ __('issue.detail') }}</h3></div>
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <div class="pull-right">{!! $issue->status_label !!}</div>
+                    {{ __('issue.detail') }}
+                </h3>
+            </div>
             <table class="table table-condensed">
                 <tbody>
                     <tr><th class="col-md-4">{{ __('issue.title') }}</th><td class="col-md-8">{{ $issue->title }}</td></tr>
@@ -27,10 +32,11 @@
         </div>
     </div>
     <div class="col-md-6">
-        {{ Form::model($issue, ['route' => ['issues.pic.update', $issue], 'method' => 'patch']) }}
+        {{ Form::model($issue, ['route' => ['issues.options.update', $issue], 'method' => 'patch']) }}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ __('app.action') }}</h3></div>
             <div class="panel-body">
+                {!! FormField::radios('status_id', $statuses, ['label' => __('app.status')]) !!}
                 {!! FormField::select('pic_id', $users, ['label' => __('issue.assign_pic'), 'placeholder' => __('issue.select_pic')]) !!}
             </div>
             <div class="panel-footer">

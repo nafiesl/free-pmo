@@ -43,7 +43,7 @@
                 </td>
             </tr>
             @empty
-            <tr><td colspan="5">{{ __('issue.empty') }}</td></tr>
+            <tr><td colspan="6">{{ __('issue.empty') }}</td></tr>
             @endforelse
         </tbody>
     </table>

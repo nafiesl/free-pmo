@@ -141,7 +141,7 @@ class ProjectIssuesTest extends TestCase
             'pic_id' => $worker->id,
         ]);
         $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
-        $this->seeText(__('issue.pic_assigned'));
+        $this->seeText(__('issue.updated'));
 
         $this->seeInDatabase('issues', [
             'id'     => $issue->id,
@@ -161,7 +161,7 @@ class ProjectIssuesTest extends TestCase
             'pic_id' => null,
         ]);
         $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
-        $this->seeText(__('issue.pic_removed'));
+        $this->seeText(__('issue.updated'));
 
         $this->seeInDatabase('issues', [
             'id'     => $issue->id,
@@ -182,7 +182,7 @@ class ProjectIssuesTest extends TestCase
             'pic_id'    => $worker->id,
         ]);
         $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
-        $this->seeText(__('issue.pic_assigned'));
+        $this->seeText(__('issue.updated'));
 
         $this->seeInDatabase('issues', [
             'id'        => $issue->id,

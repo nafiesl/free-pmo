@@ -25,6 +25,11 @@ class Issue extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getPriorityAttribute()
+    {
+        return Priority::getNameById($this->priority_id);
+    }
+
     public function getStatusAttribute()
     {
         return IssueStatus::getNameById($this->status_id);

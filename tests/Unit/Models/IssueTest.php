@@ -63,4 +63,12 @@ class IssueTest extends TestCase
 
         $this->assertEquals('<span class="badge">'.$issue->status.'</span>', $issue->status_label);
     }
+
+    /** @test */
+    public function an_issue_has_priority_attribute()
+    {
+        $issue = factory(Issue::class)->make();
+
+        $this->assertEquals(__('issue.minor'), $issue->priority);
+    }
 }

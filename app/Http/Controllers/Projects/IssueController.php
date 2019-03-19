@@ -16,7 +16,7 @@ class IssueController extends Controller
     {
         $issues = $project->issues()->with(['pic', 'creator'])->get();
 
-        return view('projects.issues', compact('project', 'issues'));
+        return view('projects.issues.index', compact('project', 'issues'));
     }
 
     public function create(Project $project)

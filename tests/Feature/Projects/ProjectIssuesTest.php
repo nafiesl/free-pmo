@@ -192,4 +192,28 @@ class ProjectIssuesTest extends TestCase
             'status_id' => 2, // resolved
         ]);
     }
+
+    /** @test */
+    public function user_can_change_issue_priority()
+    {
+        $this->adminUserSigningIn();
+        $worker = $this->createUser('worker');
+        $issue = factory(Issue::class)->create();
+
+        $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
+        $this->submitForm(__('issue.update'), [
+            'priority_id' => 2, // major
+            'status_id'   => 2, // resolved
+            'pic_id'      => $worker->id,
+        ]);
+        $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
+        $this->seeText(__('issue.updated'));
+
+        $this->seeInDatabase('issues', [
+            'id'          => $issue->id,
+            'pic_id'      => $worker->id,
+            'priority_id' => 2, // major
+            'status_id'   => 2, // resolved
+        ]);
+    }
 }

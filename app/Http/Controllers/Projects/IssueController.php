@@ -50,10 +50,13 @@ class IssueController extends Controller
 
     public function show(Project $project, Issue $issue)
     {
+        $priorities = Priority::toArray();
         $statuses = IssueStatus::toArray();
         $users = User::pluck('name', 'id');
 
-        return view('projects.issues.show', compact('project', 'issue', 'users', 'statuses'));
+        return view('projects.issues.show', compact(
+            'project', 'issue', 'users', 'statuses', 'priorities'
+        ));
     }
 
     public function edit(Project $project, Issue $issue)

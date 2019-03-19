@@ -41,6 +41,11 @@ return [
     'pic'     => 'Issue PIC',
     'creator' => 'Issue Creator',
 
+    // Priority
+    'minor'    => 'Minor',
+    'major'    => 'Major',
+    'critical' => 'Critical',
+
     // Statuses
     'open'     => 'Open',
     'resolved' => 'Resolved',

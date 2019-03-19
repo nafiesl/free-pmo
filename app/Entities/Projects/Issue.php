@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Issue extends Model
 {
-    protected $fillable = ['project_id', 'title', 'body', 'pic_id', 'creator_id'];
+    protected $fillable = [
+        'project_id', 'title', 'body', 'priority_id', 'pic_id', 'creator_id',
+    ];
 
     public function project()
     {
@@ -23,6 +25,18 @@ class Issue extends Model
     public function creator()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getPriorityAttribute()
+    {
+        return Priority::getNameById($this->priority_id);
+    }
+
+    public function getPriorityLabelAttribute()
+    {
+        $classColor = Priority::getColorById($this->priority_id);
+
+        return '<span class="label label-'.$classColor.'">'.$this->priority.'</span>';
     }
 
     public function getStatusAttribute()

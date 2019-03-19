@@ -17,6 +17,7 @@
         <thead>
             <th>{{ __('app.table_no') }}</th>
             <th>{{ __('issue.title') }}</th>
+            <th>{{ __('issue.priority') }}</th>
             <th>{{ __('app.status') }}</th>
             <th>{{ __('issue.pic') }}</th>
             <th>{{ __('issue.creator') }}</th>
@@ -30,6 +31,7 @@
             <tr id="{{ $issue->id }}">
                 <td>{{ $no }}</td>
                 <td>{{ $issue->title }}</td>
+                <td>{!! $issue->priority_label !!}</td>
                 <td>{!! $issue->status_label !!}</td>
                 <td>{{ $issue->pic->name }}</td>
                 <td>{{ $issue->creator->name }}</td>

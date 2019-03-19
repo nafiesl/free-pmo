@@ -37,20 +37,22 @@ class ProjectIssuesTest extends TestCase
         $this->visitRoute('projects.issues.create', $project);
 
         $this->submitForm(__('issue.create'), [
-            'title'  => 'First Issue.',
-            'body'   => 'First Issue description.',
-            'pic_id' => $admin->id,
+            'title'       => 'First Issue.',
+            'body'        => 'First Issue description.',
+            'priority_id' => 1,
+            'pic_id'      => $admin->id,
         ]);
 
         $this->seePageIs(route('projects.issues.index', $project));
         $this->see(__('issue.created'));
 
         $this->seeInDatabase('issues', [
-            'project_id' => $project->id,
-            'title'      => 'First Issue.',
-            'body'       => 'First Issue description.',
-            'pic_id'     => $admin->id,
-            'creator_id' => $admin->id,
+            'project_id'  => $project->id,
+            'title'       => 'First Issue.',
+            'body'        => 'First Issue description.',
+            'priority_id' => 1,
+            'pic_id'      => $admin->id,
+            'creator_id'  => $admin->id,
         ]);
     }
 
@@ -188,6 +190,30 @@ class ProjectIssuesTest extends TestCase
             'id'        => $issue->id,
             'pic_id'    => $worker->id,
             'status_id' => 2, // resolved
+        ]);
+    }
+
+    /** @test */
+    public function user_can_change_issue_priority()
+    {
+        $this->adminUserSigningIn();
+        $worker = $this->createUser('worker');
+        $issue = factory(Issue::class)->create();
+
+        $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
+        $this->submitForm(__('issue.update'), [
+            'priority_id' => 2, // major
+            'status_id'   => 2, // resolved
+            'pic_id'      => $worker->id,
+        ]);
+        $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
+        $this->seeText(__('issue.updated'));
+
+        $this->seeInDatabase('issues', [
+            'id'          => $issue->id,
+            'pic_id'      => $worker->id,
+            'priority_id' => 2, // major
+            'status_id'   => 2, // resolved
         ]);
     }
 }

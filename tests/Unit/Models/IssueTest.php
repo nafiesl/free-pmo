@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Entities\Users\User;
 use App\Entities\Projects\Issue;
 use App\Entities\Projects\Project;
+use App\Entities\Projects\Priority;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class IssueTest extends TestCase
@@ -62,5 +63,22 @@ class IssueTest extends TestCase
         $issue = factory(Issue::class)->make();
 
         $this->assertEquals('<span class="badge">'.$issue->status.'</span>', $issue->status_label);
+    }
+
+    /** @test */
+    public function an_issue_has_priority_attribute()
+    {
+        $issue = factory(Issue::class)->make();
+
+        $this->assertEquals(__('issue.minor'), $issue->priority);
+    }
+
+    /** @test */
+    public function an_issue_has_priority_label_attribute()
+    {
+        $issue = factory(Issue::class)->make();
+        $colorClass = Priority::getColorById($issue->priority_id);
+
+        $this->assertEquals('<span class="label label-'.$colorClass.'">'.$issue->priority.'</span>', $issue->priority_label);
     }
 }

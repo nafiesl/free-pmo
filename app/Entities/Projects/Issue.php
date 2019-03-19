@@ -32,6 +32,13 @@ class Issue extends Model
         return Priority::getNameById($this->priority_id);
     }
 
+    public function getPriorityLabelAttribute()
+    {
+        $classColor = Priority::getColorById($this->priority_id);
+
+        return '<span class="label label-'.$classColor.'">'.$this->priority.'</span>';
+    }
+
     public function getStatusAttribute()
     {
         return IssueStatus::getNameById($this->status_id);

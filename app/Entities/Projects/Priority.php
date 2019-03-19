@@ -13,7 +13,6 @@ class Priority extends ReferenceAbstract
     ];
 
     protected static $colors = [
-        0 => 'yellow',
         1 => 'info',
         2 => 'warning',
         3 => 'danger',

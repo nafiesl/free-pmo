@@ -6,6 +6,7 @@ use App\Entities\Users\User;
 use Illuminate\Http\Request;
 use App\Entities\Projects\Issue;
 use App\Entities\Projects\Project;
+use App\Entities\Projects\Priority;
 use App\Http\Controllers\Controller;
 use App\Entities\Projects\IssueStatus;
 
@@ -21,23 +22,26 @@ class IssueController extends Controller
     public function create(Project $project)
     {
         $users = User::pluck('name', 'id');
+        $priorities = Priority::toArray();
 
-        return view('projects.issues.create', compact('project', 'users'));
+        return view('projects.issues.create', compact('project', 'users', 'priorities'));
     }
 
     public function store(Request $request, Project $project)
     {
         $issueData = $request->validate([
-            'title'  => 'required|max:60',
-            'body'   => 'required|max:255',
-            'pic_id' => 'nullable|exists:users,id',
+            'title'       => 'required|max:60',
+            'body'        => 'required|max:255',
+            'priority_id' => 'required|in:1,2,3',
+            'pic_id'      => 'nullable|exists:users,id',
         ]);
         Issue::create([
-            'project_id' => $project->id,
-            'creator_id' => auth()->id(),
-            'title'      => $issueData['title'],
-            'body'       => $issueData['body'],
-            'pic_id'     => $issueData['pic_id'],
+            'project_id'  => $project->id,
+            'creator_id'  => auth()->id(),
+            'title'       => $issueData['title'],
+            'body'        => $issueData['body'],
+            'priority_id' => $issueData['priority_id'],
+            'pic_id'      => $issueData['pic_id'],
         ]);
         flash(__('issue.created'), 'success');
 

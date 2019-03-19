@@ -37,20 +37,22 @@ class ProjectIssuesTest extends TestCase
         $this->visitRoute('projects.issues.create', $project);
 
         $this->submitForm(__('issue.create'), [
-            'title'  => 'First Issue.',
-            'body'   => 'First Issue description.',
-            'pic_id' => $admin->id,
+            'title'       => 'First Issue.',
+            'body'        => 'First Issue description.',
+            'priority_id' => 1,
+            'pic_id'      => $admin->id,
         ]);
 
         $this->seePageIs(route('projects.issues.index', $project));
         $this->see(__('issue.created'));
 
         $this->seeInDatabase('issues', [
-            'project_id' => $project->id,
-            'title'      => 'First Issue.',
-            'body'       => 'First Issue description.',
-            'pic_id'     => $admin->id,
-            'creator_id' => $admin->id,
+            'project_id'  => $project->id,
+            'title'       => 'First Issue.',
+            'body'        => 'First Issue description.',
+            'priority_id' => 1,
+            'pic_id'      => $admin->id,
+            'creator_id'  => $admin->id,
         ]);
     }
 

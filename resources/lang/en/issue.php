@@ -42,6 +42,7 @@ return [
     'creator' => 'Issue Creator',
 
     // Priority
+    'priority' => 'Priority',
     'minor'    => 'Minor',
     'major'    => 'Major',
     'critical' => 'Critical',

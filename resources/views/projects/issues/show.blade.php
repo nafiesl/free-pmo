@@ -32,6 +32,8 @@
                 {{ link_to_route('projects.issues.index', __('issue.back_to_index'), [$project], ['class' => 'btn btn-default pull-right']) }}
             </div>
         </div>
+
+        @include('projects.issues.partials.comment-section')
     </div>
     <div class="col-md-6">
         {{ Form::model($issue, ['route' => ['issues.options.update', $issue], 'method' => 'patch']) }}

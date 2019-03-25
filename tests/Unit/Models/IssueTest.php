@@ -5,7 +5,9 @@ namespace Tests\Unit\Models;
 use Tests\TestCase;
 use App\Entities\Users\User;
 use App\Entities\Projects\Issue;
+use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
+use Illuminate\Support\Collection;
 use App\Entities\Projects\Priority;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -80,5 +82,18 @@ class IssueTest extends TestCase
         $colorClass = Priority::getColorById($issue->priority_id);
 
         $this->assertEquals('<span class="label label-'.$colorClass.'">'.$issue->priority.'</span>', $issue->priority_label);
+    }
+
+    /** @test */
+    public function an_issue_has_many_comments_relation()
+    {
+        $issue = factory(Issue::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'issues',
+            'commentable_id'   => $issue->id,
+        ]);
+
+        $this->assertInstanceOf(Collection::class, $issue->comments);
+        $this->assertInstanceOf(Comment::class, $issue->comments->first());
     }
 }

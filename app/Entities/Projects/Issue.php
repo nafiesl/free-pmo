@@ -3,6 +3,7 @@
 namespace App\Entities\Projects;
 
 use App\Entities\Users\User;
+use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,5 +48,15 @@ class Issue extends Model
     public function getStatusLabelAttribute()
     {
         return '<span class="badge">'.$this->status.'</span>';
+    }
+
+    /**
+     * Issue has many comments relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

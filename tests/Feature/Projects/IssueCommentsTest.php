@@ -26,4 +26,27 @@ class IssueCommentsTest extends TestCase
 
         $this->seeText('This is issue comment.');
     }
+
+    /** @test */
+    public function admin_can_add_comment_to_an_issue()
+    {
+        $admin = $this->adminUserSigningIn();
+        $issue = factory(Issue::class)->create();
+
+        $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
+
+        $this->submitForm(__('comment.create'), [
+            'body' => 'First comment.',
+        ]);
+
+        $this->seePageIs(route('projects.issues.show', [$issue->project, $issue]));
+        $this->see(__('comment.created'));
+
+        $this->seeInDatabase('comments', [
+            'commentable_type' => 'issues',
+            'commentable_id'   => $issue->id,
+            'body'             => 'First comment.',
+            'creator_id'       => $admin->id,
+        ]);
+    }
 }

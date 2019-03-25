@@ -7,3 +7,9 @@
     {!! nl2br($comment->body) !!}
 </div>
 @endforeach
+
+{{ Form::open(['route' => ['issues.comments.store', $issue]]) }}
+{!! FormField::textarea('body', ['required' => true, 'label' => false, 'placeholder' => __('comment.create_text')]) !!}
+{{ Form::submit(__('comment.create'), ['class' => 'btn btn-success pull-right']) }}
+{{ Form::close() }}
+<div class="clearfix"></div><br>

@@ -18,6 +18,8 @@ class CommentController extends Controller
      */
     public function store(Request $request, Issue $issue)
     {
+        $this->authorize('comment-on', $issue);
+
         $newComment = $request->validate([
             'body' => 'required|string|max:255',
         ]);

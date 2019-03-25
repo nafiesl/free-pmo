@@ -22,4 +22,13 @@ class IssuePolicyTest extends TestCase
 
         $this->assertTrue($admin->can('create', new Issue()));
     }
+
+    /** @test */
+    public function admin_can_add_comment_to_an_issue()
+    {
+        $admin = $this->createUser('admin');
+        $issue = factory(Issue::class)->create();
+
+        $this->assertTrue($admin->can('comment-on', $issue));
+    }
 }

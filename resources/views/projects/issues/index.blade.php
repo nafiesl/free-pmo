@@ -19,6 +19,7 @@
             <th>{{ __('issue.title') }}</th>
             <th>{{ __('issue.priority') }}</th>
             <th>{{ __('app.status') }}</th>
+            <th class="text-center">{{ __('comment.comment') }}</th>
             <th>{{ __('issue.pic') }}</th>
             <th>{{ __('issue.creator') }}</th>
             <th class="text-center">{{ __('app.action') }}</th>
@@ -33,6 +34,7 @@
                 <td>{{ $issue->title }}</td>
                 <td>{!! $issue->priority_label !!}</td>
                 <td>{!! $issue->status_label !!}</td>
+                <td class="text-center">{{ $issue->comments_count }}</td>
                 <td>{{ $issue->pic->name }}</td>
                 <td>{{ $issue->creator->name }}</td>
                 <td class="text-center">

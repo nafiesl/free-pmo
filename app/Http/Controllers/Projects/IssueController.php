@@ -15,7 +15,10 @@ class IssueController extends Controller
 {
     public function index(Project $project)
     {
-        $issues = $project->issues()->with(['pic', 'creator'])->get();
+        $issues = $project->issues()
+            ->with(['pic', 'creator'])
+            ->withCount(['comments'])
+            ->get();
 
         return view('projects.issues.index', compact('project', 'issues'));
     }

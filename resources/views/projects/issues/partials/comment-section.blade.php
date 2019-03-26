@@ -5,7 +5,9 @@
         <strong>{{ $comment->creator->name }}</strong>
     </legend>
     <div class="pull-right">
-        {{ link_to_route('projects.issues.show', __('app.edit'), [$project, $issue, 'action' => 'comment-edit', 'comment_id' => $comment->id], ['id' => 'edit-comment-'.$comment->id, 'class' => 'small', 'title' => __('comment.edit')]) }}
+        @can('update', $comment)
+            {{ link_to_route('projects.issues.show', __('app.edit'), [$project, $issue, 'action' => 'comment-edit', 'comment_id' => $comment->id], ['id' => 'edit-comment-'.$comment->id, 'class' => 'small', 'title' => __('comment.edit')]) }}
+        @endcan
     </div>
     {!! nl2br($comment->body) !!}
 </div>

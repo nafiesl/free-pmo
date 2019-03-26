@@ -28,6 +28,7 @@ class CommentController extends Controller
             'body'       => $newComment['body'],
             'creator_id' => auth()->id(),
         ]);
+        $issue->touch();
 
         flash(__('comment.created'), 'success');
 

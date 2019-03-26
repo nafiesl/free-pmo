@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\File;
 use App\Entities\Projects\Task;
+use App\Entities\Projects\Issue;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Comment;
@@ -349,5 +350,15 @@ class ProjectTest extends TestCase
         $this->dontSeeInDatabase('invoices', [
             'project_id' => $project->id,
         ]);
+    }
+
+    /** @test */
+    public function a_project_has_many_issues_relation()
+    {
+        $project = factory(Project::class)->create();
+        $issue = factory(Issue::class)->create(['project_id' => $project->id]);
+
+        $this->assertInstanceOf(Collection::class, $project->issues);
+        $this->assertInstanceOf(Issue::class, $project->issues->first());
     }
 }

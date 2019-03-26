@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a298d20cfcff4c54b1cce7bb8db3515e",
+    "content-hash": "935f96036f78f878a265f90061c07ece",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -1230,16 +1230,16 @@
         },
         {
             "name": "luthfi/formfield",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/FormField.git",
-                "reference": "59e3ae44a0e04ae6eb6ff66a7f95f29acc5ea109"
+                "reference": "38d206d7b5e1e7893b67b06689d70305b998f0a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/FormField/zipball/59e3ae44a0e04ae6eb6ff66a7f95f29acc5ea109",
-                "reference": "59e3ae44a0e04ae6eb6ff66a7f95f29acc5ea109",
+                "url": "https://api.github.com/repos/nafiesl/FormField/zipball/38d206d7b5e1e7893b67b06689d70305b998f0a1",
+                "reference": "38d206d7b5e1e7893b67b06689d70305b998f0a1",
                 "shasum": ""
             },
             "require": {
@@ -1278,7 +1278,7 @@
                 }
             ],
             "description": "Laravel Form Field the extension of Laravelcollective Form for Laravel 5.3 and newer with Twitter Bootstrap 3",
-            "time": "2018-09-16T11:40:29+00:00"
+            "time": "2019-03-12T15:08:48+00:00"
         },
         {
             "name": "monolog/monolog",

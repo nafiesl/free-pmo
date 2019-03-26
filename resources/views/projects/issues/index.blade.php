@@ -9,6 +9,9 @@
 {!! FormField::select('priority_id', $priorities::toArray(), ['label' => false, 'placeholder' => __('issue.all_priority'), 'value' => request('priority_id')]) !!}
 {!! FormField::select('status_id', $issueStatuses::toArray(), ['label' => false, 'placeholder' => __('issue.all_status'), 'value' => request('status_id')]) !!}
 {{ Form::submit(__('app.filter'), ['class' => 'btn btn-info']) }}
+@if (request(['priority_id', 'status_id']))
+    {{ link_to_route('projects.issues.index', __('app.reset'), $project, ['class' => 'btn btn-default']) }}
+@endif
 {{ Form::close() }}
 @can('create', new App\Entities\Projects\Issue)
     {!! html_link_to_route('projects.issues.create', __('issue.create'), $project, ['class' => 'btn btn-success', 'icon' => 'plus']) !!}

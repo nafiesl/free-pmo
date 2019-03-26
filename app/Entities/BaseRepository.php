@@ -4,7 +4,6 @@ namespace App\Entities;
 
 use App\Entities\Users\User;
 use App\Entities\Projects\Job;
-use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
 
 /**

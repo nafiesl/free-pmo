@@ -3,7 +3,6 @@
 namespace App\Entities\Projects;
 
 use DB;
-use App\Entities\Projects\Issue;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Partners\Customer;

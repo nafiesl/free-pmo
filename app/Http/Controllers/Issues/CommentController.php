@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Issues;
 
 use Illuminate\Http\Request;
 use App\Entities\Projects\Issue;
+use App\Entities\Projects\Comment;
 use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
-
     /**
      * Store a new comment in storage.
      *
@@ -32,5 +32,24 @@ class CommentController extends Controller
         flash(__('comment.created'), 'success');
 
         return back();
+    }
+
+    /**
+     * Update the specified comment.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Entities\Projects\Issue  $issue
+     * @param  \App\Entities\Projects\Comment  $comment
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Issue $issue, Comment $comment)
+    {
+        $commentData = $request->validate([
+            'body' => 'required|string|max:255',
+        ]);
+        $comment->update($commentData);
+        flash(__('comment.updated'), 'success');
+
+        return redirect()->route('projects.issues.show', [$issue->project, $issue]);
     }
 }

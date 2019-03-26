@@ -52,3 +52,14 @@
     </div>
 </div>
 @endsection
+
+@section('script')
+<script>
+(function () {
+    $('#commentModal').modal({
+        show: true,
+        backdrop: 'static',
+    });
+})();
+</script>
+@endsection

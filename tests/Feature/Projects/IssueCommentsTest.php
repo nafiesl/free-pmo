@@ -49,4 +49,36 @@ class IssueCommentsTest extends TestCase
             'creator_id'       => $admin->id,
         ]);
     }
+
+    /** @test */
+    public function user_can_edit_an_issue_comment()
+    {
+        $this->adminUserSigningIn();
+        $issue = factory(Issue::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'issues',
+            'commentable_id'   => $issue->id,
+            'body'             => 'This is issue comment.',
+        ]);
+
+        $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
+        $this->seeElement('a', ['id' => 'edit-comment-'.$comment->id]);
+        $this->click('edit-comment-'.$comment->id);
+        $this->seeRouteIs('projects.issues.show', [$issue->project, $issue, 'action' => 'comment-edit', 'comment_id' => $comment->id]);
+
+        $this->submitForm(__('comment.update'), [
+            'body' => 'Edited comment.',
+        ]);
+
+        $this->seePageIs(route('projects.issues.show', [$issue->project, $issue]));
+        $this->see(__('comment.updated'));
+
+        $this->seeInDatabase('comments', [
+            'id'               => $comment->id,
+            'commentable_type' => 'issues',
+            'commentable_id'   => $issue->id,
+            'body'             => 'Edited comment.',
+        ]);
+    }
+
 }

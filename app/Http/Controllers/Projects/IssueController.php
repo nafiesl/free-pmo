@@ -15,11 +15,20 @@ class IssueController extends Controller
 {
     public function index(Project $project)
     {
-        $issues = $project->issues()
+        $issueQuery = $project->issues()
             ->orderBy('updated_at', 'desc')
             ->with(['pic', 'creator'])
-            ->withCount(['comments'])
-            ->get();
+            ->withCount(['comments']);
+
+        if ($priorityId = request('priority_id')) {
+            $issueQuery->where('priority_id', $priorityId);
+        }
+
+        if ($statusId = request('status_id')) {
+            $issueQuery->where('status_id', $priorityId);
+        }
+
+        $issues = $issueQuery->get();
 
         return view('projects.issues.index', compact('project', 'issues'));
     }

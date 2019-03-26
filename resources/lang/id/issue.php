@@ -9,7 +9,7 @@ return [
     'all'           => 'Semua Issue',
     'select'        => 'Pilih Issue',
     'detail'        => 'Detail Issue',
-    'not_found'     => 'Issue tidak ditemukan',
+    'not_found'     => 'Issue tidak ditemukan.',
     'empty'         => 'Belum ada Issue',
     'back_to_show'  => 'Kembali ke detail Issue',
     'back_to_index' => 'Kembali ke daftar Issue',

@@ -111,3 +111,4 @@ Route::patch('issues/{issue}/options', 'Issues\OptionController@update')->name('
  */
 Route::post('issues/{issue}/comments', 'Issues\CommentController@store')->name('issues.comments.store');
 Route::patch('issues/{issue}/comments/{comment}', 'Issues\CommentController@update')->name('issues.comments.update');
+Route::delete('issues/{issue}/comments/{comment}', 'Issues\CommentController@destroy')->name('issues.comments.destroy');

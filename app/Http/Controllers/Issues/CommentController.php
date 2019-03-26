@@ -54,4 +54,29 @@ class CommentController extends Controller
 
         return redirect()->route('projects.issues.show', [$issue->project, $issue]);
     }
+
+    /**
+     * Remove the specified comment.
+     *
+     * @param  \App\Entities\Projects\Issue  $issue
+     * @param  \\App\Entities\Projects\Comment  $comment
+     * @return \Illuminate\Routing\Redirector
+     */
+    public function destroy(Issue $issue, Comment $comment)
+    {
+        $this->authorize('delete', $comment);
+
+        request()->validate([
+            'comment_id' => 'required|exists:comments,id',
+        ]);
+
+        if (request('comment_id') == $comment->id && $comment->delete()) {
+            flash(__('comment.deleted'), 'warning');
+
+            return redirect()->route('projects.issues.show', [$issue->project, $issue]);
+        }
+        flash(__('comment.undeleted'), 'error');
+
+        return back();
+    }
 }

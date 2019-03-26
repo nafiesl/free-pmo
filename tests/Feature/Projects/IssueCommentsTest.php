@@ -81,4 +81,26 @@ class IssueCommentsTest extends TestCase
         ]);
     }
 
+    /** @test */
+    public function user_can_delete_an_issue_comment()
+    {
+        $this->adminUserSigningIn();
+        $issue = factory(Issue::class)->create();
+        $comment = factory(Comment::class)->create([
+            'commentable_type' => 'issues',
+            'commentable_id'   => $issue->id,
+            'body'             => 'This is issue comment.',
+        ]);
+
+        $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
+        $this->seeElement('button', ['id' => 'delete-comment-'.$comment->id]);
+        $this->press('delete-comment-'.$comment->id);
+
+        $this->seePageIs(route('projects.issues.show', [$issue->project, $issue]));
+        $this->see(__('comment.deleted'));
+
+        $this->dontSeeInDatabase('comments', [
+            'id' => $comment->id,
+        ]);
+    }
 }

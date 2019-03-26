@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Projects;
 use App\Entities\Users\User;
 use Illuminate\Http\Request;
 use App\Entities\Projects\Issue;
+use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Priority;
 use App\Http\Controllers\Controller;
@@ -14,7 +15,11 @@ class IssueController extends Controller
 {
     public function index(Project $project)
     {
-        $issues = $project->issues()->with(['pic', 'creator'])->get();
+        $issues = $project->issues()
+            ->orderBy('updated_at', 'desc')
+            ->with(['pic', 'creator'])
+            ->withCount(['comments'])
+            ->get();
 
         return view('projects.issues.index', compact('project', 'issues'));
     }
@@ -50,12 +55,19 @@ class IssueController extends Controller
 
     public function show(Project $project, Issue $issue)
     {
+        $editableComment = null;
         $priorities = Priority::toArray();
         $statuses = IssueStatus::toArray();
         $users = User::pluck('name', 'id');
+        $comments = $issue->comments()->with('creator')->get();
+
+        if (request('action') == 'comment-edit' && request('comment_id') != null) {
+            $editableComment = Comment::find(request('comment_id'));
+        }
 
         return view('projects.issues.show', compact(
-            'project', 'issue', 'users', 'statuses', 'priorities'
+            'project', 'issue', 'users', 'statuses', 'priorities', 'comments',
+            'editableComment'
         ));
     }
 

@@ -32,6 +32,8 @@
                 {{ link_to_route('projects.issues.index', __('issue.back_to_index'), [$project], ['class' => 'btn btn-default pull-right']) }}
             </div>
         </div>
+        <hr>
+        @include('projects.issues.partials.comment-section')
     </div>
     <div class="col-md-6">
         {{ Form::model($issue, ['route' => ['issues.options.update', $issue], 'method' => 'patch']) }}
@@ -49,4 +51,15 @@
         {{ Form::close() }}
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+(function () {
+    $('#commentModal').modal({
+        show: true,
+        backdrop: 'static',
+    });
+})();
+</script>
 @endsection

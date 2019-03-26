@@ -14,4 +14,16 @@ class IssuePolicy
     {
         return true;
     }
+
+    /**
+     * Determine whether the user can add comment to an issue.
+     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Issue  $issue
+     * @return bool
+     */
+    public function commentOn(User $user, Issue $issue)
+    {
+        return true;
+    }
 }

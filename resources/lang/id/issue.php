@@ -9,7 +9,7 @@ return [
     'all'           => 'Semua Issue',
     'select'        => 'Pilih Issue',
     'detail'        => 'Detail Issue',
-    'not_found'     => 'Issue tidak ditemukan',
+    'not_found'     => 'Issue tidak ditemukan.',
     'empty'         => 'Belum ada Issue',
     'back_to_show'  => 'Kembali ke detail Issue',
     'back_to_index' => 'Kembali ke daftar Issue',
@@ -42,14 +42,16 @@ return [
     'creator' => 'Pembuat Issue',
 
     // Priority
-    'minor'    => 'Minor',
-    'major'    => 'Major',
-    'critical' => 'Critical',
+    'minor'        => 'Minor',
+    'major'        => 'Major',
+    'critical'     => 'Critical',
+    'all_priority' => 'Semua Priority',
 
     // Statuses
-    'open'     => 'Open',
-    'resolved' => 'Selesai',
-    'closed'   => 'Ditutup',
-    'on_hold'  => 'Ditunda',
-    'invalid'  => 'Tidak Valid',
+    'open'       => 'Open',
+    'resolved'   => 'Selesai',
+    'closed'     => 'Ditutup',
+    'on_hold'    => 'Ditunda',
+    'invalid'    => 'Tidak Valid',
+    'all_status' => 'Semua Status',
 ];

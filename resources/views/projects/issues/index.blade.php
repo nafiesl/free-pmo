@@ -1,11 +1,13 @@
+@inject('priorities', 'App\Entities\Projects\Priority')
+@inject('issueStatuses', 'App\Entities\Projects\IssueStatus')
 @extends('layouts.project')
 
 @section('subtitle', __('project.issues'))
 
 @section('action-buttons')
 {{ Form::open(['method' => 'get', 'class' => 'form-inline', 'style' => 'display:inline']) }}
-{!! FormField::select('priority_id', [], ['label' => false, 'placeholder' => __('issue.all_priority')]) !!}
-{!! FormField::select('status_id', [], ['label' => false, 'placeholder' => __('issue.all_status')]) !!}
+{!! FormField::select('priority_id', $priorities::toArray(), ['label' => false, 'placeholder' => __('issue.all_priority'), 'value' => request('priority_id')]) !!}
+{!! FormField::select('status_id', $issueStatuses::toArray(), ['label' => false, 'placeholder' => __('issue.all_status'), 'value' => request('status_id')]) !!}
 {{ Form::submit(__('app.filter'), ['class' => 'btn btn-info']) }}
 {{ Form::close() }}
 @can('create', new App\Entities\Projects\Issue)

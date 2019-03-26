@@ -101,12 +101,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@destroy')->name('jobs.comments.destroy');
 });
 
-/**
+/*
  * Issue Options Routes
  */
 Route::patch('issues/{issue}/options', 'Issues\OptionController@update')->name('issues.options.update');
 
-/**
+/*
  * Issue Comments Routes
  */
 Route::post('issues/{issue}/comments', 'Issues\CommentController@store')->name('issues.comments.store');

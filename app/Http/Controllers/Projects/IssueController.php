@@ -16,6 +16,7 @@ class IssueController extends Controller
     public function index(Project $project)
     {
         $issues = $project->issues()
+            ->orderBy('updated_at', 'desc')
             ->with(['pic', 'creator'])
             ->withCount(['comments'])
             ->get();

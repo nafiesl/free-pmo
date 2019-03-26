@@ -17,6 +17,7 @@ return [
     'total'             => 'gesamt',
     'count'             => 'Summe',
     'remark'            => 'Remark',
+    'last_update'       => 'Last Update',
 
     // Action
     'add'                   => 'Hinzufügen',

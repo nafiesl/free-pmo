@@ -22,6 +22,7 @@
             <th class="text-center">{{ __('comment.comment') }}</th>
             <th>{{ __('issue.pic') }}</th>
             <th>{{ __('issue.creator') }}</th>
+            <th>{{ __('app.last_update') }}</th>
             <th class="text-center">{{ __('app.action') }}</th>
         </thead>
         <tbody>
@@ -37,6 +38,7 @@
                 <td class="text-center">{{ $issue->comments_count }}</td>
                 <td>{{ $issue->pic->name }}</td>
                 <td>{{ $issue->creator->name }}</td>
+                <td>{{ $issue->updated_at->diffForHumans() }}</td>
                 <td class="text-center">
                     {{ link_to_route(
                         'projects.issues.show',

@@ -42,14 +42,16 @@ return [
     'creator' => 'Pembuat Issue',
 
     // Priority
-    'minor'    => 'Minor',
-    'major'    => 'Major',
-    'critical' => 'Critical',
+    'minor'        => 'Minor',
+    'major'        => 'Major',
+    'critical'     => 'Critical',
+    'all_priority' => 'Semua Priority',
 
     // Statuses
-    'open'     => 'Open',
-    'resolved' => 'Selesai',
-    'closed'   => 'Ditutup',
-    'on_hold'  => 'Ditunda',
-    'invalid'  => 'Tidak Valid',
+    'open'       => 'Open',
+    'resolved'   => 'Selesai',
+    'closed'     => 'Ditutup',
+    'on_hold'    => 'Ditunda',
+    'invalid'    => 'Tidak Valid',
+    'all_status' => 'Semua Status',
 ];

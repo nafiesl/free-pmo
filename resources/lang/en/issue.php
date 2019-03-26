@@ -42,15 +42,17 @@ return [
     'creator' => 'Issue Creator',
 
     // Priority
-    'priority' => 'Priority',
-    'minor'    => 'Minor',
-    'major'    => 'Major',
-    'critical' => 'Critical',
+    'priority'     => 'Priority',
+    'minor'        => 'Minor',
+    'major'        => 'Major',
+    'critical'     => 'Critical',
+    'all_priority' => 'All Priority',
 
     // Statuses
-    'open'     => 'Open',
-    'resolved' => 'Resolved',
-    'closed'   => 'Closed',
-    'on_hold'  => 'On Hold',
-    'invalid'  => 'Invalid',
+    'open'       => 'Open',
+    'resolved'   => 'Resolved',
+    'closed'     => 'Closed',
+    'on_hold'    => 'On Hold',
+    'invalid'    => 'Invalid',
+    'all_status' => 'All Status',
 ];

@@ -3,6 +3,11 @@
 @section('subtitle', __('project.issues'))
 
 @section('action-buttons')
+{{ Form::open(['method' => 'get', 'class' => 'form-inline', 'style' => 'display:inline']) }}
+{!! FormField::select('priority_id', [], ['label' => false, 'placeholder' => __('issue.all_priority')]) !!}
+{!! FormField::select('status_id', [], ['label' => false, 'placeholder' => __('issue.all_status')]) !!}
+{{ Form::submit(__('app.filter'), ['class' => 'btn btn-info']) }}
+{{ Form::close() }}
 @can('create', new App\Entities\Projects\Issue)
     {!! html_link_to_route('projects.issues.create', __('issue.create'), $project, ['class' => 'btn btn-success', 'icon' => 'plus']) !!}
 @endcan

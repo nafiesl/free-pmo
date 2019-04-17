@@ -20,13 +20,13 @@
             @forelse($subscriptions as $key => $subscription)
             <tr>
                 <td>{{ 1 + $key }}</td>
-                <td>{{ $subscription->nameLink() }}</td>
+                <td>{{ $subscription->name_link }}</td>
                 <td class="text-center">{!! $subscription->type_label !!}</td>
                 <td>{{ $subscription->customer->name }}</td>
                 <td class="text-right" title="{!! $subscription->dueDateDescription() !!}">
-                    {{ dateId($subscription->due_date) }} {!! $subscription->nearOfDueDateSign() !!}
+                    {{ date_id($subscription->due_date) }} {!! $subscription->nearOfDueDateSign() !!}
                 </td>
-                <td class="text-right">{{ formatRp($subscription->price) }}</td>
+                <td class="text-right">{{ format_money($subscription->price) }}</td>
                 <td>{{ $subscription->vendor->name }}</td>
                 <td class="text-center">{{ $subscription->status() }}</td>
             </tr>

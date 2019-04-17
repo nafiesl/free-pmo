@@ -71,6 +71,7 @@ return [
     'subscriptions' => 'Langganan',
     'status'        => 'Status Project',
     'payments'      => 'Pembayaran',
+    'issues'        => 'Issue',
 
     // Statuses
     'planned'  => 'Rencana',

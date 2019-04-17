@@ -8,7 +8,7 @@ use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
 use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Manage Project Feature Test.
@@ -17,7 +17,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class ManageJobsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function admin_can_entry_job()
@@ -142,7 +142,7 @@ class ManageJobsTest extends TestCase
         $this->seePageIs(route('jobs.show', $project->id));
         $this->see(trans('job.detail'));
         $this->see($job->name);
-        $this->see(formatRp($job->price));
+        $this->see(format_money($job->price));
         $this->see($job->worker->name);
     }
 

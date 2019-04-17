@@ -18,7 +18,7 @@
                     <tr><td>{{ trans('invoice.due_date') }}</td><td>{{ $draft->dueDate }}</td></tr>
                     <tr>
                         <td>{{ trans('invoice.total') }}</td>
-                        <th class="text-right lead">{{ formatRp($draft->getTotal()) }}</th>
+                        <th class="text-right lead">{{ format_money($draft->getTotal()) }}</th>
                     </tr>
                     <tr><td>{{ trans('invoice.notes') }}</td><td>{{ $draft->notes }}</td></tr>
                 </tbody>
@@ -48,7 +48,7 @@
                         <tr>
                             <td width="5%">{{ $key + 1 }}</td>
                             <td width="70%">{!! nl2br($item->description) !!}</td>
-                            <td width="25%" class="text-right">{{ formatRp($item->amount) }}</td>
+                            <td width="25%" class="text-right">{{ format_money($item->amount) }}</td>
                         </tr>
                         @empty
                         @endforelse
@@ -56,7 +56,7 @@
                     <tfoot>
                         <tr>
                             <th colspan="2" class="text-right">{{ trans('invoice.total') }} :</th>
-                            <th class="text-right">{{ formatRp($draft->getTotal()) }}</th>
+                            <th class="text-right">{{ format_money($draft->getTotal()) }}</th>
                         </tr>
                     </tfoot>
                 </table>

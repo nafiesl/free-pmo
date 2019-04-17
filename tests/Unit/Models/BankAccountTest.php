@@ -4,11 +4,11 @@ namespace Tests\Unit\Models;
 
 use Tests\TestCase;
 use App\Entities\Invoices\BankAccount;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class BankAccountTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function a_bank_account_has_status_attribute()

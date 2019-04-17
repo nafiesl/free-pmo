@@ -3,30 +3,30 @@
 namespace Tests\Unit\Models;
 
 use Carbon\Carbon;
-use Tests\TestCase as TestCase;
+use Tests\TestCase;
 use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
 use App\Entities\Subscriptions\Type;
 use App\Entities\Subscriptions\Subscription;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SubscriptionTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
-    public function it_has_name_link_method()
+    public function it_has_name_link_attribute()
     {
         $subscription = factory(Subscription::class)->create();
 
         $this->assertEquals(
-            link_to_route('subscriptions.show', $subscription->name, [$subscription->id], [
+            link_to_route('subscriptions.show', $subscription->name, $subscription, [
                 'title' => trans(
                     'app.show_detail_title',
                     ['name' => $subscription->name, 'type' => trans('subscription.subscription')]
                 ),
-            ]), $subscription->nameLink()
+            ]), $subscription->name_link
         );
     }
 
@@ -69,8 +69,8 @@ class SubscriptionTest extends TestCase
         $next3Months = Carbon::now()->addMonths(2)->format('Y-m-d');
         $subscription = factory(Subscription::class)->make(['due_date' => $next3Months]);
 
-        $dueDateDescription = trans('subscription.start_date').' : '.dateId($subscription->start_date)."\n";
-        $dueDateDescription .= trans('subscription.due_date').' : '.dateId($subscription->due_date);
+        $dueDateDescription = trans('subscription.start_date').' : '.date_id($subscription->start_date)."\n";
+        $dueDateDescription .= trans('subscription.due_date').' : '.date_id($subscription->due_date);
 
         $this->assertEquals($dueDateDescription, $subscription->dueDateDescription());
     }

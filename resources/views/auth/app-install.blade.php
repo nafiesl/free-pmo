@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="text-center">
-                        {!! appLogoImage(['style' => 'width:150px']) !!}
+                        {!! app_logo_image(['style' => 'width:150px']) !!}
                         <h3>{{ config('app.name') }}</h3>
                     </div>
                 </div>

@@ -40,7 +40,7 @@
                 <td class="text-center">{{ $invoice->date }}</td>
                 <td class="text-center">{{ $invoice->due_date }}</td>
                 <td>{{ $project->customer->nameLink() }}</td>
-                <td class="text-right">{{ formatRp($invoice->amount) }}</td>
+                <td class="text-right">{{ format_money($invoice->amount) }}</td>
                 <td class="text-center">
                     {!! html_link_to_route(
                         'invoices.show', '', [$invoice->number],
@@ -68,7 +68,7 @@
         <tfoot>
             <tr>
                 <th colspan="5" class="text-right">{{ trans('app.total') }}</th>
-                <th class="text-right">{{ formatRp($project->invoices->sum('amount')) }}</th>
+                <th class="text-right">{{ format_money($project->invoices->sum('amount')) }}</th>
                 <th>&nbsp;</th>
             </tr>
         </tfoot>

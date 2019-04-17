@@ -2,6 +2,7 @@
 
 namespace App\Entities\Projects;
 
+use DB;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Payments\Payment;
 use App\Entities\Partners\Customer;
@@ -234,14 +235,43 @@ class Project extends Model
             return '-';
         }
 
-        $workDuration = dateDifference($startDate, $endDate);
+        $workDuration = date_difference($startDate, $endDate);
 
         if ((int) $workDuration > 365) {
-            return dateDifference($startDate, $endDate, '%y Year(s) %m Month(s)');
+            return date_difference($startDate, $endDate, '%y Year(s) %m Month(s)');
         } elseif ((int) $workDuration > 30) {
-            return dateDifference($startDate, $endDate, '%m Month(s) %d Day(s)');
+            return date_difference($startDate, $endDate, '%m Month(s) %d Day(s)');
         }
 
         return $workDuration.' Day(s)';
+    }
+
+    /**
+     * Delete the model from the database.
+     *
+     * @return bool|null
+     */
+    public function delete()
+    {
+        DB::beginTransaction();
+        $this->jobs->each->delete();
+        $this->files->each->delete();
+        $this->invoices()->delete();
+        $this->payments()->delete();
+        $this->subscriptions()->delete();
+        $this->comments()->delete();
+        DB::commit();
+
+        return parent::delete();
+    }
+
+    /**
+     * Project has many Issues relation.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function issues()
+    {
+        return $this->hasMany(Issue::class);
     }
 }

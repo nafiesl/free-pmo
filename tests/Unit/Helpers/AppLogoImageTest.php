@@ -3,11 +3,11 @@
 namespace Tests\Unit\Helpers;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AppLogoImageTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function app_logo_path_function_returns_correct_logo_image_path_based_on_agency_logo_path_setting()
@@ -17,13 +17,13 @@ class AppLogoImageTest extends TestCase
             'value' => 'icon_user_1.png',
         ]);
 
-        $this->assertEquals(asset('assets/imgs/icon_user_1.png'), appLogoPath());
+        $this->assertEquals(asset('assets/imgs/icon_user_1.png'), app_logo_path());
     }
 
     /** @test */
     public function app_logo_path_function_returns_default_logo_image_path_if_no_image_logo_path_setting()
     {
-        $this->assertEquals(asset('assets/imgs/default-logo.png'), appLogoPath());
+        $this->assertEquals(asset('assets/imgs/default-logo.png'), app_logo_path());
     }
 
     /** @test */
@@ -33,7 +33,7 @@ class AppLogoImageTest extends TestCase
         $logoString .= ' src="'.asset('assets/imgs/default-logo.png').'"';
         $logoString .= ' alt="Logo Laravel">';
 
-        $this->assertEquals($logoString, appLogoImage());
+        $this->assertEquals($logoString, app_logo_image());
     }
 
     /** @test */
@@ -48,7 +48,7 @@ class AppLogoImageTest extends TestCase
         $logoString .= ' src="'.asset('assets/imgs/icon_user_1.png').'"';
         $logoString .= ' alt="Logo Laravel">';
 
-        $this->assertEquals($logoString, appLogoImage());
+        $this->assertEquals($logoString, app_logo_image());
     }
 
     /** @test */
@@ -69,7 +69,7 @@ class AppLogoImageTest extends TestCase
             'class' => '123',
             'style' => 'display: inline',
         ];
-        $this->assertEquals($logoString, appLogoImage($overrides));
+        $this->assertEquals($logoString, app_logo_image($overrides));
     }
 
     /** @test */
@@ -84,6 +84,6 @@ class AppLogoImageTest extends TestCase
         $logoString .= ' src="'.asset('assets/imgs/default-logo.png').'"';
         $logoString .= ' alt="Logo Laravel">';
 
-        $this->assertEquals($logoString, appLogoImage());
+        $this->assertEquals($logoString, app_logo_image());
     }
 }

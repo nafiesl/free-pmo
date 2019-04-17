@@ -36,7 +36,7 @@
             <tr>
                 <td class="text-center">{{ 1 + $key }}</td>
                 <td class="text-center">{{ $payment->date }}</td>
-                <td class="text-right">{{ formatRp($payment->amount) }}</td>
+                <td class="text-right">{{ format_money($payment->amount) }}</td>
                 <td>{{ $payment->partner->name }}</td>
                 <td>{{ $payment->description }} [{{ $payment->type() }}]</td>
                 <td class="text-center">
@@ -53,7 +53,7 @@
         <tfoot>
             <tr>
                 <th colspan="2" class="text-right">{{ trans('app.total') }}</th>
-                <th class="text-right">{{ formatRp($payments->sum('amount')) }}</th>
+                <th class="text-right">{{ format_money($payments->sum('amount')) }}</th>
                 <th colspan="5"></th>
             </tr>
         </tfoot>

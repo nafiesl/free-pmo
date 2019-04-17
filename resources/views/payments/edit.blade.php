@@ -8,13 +8,13 @@
 
 <div class="row">
     <div class="col-md-6">
-        {!! Form::model($payment, ['route'=>['payments.update', $payment->id], 'method' => 'patch']) !!}
+        {!! Form::model($payment, ['route' => ['payments.update', $payment], 'method' => 'patch']) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ __('payment.edit') }}</h3></div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::radios('in_out', [__('payment.out'), __('payment.in')], ['label'=> __('payment.in_out')]) !!}
+                        {!! FormField::radios('in_out', [__('payment.out'), __('payment.in')], ['label' => __('payment.in_out')]) !!}
                     </div>
                     <div class="col-md-6">
                         {!! FormField::radios('type_id', PaymentType::toArray(), ['label' => __('payment.type'), 'list_style' => 'unstyled']) !!}
@@ -22,32 +22,33 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::text('date', ['label'=> __('app.date')]) !!}
+                        {!! FormField::text('date', ['label' => __('app.date')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::price('amount', ['label'=> __('payment.amount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
+                        {!! FormField::price('amount', ['label' => __('payment.amount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! FormField::select('project_id', $projects, ['label'=> __('payment.project')]) !!}
+                        {!! FormField::select('project_id', $projects, ['label' => __('payment.project')]) !!}
                     </div>
                     <div class="col-sm-6">
                         @if ($payment->partner_type == 'App\Entities\Users\User')
-                            {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}
                             {{ Form::hidden('partner_type', 'users') }}
-                        @else
-                            {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer')]) !!}
                         @endif
+                        {!! FormField::select('partner_id', $partners, [
+                            'label' => __('payment.customer'),
+                            'placeholder' => $payment->in_out ? __('customer.select') : __('vendor.select')
+                        ]) !!}
                     </div>
                 </div>
-                {!! FormField::textarea('description', ['label'=> __('payment.description')]) !!}
+                {!! FormField::textarea('description', ['label' => __('payment.description')]) !!}
             </div>
 
             <div class="panel-footer">
-                {!! Form::submit(__('payment.update'), ['class'=>'btn btn-primary']) !!}
+                {!! Form::submit(__('payment.update'), ['class' => 'btn btn-primary']) !!}
                 {!! link_to_route('projects.payments', __('payment.back_to_index'), [$payment->project_id], ['class' => 'btn btn-default']) !!}
-                {!! link_to_route('payments.delete', __('payment.delete'), [$payment->id], ['class'=>'btn btn-danger pull-right']) !!}
+                {!! link_to_route('payments.delete', __('payment.delete'), [$payment->id], ['class' => 'btn btn-danger pull-right']) !!}
             </div>
         </div>
         {!! Form::close() !!}
@@ -71,6 +72,32 @@
         format:'Y-m-d',
         closeOnDateSelect: true,
         scrollInput: false
+    });
+    $('#in_out_0').click(function() {
+        $.post("{{ route('api.vendors.index') }}", {},
+            function(data) {
+                var string = '<option value="">-- {{ __('vendor.select') }} --</option> ';
+                string = string + `<optgroup label="Vendor">`;
+                $.each(data, function(index, value) {
+                    string = string + `<option value="` + index + `">` + value + `</option>`;
+                });
+                string = string + `</optgroup>`;
+                $("#partner_id").html(string);
+            }
+        );
+    });
+    $('#in_out_1').click(function() {
+        $.post("{{ route('api.customers.index') }}", {},
+            function(data) {
+                var string = '<option value="">-- {{ __('customer.select') }} --</option> ';
+                string = string + `<optgroup label="Customer">`;
+                $.each(data, function(index, value) {
+                    string = string + `<option value="` + index + `">` + value + `</option>`;
+                });
+                string = string + `</optgroup>`;
+                $("#partner_id").html(string);
+            }
+        );
     });
 })();
 </script>

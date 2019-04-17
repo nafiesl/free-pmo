@@ -25,10 +25,6 @@ class SubscriptionRequest extends Request
     public function rules()
     {
         switch ($this->method()) {
-            case 'POST':
-                return $this->getCreateRules();
-                break;
-
             case 'PATCH':
                 return $this->getUpdateRules();
                 break;
@@ -38,6 +34,7 @@ class SubscriptionRequest extends Request
                 break;
 
             default:
+                return $this->getCreateRules();
                 break;
         }
     }
@@ -52,7 +49,7 @@ class SubscriptionRequest extends Request
             'project_id' => 'required|numeric|exists:projects,id',
             'vendor_id'  => 'required|numeric|exists:vendors,id',
             'type_id'    => 'required|numeric',
-            'remark'     => 'max:255',
+            'notes'      => 'nullable|max:255',
         ];
     }
 
@@ -66,7 +63,7 @@ class SubscriptionRequest extends Request
             'project_id' => 'required|numeric|exists:projects,id',
             'vendor_id'  => 'required|numeric|exists:vendors,id',
             'type_id'    => 'required|numeric',
-            'remark'     => 'max:255',
+            'notes'      => 'nullable|max:255',
         ];
     }
 
@@ -79,28 +76,33 @@ class SubscriptionRequest extends Request
         ];
     }
 
-    public function approveFor(Subscription $subscription)
+    public function approveToCreate(Subscription $subscription)
     {
         $project = Project::findOrFail($this->get('project_id'));
 
-        if ($subscription->exists) {
-            $subscriptionData = $this->except(['_method', '_token']);
-            $subscriptionData['customer_id'] = $project->customer_id;
+        $subscription->project_id = $project->id;
+        $subscription->vendor_id = $this->get('vendor_id');
+        $subscription->customer_id = $project->customer_id;
+        $subscription->name = $this->get('name');
+        $subscription->price = $this->get('price');
+        $subscription->start_date = $this->get('start_date');
+        $subscription->due_date = $this->get('due_date');
+        $subscription->type_id = $this->get('type_id');
+        $subscription->notes = $this->get('notes');
 
-            $subscription->update($subscriptionData);
-        } else {
-            $subscription->project_id = $project->id;
-            $subscription->vendor_id = $this->get('vendor_id');
-            $subscription->customer_id = $project->customer_id;
-            $subscription->name = $this->get('name');
-            $subscription->price = $this->get('price');
-            $subscription->start_date = $this->get('start_date');
-            $subscription->due_date = $this->get('due_date');
-            $subscription->type_id = $this->get('type_id');
-            $subscription->notes = $this->get('notes');
+        $subscription->save();
 
-            $subscription->save();
-        }
+        return $subscription;
+    }
+
+    public function approveToUpdate(Subscription $subscription)
+    {
+        $project = Project::findOrFail($this->get('project_id'));
+
+        $subscriptionData = $this->except(['_method', '_token']);
+        $subscriptionData['customer_id'] = $project->customer_id;
+
+        $subscription->update($subscriptionData);
 
         return $subscription;
     }

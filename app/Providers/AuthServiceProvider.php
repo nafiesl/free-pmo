@@ -18,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Entities\Projects\Project'  => 'App\Policies\Projects\ProjectPolicy',
         'App\Entities\Projects\Comment'  => 'App\Policies\Projects\CommentPolicy',
         'App\Entities\Projects\Job'      => 'App\Policies\Projects\JobPolicy',
+        'App\Entities\Projects\Issue'    => 'App\Policies\Projects\IssuePolicy',
         'App\Entities\Projects\Task'     => 'App\Policies\Projects\TaskPolicy',
         'App\Entities\Payments\Payment'  => 'App\Policies\PaymentPolicy',
         'App\Entities\Users\User'        => 'App\Policies\UserPolicy',

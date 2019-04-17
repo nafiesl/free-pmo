@@ -6,6 +6,7 @@ return [
     'list'          => 'Daftar Vendor',
     'detail'        => 'Detail Vendor',
     'search'        => 'Cari Vendor',
+    'select'        => 'Pilih Vendor',
     'not_found'     => 'Vendor tidak ditemukan',
     'empty'         => 'Belum ada Vendor',
     'back_to_show'  => 'Kembali ke detail Vendor',

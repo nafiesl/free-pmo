@@ -7,7 +7,7 @@ use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Manage Payments Feature Test.
@@ -16,7 +16,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class ManagePaymentsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function admin_can_entry_project_an_income_payment()
@@ -166,7 +166,7 @@ class ManagePaymentsTest extends TestCase
             'partner_type' => Vendor::class,
             'partner_id'   => $vendor->id,
         ]);
-        $customer = factory(Customer::class)->create();
+        $customer = $payment->project->customer;
 
         $this->visit(route('payments.edit', $payment->id));
         $this->seePageIs(route('payments.edit', $payment->id));
@@ -216,7 +216,7 @@ class ManagePaymentsTest extends TestCase
         $this->seePageIs(route('payments.show', $payment->id));
         $this->see(trans('payment.detail'));
         $this->see($payment->date);
-        $this->see(formatRp($payment->amount));
+        $this->see(format_money($payment->amount));
         $this->see($payment->description);
         $this->see($payment->partner->name);
     }

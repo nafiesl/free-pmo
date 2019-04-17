@@ -20,13 +20,13 @@ class Subscription extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     /**
-     * Show subscription name with link to subscription detail.
+     * Show subscription name with link to subscription detail attribute.
      *
      * @return Illuminate\Support\HtmlString
      */
-    public function nameLink()
+    public function getNameLinkAttribute()
     {
-        return link_to_route('subscriptions.show', $this->name, [$this->id], [
+        return link_to_route('subscriptions.show', $this->name, $this, [
             'title' => __(
                 'app.show_detail_title',
                 ['name' => $this->name, 'type' => __('subscription.subscription')]
@@ -61,8 +61,8 @@ class Subscription extends Model
      */
     public function dueDateDescription()
     {
-        $dueDateDescription = __('subscription.start_date').' : '.dateId($this->start_date)."\n";
-        $dueDateDescription .= __('subscription.due_date').' : '.dateId($this->due_date);
+        $dueDateDescription = __('subscription.start_date').' : '.date_id($this->start_date)."\n";
+        $dueDateDescription .= __('subscription.due_date').' : '.date_id($this->due_date);
 
         return $dueDateDescription;
     }

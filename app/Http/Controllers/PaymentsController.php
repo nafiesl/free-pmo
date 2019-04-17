@@ -54,8 +54,8 @@ class PaymentsController extends Controller
      */
     public function create()
     {
-        $projects = $this->repo->getProjectsList();
-        $partners = $this->repo->getCustomersAndVendorsList();
+        $projects = $this->getProjectsList();
+        $partners = $this->getCustomersAndVendorsList();
         $project = Project::find(request('project_id'));
 
         return view('payments.create', compact('projects', 'partners', 'project'));
@@ -94,12 +94,14 @@ class PaymentsController extends Controller
      */
     public function edit(Payment $payment)
     {
-        $projects = $this->repo->getProjectsList();
+        $projects = $this->getProjectsList();
 
         if ($payment->partner_type == 'App\Entities\Users\User') {
             $partners = $this->repo->getWorkersList();
+        } elseif ($payment->partner_type == 'App\Entities\Partners\Customer') {
+            $partners = [__('customer.customer') => $this->repo->getCustomersList()];
         } else {
-            $partners = $this->repo->getCustomersAndVendorsList();
+            $partners = [__('vendor.vendor') => $this->getVendorsList()];
         }
 
         return view('payments.edit', compact('payment', 'projects', 'partners'));

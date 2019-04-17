@@ -12,7 +12,7 @@ return [
     'created'        => 'Input Komentar berhasil.',
     'edit'           => 'Edit Komentar',
     'update'         => 'Update Komentar',
-    'updated'        => 'Update data Komentar telah berhasil.',
+    'updated'        => 'Update Komentar berhasil.',
     'delete'         => 'Hapus Komentar',
     'delete_confirm' => 'Anda yakin akan menghapus Komentar ini?',
     'deleted'        => 'Komentar berhasil dihapus.',

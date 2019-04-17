@@ -40,7 +40,7 @@ class JobsController extends Controller
     {
         $selectedProject = null;
         $workers = $this->repo->getWorkersList();
-        $projects = $this->repo->getProjectsList();
+        $projects = $this->getProjectsList();
 
         if ($request->has('project_id')) {
             $selectedProject = Project::find($request->get('project_id'));

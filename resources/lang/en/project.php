@@ -71,6 +71,7 @@ return [
     'subscriptions' => 'Subscriptions',
     'status'        => 'Project Status',
     'payments'      => 'Payments',
+    'issues'        => 'Issues',
 
     // Statuses
     'planned'  => 'Planned',

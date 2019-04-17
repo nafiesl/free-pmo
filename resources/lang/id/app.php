@@ -17,6 +17,7 @@ return [
     'total'             => 'Total',
     'count'             => 'Jumlah',
     'remark'            => 'Keterangan',
+    'last_update'       => 'Update',
 
     // Action
     'add'                   => 'Tambah',

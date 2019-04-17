@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-xs-3"><i class="fa fa-tasks fa-4x"></i></div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge" style="font-size: 38px;">{{ formatDecimal($project->getJobOveralProgress()) }} %</div>
+                        <div class="huge" style="font-size: 38px;">{{ format_decimal($project->getJobOveralProgress()) }} %</div>
                         <div class="lead">{{ __('project.overall_progress') }}</div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="col-xs-12 text-right">
                         <i class="fa fa-money fa-2x pull-left"></i>
                         <div class="lead">Collectibe Earnings</div>
-                        <div class="lead" style="font-size: 30px;">{{ formatRp($project->getCollectibeEarnings()) }}</div>
+                        <div class="lead" style="font-size: 30px;">{{ format_money($project->getCollectibeEarnings()) }}</div>
                     </div>
                 </div>
             </div>

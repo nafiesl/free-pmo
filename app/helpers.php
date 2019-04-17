@@ -6,17 +6,18 @@
  * @param  int  $number money in integer format
  * @return string money in string format
  */
-function formatNo($number)
+function format_no($number)
 {
     return number_format($number, 0, ',', '.');
 }
 
 /**
  * Get number in money currency format.
+ *
  * @param  int|string  $number
  * @return string
  */
-function formatRp($number)
+function format_money($number)
 {
     $moneySign = Option::get('money_sign', 'Rp.');
 
@@ -25,10 +26,10 @@ function formatRp($number)
     }
 
     if ($number < 0) {
-        return '- '.$moneySign.' '.formatNo(abs($number));
+        return '- '.$moneySign.' '.format_no(abs($number));
     }
 
-    return $moneySign.' '.formatNo($number);
+    return $moneySign.' '.format_no($number);
 }
 
 /**
@@ -37,32 +38,9 @@ function formatRp($number)
  * @param  int|string  $number
  * @return string
  */
-function formatDecimal($number)
+function format_decimal($number)
 {
     return number_format($number, 2, ',', '.');
-}
-
-/**
- * Format date in indonesian format dd-mm-yyyy.
- *
- * @param  string  $date
- * @return string
- */
-function formatDate($date)
-{
-    if (!$date || $date == '0000-00-00') {
-        return;
-    }
-
-    $explodedDate = explode('-', $date);
-
-    if (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[0], $explodedDate[2])) {
-        return $explodedDate[2].'-'.$explodedDate[1].'-'.$explodedDate[0];
-    } elseif (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[2], $explodedDate[0])) {
-        return $explodedDate[2].'-'.$explodedDate[1].'-'.$explodedDate[0];
-    }
-
-    throw new App\Exceptions\InvalidDateException('Invalid date format.');
 }
 
 /**
@@ -71,7 +49,7 @@ function formatDate($date)
  * @param  string  $date
  * @return string
  */
-function dateId($date)
+function date_id($date)
 {
     if (is_null($date) || $date == '0000-00-00') {
         return '-';
@@ -80,7 +58,7 @@ function dateId($date)
     $explodedDate = explode('-', $date);
 
     if (count($explodedDate) == 3 && checkdate($explodedDate[1], $explodedDate[2], $explodedDate[0])) {
-        $months = getMonths();
+        $months = get_months();
 
         return $explodedDate[2].' '.$months[$explodedDate[1]].' '.$explodedDate[0];
     }
@@ -94,7 +72,7 @@ function dateId($date)
  * @param  int|string $number
  * @return string
  */
-function monthNumber($number)
+function month_number($number)
 {
     return str_pad($number, 2, '0', STR_PAD_LEFT);
 }
@@ -105,14 +83,14 @@ function monthNumber($number)
  * @param  int|string  $monthNumber
  * @return string
  */
-function monthId($monthNumber)
+function month_id($monthNumber)
 {
     if (is_null($monthNumber)) {
         return $monthNumber;
     }
 
-    $months = getMonths();
-    $monthNumber = monthNumber($monthNumber);
+    $months = get_months();
+    $monthNumber = month_number($monthNumber);
 
     return $months[$monthNumber];
 }
@@ -122,7 +100,7 @@ function monthId($monthNumber)
  *
  * @return array
  */
-function getMonths()
+function get_months()
 {
     return [
         '01' => __('time.months.01'),
@@ -145,7 +123,7 @@ function getMonths()
  *
  * @return array
  */
-function getYears()
+function get_years()
 {
     $yearRange = range(2014, date('Y'));
     foreach ($yearRange as $year) {
@@ -172,7 +150,7 @@ function str_split_ucwords($string)
  * @param  int  $bytes File size.
  * @return string Converted file size with unit.
  */
-function formatSizeUnits($bytes)
+function format_size_units($bytes)
 {
     if ($bytes >= 1073741824) {
         $bytes = number_format($bytes / 1073741824, 2).' GB';
@@ -217,7 +195,7 @@ function html_link_to_route($name, $title = null, $parameters = [], $attributes 
  * @param  string  $differenceFormat
  * @return int|string
  */
-function dateDifference($date1, $date2, $differenceFormat = '%a')
+function date_difference($date1, $date2, $differenceFormat = '%a')
 {
     $datetime1 = date_create($date1);
     $datetime2 = date_create($date2);
@@ -233,10 +211,10 @@ function dateDifference($date1, $date2, $differenceFormat = '%a')
  * @param  array  $attributes
  * @return \Illuminate\Support\HtmlString
  */
-function appLogoImage($attributes = [])
+function app_logo_image($attributes = [])
 {
     return Html::image(
-        appLogoPath(),
+        app_logo_path(),
         'Logo '.Option::get('agency_name', 'Laravel'),
         $attributes
     );
@@ -247,7 +225,7 @@ function appLogoImage($attributes = [])
  *
  * @return string
  */
-function appLogoPath()
+function app_logo_path()
 {
     $defaultLogoImagePath = 'default-logo.png';
     $optionLogoImagePath = Option::get('agency_logo_path');
@@ -266,7 +244,7 @@ function appLogoPath()
  * @param  string  $month
  * @return array
  */
-function monthDateArray($year, $month)
+function month_date_array($year, $month)
 {
     $dateCount = Carbon::parse($year.'-'.$month)->format('t');
     $dates = [];

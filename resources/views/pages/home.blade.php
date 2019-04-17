@@ -32,13 +32,13 @@
                 </tr>
                 <tr>
                     <td class="text-center text-primary lead" style="border-top: none;">
-                        {{ $totalEarnings = formatRp(AdminDashboard::totalEarnings($queriedYear)) }}
+                        {{ $totalEarnings = format_money(AdminDashboard::totalEarnings($queriedYear)) }}
                     </td>
                     <td class="text-center text-primary lead" style="border-top: none;">
                         {{ $totalFinishedProjects = AdminDashboard::totalFinishedProjects($queriedYear) }} Projects
                     </td>
                     <td class="text-center text-primary lead" style="border-top: none;">
-                        {{ $currentOutstandingCustomerPayment = formatRp(AdminDashboard::currentOutstandingCustomerPayment($queriedYear)) }}
+                        {{ $currentOutstandingCustomerPayment = format_money(AdminDashboard::currentOutstandingCustomerPayment($queriedYear)) }}
                     </td>
                 </tr>
             </table>
@@ -71,9 +71,9 @@
                 </tr>
                 @forelse(AdminDashboard::upcomingSubscriptionDueDatesList() as $subscription)
                 <tr>
-                    <td>{{ $subscription->nameLink() }}</td>
+                    <td>{{ $subscription->name_link }}</td>
                     <td>{{ $subscription->customer->name }}</td>
-                    <td class="text-right">{{ formatRp($subscription->price) }}</td>
+                    <td class="text-right">{{ format_money($subscription->price) }}</td>
                     <td class="text-center">
                         {{ $subscription->due_date }}
                         {!! $subscription->nearOfDueDateSign() !!}

@@ -44,7 +44,7 @@
                         <td class="text-center">{{ 1 + $key }}</td>
                         <td>{{ $payment->project->name }}</td>
                         <td class="text-center">{{ $payment->date }}</td>
-                        <td class="text-right">{{ formatRp($payment->amount) }}</td>
+                        <td class="text-right">{{ format_money($payment->amount) }}</td>
                         <td>{{ $payment->description }}</td>
                     </tr>
                 @endforeach
@@ -52,7 +52,7 @@
             <tfoot>
                 <tr>
                     <th class="text-right" colspan="3">{{ __('app.total') }}</th>
-                    <th class="text-right">{{ formatRp($vendor->payments->sum('amount')) }}</th>
+                    <th class="text-right">{{ format_money($vendor->payments->sum('amount')) }}</th>
                     <th>&nbsp;</th>
                 </tr>
             </tfoot>

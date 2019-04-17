@@ -8,7 +8,7 @@ use App\Entities\Projects\Job;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use Illuminate\Support\Collection;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * User Model Unit Test.
@@ -17,7 +17,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class UserTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function user_has_name_link_method()

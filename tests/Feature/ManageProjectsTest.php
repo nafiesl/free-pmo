@@ -8,11 +8,11 @@ use App\Entities\Projects\Task;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ManageProjectsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function admin_can_input_new_project_with_existing_customer()

@@ -3,7 +3,7 @@
 namespace Tests\Feature\Users;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Site Options Feature Test.
@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class SiteOptionsTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function admin_user_can_visit_site_options_page()

@@ -4,7 +4,7 @@ namespace Tests\Unit\Policies;
 
 use Tests\TestCase;
 use App\Entities\Payments\Payment;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Payment Policy Test.
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class PaymentPolicyTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function only_admin_can_create_payment()

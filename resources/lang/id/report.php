@@ -26,4 +26,8 @@ return [
     'this_year'         => 'Tahun Ini',
     'view_yearly'       => 'Lihat Tahunan',
     'view_yearly_label' => 'Lihat Tahunan per',
+
+    // Year to year
+    'year_to_year'      => 'Laponan Tahun ke Tahun',
+    'view_year_to_year' => 'Lihat Laporan Tahun ke Tahun',
 ];

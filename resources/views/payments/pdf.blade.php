@@ -22,7 +22,7 @@
     <table class="receipt-table">
         <tbody>
             <tr>
-                <td style="width:140px;">{{ appLogoImage(['style' => 'width: 100px;']) }}</td>
+                <td style="width:140px;">{{ app_logo_image(['style' => 'width: 100px;']) }}</td>
                 <td style="width:330px">
                     <div style="width:280px">
                         <h4 style="margin:0px; border-bottom: 3px; font-size: 21.5px">{{ Option::get('agency_name') }}</h4>
@@ -63,13 +63,13 @@
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td style="text-align: center;">
-                    {{ Option::get('agency_city') ? Option::get('agency_city').', ' : '' }} {{ dateId($payment->date) }}
+                    {{ Option::get('agency_city') ? Option::get('agency_city').', ' : '' }} {{ date_id($payment->date) }}
                 </td>
             </tr>
             <tr>
                 <td style="font-size: 20px; font-weight: bold; text-align: center;height: 100px;vertical-align: bottom;">@lang('payment.cash_amount')</td>
                 <td style="font-size: 20px; font-weight: bold; vertical-align: bottom;">
-                {{ formatRp($payment->amount) }},-
+                {{ format_money($payment->amount) }},-
                 </td>
                 <td style="text-align: center;vertical-align: bottom;">
                     <strong>{{ auth()->user()->name }}</strong> <br>

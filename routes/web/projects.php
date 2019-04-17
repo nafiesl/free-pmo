@@ -46,6 +46,17 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     Route::delete('projects/{project}/comments/{comment}', 'CommentsController@destroy')->name('projects.comments.destroy');
 
     /*
+     * Project Issues Routes
+     */
+    Route::get('projects/{project}/issues', 'IssueController@index')->name('projects.issues.index');
+    Route::get('projects/{project}/issues/create', 'IssueController@create')->name('projects.issues.create');
+    Route::post('projects/{project}/issues', 'IssueController@store')->name('projects.issues.store');
+    Route::get('projects/{project}/issues/{issue}', 'IssueController@show')->name('projects.issues.show');
+    Route::get('projects/{project}/issues/{issue}/edit', 'IssueController@edit')->name('projects.issues.edit');
+    Route::patch('projects/{project}/issues/{issue}', 'IssueController@update')->name('projects.issues.update');
+    Route::delete('projects/{project}/issues/{issue}', 'IssueController@destroy')->name('projects.issues.destroy');
+
+    /*
      * Tasks Routes
      */
     Route::get('jobs/{job}/tasks/create', ['as' => 'tasks.create', 'uses' => 'TasksController@create']);
@@ -61,6 +72,7 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     Route::post('files/{fileable}', ['as' => 'files.upload', 'uses' => 'FilesController@create']);
     Route::get('files/{file}', ['as' => 'files.download', 'uses' => 'FilesController@show']);
     Route::patch('files/{file}', ['as' => 'files.update', 'uses' => 'FilesController@update']);
+    Route::delete('files/{file}', ['as' => 'files.destroy', 'uses' => 'FilesController@destroy']);
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -88,3 +100,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::patch('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@update')->name('jobs.comments.update');
     Route::delete('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@destroy')->name('jobs.comments.destroy');
 });
+
+/*
+ * Issue Options Routes
+ */
+Route::patch('issues/{issue}/options', 'Issues\OptionController@update')->name('issues.options.update');
+
+/*
+ * Issue Comments Routes
+ */
+Route::post('issues/{issue}/comments', 'Issues\CommentController@store')->name('issues.comments.store');
+Route::patch('issues/{issue}/comments/{comment}', 'Issues\CommentController@update')->name('issues.comments.update');
+Route::delete('issues/{issue}/comments/{comment}', 'Issues\CommentController@destroy')->name('issues.comments.destroy');

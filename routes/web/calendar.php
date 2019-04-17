@@ -1,18 +1,8 @@
 <?php
 
-Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Api'], function () {
+Route::group(['middleware' => ['web', 'auth'], 'namespace' => 'Users'], function () {
     /*
-     * Savety Calendar
+     * User Calendar Route
      */
-    Route::get('my-calendar', ['as' => 'users.calendar', 'uses' => function () {
-        $user = auth()->user();
-
-        if ($user->hasRole('admin') == false) {
-            $projects = $user->projects()->orderBy('projects.name')->pluck('projects.name', 'projects.id');
-        } else {
-            $projects = App\Entities\Projects\Project::orderBy('name')->pluck('name', 'id');
-        }
-
-        return view('users.calendar', compact('projects'));
-    }]);
+    Route::get('my-calendar', 'CalendarController@index')->name('users.calendar');
 });

@@ -3,7 +3,7 @@
 namespace Tests\Unit\Helpers;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 /**
  * Money Format Helper Unit Test.
@@ -12,14 +12,14 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
  */
 class MoneyFormatTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     /** @test */
     public function format_money_returns_string_with_default_money_sign()
     {
-        $this->assertEquals('Rp. 1.000', formatRp(1000));
-        $this->assertEquals('Rp. 0', formatRp(0));
-        $this->assertEquals('- Rp. 1.000', formatRp(-1000));
+        $this->assertEquals('Rp. 1.000', format_money(1000));
+        $this->assertEquals('Rp. 0', format_money(0));
+        $this->assertEquals('- Rp. 1.000', format_money(-1000));
     }
 
     /** @test */
@@ -30,8 +30,8 @@ class MoneyFormatTest extends TestCase
             'value' => 'USD',
         ]);
 
-        $this->assertEquals('USD 1.000', formatRp(1000));
-        $this->assertEquals('USD 0', formatRp(0));
-        $this->assertEquals('- USD 1.000', formatRp(-1000));
+        $this->assertEquals('USD 1.000', format_money(1000));
+        $this->assertEquals('USD 0', format_money(0));
+        $this->assertEquals('- USD 1.000', format_money(-1000));
     }
 }

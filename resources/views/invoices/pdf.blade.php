@@ -39,7 +39,7 @@
         <tbody>
             <tr>
                 <td style="width:100px;">
-                    {!! appLogoImage(['style' => 'width:100%']) !!}
+                    {!! app_logo_image(['style' => 'width:100%']) !!}
                 </td>
                 <td style="width:380px">
                     <div style="width:300px">
@@ -61,7 +61,7 @@
                 <td style="width:270px; text-align: center;">
                     <h3 style="margin: 3px 0; font-size: 24px">{{ __('invoice.invoice') }}</h3>
                     <div style="margin: 5px">{{ __('invoice.number') }} : INV-{{ $invoice->number }}</div>
-                    <div>{{ __('app.date') }} : {{ dateId($invoice->date) }}</div>
+                    <div>{{ __('app.date') }} : {{ date_id($invoice->date) }}</div>
                 </td>
             </tr>
             <tr>
@@ -87,7 +87,7 @@
                 <td class="text-center text-top">
                     @if ($invoice->due_date)
                         <h4 style="margin: 30px 3px 0;">{{ __('invoice.due_date') }}</h4>
-                        <p>{{ dateId($invoice->due_date) }}</p>
+                        <p>{{ date_id($invoice->due_date) }}</p>
                     @endif
                     @if ($taxId = Option::get('agency_tax_id'))
                         <h4 style="margin: 30px 3px 0;">{{ __('agency.tax_id') }}</h4>
@@ -114,7 +114,7 @@
                             <tr>
                                 <td class="text-center text-top">{{ 1 + $key }}</td>
                                 <td>{!! nl2br($item['description']) !!}</td>
-                                <td class="text-right text-top">{{ formatRp($item['amount']) }}</td>
+                                <td class="text-right text-top">{{ format_money($item['amount']) }}</td>
                             </tr>
                             @php
                                 $subtotal += $item['amount'];
@@ -123,19 +123,19 @@
                         @if ($invoice->discount)
                         <tr>
                             <th colspan="2" class="text-right">{{ __('invoice.subtotal') }} :</th>
-                            <th class="text-right">{{ formatRp($subtotal) }}</th>
+                            <th class="text-right">{{ format_money($subtotal) }}</th>
                         </tr>
                         <tr>
                             <td colspan="2" class="text-right">
                                 <strong>{{ __('invoice.discount') }}</strong>
                                 {{ $invoice->discount_notes ? '('.$invoice->discount_notes.')': '' }} :
                             </td>
-                            <th class="text-right">- {{ formatRp($invoice->discount) }}</th>
+                            <th class="text-right">- {{ format_money($invoice->discount) }}</th>
                         </tr>
                         @endif
                         <tr>
                             <th colspan="2" class="text-right">{{ __('app.total') }}</th>
-                            <th colspan="2" class="text-right">{{ formatRp($invoice->amount) }}</th>
+                            <th colspan="2" class="text-right">{{ format_money($invoice->amount) }}</th>
                         </tr>
                     </tbody>
                 </table>
@@ -176,7 +176,7 @@
             <tr>
                 <td colspan="3" class="text-center">
                     {{ Option::get('agency_city') ? Option::get('agency_city').', ' : '' }}
-                    {{ dateId($invoice->date) }} <br><br><br><br>
+                    {{ date_id($invoice->date) }} <br><br><br><br>
                     <div style="font-weight: bold;">{{ Option::get('agency_name') }}</div>
                 </td>
             </tr>

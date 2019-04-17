@@ -24,13 +24,13 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td>{{ $backup->getFilename() }}</td>
-                        <td>{{ formatSizeUnits($backup->getSize()) }}</td>
+                        <td>{{ format_size_units($backup->getSize()) }}</td>
                         <td>{{ date('Y-m-d H:i:s', $backup->getMTime()) }}</td>
                         <td class="text-center">
                             <a href="{{ route('backups.index', ['action' => 'restore', 'file_name' => $backup->getFilename()]) }}"
                                 id="restore_{{ str_replace('.gz', '', $backup->getFilename()) }}"
                                 class="btn btn-warning btn-xs"
-                                title="{{ __('backup.download') }}"><i class="fa fa-rotate-left"></i></a>
+                                title="{{ __('backup.restore') }}"><i class="fa fa-rotate-left"></i></a>
                             <a href="{{ route('backups.download', [$backup->getFilename()]) }}"
                                 id="download_{{ str_replace('.gz', '', $backup->getFilename()) }}"
                                 class="btn btn-info btn-xs"

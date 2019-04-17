@@ -4,12 +4,13 @@ return [
     // Labels
     'customer'      => 'Kunde',
     'list'          => 'Kundenliste',
+    'detail'        => 'Kundendetails',
     'search'        => 'Kundensuche',
+    'select'        => 'Select Customer',
     'not_found'     => 'Kunde nicht gefunden.',
     'empty'         => 'Kunde ist leer.',
     'back_to_show'  => 'Zurück zu Kundendetails',
     'back_to_index' => 'Zurück zur Kundennliste',
-    'detail'        => 'Kundendetails',
     'contact'       => 'Kundenkontakt',
 
     // Actions

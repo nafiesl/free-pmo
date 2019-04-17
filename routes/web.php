@@ -1,5 +1,7 @@
 <?php
 
+//upload table issues
+
 require __DIR__.'/web/pages.php';
 require __DIR__.'/web/users.php';
 require __DIR__.'/web/references.php';

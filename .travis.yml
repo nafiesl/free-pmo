@@ -11,7 +11,7 @@ before_script:
   - php artisan key:generate
 
 script:
-  - vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+  - vendor/bin/phpunit
 
 after_success:
   - vendor/bin/php-coveralls -v --exclude-no-stmt

@@ -19,7 +19,7 @@ class LoginTest extends TestCase
 
         $this->submitForm(trans('auth.login'), [
             'email'    => 'email@mail.com',
-            'password' => 'member',
+            'password' => 'secret',
         ]);
 
         $this->see(trans('auth.welcome', ['name' => $user->name]));

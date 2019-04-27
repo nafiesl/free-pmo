@@ -43,7 +43,7 @@ class ChangePasswordController extends Controller
 
         if (app('hash')->check($input['old_password'], auth()->user()->password)) {
             $user = auth()->user();
-            $user->password = $input['password'];
+            $user->password = bcrypt($input['password']);
             $user->save();
 
             flash(trans('auth.password_changed'), 'success');

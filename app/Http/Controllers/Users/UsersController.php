@@ -37,8 +37,10 @@ class UsersController extends Controller
             'role'     => 'required|array',
         ]);
 
-        if (!$userData['password']) {
-            $userData['password'] = \Option::get('password_default', 'member');
+        if ($userData['password']) {
+            $userData['password'] = bcrypt($userData['password']);
+        } else {
+            $userData['password'] = bcrypt(\Option::get('password_default', 'member'));
         }
 
         $userData['api_token'] = str_random(32);
@@ -90,6 +92,9 @@ class UsersController extends Controller
             'lang'     => 'required|string|in:en,id',
         ]);
 
+        if ($userData['password']) {
+            $userData['password'] = bcrypt($userData['password']);
+        }
         $user->update($userData);
 
         \DB::table('user_roles')->where(['user_id' => $user->id])->delete();

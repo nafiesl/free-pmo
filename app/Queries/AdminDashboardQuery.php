@@ -26,7 +26,7 @@ class AdminDashboardQuery
     public function totalEarnings($year)
     {
         $totalEarnings = 0;
-        $payments = Payment::where('date', 'like', $year.'%')->get();
+        $payments = Payment::whereYear('date', $year)->get();
         foreach ($payments as $payment) {
             if ($payment->in_out == 1) {
                 $totalEarnings += $payment->amount;
@@ -47,7 +47,7 @@ class AdminDashboardQuery
      */
     public function totalFinishedProjects($year)
     {
-        return Project::where('status_id', 4)->where('start_date', 'like', $year.'%')->count();
+        return Project::where('status_id', 4)->whereYear('start_date', $year)->count();
     }
 
     /**
@@ -61,7 +61,7 @@ class AdminDashboardQuery
     {
         // On Progress, Done, On Hold
         $projects = Project::whereIn('status_id', [2, 3, 6])
-            ->where('start_date', 'like', $year.'%')
+            ->whereYear('start_date', $year)
             ->with('payments')
             ->get();
 

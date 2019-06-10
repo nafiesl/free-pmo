@@ -39,6 +39,7 @@
 
     {!! Html::script(url('assets/js/jquery.js')) !!}
     {!! Html::script(url('assets/js/bootstrap.min.js')) !!}
+    {!! Html::script(url('assets/js/textcounter.min.js')) !!}
     @include('layouts.partials.noty')
     {!! Html::script(url('assets/js/plugins/metisMenu/metisMenu.min.js')) !!}
     @yield('ext_js')
@@ -56,6 +57,10 @@
             }
         });
     })();
+
+    $(function(){
+        $('.countable').textcounter();
+    });
     </script>
 
     @yield('script')

@@ -32,7 +32,7 @@
                         {!! FormField::price('proposal_value', ['label' => trans('project.proposal_value'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
                     </div>
                 </div>
-                {!! FormField::textarea('description', ['label' => trans('project.description')]) !!}
+                {!! FormField::textarea('description', ['label' => trans('project.description') , 'class' => 'countable']) !!}
             </div>
 
             <div class="panel-footer">

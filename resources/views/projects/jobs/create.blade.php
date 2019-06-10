@@ -37,7 +37,7 @@
                     <div class="col-md-4">{!! FormField::text('target_start_date', ['label' => __('job.target_start_date'), 'class' => 'date-select']) !!}</div>
                     <div class="col-md-4">{!! FormField::text('target_end_date', ['label' => __('job.target_end_date'), 'class' => 'date-select']) !!}</div>
                 </div>
-                {!! FormField::textarea('description', ['label' => __('job.description')]) !!}
+                {!! FormField::textarea('description', ['label' => __('job.description') , 'class' => 'countable']) !!}
             </div>
 
             <div class="panel-footer">

@@ -113,6 +113,11 @@ class ManageUsersTest extends TestCase
             'user_id' => $user2->id,
             'role_id' => 2,
         ]);
+
+        $this->assertTrue(
+            app('hash')->check('password', $user2->fresh()->password),
+            'The password should changed!'
+        );
     }
 
     /** @test */

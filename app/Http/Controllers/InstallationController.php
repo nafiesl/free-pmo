@@ -48,6 +48,7 @@ class InstallationController extends Controller
         $adminData = $request->only('name', 'email', 'password');
 
         $adminData['api_token'] = str_random(32);
+        $adminData['password'] = bcrypt($adminData['password']);
 
         $admin = User::create($adminData);
         $admin->assignRole('admin');

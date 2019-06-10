@@ -20,7 +20,7 @@ class Vendor extends Model
      */
     public function payments()
     {
-        return $this->morphMany('App\Entities\Payments\Payment', 'partner');
+        return $this->morphMany('App\Entities\Payments\Payment', 'partner')->orderBy('date');
     }
 
     /**

@@ -2,7 +2,7 @@
 > *Tell our clients that we are managing our projects professionally.*
 
 [![Build Status](https://travis-ci.org/nafiesl/free-pmo.svg?branch=master)](https://travis-ci.org/nafiesl/free-pmo)
-[![StyleCI](https://styleci.io/repos/111558421/shield?branch=develop)](https://styleci.io/repos/111558421)
+[![StyleCI](https://styleci.io/repos/111558421/shield?branch=master)](https://styleci.io/repos/111558421)
 
 Free PMO (Project Management Office), software management project untuk *freelancer* dan agensi, dibangun dengan Framework **Laravel 5**.
 
@@ -41,7 +41,7 @@ Tujuan utama Free PMO adalah membantu pengelolaan data project dengan mudah dan 
 Aplikasi ini dapat dipasang dalam server lokal (PC/Laptop) dan server online, dengan spesifikasi berikut :
 
 #### Spesifikasi minimum server
-1. PHP 7.1.3 (dan memenuhi [server requirement Laravel 5.7](https://laravel.com/docs/5.7#server-requirements)),
+1. PHP 7.1.3 (dan memenuhi [server requirement Laravel 5.8](https://laravel.com/docs/5.8#server-requirements)),
 2. MySQL atau MariaDB,
 3. SQlite (untuk automated testing).
 
@@ -72,7 +72,7 @@ Project ini dikembangkan oleh [Nafies Luthfi](https://github.com/nafiesl) dan pa
 Free PMO dibangun menggunakan [metode TDD](https://blog.nafies.id/laravel/testing-laravel-tentang-automated-testing) dengan bahan dan dukungan dari paket-paket berikut ini :
 
 ##### Dependencies
-* [Framework Laravel](https://laravel.com/docs/5.7) (versi 5.2 s/d 5.7).
+* [Framework Laravel](https://laravel.com/docs/5.8) (versi 5.2 s/d 5.8).
 * [luthfi/formfield](https://github.com/nafiesl/FormField), Wrapper Form dari [laravelcollective/html](https://github.com/laravelcollective/html) dengan Bootstrap 3.
 * [riskihajar/terbilang](https://github.com/riskihajar/terbilang), membuat angka terbilang (pada fitur cetak kuitansi) dan romawi.
 

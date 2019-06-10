@@ -24,16 +24,6 @@ class User extends Authenticatable
     protected $hidden = ['password', 'remember_token', 'api_token'];
 
     /**
-     * Set user password attribute on save.
-     *
-     * @param void
-     */
-    public function setPasswordAttribute($value)
-    {
-        $this->attributes['password'] = bcrypt($value);
-    }
-
-    /**
      * Show user name with link to user detail.
      *
      * @return Illuminate\Support\HtmlString

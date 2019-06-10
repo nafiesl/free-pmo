@@ -59,7 +59,10 @@
     })();
 
     $(function(){
-        $('.countable').textcounter();
+        $('.countable').textcounter({
+            max: 1024, //just an arbitrary default
+        	stopInputAtMaximum: false
+        });
     });
     </script>
 

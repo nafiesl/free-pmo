@@ -22,6 +22,17 @@ class SiteOptionTest extends TestCase
     }
 
     /** @test */
+    public function option_value_null_must_be_converted_to_empty_string()
+    {
+        Option::set('testing_key', null);
+
+        $this->seeInDatabase('site_options', [
+            'key'   => 'testing_key',
+            'value' => '',
+        ]);
+    }
+
+    /** @test */
     public function option_can_be_get()
     {
         \DB::table('site_options')->insert([

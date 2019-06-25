@@ -45,12 +45,16 @@ class Option
      * Set new value for given option key.
      *
      * @param string $key   The option key.
-     * @param string $value The option value to be saved.
+     * @param mixed $value The option value to be saved.
      *
      * @return string The option value.
      */
-    public function set($key, string $value)
+    public function set($key, $value)
     {
+        if (is_null($value) || !is_string($value)) {
+            $value = '';
+        }
+
         $option = $this->option->where('key', $key)->first();
 
         if ($option) {

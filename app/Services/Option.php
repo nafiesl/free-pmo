@@ -49,8 +49,12 @@ class Option
      *
      * @return string The option value.
      */
-    public function set($key, string $value)
+    public function set($key, ?string $value)
     {
+        if (is_null($value)) {
+            $value = '';
+        }
+
         $option = $this->option->where('key', $key)->first();
 
         if ($option) {

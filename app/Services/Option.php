@@ -45,13 +45,13 @@ class Option
      * Set new value for given option key.
      *
      * @param string $key   The option key.
-     * @param mixed $value The option value to be saved.
+     * @param string $value The option value to be saved.
      *
      * @return string The option value.
      */
-    public function set($key, $value)
+    public function set($key, ?string $value)
     {
-        if (is_null($value) || !is_string($value)) {
+        if (is_null($value)) {
             $value = '';
         }
 

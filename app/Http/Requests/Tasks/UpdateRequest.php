@@ -35,9 +35,9 @@ class UpdateRequest extends Request
         //achieved using environmental variable.
         //A value of zero (0) will mean "no limit"
 
-        $char_len_task_description = intval(env("CHAR_LEN_TASK_DESCRIPTION", 255));
+        $char_len_task_description = intval(env('CHAR_LEN_TASK_DESCRIPTION', 255));
         if ($char_len_task_description > 0) {
-            $rules["description"] = "max:$char_len_task_description";
+            $rules['description'] = "max:$char_len_task_description";
         }
 
         return $rules;

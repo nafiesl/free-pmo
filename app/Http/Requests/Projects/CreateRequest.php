@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Projects;
 
-use App\Entities\Projects\Project;
 use App\Http\Requests\Request;
+use App\Entities\Projects\Project;
 
 class CreateRequest extends Request
 {
@@ -37,9 +37,9 @@ class CreateRequest extends Request
         //achieved using environmental variable.
         //A value of zero (0) will mean "no limit"
 
-        $char_len_project_description = intval(env("CHAR_LEN_PROJECT_DESCRIPTION", 255));
+        $char_len_project_description = intval(env('CHAR_LEN_PROJECT_DESCRIPTION', 255));
         if ($char_len_project_description > 0) {
-            $rules["description"] = "max:$char_len_project_description";
+            $rules['description'] = "max:$char_len_project_description";
         }
 
         return $rules;

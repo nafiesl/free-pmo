@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Tasks;
 
-use App\Entities\Projects\Task;
 use App\Http\Requests\Request;
+use App\Entities\Projects\Task;
 
 class CreateRequest extends Request
 {
@@ -24,7 +24,6 @@ class CreateRequest extends Request
      */
     public function rules()
     {
-
         $rules = [
             'name'     => 'required|max:60',
             'progress' => 'required|numeric|max:100',
@@ -34,9 +33,9 @@ class CreateRequest extends Request
         //achieved using environmental variable.
         //A value of zero (0) will mean "no limit"
 
-        $char_len_task_description = intval(env("CHAR_LEN_TASK_DESCRIPTION", 255));
+        $char_len_task_description = intval(env('CHAR_LEN_TASK_DESCRIPTION', 255));
         if ($char_len_task_description > 0) {
-            $rules["description"] = "max:$char_len_task_description";
+            $rules['description'] = "max:$char_len_task_description";
         }
 
         return $rules;

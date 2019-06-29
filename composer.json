@@ -13,7 +13,8 @@
         "laravel/framework": "5.7.*",
         "luthfi/formfield": "^1.0",
         "riskihajar/terbilang": "^1.2",
-        "spatie/laravel-fractal": "<5.5"
+        "spatie/laravel-fractal": "<5.5",
+        "spatie/laravel-medialibrary": "^7.0.0"
     },
 
     "require-dev": {

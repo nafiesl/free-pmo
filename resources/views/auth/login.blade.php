@@ -12,6 +12,7 @@
         	{{ Form::open(['route' => 'auth.login']) }}
             {!! FormField::email('email', ['label' => false, 'placeholder'=> __('auth.email')]) !!}
             {!! FormField::password('password', ['label' => false, 'placeholder'=> __('auth.password')]) !!}
+            {!! FormField::checkboxes('remember', [__('auth.remember_me')]) !!}
             {{ Form::submit(__('auth.login'), ['class' => 'btn btn-success btn-block']) }}
             {{ link_to_route('auth.reset-request', __('auth.forgot_password'), [], ['class' => 'btn btn-link']) }}
             {{ Form::close() }}

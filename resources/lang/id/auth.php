@@ -19,6 +19,7 @@ return [
     'throttle'   => 'Terlalu banyak usaha masuk. Silahkan coba lagi dalam :seconds detik.',
     'logout'     => 'Keluar',
     'logged_out' => 'Anda telah logout.',
+    'remember_me' => 'Ingat saya',
 
     // Password
     'change_password'          => 'Ganti Password',

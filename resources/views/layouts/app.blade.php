@@ -11,6 +11,15 @@
 
     @yield('ext_css')
     {!! Html::style('assets/css/app.css') !!}
+    {!! Html::style('assets/css/bootstrap-v3.4.0.min.css') !!}
+    {!! Html::style('assets/css/sb-admin-2.min.css') !!}
+
+    <style>
+
+.sidebar {
+     margin-top: 0px;
+}
+    </style>
 </head>
 <body>
     <div id="wrapper">
@@ -30,6 +39,7 @@
 
     {!! Html::script(url('assets/js/jquery.js')) !!}
     {!! Html::script(url('assets/js/bootstrap.min.js')) !!}
+    {!! Html::script(url('assets/js/textcounter.min.js')) !!}
     @include('layouts.partials.noty')
     {!! Html::script(url('assets/js/plugins/metisMenu/metisMenu.min.js')) !!}
     @yield('ext_js')
@@ -47,6 +57,13 @@
             }
         });
     })();
+
+    $(function(){
+        $('.countable').textcounter({
+            max: 1024, //just an arbitrary default
+        	stopInputAtMaximum: false
+        });
+    });
     </script>
 
     @yield('script')

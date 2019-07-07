@@ -26,14 +26,24 @@ class CreateRequest extends Request
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name'              => 'required|max:60',
             'price'             => 'required|numeric',
             'worker_id'         => 'required|numeric',
             'type_id'           => 'required|numeric',
             'target_start_date' => 'nullable|date|date_format:Y-m-d',
             'target_end_date'   => 'nullable|date|date_format:Y-m-d',
-            'description'       => 'max:255',
         ];
+
+        //Allow for flexibility instead of optionless hard-coded value for "description". This is
+        //achieved using environmental variable.
+        //A value of zero (0) will mean "no limit"
+
+        $char_len_job_description = intval(env('CHAR_LEN_JOB_DESCRIPTION', 255));
+        if ($char_len_job_description > 0) {
+            $rules['description'] = "max:$char_len_job_description";
+        }
+
+        return $rules;
     }
 }

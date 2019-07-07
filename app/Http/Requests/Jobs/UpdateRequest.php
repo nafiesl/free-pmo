@@ -26,12 +26,22 @@ class UpdateRequest extends Request
      */
     public function rules()
     {
-        return [
-            'name'        => 'required|max:60',
-            'price'       => 'required|numeric',
-            'worker_id'   => 'required|numeric',
-            'type_id'     => 'required|numeric',
-            'description' => 'max:255',
+        $rules = [
+            'name'      => 'required|max:60',
+            'price'     => 'required|numeric',
+            'worker_id' => 'required|numeric',
+            'type_id'   => 'required|numeric',
         ];
+
+        //Allow for flexibility instead of optionless hard-coded value for "description". This is
+        //achieved using environmental variable.
+        //A value of zero (0) will mean "no limit"
+
+        $char_len_job_description = intval(env('CHAR_LEN_JOB_DESCRIPTION', 255));
+        if ($char_len_job_description > 0) {
+            $rules['description'] = "max:$char_len_job_description";
+        }
+
+        return $rules;
     }
 }

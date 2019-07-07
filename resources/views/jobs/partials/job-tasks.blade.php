@@ -98,7 +98,7 @@
                 <strong id="ap_weight">0</strong>%
             </div>
         </div>
-        {!! FormField::textarea('description', ['label' => __('task.description')]) !!}
+        {!! FormField::textarea('description', ['label' => __('task.description') , 'class' => 'countable']) !!}
         {{ Form::submit(__('task.create'), ['class' => 'btn btn-primary']) }}
         {{ Form::close() }}
     </div>

@@ -26,9 +26,8 @@ class UpdateRequest extends Request
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name'           => 'required|max:50',
-            'description'    => 'nullable|max:255',
             'proposal_date'  => 'nullable|date|date_format:Y-m-d',
             'proposal_value' => 'nullable|numeric',
             'start_date'     => 'nullable|date|date_format:Y-m-d',
@@ -38,5 +37,16 @@ class UpdateRequest extends Request
             'customer_id'    => 'nullable|numeric',
             'status_id'      => 'required|numeric',
         ];
+
+        //Allow for flexibility instead of optionless hard-coded value for "description". This is
+        //achieved using environmental variable.
+        //A value of zero (0) will mean "no limit"
+
+        $char_len_project_description = intval(env('CHAR_LEN_PROJECT_DESCRIPTION', 255));
+        if ($char_len_project_description > 0) {
+            $rules['description'] = "max:$char_len_project_description";
+        }
+
+        return $rules;
     }
 }

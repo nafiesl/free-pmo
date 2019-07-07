@@ -15,7 +15,7 @@
                 {!! FormField::text('name', ['label' => __('project.name')]) !!}
                 <div class="row">
                     <div class="col-md-8">
-                        {!! FormField::textarea('description', ['label' => __('project.description'),'rows' => 5]) !!}
+                        {!! FormField::textarea('description', ['label' => __('project.description'),'rows' => 5 , 'class' => 'countable']) !!}
                     </div>
                     <div class="col-md-4">
                         {!! FormField::price('proposal_value', ['label' => __('project.proposal_value'), 'currency' => Option::get('money_sign', 'Rp')]) !!}

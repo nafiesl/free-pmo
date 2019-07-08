@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="x-csrf-token" content="{{ csrf_token() }}">
@@ -15,12 +16,12 @@
     {!! Html::style('assets/css/sb-admin-2.min.css') !!}
 
     <style>
-
-.sidebar {
-     margin-top: 0px;
-}
+        .sidebar {
+            margin-top: 0px;
+        }
     </style>
 </head>
+
 <body>
     <div id="wrapper">
 
@@ -46,7 +47,7 @@
     {!! Html::script(url('assets/js/sb-admin-2.js')) !!}
 
     <script type="text/javascript">
-    (function() {
+        (function() {
         $("div.alert.notifier, div.alert.add-cart-notifier").delay(5000).slideUp('slow');
         $.ajaxSetup({
             headers: {
@@ -69,4 +70,5 @@
     @yield('script')
 
 </body>
+
 </html>

@@ -82,13 +82,13 @@ class JobsRepository extends BaseRepository
         }
 
         $jobData['price'] = str_replace('.', '', $jobData['price']);
-        $jobData = collect( $jobData);
+        $jobData = collect($jobData);
         $job = $this->requireById($jobId);
 
-        if($jobData->has('files')){
+        if ($jobData->has('files')) {
             foreach ($jobData->get('files') as $file) {
                 $path = $file->getPathName();
-                if(is_file($path)){
+                if (is_file($path)) {
                     $job->addMedia($path)->toMediaCollection();
                 }
             }

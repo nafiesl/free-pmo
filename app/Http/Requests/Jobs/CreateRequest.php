@@ -39,9 +39,9 @@ class CreateRequest extends Request
         //achieved using environmental variable.
         //A value of zero (0) will mean "no limit"
 
-        $char_len_job_description = intval(env('CHAR_LEN_JOB_DESCRIPTION', 255));
-        if ($char_len_job_description > 0) {
-            $rules['description'] = "max:$char_len_job_description";
+        $charLenJobDescription = intval(env('DESCRIPTION_CHAR_LEN', 255));
+        if ($charLenJobDescription > 0) {
+            $rules['description'] = "max:$charLenJobDescription";
         }
 
         return $rules;

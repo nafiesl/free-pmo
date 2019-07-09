@@ -92,13 +92,11 @@ class JobsController extends Controller
      */
     public function edit(Job $job)
     {
-        $files = $job->getMedia();
-
         $this->authorize('view', $job);
 
         $workers = $this->repo->getWorkersList();
 
-        return view('jobs.edit', compact('job', 'workers', 'files'));
+        return view('jobs.edit', compact('job', 'workers'));
     }
 
     /**

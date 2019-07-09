@@ -73,11 +73,6 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
     Route::get('files/{file}', ['as' => 'files.download', 'uses' => 'FilesController@show']);
     Route::patch('files/{file}', ['as' => 'files.update', 'uses' => 'FilesController@update']);
     Route::delete('files/{file}', ['as' => 'files.destroy', 'uses' => 'FilesController@destroy']);
-
-    /*
-     * Job file attachments
-     */
-    Route::get('files/show/{job}/{media_id}', 'FilesController@showAttachment')->name('show-job-file');
 });
 
 Route::group(['middleware' => ['auth']], function () {

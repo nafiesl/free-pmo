@@ -48,16 +48,16 @@
 
     <script type="text/javascript">
         (function() {
-        $("div.alert.notifier, div.alert.add-cart-notifier").delay(5000).slideUp('slow');
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-Token': $('meta[name="x-csrf-token"]').attr('content')
-            },
-            beforeSend: function(xhr){
-                xhr.setRequestHeader('Authorization', 'Bearer ' + "{{ auth()->user()->api_token }}");
-            }
-        });
-    })();
+            $("div.alert.notifier, div.alert.add-cart-notifier").delay(5000).slideUp('slow');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-Token': $('meta[name="x-csrf-token"]').attr('content')
+                },
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + "{{ auth()->user()->api_token }}");
+                }
+            });
+        })();
 
     $(function(){
         $('.countable').textcounter({

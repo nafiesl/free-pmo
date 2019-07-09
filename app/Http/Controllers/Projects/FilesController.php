@@ -125,17 +125,4 @@ class FilesController extends Controller
     {
         return strtolower((new \ReflectionClass($modelName))->getShortName());
     }
-
-    public function showAttachment(Request $request, \App\Entities\Projects\Job $job, $media_id)
-    {
-        $files = $job->getMedia();
-
-        foreach ($files as $file) {
-            if ($file->id == $media_id) {
-                return \Response::file($file->getPath());
-            }
-        }
-
-        return back()->withErrors(['media not found']);
-    }
 }

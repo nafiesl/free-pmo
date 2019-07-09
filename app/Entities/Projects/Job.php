@@ -6,18 +6,15 @@ use DB;
 use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * Job Model.
  *
  * @author Nafies Luthfi <nafiesl@gmail.com>
  */
-class Job extends Model implements HasMedia
+class Job extends Model
 {
     use PresentableTrait;
-    use HasMediaTrait;
 
     /**
      * @var \App\Entities\Projects\JobPresenter

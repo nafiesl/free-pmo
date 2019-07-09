@@ -5,7 +5,7 @@
 @section('content')
 <div class="row"><br>
     <div class="col-md-6">
-        {!! Form::model($job, ['route' => ['jobs.update', $job], 'method' => 'patch' , 'files' => true] ) !!}
+        {!! Form::model($job, ['route' => ['jobs.update', $job], 'method' => 'patch']) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ $job->name }} <small>{{ __('job.edit') }}</small></h3></div>
             <div class="panel-body">
@@ -30,16 +30,6 @@
                     <div class="col-md-4">{!! FormField::text('actual_end_date', ['label' => __('job.actual_end_date'), 'class' => 'date-select']) !!}</div>
                 </div>
                 {!! FormField::textarea('description', ['label' => __('job.description') , 'class' => 'countable']) !!}
-
-                @if ($files->isNotEmpty())
-                <b>
-                    {{$files->count()}} files
-                </b>
-                @else
-                no files attached yet
-                @endif
-                {!! Form::file('files[]', ['label' => __('job.files') , 'multiple' => 'true']) !!}
-
             </div>
 
             <div class="panel-footer">

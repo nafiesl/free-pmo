@@ -11,17 +11,6 @@
             <tr><th>{{ __('job.worker') }}</th><td>{{ $job->worker->name }}</td></tr>
             <tr><th>{{ __('time.updated_at') }}</th><td>{{ $job->updated_at }}</td></tr>
             <tr><th>{{ __('job.description') }}</th><td>{!! nl2br($job->description) !!}</td></tr>
-            <tr>
-                <th>{{ __('job.files') }}</th>
-                <td>
-                    @if ($job->hasMedia())
-                    @foreach ($job->getMedia() as $item)
-                    <a target="_blank" href="{{route('show-job-file', ['job' => $job->id , 'media_id' => $item->id])}}">{{$item->name}}</a>
-                    @endforeach
-                    @else
-                    @endif
-                </td>
-            </tr>
         </tbody>
     </table>
 </div>

@@ -49,13 +49,15 @@ class JobsRepository extends BaseRepository
             $newJob->project_id = $projectId;
             $newJob->save();
 
-            $selectedTasks = $job->tasks()->whereIn('id', $jobsData[$job->id.'_task_ids'])->get();
+            if (isset($jobsData[$job->id.'_task_ids'])) {
+                $selectedTasks = $job->tasks()->whereIn('id', $jobsData[$job->id.'_task_ids'])->get();
 
-            foreach ($selectedTasks as $task) {
-                $newTask = $task->replicate();
-                $newTask->progress = 0;
-                $newTask->job_id = $newJob->id;
-                $newTask->save();
+                foreach ($selectedTasks as $task) {
+                    $newTask = $task->replicate();
+                    $newTask->progress = 0;
+                    $newTask->job_id = $newJob->id;
+                    $newTask->save();
+                }
             }
         }
         DB::commit();

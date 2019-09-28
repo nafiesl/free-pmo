@@ -2,6 +2,7 @@
 
 namespace App\Services\InvoiceDrafts;
 
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 
 /**
@@ -68,7 +69,7 @@ class InvoiceDraftCollection
     public function add(InvoiceDraft $draft)
     {
         $content = $this->getContent();
-        $draft->draftKey = str_random(10);
+        $draft->draftKey = Str::random(10);
         $content->put($draft->draftKey, $draft);
 
         $this->session->put($this->instance, $content);

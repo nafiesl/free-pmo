@@ -25,7 +25,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::text('date', ['label'=> __('payment.date')]) !!}
+                        {!! FormField::text('date', ['label'=> __('payment.date'), 'value' => now()->format('Y-m-d')]) !!}
                     </div>
                     <div class="col-md-6">
                         {!! FormField::price('amount', ['label'=> __('payment.amount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ed0147983f1923abcdd013b0bf34a2e",
+    "content-hash": "f997ada5dc55681a6e1b4477c1996b2b",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -1366,7 +1366,7 @@
                     "Psr\\SimpleCache\\": "src/"
                 }
             },
-            "notification-url": "http://87.98.253.214/downloads/",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1562,9 +1562,9 @@
             "authors": [
                 {
                     "name": "Freek Van der Herten",
-                    "role": "Developer",
                     "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be"
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
                 }
             ],
             "description": "A developer friendly wrapper around Fractal",
@@ -3438,7 +3438,7 @@
                     "Laravel\\BrowserKitTesting\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3457,25 +3457,25 @@
         },
         {
             "name": "luthfi/simple-crud-generator",
-            "version": "dev-master",
+            "version": "1.2.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
-                "reference": "dcc40ee96117aa046f744a2946db5649c11353a0"
+                "reference": "2074cb9832abeafcfb65c49130fe80e21924d203"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/dcc40ee96117aa046f744a2946db5649c11353a0",
-                "reference": "dcc40ee96117aa046f744a2946db5649c11353a0",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/2074cb9832abeafcfb65c49130fe80e21924d203",
+                "reference": "2074cb9832abeafcfb65c49130fe80e21924d203",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "5.8.*||^6.0",
-                "laravel/browser-kit-testing": "^5.0",
+                "illuminate/support": "5.5.* || 5.6.* || 5.7.* || 5.8.* || ^6.0",
+                "laravel/browser-kit-testing": "2.0.x-dev || ^4.0 || ^5.0",
                 "php": ">=7.0.0"
             },
             "require-dev": {
-                "orchestra/testbench": "~3.0"
+                "orchestra/testbench": ">=3.0 <3.8"
             },
             "type": "library",
             "extra": {
@@ -3490,7 +3490,7 @@
                     "Luthfi\\CrudGenerator\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -3509,7 +3509,7 @@
                 "tdd-workflow",
                 "testing"
             ],
-            "time": "2019-09-28T14:43:23+00:00"
+            "time": "2019-09-29T02:53:54+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -4192,8 +4192,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "Utility class for timing",
@@ -4945,7 +4945,7 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -4996,8 +4996,8 @@
             "authors": [
                 {
                     "name": "Arne Blankerts",
-                    "role": "Developer",
-                    "email": "arne@blankerts.de"
+                    "email": "arne@blankerts.de",
+                    "role": "Developer"
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
@@ -5057,8 +5057,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "backup-manager/laravel": 20,
-        "luthfi/simple-crud-generator": 20
+        "backup-manager/laravel": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

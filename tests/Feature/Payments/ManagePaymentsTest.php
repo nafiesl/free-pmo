@@ -220,4 +220,40 @@ class ManagePaymentsTest extends TestCase
         $this->see($payment->description);
         $this->see($payment->partner->name);
     }
+
+    /** @test */
+    public function admin_can_entry_payment_from_project_payment_tab()
+    {
+        $user = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+
+        $this->visitRoute('projects.payments', $project->id);
+
+        $this->click(trans('payment.create'));
+        $this->seeRouteIs('payments.create', ['customer_id' => $project->customer_id, 'project_id' => $project->id]);
+
+        // // Fill Form
+        $this->submitForm(trans('payment.create'), [
+            'date'        => '2015-05-01',
+            'in_out'      => 1,
+            'type_id'     => 1,
+            'amount'      => 1000000,
+            'project_id'  => $project->id,
+            'partner_id'  => $project->customer_id,
+            'description' => 'Pembayaran DP',
+        ]);
+
+        $this->see(trans('payment.created'));
+        $this->seeRouteIs('projects.payments', $project->id);
+
+        $this->seeInDatabase('payments', [
+            'project_id'   => $project->id,
+            'amount'       => 1000000,
+            'type_id'      => 1,
+            'in_out'       => 1,
+            'date'         => '2015-05-01',
+            'partner_type' => Customer::class,
+            'partner_id'  => $project->customer_id,
+        ]);
+    }
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f997ada5dc55681a6e1b4477c1996b2b",
+    "content-hash": "df83c9097f4fde630adf7fadef8312ef",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -79,16 +79,16 @@
         },
         {
             "name": "backup-manager/laravel",
-            "version": "dev-master",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/backup-manager/laravel.git",
-                "reference": "751b96144693a6e8eaf971974f41c12d2fd25fe5"
+                "reference": "dc114f1191a7d8a84fc52bebb1163c264d0b3da5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/backup-manager/laravel/zipball/751b96144693a6e8eaf971974f41c12d2fd25fe5",
-                "reference": "751b96144693a6e8eaf971974f41c12d2fd25fe5",
+                "url": "https://api.github.com/repos/backup-manager/laravel/zipball/dc114f1191a7d8a84fc52bebb1163c264d0b3da5",
+                "reference": "dc114f1191a7d8a84fc52bebb1163c264d0b3da5",
                 "shasum": ""
             },
             "require": {
@@ -119,7 +119,7 @@
                     "BackupManager\\Laravel\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "notification-url": "https://repo.packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -136,7 +136,7 @@
                 }
             ],
             "description": "Database backup manager seamlessly integrated with Laravel 4 or 5 with user-definable procedures and support for S3, Dropbox, FTP, SFTP, and more.",
-            "time": "2019-09-06T17:29:02+00:00"
+            "time": "2019-10-08T11:51:01+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -5056,9 +5056,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "backup-manager/laravel": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

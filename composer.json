@@ -6,9 +6,9 @@
     "type": "project",
     "require": {
         "php": "^7.2",
-        "backup-manager/laravel": "dev-master",
-        "laracasts/presenter": "^0.2.1",
+        "backup-manager/laravel": "^1.4",
         "fideloper/proxy": "^4.0",
+        "laracasts/presenter": "^0.2.1",
         "laravel/framework": "^6.0",
         "luthfi/formfield": "^1.0",
         "riskihajar/terbilang": "^1.2",

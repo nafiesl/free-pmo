@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Users;
 
+use Illuminate\Support\Str;
 use App\Entities\Users\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -43,7 +44,7 @@ class UsersController extends Controller
             $userData['password'] = bcrypt(\Option::get('password_default', 'member'));
         }
 
-        $userData['api_token'] = str_random(32);
+        $userData['api_token'] = Str::random(32);
 
         $user = User::create($userData);
 

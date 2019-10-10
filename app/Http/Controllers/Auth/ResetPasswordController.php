@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
@@ -42,7 +43,7 @@ class ResetPasswordController extends Controller
     {
         $user->forceFill([
             'password'       => $password,
-            'remember_token' => str_random(60),
+            'remember_token' => Str::random(60),
         ])->save();
 
         $this->guard()->login($user);

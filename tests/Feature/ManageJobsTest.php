@@ -242,4 +242,36 @@ class ManageJobsTest extends TestCase
             'id' => $task->id,
         ]);
     }
+
+    /** @test */
+    public function admin_can_clone_jobs_without_tasks()
+    {
+        $user = $this->adminUserSigningIn();
+        $customer = factory(Customer::class)->create();
+        $projects = factory(Project::class, 2)->create(['customer_id' => $customer->id]);
+        $jobs = factory(Job::class, 3)->create(['project_id' => $projects[0]->id]);
+        $tasks1 = factory(Task::class, 3)->create(['job_id' => $jobs[0]->id]);
+        $tasks2 = factory(Task::class, 3)->create(['job_id' => $jobs[1]->id]);
+
+        $this->visitRoute('projects.jobs.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]);
+
+        $this->submitForm(trans('job.add'), [
+            'job_ids['.$jobs[0]->id.']' => $jobs[0]->id,
+            'job_ids['.$jobs[1]->id.']' => $jobs[1]->id,
+        ]);
+
+        $this->seeInDatabase('jobs', [
+            'name'       => $jobs[0]->name,
+            'price'      => $jobs[0]->price,
+            'project_id' => $projects[1]->id,
+            'worker_id'  => $jobs[0]->worker_id,
+        ]);
+
+        $this->seeInDatabase('jobs', [
+            'name'       => $jobs[1]->name,
+            'price'      => $jobs[1]->price,
+            'project_id' => $projects[1]->id,
+            'worker_id'  => $jobs[1]->worker_id,
+        ]);
+    }
 }

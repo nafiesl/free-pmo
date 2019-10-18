@@ -21,7 +21,7 @@
                 {!! FormField::text('date', [
                     'placeholder' => 'yyyy-mm-dd',
                     'label' => trans('invoice.date'),
-                    'value' => $draft->date,
+                    'value' => $draft->date ?: now()->format('Y-m-d'),
                 ]) !!}
             </div>
             <div class="col-md-6">

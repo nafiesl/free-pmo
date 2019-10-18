@@ -15,7 +15,7 @@ class SiteOptionsController extends Controller
 {
     public function page1()
     {
-        return view('options.page-1', compact('options'));
+        return view('options.page-1');
     }
 
     public function save1(Request $request)

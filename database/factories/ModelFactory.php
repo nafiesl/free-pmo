@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use App\Entities\Users\User;
 use App\Entities\Users\Event;
 use App\Entities\Projects\Job;
@@ -11,8 +12,8 @@ $factory->define(User::class, function (Faker\Generator $faker) {
         'name'           => $faker->name,
         'email'          => $faker->unique()->email,
         'password'       => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
-        'remember_token' => str_random(10),
-        'api_token'      => str_random(32),
+        'remember_token' => Str::random(10),
+        'api_token'      => Str::random(32),
         'lang'           => 'en',
     ];
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use Illuminate\Support\Str;
 use App\Entities\Users\User;
 use App\Http\Requests\Accounts\RegisterRequest;
 
@@ -47,7 +48,7 @@ class InstallationController extends Controller
 
         $adminData = $request->only('name', 'email', 'password');
 
-        $adminData['api_token'] = str_random(32);
+        $adminData['api_token'] = Str::random(32);
         $adminData['password'] = bcrypt($adminData['password']);
 
         $admin = User::create($adminData);

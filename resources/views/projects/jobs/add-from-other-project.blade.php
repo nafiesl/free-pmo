@@ -75,9 +75,31 @@
 
     @if ($selectedProject)
         @foreach ($selectedProject->jobs as $job)
+
             $('#job_id_{{ $job->id }}').change(function () {
                 $('.job_id_{{ $job->id }}_tasks').prop('checked', this.checked);
             });
+
+            @foreach($job->tasks as $task)
+
+                $('#{{ $job->id }}_task_id_{{ $task->id }}').change(function () {
+
+                    var condition = false;
+
+                    $.each($(".job_id_{{ $job->id }}_tasks"), function( key, value ) {
+                        if(value.checked == true){
+                            condition = true
+                        }
+                    });
+
+
+                    if(condition == true){
+                        $('#job_id_{{ $job->id }}').prop('checked', true);
+                    }
+                });
+
+            @endforeach
+
         @endforeach
     @endif
 })();

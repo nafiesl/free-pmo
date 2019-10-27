@@ -1,2 +1,4 @@
 *
+assets/imgs/*
+!assets/imgs
 !.gitignore

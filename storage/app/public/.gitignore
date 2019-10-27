@@ -1,4 +1,4 @@
-*
+# *
 assets/imgs/*
-!assets/imgs
+!assets/imgs/icon_user_1.png
 !.gitignore

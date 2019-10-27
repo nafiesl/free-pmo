@@ -93,6 +93,6 @@ class AgencyProfileTest extends TestCase
             'value' => 'sample-image.png',
         ]);
 
-        $this->assertFileExistsThenDelete(public_path('assets/imgs/sample-image.png'));
+        $this->assertFileExistsThenDelete(storage_path('app/public/assets/imgs/sample-image.png'));
     }
 }

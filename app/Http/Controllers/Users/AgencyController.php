@@ -77,7 +77,7 @@ class AgencyController extends Controller
             'logo.file_extension' => __('validation.agency.logo.file_extension'),
         ]);
 
-        \File::delete(storage_path('app/public/assets/imgs'.Option::get('agency_logo_path')));
+        \File::delete(storage_path('app/public/assets/imgs/'.Option::get('agency_logo_path')));
 
         $filename = $file['logo']->getClientOriginalName();
         $file['logo']->move(storage_path('app/public/assets/imgs'), $filename);

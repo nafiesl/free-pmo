@@ -57,10 +57,11 @@ This application can be installed on local server and online server with these s
 6. Create new MySQL database for this application
 7. Set database credentials on `.env` file
 8. `$ php artisan migrate`
-9. `$ php artisan serve`
-10. Visit `http://localhost:8000/app-install` via web browser
-11. Fill out the forms
-12. Done, you are logged in as Administrator.
+9. `$ php artisan storage:link`
+10. `$ php artisan serve`
+11. Visit `http://localhost:8000/app-install` via web browser
+12. Fill out the forms
+13. Done, you are logged in as Administrator.
 
 ![Install Free PMO](public/screenshots/pmo-install-free-pmo.jpg)
 

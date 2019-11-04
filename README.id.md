@@ -55,10 +55,11 @@ Aplikasi ini dapat dipasang dalam server lokal (PC/Laptop) dan server online, de
 6. Buat database pada MySQL untuk aplikasi ini
 7. Setting database pada file `.env`
 8. `$ php artisan migrate`
-9. `$ php artisan serve`
-10. Kunjungi web : `http://localhost:8000/app-install`
-11. Isi formulir installasi.
-12. Selesai, Anda akan login sebagai admin.
+9. `$ php artisan storage:link`
+10. `$ php artisan serve`
+11. Kunjungi web : `http://localhost:8000/app-install`
+12. Isi formulir installasi.
+13. Selesai, Anda akan login sebagai admin.
 
 ![Install Free PMO](public/screenshots/pmo-install-free-pmo.jpg)
 

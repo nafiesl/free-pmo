@@ -213,7 +213,7 @@ class ManageJobsTest extends TestCase
         $this->submitForm(__('job.add'), []);
 
         $this->seePageIs(route('projects.jobs.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]));
-        $this->see(__('validation.required', ['attribute' => 'job ids']));
+        $this->see(__('validation.select_one'));
     }
 
     /** @test */

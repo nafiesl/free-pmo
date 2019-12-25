@@ -90,7 +90,7 @@ return [
     |
     */
 
-    'project' => [
+    'project'    => [
         'customer_name'  => [
             'required_without' => 'Nama customer wajib diisi.',
         ],
@@ -98,11 +98,12 @@ return [
             'required_without' => 'Email customer wajib diisi.',
         ],
     ],
-    'agency'  => [
+    'agency'     => [
         'logo' => [
             'file_extension' => 'Silakan upload file format <strong>.png</strong>',
         ],
     ],
+    'select_one' => 'Pilih setidaknya satu item.',
 
     /*
     |---------------------------------------------------------------------------------------

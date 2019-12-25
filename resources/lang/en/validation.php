@@ -90,7 +90,7 @@ return [
     |
     */
 
-    'project' => [
+    'project'    => [
         'customer_name'  => [
             'required_without' => 'Customer name is required.',
         ],
@@ -98,11 +98,12 @@ return [
             'required_without' => 'Customer email is required.',
         ],
     ],
-    'agency'  => [
+    'agency'     => [
         'logo' => [
             'file_extension' => 'Please upload an image with <strong>.png</strong> format.',
         ],
     ],
+    'select_one' => 'Select at least one item.',
 
     /*
     |--------------------------------------------------------------------------

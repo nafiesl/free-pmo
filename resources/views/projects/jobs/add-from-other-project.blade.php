@@ -45,6 +45,9 @@
                 @else
                     <div class="alert alert-info">{{ __('job.select_project') }}</div>
                 @endif
+                @if ($errors->has('job_ids'))
+                    <div class="alert alert-danger">{{ __('validation.select_one') }}</div>
+                @endif
                 {{ Form::submit(__('job.add'), ['class' => 'btn btn-primary']) }}
                 {{ Form::close() }}
             </div>

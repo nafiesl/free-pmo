@@ -17,7 +17,11 @@
             <div class="panel-heading"><h3 class="panel-title">{{ __('job.add_from_other_project') }}</h3></div>
             <div class="panel-body">
                 {{ Form::open(['method' => 'get', 'class' => 'form-inline', 'style' => 'margin-bottom:20px']) }}
-                {!! FormField::select('project_id', $projects, ['label' => false, 'placeholder' => __('project.select')]) !!}
+                {!! FormField::select('project_id', $projects, [
+                    'label' => false,
+                    'value' => request('project_id'),
+                    'placeholder' => __('project.select'),
+                ]) !!}
                 {{ Form::submit(__('project.show_jobs'), ['class' => 'btn btn-default btn-sm']) }}
                 {{ Form::close() }}
                 @if ($selectedProject)

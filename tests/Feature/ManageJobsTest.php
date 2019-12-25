@@ -199,6 +199,24 @@ class ManageJobsTest extends TestCase
     }
 
     /** @test */
+    public function validate_clone_many_jobs_from_other_projects()
+    {
+        $user = $this->adminUserSigningIn();
+        $customer = factory(Customer::class)->create();
+        $projects = factory(Project::class, 2)->create(['customer_id' => $customer->id]);
+        $jobs = factory(Job::class, 3)->create(['project_id' => $projects[0]->id]);
+        $tasks1 = factory(Task::class, 3)->create(['job_id' => $jobs[0]->id]);
+        $tasks2 = factory(Task::class, 3)->create(['job_id' => $jobs[1]->id]);
+
+        $this->visit(route('projects.jobs.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]));
+
+        $this->submitForm(__('job.add'), []);
+
+        $this->seePageIs(route('projects.jobs.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]));
+        $this->see(__('validation.required', ['attribute' => 'job ids']));
+    }
+
+    /** @test */
     public function admin_can_see_unfinished_jobs_list()
     {
         $user = $this->adminUserSigningIn();

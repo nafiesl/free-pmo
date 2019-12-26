@@ -52,15 +52,18 @@ class JobsController extends Controller
     public function store(CreateRequest $req, $projectId)
     {
         $job = $this->repo->createJob($req->except('_token'), $projectId);
-        flash(trans('job.created'), 'success');
+        flash(__('job.created'), 'success');
 
         return redirect()->route('jobs.show', $job->id);
     }
 
-    public function storeFromOtherProject(Request $req, $projectId)
+    public function storeFromOtherProject(Request $request, $projectId)
     {
-        $this->repo->createJobs($req->except('_token'), $projectId);
-        flash(trans('job.created_from_other_project'), 'success');
+        $request->validate(['job_ids' => 'required|array']);
+
+        $this->repo->createJobs($request->except('_token'), $projectId);
+
+        flash(__('job.created_from_other_project'), 'success');
 
         return redirect()->route('projects.jobs.index', $projectId);
     }

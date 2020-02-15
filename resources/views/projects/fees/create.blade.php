@@ -12,13 +12,13 @@
             ['status_id' => request('status_id', $project->status_id)]
         ) }}</li>
     <li>{{ $project->nameLink() }}</li>
-    <li>{{ link_to_route('projects.payments', __('payment.list'), [$project->id]) }}</li>
+    <li>{{ link_to_route('projects.payments', __('payment.list'), $project) }}</li>
     <li class="active">{{ __('payment.create_fee') }}</li>
 </ul>
 
 <div class="row">
     <div class="col-md-6 col-md-offset-2">
-        {!! Form::open(['route' => ['projects.fees.store', $project->id]]) !!}
+        {!! Form::open(['route' => ['projects.fees.store', $project]]) !!}
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ __('payment.create_fee') }}</h3></div>
             <div class="panel-body">
@@ -30,7 +30,7 @@
                             [
                                 'placeholder' => __('job.select_worker'),
                                 'label' => __('payment.customer'),
-                                'value' => Request::get('customer_id'),
+                                'value' => request('customer_id'),
                             ]
                         ) !!}
                     </div>
@@ -57,7 +57,7 @@
 
             <div class="panel-footer">
                 {!! Form::submit(__('payment.create'), ['class' => 'btn btn-primary']) !!}
-                {{ link_to_route('projects.payments', __('app.cancel'), [$project->id], ['class' => 'btn btn-default']) }}
+                {{ link_to_route('projects.payments', __('app.cancel'), $project, ['class' => 'btn btn-default']) }}
             </div>
         </div>
         {!! Form::close() !!}
@@ -69,11 +69,8 @@
     {!! Html::style(url('assets/css/plugins/jquery.datetimepicker.css')) !!}
 @endsection
 
-@section('ext_js')
-    {!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
-@endsection
-
 @section('script')
+{!! Html::script(url('assets/js/plugins/jquery.datetimepicker.js')) !!}
 <script>
 (function() {
     $('#date').datetimepicker({

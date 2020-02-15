@@ -19,6 +19,7 @@ return [
     'target'        => 'Target',
     'actual'        => 'Aktual',
     'duration'      => 'Durasi',
+    'select_worker' => 'Pilih Pekerja',
 
     // Actions
     'create'                 => 'Input Job Baru',

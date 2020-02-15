@@ -28,7 +28,7 @@
                             'partner_id',
                             $partners,
                             [
-                                'placeholder' => 'Pilih Pekerja',
+                                'placeholder' => __('job.select_worker'),
                                 'label' => __('payment.customer'),
                                 'value' => Request::get('customer_id'),
                             ]

@@ -19,6 +19,7 @@ return [
     'target'        => 'Target',
     'actual'        => 'Actual',
     'duration'      => 'Duration',
+    'select_worker' => 'Select Worker',
 
     // Actions
     'create'                 => 'Neue Beschäftigung anlegen',

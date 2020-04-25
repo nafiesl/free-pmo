@@ -22,6 +22,8 @@ class InvoicesController extends Controller
     {
         $this->authorize('view-invoices', $project);
 
-        return view('projects.invoices', compact('project'));
+        $invoices = $project->invoices()->orderBy('date', 'desc')->get();
+
+        return view('projects.invoices', compact('project', 'invoices'));
     }
 }

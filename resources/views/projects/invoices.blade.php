@@ -33,7 +33,7 @@
             <th class="col-md-1 text-center">{{ trans('app.action') }}</th>
         </thead>
         <tbody>
-            @forelse($project->invoices as $key => $invoice)
+            @forelse($invoices as $key => $invoice)
             <tr>
                 <td class="text-center">{{ 1 + $key }}</td>
                 <td class="text-center">{{ $invoice->numberLink() }}</td>

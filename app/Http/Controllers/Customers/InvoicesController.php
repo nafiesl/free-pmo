@@ -20,7 +20,7 @@ class InvoicesController extends Controller
      */
     public function index(Customer $customer)
     {
-        $invoices = $customer->invoices()->orderBy('due_date')->get();
+        $invoices = $customer->invoices()->orderBy('date', 'desc')->get();
 
         return view('customers.invoices', compact('customer', 'invoices'));
     }

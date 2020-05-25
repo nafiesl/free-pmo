@@ -19,7 +19,7 @@
     {{ Form::close() }}
 </div>
 <div class="panel panel-default">
-<table class="table">
+<table class="table table-condensed table-hover">
     <thead>
         <th>{{ __('app.table_no') }}</th>
         <th class="col-md-3">{{ __('payment.project') }}</th>

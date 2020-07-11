@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Services;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Option;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SiteOptionTest extends TestCase
 {

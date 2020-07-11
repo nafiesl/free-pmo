@@ -2,15 +2,15 @@
 
 namespace Tests\Unit\Queries;
 
-use Carbon\Carbon;
-use Tests\TestCase;
-use App\Entities\Projects\Job;
-use App\Entities\Projects\Task;
 use App\Entities\Payments\Payment;
+use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
-use App\Queries\AdminDashboardQuery;
+use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
+use App\Queries\AdminDashboardQuery;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class AdminDashboardQueryTest extends TestCase
 {

@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Policies;
 
-use Tests\TestCase;
 use App\Entities\Projects\Job;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class JobPolicyTest extends TestCase
 {

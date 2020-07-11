@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Models;
 
-use Tests\TestCase;
-use App\Entities\Projects\Job;
-use App\Entities\Projects\Task;
 use App\Entities\Projects\Comment;
+use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
-use Illuminate\Support\Collection;
+use App\Entities\Projects\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Collection;
+use Tests\TestCase;
 
 /**
  * Job Model Unit Test.

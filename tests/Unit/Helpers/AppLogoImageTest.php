@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Helpers;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class AppLogoImageTest extends TestCase
 {

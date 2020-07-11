@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
-use DB;
-use Closure;
 use App\Entities\Projects\Project;
+use Closure;
+use DB;
 
 /**
  * Global View Variables Middleware.

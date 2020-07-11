@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Users;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Site Options Feature Test.

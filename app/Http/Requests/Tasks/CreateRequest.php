@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Tasks;
 
-use App\Http\Requests\Request;
 use App\Entities\Projects\Task;
+use App\Http\Requests\Request;
 
 class CreateRequest extends Request
 {

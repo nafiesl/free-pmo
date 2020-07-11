@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Entities\Projects\Job;
 use App\Entities\Projects\Comment;
-use App\Entities\Projects\Project;
+use App\Entities\Projects\Job;
 use App\Entities\Projects\JobsRepository;
+use App\Entities\Projects\Project;
 use App\Http\Requests\Jobs\DeleteRequest;
 use App\Http\Requests\Jobs\UpdateRequest;
+use Illuminate\Http\Request;
 
 /**
  * Jobs Controller.

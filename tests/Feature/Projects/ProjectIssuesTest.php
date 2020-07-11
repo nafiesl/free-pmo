@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Projects;
 
-use Tests\TestCase;
 use App\Entities\Projects\Issue;
 use App\Entities\Projects\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ProjectIssuesTest extends TestCase
 {

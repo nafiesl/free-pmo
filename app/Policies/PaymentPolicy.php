@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Entities\Users\User;
 use App\Entities\Payments\Payment;
+use App\Entities\Users\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**

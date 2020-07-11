@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\References;
 
-use Option;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Option;
 
 /**
  * Site Options Controller.

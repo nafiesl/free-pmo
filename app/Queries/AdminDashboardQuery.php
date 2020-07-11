@@ -2,12 +2,12 @@
 
 namespace App\Queries;
 
-use Carbon\Carbon;
-use App\Entities\Users\User;
-use App\Entities\Projects\Job;
 use App\Entities\Payments\Payment;
+use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
 use App\Entities\Subscriptions\Subscription;
+use App\Entities\Users\User;
+use Carbon\Carbon;
 
 /**
  * Admin Dashboard Query.

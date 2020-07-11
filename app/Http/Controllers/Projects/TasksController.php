@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Projects;
 
-use DB;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Task;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tasks\CreateRequest;
 use App\Http\Requests\Tasks\DeleteRequest;
 use App\Http\Requests\Tasks\UpdateRequest;
+use DB;
 
 /**
  * Project Tasks Controller.

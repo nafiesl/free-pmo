@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Projects;
 
-use App\Entities\Users\User;
-use Illuminate\Http\Request;
-use App\Entities\Projects\Issue;
 use App\Entities\Projects\Comment;
-use App\Entities\Projects\Project;
-use App\Entities\Projects\Priority;
-use App\Http\Controllers\Controller;
+use App\Entities\Projects\Issue;
 use App\Entities\Projects\IssueStatus;
+use App\Entities\Projects\Priority;
+use App\Entities\Projects\Project;
+use App\Entities\Users\User;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class IssueController extends Controller
 {

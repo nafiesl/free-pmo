@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Users;
 
-use Tests\TestCase;
 use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Manage Users Feature Test.

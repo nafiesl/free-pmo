@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Models;
 
-use Tests\TestCase;
 use App\Entities\Invoices\Invoice;
+use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
-use Illuminate\Support\Collection;
-use App\Entities\Partners\Customer;
 use App\Entities\Subscriptions\Subscription;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Collection;
+use Tests\TestCase;
 
 class CustomerTest extends TestCase
 {

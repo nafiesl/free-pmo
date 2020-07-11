@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use BackupManager\Filesystems\Destination;
 use BackupManager\Manager;
 use Illuminate\Http\Request;
 use League\Flysystem\FileExistsException;
-use BackupManager\Filesystems\Destination;
 use League\Flysystem\FileNotFoundException;
 
 /**

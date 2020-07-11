@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Http\Middlewares;
 
-use Tests\TestCase;
 use App\Http\Middleware\Role;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Role middleware test.

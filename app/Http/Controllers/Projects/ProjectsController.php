@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Projects;
 
-use Illuminate\Http\Request;
 use App\Entities\Projects\Project;
-use App\Http\Controllers\Controller;
 use App\Entities\Projects\ProjectsRepository;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Projects\CreateRequest;
 use App\Http\Requests\Projects\UpdateRequest;
+use Illuminate\Http\Request;
 
 /**
  * Projects Controller.

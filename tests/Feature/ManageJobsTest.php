@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Entities\Users\User;
-use App\Entities\Projects\Job;
-use App\Entities\Projects\Task;
-use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
+use App\Entities\Projects\Job;
+use App\Entities\Projects\Project;
+use App\Entities\Projects\Task;
+use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Manage Project Feature Test.

@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Api\Projects;
 
-use Tests\TestCase;
-use App\Entities\Projects\Task;
 use App\Entities\Projects\Project;
+use App\Entities\Projects\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ReorderTaskListTest extends TestCase
 {

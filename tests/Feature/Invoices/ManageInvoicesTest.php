@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Invoices;
 
-use Tests\TestCase;
 use App\Entities\Invoices\Invoice;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Manage Invoices Feature Test.

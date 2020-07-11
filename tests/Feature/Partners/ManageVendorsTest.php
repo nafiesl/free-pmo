@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Partners;
 
-use Tests\TestCase;
 use App\Entities\Partners\Vendor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ManageVendorsTest extends TestCase
 {

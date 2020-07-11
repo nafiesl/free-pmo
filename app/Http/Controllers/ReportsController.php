@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Entities\Reports\ReportsRepository;
+use Illuminate\Http\Request;
 
 /**
  * Reports Controller.

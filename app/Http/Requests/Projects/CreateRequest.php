@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Projects;
 
-use App\Http\Requests\Request;
 use App\Entities\Projects\Project;
+use App\Http\Requests\Request;
 
 class CreateRequest extends Request
 {

@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Auth;
 
-use Notification;
-use Tests\TestCase;
 use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Notification;
+use Tests\TestCase;
 
 class ResetPasswordTest extends TestCase
 {

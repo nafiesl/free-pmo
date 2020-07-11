@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Api;
 
-use Tests\TestCase;
-use App\Entities\Users\User;
-use App\Entities\Users\Event;
 use App\Entities\Projects\Project;
+use App\Entities\Users\Event;
+use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Manage Events API Feature Test.

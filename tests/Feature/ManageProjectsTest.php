@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use App\Entities\Projects\Job;
-use App\Entities\Projects\Task;
-use App\Entities\Payments\Payment;
-use App\Entities\Projects\Project;
 use App\Entities\Partners\Customer;
+use App\Entities\Payments\Payment;
+use App\Entities\Projects\Job;
+use App\Entities\Projects\Project;
+use App\Entities\Projects\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ManageProjectsTest extends TestCase
 {

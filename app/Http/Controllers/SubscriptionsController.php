@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Entities\Subscriptions\Type;
 use App\Entities\Subscriptions\Subscription;
+use App\Entities\Subscriptions\Type;
 use App\Http\Requests\SubscriptionRequest as FormRequest;
+use Illuminate\Http\Request;
 
 /**
  * Subscriptions Controller.

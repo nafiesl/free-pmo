@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Payments;
 
-use Tests\TestCase;
+use App\Entities\Partners\Customer;
 use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Project;
-use App\Entities\Partners\Customer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Manage Payments Feature Test.

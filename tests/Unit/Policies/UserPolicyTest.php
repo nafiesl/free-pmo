@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Policies;
 
-use Tests\TestCase;
-use App\Entities\Users\User;
-use App\Entities\Projects\Job;
 use App\Entities\Payments\Payment;
+use App\Entities\Projects\Job;
+use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class UserPolicyTest extends TestCase
 {

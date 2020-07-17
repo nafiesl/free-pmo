@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Invoices;
 
-use Tests\TestCase;
 use App\Entities\Invoices\Invoice;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Services\InvoiceDrafts\InvoiceDraftCollection;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Invoice Duplicate Feature Test.

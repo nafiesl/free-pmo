@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\References;
 
-use Illuminate\Http\Request;
 use App\Entities\Options\Option;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class OptionsController extends Controller
 {

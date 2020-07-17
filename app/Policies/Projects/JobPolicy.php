@@ -2,8 +2,8 @@
 
 namespace App\Policies\Projects;
 
-use App\Entities\Users\User;
 use App\Entities\Projects\Job;
+use App\Entities\Users\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**

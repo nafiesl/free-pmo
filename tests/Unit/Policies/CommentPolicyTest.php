@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Policies;
 
-use Tests\TestCase;
 use App\Entities\Projects\Comment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class CommentPolicyTest extends TestCase
 {

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Issues;
 
-use Illuminate\Http\Request;
 use App\Entities\Projects\Issue;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class OptionController extends Controller
 {

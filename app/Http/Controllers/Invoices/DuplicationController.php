@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Invoices;
 
 use App\Entities\Invoices\Invoice;
 use App\Http\Controllers\Controller;
-use App\Services\InvoiceDrafts\Item;
 use App\Services\InvoiceDrafts\InvoiceDraft;
 use App\Services\InvoiceDrafts\InvoiceDraftCollection;
+use App\Services\InvoiceDrafts\Item;
 
 class DuplicationController extends Controller
 {

@@ -2,8 +2,8 @@
 
 namespace App\Entities\Projects;
 
-use Storage;
 use Illuminate\Database\Eloquent\Model;
+use Storage;
 
 class File extends Model
 {

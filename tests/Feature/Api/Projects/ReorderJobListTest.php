@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Api\Projects;
 
-use Tests\TestCase;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ReorderJobListTest extends TestCase
 {

@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\References;
 
-use Tests\TestCase;
-use App\Entities\Options\Option;
 use App\Entities\Invoices\BankAccount;
+use App\Entities\Options\Option;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Manage Bank Account Feature Test.

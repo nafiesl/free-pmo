@@ -2,8 +2,8 @@
 
 namespace App\Entities;
 
-use Illuminate\Support\Arr;
 use App\Exceptions\ReferenceKeyNotFoundException;
+use Illuminate\Support\Arr;
 
 /**
  * Base of References class.

@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Api;
 
-use Tests\TestCase;
-use App\Entities\Partners\Vendor;
 use App\Entities\Partners\Customer;
+use App\Entities\Partners\Vendor;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class FetchPartnerListTest extends TestCase
 {

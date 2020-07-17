@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Str;
-use Faker\Generator as Faker;
 use App\Entities\Invoices\BankAccount;
+use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 $factory->define(BankAccount::class, function (Faker $faker) {
     return [

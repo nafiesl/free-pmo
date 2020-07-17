@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Invoices;
 
-use Illuminate\Http\Request;
 use App\Entities\Projects\Project;
 use App\Http\Controllers\Controller;
-use App\Services\InvoiceDrafts\Item;
 use App\Services\InvoiceDrafts\InvoiceDraft;
 use App\Services\InvoiceDrafts\InvoiceDraftCollection;
+use App\Services\InvoiceDrafts\Item;
+use Illuminate\Http\Request;
 
 /**
  * Invoice Drafts Controller.

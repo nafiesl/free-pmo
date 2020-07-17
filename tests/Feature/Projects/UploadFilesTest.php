@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Projects;
 
-use Storage;
-use Tests\TestCase;
-use Illuminate\Http\UploadedFile;
 use App\Entities\Projects\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Storage;
+use Tests\TestCase;
 
 class UploadFilesTest extends TestCase
 {

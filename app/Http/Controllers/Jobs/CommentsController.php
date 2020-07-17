@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Jobs;
 
-use Illuminate\Http\Request;
-use App\Entities\Projects\Job;
 use App\Entities\Projects\Comment;
+use App\Entities\Projects\Job;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class CommentsController extends Controller
 {

@@ -2,19 +2,19 @@
 
 namespace Tests\Unit\Models;
 
-use Tests\TestCase;
-use App\Entities\Projects\Job;
-use App\Entities\Projects\File;
-use App\Entities\Projects\Task;
-use App\Entities\Projects\Issue;
 use App\Entities\Invoices\Invoice;
+use App\Entities\Partners\Customer;
 use App\Entities\Payments\Payment;
 use App\Entities\Projects\Comment;
+use App\Entities\Projects\File;
+use App\Entities\Projects\Issue;
+use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
-use Illuminate\Support\Collection;
-use App\Entities\Partners\Customer;
+use App\Entities\Projects\Task;
 use App\Entities\Subscriptions\Subscription;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Collection;
+use Tests\TestCase;
 
 class ProjectTest extends TestCase
 {

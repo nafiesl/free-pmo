@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Models;
 
-use Tests\TestCase;
-use App\Entities\Users\User;
+use App\Entities\Partners\Customer;
 use App\Entities\Partners\Vendor;
 use App\Entities\Payments\Payment;
-use App\Entities\Partners\Customer;
+use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PaymentTest extends TestCase
 {

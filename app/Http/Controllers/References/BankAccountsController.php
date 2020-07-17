@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\References;
 
-use Illuminate\Http\Request;
+use App\Entities\Invoices\BankAccount;
 use App\Entities\Options\Option;
 use App\Http\Controllers\Controller;
-use App\Entities\Invoices\BankAccount;
+use Illuminate\Http\Request;
 
 /**
  * Bank Account Controller.

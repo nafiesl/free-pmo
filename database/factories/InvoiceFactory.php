@@ -1,9 +1,9 @@
 <?php
 
-use App\Entities\Users\User;
-use Faker\Generator as Faker;
 use App\Entities\Invoices\Invoice;
 use App\Entities\Projects\Project;
+use App\Entities\Users\User;
+use Faker\Generator as Faker;
 
 $factory->define(Invoice::class, function (Faker $faker) {
     return [

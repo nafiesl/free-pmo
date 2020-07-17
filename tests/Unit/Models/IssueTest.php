@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Models;
 
-use Tests\TestCase;
-use App\Entities\Users\User;
-use App\Entities\Projects\Issue;
 use App\Entities\Projects\Comment;
-use App\Entities\Projects\Project;
-use Illuminate\Support\Collection;
+use App\Entities\Projects\Issue;
 use App\Entities\Projects\Priority;
+use App\Entities\Projects\Project;
+use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Collection;
+use Tests\TestCase;
 
 class IssueTest extends TestCase
 {

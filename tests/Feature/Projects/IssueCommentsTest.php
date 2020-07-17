@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Projects;
 
-use Tests\TestCase;
-use App\Entities\Projects\Issue;
 use App\Entities\Projects\Comment;
+use App\Entities\Projects\Issue;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class IssueCommentsTest extends TestCase
 {

@@ -1,9 +1,9 @@
 <?php
 
-use App\Entities\Users\User;
-use Faker\Generator as Faker;
 use App\Entities\Projects\Comment;
 use App\Entities\Projects\Project;
+use App\Entities\Users\User;
+use Faker\Generator as Faker;
 
 $factory->define(Comment::class, function (Faker $faker) {
     return [

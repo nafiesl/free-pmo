@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Policies;
 
-use Tests\TestCase;
 use App\Entities\Partners\Customer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Customer Policy Test.

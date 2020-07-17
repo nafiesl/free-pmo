@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Policies;
 
-use Tests\TestCase;
 use App\Entities\Payments\Payment;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Payment Policy Test.

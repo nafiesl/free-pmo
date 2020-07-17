@@ -1,12 +1,12 @@
 <?php
 
-use Carbon\Carbon;
-use Illuminate\Support\Str;
-use Faker\Generator as Faker;
+use App\Entities\Partners\Customer;
 use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
-use App\Entities\Partners\Customer;
 use App\Entities\Subscriptions\Subscription;
+use Carbon\Carbon;
+use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 $factory->define(Subscription::class, function (Faker $faker) {
     $startDate = Carbon::parse($faker->dateTimeBetween('-1 year', '-1 month')->format('Y-m-d'));

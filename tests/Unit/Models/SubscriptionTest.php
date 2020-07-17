@@ -2,14 +2,14 @@
 
 namespace Tests\Unit\Models;
 
-use Carbon\Carbon;
-use Tests\TestCase;
+use App\Entities\Partners\Customer;
 use App\Entities\Partners\Vendor;
 use App\Entities\Projects\Project;
-use App\Entities\Partners\Customer;
-use App\Entities\Subscriptions\Type;
 use App\Entities\Subscriptions\Subscription;
+use App\Entities\Subscriptions\Type;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class SubscriptionTest extends TestCase
 {

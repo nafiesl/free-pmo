@@ -2,8 +2,8 @@
 
 namespace App\Entities\Projects;
 
-use DB;
 use App\Entities\Users\User;
+use DB;
 use Illuminate\Database\Eloquent\Model;
 use Laracasts\Presenter\PresentableTrait;
 

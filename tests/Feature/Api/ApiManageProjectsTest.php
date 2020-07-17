@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Api;
 
-use Tests\TestCase;
 use App\Entities\Projects\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Manage Projects API Feature Test.

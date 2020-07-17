@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\Models;
 
-use Tests\TestCase;
-use App\Entities\Users\User;
-use App\Entities\Projects\Job;
 use App\Entities\Payments\Payment;
+use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
-use Illuminate\Support\Collection;
+use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Collection;
+use Tests\TestCase;
 
 /**
  * User Model Unit Test.

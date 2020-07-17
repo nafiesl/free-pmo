@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Users;
 
-use Option;
 use App\Http\Controllers\Controller;
+use Option;
 
 /**
  * Agency Profile Controller.

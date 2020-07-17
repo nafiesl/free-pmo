@@ -2,9 +2,9 @@
 
 namespace App\Entities;
 
-use App\Entities\Users\User;
-use App\Entities\Projects\Job;
 use App\Entities\Partners\Customer;
+use App\Entities\Projects\Job;
+use App\Entities\Users\User;
 
 /**
  * Base Repository Class.

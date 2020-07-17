@@ -2,8 +2,8 @@
 
 namespace App\Services\InvoiceDrafts;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 /**
  * Invoice Draft Collection Class.

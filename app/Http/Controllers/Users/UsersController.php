@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Users;
 
-use Illuminate\Support\Str;
 use App\Entities\Users\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 /**
  * Users Controller.

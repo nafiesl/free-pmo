@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df83c9097f4fde630adf7fadef8312ef",
+    "content-hash": "331f543b74d05d83017acb6e7493bd53",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -888,21 +888,21 @@
         },
         {
             "name": "luthfi/formfield",
-            "version": "1.x-dev",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/FormField.git",
-                "reference": "f869f8804da32d41c511e9b77e5f145fc94be171"
+                "reference": "b1dc8d222901f11759a70f34a01a89d94fa67b68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/FormField/zipball/f869f8804da32d41c511e9b77e5f145fc94be171",
-                "reference": "f869f8804da32d41c511e9b77e5f145fc94be171",
+                "url": "https://api.github.com/repos/nafiesl/FormField/zipball/b1dc8d222901f11759a70f34a01a89d94fa67b68",
+                "reference": "b1dc8d222901f11759a70f34a01a89d94fa67b68",
                 "shasum": ""
             },
             "require": {
-                "laravelcollective/html": "5.3.* || 5.4.* || 5.5.* || 5.6.* || 5.7.* || 5.8.* || 6.0.*",
-                "php": ">=5.6.4"
+                "laravelcollective/html": ">=5.3",
+                "php": ">=7.2"
             },
             "require-dev": {
                 "orchestra/testbench": ">=3.0 <3.8"
@@ -936,7 +936,7 @@
                 }
             ],
             "description": "Laravel Form Field the extension of Laravelcollective Form for Laravel 5.3 and newer with Twitter Bootstrap 3",
-            "time": "2019-09-04T11:37:35+00:00"
+            "time": "2020-05-22T15:27:39+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -4250,6 +4250,7 @@
             "keywords": [
                 "tokenizer"
             ],
+            "abandoned": true,
             "time": "2019-09-17T06:23:10+00:00"
         },
         {
@@ -5062,5 +5063,6 @@
     "platform": {
         "php": "^7.2"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

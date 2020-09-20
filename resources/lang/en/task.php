@@ -21,6 +21,7 @@ return [
     'delete'    => 'Delete Task',
     'deleted'   => 'Task has been deleted.',
     'undeleted' => 'Task not deleted.',
+    'set_done'  => 'Set done',
 
     // Attributes
     'name'        => 'Task Name',

@@ -21,6 +21,7 @@ return [
     'delete'    => 'Vorgang löschen',
     'deleted'   => 'Vorgan wurde gelöscht.',
     'undeleted' => 'Vorgang nicht gelöscht.',
+    'set_done'  => 'Set done',
 
     // Attributes
     'name'        => 'Vorgang Name',

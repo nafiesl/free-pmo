@@ -82,4 +82,23 @@ class ManageTasksTest extends TestCase
         $this->seePageIs(route('jobs.show', $job->id));
         $this->see(trans('task.deleted'));
     }
+
+    /** @test */
+    public function admin_can_set_a_task_as_done()
+    {
+        $user = $this->adminUserSigningIn();
+        $job = factory(Job::class)->create(['worker_id' => $user->id]);
+        $task = factory(Task::class)->create(['job_id' => $job->id, 'progress' => 0]);
+
+        $this->visit(route('jobs.show', $job->id));
+        $this->press($task->id.'-set_task_done');
+
+        $this->seePageIs(route('jobs.show', $job->id));
+        $this->see(trans('task.updated'));
+        $this->dontSeeElement('button', ['id' => $task->id.'-set_task_done']);
+        $this->seeInDatabase('tasks', [
+            'id'       => $task->id,
+            'progress' => 100,
+        ]);
+    }
 }

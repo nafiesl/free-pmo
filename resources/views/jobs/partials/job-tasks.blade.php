@@ -31,19 +31,24 @@
                     <div>{{ $task->name }}</div>
                     <div class="small text-info">{!! nl2br($task->description) !!}</div>
                 </td>
-                <td class="text-center">{{ $task->progress }} %</td>
+                <td class="text-center">
+                    {{ $task->progress }} %
+
+                    @can('update', $task)
+                        @if ($task->progress < 100)
+                            {!! FormField::formButton(['route' => ['tasks.set_done', $task], 'method' => 'patch'],
+                                __('task.set_done'),
+                                ['class' => 'btn btn-success btn-xs', 'id' => $task->id.'-set_task_done'],
+                                [
+                                    'task_id' => $task->id,
+                                    'job_id' => $task->job_id,
+                                ]
+                            ) !!}
+                        @endif
+                    @endcan
+                </td>
                 <td class="text-center">
                 @can('update', $task)
-                    @if ($task->progress < 100)
-                        {!! FormField::formButton(['route' => ['tasks.set_done', $task], 'method' => 'patch'],
-                            __('task.set_done'),
-                            ['class' => 'btn btn-success btn-xs', 'id' => $task->id.'-set_task_done'],
-                            [
-                                'task_id' => $task->id,
-                                'job_id' => $task->job_id,
-                            ]
-                        ) !!}
-                    @endif
                     {!! html_link_to_route('jobs.show', '', [
                         $job,
                         'action' => 'task_edit',

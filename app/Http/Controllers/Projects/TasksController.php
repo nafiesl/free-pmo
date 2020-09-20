@@ -95,4 +95,14 @@ class TasksController extends Controller
 
         return redirect()->route('jobs.edit', $job);
     }
+
+    public function setDone(Task $task)
+    {
+        $task->progress = 100;
+        $task->save();
+
+        flash(__('task.updated'), 'success');
+
+        return redirect()->route('jobs.show', $task->job);
+    }
 }

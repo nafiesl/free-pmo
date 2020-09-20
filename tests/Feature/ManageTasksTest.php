@@ -95,6 +95,7 @@ class ManageTasksTest extends TestCase
 
         $this->seePageIs(route('jobs.show', $job->id));
         $this->see(trans('task.updated'));
+        $this->dontSeeElement('button', ['id' => $task->id.'-set_task_done']);
         $this->seeInDatabase('tasks', [
             'id'       => $task->id,
             'progress' => 100,

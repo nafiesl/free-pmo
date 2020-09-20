@@ -41,7 +41,7 @@ class ManageUsersTest extends TestCase
             'name'     => 'Nama User',
             'email'    => 'user@mail.com',
             'password' => 'password',
-            'role'     => [1, 2], // Administrator, Worker
+            'role'     => [1 => 1, 2 => 2], // Administrator, Worker
         ]);
 
         $this->seePageIs(route('users.index'));
@@ -89,7 +89,7 @@ class ManageUsersTest extends TestCase
             'name'     => 'Ganti nama User',
             'email'    => 'member@mail.dev',
             'password' => 'password',
-            'role'     => [1, 2], // Administrator, Worker
+            'role'     => [1 => 1, 2 => 2], // Administrator, Worker
             'lang'     => 'id',
         ]);
 

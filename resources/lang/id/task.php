@@ -21,6 +21,7 @@ return [
     'delete'    => 'Hapus Task',
     'deleted'   => 'Hapus data Task telah berhasil.',
     'undeleted' => 'Data Task gagal dihapus.',
+    'set_done'  => 'Set Selesai',
 
     'set_as_job'         => 'Set Menjadi Job',
     'set_as_job_confirm' => 'Anda yakin mengubah task ini menjadi sebuah Job?',

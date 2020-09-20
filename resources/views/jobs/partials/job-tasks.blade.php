@@ -34,6 +34,14 @@
                 <td class="text-center">{{ $task->progress }} %</td>
                 <td class="text-center">
                 @can('update', $task)
+                    {!! FormField::formButton(['route' => ['tasks.set_done', $task], 'method' => 'patch'],
+                        __('task.set_done'),
+                        ['class' => 'btn btn-success btn-xs', 'id' => $task->id.'-set_task_done'],
+                        [
+                            'task_id' => $task->id,
+                            'job_id' => $task->job_id,
+                        ]
+                    ) !!}
                     {!! html_link_to_route('jobs.show', '', [
                         $job,
                         'action' => 'task_edit',
@@ -44,14 +52,6 @@
                         'id' => $task->id . '-tasks-edit',
                         'icon' => 'edit'
                     ]) !!}
-                    {!! FormField::formButton(['route' => ['tasks.set_done', $task], 'method' => 'patch'],
-                        __('task.set_as_done'),
-                        ['class' => 'btn btn-success', 'id' => $task->id.'-set_task_done'],
-                        [
-                            'task_id' => $task->id,
-                            'job_id' => $task->job_id,
-                        ]
-                    ) !!}
                 @endcan
                 @can('delete', $task)
                     {!! html_link_to_route('jobs.show', '', [

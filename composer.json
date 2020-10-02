@@ -10,6 +10,7 @@
         "fideloper/proxy": "^4.0",
         "laracasts/presenter": "^0.2.1",
         "laravel/framework": "^7.0",
+        "laravel/ui": "^2.0",
         "luthfi/formfield": "1.*",
         "riskihajar/terbilang": "^1.2",
         "spatie/laravel-fractal": "^5.0"

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\InvoiceDraft;
+namespace App\Services\InvoiceDrafts;
 
 use App\Entities\Invoices\Invoice;
 
@@ -87,8 +87,7 @@ class InvoiceDraft
      *
      * @return void
      */
-    public function empty()
-    {
+    function empty() {
         $this->items = [];
     }
 

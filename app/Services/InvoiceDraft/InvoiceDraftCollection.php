@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\InvoiceDrafts;
+namespace App\Services\InvoiceDraft;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;

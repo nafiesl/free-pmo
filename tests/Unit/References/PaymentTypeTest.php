@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Reference;
+namespace Tests\Unit\References;
 
 use App\Entities\Payments\Type;
 use Tests\TestCase;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\InvoiceDrafts;
+namespace App\Services\InvoiceDraft;
 
 /**
  * Draft Item class.

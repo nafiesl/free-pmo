@@ -212,7 +212,7 @@ class ManagePaymentsTest extends TestCase
         $payment = factory(Payment::class)->create();
 
         $this->visit(route('payments.index'));
-        $this->click($payment->number);
+        $this->click('show_payment-'.$payment->id);
         $this->seePageIs(route('payments.show', $payment->id));
         $this->see(trans('payment.detail'));
         $this->see($payment->date);
@@ -253,7 +253,7 @@ class ManagePaymentsTest extends TestCase
             'in_out'       => 1,
             'date'         => '2015-05-01',
             'partner_type' => Customer::class,
-            'partner_id'  => $project->customer_id,
+            'partner_id'   => $project->customer_id,
         ]);
     }
 }

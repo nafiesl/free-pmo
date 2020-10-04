@@ -45,7 +45,7 @@
                 </div>
                 <div class="modal-footer">
                     {!! Form::submit(__('comment.update'), ['class' => 'btn btn-success']) !!}
-                    {{ link_to_route('projects.issues.show', __('app.cancel'), [$project->issue, $issue] + request(['page']), ['class' => 'btn btn-default']) }}
+                    {{ link_to_route('projects.issues.show', __('app.cancel'), [$project, $issue] + request(['page']), ['class' => 'btn btn-default']) }}
                 </div>
                 {!! Form::close() !!}
             </div>

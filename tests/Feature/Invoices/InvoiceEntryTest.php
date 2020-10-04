@@ -81,9 +81,9 @@ class InvoiceEntryTest extends TestCase
 
         $this->see(trans('invoice.item_added'));
 
-        // $this->type('Testing deskripsi invoice item', 'new_item_description');
-        // $this->type(3000, 'new_item_amount');
-        // $this->press(trans('invoice.add_item'));
+        $this->type('Testing deskripsi invoice item', 'new_item_description');
+        $this->type(3000, 'new_item_amount');
+        $this->press(trans('invoice.add_item'));
 
         $this->seePageIs(route('invoice-drafts.show', $draft->draftKey));
         $this->assertEquals(2000, $draft->getTotal());

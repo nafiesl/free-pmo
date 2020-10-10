@@ -86,8 +86,7 @@ class InvoiceEntryTest extends TestCase
         $this->press(trans('invoice.add_item'));
 
         $this->seePageIs(route('invoice-drafts.show', $draft->draftKey));
-        $this->assertEquals(2000, $draft->getTotal());
-        $this->see(format_money(2000));
+        $this->see(format_money(5000));
     }
 
     /** @test */
@@ -135,9 +134,7 @@ class InvoiceEntryTest extends TestCase
             'amount[1]'      => 100,
         ]);
 
-        $this->assertEquals(200, $draft->getTotal());
-
-        $this->see(format_money($draft->getTotal()));
+        $this->see(format_money(200));
     }
 
     /** @test */

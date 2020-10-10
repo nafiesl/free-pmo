@@ -87,7 +87,8 @@ class InvoiceDraft
      *
      * @return void
      */
-    function empty() {
+    public function empty()
+    {
         $this->items = [];
     }
 

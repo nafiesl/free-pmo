@@ -160,7 +160,7 @@ class ProjectIssuesTest extends TestCase
 
         $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
         $this->submitForm(__('issue.update'), [
-            'pic_id' => null,
+            'pic_id' => '',
         ]);
         $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
         $this->seeText(__('issue.updated'));

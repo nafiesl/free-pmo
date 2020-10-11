@@ -23,7 +23,7 @@ class ProjectTest extends TestCase
     /** @test */
     public function a_project_has_name_link_method()
     {
-        $project = factory(Project::class)->make();
+        $project = factory(Project::class)->create();
         $this->assertEquals(
             link_to_route('projects.show', $project->name, [$project->id], [
                 'title' => trans(

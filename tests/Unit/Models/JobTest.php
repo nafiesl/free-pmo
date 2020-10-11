@@ -22,7 +22,7 @@ class JobTest extends TestCase
     /** @test */
     public function a_job_has_name_link_method()
     {
-        $job = factory(Job::class)->make();
+        $job = factory(Job::class)->create();
 
         $this->assertEquals(
             link_to_route('jobs.show', $job->name, [$job->id], [

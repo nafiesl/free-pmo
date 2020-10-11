@@ -62,7 +62,8 @@ class CustomerTest extends TestCase
     /** @test */
     public function a_customer_has_name_link_method()
     {
-        $customer = factory(Customer::class)->make();
+        $customer = factory(Customer::class)->create();
+
         $this->assertEquals(
             link_to_route('customers.show', $customer->name, [$customer->id], [
                 'title' => trans(

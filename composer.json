@@ -5,11 +5,12 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.2",
-        "backup-manager/laravel": "^1.4",
+        "php": "^7.3",
+        "backup-manager/laravel": "^2.0",
         "fideloper/proxy": "^4.0",
         "laracasts/presenter": "^0.2.1",
-        "laravel/framework": "^6.0",
+        "laravel/framework": "^7.0",
+        "laravel/ui": "^2.0",
         "luthfi/formfield": "1.*",
         "riskihajar/terbilang": "^1.2",
         "spatie/laravel-fractal": "^5.0"
@@ -21,7 +22,7 @@
         "johnkary/phpunit-speedtrap": "^3.0",
         "luthfi/simple-crud-generator": "^1.2",
         "mockery/mockery": "^1.0",
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^8.5"
     },
     "autoload": {
         "classmap": [

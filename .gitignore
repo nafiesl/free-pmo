@@ -1,8 +1,16 @@
 /vendor
 /node_modules
+/public/hot
 /public/storage
 Homestead.yaml
 Homestead.json
+/storage/*.key
+/.vagrant
+npm-debug.log
 .env
 /.idea/
+.phpunit.result.cache
 .php_cs.cache
+.env.backup
+yarn-error.log
+/ftpsync.settings

@@ -47,7 +47,7 @@
             <td class="text-right">{{ $payment->present()->amount }}</td>
             <td>{{ $payment->description }}</td>
             <td class="text-center">
-                {!! html_link_to_route('payments.show', '', [$payment->id], ['icon' => 'search', 'class' => 'btn btn-info btn-xs', 'title' => __('app.show')]) !!}
+                {!! html_link_to_route('payments.show', '', [$payment->id], ['icon' => 'search', 'class' => 'btn btn-info btn-xs', 'title' => __('app.show'), 'id' => 'show_payment-'.$payment->id]) !!}
                 {!! html_link_to_route('payments.pdf', '', [$payment->id], ['icon' => 'print', 'class' => 'btn btn-warning btn-xs', 'title' => __('app.print')]) !!}
             </td>
         </tr>

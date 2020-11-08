@@ -4,6 +4,12 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/nafiesl/backup-manager-laravel"
+        }
+    ],
     "require": {
         "php": "^7.3",
         "backup-manager/laravel": "dev-laravel_8_support",

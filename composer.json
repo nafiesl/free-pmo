@@ -4,13 +4,19 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/nafiesl/backup-manager-laravel"
+        }
+    ],
     "require": {
         "php": "^7.3",
-        "backup-manager/laravel": "^2.0",
+        "backup-manager/laravel": "dev-laravel_8_support",
         "fideloper/proxy": "^4.0",
         "laracasts/presenter": "^0.2.1",
-        "laravel/framework": "^7.0",
-        "laravel/ui": "^2.0",
+        "laravel/framework": "^8.0",
+        "laravel/ui": "^3.0",
         "luthfi/formfield": "1.*",
         "riskihajar/terbilang": "^1.2",
         "spatie/laravel-fractal": "^5.0"
@@ -20,9 +26,10 @@
         "barryvdh/laravel-debugbar": "^3.1",
         "fzaninotto/faker": "^1.4",
         "johnkary/phpunit-speedtrap": "^3.0",
-        "luthfi/simple-crud-generator": "^1.2",
+        "laravel/legacy-factories": "^1.1",
+        "luthfi/simple-crud-generator": "dev-master",
         "mockery/mockery": "^1.0",
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "classmap": [

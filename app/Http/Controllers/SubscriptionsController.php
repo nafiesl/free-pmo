@@ -142,10 +142,10 @@ class SubscriptionsController extends Controller
      * Get subscrioption list.
      *
      * @param  string  $searchQuery
-     * @param  int  $customerId
+     * @param  int  $vendorId
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
-    private function getSubscriptionListing($searchQuery, $customerId)
+    private function getSubscriptionListing($searchQuery, $vendorId)
     {
         $subscriptionQuery = Subscription::orderBy('status_id', 'desc')
             ->orderBy('due_date')
@@ -154,8 +154,8 @@ class SubscriptionsController extends Controller
         if ($searchQuery) {
             $subscriptionQuery->where('name', 'like', '%'.$searchQuery.'%');
         }
-        if ($customerId) {
-            $subscriptionQuery->where('customer_id', $customerId);
+        if ($vendorId) {
+            $subscriptionQuery->where('vendor_id', $vendorId);
         }
 
         return $subscriptionQuery->paginate(25);

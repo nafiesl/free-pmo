@@ -38,7 +38,7 @@ Tujuan utama Free PMO adalah membantu pengelolaan data project dengan mudah dan 
 Aplikasi ini dapat dipasang dalam server lokal (PC/Laptop) dan server online, dengan spesifikasi berikut :
 
 #### Spesifikasi minimum server
-1. PHP >= 7.3 (dan memenuhi [server requirement Laravel 7.x](https://laravel.com/docs/7.x#server-requirements)),
+1. PHP >= 7.3 (dan memenuhi [server requirement Laravel 8.x](https://laravel.com/docs/8.x#server-requirements)),
 2. MySQL atau MariaDB,
 3. SQlite (untuk automated testing).
 
@@ -70,7 +70,7 @@ Project ini dikembangkan oleh [Nafies Luthfi](https://github.com/nafiesl) dan pa
 Free PMO dibangun menggunakan [metode TDD](https://blog.nafies.id/laravel/testing-laravel-tentang-automated-testing) dengan bahan dan dukungan dari paket-paket berikut ini :
 
 ##### Dependencies
-* [Framework Laravel](https://laravel.com/docs/6.x) (versi 5.2 s/d 7.x).
+* [Framework Laravel](https://laravel.com/docs/8.x) (versi 5.2 s/d 8.x).
 * [luthfi/formfield](https://github.com/nafiesl/FormField), Wrapper Form dari [laravelcollective/html](https://github.com/laravelcollective/html) dengan Bootstrap 3.
 * [riskihajar/terbilang](https://github.com/riskihajar/terbilang), membuat angka terbilang (pada fitur cetak kuitansi) dan romawi.
 

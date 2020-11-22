@@ -40,7 +40,7 @@ Free PMO was built for easy and professional project management.
 This application can be installed on local server and online server with these specifications :
 
 #### Server Requirements
-1. PHP >= 7.3.0 (and meet [Laravel 7.x server requirements](https://laravel.com/docs/7.x#server-requirements)),
+1. PHP >= 7.3.0 (and meet [Laravel 8.x server requirements](https://laravel.com/docs/8.x#server-requirements)),
 2. MySQL or MariaDB database,
 3. SQlite (for automated testing).
 
@@ -72,7 +72,7 @@ This project maintained by [Nafies Luthfi](https://github.com/nafiesl) and devel
 Free PMO built with [TDD metode](https://blog.nafies.id/laravel/testing-laravel-tentang-automated-testing) with these ingredients support :
 
 ##### Dependencies
-* [Framework Laravel](https://laravel.com/docs/6.x) (version 5.2 to 7.x).
+* [Framework Laravel](https://laravel.com/docs/8.x) (version 5.2 to 8.x).
 * [luthfi/formfield](https://github.com/nafiesl/FormField), Bootstrap 3 Form Wrapper for [laravelcollective/html](https://github.com/laravelcollective/html).
 * [riskihajar/terbilang](https://github.com/riskihajar/terbilang), create indonesian in-word number (for payment receipt) and roman numeral.
 

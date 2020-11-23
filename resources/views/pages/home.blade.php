@@ -82,6 +82,7 @@
                 @empty
                 <tr><td colspan="4">{{ trans('dashboard.no_upcoming_subscriptions_expiry') }}</td></tr>
                 @endforelse
+                <tr><th colspan="4" class="text-center">{{ link_to_route('subscriptions.index', __('subscription.view_all')) }}</th></tr>
             </table>
         </div>
     </div>

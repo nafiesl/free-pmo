@@ -6,6 +6,7 @@ return [
     'subscription'  => 'Subscription',
     'subscriptions' => 'Subscription List',
     'list'          => 'Subscription List',
+    'view_all'      => 'View All Subscriptions',
     'detail'        => 'Subscription Detail',
     'search'        => 'Search Subscription',
     'found'         => 'Subscription found.',

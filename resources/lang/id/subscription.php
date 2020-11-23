@@ -6,6 +6,7 @@ return [
     'subscription'  => 'Langganan',
     'subscriptions' => 'Daftar Langganan',
     'list'          => 'Daftar Langganan',
+    'view_all'      => 'Lihat Semua Langganan',
     'detail'        => 'Detail Langganan',
     'search'        => 'Cari Langganan',
     'found'         => 'Langganan ditemukan',

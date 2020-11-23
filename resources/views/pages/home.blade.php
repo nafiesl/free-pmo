@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
 
-@section('title', trans('nav_menu.dashboard'))
+@section('title', __('nav_menu.dashboard'))
 
 @section('content-dashboard')
 @if (auth()->user()->hasRole('admin'))
 <div class="row">
     <div class="col-lg-5">
-        <legend style="border-bottom: none" class="text-center">{{ trans('dashboard.project_status_stats') }}</legend>
+        <legend style="border-bottom: none" class="text-center">{{ __('dashboard.project_status_stats') }}</legend>
         <div class="row">
             @foreach(ProjectStatus::all() as $statusId => $status)
             <div class="col-lg-6 col-md-4 col-xs-6">
@@ -22,13 +22,13 @@
         </div>
     </div>
     <div class="col-lg-7">
-        <legend style="border-bottom: none" class="text-center">{{ trans('dashboard.earnings_stats') }}</legend>
+        <legend style="border-bottom: none" class="text-center">{{ __('dashboard.earnings_stats') }}</legend>
         <div class="panel panel-default table-responsive hidden-xs">
             <table class="table table-condensed table-bordered">
                 <tr>
-                    <td class="col-xs-2 text-center">{{ trans('dashboard.yearly_earnings') }} ({{ $queriedYear }})</td>
-                    <td class="col-xs-2 text-center">{{ trans('dashboard.finished_projects_count') }} ({{ $queriedYear }})</td>
-                    <td class="col-xs-2 text-center">{{ trans('dashboard.receiveable_earnings') }}</td>
+                    <td class="col-xs-2 text-center">{{ __('dashboard.yearly_earnings') }} ({{ $queriedYear }})</td>
+                    <td class="col-xs-2 text-center">{{ __('dashboard.finished_projects_count') }} ({{ $queriedYear }})</td>
+                    <td class="col-xs-2 text-center">{{ __('dashboard.receiveable_earnings') }}</td>
                 </tr>
                 <tr>
                     <td class="text-center text-primary lead" style="border-top: none;">
@@ -46,20 +46,20 @@
 
         <ul class="list-group visible-xs">
             <li class="list-group-item">
-                {{ trans('dashboard.yearly_earnings') }} ({{ $queriedYear }})
+                {{ __('dashboard.yearly_earnings') }} ({{ $queriedYear }})
                 <span class="pull-right text-primary">{{ $totalEarnings }}</span>
             </li>
             <li class="list-group-item">
-                {{ trans('dashboard.finished_projects_count') }} ({{ $queriedYear }})
+                {{ __('dashboard.finished_projects_count') }} ({{ $queriedYear }})
                 <span class="pull-right text-primary">{{ $totalFinishedProjects }} Projects</span>
             </li>
             <li class="list-group-item">
-                {{ trans('dashboard.receiveable_earnings') }}
+                {{ __('dashboard.receiveable_earnings') }}
                 <span class="pull-right text-primary">{{ $currentOutstandingCustomerPayment }}</span>
             </li>
         </ul>
 
-        <legend style="border-bottom: none" class="text-center">{{ trans('dashboard.upcoming_subscriptions_expiry') }}</legend>
+        <legend style="border-bottom: none" class="text-center">{{ __('dashboard.upcoming_subscriptions_expiry') }}</legend>
 
         <div class="panel panel-default table-responsive">
             <table class="table table-condensed">
@@ -80,8 +80,9 @@
                     </td>
                 </tr>
                 @empty
-                <tr><td colspan="4">{{ trans('dashboard.no_upcoming_subscriptions_expiry') }}</td></tr>
+                <tr><td colspan="4">{{ __('dashboard.no_upcoming_subscriptions_expiry') }}</td></tr>
                 @endforelse
+                <tr><th colspan="4" class="text-center">{{ link_to_route('subscriptions.index', __('subscription.view_all')) }}</th></tr>
             </table>
         </div>
     </div>
@@ -90,15 +91,15 @@
 <div class="row">
     <div class="col-md-4 col-md-offset-3">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('user.current_jobs') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ __('user.current_jobs') }}</h3></div>
             <table class="table table-condensed">
                 <tbody>
                     @php
                         $currentJobTotal = 0;
                     @endphp
                     <tr>
-                        <th class="text-center">{{ trans('job.progress') }}</th>
-                        <th class="text-center">{{ trans('user.jobs_count') }}</th>
+                        <th class="text-center">{{ __('job.progress') }}</th>
+                        <th class="text-center">{{ __('user.jobs_count') }}</th>
                     </tr>
                     <tr>
                         <td class="text-center">0 - 10%</td>
@@ -158,7 +159,7 @@
                 </tbody>
                 <tfoot>
                     <tr style="border-top: 4px solid #ccc">
-                        <th class="text-center">{{ trans('app.total') }}</th>
+                        <th class="text-center">{{ __('app.total') }}</th>
                         <th class="text-center">{{ $currentJobTotal }}</th>
                     </tr>
                 </tfoot>

@@ -1,30 +1,30 @@
 @extends('layouts.app')
 
-@section('title', trans('subscription.subscriptions'))
+@section('title', __('subscription.subscriptions'))
 
 @section('content')
 <h1 class="page-header">
-    {!! link_to_route('subscriptions.create', trans('subscription.create'), [], ['class'=>'btn btn-success pull-right']) !!}
-    {{ trans('subscription.subscriptions') }} <small>{{ $subscriptions->total() }} {{ trans('subscription.found') }}</small>
+    {!! link_to_route('subscriptions.create', __('subscription.create'), [], ['class' => 'btn btn-success pull-right']) !!}
+    {{ __('subscription.subscriptions') }} <small>{{ $subscriptions->total() }} {{ __('subscription.found') }}</small>
 </h1>
 <div class="well well-sm">
-    {!! Form::open(['method'=>'get','class'=>'form-inline']) !!}
-    {!! Form::text('q', request('q'), ['class'=>'form-control index-search-field','placeholder'=>trans('subscription.search'),'style' => 'width:350px']) !!}
-    {!! Form::submit(trans('subscription.search'), ['class' => 'btn btn-info btn-sm']) !!}
+    {!! Form::open(['method' => 'get','class' => 'form-inline']) !!}
+    {!! Form::text('q', request('q'), ['class' => 'form-control index-search-field','placeholder' =>__('subscription.search'),'style' => 'width:350px']) !!}
+    {!! Form::submit(__('subscription.search'), ['class' => 'btn btn-info btn-sm']) !!}
     {!! link_to_route('subscriptions.index','Reset',[],['class' => 'btn btn-default btn-sm']) !!}
     {!! Form::close() !!}
 </div>
 
 <table class="table table-condensed">
     <thead>
-        <th>{{ trans('app.table_no') }}</th>
-        <th>{{ trans('subscription.name') }}</th>
-        <th class="text-center">{{ trans('app.type') }}</th>
-        <th>{{ trans('subscription.customer') }}</th>
-        <th class="text-right">{{ trans('subscription.due_date') }}</th>
-        <th class="text-right">{{ trans('subscription.extension_price') }}</th>
-        <th>{{ trans('subscription.vendor') }}</th>
-        <th class="text-center">{{ trans('app.status') }}</th>
+        <th>{{ __('app.table_no') }}</th>
+        <th>{{ __('subscription.name') }}</th>
+        <th class="text-center">{{ __('app.type') }}</th>
+        <th>{{ __('subscription.customer') }}</th>
+        <th class="text-right">{{ __('subscription.due_date') }}</th>
+        <th class="text-right">{{ __('subscription.extension_price') }}</th>
+        <th>{{ __('subscription.vendor') }}</th>
+        <th class="text-center">{{ __('app.status') }}</th>
     </thead>
     <tbody>
         @forelse($subscriptions as $key => $subscription)
@@ -42,7 +42,7 @@
         </tr>
         @empty
         <tr>
-            <td colspan="7">{{ trans('subscription.not_found') }}</td>
+            <td colspan="7">{{ __('subscription.not_found') }}</td>
         </tr>
         @endforelse
     </tbody>

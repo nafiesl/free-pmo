@@ -15,41 +15,41 @@
             <div class="panel-heading"><h3 class="panel-title">{{ $pageTitle }}</h3></div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-6">{!! FormField::radios('type_id', SubscriptionType::toArray(), ['label' => trans('subscription.type'), 'value' => Request::get('type_id')]) !!}</div>
-                    <div class="col-md-6">{!! FormField::radios('status_id', [trans('app.in_active'), trans('app.active')], ['label' => trans('app.status')]) !!}</div>
+                    <div class="col-md-6">{!! FormField::radios('type_id', SubscriptionType::toArray(), ['label' => __('subscription.type'), 'value' => Request::get('type_id')]) !!}</div>
+                    <div class="col-md-6">{!! FormField::radios('status_id', [__('app.in_active'), __('app.active')], ['label' => __('app.status')]) !!}</div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! FormField::text('name', ['label' => trans('subscription.name')]) !!}
+                        {!! FormField::text('name', ['label' => __('subscription.name')]) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! FormField::price('price', ['label' => trans('subscription.price'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
+                        {!! FormField::price('price', ['label' => __('subscription.price'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! FormField::text('start_date', ['label' => trans('subscription.start_date')]) !!}
+                        {!! FormField::text('start_date', ['label' => __('subscription.start_date')]) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! FormField::text('due_date', ['label' => trans('subscription.due_date')]) !!}
+                        {!! FormField::text('due_date', ['label' => __('subscription.due_date')]) !!}
                     </div>
                 </div>
-                {!! FormField::select('project_id', $projects, ['label' => trans('subscription.project')]) !!}
-                {!! FormField::select('vendor_id', $vendors, ['label' => trans('subscription.vendor')]) !!}
-                {!! FormField::textarea('notes', ['label' => trans('subscription.notes')]) !!}
+                {!! FormField::select('project_id', $projects, ['label' => __('subscription.project')]) !!}
+                {!! FormField::select('vendor_id', $vendors, ['label' => __('subscription.vendor')]) !!}
+                {!! FormField::textarea('notes', ['label' => __('subscription.notes')]) !!}
             </div>
 
             <div class="panel-footer">
-                {!! Form::submit(trans('subscription.update'), ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit(__('subscription.update'), ['class' => 'btn btn-primary']) !!}
             </div>
         </div>
         {!! Form::close() !!}
     </div>
     <div class="col-md-3 text-center">
-        <legend>@lang('app.action')</legend>
-        <p>{!! link_to_route('subscriptions.show', trans('subscription.back_to_show'), [$subscription->id], ['class' => 'btn btn-info']) !!}</p>
-        <p>{!! link_to_route('subscriptions.index', trans('subscription.back_to_index'), [], ['class' => 'btn btn-default']) !!}</p>
-        <p>{!! link_to_route('subscriptions.edit', trans('subscription.delete'), [$subscription->id, 'action' => 'delete'], ['class' => 'btn btn-danger']) !!}</p>
+        <legend>{{ __('app.action') }}</legend>
+        <p>{!! link_to_route('subscriptions.show', __('subscription.back_to_show'), [$subscription->id], ['class' => 'btn btn-info']) !!}</p>
+        <p>{!! link_to_route('subscriptions.index', __('subscription.back_to_index'), [], ['class' => 'btn btn-default']) !!}</p>
+        <p>{!! link_to_route('subscriptions.edit', __('subscription.delete'), [$subscription->id, 'action' => 'delete'], ['class' => 'btn btn-danger']) !!}</p>
     </div>
 </div>
 @endif

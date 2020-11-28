@@ -13,9 +13,9 @@
         </div>
     </div>
     <div class="col-md-3 text-center">
-        <legend>@lang('app.action')</legend>
-        <p>{!! link_to_route('subscriptions.edit', trans('subscription.edit'), [$subscription->id], ['class' => 'btn btn-warning']) !!}</p>
-        <p>{!! link_to_route('subscriptions.index', trans('subscription.back_to_index'), [], ['class' => 'btn btn-default']) !!}</p>
+        <legend>{{ __('app.action') }}</legend>
+        <p>{!! link_to_route('subscriptions.edit', __('subscription.edit'), [$subscription->id], ['class' => 'btn btn-warning']) !!}</p>
+        <p>{!! link_to_route('subscriptions.index', __('subscription.back_to_index'), [], ['class' => 'btn btn-default']) !!}</p>
     </div>
 </div>
 @endsection

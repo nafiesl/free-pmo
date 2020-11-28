@@ -12,6 +12,7 @@
                 {{ link_to_route('projects.subscriptions', $subscription->project->name, [$subscription->project_id]) }}
             </td>
         </tr>
+        <tr><td>{{ trans('subscription.vendor') }}</td><td>{{ $subscription->vendor->name }}</td></tr>
         <tr><td>{{ trans('subscription.notes') }}</td><td>{!! nl2br($subscription->notes) !!}</td></tr>
     </tbody>
 </table>

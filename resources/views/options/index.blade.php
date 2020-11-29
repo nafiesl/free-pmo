@@ -12,9 +12,9 @@
                 <tr>
                     <td>
                         {{ str_split_ucwords($option->key) }}
-                        {{ link_to_route('options.index', 'x', ['id' => $option->id,'action' => 'del'], ['class' => 'btn btn-danger btn-xs pull-right']) }}
+                        {{ link_to_route('options.index', 'x', ['id' => $option->id, 'action' => 'del'], ['class' => 'btn btn-danger btn-xs pull-right']) }}
                     </td>
-                    <td>{!! Form::textarea($option->key, $option->value, ['class' => 'form-control','rows' => 3]) !!}</td>
+                    <td>{!! Form::textarea($option->key, $option->value, ['class' => 'form-control', 'rows' => 3]) !!}</td>
                 </tr>
                 @empty
                 <tr>

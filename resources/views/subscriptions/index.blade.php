@@ -8,10 +8,10 @@
     {{ __('subscription.subscriptions') }} <small>{{ $subscriptions->total() }} {{ __('subscription.found') }}</small>
 </h1>
 <div class="well well-sm">
-    {!! Form::open(['method' => 'get','class' => 'form-inline']) !!}
-    {!! Form::text('q', request('q'), ['class' => 'form-control index-search-field','placeholder' =>__('subscription.search'),'style' => 'width:350px']) !!}
+    {!! Form::open(['method' => 'get', 'class' => 'form-inline']) !!}
+    {!! Form::text('q', request('q'), ['class' => 'form-control index-search-field', 'placeholder' =>__('subscription.search'), 'style' => 'width:350px']) !!}
     {!! Form::submit(__('subscription.search'), ['class' => 'btn btn-info btn-sm']) !!}
-    {!! link_to_route('subscriptions.index','Reset',[],['class' => 'btn btn-default btn-sm']) !!}
+    {!! link_to_route('subscriptions.index', __('app.reset'), [], ['class' => 'btn btn-default btn-sm']) !!}
     {!! Form::close() !!}
 </div>
 

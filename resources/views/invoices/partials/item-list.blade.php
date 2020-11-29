@@ -44,7 +44,7 @@
                     {!! FormField::delete([
                         'route' => ['invoices.items.destroy', $invoice],
                         'class' => '',
-                    ], 'x', ['id' => 'remove-item-'.$key, 'class' => 'btn btn-danger btn-xs show-on-hover' ,'title' => __('invoice.item_remove')], ['item_index' => $key]) !!}
+                    ], 'x', ['id' => 'remove-item-'.$key, 'class' => 'btn btn-danger btn-xs show-on-hover', 'title' => __('invoice.item_remove')], ['item_index' => $key]) !!}
                 </td>
             </tr>
             @endforeach

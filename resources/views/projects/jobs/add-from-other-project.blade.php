@@ -4,8 +4,8 @@
 
 @section('action-buttons')
 @can('create', new App\Entities\Projects\Job)
-    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$project->id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-    {!! html_link_to_route('projects.jobs.add-from-other-project', __('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$project->id], ['class' => 'btn btn-success', 'icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.add-from-other-project', __('job.add_from_other_project'), [$project->id], ['class' => 'btn btn-default', 'icon' => 'plus']) !!}
 @endcan
 @endsection
 

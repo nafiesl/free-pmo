@@ -4,8 +4,8 @@
 
 @section('action-buttons')
 @can('create', new App\Entities\Projects\Job)
-    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$project], ['class' => 'btn btn-success','icon' => 'plus']) !!}
-    {!! html_link_to_route('projects.jobs.add-from-other-project', __('job.add_from_other_project'), [$project], ['class' => 'btn btn-default','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$project], ['class' => 'btn btn-success', 'icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.add-from-other-project', __('job.add_from_other_project'), [$project], ['class' => 'btn btn-default', 'icon' => 'plus']) !!}
 @endcan
 @endsection
 
@@ -28,8 +28,8 @@
                 @else
                     {{ link_to_route('projects.jobs.index', __('project.sort_jobs'), [$project, 'action' => 'sort_jobs', '#project-jobs'], ['class' => 'btn btn-default btn-xs pull-right', 'style' => 'margin-top: -2px; margin-left: 6px; margin-right: -8px']) }}
                     @can('see-pricings', $project)
-                    {!! link_to_route('projects.jobs-export', __('project.jobs_list_export_html'), [$project, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!} |
-                    {!! link_to_route('projects.job-progress-export', __('project.jobs_progress_export_html'), [$project, 'html', 'job_type' => $key], ['class' => '','target' => '_blank']) !!}
+                    {!! link_to_route('projects.jobs-export', __('project.jobs_list_export_html'), [$project, 'html', 'job_type' => $key], ['class' => '', 'target' => '_blank']) !!} |
+                    {!! link_to_route('projects.job-progress-export', __('project.jobs_progress_export_html'), [$project, 'html', 'job_type' => $key], ['class' => '', 'target' => '_blank']) !!}
                     @endcan
                 @endif
             @endcan
@@ -92,7 +92,7 @@
                 </td>
                 <td class="text-center">
                     @can('view', $job)
-                    {!! html_link_to_route('jobs.show', '',[$job->id],['icon' => 'search', 'title' => __('job.show'), 'class' => 'btn btn-info btn-xs','id' => 'show-job-' . $job->id]) !!}
+                    {!! html_link_to_route('jobs.show', '',[$job->id],['icon' => 'search', 'title' => __('job.show'), 'class' => 'btn btn-info btn-xs', 'id' => 'show-job-' . $job->id]) !!}
                     @endcan
                     @can('edit', $job)
                     {!! html_link_to_route('jobs.edit', '',[$job->id],['icon' => 'edit', 'title' => __('job.edit'), 'class' => 'btn btn-warning btn-xs']) !!}

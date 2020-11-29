@@ -38,7 +38,7 @@
                     {{ link_to_route('projects.issues.show', '&times;', [$issue->project, $issue], ['class' => 'close']) }}
                     <h4 class="modal-title">{{ __('comment.edit') }}</h4>
                 </div>
-                {!! Form::model($editableComment, ['route' => ['issues.comments.update', $issue, $editableComment],'method' => 'patch']) !!}
+                {!! Form::model($editableComment, ['route' => ['issues.comments.update', $issue, $editableComment], 'method' => 'patch']) !!}
                 <div class="modal-body">
                     {!! FormField::textarea('body', ['label' => __('comment.body')]) !!}
                     {{ Form::hidden('page', request('page')) }}

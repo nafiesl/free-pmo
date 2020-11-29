@@ -4,7 +4,7 @@
 
 @section('action-buttons')
 @can('create', new App\Entities\Projects\Job)
-    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$job->project_id], ['class' => 'btn btn-success','icon' => 'plus']) !!}
+    {!! html_link_to_route('projects.jobs.create', __('job.create'), [$job->project_id], ['class' => 'btn btn-success', 'icon' => 'plus']) !!}
 @endcan
 @can('update', $job)
     {{ link_to_route('jobs.edit', __('job.edit'), [$job], ['class' => 'btn btn-warning']) }}

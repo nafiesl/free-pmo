@@ -13,7 +13,7 @@
 
 <div class="panel panel-default table-responsive">
     <div class="panel-heading">
-        {{ Form::open(['method' => 'get','class' => 'form-inline']) }}
+        {{ Form::open(['method' => 'get', 'class' => 'form-inline']) }}
         {!! FormField::text('q', ['value' => request('q'), 'label' => trans('customer.search'), 'class' => 'input-sm']) !!}
         {{ Form::submit(trans('customer.search'), ['class' => 'btn btn-sm']) }}
         {{ link_to_route('customers.index', trans('app.reset')) }}

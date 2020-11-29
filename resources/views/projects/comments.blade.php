@@ -20,7 +20,7 @@
                     {{ link_to_route('projects.comments.index', '&times;', [$project] + request(['page']), ['class' => 'close']) }}
                     <h4 class="modal-title">{{ __('comment.edit') }}</h4>
                 </div>
-                {!! Form::model($editableComment, ['route' => ['projects.comments.update', $project, $editableComment->id],'method' => 'patch']) !!}
+                {!! Form::model($editableComment, ['route' => ['projects.comments.update', $project, $editableComment->id], 'method' => 'patch']) !!}
                 <div class="modal-body">
                     {!! FormField::textarea('body', ['label' => __('comment.body')]) !!}
                     {{ Form::hidden('page', request('page')) }}

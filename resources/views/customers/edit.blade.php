@@ -13,7 +13,7 @@
 @if (Request::has('action'))
     @include('customers.forms')
 @else
-{!! Form::model($customer, ['route' => ['customers.update', $customer->id],'method' => 'patch']) !!}
+{!! Form::model($customer, ['route' => ['customers.update', $customer->id], 'method' => 'patch']) !!}
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">

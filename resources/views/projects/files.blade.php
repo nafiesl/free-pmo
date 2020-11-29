@@ -72,7 +72,7 @@
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">{{ __('file.edit') }} : {{ $editableFile->title }}</h3></div>
             <div class="panel-body">
-                {!! Form::model($editableFile, ['route' => ['files.update', $editableFile->id],'method' => 'patch']) !!}
+                {!! Form::model($editableFile, ['route' => ['files.update', $editableFile->id], 'method' => 'patch']) !!}
                 {!! FormField::text('title', ['label' => __('file.title'), 'required' => true]) !!}
                 {!! FormField::textarea('description', ['label' => __('file.description')]) !!}
                 {!! Form::submit(__('file.update'), ['class' => 'btn btn-success']) !!}

@@ -18,7 +18,7 @@
 @if (Request::get('action') == 'edit' && $editableBankAccount)
 <div class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">{{ trans('bank_account.edit') }}</h3></div>
-    {!! Form::model($editableBankAccount, ['route' => ['bank-accounts.update', request('id')],'method' => 'patch']) !!}
+    {!! Form::model($editableBankAccount, ['route' => ['bank-accounts.update', request('id')], 'method' => 'patch']) !!}
     <div class="panel-body">
         {!! FormField::text('name', ['required' => true, 'label' => trans('bank_account.name')]) !!}
         {!! FormField::text('number', ['required' => true, 'label' => trans('bank_account.number')]) !!}
@@ -51,7 +51,7 @@
         <div class="panel-body">{{ trans('app.delete_confirm') }}</div>
         <div class="panel-footer">
             {!! FormField::delete(
-                ['route'=>['bank-accounts.destroy',request('id')]],
+                ['route'=>['bank-accounts.destroy', request('id')]],
                 trans('app.delete_confirm_button'),
                 ['class'=>'btn btn-danger'],
                 [

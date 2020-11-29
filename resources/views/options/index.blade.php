@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h3 class="page-header">{{ trans('option.list') }}</h3>
+<h3 class="page-header">{{ __('option.list') }}</h3>
 
 <div class="row">
     <div class="col-md-8">
@@ -24,7 +24,7 @@
             </tbody>
         </table>
         <div class="form-group">
-            {!! Form::submit(trans('app.update'), ['class' => 'btn btn-warning']) !!}
+            {!! Form::submit(__('app.update'), ['class' => 'btn btn-warning']) !!}
         </div>
         {!! Form::close() !!}
     </div>
@@ -32,9 +32,9 @@
     <div class="col-md-4">
         @if (Request::get('action') == 'del' && $editableOption)
         <div class="panel panel-info">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('option.delete') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ __('option.delete') }}</h3></div>
             <div class="panel-body">
-                <p>{{ trans('app.delete_confirm') }}</p>
+                <p>{{ __('app.delete_confirm') }}</p>
                 <table class="table table-condensed">
                     <tbody>
                         <tr><th class="col-md-4">{{ str_split_ucwords($editableOption->key) }}</th><td>{{ $editableOption->value }}</td></tr>
@@ -42,20 +42,20 @@
                 </table>
             </div>
             <div class="panel-footer">
-                {!! FormField::delete(['route' => ['options.destroy',$editableOption->id]], trans('app.delete'), ['class' => 'btn btn-danger'], ['option_id' => $option->id]) !!}
-                {{ link_to_route('options.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
+                {!! FormField::delete(['route' => ['options.destroy',$editableOption->id]], __('app.delete'), ['class' => 'btn btn-danger'], ['option_id' => $option->id]) !!}
+                {{ link_to_route('options.index', __('app.cancel'), [], ['class' => 'btn btn-default']) }}
             </div>
         </div>
         @endif
         {!! Form::open(['route' => 'options.store']) !!}
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('option.create') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ __('option.create') }}</h3></div>
             <div class="panel-body">
                 {!! FormField::text('key') !!}
                 {!! FormField::textarea('value') !!}
             </div>
             <div class="panel-footer">
-                {!! Form::submit(trans('app.add'), ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit(__('app.add'), ['class' => 'btn btn-primary']) !!}
             </div>
         </div>
         {!! Form::close() !!}

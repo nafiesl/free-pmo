@@ -1,7 +1,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            {{ trans('invoice.items') }}
+            {{ __('invoice.items') }}
         </h3>
     </div>
     <table class="table">
@@ -56,7 +56,7 @@
                 <td colspan="2">
                     {!! FormField::textarea(
                         'new_item_description',
-                        ['id' => 'new_item_description', 'label' => false, 'placeholder' => trans('invoice.item_description')]
+                        ['id' => 'new_item_description', 'label' => false, 'placeholder' => __('invoice.item_description')]
                     ) !!}
                 </td>
                 <td colspan="2">
@@ -65,18 +65,18 @@
                         [
                             'id' => 'new_item_amount',
                             'label' => false,
-                            'placeholder' => trans('invoice.item_amount'),
+                            'placeholder' => __('invoice.item_amount'),
                             'currency' => Option::get('money_sign', 'Rp')
                         ]
                     ) !!}
-                    {{ Form::submit(trans('invoice.add_item'), ['class' => 'btn btn-primary btn-block']) }}
+                    {{ Form::submit(__('invoice.add_item'), ['class' => 'btn btn-primary btn-block']) }}
                 </td>
                 {{ Form::close() }}
             </tr>
         </tbody>
         <tfoot>
             <tr>
-                <th colspan="2" class="text-right">{{ trans('invoice.amount') }} :</th>
+                <th colspan="2" class="text-right">{{ __('invoice.amount') }} :</th>
                 <th class="text-right">{{ format_money(collect($invoice->items)->sum('amount')) }}</th>
                 <th></th>
             </tr>

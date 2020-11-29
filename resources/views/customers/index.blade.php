@@ -1,33 +1,33 @@
 @extends('layouts.app')
 
-@section('title', trans('customer.list'))
+@section('title', __('customer.list'))
 
 @section('content')
 <h1 class="page-header">
     <div class="pull-right">
-        {{ link_to_route('customers.create', trans('customer.create'), [], ['class' => 'btn btn-success']) }}
+        {{ link_to_route('customers.create', __('customer.create'), [], ['class' => 'btn btn-success']) }}
     </div>
-    {{ trans('customer.list') }}
-    <small>{{ trans('app.total') }} : {{ $customers->total() }} {{ trans('customer.customer') }}</small>
+    {{ __('customer.list') }}
+    <small>{{ __('app.total') }} : {{ $customers->total() }} {{ __('customer.customer') }}</small>
 </h1>
 
 <div class="panel panel-default table-responsive">
     <div class="panel-heading">
         {{ Form::open(['method' => 'get', 'class' => 'form-inline']) }}
-        {!! FormField::text('q', ['value' => request('q'), 'label' => trans('customer.search'), 'class' => 'input-sm']) !!}
-        {{ Form::submit(trans('customer.search'), ['class' => 'btn btn-sm']) }}
-        {{ link_to_route('customers.index', trans('app.reset')) }}
+        {!! FormField::text('q', ['value' => request('q'), 'label' => __('customer.search'), 'class' => 'input-sm']) !!}
+        {{ Form::submit(__('customer.search'), ['class' => 'btn btn-sm']) }}
+        {{ link_to_route('customers.index', __('app.reset')) }}
         {{ Form::close() }}
     </div>
     <table class="table table-condensed">
         <thead>
             <tr>
-                <th class="text-center">{{ trans('app.table_no') }}</th>
-                <th>{{ trans('customer.name') }}</th>
-                <th>{{ trans('contact.email') }}</th>
-                <th>{{ trans('contact.phone') }}</th>
-                <th class="text-center">{{ trans('customer.projects_count') }}</th>
-                <th class="text-center">{{ trans('app.status') }}</th>
+                <th class="text-center">{{ __('app.table_no') }}</th>
+                <th>{{ __('customer.name') }}</th>
+                <th>{{ __('contact.email') }}</th>
+                <th>{{ __('contact.phone') }}</th>
+                <th class="text-center">{{ __('customer.projects_count') }}</th>
+                <th class="text-center">{{ __('app.status') }}</th>
             </tr>
         </thead>
         <tbody>

@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', trans('customer.edit').' '.$customer->name)
+@section('title', __('customer.edit').' '.$customer->name)
 
 @section('content')
 <h1 class="page-header">
     <div class="pull-right">
-        {{ link_to_route('customers.show', trans('customer.back_to_show'), [$customer->id], ['class' => 'btn btn-default']) }}
+        {{ link_to_route('customers.show', __('customer.back_to_show'), [$customer->id], ['class' => 'btn btn-default']) }}
     </div>
-    {{ $customer->name }} <small>{{ trans('customer.edit') }}</small>
+    {{ $customer->name }} <small>{{ __('customer.edit') }}</small>
 </h1>
 
 @if (Request::has('action'))
@@ -40,9 +40,9 @@
                 </div>
             </div>
             <div class="panel-footer">
-                {!! Form::submit(trans('customer.update'), ['class' => 'btn btn-success']) !!}
-                {{ link_to_route('customers.index', trans('app.cancel'), [], ['class' => 'btn btn-default']) }}
-                {!! link_to_route('customers.edit', trans('app.delete'), [$customer->id, 'action' => 'delete'], [
+                {!! Form::submit(__('customer.update'), ['class' => 'btn btn-success']) !!}
+                {{ link_to_route('customers.index', __('app.cancel'), [], ['class' => 'btn btn-default']) }}
+                {!! link_to_route('customers.edit', __('app.delete'), [$customer->id, 'action' => 'delete'], [
                     'id' => 'del-customer-'.$customer->id,
                     'class' => 'btn btn-link pull-right'
                 ] ) !!}

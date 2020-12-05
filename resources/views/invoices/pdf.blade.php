@@ -52,7 +52,7 @@
                         <div style="font-size:11px">
                             {{ Option::get('agency_address') }}<br>
                             @if (Option::get('agency_phone'))
-                            @lang('contact.phone_abb') {{ Option::get('agency_phone') }}
+                            {{ __('contact.phone_abb') }} {{ Option::get('agency_phone') }}
                             @endif
                         </div>
                         @endif

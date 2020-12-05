@@ -32,29 +32,29 @@
                         <div style="font-size:11px">
                             {{ Option::get('agency_address') }}<br>
                             @if (Option::get('agency_phone'))
-                            @lang('contact.phone_abb') {{ Option::get('agency_phone') }}
+                            {{ __('contact.phone_abb') }} {{ Option::get('agency_phone') }}
                             @endif
                         </div>
                         @endif
                     </div>
                 </td>
                 <td style="width:250px; text-align: center;">
-                    <h3 style="margin: 3px 0; font-size: 24px">@lang('payment.receipt')</h3>
+                    <h3 style="margin: 3px 0; font-size: 24px">{{ __('payment.receipt') }}</h3>
                     {{-- <p>No. Invoice: __________</p> --}}
                 </td>
             </tr>
             <tr>
-                <td>@lang('payment.from') : </td>
+                <td>{{ __('payment.from') }} : </td>
                 <td colspan="2" style="border-bottom: 1px solid #ccc;">{{ $payment->partner->name }}</td>
             </tr>
             <tr style="vertical-align: top;">
-                <td>@lang('payment.words_amount') : </td>
+                <td>{{ __('payment.words_amount') }} : </td>
                 <td colspan="2" style="border-bottom: 1px solid #ccc;height: 35px">
                     {{ ucwords(Terbilang::make($payment->amount)) }} Rupiah
                 </td>
             </tr>
             <tr style="vertical-align: top;">
-                <td>@lang('payment.description') :</td>
+                <td>{{ __('payment.description') }} :</td>
                 <td colspan="2" style="border-bottom: 1px solid #ccc;height: 35px">
                     {{ $payment->description }}
                 </td>
@@ -67,7 +67,7 @@
                 </td>
             </tr>
             <tr>
-                <td style="font-size: 20px; font-weight: bold; text-align: center;height: 100px;vertical-align: bottom;">@lang('payment.cash_amount')</td>
+                <td style="font-size: 20px; font-weight: bold; text-align: center;height: 100px;vertical-align: bottom;">{{ __('payment.cash_amount') }}</td>
                 <td style="font-size: 20px; font-weight: bold; vertical-align: bottom;">
                 {{ format_money($payment->amount) }},-
                 </td>

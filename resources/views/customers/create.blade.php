@@ -17,12 +17,12 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <legend>@lang('customer.detail')</legend>
+                        <legend>{{ __('customer.detail') }}</legend>
                         {!! FormField::text('name', ['required' => true]) !!}
                         {!! FormField::textarea('notes') !!}
                     </div>
                     <div class="col-md-6">
-                        <legend>@lang('customer.contact')</legend>
+                        <legend>{{ __('customer.contact') }}</legend>
                         {!! FormField::text('pic') !!}
                         <div class="row">
                             <div class="col-xs-7">{!! FormField::email('email') !!}</div>

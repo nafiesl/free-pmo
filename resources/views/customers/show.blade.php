@@ -20,14 +20,14 @@
     <div class="col-md-6">
         <div class="row">
             <div class="col-lg-6 col-md-12">
-                <a href="{{ route('customers.projects', $customer) }}" title="@lang('customer.projects_count')">
+                <a href="{{ route('customers.projects', $customer) }}" title="{{ __('customer.projects_count') }}">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3"><i class="fa fa-table fa-4x"></i></div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">{{ $customer->projects()->count() }}</div>
-                                    <div class="lead">@lang('customer.projects_count')</div>
+                                    <div class="lead">{{ __('customer.projects_count') }}</div>
                                 </div>
                             </div>
                         </div>

@@ -11,7 +11,7 @@
             'style' => 'margin:-2px 0',
             'icon' => 'plus'
         ]) !!}
-        <h3 class="panel-title">@lang('user.list')</h3>
+        <h3 class="panel-title">{{ __('user.list') }}</h3>
     </div>
     <table class="table table-condensed">
         <thead>

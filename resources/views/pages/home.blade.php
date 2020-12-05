@@ -64,10 +64,10 @@
         <div class="panel panel-default table-responsive">
             <table class="table table-condensed">
                 <tr>
-                    <th class="col-xs-3">@lang('subscription.subscription')</th>
-                    <th class="col-xs-3">@lang('customer.customer')</th>
-                    <th class="col-xs-3 text-right">@lang('invoice.amount')</th>
-                    <th class="col-xs-5 text-center">@lang('subscription.due_date')</th>
+                    <th class="col-xs-3">{{ __('subscription.subscription') }}</th>
+                    <th class="col-xs-3">{{ __('customer.customer') }}</th>
+                    <th class="col-xs-3 text-right">{{ __('invoice.amount') }}</th>
+                    <th class="col-xs-5 text-center">{{ __('subscription.due_date') }}</th>
                 </tr>
                 @forelse(AdminDashboard::upcomingSubscriptionDueDatesList() as $subscription)
                 <tr>

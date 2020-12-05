@@ -44,4 +44,7 @@ return [
     'jobs'       => 'Daftar Job',
     'jobs_count' => 'Jumlah Job',
     'projects'   => 'Daftar Project',
+
+    'create_password_info' => 'Kosongkan field ini jika ingin menggunakan <b>password default</b>.',
+    'update_password_info' => 'Fill this in if you want to change the password.',
 ];

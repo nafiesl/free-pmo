@@ -44,4 +44,7 @@ return [
     'jobs'       => 'Job List',
     'jobs_count' => 'Job Count',
     'projects'   => 'Project List',
+
+    'create_password_info' => 'Leave it empty if you want to use the <b>default password</b>.',
+    'update_password_info' => 'Fill this in if you want to change the password.',
 ];

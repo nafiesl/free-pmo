@@ -17,7 +17,7 @@
                 {!! FormField::password('password', [
                     'label' => trans('auth.password'),
                     'info' => [
-                        'text' => 'Kosongkan field ini jika ingin menggunakan <b>password default</b>.',
+                        'text' => __('user.create_password_info'),
                         'class' => 'info',
                     ],
                 ]) !!}

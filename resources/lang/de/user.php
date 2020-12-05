@@ -44,4 +44,7 @@ return [
     'jobs'       => 'Beschäftigungsliste',
     'jobs_count' => 'Beschäftigungssumme',
     'projects'   => 'Projektliste',
+
+    'create_password_info' => 'Leave it empty if you want to use the <b>default password</b>.',
+    'update_password_info' => 'Isi field ini jika ingin mengganti password user.',
 ];

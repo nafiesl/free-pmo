@@ -24,7 +24,7 @@
                 {!! FormField::password('password', [
                     'label' => trans('auth.password'),
                     'info' => [
-                        'text' => 'Isi field ini jika ingin mengganti password user.',
+                        'text' => __('user.update_password_info'),
                         'class' => 'info',
                     ],
                 ]) !!}

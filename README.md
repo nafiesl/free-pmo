@@ -121,7 +121,7 @@ If you want to contribute to this project, by creating *Issue*, new feature prop
 #### Automated Testing
 
 ```bash
-$ vendor/bin/phpunit
+$ php artisan test --parallel
 ```
 
 ![Free PMO Testing](public/screenshots/pmo-testing-01.jpg)

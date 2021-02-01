@@ -119,7 +119,7 @@ Jika ingin berkontribusi terhadap project ini, baik untuk membuat *Issue*, usula
 #### Automated Testing
 
 ```bash
-$ vendor/bin/phpunit
+$ php artisan test --parallel
 ```
 
 ![Free PMO Testing](public/screenshots/pmo-testing-01.jpg)

@@ -10,6 +10,7 @@
             <div class="panel-heading"><h3 class="panel-title">{{ $job->name }} <small>{{ __('job.edit') }}</small></h3></div>
             <div class="panel-body">
                 {!! FormField::text('name', ['label' => __('job.name')]) !!}
+                {!! FormField::textarea('description', ['label' => __('job.description')]) !!}
                 <div class="row">
                     <div class="col-sm-4">
                         {!! FormField::price('price', ['label' => __('job.price'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
@@ -29,7 +30,6 @@
                     <div class="col-md-4">{!! FormField::text('actual_start_date', ['label' => __('job.actual_start_date'), 'class' => 'date-select']) !!}</div>
                     <div class="col-md-4">{!! FormField::text('actual_end_date', ['label' => __('job.actual_end_date'), 'class' => 'date-select']) !!}</div>
                 </div>
-                {!! FormField::textarea('description', ['label' => __('job.description')]) !!}
             </div>
 
             <div class="panel-footer">

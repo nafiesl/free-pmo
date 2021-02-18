@@ -18,6 +18,7 @@
             <div class="panel-heading"><h3 class="panel-title">{{ __('job.create') }}</h3></div>
             <div class="panel-body">
                 {!! FormField::text('name', ['label' => __('job.name')]) !!}
+                {!! FormField::textarea('description', ['label' => __('job.description')]) !!}
                 <div class="row">
                     <div class="col-sm-4">
                         {!! FormField::price('price', [
@@ -37,7 +38,6 @@
                     <div class="col-md-4">{!! FormField::text('target_start_date', ['label' => __('job.target_start_date'), 'class' => 'date-select']) !!}</div>
                     <div class="col-md-4">{!! FormField::text('target_end_date', ['label' => __('job.target_end_date'), 'class' => 'date-select']) !!}</div>
                 </div>
-                {!! FormField::textarea('description', ['label' => __('job.description')]) !!}
             </div>
 
             <div class="panel-footer">

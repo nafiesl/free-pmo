@@ -20,11 +20,11 @@ class LogJobUpdateActivity
             'user_id'     => auth()->id(),
             'object_id'   => $job->id,
             'object_type' => 'jobs',
-            'data'        => json_encode([
+            'data'        => [
                 'before' => $this->getBeforeValues($originalJob, $attributeKeys),
                 'after'  => $this->getAfterValues($job->toArray(), $attributeKeys),
                 'notes'  => null,
-            ]),
+            ],
         ];
 
         Activity::create($activityEntry);

@@ -26,11 +26,11 @@ class LogProjectUpdateActivity
             'user_id'     => auth()->id(),
             'object_id'   => $project->id,
             'object_type' => 'projects',
-            'data'        => json_encode([
+            'data'        => [
                 'before' => $this->getBeforeValues($originalProject, $attributeKeys),
                 'after'  => $this->getAfterValues($project->toArray(), $attributeKeys),
                 'notes'  => null,
-            ]),
+            ],
         ];
 
         Activity::create($activityEntry);

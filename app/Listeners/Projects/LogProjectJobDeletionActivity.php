@@ -18,11 +18,11 @@ class LogProjectJobDeletionActivity
             'user_id'     => auth()->id(),
             'object_id'   => $projectId,
             'object_type' => 'projects',
-            'data'        => json_encode([
+            'data'        => [
                 'name'        => $job->name,
                 'description' => $job->description,
                 'price'       => $job->price,
-            ]),
+            ],
         ];
 
         Activity::create($activityEntry);

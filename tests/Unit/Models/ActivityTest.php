@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -14,7 +15,7 @@ class ActivityTest extends TestCase
     public function it_creates_project_creation_activities()
     {
         $admin = $this->adminUserSigningIn();
-        $project = factory(Project::class)->create(['name' => 'New Project']);
+        $project = factory(Project::class)->create();
 
         $this->seeInDatabase('user_activities', [
             'type'        => 'project_created',
@@ -46,6 +47,23 @@ class ActivityTest extends TestCase
                 'after'  => ['name' => 'Updated project'],
                 'notes'  => null,
             ]),
+        ]);
+    }
+
+    /** @test */
+    public function it_records_job_creation_activities()
+    {
+        $admin = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create(['project_id' => $project->id]);
+
+        $this->seeInDatabase('user_activities', [
+            'type'        => 'job_created',
+            'parent_id'   => null,
+            'user_id'     => $admin->id,
+            'object_id'   => $job->id,
+            'object_type' => 'jobs',
+            'data'        => null,
         ]);
     }
 }

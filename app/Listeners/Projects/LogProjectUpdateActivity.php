@@ -7,12 +7,6 @@ use App\Events\Projects\Updated;
 
 class LogProjectUpdateActivity
 {
-    /**
-     * Handle the event.
-     *
-     * @param  Updated  $event
-     * @return void
-     */
     public function handle(Updated $event)
     {
         $project = $event->project;

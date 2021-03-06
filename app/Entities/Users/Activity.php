@@ -10,7 +10,5 @@ class Activity extends Model
 
     protected $fillable = ['type', 'parent_id', 'user_id', 'object_id', 'object_type', 'data'];
 
-    protected $casts = [
-        'data' => 'array',
-    ];
+    protected $casts = ['data' => 'array'];
 }

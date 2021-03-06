@@ -66,4 +66,31 @@ class ActivityTest extends TestCase
             'data'        => null,
         ]);
     }
+
+    /** @test */
+    public function it_records_job_data_update_activities()
+    {
+        $admin = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create([
+            'name'       => 'New Job',
+            'project_id' => $project->id,
+        ]);
+
+        $job->name = 'Updated job';
+        $job->save();
+
+        $this->seeInDatabase('user_activities', [
+            'type'        => 'job_updated',
+            'parent_id'   => null,
+            'user_id'     => $admin->id,
+            'object_id'   => $job->id,
+            'object_type' => 'jobs',
+            'data'        => json_encode([
+                'before' => ['name' => 'New Job'],
+                'after'  => ['name' => 'Updated job'],
+                'notes'  => null,
+            ]),
+        ]);
+    }
 }

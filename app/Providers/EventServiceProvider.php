@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Jobs\Created'     => [
             'App\Listeners\Jobs\LogJobCreationActivity',
         ],
+        'App\Events\Jobs\Updated'     => [
+            'App\Listeners\Jobs\LogJobUpdateActivity',
+        ],
     ];
 
     /**

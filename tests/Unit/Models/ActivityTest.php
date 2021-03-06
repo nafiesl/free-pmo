@@ -93,4 +93,26 @@ class ActivityTest extends TestCase
             ]),
         ]);
     }
+
+    /** @test */
+    public function it_records_job_deletion_activities()
+    {
+        $admin = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create(['project_id' => $project->id]);
+        $job->delete();
+
+        $this->seeInDatabase('user_activities', [
+            'type'        => 'job_deleted',
+            'parent_id'   => null,
+            'user_id'     => $admin->id,
+            'object_id'   => $project->id,
+            'object_type' => 'projects',
+            'data'        => json_encode([
+                'name'        => $job->name,
+                'description' => $job->description,
+                'price'       => $job->price,
+            ]),
+        ]);
+    }
 }

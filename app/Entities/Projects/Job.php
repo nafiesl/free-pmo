@@ -24,6 +24,7 @@ class Job extends Model
     protected $dispatchesEvents = [
         'created' => 'App\Events\Jobs\Created',
         'updated' => 'App\Events\Jobs\Updated',
+        'deleted' => 'App\Events\Jobs\Deleted',
     ];
 
     /**

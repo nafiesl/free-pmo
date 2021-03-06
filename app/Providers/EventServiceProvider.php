@@ -13,6 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        'App\Events\Projects\Created' => [
+            'App\Listeners\Projects\LogProjectCreationActivity',
+        ],
         'App\Events\Projects\Updated' => [
             'App\Listeners\Projects\LogProjectUpdateActivity',
         ],

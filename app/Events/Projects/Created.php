@@ -4,7 +4,7 @@ namespace App\Events\Projects;
 
 use App\Entities\Projects\Project;
 
-class Updated
+class Created
 {
     public $project;
 

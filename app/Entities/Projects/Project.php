@@ -24,6 +24,7 @@ class Project extends Model
      * @var array
      */
     protected $dispatchesEvents = [
+        'created' => 'App\Events\Projects\Created',
         'updated' => 'App\Events\Projects\Updated',
     ];
 

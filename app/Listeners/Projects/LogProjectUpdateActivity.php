@@ -15,13 +15,10 @@ class LogProjectUpdateActivity
      */
     public function handle(Updated $event)
     {
-        // dd($event->project->fresh()->toArray(), $event->project->getOriginal(), $event->project->getDirty());
         $project = $event->project;
-        // dd($project->getOriginal(), $project->getChanges());
         $originalProject = $project->getOriginal();
         $attributeChanges = $project->getChanges();
         $attributeKeys = array_keys($project->getChanges());
-        // dd($attributeChanges, $attributeKeys);
 
         $activityEntry = [
             'type'        => 'project_updated',

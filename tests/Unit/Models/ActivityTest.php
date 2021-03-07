@@ -134,4 +134,32 @@ class ActivityTest extends TestCase
             'data'        => null,
         ]);
     }
+
+    /** @test */
+    public function it_records_task_data_update_activities()
+    {
+        $admin = $this->adminUserSigningIn();
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create(['project_id' => $project->id]);
+        $task = factory(Task::class)->create([
+            'name'   => 'New Task',
+            'job_id' => $job->id,
+        ]);
+
+        $task->name = 'Updated task';
+        $task->save();
+
+        $this->seeInDatabase('user_activities', [
+            'type'        => 'task_updated',
+            'parent_id'   => null,
+            'user_id'     => $admin->id,
+            'object_id'   => $task->id,
+            'object_type' => 'tasks',
+            'data'        => json_encode([
+                'before' => ['name' => 'New Task'],
+                'after'  => ['name' => 'Updated task'],
+                'notes'  => null,
+            ]),
+        ]);
+    }
 }

@@ -28,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Jobs\Deleted'     => [
             'App\Listeners\Projects\LogProjectJobDeletionActivity',
         ],
+        'App\Events\Tasks\Created'    => [
+            'App\Listeners\Tasks\LogTaskCreationActivity',
+        ],
     ];
 
     /**

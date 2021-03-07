@@ -14,6 +14,7 @@ class Task extends Model
     protected $dispatchesEvents = [
         'created' => 'App\Events\Tasks\Created',
         'updated' => 'App\Events\Tasks\Updated',
+        'deleted' => 'App\Events\Tasks\Deleted',
     ];
 
     protected $guarded = ['id', 'created_at', 'updated_at'];

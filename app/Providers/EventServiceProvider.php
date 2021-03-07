@@ -34,6 +34,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Tasks\Updated'    => [
             'App\Listeners\Tasks\LogTaskUpdateActivity',
         ],
+        'App\Events\Tasks\Deleted'    => [
+            'App\Listeners\Jobs\LogJobTaskDeletionActivity',
+        ],
     ];
 
     /**

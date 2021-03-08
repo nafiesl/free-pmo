@@ -17,7 +17,12 @@ class ActivityController extends Controller
             $query->where('object_type', 'projects');
         });
 
-        $activities = $activityQuery->latest()->paginate();
+        $activityQuery->orWhere(function ($query) use ($project) {
+            $query->whereIn('object_id', $project->jobs->pluck('id'));
+            $query->where('object_type', 'jobs');
+        });
+
+        $activities = $activityQuery->latest()->paginate(50);
 
         return view('projects.activities.index', compact('project', 'activities'));
     }

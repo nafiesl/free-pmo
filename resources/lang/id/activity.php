@@ -6,4 +6,9 @@ return [
         'project_updated' => 'Data project <strong>:name</strong> diubah oleh <strong>:user</strong>.',
         'job_deleted'     => 'Job dihapus oleh <strong>:user</strong>.',
     ],
+    'jobs'     => [
+        'job_created'  => 'Input job baru: <strong>:name</strong> oleh <strong>:user</strong>.',
+        'job_updated'  => 'Data job <strong>:name</strong> diubah oleh <strong>:user</strong>.',
+        'task_deleted' => 'Task dihapus oleh <strong>:user</strong>.',
+    ],
 ];

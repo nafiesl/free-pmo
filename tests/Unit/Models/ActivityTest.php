@@ -5,6 +5,8 @@ namespace Tests\Unit\Models;
 use App\Entities\Projects\Job;
 use App\Entities\Projects\Project;
 use App\Entities\Projects\Task;
+use App\Entities\Users\Activity;
+use App\Entities\Users\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -212,5 +214,37 @@ class ActivityTest extends TestCase
                 'progress'    => $task->progress,
             ]),
         ]);
+    }
+
+    /** @test */
+    public function an_activity_has_belongs_to_user_relation()
+    {
+        $project = factory(Project::class)->create();
+        $activity = Activity::where('object_type', 'projects')
+            ->where('object_id', $project->id)
+            ->first();
+
+        $this->assertInstanceOf(User::class, $activity->user);
+        $this->assertEquals($activity->user_id, $activity->user->id);
+    }
+
+    /** @test */
+    public function an_activity_has_belongs_to_object_relation()
+    {
+        $project = factory(Project::class)->create();
+        $job = factory(Job::class)->create(['project_id' => $project->id]);
+        $task = factory(Task::class)->create(['job_id' => $job->id]);
+
+        $projectActivity = Activity::where('object_type', 'projects')->first();
+        $this->assertInstanceOf(Project::class, $projectActivity->object);
+        $this->assertEquals($projectActivity->object_id, $projectActivity->object->id);
+
+        $jobActivity = Activity::where('object_type', 'jobs')->first();
+        $this->assertInstanceOf(Job::class, $jobActivity->object);
+        $this->assertEquals($jobActivity->object_id, $jobActivity->object->id);
+
+        $taskActivity = Activity::where('object_type', 'tasks')->first();
+        $this->assertInstanceOf(Task::class, $taskActivity->object);
+        $this->assertEquals($taskActivity->object_id, $taskActivity->object->id);
     }
 }

@@ -3,6 +3,9 @@
     <li class="{{ Request::segment(3) == null ? 'active' : '' }}">
         {!! link_to_route('projects.show', __('project.detail'), $project) !!}
     </li>
+    <li class="{{ Request::segment(3) == 'activities' ? 'active' : '' }}">
+        {!! link_to_route('projects.activities.index', __('project.activities'), $project) !!}
+    </li>
     @can('view-jobs', $project)
     <li class="{{ Request::segment(3) == 'jobs' ? 'active' : '' }}">
         {!! link_to_route('projects.jobs.index', __('project.jobs').' ('.$project->jobs->count().')', $project) !!}

@@ -38,7 +38,7 @@ Tujuan utama Free PMO adalah membantu pengelolaan data project dengan mudah dan 
 Aplikasi ini dapat dipasang dalam server lokal (PC/Laptop) dan server online, dengan spesifikasi berikut :
 
 #### Spesifikasi minimum server
-1. PHP >= 7.3 (dan memenuhi [server requirement Laravel 8.x](https://laravel.com/docs/8.x#server-requirements)),
+1. PHP >= 7.3 (dan memenuhi [server requirement Laravel 8.x](https://laravel.com/docs/8.x/deployment#server-requirements)),
 2. MySQL atau MariaDB,
 3. SQlite (untuk automated testing).
 

@@ -2,7 +2,6 @@
 
 namespace App\Entities\Users;
 
-use App\Entities\Users\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model

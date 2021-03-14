@@ -25,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
             'projects' => 'App\Entities\Projects\Project',
             'issues'   => 'App\Entities\Projects\Issue',
             'jobs'     => 'App\Entities\Projects\Job',
+            'tasks'    => 'App\Entities\Projects\Task',
         ]);
         Paginator::useBootstrap();
     }

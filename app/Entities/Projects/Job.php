@@ -17,6 +17,17 @@ class Job extends Model
     use PresentableTrait;
 
     /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => 'App\Events\Jobs\Created',
+        'updated' => 'App\Events\Jobs\Updated',
+        'deleted' => 'App\Events\Jobs\Deleted',
+    ];
+
+    /**
      * @var \App\Entities\Projects\JobPresenter
      */
     protected $presenter = JobPresenter::class;

@@ -59,6 +59,7 @@ return [
     'proposal_date'  => 'Datum des Angebotes',
     'project_value'  => 'Projektwert',
     'proposal_value' => 'Angebotswert',
+    'updated_at'     => 'Last Update',
 
     // Relations
     'files'         => 'Dokumentenliste',
@@ -72,6 +73,7 @@ return [
     'status'        => 'Projektstatus',
     'payments'      => 'Zahlungen',
     'issues'        => 'Issues',
+    'activities'    => 'Activities',
 
     // Statuses
     'planned'  => 'geplant',

@@ -59,6 +59,7 @@ return [
     'proposal_date'  => 'Tanggal Proposal',
     'project_value'  => 'Nilai Project',
     'proposal_value' => 'Nilai Proposal',
+    'updated_at'     => 'Waktu Update',
 
     // Relations
     'files'         => 'List Dokumen',
@@ -72,6 +73,7 @@ return [
     'status'        => 'Status Project',
     'payments'      => 'Pembayaran',
     'issues'        => 'Issue',
+    'activities'    => 'Aktifitas',
 
     // Statuses
     'planned'  => 'Rencana',

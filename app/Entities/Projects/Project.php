@@ -18,6 +18,15 @@ use Laracasts\Presenter\PresentableTrait;
 class Project extends Model
 {
     use PresentableTrait;
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => 'App\Events\Projects\Created',
+        'updated' => 'App\Events\Projects\Updated',
+    ];
 
     /**
      * @var \App\Entities\Projects\ProjectPresenter

@@ -47,6 +47,8 @@ return [
     'target_end_date'   => 'Target End Date',
     'actual_start_date' => 'Actual Start Date',
     'actual_end_date'   => 'Actual End Date',
+    'updated_at'        => 'Last Update',
+    'position'          => 'Priority',
 
     // Types
     'main'       => 'Haupt',

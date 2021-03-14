@@ -11,4 +11,8 @@ return [
         'job_updated'  => 'Job data <strong>:name</strong> updated by <strong>:user</strong>.',
         'task_deleted' => 'Task deleted by <strong>:user</strong>.',
     ],
+    'tasks'    => [
+        'task_created' => 'Task created: <strong>:name</strong> new <strong>:user</strong>.',
+        'task_updated' => 'Task data <strong>:name</strong> updated by <strong>:user</strong>.',
+    ],
 ];

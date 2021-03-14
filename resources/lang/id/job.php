@@ -50,6 +50,7 @@ return [
     'actual_start_date' => 'Tgl Mulai Aktual',
     'actual_end_date'   => 'Tgl Selesai Aktual',
     'updated_at'        => 'Waktu Update',
+    'position'          => 'Prioritas',
 
     // Types
     'main'       => 'Utama',

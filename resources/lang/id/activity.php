@@ -11,4 +11,8 @@ return [
         'job_updated'  => 'Data job <strong>:name</strong> diubah oleh <strong>:user</strong>.',
         'task_deleted' => 'Task dihapus oleh <strong>:user</strong>.',
     ],
+    'tasks'    => [
+        'task_created' => 'Input task baru: <strong>:name</strong> oleh <strong>:user</strong>.',
+        'task_updated' => 'Data task <strong>:name</strong> diubah oleh <strong>:user</strong>.',
+    ],
 ];

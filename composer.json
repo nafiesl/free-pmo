@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": "^7.3|^8.0",
         "backup-manager/laravel": "dev-php_8_support",
         "fideloper/proxy": "^4.0",
         "laracasts/presenter": "^0.2.1",

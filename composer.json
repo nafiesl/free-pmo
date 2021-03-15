@@ -28,7 +28,7 @@
         "fakerphp/faker": "^1.4",
         "johnkary/phpunit-speedtrap": "^3.0",
         "laravel/legacy-factories": "^1.1",
-        "luthfi/simple-crud-generator": "dev-master",
+        "luthfi/simple-crud-generator": "^1.6",
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^5.3",
         "phpunit/phpunit": "^9.0"

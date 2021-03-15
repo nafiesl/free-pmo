@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6f1cbbb8497bd93aba3c12a7b9921356",
+    "content-hash": "ab2543b2a1d8be08367a02236c79e92d",
     "packages": [
         {
             "name": "backup-manager/backup-manager",
@@ -5389,27 +5389,26 @@
         },
         {
             "name": "luthfi/simple-crud-generator",
-            "version": "dev-master",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nafiesl/SimpleCrudGenerator.git",
-                "reference": "1d505bf7a295f19f1ef9bb9a5f15405e40604629"
+                "reference": "7b4e0fb05fc246dafd2b7d8193e53f18a0b069d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/1d505bf7a295f19f1ef9bb9a5f15405e40604629",
-                "reference": "1d505bf7a295f19f1ef9bb9a5f15405e40604629",
+                "url": "https://api.github.com/repos/nafiesl/SimpleCrudGenerator/zipball/7b4e0fb05fc246dafd2b7d8193e53f18a0b069d6",
+                "reference": "7b4e0fb05fc246dafd2b7d8193e53f18a0b069d6",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^8.0",
-                "laravel/browser-kit-testing": "^6.0",
-                "php": "^7.3|^8.0"
+                "illuminate/support": "5.8.*||^6.0||^7.0||^8.0",
+                "laravel/browser-kit-testing": "^5.0||^6.0",
+                "php": ">=7.0.0"
             },
             "require-dev": {
-                "orchestra/testbench": "^6.0"
+                "orchestra/testbench": "~3.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -5444,9 +5443,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nafiesl/SimpleCrudGenerator/issues",
-                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/2.2.1"
+                "source": "https://github.com/nafiesl/SimpleCrudGenerator/tree/1.6.2"
             },
-            "time": "2021-03-15T14:36:28+00:00"
+            "time": "2021-03-15T15:13:24+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -7705,8 +7704,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "backup-manager/laravel": 20,
-        "luthfi/simple-crud-generator": 20
+        "backup-manager/laravel": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

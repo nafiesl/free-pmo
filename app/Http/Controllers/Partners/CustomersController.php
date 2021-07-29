@@ -6,7 +6,6 @@ use App\Entities\Partners\Customer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Partners\CustomerCreateRequest;
 use App\Http\Requests\Partners\CustomerUpdateRequest;
-use Illuminate\Http\Request;
 
 class CustomersController extends Controller
 {

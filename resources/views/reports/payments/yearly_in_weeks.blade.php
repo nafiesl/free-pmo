@@ -54,14 +54,24 @@
                             $date = now();
                             $date->setISODate($year, $weekNumber);
                         @endphp
-                        {{ $date->startOfWeek()->format('Y-m-d') }} -
-                        {{ $date->endOfWeek()->format('Y-m-d') }}
+                        {{ $startDate = $date->startOfWeek()->format('Y-m-d') }} -
+                        {{ $endDate = $date->endOfWeek()->format('Y-m-d') }}
                     </td>
                     <td class="text-center">{{ $any ? $reports[$weekNumber]->count : 0 }}</td>
                     <td class="text-right">{{ format_money($any ? $reports[$weekNumber]->cashin : 0) }}</td>
                     <td class="text-right">{{ format_money($any ? $reports[$weekNumber]->cashout : 0) }}</td>
                     <td class="text-right">{{ format_money($profit = $any ? $reports[$weekNumber]->profit : 0) }}</td>
-                    <td class="text-center">&nbsp;</td>
+                    <td class="text-center">
+                        {{ link_to_route(
+                            'reports.payments.daily',
+                            __('report.detail'),
+                            ['start_date' => $startDate, 'end_date' => $endDate],
+                            [
+                                'class' => 'btn btn-info btn-xs',
+                                'title' => __('report.detail'),
+                            ]
+                        ) }}
+                    </td>
                 </tr>
                 @php
                     $chartData[] = ['week' => $weekNumber, 'value' => $profit];

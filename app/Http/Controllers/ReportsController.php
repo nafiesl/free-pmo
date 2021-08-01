@@ -26,12 +26,17 @@ class ReportsController extends Controller
         return view('reports.payments.index', compact('reports'));
     }
 
-    public function daily(Request $req)
+    public function daily(Request $request)
     {
-        $q = $req->get('q');
-        $date = $req->get('date', date('Y-m-d'));
+        $date = $request->get('date', date('Y-m-d'));
+        $startDate = $request->get('start_date');
+        $endDate = $request->get('end_date');
 
-        $payments = $this->repo->getDailyReports($date, $q);
+        if ($startDate && $endDate) {
+            $payments = $this->repo->getDailyReportByDateRange($startDate, $endDate);
+        } else {
+            $payments = $this->repo->getDailyReports($date);
+        }
 
         return view('reports.payments.daily', compact('payments', 'date'));
     }

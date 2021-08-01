@@ -35,13 +35,20 @@ class ReportsRepository extends BaseRepository
      * Get payment daily report.
      *
      * @param  string  $date
-     * @param  string  $q
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getDailyReports($date, $q)
+    public function getDailyReports($date)
     {
         return Payment::orderBy('date', 'desc')
             ->where('date', $date)
+            ->with('partner', 'project')
+            ->get();
+    }
+
+    public function getDailyReportByDateRange($startDate, $endDate)
+    {
+        return Payment::orderBy('date', 'desc')
+            ->whereBetween('date', [$startDate, $endDate])
             ->with('partner', 'project')
             ->get();
     }

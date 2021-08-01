@@ -115,14 +115,14 @@ class ReportsRepository extends BaseRepository
 
     public function getYearlyInWeeksReports(string $year)
     {
-        $rawQuery = 'WEEK(date) as week';
+        $rawQuery = 'WEEK(date, 1) as week';
         $rawQuery .= ', count(`id`) as count';
         $rawQuery .= ', sum(if(in_out = 1, amount, 0)) AS cashin';
         $rawQuery .= ', sum(if(in_out = 0, amount, 0)) AS cashout';
 
         $reportsData = DB::table('payments')->select(DB::raw($rawQuery))
             ->where(DB::raw('YEAR(date)'), $year)
-            ->groupBy(DB::raw('WEEK(date)'))
+            ->groupBy(DB::raw('WEEK(date, 1)'))
             ->orderBy('date', 'asc')
             ->get();
 

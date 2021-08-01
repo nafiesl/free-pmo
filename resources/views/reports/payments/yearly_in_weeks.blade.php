@@ -80,7 +80,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <th class="text-center">{{ __('app.total') }}</th>
+                    <th class="text-center" colspan="2">{{ __('app.total') }}</th>
                     <th class="text-center">{{ $reports->sum('count') }}</th>
                     <th class="text-right">{{ format_money($reports->sum('cashin')) }}</th>
                     <th class="text-right">{{ format_money($reports->sum('cashout')) }}</th>

@@ -24,7 +24,7 @@
     <div class="panel-body">
         <strong>{{ Option::get('money_sign', 'Rp') }}</strong>
         <div id="yearly-chart" style="height: 250px;"></div>
-        <div class="text-center"><strong>{{ __('time.month') }}</strong></div>
+        <div class="text-center"><strong>{{ __('time.week') }}</strong></div>
     </div>
 </div>
 
@@ -33,7 +33,8 @@
     <div class="panel-body table-responsive">
         <table class="table table-condensed">
             <thead>
-                <th class="text-center">{{ __('time.month') }}</th>
+                <th class="text-center">{{ __('time.week') }}</th>
+                <th class="text-center">{{ __('time.date') }}</th>
                 <th class="text-center">{{ __('payment.payment') }}</th>
                 <th class="text-right">{{ __('payment.cash_in') }}</th>
                 <th class="text-right">{{ __('payment.cash_out') }}</th>
@@ -42,37 +43,34 @@
             </thead>
             <tbody>
                 @php $chartData = []; @endphp
-                @foreach(get_months() as $monthNumber => $monthName)
+                @foreach(get_week_numbers($year) as $weekNumber)
                 @php
-                    $any = isset($reports[$monthNumber]);
+                    $any = isset($reports[$weekNumber]);
                 @endphp
                 <tr>
-                    <td class="text-center">{{ month_id($monthNumber) }}</td>
-                    <td class="text-center">{{ $any ? $reports[$monthNumber]->count : 0 }}</td>
-                    <td class="text-right">{{ format_money($any ? $reports[$monthNumber]->cashin : 0) }}</td>
-                    <td class="text-right">{{ format_money($any ? $reports[$monthNumber]->cashout : 0) }}</td>
-                    <td class="text-right">{{ format_money($profit = $any ? $reports[$monthNumber]->profit : 0) }}</td>
+                    <td class="text-center">{{ $weekNumber }}</td>
                     <td class="text-center">
-                        {{ link_to_route(
-                            'reports.payments.monthly',
-                            __('report.view_monthly'),
-                            ['month' => $monthNumber, 'year' => $year],
-                            [
-                                'class' => 'btn btn-info btn-xs',
-                                'title' => __('report.monthly', ['year_month' => month_id($monthNumber)]),
-                                'title' => __('report.monthly', ['year_month' => month_id($monthNumber).' '.$year]),
-                            ]
-                        ) }}
+                        @php
+                            $date = now();
+                            $date->setISODate($year, $weekNumber);
+                        @endphp
+                        {{ $date->startOfWeek()->format('Y-m-d') }} -
+                        {{ $date->endOfWeek()->format('Y-m-d') }}
                     </td>
+                    <td class="text-center">{{ $any ? $reports[$weekNumber]->count : 0 }}</td>
+                    <td class="text-right">{{ format_money($any ? $reports[$weekNumber]->cashin : 0) }}</td>
+                    <td class="text-right">{{ format_money($any ? $reports[$weekNumber]->cashout : 0) }}</td>
+                    <td class="text-right">{{ format_money($profit = $any ? $reports[$weekNumber]->profit : 0) }}</td>
+                    <td class="text-center">&nbsp;</td>
                 </tr>
                 @php
-                    $chartData[] = ['month' => month_id($monthNumber), 'value' => $profit];
+                    $chartData[] = ['week' => $weekNumber, 'value' => $profit];
                 @endphp
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
-                    <th class="text-center">{{ trans('app.total') }}</th>
+                    <th class="text-center">{{ __('app.total') }}</th>
                     <th class="text-center">{{ $reports->sum('count') }}</th>
                     <th class="text-right">{{ format_money($reports->sum('cashin')) }}</th>
                     <th class="text-right">{{ format_money($reports->sum('cashout')) }}</th>
@@ -100,7 +98,7 @@
     new Morris.Line({
         element: 'yearly-chart',
         data: {!! collect($chartData)->toJson() !!},
-        xkey: 'month',
+        xkey: 'week',
         ykeys: ['value'],
         labels: ["{{ __('report.profit') }} {{ Option::get('money_sign', 'Rp') }}"],
         parseTime:false,

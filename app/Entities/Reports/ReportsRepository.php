@@ -106,6 +106,28 @@ class ReportsRepository extends BaseRepository
         return collect($reports);
     }
 
+    public function getYearlyInWeeksReports(string $year)
+    {
+        $rawQuery = 'WEEK(date) as week';
+        $rawQuery .= ', count(`id`) as count';
+        $rawQuery .= ', sum(if(in_out = 1, amount, 0)) AS cashin';
+        $rawQuery .= ', sum(if(in_out = 0, amount, 0)) AS cashout';
+
+        $reportsData = DB::table('payments')->select(DB::raw($rawQuery))
+            ->where(DB::raw('YEAR(date)'), $year)
+            ->groupBy(DB::raw('WEEK(date)'))
+            ->orderBy('date', 'asc')
+            ->get();
+
+        foreach ($reportsData as $report) {
+            $key = $report->week;
+            $reports[$key] = $report;
+            $reports[$key]->profit = $report->cashin - $report->cashout;
+        }
+
+        return collect($reports);
+    }
+
     public function getYearToYearReports()
     {
         $rawQuery = 'YEAR(date) as year';

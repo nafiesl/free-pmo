@@ -51,12 +51,19 @@ class ReportsController extends Controller
         return view('reports.payments.monthly', compact('reports', 'months', 'years', 'month', 'year'));
     }
 
-    public function yearly(Request $req)
+    public function yearly(Request $request)
     {
-        $year = $req->get('year', date('Y'));
+        $years = \get_years();
+        $year = $request->get('year', date('Y'));
+        $format = $request->get('format', 'in_months');
+
+        if ($format == 'in_weeks') {
+            $reports = $this->repo->getYearlyInWeeksReports($year);
+
+            return view('reports.payments.yearly_in_weeks', compact('reports', 'years', 'year'));
+        }
 
         $reports = $this->repo->getYearlyReports($year);
-        $years = \get_years();
 
         return view('reports.payments.yearly', compact('reports', 'years', 'year'));
     }

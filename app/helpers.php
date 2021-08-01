@@ -118,6 +118,13 @@ function get_months()
     ];
 }
 
+function get_week_numbers(string $year): array
+{
+    $lastWeekOfTheYear = Carbon::parse($year.'-01-01')->weeksInYear();
+
+    return range(0, $lastWeekOfTheYear);
+}
+
 /**
  * Get array of year list starting from 2014.
  *

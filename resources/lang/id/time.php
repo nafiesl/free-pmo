@@ -1,9 +1,10 @@
 <?php
 
 return [
-    'days'  => 'Hari',
-    'date'  => 'Tanggal',
+    'days' => 'Hari',
+    'date' => 'Tanggal',
     'month' => 'Bulan',
+    'week' => 'Minggu',
 
     'months' => [
         '01' => 'Januari',

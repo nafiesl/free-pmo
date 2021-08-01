@@ -1,9 +1,10 @@
 <?php
 
 return [
-    'days'  => 'Day(s)',
-    'date'  => 'Date',
+    'days' => 'Day(s)',
+    'date' => 'Date',
     'month' => 'Month',
+    'week' => 'Week',
 
     'months' => [
         '01' => 'January',

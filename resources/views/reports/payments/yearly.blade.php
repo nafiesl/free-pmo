@@ -31,56 +31,8 @@
 <div class="panel panel-success table-responsive">
     <div class="panel-heading"><h3 class="panel-title">{{ __('report.detail') }}</h3></div>
     <div class="panel-body table-responsive">
-        <table class="table table-condensed table-hover">
-            <thead>
-                <th class="text-center">{{ __('time.month') }}</th>
-                <th class="text-center">{{ __('payment.payment') }}</th>
-                <th class="text-right">{{ __('payment.cash_in') }}</th>
-                <th class="text-right">{{ __('payment.cash_out') }}</th>
-                <th class="text-right">{{ __('report.profit') }}</th>
-                <th class="text-center">{{ __('app.action') }}</th>
-            </thead>
-            <tbody>
-                @php $chartData = []; @endphp
-                @foreach(get_months() as $monthNumber => $monthName)
-                @php
-                    $any = isset($reports[$monthNumber]);
-                @endphp
-                <tr>
-                    <td class="text-center">{{ month_id($monthNumber) }}</td>
-                    <td class="text-center">{{ $any ? $reports[$monthNumber]->count : 0 }}</td>
-                    <td class="text-right">{{ format_money($any ? $reports[$monthNumber]->cashin : 0) }}</td>
-                    <td class="text-right">{{ format_money($any ? $reports[$monthNumber]->cashout : 0) }}</td>
-                    <td class="text-right">{{ format_money($profit = $any ? $reports[$monthNumber]->profit : 0) }}</td>
-                    <td class="text-center">
-                        {{ link_to_route(
-                            'reports.payments.monthly',
-                            __('report.view_monthly'),
-                            ['month' => $monthNumber, 'year' => $year],
-                            [
-                                'class' => 'btn btn-info btn-xs',
-                                'title' => __('report.monthly', ['year_month' => month_id($monthNumber)]),
-                                'title' => __('report.monthly', ['year_month' => month_id($monthNumber).' '.$year]),
-                            ]
-                        ) }}
-                    </td>
-                </tr>
-                @php
-                    $chartData[] = ['month' => month_id($monthNumber), 'value' => $profit];
-                @endphp
-                @endforeach
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th class="text-center">{{ trans('app.total') }}</th>
-                    <th class="text-center">{{ $reports->sum('count') }}</th>
-                    <th class="text-right">{{ format_money($reports->sum('cashin')) }}</th>
-                    <th class="text-right">{{ format_money($reports->sum('cashout')) }}</th>
-                    <th class="text-right">{{ format_money($reports->sum('profit')) }}</th>
-                    <td>&nbsp;</td>
-                </tr>
-            </tfoot>
-        </table>
+        @includeWhen($reportFormat == 'in_months', 'reports.payments.partials.yearly_in_months', compact('reports'))
+        @includeWhen($reportFormat == 'in_weeks', 'reports.payments.partials.yearly_in_weeks', compact('reports'))
     </div>
 </div>
 @endsection
@@ -99,7 +51,7 @@
 (function() {
     new Morris.Line({
         element: 'yearly-chart',
-        data: {!! collect($chartData)->toJson() !!},
+        data: {!! $chartData->toJson() !!},
         xkey: 'month',
         ykeys: ['value'],
         labels: ["{{ __('report.profit') }} {{ Option::get('money_sign', 'Rp') }}"],

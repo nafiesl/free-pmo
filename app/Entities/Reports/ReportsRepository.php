@@ -135,6 +135,42 @@ class ReportsRepository extends BaseRepository
         return collect($reports);
     }
 
+    public function getYearlyReportChartData($reportData)
+    {
+        $defaultMonthValues = collect(get_months())->map(function ($item, $key) {
+            return [
+                'month' => month_id($key),
+                'value' => 0,
+            ];
+        });
+        $chartData = $reportData->map(function ($item) {
+            return [
+                'month' => month_id($item->month),
+                'value' => $item->profit,
+            ];
+        });
+
+        return $defaultMonthValues->replace($chartData)->values();
+    }
+
+    public function getYearlyInWeeksReportChartData($year, $reportData)
+    {
+        $defaultWeekValues = collect(get_week_numbers($year))->map(function ($item, $key) {
+            return [
+                'week' => $key,
+                'value' => 0,
+            ];
+        });
+        $chartData = $reportData->map(function ($item) {
+            return [
+                'week' => $item->week,
+                'value' => $item->profit,
+            ];
+        });
+
+        return $defaultWeekValues->replace($chartData)->values();
+    }
+
     public function getYearToYearReports()
     {
         $rawQuery = 'YEAR(date) as year';

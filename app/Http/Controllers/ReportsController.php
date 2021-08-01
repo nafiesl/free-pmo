@@ -60,17 +60,17 @@ class ReportsController extends Controller
     {
         $years = \get_years();
         $year = $request->get('year', date('Y'));
-        $format = $request->get('format', 'in_months');
+        $reportFormat = $request->get('format', 'in_months');
 
-        if ($format == 'in_weeks') {
+        if ($reportFormat == 'in_weeks') {
             $reports = $this->repo->getYearlyInWeeksReports($year);
-
-            return view('reports.payments.yearly_in_weeks', compact('reports', 'years', 'year'));
+            $chartData = $this->repo->getYearlyInWeeksReportChartData($year, $reports);
+        } else {
+            $reports = $this->repo->getYearlyReports($year);
+            $chartData = $this->repo->getYearlyReportChartData($reports);
         }
 
-        $reports = $this->repo->getYearlyReports($year);
-
-        return view('reports.payments.yearly', compact('reports', 'years', 'year'));
+        return view('reports.payments.yearly', compact('reports', 'years', 'year', 'reportFormat', 'chartData'));
     }
 
     public function yearToYear(Request $request)

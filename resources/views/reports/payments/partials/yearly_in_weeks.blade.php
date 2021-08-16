@@ -10,7 +10,6 @@
         <th class="text-center">{{ __('app.action') }}</th>
     </thead>
     <tbody>
-        @php $chartData = []; @endphp
         @foreach(get_week_numbers($year) as $weekNumber)
         @php
             $any = isset($reports[$weekNumber]);
@@ -41,9 +40,6 @@
                 ) }}
             </td>
         </tr>
-        @php
-            $chartData[] = ['week' => $weekNumber, 'value' => $profit];
-        @endphp
         @endforeach
     </tbody>
     <tfoot>

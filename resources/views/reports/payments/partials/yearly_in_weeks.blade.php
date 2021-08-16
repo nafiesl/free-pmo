@@ -22,8 +22,8 @@
                     $date = now();
                     $date->setISODate($year, $weekNumber);
                 @endphp
-                {{ $startDate = $date->startOfWeek()->format('Y-m-d') }} -
-                {{ $endDate = $date->endOfWeek()->format('Y-m-d') }}
+                {{ $startDate = $loop->first ? $year.'-01-01' : $date->startOfWeek()->format('Y-m-d') }} -
+                {{ $endDate = $loop->last ? $year.'-12-31' : $date->endOfWeek()->format('Y-m-d') }}
             </td>
             <td class="text-center">{{ $any ? $reports[$weekNumber]->count : 0 }}</td>
             <td class="text-right">{{ format_money($any ? $reports[$weekNumber]->cashin : 0) }}</td>

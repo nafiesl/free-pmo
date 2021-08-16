@@ -52,7 +52,7 @@
     new Morris.Line({
         element: 'yearly-chart',
         data: {!! $chartData->toJson() !!},
-        xkey: 'month',
+        xkey: "{{ in_array(request('format'), ['in_weeks']) ? 'week' : 'month' }}",
         ykeys: ['value'],
         labels: ["{{ __('report.profit') }} {{ Option::get('money_sign', 'Rp') }}"],
         parseTime:false,

@@ -26,12 +26,17 @@ class ReportsController extends Controller
         return view('reports.payments.index', compact('reports'));
     }
 
-    public function daily(Request $req)
+    public function daily(Request $request)
     {
-        $q = $req->get('q');
-        $date = $req->get('date', date('Y-m-d'));
+        $date = $request->get('date', date('Y-m-d'));
+        $startDate = $request->get('start_date');
+        $endDate = $request->get('end_date');
 
-        $payments = $this->repo->getDailyReports($date, $q);
+        if ($startDate && $endDate) {
+            $payments = $this->repo->getDailyReportByDateRange($startDate, $endDate);
+        } else {
+            $payments = $this->repo->getDailyReports($date);
+        }
 
         return view('reports.payments.daily', compact('payments', 'date'));
     }
@@ -51,14 +56,21 @@ class ReportsController extends Controller
         return view('reports.payments.monthly', compact('reports', 'months', 'years', 'month', 'year'));
     }
 
-    public function yearly(Request $req)
+    public function yearly(Request $request)
     {
-        $year = $req->get('year', date('Y'));
-
-        $reports = $this->repo->getYearlyReports($year);
         $years = \get_years();
+        $year = $request->get('year', date('Y'));
+        $reportFormat = $request->get('format', 'in_months');
 
-        return view('reports.payments.yearly', compact('reports', 'years', 'year'));
+        if ($reportFormat == 'in_weeks') {
+            $reports = $this->repo->getYearlyInWeeksReports($year);
+            $chartData = $this->repo->getYearlyInWeeksReportChartData($year, $reports);
+        } else {
+            $reports = $this->repo->getYearlyReports($year);
+            $chartData = $this->repo->getYearlyReportChartData($reports);
+        }
+
+        return view('reports.payments.yearly', compact('reports', 'years', 'year', 'reportFormat', 'chartData'));
     }
 
     public function yearToYear(Request $request)

@@ -35,13 +35,20 @@ class ReportsRepository extends BaseRepository
      * Get payment daily report.
      *
      * @param  string  $date
-     * @param  string  $q
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function getDailyReports($date, $q)
+    public function getDailyReports($date)
     {
         return Payment::orderBy('date', 'desc')
             ->where('date', $date)
+            ->with('partner', 'project')
+            ->get();
+    }
+
+    public function getDailyReportByDateRange($startDate, $endDate)
+    {
+        return Payment::orderBy('date', 'desc')
+            ->whereBetween('date', [$startDate, $endDate])
             ->with('partner', 'project')
             ->get();
     }
@@ -104,6 +111,64 @@ class ReportsRepository extends BaseRepository
         }
 
         return collect($reports);
+    }
+
+    public function getYearlyInWeeksReports(string $year)
+    {
+        $rawQuery = 'WEEK(date, 1) as week';
+        $rawQuery .= ', count(`id`) as count';
+        $rawQuery .= ', sum(if(in_out = 1, amount, 0)) AS cashin';
+        $rawQuery .= ', sum(if(in_out = 0, amount, 0)) AS cashout';
+
+        $reportsData = DB::table('payments')->select(DB::raw($rawQuery))
+            ->where(DB::raw('YEAR(date)'), $year)
+            ->groupBy(DB::raw('WEEK(date, 1)'))
+            ->orderBy('date', 'asc')
+            ->get();
+
+        foreach ($reportsData as $report) {
+            $key = $report->week;
+            $reports[$key] = $report;
+            $reports[$key]->profit = $report->cashin - $report->cashout;
+        }
+
+        return collect($reports);
+    }
+
+    public function getYearlyReportChartData($reportData)
+    {
+        $defaultMonthValues = collect(get_months())->map(function ($item, $key) {
+            return [
+                'month' => month_id($key),
+                'value' => 0,
+            ];
+        });
+        $chartData = $reportData->map(function ($item) {
+            return [
+                'month' => month_id($item->month),
+                'value' => $item->profit,
+            ];
+        });
+
+        return $defaultMonthValues->replace($chartData)->values();
+    }
+
+    public function getYearlyInWeeksReportChartData($year, $reportData)
+    {
+        $defaultWeekValues = collect(get_week_numbers($year))->map(function ($item, $key) {
+            return [
+                'week' => $key,
+                'value' => 0,
+            ];
+        });
+        $chartData = $reportData->map(function ($item) {
+            return [
+                'week' => $item->week,
+                'value' => $item->profit,
+            ];
+        });
+
+        return $defaultWeekValues->replace($chartData)->values();
     }
 
     public function getYearToYearReports()

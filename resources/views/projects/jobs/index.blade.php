@@ -50,7 +50,7 @@
             @endforeach
         </ul>
     @else
-    <table class="table table-condensed table-striped">
+    <table class="table table-condensed table-striped table-hover">
         <thead>
             <th>{{ __('app.table_no') }}</th>
             <th>{{ __('job.name') }}</th>

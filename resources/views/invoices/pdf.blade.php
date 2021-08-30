@@ -161,7 +161,7 @@
                         <p>{{ __('invoice.payment_instruction') }}</p>
                         @foreach ($bankAccounts as $key => $bankAccount)
                             @php $bankAccount = (object) $bankAccount; @endphp
-                            <table style="border: 1px solid #ccc;width: 330px">
+                            <table style="border: 1px solid #ccc;width: 360px">
                                 <tr><td style="width: 100px">{{ __('bank_account.name') }}</td><td>: <strong>{{ $bankAccount->name }}</strong></td></tr>
                                 <tr><td>{{ __('bank_account.number') }}</td><td>: <strong>{{ $bankAccount->number }}</strong></td></tr>
                                 <tr><td>{{ __('bank_account.account_name') }}</td><td>: <strong>{{ $bankAccount->account_name }}</strong></td></tr>

@@ -60,7 +60,7 @@ class SubscriptionsController extends Controller
     /**
      * Show a subscription detail.
      *
-     * @param  \App\Entities\Subscriptions\Subscription $subscription
+     * @param  \App\Entities\Subscriptions\Subscription  $subscription
      * @return \Illuminate\View\View
      */
     public function show(Subscription $subscription)
@@ -73,7 +73,7 @@ class SubscriptionsController extends Controller
     /**
      * Show a subscription edit form.
      *
-     * @param  \App\Entities\Subscriptions\Subscription $subscription
+     * @param  \App\Entities\Subscriptions\Subscription  $subscription
      * @return \Illuminate\View\View
      */
     public function edit(Subscription $subscription)

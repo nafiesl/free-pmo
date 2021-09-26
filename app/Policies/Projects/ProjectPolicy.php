@@ -18,9 +18,8 @@ class ProjectPolicy
     /**
      * Determine whether the user can view the project.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Projects\Project $project
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
      * @return mixed
      */
     public function view(User $user, Project $project)
@@ -32,9 +31,8 @@ class ProjectPolicy
     /**
      * Determine whether the user can create projects.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Projects\Project $project
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
      * @return mixed
      */
     public function create(User $user, Project $project)
@@ -45,9 +43,8 @@ class ProjectPolicy
     /**
      * Determine whether the user can update the project.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Projects\Project $project
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
      * @return mixed
      */
     public function update(User $user, Project $project)
@@ -58,9 +55,8 @@ class ProjectPolicy
     /**
      * Determine whether the user can delete the project.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Projects\Project $project
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
      * @return mixed
      */
     public function delete(User $user, Project $project)
@@ -71,9 +67,8 @@ class ProjectPolicy
     /**
      * Determine whether the user can view project jobs.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Projects\Project $project
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
      * @return mixed
      */
     public function viewJobs(User $user, Project $project)
@@ -85,9 +80,8 @@ class ProjectPolicy
     /**
      * Determine whether the user can view project payments.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Projects\Project $project
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
      * @return mixed
      */
     public function viewPayments(User $user, Project $project)
@@ -98,9 +92,8 @@ class ProjectPolicy
     /**
      * Determine whether the user can view project subscriptions.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Projects\Project $project
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
      * @return mixed
      */
     public function viewSubscriptions(User $user, Project $project)
@@ -111,9 +104,8 @@ class ProjectPolicy
     /**
      * Determine whether the user can view project invoices.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Projects\Project $project
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
      * @return mixed
      */
     public function viewInvoices(User $user, Project $project)
@@ -124,9 +116,8 @@ class ProjectPolicy
     /**
      * Determine whether the user can view project files.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Projects\Project $project
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
      * @return mixed
      */
     public function viewFiles(User $user, Project $project)
@@ -138,9 +129,8 @@ class ProjectPolicy
     /**
      * Determine whether the user can see project pricings.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Projects\Project $project
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Project  $project
      * @return mixed
      */
     public function seePricings(User $user, Project $project)

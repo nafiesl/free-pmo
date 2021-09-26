@@ -26,7 +26,7 @@ class PaymentsController extends Controller
     /**
      * Create new Payments Controller.
      *
-     * @param \App\Entities\Payments\PaymentsRepository $repo
+     * @param  \App\Entities\Payments\PaymentsRepository  $repo
      */
     public function __construct(PaymentsRepository $repo)
     {

@@ -18,9 +18,8 @@ class PaymentPolicy
     /**
      * Determine whether the user can view the payment.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Partners\Payment $payment
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Partners\Payment  $payment
      * @return mixed
      */
     public function view(User $user, Payment $payment)
@@ -31,9 +30,8 @@ class PaymentPolicy
     /**
      * Determine whether the user can create payments.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Partners\Payment $payment
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Partners\Payment  $payment
      * @return mixed
      */
     public function create(User $user, Payment $payment)
@@ -44,9 +42,8 @@ class PaymentPolicy
     /**
      * Determine whether the user can update the payment.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Partners\Payment $payment
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Partners\Payment  $payment
      * @return mixed
      */
     public function update(User $user, Payment $payment)
@@ -57,9 +54,8 @@ class PaymentPolicy
     /**
      * Determine whether the user can delete the payment.
      *
-     * @param \App\Entities\Users\User       $user
-     * @param \App\Entities\Partners\Payment $payment
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Partners\Payment  $payment
      * @return mixed
      */
     public function delete(User $user, Payment $payment)

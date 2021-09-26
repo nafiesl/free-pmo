@@ -26,9 +26,8 @@ class Option
     /**
      * Get option valie based on given key.
      *
-     * @param string $key     The option key.
-     * @param string $default Default value if value not found.
-     *
+     * @param  string  $key  The option key.
+     * @param  string  $default  Default value if value not found.
      * @return string The option value from database.
      */
     public function get($key, $default = '')
@@ -44,9 +43,8 @@ class Option
     /**
      * Set new value for given option key.
      *
-     * @param string $key   The option key.
-     * @param string $value The option value to be saved.
-     *
+     * @param  string  $key  The option key.
+     * @param  string  $value  The option value to be saved.
      * @return string The option value.
      */
     public function set($key, ?string $value)

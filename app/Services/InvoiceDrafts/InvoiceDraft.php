@@ -59,8 +59,7 @@ class InvoiceDraft
     /**
      * Add new item to invoice item collection.
      *
-     * @param \App\Services\InvoiceDrafts\Item $item
-     *
+     * @param  \App\Services\InvoiceDrafts\Item  $item
      * @return \App\Services\InvoiceDrafts\Item
      */
     public function addItem(Item $item)
@@ -73,8 +72,7 @@ class InvoiceDraft
     /**
      * Remove item from the collection.
      *
-     * @param int $itemKey Key of invoice item.
-     *
+     * @param  int  $itemKey  Key of invoice item.
      * @return void
      */
     public function removeItem($itemKey)
@@ -115,9 +113,8 @@ class InvoiceDraft
     /**
      * Update an invoice item.
      *
-     * @param int   $itemKey     The item key
-     * @param array $newItemData The item attributes.
-     *
+     * @param  int  $itemKey  The item key
+     * @param  array  $newItemData  The item attributes.
      * @return null|\App\Services\InvoiceDrafts\Item
      */
     public function updateItem($itemKey, $newItemData)

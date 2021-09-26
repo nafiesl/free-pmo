@@ -18,9 +18,8 @@ class UserPolicy
     /**
      * Determine whether the user can view the user.
      *
-     * @param \App\Entities\Users\User $user
-     * @param \App\Entities\Users\User $user
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Users\User  $user
      * @return mixed
      */
     public function view(User $user, Worker $worker)
@@ -31,9 +30,8 @@ class UserPolicy
     /**
      * Determine whether the user can create users.
      *
-     * @param \App\Entities\Users\User $user
-     * @param \App\Entities\Users\User $user
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Users\User  $user
      * @return mixed
      */
     public function create(User $user, Worker $worker)
@@ -44,9 +42,8 @@ class UserPolicy
     /**
      * Determine whether the user can update the user.
      *
-     * @param \App\Entities\Users\User $user
-     * @param \App\Entities\Users\User $user
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Users\User  $user
      * @return mixed
      */
     public function update(User $user, Worker $worker)
@@ -57,9 +54,8 @@ class UserPolicy
     /**
      * Determine whether the user can delete the user.
      *
-     * @param \App\Entities\Users\User $user
-     * @param \App\Entities\Users\User $user
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Users\User  $user
      * @return mixed
      */
     public function delete(User $user, Worker $worker)

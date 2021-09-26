@@ -25,7 +25,7 @@ class JobsController extends Controller
     /**
      * Create new Jobs Controller.
      *
-     * @param \App\Entities\Projects\JobsRepository  $repo
+     * @param  \App\Entities\Projects\JobsRepository  $repo
      */
     public function __construct(JobsRepository $repo)
     {

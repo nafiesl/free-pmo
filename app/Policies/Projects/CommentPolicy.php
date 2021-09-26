@@ -18,8 +18,8 @@ class CommentPolicy
     /**
      * Determine whether the user can update the comment.
      *
-     * @param \App\Entities\Users\User  $user
-     * @param \App\Entities\Projects\Comment  $comment
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Comment  $comment
      * @return bool
      */
     public function update(User $user, Comment $comment)
@@ -32,8 +32,8 @@ class CommentPolicy
     /**
      * Determine whether the user can delete the comment.
      *
-     * @param \App\Entities\Users\User  $user
-     * @param \App\Entities\Projects\Comment  $comment
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Comment  $comment
      * @return bool
      */
     public function delete(User $user, Comment $comment)

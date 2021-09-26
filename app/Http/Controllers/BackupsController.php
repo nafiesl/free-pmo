@@ -87,7 +87,7 @@ class BackupsController extends Controller
     /**
      * Download a backup file.
      *
-     * @param  string $fileName
+     * @param  string  $fileName
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
      */
     public function download($fileName)

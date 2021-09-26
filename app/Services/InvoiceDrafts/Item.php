@@ -26,7 +26,7 @@ class Item
     /**
      * Create new invoice item.
      *
-     * @param array $itemDetail Detail of an invoice item.
+     * @param  array  $itemDetail  Detail of an invoice item.
      */
     public function __construct(array $itemDetail)
     {
@@ -37,8 +37,7 @@ class Item
     /**
      * Update attribute of an invoice item.
      *
-     * @param array $newItemData Item attribute that will be replaced.
-     *
+     * @param  array  $newItemData  Item attribute that will be replaced.
      * @return \App\Services\InvoiceDrafts\Item
      */
     public function updateAttribute(array $newItemData)

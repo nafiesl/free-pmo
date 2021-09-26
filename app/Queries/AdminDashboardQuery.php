@@ -19,8 +19,7 @@ class AdminDashboardQuery
     /**
      * Get total money earned on an year.
      *
-     * @param string|int $year
-     *
+     * @param  string|int  $year
      * @return int Amount of earnings
      */
     public function totalEarnings($year)
@@ -41,8 +40,7 @@ class AdminDashboardQuery
     /**
      * Get number of projects that has been finished on a year.
      *
-     * @param string|int $year
-     *
+     * @param  string|int  $year
      * @return int Number of finished projects
      */
     public function totalFinishedProjects($year)
@@ -53,8 +51,7 @@ class AdminDashboardQuery
     /**
      * Get current outstanding customer payment amount.
      *
-     * @param string|int $year Year of queried payment records
-     *
+     * @param  string|int  $year  Year of queried payment records
      * @return int Amount of outstanding customer payment
      */
     public function currentOutstandingCustomerPayment($year)

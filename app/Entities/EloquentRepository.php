@@ -29,7 +29,7 @@ abstract class EloquentRepository
     /**
      * Create repository instance.
      *
-     * @param \Illuminate\Database\Eloquent\Model  $model
+     * @param  \Illuminate\Database\Eloquent\Model  $model
      */
     public function __construct(Model $model)
     {
@@ -90,6 +90,7 @@ abstract class EloquentRepository
 
     /**
      * Get model record by Id and throws exception if not found.
+     *
      * @param  int  $id
      * @return \Illuminate\Database\Eloquent\Model
      */
@@ -117,7 +118,7 @@ abstract class EloquentRepository
     /**
      * Create new record on database based on given data attributes.
      *
-     * @param  array $data
+     * @param  array  $data
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function create($data)
@@ -187,7 +188,7 @@ abstract class EloquentRepository
     /**
      * Store instance of model to database with given data.
      *
-     * @param  array $data
+     * @param  array  $data
      * @return \Illuminate\Database\Eloquent\Model
      */
     protected function storeArray($data)

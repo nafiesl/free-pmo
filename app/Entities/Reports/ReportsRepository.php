@@ -24,7 +24,7 @@ class ReportsRepository extends BaseRepository
     /**
      * Create ReportsRepository class instance.
      *
-     * @param \App\Entities\Payments\Payment  $model
+     * @param  \App\Entities\Payments\Payment  $model
      */
     public function __construct(Payment $model)
     {

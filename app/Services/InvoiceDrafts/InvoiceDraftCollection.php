@@ -38,8 +38,7 @@ class InvoiceDraftCollection
     /**
      * Set new instance name of invoice draft.
      *
-     * @param string $instance Invoice draft instance name.
-     *
+     * @param  string  $instance  Invoice draft instance name.
      * @return \App\Services\InvoiceDrafts\InvoiceDraft
      */
     public function instance($instance = null)
@@ -64,7 +63,7 @@ class InvoiceDraftCollection
     /**
      * Add new invoice draft.
      *
-     * @param \App\Services\InvoiceDrafts\InvoiceDraft $draft Invoice draft.
+     * @param  \App\Services\InvoiceDrafts\InvoiceDraft  $draft  Invoice draft.
      */
     public function add(InvoiceDraft $draft)
     {
@@ -80,8 +79,7 @@ class InvoiceDraftCollection
     /**
      * Get an invoice draft.
      *
-     * @param string $draftKey The invoice draft key.
-     *
+     * @param  string  $draftKey  The invoice draft key.
      * @return null|\App\Services\InvoiceDrafts\InvoiceDraft
      */
     public function get($draftKey)
@@ -95,9 +93,8 @@ class InvoiceDraftCollection
     /**
      * Update invoice draft attribute.
      *
-     * @param string $draftKey        Invoice draft key.
-     * @param array  $draftAttributes Invoice draft attribute to be updated.
-     *
+     * @param  string  $draftKey  Invoice draft key.
+     * @param  array  $draftAttributes  Invoice draft attribute to be updated.
      * @return \App\Services\InvoiceDrafts\InvoiceDraft
      */
     public function updateDraftAttributes($draftKey, $draftAttributes)
@@ -117,8 +114,7 @@ class InvoiceDraftCollection
     /**
      * Empty out an invoice draft items.
      *
-     * @param string $draftKey Invoice draft key.
-     *
+     * @param  string  $draftKey  Invoice draft key.
      * @return void
      */
     public function emptyDraft($draftKey)
@@ -131,8 +127,7 @@ class InvoiceDraftCollection
     /**
      * Remove an invocie draft.
      *
-     * @param string $draftKey Invoice draft key.
-     *
+     * @param  string  $draftKey  Invoice draft key.
      * @return void
      */
     public function removeDraft($draftKey)
@@ -187,9 +182,8 @@ class InvoiceDraftCollection
     /**
      * Add an item to an invoice draft.
      *
-     * @param string                           $draftKey Invoice draft key.
-     * @param \App\Services\InvoiceDrafts\Item $item     Invoice item.
-     *
+     * @param  string  $draftKey  Invoice draft key.
+     * @param  \App\Services\InvoiceDrafts\Item  $item  Invoice item.
      * @return \App\Services\InvoiceDrafts\Item.
      */
     public function addItemToDraft($draftKey, Item $item)
@@ -205,10 +199,9 @@ class InvoiceDraftCollection
     /**
      * Update invoice draft item attributes.
      *
-     * @param string $draftKey    Invoice draft key.
-     * @param string $itemKey     Invoice item key.
-     * @param array  $newItemData Array of item attribute.
-     *
+     * @param  string  $draftKey  Invoice draft key.
+     * @param  string  $itemKey  Invoice item key.
+     * @param  array  $newItemData  Array of item attribute.
      * @return void
      */
     public function updateDraftItem($draftKey, $itemKey, $newItemData)
@@ -222,9 +215,8 @@ class InvoiceDraftCollection
     /**
      * Remove an invoice draft item.
      *
-     * @param string $draftKey Invoice draft key.
-     * @param string $itemKey  Invoice item key.
-     *
+     * @param  string  $draftKey  Invoice draft key.
+     * @param  string  $itemKey  Invoice item key.
      * @return void
      */
     public function removeItemFromDraft($draftKey, $itemKey)

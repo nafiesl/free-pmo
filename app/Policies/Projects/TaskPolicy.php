@@ -13,9 +13,8 @@ class TaskPolicy
     /**
      * Determine whether the user can create tasks.
      *
-     * @param \App\Entities\Users\User    $user
-     * @param \App\Entities\Projects\Task $task
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Task  $task
      * @return mixed
      */
     public function create(User $user, Task $task)
@@ -26,9 +25,8 @@ class TaskPolicy
     /**
      * Determine whether the user can update the task.
      *
-     * @param \App\Entities\Users\User    $user
-     * @param \App\Entities\Projects\Task $task
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Task  $task
      * @return mixed
      */
     public function update(User $user, Task $task)
@@ -40,9 +38,8 @@ class TaskPolicy
     /**
      * Determine whether the user can delete the task.
      *
-     * @param \App\Entities\Users\User    $user
-     * @param \App\Entities\Projects\Task $task
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Task  $task
      * @return mixed
      */
     public function delete(User $user, Task $task)

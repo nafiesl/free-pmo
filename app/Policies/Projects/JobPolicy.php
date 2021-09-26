@@ -18,9 +18,8 @@ class JobPolicy
     /**
      * Determine whether the user can view the job.
      *
-     * @param \App\Entities\Users\User   $user
-     * @param \App\Entities\Projects\Job $job
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Job  $job
      * @return mixed
      */
     public function view(User $user, Job $job)
@@ -32,9 +31,8 @@ class JobPolicy
     /**
      * Determine whether the user can create jobs.
      *
-     * @param \App\Entities\Users\User   $user
-     * @param \App\Entities\Projects\Job $job
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Job  $job
      * @return mixed
      */
     public function create(User $user, Job $job)
@@ -45,9 +43,8 @@ class JobPolicy
     /**
      * Determine whether the user can update the job.
      *
-     * @param \App\Entities\Users\User   $user
-     * @param \App\Entities\Projects\Job $job
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Job  $job
      * @return mixed
      */
     public function update(User $user, Job $job)
@@ -58,9 +55,8 @@ class JobPolicy
     /**
      * Determine whether the user can delete the job.
      *
-     * @param \App\Entities\Users\User   $user
-     * @param \App\Entities\Projects\Job $job
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Job  $job
      * @return mixed
      */
     public function delete(User $user, Job $job)
@@ -71,9 +67,8 @@ class JobPolicy
     /**
      * Determine whether the user can see job pricings.
      *
-     * @param \App\Entities\Users\User   $user
-     * @param \App\Entities\Projects\Job $job
-     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Job  $job
      * @return mixed
      */
     public function seePricings(User $user, Job $job)

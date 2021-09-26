@@ -111,7 +111,7 @@ class User extends Authenticatable
     /**
      * User query scope based on role names.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  array  $roleNameArray
      * @return \Illuminate\Database\Eloquent\Builder
      */

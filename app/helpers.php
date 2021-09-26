@@ -3,7 +3,7 @@
 /**
  * get number in Indonesian number format.
  *
- * @param  int  $number money in integer format
+ * @param  int  $number  money in integer format
  * @return string money in string format
  */
 function format_no($number)
@@ -69,7 +69,7 @@ function date_id($date)
 /**
  * Get two digits of month.
  *
- * @param  int|string $number
+ * @param  int|string  $number
  * @return string
  */
 function month_number($number)
@@ -154,7 +154,7 @@ function str_split_ucwords($string)
 /**
  * Convert file size to have unit string.
  *
- * @param  int  $bytes File size.
+ * @param  int  $bytes  File size.
  * @return string Converted file size with unit.
  */
 function format_size_units($bytes)
@@ -265,8 +265,8 @@ function month_date_array($year, $month)
 /**
  * Function helper to add flash notification.
  *
- * @param  null|string  $message The flashed message.
- * @param  string  $level   Level/type of message
+ * @param  null|string  $message  The flashed message.
+ * @param  string  $level  Level/type of message
  * @return void
  */
 function flash($message = null, $level = 'info')

@@ -73,7 +73,7 @@ class TasksController extends Controller
     /**
      * Set a task to become a job.
      *
-     * @param \App\Entities\Projects\Task $task
+     * @param  \App\Entities\Projects\Task  $task
      * @return \Illuminate\Routing\Redirector
      */
     public function setAsJob(Task $task)

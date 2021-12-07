@@ -38,19 +38,19 @@ class InvoicesController extends Controller
     public function update(Invoice $invoice)
     {
         $invoiceData = request()->validate([
-            'project_id'     => 'required|exists:projects,id',
-            'date'           => 'required|date',
-            'due_date'       => 'nullable|date|after:date',
-            'discount'       => 'nullable|numeric',
+            'project_id' => 'required|exists:projects,id',
+            'date' => 'required|date',
+            'due_date' => 'nullable|date|after:date',
+            'discount' => 'nullable|numeric',
             'discount_notes' => 'nullable|string|max:255',
-            'notes'          => 'nullable|string|max:255',
+            'notes' => 'nullable|string|max:255',
         ]);
         $invoiceSubtotal = collect($invoice->items)->sum('amount');
         $invoiceData['amount'] = $invoiceSubtotal - $invoiceData['discount'];
 
         $invoice->update($invoiceData);
 
-        flash(trans('invoice.updated'), 'success');
+        flash(__('invoice.updated'), 'success');
 
         return redirect()->route('invoices.show', $invoice);
     }
@@ -62,12 +62,12 @@ class InvoicesController extends Controller
         ]);
 
         if (request('invoice_id') == $invoice->id && $invoice->delete()) {
-            flash(trans('invoice.deleted'), 'warning');
+            flash(__('invoice.deleted'), 'warning');
 
             return redirect()->route('projects.invoices', $invoice->project_id);
         }
 
-        flash(trans('invoice.undeleted'), 'danger');
+        flash(__('invoice.undeleted'), 'danger');
 
         return back();
     }

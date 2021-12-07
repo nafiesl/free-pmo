@@ -103,9 +103,9 @@ class Invoice extends Model
     public function numberLink()
     {
         return link_to_route('invoices.show', $this->number, [$this->number], [
-            'title' => trans(
+            'title' => __(
                 'app.show_detail_title',
-                ['name' => $this->number, 'type' => trans('invoice.invoice')]
+                ['name' => $this->number, 'type' => __('invoice.invoice')]
             ),
         ]);
     }

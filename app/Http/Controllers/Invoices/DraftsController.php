@@ -35,7 +35,7 @@ class DraftsController extends Controller
     {
         $draft = $draftKey ? $this->draftCollection->get($draftKey) : $this->draftCollection->content()->first();
         if (is_null($draft)) {
-            flash(trans('invoice.draft_not_found'), 'danger');
+            flash(__('invoice.draft_not_found'), 'danger');
 
             return redirect()->route('invoice-drafts.index');
         }
@@ -62,13 +62,13 @@ class DraftsController extends Controller
     {
         $itemData = $request->validate([
             'new_item_description' => 'required|string|max:255',
-            'new_item_amount'      => 'required|numeric',
+            'new_item_amount' => 'required|numeric',
         ]);
 
         $item = new Item(['description' => $itemData['new_item_description'], 'amount' => $itemData['new_item_amount']]);
         $this->draftCollection->addItemToDraft($draftKey, $item);
 
-        flash(trans('invoice.item_added'));
+        flash(__('invoice.item_added'));
 
         return back();
     }
@@ -76,20 +76,20 @@ class DraftsController extends Controller
     public function updateDraftItem(Request $request, $draftKey)
     {
         $itemData = $request->validate([
-            'item_key.*'    => 'required|numeric',
+            'item_key.*' => 'required|numeric',
             'description.*' => 'required|string|max:255',
-            'amount.*'      => 'required|numeric',
+            'amount.*' => 'required|numeric',
         ]);
 
         $itemData = [
-            'item_key'    => array_shift($itemData['item_key']),
+            'item_key' => array_shift($itemData['item_key']),
             'description' => array_shift($itemData['description']),
-            'amount'      => array_shift($itemData['amount']),
+            'amount' => array_shift($itemData['amount']),
         ];
 
         $this->draftCollection->updateDraftItem($draftKey, $itemData['item_key'], $itemData);
 
-        flash(trans('invoice.item_updated'), 'success');
+        flash(__('invoice.item_updated'), 'success');
 
         return back();
     }
@@ -98,7 +98,7 @@ class DraftsController extends Controller
     {
         $this->draftCollection->removeItemFromDraft($draftKey, $request->item_index);
 
-        flash(trans('invoice.item_removed'), 'warning');
+        flash(__('invoice.item_removed'), 'warning');
 
         return back();
     }
@@ -126,7 +126,7 @@ class DraftsController extends Controller
     public function destroy()
     {
         $this->draftCollection->destroy();
-        flash(trans('invoice.draft_destroyed'), 'warning');
+        flash(__('invoice.draft_destroyed'), 'warning');
 
         return redirect()->route('invoice-drafts.index');
     }
@@ -134,16 +134,16 @@ class DraftsController extends Controller
     public function proccess($draftKey)
     {
         $invoiceData = request()->validate([
-            'date'       => 'required|date',
-            'notes'      => 'nullable|string|max:100',
-            'due_date'   => 'nullable|date|after:date',
+            'date' => 'required|date',
+            'notes' => 'nullable|string|max:100',
+            'due_date' => 'nullable|date|after:date',
             'project_id' => 'required|exists:projects,id',
         ]);
 
         $draft = $this->draftCollection->updateDraftAttributes($draftKey, $invoiceData);
 
         if ($draft->getItemsCount() == 0) {
-            flash(trans('invoice.item_list_empty'), 'warning');
+            flash(__('invoice.item_list_empty'), 'warning');
 
             return redirect()->route('invoice-drafts.show', [$draftKey]);
         }
@@ -160,7 +160,7 @@ class DraftsController extends Controller
 
         $invoice = $draft->store();
         $draft->destroy();
-        flash(trans('invoice.created', ['number' => $invoice->number]), 'success');
+        flash(__('invoice.created', ['number' => $invoice->number]), 'success');
 
         return redirect()->route('invoices.show', $invoice->number);
     }

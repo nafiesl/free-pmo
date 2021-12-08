@@ -1,34 +1,34 @@
 @extends('layouts.app')
 
-@section('title', $invoice->number . ' - ' . trans('invoice.detail'))
+@section('title', $invoice->number . ' - ' . __('invoice.detail'))
 
 @section('content')
 <h1 class="page-header">
     <div class="pull-right">
         {!! FormField::formButton(['route' => ['invoices.duplication.store', $invoice]], __('invoice.duplicate'), ['class' => 'btn btn-default']) !!}
-        {{ link_to_route('invoices.edit', trans('invoice.edit'), [$invoice], ['class' => 'btn btn-warning']) }}
-        {{ link_to_route('invoices.pdf', trans('invoice.print'), [$invoice], ['class' => 'btn btn-default']) }}
-        {{ link_to_route('projects.invoices', trans('invoice.back_to_project'), [$invoice->project_id], ['class' => 'btn btn-default']) }}
+        {{ link_to_route('invoices.edit', __('invoice.edit'), [$invoice], ['class' => 'btn btn-warning']) }}
+        {{ link_to_route('invoices.pdf', __('invoice.print'), [$invoice], ['class' => 'btn btn-default']) }}
+        {{ link_to_route('projects.invoices', __('invoice.back_to_project'), [$invoice->project_id], ['class' => 'btn btn-default']) }}
     </div>
-    {{ $invoice->number }} <small>{{ trans('invoice.detail') }}</small>
+    {{ $invoice->number }} <small>{{ __('invoice.detail') }}</small>
 </h1>
 <div class="row">
     <div class="col-sm-4">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('invoice.detail') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ __('invoice.detail') }}</h3></div>
             @include('invoices.partials.detail')
         </div>
     </div>
     <div class="col-sm-8">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('invoice.items') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ __('invoice.items') }}</h3></div>
             <div class="panel-body">
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th width="5%">{{ trans('app.table_no') }}</th>
-                            <th width="70%">{{ trans('invoice.item_description') }}</th>
-                            <th width="25%" class="text-right">{{ trans('invoice.item_amount') }}</th>
+                            <th width="5%">{{ __('app.table_no') }}</th>
+                            <th width="70%">{{ __('invoice.item_description') }}</th>
+                            <th width="25%" class="text-right">{{ __('invoice.item_amount') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,7 +61,7 @@
                         </tr>
                         @endif
                         <tr>
-                            <th colspan="2" class="text-right">{{ trans('app.total') }} :</th>
+                            <th colspan="2" class="text-right">{{ __('app.total') }} :</th>
                             <th class="text-right">{{ format_money($invoice->amount) }}</th>
                         </tr>
                     </tfoot>

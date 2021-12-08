@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $invoice->number . ' - ' . trans('invoice.edit'))
+@section('title', $invoice->number . ' - ' . __('invoice.edit'))
 
 @section('content')
 
@@ -8,23 +8,23 @@
 
 <h1 class="page-header">
     <div class="pull-right">
-        {{ link_to_route('invoices.edit', trans('app.back'), $invoice, ['class' => 'btn btn-default']) }}
+        {{ link_to_route('invoices.edit', __('app.back'), $invoice, ['class' => 'btn btn-default']) }}
     </div>
-    {{ $invoice->number }} <small>{{ trans('invoice.delete') }}</small>
+    {{ $invoice->number }} <small>{{ __('invoice.delete') }}</small>
 </h1>
 <div class="row">
     <div class="col-md-6 col-lg-offset-3">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('invoice.delete') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ __('invoice.delete') }}</h3></div>
             @include('invoices.partials.detail')
             <div class="panel-body">
-                {{ trans('invoice.delete_confirm') }}
+                {{ __('invoice.delete_confirm') }}
             </div>
             <div class="panel-footer">
-                {{ link_to_route('invoices.edit', trans('app.back'), $invoice, ['class' => 'btn btn-default']) }}
+                {{ link_to_route('invoices.edit', __('app.back'), $invoice, ['class' => 'btn btn-default']) }}
                 {!! FormField::delete(
-                    ['route' => ['invoices.destroy',$invoice->number], 'onsubmit' => trans('invoice.delete_confirm')],
-                    trans('invoice.delete'),
+                    ['route' => ['invoices.destroy',$invoice->number], 'onsubmit' => __('invoice.delete_confirm')],
+                    __('invoice.delete'),
                     ['class'=>'btn btn-danger'],
                     [
                         'invoice_id' => $invoice->id,
@@ -39,29 +39,29 @@
 
 <h1 class="page-header">
     <div class="pull-right">
-        {{ link_to_route('invoices.show', trans('invoice.back_to_show'), $invoice, ['class' => 'btn btn-default']) }}
+        {{ link_to_route('invoices.show', __('invoice.back_to_show'), $invoice, ['class' => 'btn btn-default']) }}
     </div>
-    {{ $invoice->number }} <small>{{ trans('invoice.edit') }}</small>
+    {{ $invoice->number }} <small>{{ __('invoice.edit') }}</small>
 </h1>
 
 <div class="row">
     <div class="col-md-4">
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{{ trans('invoice.detail') }}</h3></div>
+            <div class="panel-heading"><h3 class="panel-title">{{ __('invoice.detail') }}</h3></div>
             {{ Form::model($invoice, ['route' => ['invoices.update', $invoice], 'method' => 'patch']) }}
             <div class="panel-body">
-                {!! FormField::select('project_id', $projects, ['label' => trans('project.project')]) !!}
+                {!! FormField::select('project_id', $projects, ['label' => __('project.project')]) !!}
                 <div class="row">
-                    <div class="col-md-6">{!! FormField::text('date', ['label' => trans('invoice.date')]) !!}</div>
-                    <div class="col-md-6">{!! FormField::text('due_date', ['label' => trans('invoice.due_date')]) !!}</div>
+                    <div class="col-md-6">{!! FormField::text('date', ['label' => __('invoice.date')]) !!}</div>
+                    <div class="col-md-6">{!! FormField::text('due_date', ['label' => __('invoice.due_date')]) !!}</div>
                 </div>
-                {!! FormField::textarea('notes', ['label' => trans('invoice.notes')]) !!}
+                {!! FormField::textarea('notes', ['label' => __('invoice.notes')]) !!}
                 {!! FormField::price('discount', ['label' => __('invoice.discount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
                 {!! FormField::text('discount_notes', ['label' => __('invoice.discount_notes')]) !!}
             </div>
             <div class="panel-footer">
-                {{ Form::submit(trans('invoice.update'), ['class' => 'btn btn-info']) }}
-                {{ link_to_route('invoices.show', trans('invoice.back_to_show'), $invoice, ['class' => 'btn btn-default']) }}
+                {{ Form::submit(__('invoice.update'), ['class' => 'btn btn-info']) }}
+                {{ link_to_route('invoices.show', __('invoice.back_to_show'), $invoice, ['class' => 'btn btn-default']) }}
             </div>
             {{ Form::close() }}
         </div>
@@ -71,7 +71,7 @@
     </div>
 </div>
 
-{{ link_to_route('invoices.edit', trans('invoice.delete'), [$invoice, 'action' => 'delete'], ['class'=>'btn btn-danger']) }}
+{{ link_to_route('invoices.edit', __('invoice.delete'), [$invoice, 'action' => 'delete'], ['class'=>'btn btn-danger']) }}
 @endif
 
 @endsection

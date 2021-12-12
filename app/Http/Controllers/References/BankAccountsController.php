@@ -40,15 +40,15 @@ class BankAccountsController extends Controller
     public function store(Request $request)
     {
         $newBankAccount = $request->validate([
-            'name'         => 'required|max:60',
-            'number'       => 'required|max:60',
+            'name' => 'required|max:60',
+            'number' => 'required|max:60',
             'account_name' => 'required|max:60',
-            'description'  => 'nullable|max:255',
+            'description' => 'nullable|max:255',
         ]);
 
         BankAccount::create($newBankAccount);
 
-        flash(trans('bank_account.created'), 'success');
+        flash(__('bank_account.created'), 'success');
 
         return redirect()->route('bank-accounts.index');
     }
@@ -63,16 +63,16 @@ class BankAccountsController extends Controller
     public function update(Request $request, BankAccount $bankAccount)
     {
         $bankAccountData = $request->validate([
-            'name'         => 'required|max:60',
-            'number'       => 'required|max:60',
+            'name' => 'required|max:60',
+            'number' => 'required|max:60',
             'account_name' => 'required|max:60',
-            'description'  => 'nullable|max:255',
-            'is_active'    => 'required|in:0,1',
+            'description' => 'nullable|max:255',
+            'is_active' => 'required|in:0,1',
         ]);
 
         $bankAccount->update($bankAccountData);
 
-        flash(trans('bank_account.updated'), 'success');
+        flash(__('bank_account.updated'), 'success');
 
         return redirect()->route('bank-accounts.index');
     }
@@ -90,7 +90,7 @@ class BankAccountsController extends Controller
         ]);
 
         if (request('bank_account_id') == $bankAccount->id && $bankAccount->delete()) {
-            flash(trans('bank_account.deleted'), 'success');
+            flash(__('bank_account.deleted'), 'success');
 
             return redirect()->route('bank-accounts.index');
         }

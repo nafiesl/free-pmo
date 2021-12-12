@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', trans('bank_account.list'))
+@section('title', __('bank_account.list'))
 
 @section('content-dashboard')
 <div class="row">
@@ -13,22 +13,22 @@
                     </div>
                     <div class="panel-body">
                         <span class="pull-right">{{ $bankAccount->status }}</span>
-                        <p>{{ trans('bank_account.number') }}:<br><strong class="lead">{{ $bankAccount->number }}</strong></p>
-                        <p>{{ trans('bank_account.account_name') }}:<br><strong class="lead">{{ $bankAccount->account_name }}</strong></p>
+                        <p>{{ __('bank_account.number') }}:<br><strong class="lead">{{ $bankAccount->number }}</strong></p>
+                        <p>{{ __('bank_account.account_name') }}:<br><strong class="lead">{{ $bankAccount->account_name }}</strong></p>
                         @if ($bankAccount->description)
-                        <p>{{ trans('app.description') }}:<br>{{ $bankAccount->description }}</p>
+                        <p>{{ __('app.description') }}:<br>{{ $bankAccount->description }}</p>
                         @endif
                     </div>
                     <div class="panel-footer">
                         {!! link_to_route(
                             'bank-accounts.index',
-                            trans('app.edit'),
+                            __('app.edit'),
                             ['action' => 'edit', 'id' => $bankAccount->id],
                             ['id' => 'edit-bank_account-' . $bankAccount->id]
                         ) !!}
                         {!! link_to_route(
                             'bank-accounts.index',
-                            trans('app.delete'),
+                            __('app.delete'),
                             ['action' => 'delete', 'id' => $bankAccount->id],
                             ['id' => 'del-bank_account-' . $bankAccount->id, 'class' => 'pull-right']
                         ) !!}
@@ -39,7 +39,7 @@
     </div>
     <div class="col-md-4">
         @if (Request::has('action') == false)
-            {!! html_link_to_route('bank-accounts.index', trans('bank_account.create'), ['action' => 'create'], [
+            {!! html_link_to_route('bank-accounts.index', __('bank_account.create'), ['action' => 'create'], [
                 'class'=>'btn btn-success',
                 'icon' => 'plus'
             ]) !!}

@@ -61,9 +61,9 @@ class Customer extends Model
     public function nameLink()
     {
         return link_to_route('customers.show', $this->name, [$this->id], [
-            'title' => trans(
+            'title' => __(
                 'app.show_detail_title',
-                ['name' => $this->name, 'type' => trans('customer.customer')]
+                ['name' => $this->name, 'type' => __('customer.customer')]
             ),
         ]);
     }
@@ -75,7 +75,7 @@ class Customer extends Model
      */
     public function getStatusAttribute()
     {
-        return $this->is_active == 1 ? trans('app.active') : trans('app.in_active');
+        return $this->is_active == 1 ? __('app.active') : __('app.in_active');
     }
 
     /**

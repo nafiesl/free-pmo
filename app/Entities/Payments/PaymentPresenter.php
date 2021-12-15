@@ -18,7 +18,7 @@ class PaymentPresenter extends Presenter
 
     public function projectPaymentsLink()
     {
-        return link_to_route('projects.payments', trans('project.payments'), [$this->project_id]);
+        return link_to_route('projects.payments', __('project.payments'), [$this->project_id]);
     }
 
     public function type()

@@ -20,14 +20,14 @@ class Type extends ReferenceAbstract
 
     public static function getNameById($singleId)
     {
-        return trans('payment.types.'.static::getById($singleId));
+        return __('payment.types.'.static::getById($singleId));
     }
 
     public static function toArray()
     {
         $lists = [];
         foreach (static::$lists as $key => $value) {
-            $lists[$key] = trans('payment.types.'.$value);
+            $lists[$key] = __('payment.types.'.$value);
         }
 
         return $lists;

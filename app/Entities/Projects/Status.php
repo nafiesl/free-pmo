@@ -36,7 +36,7 @@ class Status extends ReferenceAbstract
 
     public static function getNameById($singleId)
     {
-        return trans('project.'.static::getById($singleId));
+        return __('project.'.static::getById($singleId));
     }
 
     public static function getIconById($singleId)
@@ -52,7 +52,7 @@ class Status extends ReferenceAbstract
     {
         $lists = [];
         foreach (static::$lists as $key => $value) {
-            $lists[$key] = trans('project.'.$value);
+            $lists[$key] = __('project.'.$value);
         }
 
         return $lists;

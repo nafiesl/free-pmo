@@ -46,9 +46,9 @@ class Project extends Model
     public function nameLink()
     {
         return link_to_route('projects.show', $this->name, [$this], [
-            'title' => trans(
+            'title' => __(
                 'app.show_detail_title',
-                ['name' => $this->name, 'type' => trans('project.project')]
+                ['name' => $this->name, 'type' => __('project.project')]
             ),
         ]);
     }

@@ -20,14 +20,14 @@ class Priority extends ReferenceAbstract
 
     public static function getNameById($singleId)
     {
-        return trans('issue.'.static::getById($singleId));
+        return __('issue.'.static::getById($singleId));
     }
 
     public static function toArray()
     {
         $lists = [];
         foreach (static::$lists as $key => $value) {
-            $lists[$key] = trans('issue.'.$value);
+            $lists[$key] = __('issue.'.$value);
         }
 
         return $lists;

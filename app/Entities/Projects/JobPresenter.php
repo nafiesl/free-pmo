@@ -18,6 +18,6 @@ class JobPresenter extends Presenter
 
     public function projectJobsLink()
     {
-        return link_to_route('projects.jobs.index', trans('project.jobs'), [$this->project_id]);
+        return link_to_route('projects.jobs.index', __('project.jobs'), [$this->project_id]);
     }
 }

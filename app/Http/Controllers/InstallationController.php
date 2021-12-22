@@ -38,7 +38,7 @@ class InstallationController extends Controller
                 }
 
                 return [
-                    'key'   => $key,
+                    'key' => $key,
                     'value' => $value,
                 ];
             })->toArray();
@@ -58,7 +58,7 @@ class InstallationController extends Controller
         Auth::login($admin);
         DB::commit();
 
-        flash(trans('auth.welcome', ['name' => $admin->name]), 'success');
+        flash(__('auth.welcome', ['name' => $admin->name]), 'success');
 
         return redirect()->route('home');
     }

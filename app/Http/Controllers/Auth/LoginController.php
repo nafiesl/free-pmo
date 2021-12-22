@@ -50,10 +50,10 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        flash(trans('auth.welcome', ['name' => $request->user()->name]));
+        flash(__('auth.welcome', ['name' => $request->user()->name]));
 
         return $this->authenticated($request, $this->guard()->user())
-                ?: redirect()->intended($this->redirectPath());
+        ?: redirect()->intended($this->redirectPath());
     }
 
     /**
@@ -69,7 +69,7 @@ class LoginController extends Controller
         $request->session()->flush();
 
         $request->session()->regenerate();
-        flash(trans('auth.logged_out'), 'success');
+        flash(__('auth.logged_out'), 'success');
 
         return redirect(route('auth.login'));
     }

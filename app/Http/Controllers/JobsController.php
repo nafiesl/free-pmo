@@ -109,7 +109,7 @@ class JobsController extends Controller
     public function update(UpdateRequest $request, Job $job)
     {
         $job = $this->repo->update($request->except(['_method', '_token']), $job->id);
-        flash(trans('job.updated'), 'success');
+        flash(__('job.updated'), 'success');
 
         return redirect()->route('jobs.show', $job);
     }
@@ -139,9 +139,9 @@ class JobsController extends Controller
         if ($job->id == $request->get('job_id')) {
             $job->tasks()->delete();
             $job->delete();
-            flash(trans('job.deleted'), 'success');
+            flash(__('job.deleted'), 'success');
         } else {
-            flash(trans('job.undeleted'), 'danger');
+            flash(__('job.undeleted'), 'danger');
         }
 
         return redirect()->route('projects.jobs.index', $projectId);

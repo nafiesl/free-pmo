@@ -40,10 +40,10 @@ class FeesController extends Controller
         $this->authorize('create', new Payment());
 
         $newPaymentData = request()->validate([
-            'type_id'     => 'required|numeric',
-            'date'        => 'required|date',
-            'amount'      => 'required|numeric',
-            'partner_id'  => 'required|exists:users,id',
+            'type_id' => 'required|numeric',
+            'date' => 'required|date',
+            'amount' => 'required|numeric',
+            'partner_id' => 'required|exists:users,id',
             'description' => 'required|string',
         ]);
         $newPaymentData['in_out'] = 0;
@@ -52,7 +52,7 @@ class FeesController extends Controller
 
         Payment::create($newPaymentData);
 
-        flash(trans('payment.created'), 'success');
+        flash(__('payment.created'), 'success');
 
         return redirect()->route('projects.payments', $project->id);
     }

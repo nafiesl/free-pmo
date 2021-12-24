@@ -32,10 +32,10 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $userData = $request->validate([
-            'name'     => 'required|min:5',
-            'email'    => 'required|email|unique:users,email',
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:users,email',
             'password' => 'nullable|between:6,15',
-            'role'     => 'required|array',
+            'role' => 'required|array',
         ]);
 
         if ($userData['password']) {
@@ -57,7 +57,7 @@ class UsersController extends Controller
 
         \DB::table('user_roles')->insert($rolesData);
 
-        flash(trans('user.created'), 'success');
+        flash(__('user.created'), 'success');
 
         return redirect()->route('users.index');
     }
@@ -76,7 +76,7 @@ class UsersController extends Controller
     {
         $this->authorize('update', $user);
 
-        $langList = ['en' => trans('lang.en'), 'id' => trans('lang.id')];
+        $langList = ['en' => __('lang.en'), 'id' => __('lang.id')];
 
         return view('users.edit', compact('user', 'langList'));
     }
@@ -86,11 +86,11 @@ class UsersController extends Controller
         $this->authorize('update', $user);
 
         $userData = $request->validate([
-            'name'     => 'required|min:5',
-            'email'    => 'required|email|unique:users,email,'.$request->segment(2),
+            'name' => 'required|min:5',
+            'email' => 'required|email|unique:users,email,'.$request->segment(2),
             'password' => 'nullable|required_with:password_confirmation|between:6,15',
-            'role'     => 'required|array',
-            'lang'     => 'required|string|in:en,id',
+            'role' => 'required|array',
+            'lang' => 'required|string|in:en,id',
         ]);
 
         if ($userData['password']) {
@@ -109,7 +109,7 @@ class UsersController extends Controller
 
         \DB::table('user_roles')->insert($rolesData);
 
-        flash(trans('user.updated'), 'success');
+        flash(__('user.updated'), 'success');
 
         return redirect()->route('users.edit', $user->id);
     }
@@ -131,9 +131,9 @@ class UsersController extends Controller
 
         if ($request->get('user_id')) {
             $user->delete();
-            flash(trans('user.deleted'), 'success');
+            flash(__('user.deleted'), 'success');
         } else {
-            flash(trans('user.undeleted'), 'danger');
+            flash(__('user.undeleted'), 'danger');
         }
 
         return redirect()->route('users.index');

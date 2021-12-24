@@ -21,9 +21,9 @@ class ProfileController extends Controller
     public function edit()
     {
         $langList = [
-            'en' => trans('lang.en'),
-            'id' => trans('lang.id'),
-            'de' => trans('lang.de'),
+            'en' => __('lang.en'),
+            'id' => __('lang.id'),
+            'de' => __('lang.de'),
         ];
 
         return view('users.profile.edit', compact('langList'));
@@ -32,9 +32,9 @@ class ProfileController extends Controller
     public function update()
     {
         request()->validate([
-            'name'  => 'required|string|max:100',
+            'name' => 'required|string|max:100',
             'email' => 'required|email|max:255',
-            'lang'  => 'required|string|in:en,id,de',
+            'lang' => 'required|string|in:en,id,de',
         ]);
 
         $user = auth()->user();
@@ -44,7 +44,7 @@ class ProfileController extends Controller
         $user->lang = request('lang');
         $user->save();
 
-        flash(trans('auth.profile_updated'), 'success');
+        flash(__('auth.profile_updated'), 'success');
 
         return redirect()->route('users.profile.show');
     }

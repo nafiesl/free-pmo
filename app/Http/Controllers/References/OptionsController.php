@@ -23,13 +23,13 @@ class OptionsController extends Controller
     public function store(Request $req)
     {
         $newOptionData = $req->validate([
-            'key'   => 'required|max:255|alpha_dash',
+            'key' => 'required|max:255|alpha_dash',
             'value' => 'max:255',
         ]);
 
         $option = Option::create($newOptionData);
 
-        flash(trans('option.created'), 'success');
+        flash(__('option.created'), 'success');
 
         return redirect()->route('options.index');
     }
@@ -38,9 +38,9 @@ class OptionsController extends Controller
     {
         if ($optionId == $req->get('option_id')) {
             Option::findOrFail($optionId)->delete();
-            flash(trans('option.deleted'), 'success');
+            flash(__('option.deleted'), 'success');
         } else {
-            flash(trans('option.undeleted'), 'danger');
+            flash(__('option.undeleted'), 'danger');
         }
 
         return redirect()->route('options.index');
@@ -55,7 +55,7 @@ class OptionsController extends Controller
             $option->save();
         }
 
-        flash(trans('option.updated'), 'success');
+        flash(__('option.updated'), 'success');
 
         return redirect()->route('options.index');
     }

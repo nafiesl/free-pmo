@@ -31,17 +31,17 @@ class EventsController extends Controller
                 $editable = request('action') == 'edit' ? true : false;
 
                 return [
-                    'id'         => $event->id,
-                    'user'       => $event->user->name,
-                    'user_id'    => $event->user_id,
+                    'id' => $event->id,
+                    'user' => $event->user->name,
+                    'user_id' => $event->user_id,
                     'project_id' => $event->project_id,
-                    'title'      => $event->title,
-                    'body'       => $event->body,
-                    'start'      => $event->start,
-                    'end'        => $event->end,
-                    'allDay'     => $event->is_allday,
-                    'editable'   => $editable,
-                    'color'      => $isOwnEvent ? '' : '#B7B7B7',
+                    'title' => $event->title,
+                    'body' => $event->body,
+                    'start' => $event->start,
+                    'end' => $event->end,
+                    'allDay' => $event->is_allday,
+                    'editable' => $editable,
+                    'color' => $isOwnEvent ? '' : '#B7B7B7',
                 ];
             })
             ->toArray();
@@ -53,11 +53,11 @@ class EventsController extends Controller
     {
         $this->validate($request, [
             'project_id' => 'nullable|numeric|exists:projects,id',
-            'title'      => 'required|string|max:60',
-            'body'       => 'nullable|string|max:255',
-            'start'      => 'required|date|date_format:Y-m-d H:i:s',
-            'end'        => 'date|date_format:Y-m-d H:i:s',
-            'is_allday'  => '',
+            'title' => 'required|string|max:60',
+            'body' => 'nullable|string|max:255',
+            'start' => 'required|date|date_format:Y-m-d H:i:s',
+            'end' => 'date|date_format:Y-m-d H:i:s',
+            'is_allday' => '',
         ]);
 
         $event = new Event();
@@ -72,18 +72,18 @@ class EventsController extends Controller
         $event->save();
 
         $response = [
-            'message' => trans('event.created'),
+            'message' => __('event.created'),
         ] + fractal()->item($event)
             ->transformWith(function ($event) {
                 return [
-                    'id'         => $event->id,
+                    'id' => $event->id,
                     'project_id' => $event->project_id,
-                    'user'       => $event->user->name,
-                    'title'      => $event->title,
-                    'body'       => $event->body,
-                    'start'      => $event->start,
-                    'end'        => $event->end,
-                    'allDay'     => $event->is_allday,
+                    'user' => $event->user->name,
+                    'title' => $event->title,
+                    'body' => $event->body,
+                    'start' => $event->start,
+                    'end' => $event->end,
+                    'allDay' => $event->is_allday,
                 ];
             })
             ->toArray();
@@ -99,11 +99,11 @@ class EventsController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'id'         => 'required|numeric|exists:user_events,id',
+            'id' => 'required|numeric|exists:user_events,id',
             'project_id' => 'nullable|numeric|exists:projects,id',
-            'title'      => 'required|string|max:60',
-            'body'       => 'nullable|string|max:255',
-            'is_allday'  => '',
+            'title' => 'required|string|max:60',
+            'body' => 'nullable|string|max:255',
+            'is_allday' => '',
         ]);
 
         $event = Event::findOrFail($request->get('id'));
@@ -117,18 +117,18 @@ class EventsController extends Controller
         $event->save();
 
         $response = [
-            'message' => trans('event.updated'),
+            'message' => __('event.updated'),
         ] + fractal()->item($event)
             ->transformWith(function ($event) {
                 return [
-                    'id'         => $event->id,
+                    'id' => $event->id,
                     'project_id' => $event->project_id,
-                    'user'       => $event->user->name,
-                    'title'      => $event->title,
-                    'body'       => $event->body,
-                    'start'      => $event->start,
-                    'end'        => $event->end,
-                    'allDay'     => $event->is_allday,
+                    'user' => $event->user->name,
+                    'title' => $event->title,
+                    'body' => $event->body,
+                    'start' => $event->start,
+                    'end' => $event->end,
+                    'allDay' => $event->is_allday,
                 ];
             })
             ->toArray();
@@ -146,15 +146,15 @@ class EventsController extends Controller
         $this->authorize('delete', $event);
         $event->delete();
 
-        return response()->json(['message' => trans('event.deleted')], 200);
+        return response()->json(['message' => __('event.deleted')], 200);
     }
 
     public function reschedule(Request $request)
     {
         $request->validate([
-            'id'        => 'required|numeric|exists:user_events,id',
-            'start'     => 'required|date|date_format:Y-m-d H:i:s',
-            'end'       => 'nullable|date|date_format:Y-m-d H:i:s',
+            'id' => 'required|numeric|exists:user_events,id',
+            'start' => 'required|date|date_format:Y-m-d H:i:s',
+            'end' => 'nullable|date|date_format:Y-m-d H:i:s',
             'is_allday' => 'required|in:true,false',
         ]);
 
@@ -175,16 +175,16 @@ class EventsController extends Controller
         $event->save();
 
         $response = [
-            'message' => trans('event.rescheduled'),
+            'message' => __('event.rescheduled'),
         ] + fractal()->item($event)
             ->transformWith(function ($event) {
                 return [
-                    'id'     => $event->id,
-                    'user'   => $event->user->name,
-                    'title'  => $event->title,
-                    'body'   => $event->body,
-                    'start'  => $event->start,
-                    'end'    => $event->end,
+                    'id' => $event->id,
+                    'user' => $event->user->name,
+                    'title' => $event->title,
+                    'body' => $event->body,
+                    'start' => $event->start,
+                    'end' => $event->end,
                     'allDay' => $event->is_allday,
                 ];
             })

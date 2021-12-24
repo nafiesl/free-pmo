@@ -70,7 +70,7 @@ class PaymentsController extends Controller
     public function store(CreateRequest $request)
     {
         $payment = $this->repo->create($request->except('_token'));
-        flash(trans('payment.created'), 'success');
+        flash(__('payment.created'), 'success');
 
         return redirect()->route('projects.payments', $payment->project_id);
     }
@@ -130,7 +130,7 @@ class PaymentsController extends Controller
 
         $payment->update($paymentData);
 
-        flash(trans('payment.updated'), 'success');
+        flash(__('payment.updated'), 'success');
 
         return redirect()->route('payments.show', $payment->id);
     }
@@ -158,9 +158,9 @@ class PaymentsController extends Controller
         $projectId = $payment->project_id;
         if ($payment->id == $request->get('payment_id')) {
             $payment->delete();
-            flash(trans('payment.deleted'), 'success');
+            flash(__('payment.deleted'), 'success');
         } else {
-            flash(trans('payment.undeleted'), 'danger');
+            flash(__('payment.undeleted'), 'danger');
         }
 
         return redirect()->route('projects.payments', $projectId);

@@ -72,7 +72,7 @@ class ProjectsController extends Controller
         $this->authorize('create', new Project());
 
         $project = $this->repo->create($request->except('_token'));
-        flash(trans('project.created'), 'success');
+        flash(__('project.created'), 'success');
 
         return redirect()->route('projects.show', $project);
     }
@@ -117,7 +117,7 @@ class ProjectsController extends Controller
         $this->authorize('update', $project);
 
         $project = $this->repo->update($request->validated(), $project->id);
-        flash(trans('project.updated'), 'success');
+        flash(__('project.updated'), 'success');
 
         return redirect()->route('projects.edit', $project);
     }
@@ -147,9 +147,9 @@ class ProjectsController extends Controller
 
         if ($project->id == request('project_id')) {
             $this->repo->delete($project->id);
-            flash(trans('project.deleted'), 'success');
+            flash(__('project.deleted'), 'success');
         } else {
-            flash(trans('project.undeleted'), 'danger');
+            flash(__('project.undeleted'), 'danger');
         }
 
         return redirect()->route('projects.index');
@@ -195,7 +195,7 @@ class ProjectsController extends Controller
         $this->authorize('update', $project);
 
         $project = $this->repo->updateStatus($request->get('status_id'), $project->id);
-        flash(trans('project.updated'), 'success');
+        flash(__('project.updated'), 'success');
 
         return redirect()->route('projects.show', $project);
     }

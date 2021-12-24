@@ -30,7 +30,7 @@ class TasksController extends Controller
         $newTask['job_id'] = $job->id;
         $task = Task::create($newTask);
 
-        flash(trans('task.created'), 'success');
+        flash(__('task.created'), 'success');
 
         return redirect()->route('jobs.show', $job);
     }
@@ -46,7 +46,7 @@ class TasksController extends Controller
     {
         $task->update($request->validated());
 
-        flash(trans('task.updated'), 'success');
+        flash(__('task.updated'), 'success');
 
         return redirect()->route('jobs.show', $task->job_id);
     }
@@ -62,9 +62,9 @@ class TasksController extends Controller
     {
         if ($task->id == $request->get('task_id')) {
             $task->delete();
-            flash(trans('task.deleted'), 'success');
+            flash(__('task.deleted'), 'success');
         } else {
-            flash(trans('task.undeleted'), 'danger');
+            flash(__('task.undeleted'), 'danger');
         }
 
         return redirect()->route('jobs.show', $task->job_id);

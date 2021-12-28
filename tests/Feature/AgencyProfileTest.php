@@ -28,50 +28,50 @@ class AgencyProfileTest extends TestCase
         $user = $this->adminUserSigningIn();
         $this->visit(route('users.agency.edit'));
 
-        $this->submitForm(trans('agency.update'), [
-            'name'    => 'Nama Agensi Saya',
+        $this->submitForm(__('agency.update'), [
+            'name' => 'Nama Agensi Saya',
             'tagline' => 'Tagline agensi saya',
-            'email'   => 'nama_agensi@domain.com',
+            'email' => 'nama_agensi@domain.com',
             'address' => 'Jln. Kalimantan, No. 20, Kota',
-            'phone'   => '081234567890',
-            'city'    => 'Jakarta',
+            'phone' => '081234567890',
+            'city' => 'Jakarta',
             'website' => 'https://example.com',
-            'tax_id'  => '14.817.xxx.x-xxx.000',
+            'tax_id' => '14.817.xxx.x-xxx.000',
         ]);
 
-        $this->see(trans('agency.updated'));
+        $this->see(__('agency.updated'));
         $this->seePageIs(route('users.agency.show'));
 
         $this->seeInDatabase('site_options', [
-            'key'   => 'agency_name',
+            'key' => 'agency_name',
             'value' => 'Nama Agensi Saya',
         ]);
         $this->seeInDatabase('site_options', [
-            'key'   => 'agency_email',
+            'key' => 'agency_email',
             'value' => 'nama_agensi@domain.com',
         ]);
         $this->seeInDatabase('site_options', [
-            'key'   => 'agency_address',
+            'key' => 'agency_address',
             'value' => 'Jln. Kalimantan, No. 20, Kota',
         ]);
         $this->seeInDatabase('site_options', [
-            'key'   => 'agency_city',
+            'key' => 'agency_city',
             'value' => 'Jakarta',
         ]);
         $this->seeInDatabase('site_options', [
-            'key'   => 'agency_phone',
+            'key' => 'agency_phone',
             'value' => '081234567890',
         ]);
         $this->seeInDatabase('site_options', [
-            'key'   => 'agency_website',
+            'key' => 'agency_website',
             'value' => 'https://example.com',
         ]);
         $this->seeInDatabase('site_options', [
-            'key'   => 'agency_tagline',
+            'key' => 'agency_tagline',
             'value' => 'Tagline agensi saya',
         ]);
         $this->seeInDatabase('site_options', [
-            'key'   => 'agency_tax_id',
+            'key' => 'agency_tax_id',
             'value' => '14.817.xxx.x-xxx.000',
         ]);
     }
@@ -83,13 +83,13 @@ class AgencyProfileTest extends TestCase
         $this->visit(route('users.agency.edit'));
 
         $this->attach(storage_path('app/sample-image.png'), 'logo');
-        $this->press(trans('agency.logo_upload'));
+        $this->press(__('agency.logo_upload'));
 
-        $this->see(trans('agency.updated'));
+        $this->see(__('agency.updated'));
         $this->seePageIs(route('users.agency.show'));
 
         $this->seeInDatabase('site_options', [
-            'key'   => 'agency_logo_path',
+            'key' => 'agency_logo_path',
             'value' => 'sample-image.png',
         ]);
 

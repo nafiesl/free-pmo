@@ -24,17 +24,17 @@ class InvoiceDuplicateTest extends TestCase
             'items' => [
                 [
                     'description' => 'Item 1 description',
-                    'amount'      => 100000,
+                    'amount' => 100000,
                 ],
                 [
                     'description' => 'Item 1 description',
-                    'amount'      => 150000,
+                    'amount' => 150000,
                 ],
             ],
         ]);
         $this->visit(route('invoices.show', $invoice));
 
-        $this->press(trans('invoice.duplicate'));
+        $this->press(__('invoice.duplicate'));
         $invoiceDrafts = new InvoiceDraftCollection();
         $draft = $invoiceDrafts->content()->last();
         $this->seePageIs(route('invoice-drafts.show', $draft->draftKey));

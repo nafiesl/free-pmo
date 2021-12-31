@@ -39,7 +39,7 @@ class InvoiceEntryTest extends TestCase
         $this->adminUserSigningIn();
         $this->visit(route('invoice-drafts.index'));
 
-        $this->press(trans('invoice.create'));
+        $this->press(__('invoice.create'));
         $cart = new InvoiceDraftCollection();
         $draft = $cart->content()->last();
         $this->seePageIs(route('invoice-drafts.show', $draft->draftKey));
@@ -53,7 +53,7 @@ class InvoiceEntryTest extends TestCase
 
         $this->visit(route('projects.invoices', $project));
 
-        $this->press(trans('invoice.create'));
+        $this->press(__('invoice.create'));
 
         $cart = new InvoiceDraftCollection();
         $draft = $cart->content()->last();
@@ -77,13 +77,13 @@ class InvoiceEntryTest extends TestCase
 
         $this->type('Testing deskripsi invoice item', 'new_item_description');
         $this->type(2000, 'new_item_amount');
-        $this->press(trans('invoice.add_item'));
+        $this->press(__('invoice.add_item'));
 
-        $this->see(trans('invoice.item_added'));
+        $this->see(__('invoice.item_added'));
 
         $this->type('Testing deskripsi invoice item', 'new_item_description');
         $this->type(3000, 'new_item_amount');
-        $this->press(trans('invoice.add_item'));
+        $this->press(__('invoice.add_item'));
 
         $this->seePageIs(route('invoice-drafts.show', $draft->draftKey));
         $this->see(format_money(5000));
@@ -123,15 +123,15 @@ class InvoiceEntryTest extends TestCase
         $this->visit(route('invoice-drafts.show', $draft->draftKey));
 
         $this->submitForm('update-item-0', [
-            'item_key[0]'    => 0,
+            'item_key[0]' => 0,
             'description[0]' => 'Testing deskripsi Update',
-            'amount[0]'      => 100,
+            'amount[0]' => 100,
         ]);
 
         $this->submitForm('update-item-1', [
-            'item_key[1]'    => 1,
+            'item_key[1]' => 1,
             'description[1]' => 'Testing deskripsi Update',
-            'amount[1]'      => 100,
+            'amount[1]' => 100,
         ]);
 
         $this->see(format_money(200));
@@ -155,17 +155,17 @@ class InvoiceEntryTest extends TestCase
 
         $this->visit(route('invoice-drafts.show', $draft->draftKey));
 
-        $this->submitForm(trans('invoice.proccess'), [
+        $this->submitForm(__('invoice.proccess'), [
             'project_id' => $project->id,
-            'date'       => '2017-01-01',
-            'due_date'   => '2017-01-30',
-            'notes'      => 'catatan',
+            'date' => '2017-01-01',
+            'due_date' => '2017-01-30',
+            'notes' => 'catatan',
         ]);
 
         $this->seePageIs(route('invoice-drafts.show', [$draft->draftKey, 'action' => 'confirm']));
 
-        $this->see(trans('invoice.confirm_instruction', [
-            'back_link' => link_to_route('invoice-drafts.show', trans('app.back'), $draft->draftKey),
+        $this->see(__('invoice.confirm_instruction', [
+            'back_link' => link_to_route('invoice-drafts.show', __('app.back'), $draft->draftKey),
         ]));
 
         $this->see($project->name);
@@ -195,28 +195,28 @@ class InvoiceEntryTest extends TestCase
 
         $draftAttributes = [
             'project_id' => $project->id,
-            'date'       => '2010-10-10',
-            'due_date'   => '2010-10-30',
-            'notes'      => 'Catatan',
+            'date' => '2010-10-10',
+            'due_date' => '2010-10-30',
+            'notes' => 'Catatan',
         ];
         $cart->updateDraftAttributes($draft->draftKey, $draftAttributes);
 
         $this->visit(route('invoice-drafts.show', [$draft->draftKey, 'action' => 'confirm']));
 
-        $this->press(trans('invoice.save'));
+        $this->press(__('invoice.save'));
 
         $this->seePageIs(route('invoices.show', date('ym').'001'));
-        $this->see(trans('invoice.created', ['invoice_no' => date('ym').'001']));
+        $this->see(__('invoice.created', ['invoice_no' => date('ym').'001']));
 
         $this->seeInDatabase('invoices', [
             'project_id' => $project->id,
-            'number'     => date('ym').'001',
-            'date'       => '2010-10-10',
-            'due_date'   => '2010-10-30',
-            'items'      => '[{"description":"Deskripsi item invoice","amount":1000},{"description":"Deskripsi item invoice","amount":2000}]',
-            'amount'     => 3000,
-            'notes'      => 'Catatan',
-            'status_id'  => 1,
+            'number' => date('ym').'001',
+            'date' => '2010-10-10',
+            'due_date' => '2010-10-30',
+            'items' => '[{"description":"Deskripsi item invoice","amount":1000},{"description":"Deskripsi item invoice","amount":2000}]',
+            'amount' => 3000,
+            'notes' => 'Catatan',
+            'status_id' => 1,
             'creator_id' => $user->id,
         ]);
     }

@@ -19,23 +19,23 @@ class ManageTasksTest extends TestCase
 
         $this->visit(route('jobs.show', $job->id));
         $this->seePageIs(route('jobs.show', $job->id));
-        $this->see(trans('job.tasks'));
+        $this->see(__('job.tasks'));
 
         // Fill Form
-        $this->submitForm(trans('task.create'), [
-            'name'        => 'Nama Task Baru',
+        $this->submitForm(__('task.create'), [
+            'name' => 'Nama Task Baru',
             'description' => 'Deskripsi task yang dikerjakani.',
-            'progress'    => 70,
+            'progress' => 70,
         ]);
 
         $this->seePageIs(route('jobs.show', $job->id));
-        $this->see(trans('task.created'));
+        $this->see(__('task.created'));
 
         $this->seeInDatabase('tasks', [
-            'name'        => 'Nama Task Baru',
+            'name' => 'Nama Task Baru',
             'description' => 'Deskripsi task yang dikerjakani.',
-            'progress'    => 70,
-            'job_id'      => $job->id,
+            'progress' => 70,
+            'job_id' => $job->id,
         ]);
     }
 
@@ -49,21 +49,21 @@ class ManageTasksTest extends TestCase
         $this->visit(route('jobs.show', $job->id));
         $this->click($task->id.'-tasks-edit');
         $this->seePageIs(route('jobs.show', [$job->id, 'action' => 'task_edit', 'task_id' => $task->id]));
-        $this->see(trans('task.edit'));
+        $this->see(__('task.edit'));
 
         // Fill Form
-        $this->submitForm(trans('task.update'), [
-            'name'     => 'Nama Task Edit',
+        $this->submitForm(__('task.update'), [
+            'name' => 'Nama Task Edit',
             'progress' => 77,
         ]);
 
         $this->seePageIs(route('jobs.show', $job->id));
-        $this->see(trans('task.updated'));
+        $this->see(__('task.updated'));
 
         $this->seeInDatabase('tasks', [
-            'name'     => 'Nama Task Edit',
+            'name' => 'Nama Task Edit',
             'progress' => 77,
-            'job_id'   => $job->id,
+            'job_id' => $job->id,
         ]);
     }
 
@@ -76,11 +76,11 @@ class ManageTasksTest extends TestCase
 
         $this->visit(route('jobs.show', $job->id));
         $this->click($task->id.'-tasks-delete');
-        $this->see(trans('app.delete_confirm_button'));
-        $this->press(trans('app.delete_confirm_button'));
+        $this->see(__('app.delete_confirm_button'));
+        $this->press(__('app.delete_confirm_button'));
 
         $this->seePageIs(route('jobs.show', $job->id));
-        $this->see(trans('task.deleted'));
+        $this->see(__('task.deleted'));
     }
 
     /** @test */
@@ -94,10 +94,10 @@ class ManageTasksTest extends TestCase
         $this->press($task->id.'-set_task_done');
 
         $this->seePageIs(route('jobs.show', $job->id));
-        $this->see(trans('task.updated'));
+        $this->see(__('task.updated'));
         $this->dontSeeElement('button', ['id' => $task->id.'-set_task_done']);
         $this->seeInDatabase('tasks', [
-            'id'       => $task->id,
+            'id' => $task->id,
             'progress' => 100,
         ]);
     }

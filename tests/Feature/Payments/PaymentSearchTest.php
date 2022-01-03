@@ -20,8 +20,8 @@ class PaymentSearchTest extends TestCase
         $unShownPayment = factory(Payment::class)->create();
 
         $this->visit(route('payments.index'));
-        $this->submitForm(trans('app.search'), [
-            'q'          => 'Project',
+        $this->submitForm(__('app.search'), [
+            'q' => 'Project',
             'partner_id' => '',
         ]);
         $this->seePageIs(route('payments.index', ['partner_id' => '', 'q' => 'Project']));
@@ -38,8 +38,8 @@ class PaymentSearchTest extends TestCase
         $unShownPayment = factory(Payment::class)->create();
 
         $this->visit(route('payments.index'));
-        $this->submitForm(trans('app.search'), [
-            'q'          => '',
+        $this->submitForm(__('app.search'), [
+            'q' => '',
             'partner_id' => $payment->partner_id,
         ]);
         $this->seePageIs(route('payments.index', ['partner_id' => $payment->partner_id, 'q' => '']));

@@ -29,26 +29,26 @@ class ManagePaymentsTest extends TestCase
         $this->seePageIs(route('payments.create'));
 
         // Fill Form
-        $this->submitForm(trans('payment.create'), [
-            'date'        => '2015-05-01',
-            'in_out'      => 1,
-            'type_id'     => 1,
-            'amount'      => 1000000,
-            'project_id'  => $project->id,
-            'partner_id'  => $customer->id,
+        $this->submitForm(__('payment.create'), [
+            'date' => '2015-05-01',
+            'in_out' => 1,
+            'type_id' => 1,
+            'amount' => 1000000,
+            'project_id' => $project->id,
+            'partner_id' => $customer->id,
             'description' => 'Pembayaran DP',
         ]);
 
-        $this->see(trans('payment.created'));
+        $this->see(__('payment.created'));
 
         $this->seeInDatabase('payments', [
-            'project_id'   => $project->id,
-            'amount'       => 1000000,
-            'type_id'      => 1,
-            'in_out'       => 1,
-            'date'         => '2015-05-01',
+            'project_id' => $project->id,
+            'amount' => 1000000,
+            'type_id' => 1,
+            'in_out' => 1,
+            'date' => '2015-05-01',
             'partner_type' => Customer::class,
-            'partner_id'   => $customer->id,
+            'partner_id' => $customer->id,
         ]);
     }
 
@@ -63,25 +63,25 @@ class ManagePaymentsTest extends TestCase
         $this->seePageIs(route('payments.create'));
 
         // Fill Form
-        $this->submitForm(trans('payment.create'), [
-            'date'        => '2015-05-01',
-            'in_out'      => 0,
-            'type_id'     => 3,
-            'amount'      => 1000000,
-            'project_id'  => $project->id,
-            'partner_id'  => $vendor->id,
+        $this->submitForm(__('payment.create'), [
+            'date' => '2015-05-01',
+            'in_out' => 0,
+            'type_id' => 3,
+            'amount' => 1000000,
+            'project_id' => $project->id,
+            'partner_id' => $vendor->id,
             'description' => 'Pembayaran DP',
         ]);
 
-        $this->see(trans('payment.created'));
+        $this->see(__('payment.created'));
 
         $this->seeInDatabase('payments', [
-            'project_id'   => $project->id,
-            'amount'       => 1000000,
-            'in_out'       => 0,
-            'date'         => '2015-05-01',
+            'project_id' => $project->id,
+            'amount' => 1000000,
+            'in_out' => 0,
+            'date' => '2015-05-01',
             'partner_type' => Vendor::class,
-            'partner_id'   => $vendor->id,
+            'partner_id' => $vendor->id,
         ]);
     }
 
@@ -93,12 +93,12 @@ class ManagePaymentsTest extends TestCase
 
         // Submit Form
         $this->post(route('payments.store'), [
-            'date'        => '2015-05-01',
-            'in_out'      => 0,
-            'type_id'     => 3,
-            'amount'      => 1000000,
-            'project_id'  => $project->id,
-            'partner_id'  => $project->customer_id,
+            'date' => '2015-05-01',
+            'in_out' => 0,
+            'type_id' => 3,
+            'amount' => 1000000,
+            'project_id' => $project->id,
+            'partner_id' => $project->customer_id,
             'description' => 'Pembayaran DP',
         ]);
 
@@ -108,12 +108,12 @@ class ManagePaymentsTest extends TestCase
         $vendor = factory(Vendor::class)->create();
         // Submit Form
         $this->post(route('payments.store'), [
-            'date'        => '2015-05-01',
-            'in_out'      => 1,
-            'type_id'     => 3,
-            'amount'      => 1000000,
-            'project_id'  => $project->id,
-            'partner_id'  => $vendor->id,
+            'date' => '2015-05-01',
+            'in_out' => 1,
+            'type_id' => 3,
+            'amount' => 1000000,
+            'project_id' => $project->id,
+            'partner_id' => $vendor->id,
             'description' => 'Pembayaran DP',
         ]);
 
@@ -127,31 +127,31 @@ class ManagePaymentsTest extends TestCase
 
         $vendor = factory(Vendor::class)->create();
         $payment = factory(Payment::class)->create([
-            'in_out'       => 0, // Outcome
+            'in_out' => 0, // Outcome
             'partner_type' => Vendor::class,
-            'partner_id'   => $vendor->id,
+            'partner_id' => $vendor->id,
         ]);
 
         $this->visit(route('payments.edit', $payment->id));
         $this->seePageIs(route('payments.edit', $payment->id));
 
-        $this->submitForm(trans('payment.update'), [
-            'date'        => '2016-05-20',
-            'in_out'      => 0, // Outcome
-            'type_id'     => 3,
-            'amount'      => 1000000,
+        $this->submitForm(__('payment.update'), [
+            'date' => '2016-05-20',
+            'in_out' => 0, // Outcome
+            'type_id' => 3,
+            'amount' => 1000000,
             'description' => 'Pembayaran DP',
         ]);
 
         $this->seePageIs(route('payments.show', $payment->id));
 
-        $this->see(trans('payment.updated'));
+        $this->see(__('payment.updated'));
         $this->seeInDatabase('payments', [
-            'date'         => '2016-05-20',
-            'in_out'       => 0, // Outcome
+            'date' => '2016-05-20',
+            'in_out' => 0, // Outcome
             'partner_type' => Vendor::class,
-            'partner_id'   => $payment->partner_id,
-            'amount'       => 1000000,
+            'partner_id' => $payment->partner_id,
+            'amount' => 1000000,
         ]);
     }
 
@@ -162,32 +162,32 @@ class ManagePaymentsTest extends TestCase
 
         $vendor = factory(Vendor::class)->create();
         $payment = factory(Payment::class)->create([
-            'in_out'       => 0, // Outcome
+            'in_out' => 0, // Outcome
             'partner_type' => Vendor::class,
-            'partner_id'   => $vendor->id,
+            'partner_id' => $vendor->id,
         ]);
         $customer = $payment->project->customer;
 
         $this->visit(route('payments.edit', $payment->id));
         $this->seePageIs(route('payments.edit', $payment->id));
 
-        $this->submitForm(trans('payment.update'), [
-            'date'        => '2016-05-20',
-            'in_out'      => 1, // Income
-            'type_id'     => 3,
-            'amount'      => 1000000,
-            'partner_id'  => $customer->id,
+        $this->submitForm(__('payment.update'), [
+            'date' => '2016-05-20',
+            'in_out' => 1, // Income
+            'type_id' => 3,
+            'amount' => 1000000,
+            'partner_id' => $customer->id,
             'description' => 'Pembayaran DP',
         ]);
 
         $this->seePageIs(route('payments.show', $payment->id));
 
-        $this->see(trans('payment.updated'));
+        $this->see(__('payment.updated'));
         $this->seeInDatabase('payments', [
-            'date'         => '2016-05-20',
-            'in_out'       => 1, // Income
+            'date' => '2016-05-20',
+            'in_out' => 1, // Income
             'partner_type' => Customer::class,
-            'amount'       => 1000000,
+            'amount' => 1000000,
         ]);
     }
 
@@ -198,11 +198,11 @@ class ManagePaymentsTest extends TestCase
         $payment = factory(Payment::class)->create();
 
         $this->visit(route('payments.show', $payment));
-        $this->click(trans('app.edit'));
-        $this->click(trans('payment.delete'));
-        $this->press(trans('app.delete_confirm_button'));
+        $this->click(__('app.edit'));
+        $this->click(__('payment.delete'));
+        $this->press(__('app.delete_confirm_button'));
         $this->seePageIs(route('projects.payments', $payment->project_id));
-        $this->see(trans('payment.deleted'));
+        $this->see(__('payment.deleted'));
     }
 
     /** @test */
@@ -214,7 +214,7 @@ class ManagePaymentsTest extends TestCase
         $this->visit(route('payments.index'));
         $this->click('show_payment-'.$payment->id);
         $this->seePageIs(route('payments.show', $payment->id));
-        $this->see(trans('payment.detail'));
+        $this->see(__('payment.detail'));
         $this->see($payment->date);
         $this->see(format_money($payment->amount));
         $this->see($payment->description);
@@ -229,31 +229,31 @@ class ManagePaymentsTest extends TestCase
 
         $this->visitRoute('projects.payments', $project->id);
 
-        $this->click(trans('payment.create'));
+        $this->click(__('payment.create'));
         $this->seeRouteIs('payments.create', ['customer_id' => $project->customer_id, 'project_id' => $project->id]);
 
         // // Fill Form
-        $this->submitForm(trans('payment.create'), [
-            'date'        => '2015-05-01',
-            'in_out'      => 1,
-            'type_id'     => 1,
-            'amount'      => 1000000,
-            'project_id'  => $project->id,
-            'partner_id'  => $project->customer_id,
+        $this->submitForm(__('payment.create'), [
+            'date' => '2015-05-01',
+            'in_out' => 1,
+            'type_id' => 1,
+            'amount' => 1000000,
+            'project_id' => $project->id,
+            'partner_id' => $project->customer_id,
             'description' => 'Pembayaran DP',
         ]);
 
-        $this->see(trans('payment.created'));
+        $this->see(__('payment.created'));
         $this->seeRouteIs('projects.payments', $project->id);
 
         $this->seeInDatabase('payments', [
-            'project_id'   => $project->id,
-            'amount'       => 1000000,
-            'type_id'      => 1,
-            'in_out'       => 1,
-            'date'         => '2015-05-01',
+            'project_id' => $project->id,
+            'amount' => 1000000,
+            'type_id' => 1,
+            'in_out' => 1,
+            'date' => '2015-05-01',
             'partner_type' => Customer::class,
-            'partner_id'   => $project->customer_id,
+            'partner_id' => $project->customer_id,
         ]);
     }
 }

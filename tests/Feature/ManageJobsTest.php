@@ -30,29 +30,29 @@ class ManageJobsTest extends TestCase
         $worker = $this->createUser();
 
         $this->visit(route('projects.jobs.index', $project->id));
-        $this->click(trans('job.create'));
+        $this->click(__('job.create'));
         $this->seePageIs(route('projects.jobs.create', $project->id));
 
-        $this->submitForm(trans('job.create'), [
-            'name'              => 'Nama Fitur Baru',
-            'price'             => 100000,
-            'worker_id'         => $worker->id,
-            'type_id'           => 1,
+        $this->submitForm(__('job.create'), [
+            'name' => 'Nama Fitur Baru',
+            'price' => 100000,
+            'worker_id' => $worker->id,
+            'type_id' => 1,
             'target_start_date' => '2017-04-04',
-            'target_end_date'   => '2017-07-07',
-            'description'       => 'Similique, eligendi fuga animi?',
+            'target_end_date' => '2017-07-07',
+            'description' => 'Similique, eligendi fuga animi?',
         ]);
 
-        $this->see(trans('job.created'));
+        $this->see(__('job.created'));
 
         $this->seeInDatabase('jobs', [
-            'name'              => 'Nama Fitur Baru',
-            'price'             => 100000,
-            'worker_id'         => $worker->id,
-            'type_id'           => 1,
-            'project_id'        => $project->id,
+            'name' => 'Nama Fitur Baru',
+            'price' => 100000,
+            'worker_id' => $worker->id,
+            'type_id' => 1,
+            'project_id' => $project->id,
             'target_start_date' => '2017-04-04',
-            'target_end_date'   => '2017-07-07',
+            'target_end_date' => '2017-07-07',
         ]);
     }
 
@@ -70,31 +70,31 @@ class ManageJobsTest extends TestCase
 
         $this->visit(route('jobs.edit', $job->id));
 
-        $this->submitForm(trans('job.update'), [
-            'name'              => 'Nama Fitur Edit',
-            'price'             => 33333,
-            'worker_id'         => $users[2]->id,
-            'type_id'           => 2,
+        $this->submitForm(__('job.update'), [
+            'name' => 'Nama Fitur Edit',
+            'price' => 33333,
+            'worker_id' => $users[2]->id,
+            'type_id' => 2,
             'target_start_date' => '2017-04-04',
-            'target_end_date'   => '2017-07-07',
+            'target_end_date' => '2017-07-07',
             'actual_start_date' => '2017-04-04',
-            'actual_end_date'   => '2017-07-07',
+            'actual_end_date' => '2017-07-07',
         ]);
 
         $this->seePageIs(route('jobs.show', $job->id));
 
-        $this->see(trans('job.updated'));
+        $this->see(__('job.updated'));
 
         $this->seeInDatabase('jobs', [
-            'name'              => 'Nama Fitur Edit',
-            'price'             => 33333,
-            'worker_id'         => $users[2]->id,
-            'project_id'        => $project->id,
-            'type_id'           => 2,
+            'name' => 'Nama Fitur Edit',
+            'price' => 33333,
+            'worker_id' => $users[2]->id,
+            'project_id' => $project->id,
+            'type_id' => 2,
             'target_start_date' => '2017-04-04',
-            'target_end_date'   => '2017-07-07',
+            'target_end_date' => '2017-07-07',
             'actual_start_date' => '2017-04-04',
-            'actual_end_date'   => '2017-07-07',
+            'actual_end_date' => '2017-07-07',
         ]);
     }
 
@@ -112,13 +112,13 @@ class ManageJobsTest extends TestCase
 
         $this->visit(route('jobs.show', $job));
 
-        $this->click(trans('app.edit'));
-        $this->click(trans('job.delete'));
-        $this->press(trans('app.delete_confirm_button'));
+        $this->click(__('app.edit'));
+        $this->click(__('job.delete'));
+        $this->press(__('app.delete_confirm_button'));
 
         $this->seePageIs(route('projects.jobs.index', $job->project_id));
 
-        $this->see(trans('job.deleted'));
+        $this->see(__('job.deleted'));
 
         $this->notSeeInDatabase('jobs', [
             'id' => $job->id,
@@ -140,7 +140,7 @@ class ManageJobsTest extends TestCase
         $this->visit(route('projects.jobs.index', $project->id));
         $this->click('show-job-'.$job->id);
         $this->seePageIs(route('jobs.show', $project->id));
-        $this->see(trans('job.detail'));
+        $this->see(__('job.detail'));
         $this->see($job->name);
         $this->see(format_money($job->price));
         $this->see($job->worker->name);
@@ -158,14 +158,14 @@ class ManageJobsTest extends TestCase
 
         $this->visit(route('projects.jobs.index', $projects[1]->id));
 
-        $this->click(trans('job.add_from_other_project'));
+        $this->click(__('job.add_from_other_project'));
         $this->seePageIs(route('projects.jobs.add-from-other-project', $projects[1]->id));
 
         $this->select($projects[0]->id, 'project_id');
-        $this->press(trans('project.show_jobs'));
+        $this->press(__('project.show_jobs'));
         $this->seePageIs(route('projects.jobs.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]));
 
-        $this->submitForm(trans('job.add'), [
+        $this->submitForm(__('job.add'), [
             'job_ids['.$jobs[0]->id.']' => $jobs[0]->id,
 
             $jobs[0]->id.'_task_ids['.$tasks1[0]->id.']' => $tasks1[0]->id,
@@ -181,20 +181,20 @@ class ManageJobsTest extends TestCase
 
         $this->seePageIs(route('projects.jobs.index', $projects[1]->id));
 
-        $this->see(trans('job.created_from_other_project'));
+        $this->see(__('job.created_from_other_project'));
 
         $this->seeInDatabase('jobs', [
             'project_id' => $projects[1]->id,
-            'name'       => $jobs[0]->name,
-            'price'      => $jobs[0]->price,
-            'worker_id'  => $jobs[0]->worker_id,
+            'name' => $jobs[0]->name,
+            'price' => $jobs[0]->price,
+            'worker_id' => $jobs[0]->worker_id,
         ]);
 
         $this->seeInDatabase('jobs', [
             'project_id' => $projects[1]->id,
-            'name'       => $jobs[1]->name,
-            'price'      => $jobs[1]->price,
-            'worker_id'  => $jobs[1]->worker_id,
+            'name' => $jobs[1]->name,
+            'price' => $jobs[1]->price,
+            'worker_id' => $jobs[1]->worker_id,
         ]);
     }
 
@@ -233,12 +233,12 @@ class ManageJobsTest extends TestCase
         $project = factory(Project::class)->create();
         $job = factory(Job::class)->create([
             'project_id' => $project->id,
-            'type_id'    => 1,
-            'worker_id'  => $user->id,
+            'type_id' => 1,
+            'worker_id' => $user->id,
         ]);
         $task = factory(Task::class)->create([
-            'name'        => 'This is a Task',
-            'job_id'      => $job->id,
+            'name' => 'This is a Task',
+            'job_id' => $job->id,
             'description' => 'Task description.',
         ]);
 
@@ -252,8 +252,8 @@ class ManageJobsTest extends TestCase
         $this->seeRouteIs('jobs.edit', $newJob);
 
         $this->seeInDatabase('jobs', [
-            'id'          => $newJob->id,
-            'name'        => 'This is a Task',
+            'id' => $newJob->id,
+            'name' => 'This is a Task',
             'description' => 'Task description.',
         ]);
         $this->dontSeeInDatabase('tasks', [
@@ -273,23 +273,23 @@ class ManageJobsTest extends TestCase
 
         $this->visitRoute('projects.jobs.add-from-other-project', [$projects[1]->id, 'project_id' => $projects[0]->id]);
 
-        $this->submitForm(trans('job.add'), [
+        $this->submitForm(__('job.add'), [
             'job_ids['.$jobs[0]->id.']' => $jobs[0]->id,
             'job_ids['.$jobs[1]->id.']' => $jobs[1]->id,
         ]);
 
         $this->seeInDatabase('jobs', [
-            'name'       => $jobs[0]->name,
-            'price'      => $jobs[0]->price,
+            'name' => $jobs[0]->name,
+            'price' => $jobs[0]->price,
             'project_id' => $projects[1]->id,
-            'worker_id'  => $jobs[0]->worker_id,
+            'worker_id' => $jobs[0]->worker_id,
         ]);
 
         $this->seeInDatabase('jobs', [
-            'name'       => $jobs[1]->name,
-            'price'      => $jobs[1]->price,
+            'name' => $jobs[1]->name,
+            'price' => $jobs[1]->price,
             'project_id' => $projects[1]->id,
-            'worker_id'  => $jobs[1]->worker_id,
+            'worker_id' => $jobs[1]->worker_id,
         ]);
     }
 }

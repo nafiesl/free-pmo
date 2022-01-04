@@ -20,32 +20,32 @@ class ManageSubscriptionsTest extends TestCase
         $project = factory(Project::class)->create();
 
         $this->visit(route('subscriptions.index'));
-        $this->click(trans('subscription.create'));
+        $this->click(__('subscription.create'));
 
         // Fill Form
-        $this->submitForm(trans('subscription.create'), [
-            'name'       => 'www.domain.com',
-            'price'      => 100000,
+        $this->submitForm(__('subscription.create'), [
+            'name' => 'www.domain.com',
+            'price' => 100000,
             'start_date' => '2015-05-02',
-            'due_date'   => '2016-05-02',
+            'due_date' => '2016-05-02',
             'project_id' => $project->id,
-            'vendor_id'  => $vendor->id,
-            'type_id'    => 1,
-            'notes'      => 'epp_code:EPPCODE',
+            'vendor_id' => $vendor->id,
+            'type_id' => 1,
+            'notes' => 'epp_code:EPPCODE',
         ]);
 
-        $this->see(trans('subscription.created'));
+        $this->see(__('subscription.created'));
         $this->seePageIs(route('subscriptions.index'));
 
         $this->seeInDatabase('subscriptions', [
-            'name'       => 'www.domain.com',
-            'price'      => 100000,
+            'name' => 'www.domain.com',
+            'price' => 100000,
             'start_date' => '2015-05-02',
-            'due_date'   => '2016-05-02',
+            'due_date' => '2016-05-02',
             'project_id' => $project->id,
-            'vendor_id'  => $vendor->id,
-            'type_id'    => 1,
-            'notes'      => 'epp_code:EPPCODE',
+            'vendor_id' => $vendor->id,
+            'type_id' => 1,
+            'notes' => 'epp_code:EPPCODE',
         ]);
     }
 
@@ -61,27 +61,27 @@ class ManageSubscriptionsTest extends TestCase
         $this->visit(route('subscriptions.edit', $subscription->id));
 
         // Fill Form
-        $this->submitForm(trans('subscription.update'), [
+        $this->submitForm(__('subscription.update'), [
             'start_date' => '2015-05-02',
-            'due_date'   => '2016-05-02',
+            'due_date' => '2016-05-02',
             'project_id' => $project->id,
-            'vendor_id'  => $vendor->id,
-            'type_id'    => 1,
-            'status_id'  => 1,
-            'notes'      => 'epp_code:EPPCODE1',
+            'vendor_id' => $vendor->id,
+            'type_id' => 1,
+            'status_id' => 1,
+            'notes' => 'epp_code:EPPCODE1',
         ]);
 
         $this->seePageIs(route('subscriptions.edit', $subscription->id));
-        $this->see(trans('subscription.updated'));
+        $this->see(__('subscription.updated'));
 
         $this->seeInDatabase('subscriptions', [
             'start_date' => '2015-05-02',
-            'due_date'   => '2016-05-02',
+            'due_date' => '2016-05-02',
             'project_id' => $project->id,
-            'vendor_id'  => $vendor->id,
-            'type_id'    => 1,
-            'status_id'  => 1,
-            'notes'      => 'epp_code:EPPCODE1',
+            'vendor_id' => $vendor->id,
+            'type_id' => 1,
+            'status_id' => 1,
+            'notes' => 'epp_code:EPPCODE1',
         ]);
     }
 
@@ -92,12 +92,12 @@ class ManageSubscriptionsTest extends TestCase
         $subscription = factory(Subscription::class)->create();
 
         $this->visit(route('subscriptions.edit', $subscription->id));
-        $this->click(trans('subscription.delete'));
+        $this->click(__('subscription.delete'));
 
-        $this->press(trans('app.delete_confirm_button'));
+        $this->press(__('app.delete_confirm_button'));
 
         $this->seePageIs(route('subscriptions.index'));
-        $this->see(trans('subscription.deleted'));
+        $this->see(__('subscription.deleted'));
 
         $this->dontSeeInDatabase('subscriptions', ['id' => $subscription->id]);
     }

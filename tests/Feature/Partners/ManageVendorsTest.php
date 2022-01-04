@@ -28,21 +28,21 @@ class ManageVendorsTest extends TestCase
         $this->adminUserSigningIn();
         $this->visit(route('vendors.index'));
 
-        $this->click(trans('vendor.create'));
+        $this->click(__('vendor.create'));
         $this->seePageIs(route('vendors.index', ['action' => 'create']));
 
-        $this->submitForm(trans('vendor.create'), [
-            'name'    => 'Vendor 1 name',
-            'notes'   => 'Vendor 1 notes',
+        $this->submitForm(__('vendor.create'), [
+            'name' => 'Vendor 1 name',
+            'notes' => 'Vendor 1 notes',
             'website' => 'https://example.com',
         ]);
 
-        $this->see(trans('vendor.created'));
+        $this->see(__('vendor.created'));
         $this->seePageIs(route('vendors.index'));
 
         $this->seeInDatabase('vendors', [
-            'name'    => 'Vendor 1 name',
-            'notes'   => 'Vendor 1 notes',
+            'name' => 'Vendor 1 name',
+            'notes' => 'Vendor 1 notes',
             'website' => 'https://example.com',
         ]);
     }
@@ -57,20 +57,20 @@ class ManageVendorsTest extends TestCase
         $this->click('edit-vendor-'.$vendor->id);
         $this->seePageIs(route('vendors.index', ['action' => 'edit', 'id' => $vendor->id, 'q' => '123']));
 
-        $this->submitForm(trans('vendor.update'), [
-            'name'      => 'Vendor 1 name',
-            'notes'     => 'Vendor 1 notes',
-            'website'   => 'https://example.com',
+        $this->submitForm(__('vendor.update'), [
+            'name' => 'Vendor 1 name',
+            'notes' => 'Vendor 1 notes',
+            'website' => 'https://example.com',
             'is_active' => 0,
         ]);
 
-        $this->see(trans('vendor.updated'));
+        $this->see(__('vendor.updated'));
         $this->seePageIs(route('vendors.index', ['q' => '123']));
 
         $this->seeInDatabase('vendors', [
-            'name'      => 'Vendor 1 name',
-            'notes'     => 'Vendor 1 notes',
-            'website'   => 'https://example.com',
+            'name' => 'Vendor 1 name',
+            'notes' => 'Vendor 1 notes',
+            'website' => 'https://example.com',
             'is_active' => 0,
         ]);
     }
@@ -89,9 +89,9 @@ class ManageVendorsTest extends TestCase
             'id' => $vendor->id,
         ]);
 
-        $this->press(trans('app.delete_confirm_button'));
+        $this->press(__('app.delete_confirm_button'));
 
-        $this->see(trans('vendor.deleted'));
+        $this->see(__('vendor.deleted'));
         $this->dontSeeInDatabase('vendors', [
             'id' => $vendor->id,
         ]);

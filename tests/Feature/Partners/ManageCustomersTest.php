@@ -28,29 +28,29 @@ class ManageCustomersTest extends TestCase
         $user = $this->adminUserSigningIn();
         $this->visit(route('customers.index'));
 
-        $this->click(trans('customer.create'));
+        $this->click(__('customer.create'));
         $this->seePageIs(route('customers.create'));
 
-        $this->submitForm(trans('customer.create'), [
-            'name'    => 'Customer 1 name',
-            'email'   => 'customer1@mail.com',
-            'phone'   => '081234567890',
-            'pic'     => 'Nama PIC Customer',
+        $this->submitForm(__('customer.create'), [
+            'name' => 'Customer 1 name',
+            'email' => 'customer1@mail.com',
+            'phone' => '081234567890',
+            'pic' => 'Nama PIC Customer',
             'address' => 'Alamat customer 1',
             'website' => 'https://example.com',
-            'notes'   => '',
+            'notes' => '',
         ]);
 
-        $this->see(trans('customer.created'));
+        $this->see(__('customer.created'));
 
         $this->seeInDatabase('customers', [
-            'name'    => 'Customer 1 name',
-            'email'   => 'customer1@mail.com',
-            'phone'   => '081234567890',
-            'pic'     => 'Nama PIC Customer',
+            'name' => 'Customer 1 name',
+            'email' => 'customer1@mail.com',
+            'phone' => '081234567890',
+            'pic' => 'Nama PIC Customer',
             'address' => 'Alamat customer 1',
             'website' => 'https://example.com',
-            'notes'   => null,
+            'notes' => null,
         ]);
     }
 
@@ -64,27 +64,27 @@ class ManageCustomersTest extends TestCase
         $this->click('edit-customer-'.$customer->id);
         $this->seePageIs(route('customers.edit', [$customer->id]));
 
-        $this->submitForm(trans('customer.update'), [
-            'name'      => 'Customer 1 name',
-            'email'     => 'customer1@mail.com',
-            'phone'     => '081234567890',
-            'pic'       => 'Nama PIC Customer',
-            'address'   => 'Alamat customer 1',
-            'website'   => 'https://example.com',
-            'notes'     => '',
+        $this->submitForm(__('customer.update'), [
+            'name' => 'Customer 1 name',
+            'email' => 'customer1@mail.com',
+            'phone' => '081234567890',
+            'pic' => 'Nama PIC Customer',
+            'address' => 'Alamat customer 1',
+            'website' => 'https://example.com',
+            'notes' => '',
             'is_active' => 0,
         ]);
 
         $this->seePageIs(route('customers.show', $customer->id));
 
         $this->seeInDatabase('customers', [
-            'name'      => 'Customer 1 name',
-            'email'     => 'customer1@mail.com',
-            'phone'     => '081234567890',
-            'pic'       => 'Nama PIC Customer',
-            'address'   => 'Alamat customer 1',
-            'website'   => 'https://example.com',
-            'notes'     => null,
+            'name' => 'Customer 1 name',
+            'email' => 'customer1@mail.com',
+            'phone' => '081234567890',
+            'pic' => 'Nama PIC Customer',
+            'address' => 'Alamat customer 1',
+            'website' => 'https://example.com',
+            'notes' => null,
             'is_active' => 0,
         ]);
     }
@@ -103,7 +103,7 @@ class ManageCustomersTest extends TestCase
             'id' => $customer->id,
         ]);
 
-        $this->press(trans('app.delete_confirm_button'));
+        $this->press(__('app.delete_confirm_button'));
 
         $this->dontSeeInDatabase('customers', [
             'id' => $customer->id,

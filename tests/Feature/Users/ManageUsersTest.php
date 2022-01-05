@@ -34,18 +34,18 @@ class ManageUsersTest extends TestCase
         $admin = $this->adminUserSigningIn();
 
         $this->visit(route('users.index'));
-        $this->click(trans('user.create'));
+        $this->click(__('user.create'));
         $this->seePageIs(route('users.create'));
 
-        $this->submitForm(trans('user.create'), [
-            'name'     => 'Nama User',
-            'email'    => 'user@mail.com',
+        $this->submitForm(__('user.create'), [
+            'name' => 'Nama User',
+            'email' => 'user@mail.com',
             'password' => 'password',
-            'role'     => [1, 2], // Administrator, Worker
+            'role' => [1, 2], // Administrator, Worker
         ]);
 
         $this->seePageIs(route('users.index'));
-        $this->see(trans('user.created'));
+        $this->see(__('user.created'));
         $this->see('Nama User');
         $this->see('user@mail.com');
 
@@ -85,23 +85,23 @@ class ManageUsersTest extends TestCase
 
         $this->visit(route('users.edit', $user2->id));
 
-        $this->submitForm(trans('user.update'), [
-            'name'     => 'Ganti nama User',
-            'email'    => 'member@mail.dev',
+        $this->submitForm(__('user.update'), [
+            'name' => 'Ganti nama User',
+            'email' => 'member@mail.dev',
             'password' => 'password',
-            'role'     => [1, 2], // Administrator, Worker
-            'lang'     => 'id',
+            'role' => [1, 2], // Administrator, Worker
+            'lang' => 'id',
         ]);
 
         $this->seePageIs(route('users.edit', $user2->id));
 
-        $this->see(trans('user.updated'));
+        $this->see(__('user.updated'));
 
         $this->seeInDatabase('users', [
-            'id'    => $user2->id,
-            'name'  => 'Ganti nama User',
+            'id' => $user2->id,
+            'name' => 'Ganti nama User',
             'email' => 'member@mail.dev',
-            'lang'  => 'id',
+            'lang' => 'id',
         ]);
 
         $this->seeInDatabase('user_roles', [
@@ -129,23 +129,23 @@ class ManageUsersTest extends TestCase
         $this->visit(route('users.edit', $user2->id));
 
         $this->seeInDatabase('users', [
-            'id'    => $user2->id,
-            'name'  => $user2->name,
+            'id' => $user2->id,
+            'name' => $user2->name,
             'email' => $user2->email,
         ]);
 
-        $this->click(trans('app.delete'));
+        $this->click(__('app.delete'));
         $this->seePageIs(route('users.delete', $user2->id));
-        $this->press(trans('app.delete_confirm_button'));
+        $this->press(__('app.delete_confirm_button'));
 
         $this->seePageIs(route('users.index'));
-        $this->see(trans('user.deleted'));
+        $this->see(__('user.deleted'));
 
         $this->notSeeInDatabase('users', [
-            'id'       => $user2->id,
-            'name'     => $user2->name,
+            'id' => $user2->id,
+            'name' => $user2->name,
             'username' => $user2->username,
-            'email'    => $user2->email,
+            'email' => $user2->email,
         ]);
     }
 }

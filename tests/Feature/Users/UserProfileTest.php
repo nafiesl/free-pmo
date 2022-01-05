@@ -36,20 +36,20 @@ class UserProfileTest extends TestCase
         $user = $this->userSigningIn();
         $this->visit(route('users.profile.edit'));
 
-        $this->submitForm(trans('auth.update_profile'), [
-            'name'  => 'Nama Saya',
+        $this->submitForm(__('auth.update_profile'), [
+            'name' => 'Nama Saya',
             'email' => 'me@domain.com',
-            'lang'  => 'en', // en, id, de
+            'lang' => 'en', // en, id, de
         ]);
 
-        $this->see(trans('auth.profile_updated'));
+        $this->see(__('auth.profile_updated'));
         $this->seePageIs(route('users.profile.show'));
 
         $this->seeInDatabase('users', [
-            'id'    => $user->id,
-            'name'  => 'Nama Saya',
+            'id' => $user->id,
+            'name' => 'Nama Saya',
             'email' => 'me@domain.com',
-            'lang'  => 'en',
+            'lang' => 'en',
         ]);
     }
 

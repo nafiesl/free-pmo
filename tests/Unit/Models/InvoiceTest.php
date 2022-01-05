@@ -55,9 +55,9 @@ class InvoiceTest extends TestCase
 
         $this->assertEquals(
             link_to_route('invoices.show', $invoice->number, [$invoice->number], [
-                'title' => trans(
+                'title' => __(
                     'app.show_detail_title',
-                    ['name' => $invoice->number, 'type' => trans('invoice.invoice')]
+                    ['name' => $invoice->number, 'type' => __('invoice.invoice')]
                 ),
             ]), $invoice->numberLink()
         );

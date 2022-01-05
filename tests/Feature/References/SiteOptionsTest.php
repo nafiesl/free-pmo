@@ -28,12 +28,12 @@ class SiteOptionsTest extends TestCase
         $user = $this->adminUserSigningIn();
         $this->visit(route('site-options.page-1'));
 
-        $this->submitForm(trans('app.update'), [
+        $this->submitForm(__('app.update'), [
             'money_sign'         => '$',
             'money_sign_in_word' => 'Dollars',
         ]);
 
-        $this->see(trans('option.updated'));
+        $this->see(__('option.updated'));
         $this->visit(route('site-options.page-1'));
 
         $this->seeInDatabase('site_options', [

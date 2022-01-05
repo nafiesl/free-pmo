@@ -21,12 +21,12 @@ class UploadFilesTest extends TestCase
         $this->visit(route('projects.files', $project->id));
         $this->seeElement('form', ['id' => 'upload-file']);
         $this->seeElement('input', ['id' => 'file']);
-        $this->seeElement('input', ['type' => 'submit', 'value' => trans('file.upload')]);
+        $this->seeElement('input', ['type' => 'submit', 'value' => __('file.upload')]);
 
         $this->attach(UploadedFile::fake()->create('avatar.txt'), 'file');
         $this->type('Judul file', 'title');
         $this->type('Deskripsi file yang diuplod.', 'description');
-        $this->press(trans('file.upload'));
+        $this->press(__('file.upload'));
 
         $this->assertCount(1, $project->files);
 
@@ -53,7 +53,7 @@ class UploadFilesTest extends TestCase
         $this->attach(UploadedFile::fake()->image('avatar.jpg'), 'file');
         $this->type('Judul file', 'title');
         $this->type('Deskripsi file yang diuplod.', 'description');
-        $this->press(trans('file.upload'));
+        $this->press(__('file.upload'));
 
         $this->assertCount(1, $project->files);
 
@@ -64,7 +64,7 @@ class UploadFilesTest extends TestCase
 
         $this->type('Edit Judul file', 'title');
         $this->type('Edit Deskripsi file yang diuplod.', 'description');
-        $this->press(trans('file.update'));
+        $this->press(__('file.update'));
 
         $this->seePageIs(route('projects.files', [$project->id]));
 

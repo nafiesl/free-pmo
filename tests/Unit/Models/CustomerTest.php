@@ -66,9 +66,9 @@ class CustomerTest extends TestCase
 
         $this->assertEquals(
             link_to_route('customers.show', $customer->name, [$customer->id], [
-                'title' => trans(
+                'title' => __(
                     'app.show_detail_title',
-                    ['name' => $customer->name, 'type' => trans('customer.customer')]
+                    ['name' => $customer->name, 'type' => __('customer.customer')]
                 ),
             ]), $customer->nameLink()
         );
@@ -80,12 +80,12 @@ class CustomerTest extends TestCase
         $customer = factory(Customer::class)->make(['is_active' => 1]);
 
         $this->assertEquals(1, $customer->is_active);
-        $this->assertEquals(trans('app.active'), $customer->status);
+        $this->assertEquals(__('app.active'), $customer->status);
 
         $customer = factory(Customer::class)->make(['is_active' => 0]);
 
         $this->assertEquals(0, $customer->is_active);
-        $this->assertEquals(trans('app.in_active'), $customer->status);
+        $this->assertEquals(__('app.in_active'), $customer->status);
     }
 
     /** @test */
@@ -94,13 +94,13 @@ class CustomerTest extends TestCase
         $customer = factory(Customer::class)->make(['is_active' => 1]);
 
         $this->assertEquals(1, $customer->is_active);
-        $activeLabel = '<span class="badge" style="background-color: #337ab7">'.trans('app.active').'</span>';
+        $activeLabel = '<span class="badge" style="background-color: #337ab7">'.__('app.active').'</span>';
         $this->assertEquals($activeLabel, $customer->status_label);
 
         $customer = factory(Customer::class)->make(['is_active' => 0]);
 
         $this->assertEquals(0, $customer->is_active);
-        $inActiveLabel = '<span class="badge">'.trans('app.in_active').'</span>';
+        $inActiveLabel = '<span class="badge">'.__('app.in_active').'</span>';
         $this->assertEquals($inActiveLabel, $customer->status_label);
     }
 }

@@ -49,12 +49,12 @@ class UserTest extends TestCase
             [
                 'user_id' => $user->id,
                 'role_id' => 1,
-                'name'    => trans('user.roles.admin'),
+                'name' => __('user.roles.admin'),
             ],
             [
                 'user_id' => $user->id,
                 'role_id' => 2,
-                'name'    => trans('user.roles.worker'),
+                'name' => __('user.roles.worker'),
             ],
         ], $user->roles->toArray());
     }
@@ -89,8 +89,8 @@ class UserTest extends TestCase
         $user->assignRole('worker');
 
         $roleList = '<ul>';
-        $roleList .= '<li>'.trans('user.roles.admin').'</li>';
-        $roleList .= '<li>'.trans('user.roles.worker').'</li>';
+        $roleList .= '<li>'.__('user.roles.admin').'</li>';
+        $roleList .= '<li>'.__('user.roles.worker').'</li>';
         $roleList .= '</ul>';
 
         $this->assertEquals($roleList, $user->roleList());
@@ -136,7 +136,7 @@ class UserTest extends TestCase
         $user = factory(User::class)->create();
         $payment = factory(Payment::class)->create([
             'partner_type' => 'App\Entities\Users\User',
-            'partner_id'   => $user->id,
+            'partner_id' => $user->id,
         ]);
 
         $this->assertInstanceOf(Collection::class, $user->payments);

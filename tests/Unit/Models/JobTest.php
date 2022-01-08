@@ -26,9 +26,9 @@ class JobTest extends TestCase
 
         $this->assertEquals(
             link_to_route('jobs.show', $job->name, [$job->id], [
-                'title' => trans(
+                'title' => __(
                     'app.show_detail_title',
-                    ['name' => $job->name, 'type' => trans('job.job')]
+                    ['name' => $job->name, 'type' => __('job.job')]
                 ),
             ]), $job->nameLink()
         );
@@ -104,7 +104,7 @@ class JobTest extends TestCase
         $job = factory(Job::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'jobs',
-            'commentable_id'   => $job->id,
+            'commentable_id' => $job->id,
         ]);
 
         $this->assertInstanceOf(Collection::class, $job->comments);
@@ -117,14 +117,14 @@ class JobTest extends TestCase
         $job = factory(Job::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'jobs',
-            'commentable_id'   => $job->id,
+            'commentable_id' => $job->id,
         ]);
 
         $job->delete();
 
         $this->dontSeeInDatabase('comments', [
             'commentable_type' => 'jobs',
-            'commentable_id'   => $job->id,
+            'commentable_id' => $job->id,
         ]);
     }
 }

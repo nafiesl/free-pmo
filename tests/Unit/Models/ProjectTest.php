@@ -26,9 +26,9 @@ class ProjectTest extends TestCase
         $project = factory(Project::class)->create();
         $this->assertEquals(
             link_to_route('projects.show', $project->name, [$project->id], [
-                'title' => trans(
+                'title' => __(
                     'app.show_detail_title',
-                    ['name' => $project->name, 'type' => trans('project.project')]
+                    ['name' => $project->name, 'type' => __('project.project')]
                 ),
             ]), $project->nameLink()
         );
@@ -234,16 +234,16 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
         $file = File::create([
-            'fileable_id'   => $project->id,
+            'fileable_id' => $project->id,
             'fileable_type' => 'projects',
-            'filename'      => 'filename.jpg',
-            'title'         => 'filename.jpg',
+            'filename' => 'filename.jpg',
+            'title' => 'filename.jpg',
         ]);
 
         $project->delete();
 
         $this->dontSeeInDatabase('files', [
-            'fileable_id'   => $project->id,
+            'fileable_id' => $project->id,
             'fileable_type' => 'projects',
         ]);
     }
@@ -283,7 +283,7 @@ class ProjectTest extends TestCase
         $project = factory(Project::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'projects',
-            'commentable_id'   => $project->id,
+            'commentable_id' => $project->id,
         ]);
 
         $this->assertInstanceOf(Collection::class, $project->comments);
@@ -296,14 +296,14 @@ class ProjectTest extends TestCase
         $project = factory(Project::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'projects',
-            'commentable_id'   => $project->id,
+            'commentable_id' => $project->id,
         ]);
 
         $project->delete();
 
         $this->dontSeeInDatabase('comments', [
             'commentable_type' => 'projects',
-            'commentable_id'   => $project->id,
+            'commentable_id' => $project->id,
         ]);
     }
 
@@ -312,7 +312,7 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create([
             'start_date' => '2016-06-10',
-            'end_date'   => '2016-07-21',
+            'end_date' => '2016-07-21',
         ]);
 
         $this->assertEquals('1 Month(s) 11 Day(s)', $project->work_duration);
@@ -323,7 +323,7 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create([
             'start_date' => '2015-04-10',
-            'end_date'   => '2017-07-21',
+            'end_date' => '2017-07-21',
         ]);
 
         $this->assertEquals('2 Year(s) 3 Month(s)', $project->work_duration);

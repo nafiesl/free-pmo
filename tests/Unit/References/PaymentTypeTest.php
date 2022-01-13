@@ -13,9 +13,9 @@ class PaymentTypeTest extends TestCase
         $paymentType = new Type();
 
         $this->assertEquals([
-            1 => trans('payment.types.project'),
-            2 => trans('payment.types.add_job'),
-            3 => trans('payment.types.maintenance'),
+            1 => __('payment.types.project'),
+            2 => __('payment.types.add_job'),
+            3 => __('payment.types.maintenance'),
         ], $paymentType->toArray());
     }
 
@@ -24,9 +24,9 @@ class PaymentTypeTest extends TestCase
     {
         $paymentType = new Type();
 
-        $this->assertEquals(trans('payment.types.project'), $paymentType->getNameById(1));
-        $this->assertEquals(trans('payment.types.add_job'), $paymentType->getNameById(2));
-        $this->assertEquals(trans('payment.types.maintenance'), $paymentType->getNameById(3));
+        $this->assertEquals(__('payment.types.project'), $paymentType->getNameById(1));
+        $this->assertEquals(__('payment.types.add_job'), $paymentType->getNameById(2));
+        $this->assertEquals(__('payment.types.maintenance'), $paymentType->getNameById(3));
     }
 
     /** @test */

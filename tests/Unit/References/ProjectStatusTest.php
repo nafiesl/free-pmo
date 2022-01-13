@@ -13,12 +13,12 @@ class ProjectStatusTest extends TestCase
         $projectStatus = new Status();
 
         $this->assertEquals([
-            1 => trans('project.planned'),
-            2 => trans('project.progress'),
-            3 => trans('project.done'),
-            4 => trans('project.closed'),
-            5 => trans('project.canceled'),
-            6 => trans('project.on_hold'),
+            1 => __('project.planned'),
+            2 => __('project.progress'),
+            3 => __('project.done'),
+            4 => __('project.closed'),
+            5 => __('project.canceled'),
+            6 => __('project.on_hold'),
         ], $projectStatus->toArray());
     }
 
@@ -27,12 +27,12 @@ class ProjectStatusTest extends TestCase
     {
         $projectStatus = new Status();
 
-        $this->assertEquals(trans('project.planned'), $projectStatus->getNameById(1));
-        $this->assertEquals(trans('project.progress'), $projectStatus->getNameById(2));
-        $this->assertEquals(trans('project.done'), $projectStatus->getNameById(3));
-        $this->assertEquals(trans('project.closed'), $projectStatus->getNameById(4));
-        $this->assertEquals(trans('project.canceled'), $projectStatus->getNameById(5));
-        $this->assertEquals(trans('project.on_hold'), $projectStatus->getNameById(6));
+        $this->assertEquals(__('project.planned'), $projectStatus->getNameById(1));
+        $this->assertEquals(__('project.progress'), $projectStatus->getNameById(2));
+        $this->assertEquals(__('project.done'), $projectStatus->getNameById(3));
+        $this->assertEquals(__('project.closed'), $projectStatus->getNameById(4));
+        $this->assertEquals(__('project.canceled'), $projectStatus->getNameById(5));
+        $this->assertEquals(__('project.on_hold'), $projectStatus->getNameById(6));
     }
 
     /** @test */

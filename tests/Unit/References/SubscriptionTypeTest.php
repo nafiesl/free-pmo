@@ -13,9 +13,9 @@ class SubscriptionTypeTest extends TestCase
         $subscriptionType = new Type();
 
         $this->assertEquals([
-            1 => trans('subscription.types.domain'),
-            2 => trans('subscription.types.hosting'),
-            3 => trans('subscription.types.maintenance'),
+            1 => __('subscription.types.domain'),
+            2 => __('subscription.types.hosting'),
+            3 => __('subscription.types.maintenance'),
         ], $subscriptionType->toArray());
     }
 
@@ -24,9 +24,9 @@ class SubscriptionTypeTest extends TestCase
     {
         $subscriptionType = new Type();
 
-        $this->assertEquals(trans('subscription.types.domain'), $subscriptionType->getNameById(1));
-        $this->assertEquals(trans('subscription.types.hosting'), $subscriptionType->getNameById(2));
-        $this->assertEquals(trans('subscription.types.maintenance'), $subscriptionType->getNameById(3));
+        $this->assertEquals(__('subscription.types.domain'), $subscriptionType->getNameById(1));
+        $this->assertEquals(__('subscription.types.hosting'), $subscriptionType->getNameById(2));
+        $this->assertEquals(__('subscription.types.maintenance'), $subscriptionType->getNameById(3));
     }
 
     /** @test */

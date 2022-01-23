@@ -123,7 +123,7 @@ class BackupsController extends Controller
     public function upload(Request $request)
     {
         $data = $request->validate([
-            'backup_file' => 'required|mimetypes:application/x-gzip',
+            'backup_file' => 'required|mimetypes:application/gzip,application/x-gzip',
         ], [
             'backup_file.mimetypes' => 'Invalid file type, must be <strong>.gz</strong> file',
         ]);

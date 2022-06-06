@@ -165,7 +165,10 @@ class ProjectsController extends Controller
     {
         $this->authorize('view-subscriptions', $project);
 
-        return view('projects.subscriptions', compact('project'));
+        $activeSbscriptions = $project->subscriptions()->where('status_id', 1)->get();
+        $inactiveSbscriptions = $project->subscriptions()->where('status_id', 0)->get();
+
+        return view('projects.subscriptions', compact('project', 'activeSbscriptions', 'inactiveSbscriptions'));
     }
 
     /**

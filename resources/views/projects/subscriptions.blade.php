@@ -15,7 +15,7 @@
 
 @include('projects.partials.nav-tabs')
 
-<div class="panel panel-default">
+<div class="panel panel-success">
     <div class="panel-heading"><h3 class="panel-title">{{ __('app.active') }}</h3></div>
     <div class="panel-body table-responsive">
         <table class="table table-condensed">
@@ -30,7 +30,7 @@
                 <th>{{ __('app.action') }}</th>
             </thead>
             <tbody>
-                @foreach($activeSbscriptions as $key => $subscription)
+                @forelse($activeSbscriptions as $key => $subscription)
                 <tr>
                     <td>{{ 1 + $key }}</td>
                     <td class="text-center">{{ $subscription->type }}</td>
@@ -44,7 +44,9 @@
                         {!! link_to_route('subscriptions.edit',__('app.edit'),[$subscription->id],['class'=>'btn btn-warning btn-xs']) !!}
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr><td>{{ __('subscription.empty') }}</td></tr>
+                @endforelse
             </tbody>
             <tfoot>
                 <tr>
@@ -72,7 +74,7 @@
                 <th>{{ __('app.action') }}</th>
             </thead>
             <tbody>
-                @foreach($inactiveSbscriptions as $key => $subscription)
+                @forelse($inactiveSbscriptions as $key => $subscription)
                 <tr>
                     <td>{{ 1 + $key }}</td>
                     <td class="text-center">{{ $subscription->type }}</td>
@@ -86,7 +88,9 @@
                         {!! link_to_route('subscriptions.edit',__('app.edit'),[$subscription->id],['class'=>'btn btn-warning btn-xs']) !!}
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <tr><td>{{ __('subscription.empty') }}</td></tr>
+                @endforelse
             </tbody>
         </table>
     </div>

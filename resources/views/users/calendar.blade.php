@@ -109,7 +109,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Project</label>
+                            <label class="col-sm-3 control-label">{{ __('project.project') }}</label>
                             <div class="col-sm-9">
                                 {!! FormField::select('project_id', $projects, ['label' => false, 'id' => 'project2']) !!}
                             </div>
@@ -164,7 +164,7 @@
                 center: 'title',
                 left: 'month,agendaWeek,agendaDay,listYear'
             },
-            defaultView: 'agendaWeek',
+            defaultView: 'month',
             height: 550,
             selectable: selectable,
             selectHelper: true,
@@ -174,13 +174,25 @@
             navLinks: true,
             slotLabelFormat: 'HH:mm',
             slotDuration: '01:00:00',
-            events: {
-                url: "{{ route('api.events.index', request(['action'])) }}",
-                type: "GET",
-                error: function() {
-                    alert('there was an error while fetching events!');
+            eventSources: [
+                {
+                    url: "{{ route('api.events.index', request(['action'])) }}",
+                    type: "GET",
+                    error: function() {
+                        alert('there was an error while fetching events!');
+                    }
+                },
+                {
+                    url: "{{ route('api.events.subscriptions.index') }}",
+                    type: "GET",
+                    beforeSend: function(xhr){
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + "{{ auth()->user()->api_token }}");
+                    },
+                    error: function() {
+                        alert('there was an error while fetching events!');
+                    }
                 }
-            },
+            ],
             select: function(start, end, allDay) {
                 // $('#fc_create').click();
                 $('#CalenderModalNew').modal('show');
@@ -232,6 +244,11 @@
                 });
             },
             eventClick: function(calEvent, jsEvent, view) {
+                if (calEvent.type_id == 'subscriptions') {
+                    var redirectUrl = "{{ url('/') }}/subscriptions/" + calEvent.id;
+                    window.open(redirectUrl,'_blank');
+                    return;
+                }
 
                 if (calEvent.editable) {
                     $('#user2').text(calEvent.user);

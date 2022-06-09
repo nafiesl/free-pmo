@@ -16,7 +16,15 @@
         @php
             $afterValue = $data['after'][$key] ?? null;
         @endphp
-        <div>{{ __('project.'.$key) }}: {{ $value }} => {{ $afterValue }}</div>
+        <div>
+            @if ($key == 'status_id')
+                {{ __('project.status') }}:
+                {{ App\Entities\Projects\Status::getNameById($value) }}
+                => {{ App\Entities\Projects\Status::getNameById($afterValue) }}
+            @else
+                {{ __('project.'.$key) }}: {{ $value }} => {{ $afterValue }}
+            @endif
+        </div>
     @endforeach
 @endslot
 @endcomponent

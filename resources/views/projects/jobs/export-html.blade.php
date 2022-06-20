@@ -51,7 +51,7 @@
                 @foreach($jobs as $key => $job)
                 <tr>
                     <td class="text-center">{{ 1 + $key }}</td>
-                    <td>{{ $job->name }}</td>
+                    <td><div>{{ $job->name }}</div>{{ $job->description }}</td>
                     <td class="text-right">{{ format_money($job->price) }}</td>
                 </tr>
                 @endforeach

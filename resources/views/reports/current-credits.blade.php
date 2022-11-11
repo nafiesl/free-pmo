@@ -7,6 +7,7 @@
     <li class="active">{{ trans('dashboard.receiveable_earnings') }}</li>
 </ul>
 
+<div class="table-responsive">
 <table class="table table-condensed table-hover">
     <thead>
         <th>{{ trans('app.table_no') }}</th>
@@ -41,4 +42,5 @@
         </tr>
     </tfoot>
 </table>
+</div>
 @endsection

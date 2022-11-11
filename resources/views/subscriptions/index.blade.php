@@ -15,6 +15,7 @@
     {!! Form::close() !!}
 </div>
 
+<div class="table-responsive">
 <table class="table table-condensed">
     <thead>
         <th>{{ __('app.table_no') }}</th>
@@ -47,5 +48,6 @@
         @endforelse
     </tbody>
 </table>
-    {!! str_replace('/?', '?', $subscriptions->appends(Request::except('page'))->render()) !!}
+</div>
+{!! str_replace('/?', '?', $subscriptions->appends(Request::except('page'))->render()) !!}
 @endsection

@@ -15,7 +15,7 @@
     {{ __('invoice.list') }}
 </h1>
 
-<div class="panel panel-default">
+<div class="panel panel-default table-responsive">
     <table class="table table-condensed">
         <thead>
             <th class="text-center">{{ __('app.table_no') }}</th>

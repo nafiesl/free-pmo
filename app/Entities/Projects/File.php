@@ -41,7 +41,7 @@ class File extends Model
 
     public function delete()
     {
-        Storage::delete('public/files/'.$this->filename);
+        Storage::delete('files/'.$this->filename);
 
         return parent::delete();
     }

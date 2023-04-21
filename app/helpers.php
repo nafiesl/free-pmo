@@ -237,8 +237,8 @@ function app_logo_path()
     $defaultLogoImagePath = 'default-logo.png';
     $optionLogoImagePath = Option::get('agency_logo_path');
 
-    if (is_file(storage_path('app/public/assets/imgs/'.$optionLogoImagePath))) {
-        return asset('storage/assets/imgs/'.$optionLogoImagePath);
+    if (Storage::has('assets/imgs/'.$optionLogoImagePath)) {
+        return asset('assets/imgs/'.$optionLogoImagePath);
     }
 
     return asset('assets/imgs/'.$defaultLogoImagePath);

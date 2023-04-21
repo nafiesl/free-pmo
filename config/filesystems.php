@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'public'),
 
     /*
     |--------------------------------------------------------------------------
@@ -50,7 +50,13 @@ return [
 
         'public' => [
             'driver'     => 'local',
-            'root'       => base_path('/../public_html'),
+            'root'       => storage_path('app/public'),
+            'visibility' => 'public',
+        ],
+
+        'public_html' => [
+            'driver'     => 'local',
+            'root'       => env('FILESYSTEM_PUBLIC_HTML_PATH'),
             'visibility' => 'public',
         ],
 

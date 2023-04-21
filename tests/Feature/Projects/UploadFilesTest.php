@@ -31,10 +31,10 @@ class UploadFilesTest extends TestCase
         $this->assertCount(1, $project->files);
 
         $this->seeInDatabase('files', [
-            'fileable_id'   => $project->id,
+            'fileable_id' => $project->id,
             'fileable_type' => 'projects',
-            'title'         => 'Judul file',
-            'description'   => 'Deskripsi file yang diuplod.',
+            'title' => 'Judul file',
+            'description' => 'Deskripsi file yang diuplod.',
         ]);
 
         $file = $project->files->first();
@@ -69,10 +69,10 @@ class UploadFilesTest extends TestCase
         $this->seePageIs(route('projects.files', [$project->id]));
 
         $this->seeInDatabase('files', [
-            'fileable_id'   => $project->id,
+            'fileable_id' => $project->id,
             'fileable_type' => 'projects',
-            'title'         => 'Edit Judul file',
-            'description'   => 'Edit Deskripsi file yang diuplod.',
+            'title' => 'Edit Judul file',
+            'description' => 'Edit Deskripsi file yang diuplod.',
         ]);
 
         Storage::assertExists('files/'.$file->filename);

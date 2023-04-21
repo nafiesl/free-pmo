@@ -15,7 +15,7 @@ class AppLogoImageTest extends TestCase
     {
         copy(public_path('assets/imgs/icon_user_1.png'), Storage::path('assets/imgs/icon_user_1.png'));
         \DB::table('site_options')->insert([
-            'key'   => 'agency_logo_path',
+            'key' => 'agency_logo_path',
             'value' => 'icon_user_1.png',
         ]);
 
@@ -44,7 +44,7 @@ class AppLogoImageTest extends TestCase
         copy(public_path('assets/imgs/icon_user_1.png'), Storage::path('assets/imgs/icon_user_1.png'));
 
         \DB::table('site_options')->insert([
-            'key'   => 'agency_logo_path',
+            'key' => 'agency_logo_path',
             'value' => 'icon_user_1.png',
         ]);
 
@@ -59,7 +59,7 @@ class AppLogoImageTest extends TestCase
     public function app_logo_image_function_has_overrideable_attributes()
     {
         \DB::table('site_options')->insert([
-            'key'   => 'agency_name',
+            'key' => 'agency_name',
             'value' => 'My Agency Name',
         ]);
 
@@ -80,7 +80,7 @@ class AppLogoImageTest extends TestCase
     public function app_logo_image_function_returns_default_logo_image_if_agency_logo_file_doesnt_exists()
     {
         \DB::table('site_options')->insert([
-            'key'   => 'agency_logo_path',
+            'key' => 'agency_logo_path',
             'value' => 'agency_logo.jpg',
         ]);
 

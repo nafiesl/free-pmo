@@ -41,14 +41,14 @@ class AgencyController extends Controller
     public function update()
     {
         request()->validate([
-            'name'    => 'required|string|max:100',
+            'name' => 'required|string|max:100',
             'tagline' => 'required|string|max:255',
-            'email'   => 'required|email|max:255',
+            'email' => 'required|email|max:255',
             'website' => 'required|url|max:255',
             'address' => 'required|string|max:255',
-            'city'    => 'required|string|max:100',
-            'phone'   => 'required|string|max:255',
-            'tax_id'  => 'nullable|string|max:255',
+            'city' => 'required|string|max:100',
+            'phone' => 'required|string|max:255',
+            'tax_id' => 'nullable|string|max:255',
         ]);
 
         Option::set('agency_name', request('name'));

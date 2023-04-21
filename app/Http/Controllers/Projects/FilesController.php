@@ -39,9 +39,9 @@ class FilesController extends Controller
     {
         $this->validate($request, [
             'fileable_type' => 'required',
-            'file'          => 'required|file|max:10000',
-            'title'         => 'required|max:60',
-            'description'   => 'nullable|max:255',
+            'file' => 'required|file|max:10000',
+            'title' => 'required|max:60',
+            'description' => 'nullable|max:255',
         ]);
 
         $fileableType = array_search($request->get('fileable_type'), $this->fileableTypes);

@@ -6,6 +6,7 @@ use App\Entities\Projects\File;
 use App\Http\Controllers\Controller;
 use File as FileSystem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Project Files Controller.
@@ -38,9 +39,9 @@ class FilesController extends Controller
     {
         $this->validate($request, [
             'fileable_type' => 'required',
-            'file'          => 'required|file|max:10000',
-            'title'         => 'required|max:60',
-            'description'   => 'nullable|max:255',
+            'file' => 'required|file|max:10000',
+            'title' => 'required|max:60',
+            'description' => 'nullable|max:255',
         ]);
 
         $fileableType = array_search($request->get('fileable_type'), $this->fileableTypes);
@@ -64,10 +65,10 @@ class FilesController extends Controller
     {
         $file = File::find($fileId);
 
-        if ($file && file_exists(storage_path('app/public/files/'.$file->filename))) {
-            $extension = FileSystem::extension('public/files/'.$file->filename);
+        if ($file && file_exists(Storage::path('files/'.$file->filename))) {
+            $extension = FileSystem::extension('files/'.$file->filename);
 
-            return response()->download(storage_path('app/public/files/'.$file->filename), $file->title.'.'.$extension);
+            return response()->download(Storage::path('files/'.$file->filename), $file->title.'.'.$extension);
         }
 
         flash(__('file.not_found'), 'danger');
@@ -109,7 +110,7 @@ class FilesController extends Controller
         $fileData['title'] = $data['title'];
         $fileData['description'] = $data['description'];
         \DB::beginTransaction();
-        $file->store('public/files');
+        $file->store('files');
         $file = File::create($fileData);
         \DB::commit();
 

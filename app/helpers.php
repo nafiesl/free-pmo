@@ -26,7 +26,7 @@ function format_money($number)
     }
 
     if ($number < 0) {
-        return '- '.$moneySign.' '.format_no(abs($number));
+        return '- '.$moneySign.' '.format_no(abs((int) $number));
     }
 
     return $moneySign.' '.format_no($number);

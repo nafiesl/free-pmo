@@ -42,28 +42,28 @@ class SubscriptionRequest extends Request
     public function getCreateRules()
     {
         return [
-            'name'       => 'required|max:60',
-            'price'      => 'required|numeric',
+            'name' => 'required|max:60',
+            'price' => 'required|numeric',
             'start_date' => 'required|date|date_format:Y-m-d',
-            'due_date'   => 'required|date|date_format:Y-m-d',
+            'due_date' => 'required|date|date_format:Y-m-d',
             'project_id' => 'required|numeric|exists:projects,id',
-            'vendor_id'  => 'required|numeric|exists:vendors,id',
-            'type_id'    => 'required|numeric',
-            'notes'      => 'nullable|max:255',
+            'vendor_id' => 'required|numeric|exists:vendors,id',
+            'type_id' => 'required|numeric',
+            'notes' => 'nullable|max:255',
         ];
     }
 
     public function getUpdateRules()
     {
         return [
-            'name'       => 'required|max:60',
-            'price'      => 'required|numeric',
+            'name' => 'required|max:60',
+            'price' => 'required|numeric',
             'start_date' => 'required|date|date_format:Y-m-d',
-            'due_date'   => 'required|date|date_format:Y-m-d',
+            'due_date' => 'required|date|date_format:Y-m-d',
             'project_id' => 'required|numeric|exists:projects,id',
-            'vendor_id'  => 'required|numeric|exists:vendors,id',
-            'type_id'    => 'required|numeric',
-            'notes'      => 'nullable|max:255',
+            'vendor_id' => 'required|numeric|exists:vendors,id',
+            'type_id' => 'required|numeric',
+            'notes' => 'nullable|max:255',
         ];
     }
 

@@ -108,6 +108,8 @@ class JobsController extends Controller
      */
     public function update(UpdateRequest $request, Job $job)
     {
+        $this->authorize('update', $job);
+
         $job = $this->repo->update($request->except(['_method', '_token']), $job->id);
         flash(__('job.updated'), 'success');
 
@@ -122,6 +124,8 @@ class JobsController extends Controller
      */
     public function delete(Job $job)
     {
+        $this->authorize('delete', $job);
+
         return view('jobs.delete', compact('job'));
     }
 
@@ -134,6 +138,8 @@ class JobsController extends Controller
      */
     public function destroy(DeleteRequest $request, Job $job)
     {
+        $this->authorize('delete', $job);
+
         $projectId = $job->project_id;
 
         if ($job->id == $request->get('job_id')) {
@@ -156,6 +162,8 @@ class JobsController extends Controller
      */
     public function tasksReorder(Request $request, Job $job)
     {
+        $this->authorize('update', $job);
+
         if ($request->expectsJson()) {
             $data = $this->repo->tasksReorder($request->get('postData'));
 

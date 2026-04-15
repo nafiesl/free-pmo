@@ -26,6 +26,8 @@ class TasksController extends Controller
      */
     public function store(CreateRequest $request, Job $job)
     {
+        $this->authorize('create', new Task());
+
         $newTask = $request->validated();
         $newTask['job_id'] = $job->id;
         $task = Task::create($newTask);
@@ -44,6 +46,8 @@ class TasksController extends Controller
      */
     public function update(UpdateRequest $request, Task $task)
     {
+        $this->authorize('update', $task);
+
         $task->update($request->validated());
 
         flash(__('task.updated'), 'success');
@@ -60,6 +64,8 @@ class TasksController extends Controller
      */
     public function destroy(DeleteRequest $request, Task $task)
     {
+        $this->authorize('delete', $task);
+
         if ($task->id == $request->get('task_id')) {
             $task->delete();
             flash(__('task.deleted'), 'success');
@@ -78,6 +84,8 @@ class TasksController extends Controller
      */
     public function setAsJob(Task $task)
     {
+        $this->authorize('delete', $task);
+
         $oldJob = $task->job;
 
         $job = new Job;
@@ -98,6 +106,8 @@ class TasksController extends Controller
 
     public function setDone(Task $task)
     {
+        $this->authorize('update', $task);
+
         $task->progress = 100;
         $task->save();
 

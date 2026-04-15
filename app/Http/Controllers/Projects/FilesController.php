@@ -64,6 +64,12 @@ class FilesController extends Controller
     {
         $file = File::find($fileId);
 
+        if (!$file) {
+            abort(404, 'File not found');
+        }
+
+        $this->authorize('view', $file);
+
         if ($file && file_exists(storage_path('app/public/files/'.$file->filename))) {
             $extension = FileSystem::extension('public/files/'.$file->filename);
 
@@ -81,6 +87,8 @@ class FilesController extends Controller
 
     public function update(Request $request, File $file)
     {
+        $this->authorize('update', $file);
+
         $file->title = $request->get('title');
         $file->description = $request->get('description');
         $file->save();
@@ -92,6 +100,8 @@ class FilesController extends Controller
 
     public function destroy(Request $request, File $file)
     {
+        $this->authorize('delete', $file);
+
         $file->delete();
         flash(__('file.deleted'), 'warning');
 

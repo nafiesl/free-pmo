@@ -10,7 +10,7 @@ Route::group(['middleware' => 'web'], function () {
 // Authentication Routes...
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
 Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout')->name('auth.logout');
+Route::post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 // Change Password Routes...
 Route::get('change-password', 'Auth\ChangePasswordController@show')->name('auth.change-password');

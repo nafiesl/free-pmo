@@ -26,7 +26,9 @@ class LoginTest extends TestCase
         $this->seePageIs(route('home'));
         $this->seeIsAuthenticated();
 
-        $this->click(__('auth.logout'));
+        // Click the logout form button
+        $this->seeElement('form', ['action' => route('auth.logout')]);
+        $this->submitForm(__('auth.logout'));
 
         $this->seePageIs(route('auth.login'));
         $this->see(__('auth.logged_out'));

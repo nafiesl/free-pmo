@@ -21,7 +21,7 @@ class File extends Model
 
     public function getSize()
     {
-        return $this->fileExists() ? \Storage::size('public/files/'.$this->filename) : 0;
+        return $this->fileExists() ? Storage::size('files/'.$this->filename) : 0;
     }
 
     public function getDate()
@@ -36,12 +36,12 @@ class File extends Model
 
     public function fileExists()
     {
-        return \Storage::exists('public/files/'.$this->filename);
+        return Storage::exists('files/'.$this->filename);
     }
 
     public function delete()
     {
-        Storage::delete('public/files/'.$this->filename);
+        Storage::delete('files/'.$this->filename);
 
         return parent::delete();
     }

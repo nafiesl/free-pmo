@@ -82,7 +82,6 @@ Route::group(['middleware' => ['auth'], 'namespace' => 'Projects'], function () 
 });
 
 Route::group(['middleware' => ['auth']], function () {
-
     /*
      * Jobs Routes
      */

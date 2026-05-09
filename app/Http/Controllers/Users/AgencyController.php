@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Option;
 
 /**
@@ -40,14 +41,14 @@ class AgencyController extends Controller
     public function update()
     {
         request()->validate([
-            'name'    => 'required|string|max:100',
+            'name' => 'required|string|max:100',
             'tagline' => 'required|string|max:255',
-            'email'   => 'required|email|max:255',
+            'email' => 'required|email|max:255',
             'website' => 'required|url|max:255',
             'address' => 'required|string|max:255',
-            'city'    => 'required|string|max:100',
-            'phone'   => 'required|string|max:255',
-            'tax_id'  => 'nullable|string|max:255',
+            'city' => 'required|string|max:100',
+            'phone' => 'required|string|max:255',
+            'tax_id' => 'nullable|string|max:255',
         ]);
 
         Option::set('agency_name', request('name'));
@@ -77,10 +78,10 @@ class AgencyController extends Controller
             'logo.file_extension' => __('validation.agency.logo.file_extension'),
         ]);
 
-        \File::delete(storage_path('app/public/assets/imgs/'.Option::get('agency_logo_path')));
+        \File::delete(Storage::path('assets/imgs/'.Option::get('agency_logo_path')));
 
         $filename = $file['logo']->getClientOriginalName();
-        $file['logo']->move(storage_path('app/public/assets/imgs'), $filename);
+        $file['logo']->move(Storage::path('assets/imgs'), $filename);
         Option::set('agency_logo_path', $filename);
         flash(__('agency.updated'), 'success');
 

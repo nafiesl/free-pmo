@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 /**
@@ -79,6 +80,7 @@ class AgencyProfileTest extends TestCase
     /** @test */
     public function admin_user_can_update_agency_logo_image()
     {
+        Storage::fake('test_storage');
         $user = $this->adminUserSigningIn();
         $this->visit(route('users.agency.edit'));
 
@@ -93,6 +95,6 @@ class AgencyProfileTest extends TestCase
             'value' => 'sample-image.png',
         ]);
 
-        $this->assertFileExistsThenDelete(storage_path('app/public/assets/imgs/sample-image.png'));
+        Storage::assertExists('assets/imgs/sample-image.png');
     }
 }

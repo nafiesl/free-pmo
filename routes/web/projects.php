@@ -117,16 +117,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('jobs/{job}/comments', 'Jobs\CommentsController@store')->name('jobs.comments.store');
     Route::patch('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@update')->name('jobs.comments.update');
     Route::delete('jobs/{job}/comments/{comment}', 'Jobs\CommentsController@destroy')->name('jobs.comments.destroy');
+
+    /*
+     * Issue Options Routes
+     */
+    Route::patch('issues/{issue}/options', 'Issues\OptionController@update')->name('issues.options.update');
+
+    /*
+     * Issue Comments Routes
+     */
+    Route::post('issues/{issue}/comments', 'Issues\CommentController@store')->name('issues.comments.store');
+    Route::patch('issues/{issue}/comments/{comment}', 'Issues\CommentController@update')->name('issues.comments.update');
+    Route::delete('issues/{issue}/comments/{comment}', 'Issues\CommentController@destroy')->name('issues.comments.destroy');
 });
-
-/*
- * Issue Options Routes
- */
-Route::patch('issues/{issue}/options', 'Issues\OptionController@update')->name('issues.options.update');
-
-/*
- * Issue Comments Routes
- */
-Route::post('issues/{issue}/comments', 'Issues\CommentController@store')->name('issues.comments.store');
-Route::patch('issues/{issue}/comments/{comment}', 'Issues\CommentController@update')->name('issues.comments.update');
-Route::delete('issues/{issue}/comments/{comment}', 'Issues\CommentController@destroy')->name('issues.comments.destroy');

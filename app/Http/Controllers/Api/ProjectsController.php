@@ -27,7 +27,10 @@ class ProjectsController extends Controller
 
     public function show($id)
     {
-        return $this->repo->requireById($id);
+        $project = $this->repo->requireById($id);
+        $this->authorize('view', $project);
+        
+        return $project;
     }
 
     public function jobs($id)

@@ -150,4 +150,18 @@ return [
 
     'secure' => env('SESSION_SECURE_COOKIE', null),
 
+    /*
+    |--------------------------------------------------------------------------
+    | SameSite Cookies
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the SameSite attribute for session cookies. The
+    | SameSite attribute helps prevent CSRF attacks by controlling when
+    | cookies are sent in cross-site requests.
+    |
+    | Supported: "lax", "strict", "none"
+    |
+    */
+
+    'same_site' => 'lax',
 ];

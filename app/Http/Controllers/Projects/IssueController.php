@@ -15,6 +15,8 @@ class IssueController extends Controller
 {
     public function index(Project $project)
     {
+        $this->authorize('view', $project);
+
         $issueQuery = $project->issues()
             ->orderBy('updated_at', 'desc')
             ->with(['pic', 'creator'])
@@ -35,6 +37,8 @@ class IssueController extends Controller
 
     public function create(Project $project)
     {
+        $this->authorize('create', new Issue());
+
         $users = User::pluck('name', 'id');
         $priorities = Priority::toArray();
 
@@ -43,6 +47,8 @@ class IssueController extends Controller
 
     public function store(Request $request, Project $project)
     {
+        $this->authorize('create', new Issue());
+
         $issueData = $request->validate([
             'title'       => 'required|max:60',
             'body'        => 'required|max:255',
@@ -82,11 +88,15 @@ class IssueController extends Controller
 
     public function edit(Project $project, Issue $issue)
     {
+        $this->authorize('update', $issue);
+
         return view('projects.issues.edit', compact('project', 'issue'));
     }
 
     public function update(Request $request, Project $project, Issue $issue)
     {
+        $this->authorize('update', $issue);
+
         $issueData = $request->validate([
             'title' => 'required|max:60',
             'body'  => 'required|max:255',
@@ -102,6 +112,8 @@ class IssueController extends Controller
 
     public function destroy(Request $request, Project $project, Issue $issue)
     {
+        $this->authorize('delete', $issue);
+
         $request->validate(['issue_id' => 'required']);
 
         if ($request->get('issue_id') == $issue->id && $issue->delete()) {

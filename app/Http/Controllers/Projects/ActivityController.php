@@ -10,6 +10,9 @@ class ActivityController extends Controller
 {
     public function index(Project $project)
     {
+        // Authorize user to view this project's activities
+        $this->authorize('view', $project);
+
         $activityQuery = Activity::query();
 
         $activityQuery->where(function ($query) use ($project) {

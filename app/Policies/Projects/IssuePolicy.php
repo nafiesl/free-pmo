@@ -10,7 +10,50 @@ class IssuePolicy
 {
     use HandlesAuthorization;
 
+    /**
+     * Determine whether the user can view the issue.
+     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Issue  $issue
+     * @return bool
+     */
+    public function view(User $user, Issue $issue)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can create issues.
+     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Issue  $issue
+     * @return bool
+     */
     public function create(User $user, Issue $issue)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can update the issue.
+     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Issue  $issue
+     * @return bool
+     */
+    public function update(User $user, Issue $issue)
+    {
+        return true;
+    }
+
+    /**
+     * Determine whether the user can delete the issue.
+     *
+     * @param  \App\Entities\Users\User  $user
+     * @param  \App\Entities\Projects\Issue  $issue
+     * @return bool
+     */
+    public function delete(User $user, Issue $issue)
     {
         return true;
     }

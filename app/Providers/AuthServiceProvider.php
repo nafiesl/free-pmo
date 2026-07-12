@@ -20,6 +20,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Entities\Projects\Job'      => 'App\Policies\Projects\JobPolicy',
         'App\Entities\Projects\Issue'    => 'App\Policies\Projects\IssuePolicy',
         'App\Entities\Projects\Task'     => 'App\Policies\Projects\TaskPolicy',
+        'App\Entities\Projects\File'     => 'App\Policies\Projects\FilePolicy',
         'App\Entities\Payments\Payment'  => 'App\Policies\PaymentPolicy',
         'App\Entities\Users\User'        => 'App\Policies\UserPolicy',
         'App\Entities\Users\Event'       => 'App\Policies\EventPolicy',
@@ -42,7 +43,7 @@ class AuthServiceProvider extends ServiceProvider
         }
 
         Gate::define('manage_jobs', function ($user, $project) {
-            return true;
+            return $user->hasRole('admin') || $project->owner_id == $user->id;
         });
     }
 

@@ -10,6 +10,9 @@ class OptionController extends Controller
 {
     public function update(Request $request, Issue $issue)
     {
+        // Authorize user to update this issue
+        $this->authorize('update', $issue);
+
         $issueData = $request->validate([
             'priority_id' => 'required|in:1,2,3',
             'status_id'   => 'required|in:0,1,2,3,4',

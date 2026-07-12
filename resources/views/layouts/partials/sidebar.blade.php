@@ -36,7 +36,14 @@
             <li>{!! html_link_to_route('users.calendar', trans('nav_menu.calendar'), [], ['icon' => 'calendar']) !!}</li>
             @endcan
             <li>{!! html_link_to_route('auth.change-password', trans('auth.change_password'), [], ['icon' => 'lock']) !!}</li>
-            <li>{!! html_link_to_route('auth.logout', trans('auth.logout'), [], ['icon' => 'sign-out']) !!}</li>
+            <li>
+                <form method="POST" action="{{ route('auth.logout') }}" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="btn-link" style="background: none; padding: 4px 8px; text-decoration: none; cursor: pointer; color: inherit;">
+                        <i class="fa fa-sign-out"></i> {{ trans('auth.logout') }}
+                    </button>
+                </form>
+            </li>
         </ul>
     </div>
     <!-- /.sidebar-collapse -->

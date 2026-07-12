@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use BackupManager\Filesystems\Destination;
 use BackupManager\Manager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use League\Flysystem\FileExistsException;
 use League\Flysystem\FileNotFoundException;
 
@@ -26,7 +27,7 @@ class BackupsController extends Controller
         if (!file_exists(storage_path('app/backup/db'))) {
             $backups = [];
         } else {
-            $backups = \File::allFiles(storage_path('app/backup/db'));
+            $backups = File::allFiles(storage_path('app/backup/db'));
 
             // Sort files by modified time DESC
             usort($backups, function ($a, $b) {
@@ -67,49 +68,80 @@ class BackupsController extends Controller
         }
     }
 
-    /**
-     * Delete a backup file from storage.
-     *
-     * @param  string  $fileName
-     * @return \Illuminate\Routing\Redirector
-     */
+/**
+      * Delete a backup file from storage.
+      *
+      * @param  string  $fileName
+      * @return \Illuminate\Routing\Redirector
+      */
     public function destroy($fileName)
     {
-        if (file_exists(storage_path('app/backup/db/').$fileName)) {
-            unlink(storage_path('app/backup/db/').$fileName);
+        // Sanitize filename to prevent path traversal
+        $safeFileName = basename($fileName);
+        
+        // Validate that it's a .gz backup file
+        if (!preg_match('/^[\w._-]+\.gz$/', $safeFileName)) {
+            flash(__('backup.invalid_filename', ['filename' => $fileName]), 'danger');
+            return redirect()->route('backups.index');
         }
 
-        flash(__('backup.deleted', ['filename' => $fileName]), 'warning');
+        if (file_exists(storage_path('app/backup/db/').$safeFileName)) {
+            unlink(storage_path('app/backup/db/').$safeFileName);
+            flash(__('backup.deleted', ['filename' => $safeFileName]), 'warning');
+        } else {
+            flash(__('backup.not_found', ['filename' => $safeFileName]), 'danger');
+        }
 
         return redirect()->route('backups.index');
     }
 
     /**
-     * Download a backup file.
-     *
-     * @param  string  $fileName
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-     */
+      * Download a backup file.
+      *
+      * @param  string  $fileName
+      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+      */
     public function download($fileName)
     {
-        return response()->download(storage_path('app/backup/db/').$fileName);
+        // Sanitize filename to prevent path traversal
+        $safeFileName = basename($fileName);
+        
+        // Validate that it's a .gz backup file
+        if (!preg_match('/^[\w._-]+\.gz$/', $safeFileName)) {
+            abort(404, 'Invalid file name');
+        }
+
+        if (file_exists(storage_path('app/backup/db/').$safeFileName)) {
+            return response()->download(storage_path('app/backup/db/').$safeFileName);
+        }
+
+        abort(404, 'File not found');
     }
 
     /**
-     * Restore database from a backup file.
-     *
-     * @param  string  $fileName
-     * @return \Illuminate\Routing\Redirector
-     */
+      * Restore database from a backup file.
+      *
+      * @param  string  $fileName
+      * @return \Illuminate\Routing\Redirector
+      */
     public function restore($fileName)
     {
-        try {
-            $manager = app()->make(Manager::class);
-            $manager->makeRestore()->run('local', 'backup/db/'.$fileName, 'mysql', 'gzip');
-        } catch (FileNotFoundException $e) {
+        // Sanitize filename to prevent path traversal
+        $safeFileName = basename($fileName);
+        
+        // Validate that it's a .gz backup file
+        if (!preg_match('/^[\w._-]+\.gz$/', $safeFileName)) {
+            flash(__('backup.invalid_filename', ['filename' => $fileName]), 'danger');
+            return redirect()->route('backups.index');
         }
 
-        flash(__('backup.restored', ['filename' => $fileName]), 'success');
+        try {
+            $manager = app()->make(Manager::class);
+            $manager->makeRestore()->run('local', 'backup/db/'.$safeFileName, 'mysql', 'gzip');
+            flash(__('backup.restored', ['filename' => $safeFileName]), 'success');
+        } catch (FileNotFoundException $e) {
+            flash(__('backup.not_found', ['filename' => $safeFileName]), 'danger');
+        }
 
         return redirect()->route('backups.index');
     }

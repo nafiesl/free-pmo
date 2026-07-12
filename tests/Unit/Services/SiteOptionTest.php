@@ -16,7 +16,7 @@ class SiteOptionTest extends TestCase
         Option::set('testing_key', 'testing_value');
 
         $this->seeInDatabase('site_options', [
-            'key'   => 'testing_key',
+            'key' => 'testing_key',
             'value' => 'testing_value',
         ]);
     }
@@ -27,7 +27,7 @@ class SiteOptionTest extends TestCase
         Option::set('testing_key', null);
 
         $this->seeInDatabase('site_options', [
-            'key'   => 'testing_key',
+            'key' => 'testing_key',
             'value' => '',
         ]);
     }
@@ -36,7 +36,7 @@ class SiteOptionTest extends TestCase
     public function option_can_be_get()
     {
         \DB::table('site_options')->insert([
-            'key'   => 'testing_key',
+            'key' => 'testing_key',
             'value' => 'testing_value',
         ]);
 

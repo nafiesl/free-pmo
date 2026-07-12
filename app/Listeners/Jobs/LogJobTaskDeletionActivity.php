@@ -13,15 +13,15 @@ class LogJobTaskDeletionActivity
         $jobId = $task->job_id;
 
         $activityEntry = [
-            'type'        => 'task_deleted',
-            'parent_id'   => null,
-            'user_id'     => auth()->id(),
-            'object_id'   => $jobId,
+            'type' => 'task_deleted',
+            'parent_id' => null,
+            'user_id' => auth()->id(),
+            'object_id' => $jobId,
             'object_type' => 'jobs',
-            'data'        => [
-                'name'        => $task->name,
+            'data' => [
+                'name' => $task->name,
                 'description' => $task->description,
-                'progress'    => $task->progress,
+                'progress' => $task->progress,
             ],
         ];
 

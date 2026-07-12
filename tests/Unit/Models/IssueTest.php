@@ -90,7 +90,7 @@ class IssueTest extends TestCase
         $issue = factory(Issue::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'issues',
-            'commentable_id'   => $issue->id,
+            'commentable_id' => $issue->id,
         ]);
 
         $this->assertInstanceOf(Collection::class, $issue->comments);

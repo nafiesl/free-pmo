@@ -24,7 +24,7 @@ class VendorTest extends TestCase
     {
         $vendor = factory(Vendor::class)->create();
         $payment = factory(Payment::class)->create([
-            'partner_id'   => $vendor->id,
+            'partner_id' => $vendor->id,
             'partner_type' => 'App\Entities\Partners\Vendor',
         ]);
 

@@ -45,7 +45,7 @@ class Controller extends BaseController
     {
         return [
             __('customer.customer') => Customer::orderBy('name')->pluck('name', 'id')->all(),
-            __('vendor.vendor')     => Vendor::orderBy('name')->pluck('name', 'id')->all(),
+            __('vendor.vendor') => Vendor::orderBy('name')->pluck('name', 'id')->all(),
         ];
     }
 }

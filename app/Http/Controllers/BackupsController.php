@@ -68,20 +68,21 @@ class BackupsController extends Controller
         }
     }
 
-/**
-      * Delete a backup file from storage.
-      *
-      * @param  string  $fileName
-      * @return \Illuminate\Routing\Redirector
-      */
+    /**
+     * Delete a backup file from storage.
+     *
+     * @param  string  $fileName
+     * @return \Illuminate\Routing\Redirector
+     */
     public function destroy($fileName)
     {
         // Sanitize filename to prevent path traversal
         $safeFileName = basename($fileName);
-        
+
         // Validate that it's a .gz backup file
         if (!preg_match('/^[\w._-]+\.gz$/', $safeFileName)) {
             flash(__('backup.invalid_filename', ['filename' => $fileName]), 'danger');
+
             return redirect()->route('backups.index');
         }
 
@@ -96,16 +97,16 @@ class BackupsController extends Controller
     }
 
     /**
-      * Download a backup file.
-      *
-      * @param  string  $fileName
-      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
-      */
+     * Download a backup file.
+     *
+     * @param  string  $fileName
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
     public function download($fileName)
     {
         // Sanitize filename to prevent path traversal
         $safeFileName = basename($fileName);
-        
+
         // Validate that it's a .gz backup file
         if (!preg_match('/^[\w._-]+\.gz$/', $safeFileName)) {
             abort(404, 'Invalid file name');
@@ -119,19 +120,20 @@ class BackupsController extends Controller
     }
 
     /**
-      * Restore database from a backup file.
-      *
-      * @param  string  $fileName
-      * @return \Illuminate\Routing\Redirector
-      */
+     * Restore database from a backup file.
+     *
+     * @param  string  $fileName
+     * @return \Illuminate\Routing\Redirector
+     */
     public function restore($fileName)
     {
         // Sanitize filename to prevent path traversal
         $safeFileName = basename($fileName);
-        
+
         // Validate that it's a .gz backup file
         if (!preg_match('/^[\w._-]+\.gz$/', $safeFileName)) {
             flash(__('backup.invalid_filename', ['filename' => $fileName]), 'danger');
+
             return redirect()->route('backups.index');
         }
 

@@ -29,7 +29,7 @@ class ProjectsController extends Controller
     {
         $project = $this->repo->requireById($id);
         $this->authorize('view', $project);
-        
+
         return $project;
     }
 

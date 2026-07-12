@@ -13,15 +13,15 @@ class LogProjectJobDeletionActivity
         $projectId = $job->project_id;
 
         $activityEntry = [
-            'type'        => 'job_deleted',
-            'parent_id'   => null,
-            'user_id'     => auth()->id(),
-            'object_id'   => $projectId,
+            'type' => 'job_deleted',
+            'parent_id' => null,
+            'user_id' => auth()->id(),
+            'object_id' => $projectId,
             'object_type' => 'projects',
-            'data'        => [
-                'name'        => $job->name,
+            'data' => [
+                'name' => $job->name,
                 'description' => $job->description,
-                'price'       => $job->price,
+                'price' => $job->price,
             ],
         ];
 

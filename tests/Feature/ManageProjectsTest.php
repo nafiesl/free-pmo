@@ -23,17 +23,17 @@ class ManageProjectsTest extends TestCase
         $this->visit(route('projects.create'));
 
         $this->submitForm(__('project.create'), [
-            'name'           => 'Project Baru',
-            'customer_id'    => $customer->id,
-            'proposal_date'  => '2016-04-15',
+            'name' => 'Project Baru',
+            'customer_id' => $customer->id,
+            'proposal_date' => '2016-04-15',
             'proposal_value' => '2000000',
-            'description'    => 'Deskripsi project baru',
+            'description' => 'Deskripsi project baru',
         ]);
 
         $this->see(__('project.created'));
         $this->see('Project Baru');
         $this->seeInDatabase('projects', [
-            'name'           => 'Project Baru',
+            'name' => 'Project Baru',
             'proposal_value' => '2000000',
         ]);
     }
@@ -47,38 +47,38 @@ class ManageProjectsTest extends TestCase
 
         // Invalid entry
         $this->submitForm(__('project.create'), [
-            'name'           => 'Project Baru',
-            'customer_id'    => '',
-            'proposal_date'  => '2016-04-15',
+            'name' => 'Project Baru',
+            'customer_id' => '',
+            'proposal_date' => '2016-04-15',
             'proposal_value' => '2000000',
-            'description'    => 'Deskripsi project baru',
+            'description' => 'Deskripsi project baru',
         ]);
 
         $this->seePageIs(route('projects.create'));
 
         $this->notSeeInDatabase('projects', [
-            'name'           => 'Project Baru',
+            'name' => 'Project Baru',
             'proposal_value' => '2000000',
         ]);
 
         $this->submitForm(__('project.create'), [
-            'customer_name'  => 'Customer Baru',
+            'customer_name' => 'Customer Baru',
             'customer_email' => 'email@customer.baru',
         ]);
 
         $this->see(__('project.created'));
 
         $this->seeInDatabase('customers', [
-            'name'  => 'Customer Baru',
+            'name' => 'Customer Baru',
             'email' => 'email@customer.baru',
         ]);
 
         $newCustomer = Customer::whereName('Customer Baru')->whereEmail('email@customer.baru')->first();
 
         $this->seeInDatabase('projects', [
-            'name'           => 'Project Baru',
+            'name' => 'Project Baru',
             'proposal_value' => '2000000',
-            'customer_id'    => $newCustomer->id,
+            'customer_id' => $newCustomer->id,
         ]);
     }
 
@@ -101,7 +101,7 @@ class ManageProjectsTest extends TestCase
         $this->see(__('project.deleted'));
 
         $this->notSeeInDatabase('projects', [
-            'name'           => $project->name,
+            'name' => $project->name,
             'proposal_value' => $project->proposal_value,
         ]);
 
@@ -125,40 +125,40 @@ class ManageProjectsTest extends TestCase
         $customer = factory(Customer::class)->create();
         $project = factory(Project::class)->create([
             'customer_id' => $customer->id,
-            'status_id'   => 2,
+            'status_id' => 2,
         ]);
 
         $this->visit(route('projects.edit', $project));
         $this->seePageIs(route('projects.edit', $project));
 
         $this->submitForm(__('project.update'), [
-            'name'           => 'Edit Project',
-            'proposal_date'  => '2016-04-15',
-            'start_date'     => '2016-04-25',
-            'end_date'       => '2016-05-05',
-            'due_date'       => '2016-05-10',
+            'name' => 'Edit Project',
+            'proposal_date' => '2016-04-15',
+            'start_date' => '2016-04-25',
+            'end_date' => '2016-05-05',
+            'due_date' => '2016-05-10',
             'proposal_value' => 2000000,
-            'project_value'  => 2000000,
-            'status_id'      => 4,
-            'customer_id'    => $customer->id,
-            'description'    => 'Edit deskripsi project',
+            'project_value' => 2000000,
+            'status_id' => 4,
+            'customer_id' => $customer->id,
+            'description' => 'Edit deskripsi project',
         ]);
 
         $this->seePageIs(route('projects.edit', $project));
         $this->see(__('project.updated'));
 
         $this->seeInDatabase('projects', [
-            'id'             => $project->id,
-            'name'           => 'Edit Project',
-            'proposal_date'  => '2016-04-15',
-            'start_date'     => '2016-04-25',
-            'end_date'       => '2016-05-05',
-            'due_date'       => '2016-05-10',
+            'id' => $project->id,
+            'name' => 'Edit Project',
+            'proposal_date' => '2016-04-15',
+            'start_date' => '2016-04-25',
+            'end_date' => '2016-05-05',
+            'due_date' => '2016-05-10',
             'proposal_value' => 2000000,
-            'project_value'  => 2000000,
-            'status_id'      => 4,
-            'customer_id'    => $customer->id,
-            'description'    => 'Edit deskripsi project',
+            'project_value' => 2000000,
+            'status_id' => 4,
+            'customer_id' => $customer->id,
+            'description' => 'Edit deskripsi project',
         ]);
     }
 
@@ -175,11 +175,11 @@ class ManageProjectsTest extends TestCase
         $this->seePageIs(route('projects.create'));
 
         $this->press(__('project.create'), [
-            'name'           => '',
-            'customer_id'    => $customer->id,
-            'proposal_date'  => '2016-04-15aa',
+            'name' => '',
+            'customer_id' => $customer->id,
+            'proposal_date' => '2016-04-15aa',
             'proposal_value' => '',
-            'description'    => 'Deskripsi project baru',
+            'description' => 'Deskripsi project baru',
         ]);
 
         $this->seePageIs(route('projects.create'));
@@ -202,7 +202,7 @@ class ManageProjectsTest extends TestCase
         $this->seePageIs(route('projects.show', $project->id));
 
         $this->seeInDatabase('projects', [
-            'id'        => $project->id,
+            'id' => $project->id,
             'status_id' => 2,
         ]);
     }

@@ -27,7 +27,7 @@ class LogFileController extends Controller
     {
         // Sanitize filename to prevent path traversal
         $safeFileName = basename($fileName);
-        
+
         // Validate that it's actually a log file
         if (!preg_match('/^laravel-(\d{4}-\d{2}-\d{2})\.log$/', $safeFileName)) {
             return 'Invalid file name.';
@@ -44,7 +44,7 @@ class LogFileController extends Controller
     {
         // Sanitize filename to prevent path traversal
         $safeFileName = basename($fileName);
-        
+
         // Validate that it's actually a log file
         if (!preg_match('/^laravel-(\d{4}-\d{2}-\d{2})\.log$/', $safeFileName)) {
             return 'Invalid file name.';

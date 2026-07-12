@@ -27,7 +27,7 @@ class DeleteRequest extends Request
     {
         return [
             'task_id' => 'required',
-            'job_id'  => 'required',
+            'job_id' => 'required',
         ];
     }
 }

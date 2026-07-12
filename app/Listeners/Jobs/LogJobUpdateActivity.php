@@ -15,15 +15,15 @@ class LogJobUpdateActivity
         $attributeKeys = array_keys($job->getChanges());
 
         $activityEntry = [
-            'type'        => 'job_updated',
-            'parent_id'   => null,
-            'user_id'     => auth()->id(),
-            'object_id'   => $job->id,
+            'type' => 'job_updated',
+            'parent_id' => null,
+            'user_id' => auth()->id(),
+            'object_id' => $job->id,
             'object_type' => 'jobs',
-            'data'        => [
+            'data' => [
                 'before' => $this->getBeforeValues($originalJob, $attributeKeys),
-                'after'  => $this->getAfterValues($job->toArray(), $attributeKeys),
-                'notes'  => null,
+                'after' => $this->getAfterValues($job->toArray(), $attributeKeys),
+                'notes' => null,
             ],
         ];
 

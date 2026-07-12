@@ -10,15 +10,15 @@ $factory->define(Project::class, function (Faker $faker) {
     $endDate = $startDate->addDays(rand(1, 13) * 7);
 
     return [
-        'name'           => $faker->sentence(3),
-        'description'    => $faker->paragraph,
-        'proposal_date'  => $proposalDate,
-        'start_date'     => $startDate->format('Y-m-d'),
-        'end_date'       => $endDate->format('Y-m-d'),
-        'project_value'  => $projectValue = rand(1, 10) * 500000,
+        'name' => $faker->sentence(3),
+        'description' => $faker->paragraph,
+        'proposal_date' => $proposalDate,
+        'start_date' => $startDate->format('Y-m-d'),
+        'end_date' => $endDate->format('Y-m-d'),
+        'project_value' => $projectValue = rand(1, 10) * 500000,
         'proposal_value' => $projectValue,
-        'status_id'      => rand(1, 6),
-        'customer_id'    => function () {
+        'status_id' => rand(1, 6),
+        'customer_id' => function () {
             return factory(Customer::class)->create()->id;
         },
     ];

@@ -25,9 +25,9 @@ class CreateRequest extends Request
     public function rules()
     {
         return [
-            'name'        => 'required|max:60',
+            'name' => 'required|max:60',
             'description' => 'nullable|max:255',
-            'progress'    => 'required|numeric|max:100',
+            'progress' => 'required|numeric|max:100',
         ];
     }
 }

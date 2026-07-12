@@ -27,10 +27,10 @@ class UpdateRequest extends Request
     public function rules()
     {
         return [
-            'name'        => 'required|max:60',
-            'price'       => 'required|numeric',
-            'worker_id'   => 'required|numeric',
-            'type_id'     => 'required|numeric',
+            'name' => 'required|max:60',
+            'price' => 'required|numeric',
+            'worker_id' => 'required|numeric',
+            'type_id' => 'required|numeric',
             'description' => 'max:255',
         ];
     }

@@ -45,7 +45,7 @@ class CommentsController extends Controller
         ]);
 
         $job->comments()->create([
-            'body'       => $newComment['body'],
+            'body' => $newComment['body'],
             'creator_id' => auth()->id(),
         ]);
 

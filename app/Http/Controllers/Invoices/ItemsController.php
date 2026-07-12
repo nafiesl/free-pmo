@@ -11,13 +11,13 @@ class ItemsController extends Controller
     {
         $itemData = request()->validate([
             'new_item_description' => 'required|string|max:255',
-            'new_item_amount'      => 'required|numeric',
+            'new_item_amount' => 'required|numeric',
         ]);
 
         $items = $invoice->items;
         $items[] = [
             'description' => $itemData['new_item_description'],
-            'amount'      => $itemData['new_item_amount'],
+            'amount' => $itemData['new_item_amount'],
         ];
         $invoice->items = $items;
         $invoice->amount = (int) collect($items)->sum('amount') - $invoice->discount;
@@ -31,9 +31,9 @@ class ItemsController extends Controller
     public function update(Invoice $invoice)
     {
         $rawItemData = request()->validate([
-            'item_key.*'    => 'required|numeric',
+            'item_key.*' => 'required|numeric',
             'description.*' => 'required|string|max:255',
-            'amount.*'      => 'required|numeric',
+            'amount.*' => 'required|numeric',
         ]);
 
         $itemKey = array_shift($rawItemData['item_key']);
@@ -43,7 +43,7 @@ class ItemsController extends Controller
         $items = $invoice->items;
         $items[$itemKey] = [
             'description' => $description,
-            'amount'      => $amount,
+            'amount' => $amount,
         ];
         $invoice->items = $items;
         $invoice->amount = (int) collect($items)->sum('amount') - $invoice->discount;

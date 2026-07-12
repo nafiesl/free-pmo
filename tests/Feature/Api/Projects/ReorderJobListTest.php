@@ -24,12 +24,12 @@ class ReorderJobListTest extends TestCase
         ]);
 
         $this->seeInDatabase('jobs', [
-            'id'       => $job1->id,
+            'id' => $job1->id,
             'position' => 2,
         ]);
 
         $this->seeInDatabase('jobs', [
-            'id'       => $job2->id,
+            'id' => $job2->id,
             'position' => 1,
         ]);
     }

@@ -164,7 +164,7 @@ class InvoiceDraft
         foreach ($this->items as $item) {
             $items[] = [
                 'description' => $item->description,
-                'amount'      => $item->amount,
+                'amount' => $item->amount,
             ];
         }
 

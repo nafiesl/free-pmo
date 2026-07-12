@@ -29,7 +29,7 @@ class SiteOptionsTest extends TestCase
         $this->visit(route('site-options.page-1'));
 
         $this->submitForm(__('app.update'), [
-            'money_sign'         => '$',
+            'money_sign' => '$',
             'money_sign_in_word' => 'Dollars',
         ]);
 
@@ -37,12 +37,12 @@ class SiteOptionsTest extends TestCase
         $this->visit(route('site-options.page-1'));
 
         $this->seeInDatabase('site_options', [
-            'key'   => 'money_sign',
+            'key' => 'money_sign',
             'value' => '$',
         ]);
 
         $this->seeInDatabase('site_options', [
-            'key'   => 'money_sign_in_word',
+            'key' => 'money_sign_in_word',
             'value' => 'Dollars',
         ]);
     }

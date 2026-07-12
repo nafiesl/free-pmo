@@ -25,7 +25,7 @@ class CommentController extends Controller
         ]);
 
         $issue->comments()->create([
-            'body'       => $newComment['body'],
+            'body' => $newComment['body'],
             'creator_id' => auth()->id(),
         ]);
         $issue->touch();

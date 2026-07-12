@@ -18,8 +18,8 @@ class ProjectIssuesTest extends TestCase
         $project = factory(Project::class)->create();
         $issue = factory(Issue::class)->create([
             'project_id' => $project->id,
-            'title'      => 'The issue title.',
-            'body'       => 'This is a project issue body.',
+            'title' => 'The issue title.',
+            'body' => 'This is a project issue body.',
         ]);
 
         $this->visitRoute('projects.issues.index', $project);
@@ -37,22 +37,22 @@ class ProjectIssuesTest extends TestCase
         $this->visitRoute('projects.issues.create', $project);
 
         $this->submitForm(__('issue.create'), [
-            'title'       => 'First Issue.',
-            'body'        => 'First Issue description.',
+            'title' => 'First Issue.',
+            'body' => 'First Issue description.',
             'priority_id' => 1,
-            'pic_id'      => $admin->id,
+            'pic_id' => $admin->id,
         ]);
 
         $this->seePageIs(route('projects.issues.index', $project));
         $this->see(__('issue.created'));
 
         $this->seeInDatabase('issues', [
-            'project_id'  => $project->id,
-            'title'       => 'First Issue.',
-            'body'        => 'First Issue description.',
+            'project_id' => $project->id,
+            'title' => 'First Issue.',
+            'body' => 'First Issue description.',
             'priority_id' => 1,
-            'pic_id'      => $admin->id,
-            'creator_id'  => $admin->id,
+            'pic_id' => $admin->id,
+            'creator_id' => $admin->id,
         ]);
     }
 
@@ -63,8 +63,8 @@ class ProjectIssuesTest extends TestCase
         $project = factory(Project::class)->create();
         $issue = factory(Issue::class)->create([
             'project_id' => $project->id,
-            'title'      => 'The issue title.',
-            'body'       => 'This is a project issue body.',
+            'title' => 'The issue title.',
+            'body' => 'This is a project issue body.',
         ]);
 
         $this->visitRoute('projects.issues.show', [$project, $issue]);
@@ -79,8 +79,8 @@ class ProjectIssuesTest extends TestCase
         $project = factory(Project::class)->create();
         $issue = factory(Issue::class)->create([
             'project_id' => $project->id,
-            'title'      => 'The issue title.',
-            'body'       => 'This is a project issue body.',
+            'title' => 'The issue title.',
+            'body' => 'This is a project issue body.',
         ]);
 
         $this->visitRoute('projects.issues.show', [$project, $issue]);
@@ -90,17 +90,17 @@ class ProjectIssuesTest extends TestCase
 
         $this->submitForm(__('issue.update'), [
             'title' => 'First Issue.',
-            'body'  => 'This is a project issue body.',
+            'body' => 'This is a project issue body.',
         ]);
 
         $this->seePageIs(route('projects.issues.show', [$project, $issue]));
         $this->see(__('issue.updated'));
 
         $this->seeInDatabase('issues', [
-            'id'         => $issue->id,
+            'id' => $issue->id,
             'project_id' => $project->id,
-            'title'      => 'First Issue.',
-            'body'       => 'This is a project issue body.',
+            'title' => 'First Issue.',
+            'body' => 'This is a project issue body.',
         ]);
     }
 
@@ -146,7 +146,7 @@ class ProjectIssuesTest extends TestCase
         $this->seeText(__('issue.updated'));
 
         $this->seeInDatabase('issues', [
-            'id'     => $issue->id,
+            'id' => $issue->id,
             'pic_id' => $worker->id,
         ]);
     }
@@ -166,7 +166,7 @@ class ProjectIssuesTest extends TestCase
         $this->seeText(__('issue.updated'));
 
         $this->seeInDatabase('issues', [
-            'id'     => $issue->id,
+            'id' => $issue->id,
             'pic_id' => null,
         ]);
     }
@@ -181,14 +181,14 @@ class ProjectIssuesTest extends TestCase
         $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
         $this->submitForm(__('issue.update'), [
             'status_id' => 2, // resolved
-            'pic_id'    => $worker->id,
+            'pic_id' => $worker->id,
         ]);
         $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
         $this->seeText(__('issue.updated'));
 
         $this->seeInDatabase('issues', [
-            'id'        => $issue->id,
-            'pic_id'    => $worker->id,
+            'id' => $issue->id,
+            'pic_id' => $worker->id,
             'status_id' => 2, // resolved
         ]);
     }
@@ -203,17 +203,17 @@ class ProjectIssuesTest extends TestCase
         $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
         $this->submitForm(__('issue.update'), [
             'priority_id' => 2, // major
-            'status_id'   => 2, // resolved
-            'pic_id'      => $worker->id,
+            'status_id' => 2, // resolved
+            'pic_id' => $worker->id,
         ]);
         $this->seeRouteIs('projects.issues.show', [$issue->project, $issue]);
         $this->seeText(__('issue.updated'));
 
         $this->seeInDatabase('issues', [
-            'id'          => $issue->id,
-            'pic_id'      => $worker->id,
+            'id' => $issue->id,
+            'pic_id' => $worker->id,
             'priority_id' => 2, // major
-            'status_id'   => 2, // resolved
+            'status_id' => 2, // resolved
         ]);
     }
 }

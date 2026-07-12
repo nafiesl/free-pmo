@@ -25,13 +25,13 @@ class CustomerCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'    => 'required|max:60',
-            'email'   => 'nullable|email|unique:customers,email',
-            'phone'   => 'nullable|max:255',
-            'pic'     => 'nullable|max:255',
+            'name' => 'required|max:60',
+            'email' => 'nullable|email|unique:customers,email',
+            'phone' => 'nullable|max:255',
+            'pic' => 'nullable|max:255',
             'address' => 'nullable|max:255',
             'website' => 'nullable|url|max:255',
-            'notes'   => 'nullable|max:255',
+            'notes' => 'nullable|max:255',
         ];
     }
 }

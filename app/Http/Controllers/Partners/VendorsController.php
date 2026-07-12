@@ -36,8 +36,8 @@ class VendorsController extends Controller
     public function store(Request $request)
     {
         Vendor::create($request->validate([
-            'name'    => 'required|max:60',
-            'notes'   => 'nullable|max:255',
+            'name' => 'required|max:60',
+            'notes' => 'nullable|max:255',
             'website' => 'nullable|url|max:255',
         ]));
 
@@ -56,9 +56,9 @@ class VendorsController extends Controller
     public function update(Request $request, Vendor $vendor)
     {
         $vendor->update($request->validate([
-            'name'      => 'required|max:60',
-            'notes'     => 'nullable|max:255',
-            'website'   => 'nullable|url|max:255',
+            'name' => 'required|max:60',
+            'notes' => 'nullable|max:255',
+            'website' => 'nullable|url|max:255',
             'is_active' => 'required|boolean',
         ]));
 

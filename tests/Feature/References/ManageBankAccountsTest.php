@@ -36,19 +36,19 @@ class ManageBankAccountsTest extends TestCase
         $this->seePageIs(route('bank-accounts.index', ['action' => 'create']));
 
         $this->submitForm(__('bank_account.create'), [
-            'name'         => 'BankAccount 1 name',
-            'number'       => '1234567890',
+            'name' => 'BankAccount 1 name',
+            'number' => '1234567890',
             'account_name' => 'John Doe',
-            'description'  => 'BankAccount 1 description',
+            'description' => 'BankAccount 1 description',
         ]);
 
         $this->seePageIs(route('bank-accounts.index'));
 
         $this->seeInDatabase('bank_accounts', [
-            'name'         => 'BankAccount 1 name',
-            'number'       => '1234567890',
+            'name' => 'BankAccount 1 name',
+            'number' => '1234567890',
             'account_name' => 'John Doe',
-            'description'  => 'BankAccount 1 description',
+            'description' => 'BankAccount 1 description',
         ]);
     }
 
@@ -67,21 +67,21 @@ class ManageBankAccountsTest extends TestCase
         ]));
 
         $this->submitForm(__('bank_account.update'), [
-            'name'         => 'BankAccount 2 name',
-            'number'       => '1234567890',
+            'name' => 'BankAccount 2 name',
+            'number' => '1234567890',
             'account_name' => 'John Doe',
-            'description'  => 'BankAccount 2 description',
-            'is_active'    => 0,
+            'description' => 'BankAccount 2 description',
+            'is_active' => 0,
         ]);
 
         $this->seePageIs(route('bank-accounts.index'));
 
         $this->seeInDatabase('bank_accounts', [
-            'name'         => 'BankAccount 2 name',
-            'number'       => '1234567890',
+            'name' => 'BankAccount 2 name',
+            'number' => '1234567890',
             'account_name' => 'John Doe',
-            'description'  => 'BankAccount 2 description',
-            'is_active'    => 0,
+            'description' => 'BankAccount 2 description',
+            'is_active' => 0,
         ]);
     }
 
@@ -113,14 +113,14 @@ class ManageBankAccountsTest extends TestCase
 
         $bankAccounts = [];
         $bankAccounts[1] = [
-            'name'         => 'BankAccount 1 name',
-            'number'       => '1234567890',
+            'name' => 'BankAccount 1 name',
+            'number' => '1234567890',
             'account_name' => 'John Doe',
-            'description'  => 'BankAccount 1 description',
+            'description' => 'BankAccount 1 description',
         ];
 
         Option::create([
-            'key'   => 'bank_accounts',
+            'key' => 'bank_accounts',
             'value' => json_encode($bankAccounts),
         ]);
 
@@ -135,11 +135,11 @@ class ManageBankAccountsTest extends TestCase
         ]);
 
         $this->seeInDatabase('bank_accounts', [
-            'name'         => 'BankAccount 1 name',
-            'number'       => '1234567890',
+            'name' => 'BankAccount 1 name',
+            'number' => '1234567890',
             'account_name' => 'John Doe',
-            'description'  => 'BankAccount 1 description',
-            'is_active'    => 1,
+            'description' => 'BankAccount 1 description',
+            'is_active' => 1,
         ]);
     }
 }

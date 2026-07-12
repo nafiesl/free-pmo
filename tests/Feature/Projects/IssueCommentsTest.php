@@ -18,8 +18,8 @@ class IssueCommentsTest extends TestCase
         $issue = factory(Issue::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'issues',
-            'commentable_id'   => $issue->id,
-            'body'             => 'This is issue comment.',
+            'commentable_id' => $issue->id,
+            'body' => 'This is issue comment.',
         ]);
 
         $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
@@ -44,9 +44,9 @@ class IssueCommentsTest extends TestCase
 
         $this->seeInDatabase('comments', [
             'commentable_type' => 'issues',
-            'commentable_id'   => $issue->id,
-            'body'             => 'First comment.',
-            'creator_id'       => $admin->id,
+            'commentable_id' => $issue->id,
+            'body' => 'First comment.',
+            'creator_id' => $admin->id,
         ]);
     }
 
@@ -57,8 +57,8 @@ class IssueCommentsTest extends TestCase
         $issue = factory(Issue::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'issues',
-            'commentable_id'   => $issue->id,
-            'body'             => 'This is issue comment.',
+            'commentable_id' => $issue->id,
+            'body' => 'This is issue comment.',
         ]);
 
         $this->visitRoute('projects.issues.show', [$issue->project, $issue]);
@@ -74,10 +74,10 @@ class IssueCommentsTest extends TestCase
         $this->see(__('comment.updated'));
 
         $this->seeInDatabase('comments', [
-            'id'               => $comment->id,
+            'id' => $comment->id,
             'commentable_type' => 'issues',
-            'commentable_id'   => $issue->id,
-            'body'             => 'Edited comment.',
+            'commentable_id' => $issue->id,
+            'body' => 'Edited comment.',
         ]);
     }
 
@@ -88,8 +88,8 @@ class IssueCommentsTest extends TestCase
         $issue = factory(Issue::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'issues',
-            'commentable_id'   => $issue->id,
-            'body'             => 'This is issue comment.',
+            'commentable_id' => $issue->id,
+            'body' => 'This is issue comment.',
         ]);
 
         $this->visitRoute('projects.issues.show', [$issue->project, $issue]);

@@ -28,6 +28,7 @@ php artisan key:generate
 php artisan migrate
 php artisan storage:link
 php artisan serve
+Docker: `docker-compose up -d` (PHP 8.1 FPM + Nginx + MySQL 5.7)
 # Then visit /app-install to complete setup
 ```
 
@@ -87,3 +88,14 @@ Single migration files (no alters). For schema changes, update existing migratio
 php artisan test --filter=Feature/ManageProjectsTest
 php artisan test --filter="admin_can_input_new_project"
 ```
+
+## Authorization
+- All controllers should call `$this->authorize()` for access control
+- Routes should be wrapped in `auth` middleware group as defense in depth
+- Example: `$this->authorize('update', $issue)` before modifying models
+- Policies live in `app/Policies/`
+
+## Workflow
+- Use `gh pr create` for GitHub PR workflow
+- Branch naming: `fix/description` or `feature/description`
+- Run `php artisan test` before opening PR

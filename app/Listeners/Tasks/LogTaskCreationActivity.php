@@ -12,12 +12,12 @@ class LogTaskCreationActivity
         $task = $event->task;
 
         $activityEntry = [
-            'type'        => 'task_created',
-            'parent_id'   => null,
-            'user_id'     => auth()->id(),
-            'object_id'   => $task->id,
+            'type' => 'task_created',
+            'parent_id' => null,
+            'user_id' => auth()->id(),
+            'object_id' => $task->id,
             'object_type' => 'tasks',
-            'data'        => null,
+            'data' => null,
         ];
 
         Activity::create($activityEntry);

@@ -24,12 +24,12 @@ class ReorderTaskListTest extends TestCase
         ]);
 
         $this->seeInDatabase('tasks', [
-            'id'       => $task1->id,
+            'id' => $task1->id,
             'position' => 2,
         ]);
 
         $this->seeInDatabase('tasks', [
-            'id'       => $task2->id,
+            'id' => $task2->id,
             'position' => 1,
         ]);
     }

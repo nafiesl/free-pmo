@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'lang'           => 'Language',
+    'lang' => 'Language',
     'switch_tooltip' => 'Switch language to :lang',
-    'en'             => 'English',
-    'id'             => 'Bahasa',
-    'de'             => 'German',
+    'en' => 'English',
+    'id' => 'Bahasa',
+    'de' => 'German',
 ];

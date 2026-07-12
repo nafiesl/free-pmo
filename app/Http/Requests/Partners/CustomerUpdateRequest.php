@@ -26,13 +26,13 @@ class CustomerUpdateRequest extends FormRequest
         $customer = $this->route('customer');
 
         return [
-            'name'      => 'required|max:60',
-            'email'     => 'nullable|email|unique:customers,email,'.$customer->id,
-            'phone'     => 'nullable|max:255',
-            'pic'       => 'nullable|max:255',
-            'address'   => 'nullable|max:255',
-            'website'   => 'nullable|url|max:255',
-            'notes'     => 'nullable|max:255',
+            'name' => 'required|max:60',
+            'email' => 'nullable|email|unique:customers,email,'.$customer->id,
+            'phone' => 'nullable|max:255',
+            'pic' => 'nullable|max:255',
+            'address' => 'nullable|max:255',
+            'website' => 'nullable|url|max:255',
+            'notes' => 'nullable|max:255',
             'is_active' => 'required|boolean',
         ];
     }

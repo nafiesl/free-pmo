@@ -68,7 +68,7 @@ class VendorPolicyTest extends TestCase
 
         $payment = factory(Payment::class)->create([
             'partner_type' => Vendor::class,
-            'partner_id'   => $vendor->id,
+            'partner_id' => $vendor->id,
         ]);
 
         $this->assertFalse($admin->can('delete', $vendor->fresh()));

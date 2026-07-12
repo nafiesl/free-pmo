@@ -18,8 +18,8 @@ class JobCommentsTest extends TestCase
         $job = factory(Job::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'jobs',
-            'commentable_id'   => $job->id,
-            'body'             => 'This is job comment.',
+            'commentable_id' => $job->id,
+            'body' => 'This is job comment.',
         ]);
 
         $this->visitRoute('jobs.comments.index', $job);
@@ -45,9 +45,9 @@ class JobCommentsTest extends TestCase
 
         $this->seeInDatabase('comments', [
             'commentable_type' => 'jobs',
-            'commentable_id'   => $job->id,
-            'body'             => 'Komentar pertama.',
-            'creator_id'       => $admin->id,
+            'commentable_id' => $job->id,
+            'body' => 'Komentar pertama.',
+            'creator_id' => $admin->id,
         ]);
     }
 
@@ -58,8 +58,8 @@ class JobCommentsTest extends TestCase
         $job = factory(Job::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'jobs',
-            'commentable_id'   => $job->id,
-            'body'             => 'This is job comment.',
+            'commentable_id' => $job->id,
+            'body' => 'This is job comment.',
         ]);
 
         $this->visitRoute('jobs.comments.index', $job);
@@ -75,10 +75,10 @@ class JobCommentsTest extends TestCase
         $this->see(__('comment.updated'));
 
         $this->seeInDatabase('comments', [
-            'id'               => $comment->id,
+            'id' => $comment->id,
             'commentable_type' => 'jobs',
-            'commentable_id'   => $job->id,
-            'body'             => 'Komentar pertama.',
+            'commentable_id' => $job->id,
+            'body' => 'Komentar pertama.',
         ]);
     }
 
@@ -89,8 +89,8 @@ class JobCommentsTest extends TestCase
         $job = factory(Job::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'jobs',
-            'commentable_id'   => $job->id,
-            'body'             => 'This is job comment.',
+            'commentable_id' => $job->id,
+            'body' => 'This is job comment.',
         ]);
 
         $this->visitRoute('jobs.comments.index', $job);

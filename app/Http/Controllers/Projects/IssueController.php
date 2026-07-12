@@ -50,18 +50,18 @@ class IssueController extends Controller
         $this->authorize('create', new Issue());
 
         $issueData = $request->validate([
-            'title'       => 'required|max:60',
-            'body'        => 'required|max:255',
+            'title' => 'required|max:60',
+            'body' => 'required|max:255',
             'priority_id' => 'required|in:1,2,3',
-            'pic_id'      => 'nullable|exists:users,id',
+            'pic_id' => 'nullable|exists:users,id',
         ]);
         Issue::create([
-            'project_id'  => $project->id,
-            'creator_id'  => auth()->id(),
-            'title'       => $issueData['title'],
-            'body'        => $issueData['body'],
+            'project_id' => $project->id,
+            'creator_id' => auth()->id(),
+            'title' => $issueData['title'],
+            'body' => $issueData['body'],
             'priority_id' => $issueData['priority_id'],
-            'pic_id'      => $issueData['pic_id'],
+            'pic_id' => $issueData['pic_id'],
         ]);
         flash(__('issue.created'), 'success');
 
@@ -99,7 +99,7 @@ class IssueController extends Controller
 
         $issueData = $request->validate([
             'title' => 'required|max:60',
-            'body'  => 'required|max:255',
+            'body' => 'required|max:255',
         ]);
         $issue->title = $issueData['title'];
         $issue->body = $issueData['body'];

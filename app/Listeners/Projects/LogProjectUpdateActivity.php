@@ -15,15 +15,15 @@ class LogProjectUpdateActivity
         $attributeKeys = array_keys($project->getChanges());
 
         $activityEntry = [
-            'type'        => 'project_updated',
-            'parent_id'   => null,
-            'user_id'     => auth()->id(),
-            'object_id'   => $project->id,
+            'type' => 'project_updated',
+            'parent_id' => null,
+            'user_id' => auth()->id(),
+            'object_id' => $project->id,
             'object_type' => 'projects',
-            'data'        => [
+            'data' => [
                 'before' => $this->getBeforeValues($originalProject, $attributeKeys),
-                'after'  => $this->getAfterValues($project->toArray(), $attributeKeys),
-                'notes'  => null,
+                'after' => $this->getAfterValues($project->toArray(), $attributeKeys),
+                'notes' => null,
             ],
         ];
 

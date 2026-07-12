@@ -15,15 +15,15 @@ class LogTaskUpdateActivity
         $attributeKeys = array_keys($task->getChanges());
 
         $activityEntry = [
-            'type'        => 'task_updated',
-            'parent_id'   => null,
-            'user_id'     => auth()->id(),
-            'object_id'   => $task->id,
+            'type' => 'task_updated',
+            'parent_id' => null,
+            'user_id' => auth()->id(),
+            'object_id' => $task->id,
             'object_type' => 'tasks',
-            'data'        => [
+            'data' => [
                 'before' => $this->getBeforeValues($originalTask, $attributeKeys),
-                'after'  => $this->getAfterValues($task->toArray(), $attributeKeys),
-                'notes'  => null,
+                'after' => $this->getAfterValues($task->toArray(), $attributeKeys),
+                'notes' => null,
             ],
         ];
 

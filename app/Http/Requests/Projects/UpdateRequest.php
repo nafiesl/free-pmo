@@ -27,16 +27,16 @@ class UpdateRequest extends Request
     public function rules()
     {
         return [
-            'name'           => 'required|max:50',
-            'description'    => 'nullable|max:255',
-            'proposal_date'  => 'nullable|date|date_format:Y-m-d',
+            'name' => 'required|max:50',
+            'description' => 'nullable|max:255',
+            'proposal_date' => 'nullable|date|date_format:Y-m-d',
             'proposal_value' => 'nullable|numeric',
-            'start_date'     => 'nullable|date|date_format:Y-m-d',
-            'end_date'       => 'nullable|date|date_format:Y-m-d',
-            'due_date'       => 'nullable|date|date_format:Y-m-d',
-            'project_value'  => 'nullable|numeric',
-            'customer_id'    => 'nullable|numeric',
-            'status_id'      => 'required|numeric',
+            'start_date' => 'nullable|date|date_format:Y-m-d',
+            'end_date' => 'nullable|date|date_format:Y-m-d',
+            'due_date' => 'nullable|date|date_format:Y-m-d',
+            'project_value' => 'nullable|numeric',
+            'customer_id' => 'nullable|numeric',
+            'status_id' => 'required|numeric',
         ];
     }
 }

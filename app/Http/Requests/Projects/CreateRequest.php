@@ -25,13 +25,13 @@ class CreateRequest extends Request
     public function rules()
     {
         return [
-            'name'           => 'required|max:50',
-            'proposal_date'  => 'nullable|date|date_format:Y-m-d',
+            'name' => 'required|max:50',
+            'proposal_date' => 'nullable|date|date_format:Y-m-d',
             'proposal_value' => 'nullable|numeric',
-            'customer_id'    => 'nullable|numeric',
-            'customer_name'  => 'nullable|required_without:customer_id|max:60',
+            'customer_id' => 'nullable|numeric',
+            'customer_name' => 'nullable|required_without:customer_id|max:60',
             'customer_email' => 'nullable|required_without:customer_id|email|unique:users,email',
-            'description'    => 'nullable|max:255',
+            'description' => 'nullable|max:255',
         ];
     }
 
@@ -43,7 +43,7 @@ class CreateRequest extends Request
     public function messages()
     {
         return [
-            'customer_name.required_without'  => __('validation.project.customer_name.required_without'),
+            'customer_name.required_without' => __('validation.project.customer_name.required_without'),
             'customer_email.required_without' => __('validation.project.customer_email.required_without'),
         ];
     }

@@ -39,18 +39,18 @@ class ManageInvoicesTest extends TestCase
 
         $this->submitForm(__('invoice.update'), [
             'project_id' => $invoice->project_id,
-            'date'       => '2011-01-01',
-            'due_date'   => '2011-01-30',
-            'notes'      => 'Catatan invoice 123',
+            'date' => '2011-01-01',
+            'due_date' => '2011-01-30',
+            'notes' => 'Catatan invoice 123',
         ]);
 
         $this->see(__('invoice.updated'));
         $this->seePageIs(route('invoices.show', $invoice));
 
         $this->seeInDatabase('invoices', [
-            'id'       => $invoice->id,
-            'notes'    => 'Catatan invoice 123',
-            'date'     => '2011-01-01',
+            'id' => $invoice->id,
+            'notes' => 'Catatan invoice 123',
+            'date' => '2011-01-01',
             'due_date' => '2011-01-30',
         ]);
     }
@@ -60,10 +60,10 @@ class ManageInvoicesTest extends TestCase
     {
         $this->adminUserSigningIn();
         $invoice = factory(Invoice::class)->create([
-            'date'     => '2010-10-10',
+            'date' => '2010-10-10',
             'due_date' => '2010-10-30',
-            'amount'   => 3000,
-            'items'    => [
+            'amount' => 3000,
+            'items' => [
                 ['description' => 'Deskripsi item invoice', 'amount' => 1000],
                 ['description' => 'Deskripsi item invoice', 'amount' => 2000],
             ],
@@ -72,24 +72,24 @@ class ManageInvoicesTest extends TestCase
         $this->visit(route('invoices.edit', $invoice));
 
         $this->submitForm(__('invoice.update'), [
-            'project_id'     => $invoice->project_id,
-            'date'           => '2011-01-01',
-            'due_date'       => '2011-01-30',
-            'discount'       => 500,
+            'project_id' => $invoice->project_id,
+            'date' => '2011-01-01',
+            'due_date' => '2011-01-30',
+            'discount' => 500,
             'discount_notes' => 'Diskon 500.',
-            'notes'          => 'Catatan invoice 123',
+            'notes' => 'Catatan invoice 123',
         ]);
 
         $this->see(__('invoice.updated'));
         $this->seePageIs(route('invoices.show', $invoice));
 
         $this->seeInDatabase('invoices', [
-            'id'             => $invoice->id,
-            'notes'          => 'Catatan invoice 123',
-            'date'           => '2011-01-01',
-            'due_date'       => '2011-01-30',
-            'amount'         => 2500,
-            'discount'       => 500,
+            'id' => $invoice->id,
+            'notes' => 'Catatan invoice 123',
+            'date' => '2011-01-01',
+            'due_date' => '2011-01-30',
+            'amount' => 2500,
+            'discount' => 500,
             'discount_notes' => 'Diskon 500.',
         ]);
     }
@@ -104,14 +104,14 @@ class ManageInvoicesTest extends TestCase
 
         $this->submitForm(__('invoice.add_item'), [
             'new_item_description' => 'Testing deskripsi invoice item',
-            'new_item_amount'      => 2000,
+            'new_item_amount' => 2000,
         ]);
 
         $this->see(__('invoice.item_added'));
 
         $this->submitForm(__('invoice.add_item'), [
             'new_item_description' => 'Testing deskripsi invoice item',
-            'new_item_amount'      => 3000,
+            'new_item_amount' => 3000,
         ]);
 
         $this->see(__('invoice.item_added'));
@@ -119,8 +119,8 @@ class ManageInvoicesTest extends TestCase
         $this->seePageIs(route('invoices.edit', $invoice));
 
         $this->seeInDatabase('invoices', [
-            'id'     => $invoice->id,
-            'items'  => '[{"description":"Testing deskripsi invoice item","amount":"2000"},{"description":"Testing deskripsi invoice item","amount":"3000"}]',
+            'id' => $invoice->id,
+            'items' => '[{"description":"Testing deskripsi invoice item","amount":"2000"},{"description":"Testing deskripsi invoice item","amount":"3000"}]',
             'amount' => 5000,
         ]);
     }
@@ -137,7 +137,7 @@ class ManageInvoicesTest extends TestCase
 
         $this->submitForm(__('invoice.add_item'), [
             'new_item_description' => 'Testing deskripsi invoice item',
-            'new_item_amount'      => 2000,
+            'new_item_amount' => 2000,
         ]);
 
         $this->see(__('invoice.item_added'));
@@ -145,8 +145,8 @@ class ManageInvoicesTest extends TestCase
         $this->seePageIs(route('invoices.edit', $invoice));
 
         $this->seeInDatabase('invoices', [
-            'id'       => $invoice->id,
-            'amount'   => 1700,
+            'id' => $invoice->id,
+            'amount' => 1700,
             'discount' => 300,
         ]);
     }
@@ -166,9 +166,9 @@ class ManageInvoicesTest extends TestCase
         $this->visit(route('invoices.edit', $invoice));
 
         $this->submitForm('update-item-1', [
-            'item_key[1]'    => 1,
+            'item_key[1]' => 1,
             'description[1]' => 'Testing deskripsi Update',
-            'amount[1]'      => 100,
+            'amount[1]' => 100,
         ]);
 
         $this->see(__('invoice.item_updated'));
@@ -176,8 +176,8 @@ class ManageInvoicesTest extends TestCase
         $this->seePageIs(route('invoices.edit', $invoice));
 
         $this->seeInDatabase('invoices', [
-            'id'     => $invoice->id,
-            'items'  => '[{"description":"Testing deskripsi invoice item","amount":"1111"},{"description":"Testing deskripsi Update","amount":"100"}]',
+            'id' => $invoice->id,
+            'items' => '[{"description":"Testing deskripsi invoice item","amount":"1111"},{"description":"Testing deskripsi Update","amount":"100"}]',
             'amount' => 1211,
         ]);
     }
@@ -188,7 +188,7 @@ class ManageInvoicesTest extends TestCase
         $this->adminUserSigningIn();
 
         $invoice = factory(Invoice::class)->create([
-            'items'    => [
+            'items' => [
                 ['description' => 'Testing deskripsi invoice item', 'amount' => '1111'],
                 ['description' => 'Testing deskripsi invoice item', 'amount' => '2222'],
             ],
@@ -198,9 +198,9 @@ class ManageInvoicesTest extends TestCase
         $this->visit(route('invoices.edit', $invoice));
 
         $this->submitForm('update-item-1', [
-            'item_key[1]'    => 1,
+            'item_key[1]' => 1,
             'description[1]' => 'Testing deskripsi Update',
-            'amount[1]'      => 100,
+            'amount[1]' => 100,
         ]);
 
         $this->see(__('invoice.item_updated'));
@@ -208,8 +208,8 @@ class ManageInvoicesTest extends TestCase
         $this->seePageIs(route('invoices.edit', $invoice));
 
         $this->seeInDatabase('invoices', [
-            'id'     => $invoice->id,
-            'items'  => '[{"description":"Testing deskripsi invoice item","amount":"1111"},{"description":"Testing deskripsi Update","amount":"100"}]',
+            'id' => $invoice->id,
+            'items' => '[{"description":"Testing deskripsi invoice item","amount":"1111"},{"description":"Testing deskripsi Update","amount":"100"}]',
             'amount' => 1161,
         ]);
     }
@@ -237,8 +237,8 @@ class ManageInvoicesTest extends TestCase
         $this->seePageIs(route('invoices.edit', $invoice));
 
         $this->seeInDatabase('invoices', [
-            'id'     => $invoice->id,
-            'items'  => '[{"description":"Testing deskripsi invoice item","amount":"1111"}]',
+            'id' => $invoice->id,
+            'items' => '[{"description":"Testing deskripsi invoice item","amount":"1111"}]',
             'amount' => 1111,
         ]);
     }
@@ -249,7 +249,7 @@ class ManageInvoicesTest extends TestCase
         $this->adminUserSigningIn();
 
         $invoice = factory(Invoice::class)->create([
-            'items'    => [
+            'items' => [
                 ['description' => 'Testing deskripsi invoice item', 'amount' => '1111'],
                 ['description' => 'Testing deskripsi invoice item', 'amount' => '2222'],
             ],
@@ -267,8 +267,8 @@ class ManageInvoicesTest extends TestCase
         $this->seePageIs(route('invoices.edit', $invoice));
 
         $this->seeInDatabase('invoices', [
-            'id'     => $invoice->id,
-            'items'  => '[{"description":"Testing deskripsi invoice item","amount":"1111"}]',
+            'id' => $invoice->id,
+            'items' => '[{"description":"Testing deskripsi invoice item","amount":"1111"}]',
             'amount' => 1061,
         ]);
     }

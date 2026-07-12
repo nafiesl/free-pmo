@@ -64,7 +64,7 @@ class UserPolicyTest extends TestCase
         $user = factory(User::class)->create();
         $payment = factory(Payment::class)->create([
             'partner_type' => 'App\Entities\Users\User',
-            'partner_id'   => $user->id,
+            'partner_id' => $user->id,
         ]);
 
         $this->assertFalse($admin->can('delete', $user));

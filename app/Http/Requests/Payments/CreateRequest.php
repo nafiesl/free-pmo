@@ -24,12 +24,12 @@ class CreateRequest extends Request
     public function rules()
     {
         $rules = [
-            'date'        => 'required|date|date_format:Y-m-d',
-            'in_out'      => 'required|numeric',
-            'amount'      => 'required',
-            'project_id'  => 'required|numeric',
-            'type_id'     => 'required|numeric',
-            'partner_id'  => 'required|numeric',
+            'date' => 'required|date|date_format:Y-m-d',
+            'in_out' => 'required|numeric',
+            'amount' => 'required',
+            'project_id' => 'required|numeric',
+            'type_id' => 'required|numeric',
+            'partner_id' => 'required|numeric',
             'description' => 'required|max:255',
         ];
 

@@ -21,12 +21,12 @@ class ActivityTest extends TestCase
         $project = factory(Project::class)->create();
 
         $this->seeInDatabase('user_activities', [
-            'type'        => 'project_created',
-            'parent_id'   => null,
-            'user_id'     => $admin->id,
-            'object_id'   => $project->id,
+            'type' => 'project_created',
+            'parent_id' => null,
+            'user_id' => $admin->id,
+            'object_id' => $project->id,
             'object_type' => 'projects',
-            'data'        => null,
+            'data' => null,
         ]);
     }
 
@@ -40,15 +40,15 @@ class ActivityTest extends TestCase
         $project->save();
 
         $this->seeInDatabase('user_activities', [
-            'type'        => 'project_updated',
-            'parent_id'   => null,
-            'user_id'     => $admin->id,
-            'object_id'   => $project->id,
+            'type' => 'project_updated',
+            'parent_id' => null,
+            'user_id' => $admin->id,
+            'object_id' => $project->id,
             'object_type' => 'projects',
-            'data'        => json_encode([
+            'data' => json_encode([
                 'before' => ['name' => 'New Project'],
-                'after'  => ['name' => 'Updated project'],
-                'notes'  => null,
+                'after' => ['name' => 'Updated project'],
+                'notes' => null,
             ]),
         ]);
     }
@@ -61,12 +61,12 @@ class ActivityTest extends TestCase
         $job = factory(Job::class)->create(['project_id' => $project->id]);
 
         $this->seeInDatabase('user_activities', [
-            'type'        => 'job_created',
-            'parent_id'   => null,
-            'user_id'     => $admin->id,
-            'object_id'   => $job->id,
+            'type' => 'job_created',
+            'parent_id' => null,
+            'user_id' => $admin->id,
+            'object_id' => $job->id,
             'object_type' => 'jobs',
-            'data'        => null,
+            'data' => null,
         ]);
     }
 
@@ -76,7 +76,7 @@ class ActivityTest extends TestCase
         $admin = $this->adminUserSigningIn();
         $project = factory(Project::class)->create();
         $job = factory(Job::class)->create([
-            'name'       => 'New Job',
+            'name' => 'New Job',
             'project_id' => $project->id,
         ]);
 
@@ -84,15 +84,15 @@ class ActivityTest extends TestCase
         $job->save();
 
         $this->seeInDatabase('user_activities', [
-            'type'        => 'job_updated',
-            'parent_id'   => null,
-            'user_id'     => $admin->id,
-            'object_id'   => $job->id,
+            'type' => 'job_updated',
+            'parent_id' => null,
+            'user_id' => $admin->id,
+            'object_id' => $job->id,
             'object_type' => 'jobs',
-            'data'        => json_encode([
+            'data' => json_encode([
                 'before' => ['name' => 'New Job'],
-                'after'  => ['name' => 'Updated job'],
-                'notes'  => null,
+                'after' => ['name' => 'Updated job'],
+                'notes' => null,
             ]),
         ]);
     }
@@ -106,15 +106,15 @@ class ActivityTest extends TestCase
         $job->delete();
 
         $this->seeInDatabase('user_activities', [
-            'type'        => 'job_deleted',
-            'parent_id'   => null,
-            'user_id'     => $admin->id,
-            'object_id'   => $project->id,
+            'type' => 'job_deleted',
+            'parent_id' => null,
+            'user_id' => $admin->id,
+            'object_id' => $project->id,
             'object_type' => 'projects',
-            'data'        => json_encode([
-                'name'        => $job->name,
+            'data' => json_encode([
+                'name' => $job->name,
                 'description' => $job->description,
-                'price'       => $job->price,
+                'price' => $job->price,
             ]),
         ]);
     }
@@ -128,12 +128,12 @@ class ActivityTest extends TestCase
         $task = factory(Task::class)->create(['job_id' => $job->id]);
 
         $this->seeInDatabase('user_activities', [
-            'type'        => 'task_created',
-            'parent_id'   => null,
-            'user_id'     => $admin->id,
-            'object_id'   => $task->id,
+            'type' => 'task_created',
+            'parent_id' => null,
+            'user_id' => $admin->id,
+            'object_id' => $task->id,
             'object_type' => 'tasks',
-            'data'        => null,
+            'data' => null,
         ]);
     }
 
@@ -144,7 +144,7 @@ class ActivityTest extends TestCase
         $project = factory(Project::class)->create();
         $job = factory(Job::class)->create(['project_id' => $project->id]);
         $task = factory(Task::class)->create([
-            'name'   => 'New Task',
+            'name' => 'New Task',
             'job_id' => $job->id,
         ]);
 
@@ -152,15 +152,15 @@ class ActivityTest extends TestCase
         $task->save();
 
         $this->seeInDatabase('user_activities', [
-            'type'        => 'task_updated',
-            'parent_id'   => null,
-            'user_id'     => $admin->id,
-            'object_id'   => $task->id,
+            'type' => 'task_updated',
+            'parent_id' => null,
+            'user_id' => $admin->id,
+            'object_id' => $task->id,
             'object_type' => 'tasks',
-            'data'        => json_encode([
+            'data' => json_encode([
                 'before' => ['name' => 'New Task'],
-                'after'  => ['name' => 'Updated task'],
-                'notes'  => null,
+                'after' => ['name' => 'Updated task'],
+                'notes' => null,
             ]),
         ]);
     }
@@ -173,22 +173,22 @@ class ActivityTest extends TestCase
         $job = factory(Job::class)->create(['project_id' => $project->id]);
         $task = factory(Task::class)->create([
             'progress' => 20,
-            'job_id'   => $job->id,
+            'job_id' => $job->id,
         ]);
 
         $task->progress = 40;
         $task->save();
 
         $this->seeInDatabase('user_activities', [
-            'type'        => 'task_updated',
-            'parent_id'   => null,
-            'user_id'     => $admin->id,
-            'object_id'   => $task->id,
+            'type' => 'task_updated',
+            'parent_id' => null,
+            'user_id' => $admin->id,
+            'object_id' => $task->id,
             'object_type' => 'tasks',
-            'data'        => json_encode([
+            'data' => json_encode([
                 'before' => ['progress' => 20],
-                'after'  => ['progress' => 40],
-                'notes'  => null,
+                'after' => ['progress' => 40],
+                'notes' => null,
             ]),
         ]);
     }
@@ -203,15 +203,15 @@ class ActivityTest extends TestCase
         $task->delete();
 
         $this->seeInDatabase('user_activities', [
-            'type'        => 'task_deleted',
-            'parent_id'   => null,
-            'user_id'     => $admin->id,
-            'object_id'   => $job->id,
+            'type' => 'task_deleted',
+            'parent_id' => null,
+            'user_id' => $admin->id,
+            'object_id' => $job->id,
             'object_type' => 'jobs',
-            'data'        => json_encode([
-                'name'        => $task->name,
+            'data' => json_encode([
+                'name' => $task->name,
                 'description' => $task->description,
-                'progress'    => $task->progress,
+                'progress' => $task->progress,
             ]),
         ]);
     }

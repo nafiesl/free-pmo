@@ -21,7 +21,7 @@ class SiteOptionsController extends Controller
     public function save1(Request $request)
     {
         $optionData = $request->validate([
-            'money_sign'         => 'required|max:3',
+            'money_sign' => 'required|max:3',
             'money_sign_in_word' => 'required|max:15',
         ]);
 

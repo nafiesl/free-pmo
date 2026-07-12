@@ -13,17 +13,17 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Entities\Partners\Vendor'   => 'App\Policies\Partners\VendorPolicy',
+        'App\Entities\Partners\Vendor' => 'App\Policies\Partners\VendorPolicy',
         'App\Entities\Partners\Customer' => 'App\Policies\Partners\CustomerPolicy',
-        'App\Entities\Projects\Project'  => 'App\Policies\Projects\ProjectPolicy',
-        'App\Entities\Projects\Comment'  => 'App\Policies\Projects\CommentPolicy',
-        'App\Entities\Projects\Job'      => 'App\Policies\Projects\JobPolicy',
-        'App\Entities\Projects\Issue'    => 'App\Policies\Projects\IssuePolicy',
-        'App\Entities\Projects\Task'     => 'App\Policies\Projects\TaskPolicy',
-        'App\Entities\Projects\File'     => 'App\Policies\Projects\FilePolicy',
-        'App\Entities\Payments\Payment'  => 'App\Policies\PaymentPolicy',
-        'App\Entities\Users\User'        => 'App\Policies\UserPolicy',
-        'App\Entities\Users\Event'       => 'App\Policies\EventPolicy',
+        'App\Entities\Projects\Project' => 'App\Policies\Projects\ProjectPolicy',
+        'App\Entities\Projects\Comment' => 'App\Policies\Projects\CommentPolicy',
+        'App\Entities\Projects\Job' => 'App\Policies\Projects\JobPolicy',
+        'App\Entities\Projects\Issue' => 'App\Policies\Projects\IssuePolicy',
+        'App\Entities\Projects\Task' => 'App\Policies\Projects\TaskPolicy',
+        'App\Entities\Projects\File' => 'App\Policies\Projects\FilePolicy',
+        'App\Entities\Payments\Payment' => 'App\Policies\PaymentPolicy',
+        'App\Entities\Users\User' => 'App\Policies\UserPolicy',
+        'App\Entities\Users\Event' => 'App\Policies\EventPolicy',
     ];
 
     /**

@@ -8,11 +8,11 @@ use Faker\Generator as Faker;
 $factory->define(Comment::class, function (Faker $faker) {
     return [
         'commentable_type' => 'projects',
-        'commentable_id'   => function () {
+        'commentable_id' => function () {
             return factory(Project::class)->create()->id;
         },
-        'body'             => $faker->sentence,
-        'creator_id'       => function () {
+        'body' => $faker->sentence,
+        'creator_id' => function () {
             return factory(User::class)->create()->id;
         },
     ];

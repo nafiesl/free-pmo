@@ -41,7 +41,7 @@ class ResetPasswordController extends Controller
     protected function resetPassword($user, $password)
     {
         $user->forceFill([
-            'password'       => $password,
+            'password' => $password,
             'remember_token' => Str::random(60),
         ])->save();
 

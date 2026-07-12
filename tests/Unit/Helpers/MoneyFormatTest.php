@@ -26,7 +26,7 @@ class MoneyFormatTest extends TestCase
     public function format_money_returns_string_based_on_site_option_money_sign()
     {
         \DB::table('site_options')->insert([
-            'key'   => 'money_sign',
+            'key' => 'money_sign',
             'value' => 'USD',
         ]);
 

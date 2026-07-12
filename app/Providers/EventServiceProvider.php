@@ -19,22 +19,22 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Projects\Updated' => [
             'App\Listeners\Projects\LogProjectUpdateActivity',
         ],
-        'App\Events\Jobs\Created'     => [
+        'App\Events\Jobs\Created' => [
             'App\Listeners\Jobs\LogJobCreationActivity',
         ],
-        'App\Events\Jobs\Updated'     => [
+        'App\Events\Jobs\Updated' => [
             'App\Listeners\Jobs\LogJobUpdateActivity',
         ],
-        'App\Events\Jobs\Deleted'     => [
+        'App\Events\Jobs\Deleted' => [
             'App\Listeners\Projects\LogProjectJobDeletionActivity',
         ],
-        'App\Events\Tasks\Created'    => [
+        'App\Events\Tasks\Created' => [
             'App\Listeners\Tasks\LogTaskCreationActivity',
         ],
-        'App\Events\Tasks\Updated'    => [
+        'App\Events\Tasks\Updated' => [
             'App\Listeners\Tasks\LogTaskUpdateActivity',
         ],
-        'App\Events\Tasks\Deleted'    => [
+        'App\Events\Tasks\Deleted' => [
             'App\Listeners\Jobs\LogJobTaskDeletionActivity',
         ],
     ];

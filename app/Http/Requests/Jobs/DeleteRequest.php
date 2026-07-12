@@ -27,7 +27,7 @@ class DeleteRequest extends Request
     public function rules()
     {
         return [
-            'job_id'     => 'required',
+            'job_id' => 'required',
             'project_id' => 'required',
         ];
     }

@@ -42,7 +42,7 @@ class ProjectPolicyTest extends TestCase
         // Assign a job to worker on the project
         factory(Job::class)->create([
             'project_id' => $project->id,
-            'worker_id'  => $worker->id,
+            'worker_id' => $worker->id,
         ]);
 
         // Worker can view the project after assignment
@@ -79,7 +79,7 @@ class ProjectPolicyTest extends TestCase
         $project = factory(Project::class)->create();
         $job = factory(Job::class)->create([
             'project_id' => $project->id,
-            'worker_id'  => $worker->id,
+            'worker_id' => $worker->id,
         ]);
 
         $this->assertTrue($admin->can('view-jobs', $project));
@@ -122,7 +122,7 @@ class ProjectPolicyTest extends TestCase
         $project = factory(Project::class)->create();
         $job = factory(Job::class)->create([
             'project_id' => $project->id,
-            'worker_id'  => $worker->id,
+            'worker_id' => $worker->id,
         ]);
 
         $this->assertTrue($admin->can('view-files', $project));
@@ -138,7 +138,7 @@ class ProjectPolicyTest extends TestCase
         $project = factory(Project::class)->create();
         $job = factory(Job::class)->create([
             'project_id' => $project->id,
-            'worker_id'  => $worker->id,
+            'worker_id' => $worker->id,
         ]);
 
         $this->assertTrue($admin->can('see-pricings', $project));
@@ -154,7 +154,7 @@ class ProjectPolicyTest extends TestCase
         $project = factory(Project::class)->create();
         $job = factory(Job::class)->create([
             'project_id' => $project->id,
-            'worker_id'  => $worker->id,
+            'worker_id' => $worker->id,
         ]);
 
         $this->assertTrue($admin->can('view-comments', $project));
@@ -170,7 +170,7 @@ class ProjectPolicyTest extends TestCase
         $project = factory(Project::class)->create();
         $job = factory(Job::class)->create([
             'project_id' => $project->id,
-            'worker_id'  => $worker->id,
+            'worker_id' => $worker->id,
         ]);
 
         $this->assertTrue($admin->can('comment-on', $project));

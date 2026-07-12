@@ -15,8 +15,8 @@ class OptionController extends Controller
 
         $issueData = $request->validate([
             'priority_id' => 'required|in:1,2,3',
-            'status_id'   => 'required|in:0,1,2,3,4',
-            'pic_id'      => 'nullable|exists:users,id',
+            'status_id' => 'required|in:0,1,2,3,4',
+            'pic_id' => 'nullable|exists:users,id',
         ]);
         $issue->priority_id = $issueData['priority_id'];
         $issue->status_id = $issueData['status_id'];

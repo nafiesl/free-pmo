@@ -18,8 +18,8 @@ class ProjectCommentsTest extends TestCase
         $project = factory(Project::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'projects',
-            'commentable_id'   => $project->id,
-            'body'             => 'This is project comment.',
+            'commentable_id' => $project->id,
+            'body' => 'This is project comment.',
         ]);
 
         $this->visitRoute('projects.comments.index', $project);
@@ -45,9 +45,9 @@ class ProjectCommentsTest extends TestCase
 
         $this->seeInDatabase('comments', [
             'commentable_type' => 'projects',
-            'commentable_id'   => $project->id,
-            'body'             => 'Komentar pertama.',
-            'creator_id'       => $admin->id,
+            'commentable_id' => $project->id,
+            'body' => 'Komentar pertama.',
+            'creator_id' => $admin->id,
         ]);
     }
 
@@ -58,8 +58,8 @@ class ProjectCommentsTest extends TestCase
         $project = factory(Project::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'projects',
-            'commentable_id'   => $project->id,
-            'body'             => 'This is project comment.',
+            'commentable_id' => $project->id,
+            'body' => 'This is project comment.',
         ]);
 
         $this->visitRoute('projects.comments.index', $project);
@@ -75,10 +75,10 @@ class ProjectCommentsTest extends TestCase
         $this->see(__('comment.updated'));
 
         $this->seeInDatabase('comments', [
-            'id'               => $comment->id,
+            'id' => $comment->id,
             'commentable_type' => 'projects',
-            'commentable_id'   => $project->id,
-            'body'             => 'Komentar pertama.',
+            'commentable_id' => $project->id,
+            'body' => 'Komentar pertama.',
         ]);
     }
 
@@ -89,8 +89,8 @@ class ProjectCommentsTest extends TestCase
         $project = factory(Project::class)->create();
         $comment = factory(Comment::class)->create([
             'commentable_type' => 'projects',
-            'commentable_id'   => $project->id,
-            'body'             => 'This is project comment.',
+            'commentable_id' => $project->id,
+            'body' => 'This is project comment.',
         ]);
 
         $this->visitRoute('projects.comments.index', $project);

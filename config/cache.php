@@ -37,29 +37,29 @@ return [
         ],
 
         'database' => [
-            'driver'     => 'database',
-            'table'      => 'cache',
+            'driver' => 'database',
+            'table' => 'cache',
             'connection' => null,
         ],
 
         'file' => [
             'driver' => 'file',
-            'path'   => storage_path('framework/cache'),
+            'path' => storage_path('framework/cache'),
         ],
 
         'memcached' => [
-            'driver'  => 'memcached',
+            'driver' => 'memcached',
             'servers' => [
                 [
-                    'host'   => env('MEMCACHED_HOST', '127.0.0.1'),
-                    'port'   => env('MEMCACHED_PORT', 11211),
+                    'host' => env('MEMCACHED_HOST', '127.0.0.1'),
+                    'port' => env('MEMCACHED_PORT', 11211),
                     'weight' => 100,
                 ],
             ],
         ],
 
         'redis' => [
-            'driver'     => 'redis',
+            'driver' => 'redis',
             'connection' => 'default',
         ],
 

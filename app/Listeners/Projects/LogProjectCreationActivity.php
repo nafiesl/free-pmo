@@ -12,10 +12,10 @@ class LogProjectCreationActivity
         $project = $event->project;
 
         $activityEntry = [
-            'type'        => 'project_created',
-            'parent_id'   => null,
-            'user_id'     => auth()->id(),
-            'object_id'   => $project->id,
+            'type' => 'project_created',
+            'parent_id' => null,
+            'user_id' => auth()->id(),
+            'object_id' => $project->id,
             'object_type' => 'projects',
         ];
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Installation Routes.
  */
@@ -24,50 +25,50 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('reset
 
 // User's Profile routes
 Route::get('profile', [
-    'as'         => 'users.profile.show',
-    'uses'       => 'Users\ProfileController@show',
+    'as' => 'users.profile.show',
+    'uses' => 'Users\ProfileController@show',
     'middleware' => ['auth'],
 ]);
 
 Route::get('profile/edit', [
-    'as'         => 'users.profile.edit',
-    'uses'       => 'Users\ProfileController@edit',
+    'as' => 'users.profile.edit',
+    'uses' => 'Users\ProfileController@edit',
     'middleware' => ['auth'],
 ]);
 
 Route::patch('profile/update', [
-    'as'         => 'users.profile.update',
-    'uses'       => 'Users\ProfileController@update',
+    'as' => 'users.profile.update',
+    'uses' => 'Users\ProfileController@update',
     'middleware' => ['auth'],
 ]);
 
 Route::patch('profile/switch-lang', [
-    'as'         => 'users.profile.switch-lang',
-    'uses'       => 'Users\ProfileController@switchLang',
+    'as' => 'users.profile.switch-lang',
+    'uses' => 'Users\ProfileController@switchLang',
     'middleware' => ['auth'],
 ]);
 
 // User's Agency routes
 Route::get('agency', [
-    'as'         => 'users.agency.show',
-    'uses'       => 'Users\AgencyController@show',
+    'as' => 'users.agency.show',
+    'uses' => 'Users\AgencyController@show',
     'middleware' => ['auth'],
 ]);
 
 Route::get('agency/edit', [
-    'as'         => 'users.agency.edit',
-    'uses'       => 'Users\AgencyController@edit',
+    'as' => 'users.agency.edit',
+    'uses' => 'Users\AgencyController@edit',
     'middleware' => ['role:admin'],
 ]);
 
 Route::patch('agency/update', [
-    'as'         => 'users.agency.update',
-    'uses'       => 'Users\AgencyController@update',
+    'as' => 'users.agency.update',
+    'uses' => 'Users\AgencyController@update',
     'middleware' => ['role:admin'],
 ]);
 
 Route::patch('agency/logo-upload', [
-    'as'         => 'users.agency.logo-upload',
-    'uses'       => 'Users\AgencyController@logoUpload',
+    'as' => 'users.agency.logo-upload',
+    'uses' => 'Users\AgencyController@logoUpload',
     'middleware' => ['role:admin'],
 ]);

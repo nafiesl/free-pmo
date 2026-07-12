@@ -30,7 +30,7 @@ class CustomerTest extends TestCase
     {
         $customer = factory(Customer::class)->create();
         $payment = factory(Payment::class)->create([
-            'partner_id'   => $customer->id,
+            'partner_id' => $customer->id,
             'partner_type' => 'App\Entities\Partners\Customer',
         ]);
 

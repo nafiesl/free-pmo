@@ -28,7 +28,6 @@ php artisan key:generate
 php artisan migrate
 php artisan storage:link
 php artisan serve
-Docker: `docker-compose up -d` (PHP 8.1 FPM + Nginx + MySQL 5.7)
 # Then visit /app-install to complete setup
 ```
 

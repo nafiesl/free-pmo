@@ -17,10 +17,10 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::radios('in_out', [__('payment.out'), __('payment.in')], ['label' => __('payment.in_out'), 'value' => 1]) !!}
+                        {!! FormField::radios('in_out', [__('payment.out'), __('payment.in')], ['label' => __('payment.in_out'), 'value' => optional($originalPayment)->in_out ?? 1]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label'=> __('payment.type'), 'value' => 1, 'list_style' => 'unstyled']) !!}
+                        {!! FormField::radios('type_id', PaymentType::toArray(), ['label'=> __('payment.type'), 'value' => optional($originalPayment)->type_id ?? 1, 'list_style' => 'unstyled']) !!}
                     </div>
                 </div>
                 <div class="row">
@@ -28,18 +28,18 @@
                         {!! FormField::text('date', ['label'=> __('payment.date'), 'value' => now()->format('Y-m-d')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::price('amount', ['label'=> __('payment.amount'), 'currency' => Option::get('money_sign', 'Rp')]) !!}
+                        {!! FormField::price('amount', ['label'=> __('payment.amount'), 'currency' => Option::get('money_sign', 'Rp'), 'value' => optional($originalPayment)->amount]) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        {!! FormField::select('project_id', $projects, ['label'=> __('payment.project'), 'value' => Request::get('project_id')]) !!}
+                        {!! FormField::select('project_id', $projects, ['label'=> __('payment.project'), 'value' => optional($originalPayment)->project_id ?? Request::get('project_id')]) !!}
                     </div>
                     <div class="col-md-6">
-                        {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer'), 'value' => Request::get('customer_id')]) !!}
+                        {!! FormField::select('partner_id', $partners, ['label'=> __('payment.customer'), 'value' => optional($originalPayment)->partner_id ?? Request::get('customer_id')]) !!}
                     </div>
                 </div>
-                {!! FormField::textarea('description', ['label'=> __('payment.description'), 'rows' => 3]) !!}
+                {!! FormField::textarea('description', ['label'=> __('payment.description'), 'rows' => 3, 'value' => optional($originalPayment)->description]) !!}
             </div>
 
             <div class="panel-footer">

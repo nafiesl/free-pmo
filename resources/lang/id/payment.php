@@ -27,6 +27,7 @@ return [
     'deleted' => 'Hapus data Pembayaran telah berhasil.',
     'undeleted' => 'Data Pembayaran gagal dihapus.',
     'search' => 'Cari Pembayaran Project',
+    'duplicate' => 'Duplikasi Pembayaran',
     'print' => 'Cetak Kuitansi',
 
     // Attributes

@@ -27,6 +27,7 @@ return [
     'deleted' => 'Zahlung wurde gelöscht.',
     'undeleted' => 'Zahlung nicht gelöscht.',
     'search' => 'Suche Projektzahlung',
+    'duplicate' => 'Zahlung duplizieren',
     'print' => 'Zahlungseingang drucken',
 
     // Attributes

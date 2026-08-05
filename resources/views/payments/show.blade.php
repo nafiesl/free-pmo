@@ -13,6 +13,7 @@
     </div>
     <div class="col-md-3 text-center">
         <legend>{{ __('app.action') }}</legend>
+        <p>{!! link_to_route('payments.create', __('payment.duplicate'), ['project_id' => $payment->project_id, 'customer_id' => $payment->partner_id, 'original_payment_id' => $payment->id], ['class' => 'btn btn-info']) !!}</p>
         <p>{!! link_to_route('payments.pdf', __('payment.print'), [$payment->id], ['class' => 'btn btn-success']) !!}</p>
         <p>{!! link_to_route('payments.edit', __('payment.edit'), [$payment->id], ['class' => 'btn btn-warning']) !!}</p>
         <p>{!! link_to_route('projects.payments', __('project.view_payments'), [$payment->project_id], ['class' => 'btn btn-default']) !!}</p>

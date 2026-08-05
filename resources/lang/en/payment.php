@@ -27,6 +27,7 @@ return [
     'deleted' => 'Payment has been deleted.',
     'undeleted' => 'Payment not deleted.',
     'search' => 'Search Project Payment',
+    'duplicate' => 'Duplicate Payment',
     'print' => 'Print Receipt',
 
     // Attributes

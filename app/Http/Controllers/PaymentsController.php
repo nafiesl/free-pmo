@@ -57,8 +57,9 @@ class PaymentsController extends Controller
         $projects = $this->getProjectsList();
         $partners = $this->getCustomersAndVendorsList();
         $project = Project::find(request('project_id'));
+        $originalPayment = Payment::find(request('original_payment_id'));
 
-        return view('payments.create', compact('projects', 'partners', 'project'));
+        return view('payments.create', compact('projects', 'partners', 'project', 'originalPayment'));
     }
 
     /**

@@ -222,6 +222,27 @@ class ManagePaymentsTest extends TestCase
     }
 
     /** @test */
+    public function admin_can_duplicate_payment()
+    {
+        $user = $this->adminUserSigningIn();
+        $payment = factory(Payment::class)->create([
+            'amount' => 500000,
+            'description' => 'Duplicate Me',
+        ]);
+
+        $this->visit(route('payments.show', $payment->id));
+        $this->click(__('payment.duplicate'));
+        $this->seePageIs(route('payments.create', [
+            'customer_id' => $payment->partner_id,
+            'original_payment_id' => $payment->id,
+            'project_id' => $payment->project_id,
+        ]));
+
+        $this->see($payment->amount);
+        $this->see($payment->description);
+    }
+
+    /** @test */
     public function admin_can_entry_payment_from_project_payment_tab()
     {
         $user = $this->adminUserSigningIn();

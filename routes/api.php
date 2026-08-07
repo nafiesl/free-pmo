@@ -17,6 +17,16 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'as' => 'api.', 'middlewar
     Route::patch('tasks/{task}', 'TaskController@update')->name('tasks.update');
 
     /*
+     * Payments
+     */
+    Route::resource('payments', 'PaymentController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+
+    /*
+     * Subscriptions
+     */
+    Route::resource('subscriptions', 'SubscriptionController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+
+    /*
      * Calendar
      */
     Route::get('get-events', ['as' => 'events.index', 'uses' => 'EventsController@index']);
@@ -30,9 +40,17 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'as' => 'api.', 'middlewar
      * Customer Route
      */
     Route::post('customers', 'CustomerController@index')->name('customers.index');
+    Route::get('customers/list', 'CustomerController@list')->name('customers.list');
+    Route::get('customers/{customer}', 'CustomerController@show')->name('customers.show');
+    Route::patch('customers/{customer}', 'CustomerController@update')->name('customers.update');
+    Route::delete('customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
 
     /*
      * Vendor Route
      */
     Route::post('vendors', 'VendorController@index')->name('vendors.index');
+    Route::get('vendors/list', 'VendorController@list')->name('vendors.list');
+    Route::get('vendors/{vendor}', 'VendorController@show')->name('vendors.show');
+    Route::patch('vendors/{vendor}', 'VendorController@update')->name('vendors.update');
+    Route::delete('vendors/{vendor}', 'VendorController@destroy')->name('vendors.destroy');
 });

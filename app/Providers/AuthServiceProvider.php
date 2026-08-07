@@ -22,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Entities\Projects\Task' => 'App\Policies\Projects\TaskPolicy',
         'App\Entities\Projects\File' => 'App\Policies\Projects\FilePolicy',
         'App\Entities\Payments\Payment' => 'App\Policies\PaymentPolicy',
+        'App\Entities\Subscriptions\Subscription' => 'App\Policies\SubscriptionPolicy',
         'App\Entities\Users\User' => 'App\Policies\UserPolicy',
         'App\Entities\Users\Event' => 'App\Policies\EventPolicy',
     ];

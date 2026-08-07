@@ -2,6 +2,20 @@
 
 Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'as' => 'api.', 'middleware' => ['auth:api']], function () {
     require __DIR__.'/api/projects.php';
+
+    /*
+     * Jobs
+     */
+    Route::resource('jobs', 'JobsController', ['only' => ['index', 'show', 'store', 'update']]);
+    Route::get('jobs/{job}/comments', 'JobCommentsController@index')->name('jobs.comments.index');
+    Route::post('jobs/{job}/comments', 'JobCommentsController@store')->name('jobs.comments.store');
+
+    /*
+     * Tasks
+     */
+    Route::post('tasks', 'TaskController@store')->name('tasks.store');
+    Route::patch('tasks/{task}', 'TaskController@update')->name('tasks.update');
+
     /*
      * Calendar
      */

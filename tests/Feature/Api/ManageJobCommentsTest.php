@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Api;
 
+use App\Entities\Projects\Comment;
 use App\Entities\Projects\Job;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -55,5 +56,69 @@ class ManageJobCommentsTest extends TestCase
         ]);
 
         $this->seeStatusCode(403);
+    }
+
+    /** @test */
+    public function admin_can_update_job_comment()
+    {
+        $user = $this->createUser('admin');
+        $job = factory(Job::class)->create();
+        $comment = $job->comments()->create(['body' => 'Old comment', 'creator_id' => $user->id]);
+
+        $this->patchJson(route('api.jobs.comments.update', [$job, $comment]), [
+            'body' => 'Updated comment',
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $this->seeJson(['message' => __('comment.updated')]);
+        $this->seeInDatabase('comments', ['id' => $comment->id, 'body' => 'Updated comment']);
+    }
+
+    /** @test */
+    public function admin_can_delete_job_comment()
+    {
+        $user = $this->createUser('admin');
+        $job = factory(Job::class)->create();
+        $comment = $job->comments()->create(['body' => 'Test comment', 'creator_id' => $user->id]);
+
+        $this->deleteJson(route('api.jobs.comments.destroy', [$job, $comment]), [], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $this->seeJson(['message' => __('comment.deleted')]);
+        $this->dontSeeInDatabase('comments', ['id' => $comment->id]);
+    }
+
+    /** @test */
+    public function worker_cannot_delete_comment_of_other_creator()
+    {
+        $user = $this->createUser('worker');
+        $otherWorker = $this->createUser('worker');
+        $job = factory(Job::class)->create(['worker_id' => $otherWorker->id]);
+        $comment = $job->comments()->create(['body' => 'Test comment', 'creator_id' => $otherWorker->id]);
+
+        $this->deleteJson(route('api.jobs.comments.destroy', [$job, $comment]), [], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(403);
+    }
+
+    /** @test */
+    public function cannot_delete_comment_of_other_job()
+    {
+        $user = $this->createUser('admin');
+        $job = factory(Job::class)->create();
+        $otherJob = factory(Job::class)->create();
+        $comment = $otherJob->comments()->create(['body' => 'Test comment', 'creator_id' => $user->id]);
+
+        $this->deleteJson(route('api.jobs.comments.destroy', [$job, $comment]), [], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(404);
     }
 }

@@ -64,4 +64,33 @@ class ManageTasksTest extends TestCase
 
         $this->seeStatusCode(403);
     }
+
+    /** @test */
+    public function admin_can_delete_task()
+    {
+        $user = $this->createUser('admin');
+        $job = factory(Job::class)->create();
+        $task = factory(Task::class)->create(['job_id' => $job->id]);
+
+        $this->deleteJson(route('api.tasks.destroy', $task), [], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $this->seeJson(['message' => __('task.deleted')]);
+        $this->dontSeeInDatabase('tasks', ['id' => $task->id]);
+    }
+
+    /** @test */
+    public function worker_cannot_delete_task()
+    {
+        $user = $this->createUser('worker');
+        $task = factory(Task::class)->create();
+
+        $this->deleteJson(route('api.tasks.destroy', $task), [], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(403);
+    }
 }

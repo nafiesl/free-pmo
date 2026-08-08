@@ -80,4 +80,13 @@ class JobsController extends Controller
 
         return response()->json(['message' => __('job.updated')], 200);
     }
+
+    public function destroy(Job $job)
+    {
+        $this->authorize('delete', $job);
+
+        $job->delete();
+
+        return response()->json(['message' => __('job.deleted')], 200);
+    }
 }

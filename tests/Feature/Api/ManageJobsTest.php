@@ -109,4 +109,32 @@ class ManageJobsTest extends TestCase
 
         $this->seeStatusCode(403);
     }
+
+    /** @test */
+    public function admin_can_delete_job()
+    {
+        $user = $this->createUser('admin');
+        $job = factory(Job::class)->create();
+
+        $this->deleteJson(route('api.jobs.destroy', $job), [], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $this->seeJson(['message' => __('job.deleted')]);
+        $this->dontSeeInDatabase('jobs', ['id' => $job->id]);
+    }
+
+    /** @test */
+    public function worker_cannot_delete_job()
+    {
+        $user = $this->createUser('worker');
+        $job = factory(Job::class)->create();
+
+        $this->deleteJson(route('api.jobs.destroy', $job), [], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(403);
+    }
 }

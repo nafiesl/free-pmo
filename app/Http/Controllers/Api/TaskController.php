@@ -36,4 +36,13 @@ class TaskController extends Controller
 
         return response()->json(['message' => __('task.updated'), 'progress' => $task->progress], 200);
     }
+
+    public function destroy(Task $task)
+    {
+        $this->authorize('delete', $task);
+
+        $task->delete();
+
+        return response()->json(['message' => __('task.deleted')], 200);
+    }
 }

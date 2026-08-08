@@ -4,17 +4,28 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'as' => 'api.', 'middlewar
     require __DIR__.'/api/projects.php';
 
     /*
+     * Project Comments
+     */
+    Route::get('projects/{project}/comments', 'ProjectCommentsController@index')->name('projects.comments.index');
+    Route::post('projects/{project}/comments', 'ProjectCommentsController@store')->name('projects.comments.store');
+    Route::patch('projects/{project}/comments/{comment}', 'ProjectCommentsController@update')->name('projects.comments.update');
+    Route::delete('projects/{project}/comments/{comment}', 'ProjectCommentsController@destroy')->name('projects.comments.destroy');
+
+    /*
      * Jobs
      */
-    Route::resource('jobs', 'JobsController', ['only' => ['index', 'show', 'store', 'update']]);
+    Route::resource('jobs', 'JobsController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
     Route::get('jobs/{job}/comments', 'JobCommentsController@index')->name('jobs.comments.index');
     Route::post('jobs/{job}/comments', 'JobCommentsController@store')->name('jobs.comments.store');
+    Route::patch('jobs/{job}/comments/{comment}', 'JobCommentsController@update')->name('jobs.comments.update');
+    Route::delete('jobs/{job}/comments/{comment}', 'JobCommentsController@destroy')->name('jobs.comments.destroy');
 
     /*
      * Tasks
      */
     Route::post('tasks', 'TaskController@store')->name('tasks.store');
     Route::patch('tasks/{task}', 'TaskController@update')->name('tasks.update');
+    Route::delete('tasks/{task}', 'TaskController@destroy')->name('tasks.destroy');
 
     /*
      * Payments

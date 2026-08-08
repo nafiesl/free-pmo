@@ -8,21 +8,15 @@ use Illuminate\Http\Request;
 
 class VendorController extends Controller
 {
-    public function index()
-    {
-        $vendors = Vendor::where('is_active', 1)
-            ->orderBy('name')
-            ->pluck('name', 'id');
-
-        return response()->json($vendors);
-    }
-
-    public function list(Request $request)
+    public function index(Request $request)
     {
         $vendorQuery = Vendor::query();
 
         if ($request->q) {
             $vendorQuery->where('name', 'like', '%'.$request->q.'%');
+        }
+        if ($request->has('is_active')) {
+            $vendorQuery->where('is_active', $request->is_active);
         }
 
         return response()->json($vendorQuery->paginate(25), 200);
@@ -33,6 +27,19 @@ class VendorController extends Controller
         $this->authorize('view', $vendor);
 
         return $vendor;
+    }
+
+    public function store(Request $request)
+    {
+        $this->authorize('create', new Vendor);
+
+        $vendor = Vendor::create($request->validate([
+            'name' => 'required|max:60',
+            'notes' => 'nullable|max:255',
+            'website' => 'nullable|url|max:255',
+        ]));
+
+        return response()->json(['message' => __('vendor.created'), 'id' => $vendor->id], 201);
     }
 
     public function update(Request $request, Vendor $vendor)

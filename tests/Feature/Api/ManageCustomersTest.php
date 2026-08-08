@@ -16,11 +16,28 @@ class ManageCustomersTest extends TestCase
         $user = $this->createUser('admin');
         factory(Customer::class)->create();
 
-        $this->getJson(route('api.customers.list'), [
+        $this->getJson(route('api.customers.index'), [
             'Authorization' => 'Bearer '.$user->api_token,
         ]);
 
         $this->seeStatusCode(200);
+    }
+
+    /** @test */
+    public function admin_can_create_customer()
+    {
+        $user = $this->createUser('admin');
+
+        $this->postJson(route('api.customers.store'), [
+            'name' => 'New Customer',
+            'email' => 'new@example.com',
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(201);
+        $this->seeJson(['message' => __('customer.created')]);
+        $this->seeInDatabase('customers', ['name' => 'New Customer']);
     }
 
     /** @test */
@@ -87,7 +104,7 @@ class ManageCustomersTest extends TestCase
     /** @test */
     public function unauthenticated_user_cannot_access_customers()
     {
-        $this->getJson(route('api.customers.list'));
+        $this->getJson(route('api.customers.index'));
 
         $this->seeStatusCode(401);
     }

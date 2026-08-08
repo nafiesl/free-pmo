@@ -8,21 +8,15 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    public function index()
-    {
-        $customers = Customer::where('is_active', 1)
-            ->orderBy('name')
-            ->pluck('name', 'id');
-
-        return response()->json($customers);
-    }
-
-    public function list(Request $request)
+    public function index(Request $request)
     {
         $customerQuery = Customer::query();
 
         if ($request->q) {
             $customerQuery->where('name', 'like', '%'.$request->q.'%');
+        }
+        if ($request->has('is_active')) {
+            $customerQuery->where('is_active', $request->is_active);
         }
 
         return response()->json($customerQuery->paginate(25), 200);
@@ -33,6 +27,23 @@ class CustomerController extends Controller
         $this->authorize('view', $customer);
 
         return $customer->load('projects');
+    }
+
+    public function store(Request $request)
+    {
+        $this->authorize('create', new Customer);
+
+        $customer = Customer::create($request->validate([
+            'name' => 'required|max:255',
+            'email' => 'nullable|email|max:255',
+            'phone' => 'nullable|max:255',
+            'pic' => 'nullable|max:255',
+            'address' => 'nullable|max:255',
+            'website' => 'nullable|url|max:255',
+            'notes' => 'nullable|max:255',
+        ]));
+
+        return response()->json(['message' => __('customer.created'), 'id' => $customer->id], 201);
     }
 
     public function update(Request $request, Customer $customer)

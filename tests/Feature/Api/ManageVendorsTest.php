@@ -16,11 +16,28 @@ class ManageVendorsTest extends TestCase
         $user = $this->createUser('admin');
         factory(Vendor::class)->create();
 
-        $this->getJson(route('api.vendors.list'), [
+        $this->getJson(route('api.vendors.index'), [
             'Authorization' => 'Bearer '.$user->api_token,
         ]);
 
         $this->seeStatusCode(200);
+    }
+
+    /** @test */
+    public function admin_can_create_vendor()
+    {
+        $user = $this->createUser('admin');
+
+        $this->postJson(route('api.vendors.store'), [
+            'name' => 'New Vendor',
+            'website' => 'https://example.com',
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(201);
+        $this->seeJson(['message' => __('vendor.created')]);
+        $this->seeInDatabase('vendors', ['name' => 'New Vendor']);
     }
 
     /** @test */
@@ -87,7 +104,7 @@ class ManageVendorsTest extends TestCase
     /** @test */
     public function unauthenticated_user_cannot_access_vendors()
     {
-        $this->getJson(route('api.vendors.list'));
+        $this->getJson(route('api.vendors.index'));
 
         $this->seeStatusCode(401);
     }

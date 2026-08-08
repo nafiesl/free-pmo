@@ -74,7 +74,7 @@
         scrollInput: false
     });
     $('#in_out_0').click(function() {
-        $.post("{{ route('api.vendors.index') }}", {},
+        $.get("{{ route('api.references.vendors') }}", {},
             function(data) {
                 var string = '<option value="">-- {{ __('vendor.select') }} --</option> ';
                 string = string + `<optgroup label="Vendor">`;
@@ -87,7 +87,7 @@
         );
     });
     $('#in_out_1').click(function() {
-        $.post("{{ route('api.customers.index') }}", {},
+        $.get("{{ route('api.references.customers') }}", {},
             function(data) {
                 var string = '<option value="">-- {{ __('customer.select') }} --</option> ';
                 string = string + `<optgroup label="Customer">`;

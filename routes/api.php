@@ -37,20 +37,18 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'as' => 'api.', 'middlewar
     Route::get('events/subscriptions', ['as' => 'events.subscriptions.index', 'uses' => 'SubscriptionEventController@index']);
 
     /*
-     * Customer Route
+     * References (picker)
      */
-    Route::post('customers', 'CustomerController@index')->name('customers.index');
-    Route::get('customers/list', 'CustomerController@list')->name('customers.list');
-    Route::get('customers/{customer}', 'CustomerController@show')->name('customers.show');
-    Route::patch('customers/{customer}', 'CustomerController@update')->name('customers.update');
-    Route::delete('customers/{customer}', 'CustomerController@destroy')->name('customers.destroy');
+    Route::get('references/customers', 'ReferencesController@customers')->name('references.customers');
+    Route::get('references/vendors', 'ReferencesController@vendors')->name('references.vendors');
 
     /*
-     * Vendor Route
+     * Customer Route (RESTful)
      */
-    Route::post('vendors', 'VendorController@index')->name('vendors.index');
-    Route::get('vendors/list', 'VendorController@list')->name('vendors.list');
-    Route::get('vendors/{vendor}', 'VendorController@show')->name('vendors.show');
-    Route::patch('vendors/{vendor}', 'VendorController@update')->name('vendors.update');
-    Route::delete('vendors/{vendor}', 'VendorController@destroy')->name('vendors.destroy');
+    Route::resource('customers', 'CustomerController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+
+    /*
+     * Vendor Route (RESTful)
+     */
+    Route::resource('vendors', 'VendorController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 });

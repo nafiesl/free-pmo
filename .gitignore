@@ -14,3 +14,4 @@ npm-debug.log
 .env.backup
 yarn-error.log
 /ftpsync.settings
+.st*

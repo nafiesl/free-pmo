@@ -153,4 +153,71 @@ class ManageSubscriptionsTest extends TestCase
 
         $this->seeStatusCode(401);
     }
+
+    /** @test */
+    public function admin_can_set_subscription_inactive()
+    {
+        $user = $this->createUser('admin');
+        $subscription = factory(Subscription::class)->create(['status_id' => 1]);
+
+        $this->patchJson(route('api.subscriptions.update', $subscription), [
+            'status_id' => 0,
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $this->seeInDatabase('subscriptions', ['id' => $subscription->id, 'status_id' => 0]);
+    }
+
+    /** @test */
+    public function admin_can_set_subscription_active()
+    {
+        $user = $this->createUser('admin');
+        $subscription = factory(Subscription::class)->create(['status_id' => 0]);
+
+        $this->patchJson(route('api.subscriptions.update', $subscription), [
+            'status_id' => 1,
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $this->seeInDatabase('subscriptions', ['id' => $subscription->id, 'status_id' => 1]);
+    }
+
+    /** @test */
+    public function admin_can_update_subscription_without_status_id()
+    {
+        $user = $this->createUser('admin');
+        $subscription = factory(Subscription::class)->create(['status_id' => 1, 'due_date' => '2027-01-01']);
+
+        $this->patchJson(route('api.subscriptions.update', $subscription), [
+            'due_date' => '2028-01-01',
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $this->seeInDatabase('subscriptions', [
+            'id' => $subscription->id,
+            'due_date' => '2028-01-01',
+            'status_id' => 1,
+        ]);
+    }
+
+    /** @test */
+    public function worker_cannot_update_subscription_status()
+    {
+        $user = $this->createUser('worker');
+        $subscription = factory(Subscription::class)->create(['status_id' => 1]);
+
+        $this->patchJson(route('api.subscriptions.update', $subscription), [
+            'status_id' => 0,
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(403);
+    }
 }

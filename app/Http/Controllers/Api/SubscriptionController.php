@@ -67,6 +67,7 @@ class SubscriptionController extends Controller
             'project_id' => 'sometimes|numeric|exists:projects,id',
             'vendor_id' => 'sometimes|numeric|exists:vendors,id',
             'type_id' => 'sometimes|numeric',
+            'status_id' => 'sometimes|numeric',
             'notes' => 'sometimes|max:255',
         ]);
 

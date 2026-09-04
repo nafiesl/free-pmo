@@ -33,6 +33,11 @@ Route::group(['prefix' => 'v1', 'namespace' => 'Api', 'as' => 'api.', 'middlewar
     Route::resource('payments', 'PaymentController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
 
     /*
+     * Invoices
+     */
+    Route::resource('invoices', 'InvoiceController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
+
+    /*
      * Subscriptions
      */
     Route::resource('subscriptions', 'SubscriptionController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);

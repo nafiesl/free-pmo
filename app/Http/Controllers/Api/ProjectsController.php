@@ -36,6 +36,7 @@ class ProjectsController extends Controller
             'customer_name' => 'nullable|string|max:255',
             'customer_email' => 'nullable|email|max:255',
             'proposal_value' => 'nullable|numeric',
+            'project_value' => 'nullable|numeric',
             'start_date' => 'nullable|date',
             'end_date' => 'nullable|date',
             'status_id' => 'nullable|integer',
@@ -66,6 +67,7 @@ class ProjectsController extends Controller
         $project->update($request->validate([
             'name' => 'sometimes|string|max:255',
             'proposal_value' => 'sometimes|numeric',
+            'project_value' => 'sometimes|numeric',
             'status_id' => 'sometimes|integer',
             'start_date' => 'sometimes|date',
             'end_date' => 'sometimes|date',

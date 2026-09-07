@@ -52,7 +52,9 @@ class ProjectsRepository extends BaseRepository
 
     public function create($projectData)
     {
-        $projectData['project_value'] = $projectData['proposal_value'] ?: 0;
+        if (empty($projectData['project_value'])) {
+            $projectData['project_value'] = $projectData['proposal_value'] ?: 0;
+        }
         DB::beginTransaction();
 
         if (isset($projectData['customer_id']) == false || $projectData['customer_id'] == '') {

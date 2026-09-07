@@ -107,4 +107,70 @@ class ManageProjectsTest extends TestCase
 
         $this->seeStatusCode(401);
     }
+
+    /** @test */
+    public function admin_can_create_project_with_project_value()
+    {
+        $user = $this->createUser('admin');
+        $customer = factory(Customer::class)->create();
+
+        $this->postJson(route('api.projects.store'), [
+            'name' => 'Test Project',
+            'customer_id' => $customer->id,
+            'proposal_value' => 17000000,
+            'project_value' => 15000000,
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(201);
+        $this->seeInDatabase('projects', [
+            'name' => 'Test Project',
+            'proposal_value' => 17000000,
+            'project_value' => 15000000,
+        ]);
+    }
+
+    /** @test */
+    public function admin_can_create_project_with_default_project_value()
+    {
+        $user = $this->createUser('admin');
+        $customer = factory(Customer::class)->create();
+
+        $this->postJson(route('api.projects.store'), [
+            'name' => 'Test Project',
+            'customer_id' => $customer->id,
+            'proposal_value' => 17000000,
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(201);
+        $this->seeInDatabase('projects', [
+            'name' => 'Test Project',
+            'proposal_value' => 17000000,
+            'project_value' => 17000000,
+        ]);
+    }
+
+    /** @test */
+    public function admin_can_update_project_value()
+    {
+        $user = $this->createUser('admin');
+        $project = factory(Project::class)->create(['proposal_value' => 17000000, 'project_value' => 17000000]);
+
+        $this->patchJson(route('api.projects.update', $project), [
+            'project_value' => 15000000,
+        ], [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $this->seeJson(['message' => __('project.updated')]);
+        $this->seeInDatabase('projects', [
+            'id' => $project->id,
+            'proposal_value' => 17000000,
+            'project_value' => 15000000,
+        ]);
+    }
 }

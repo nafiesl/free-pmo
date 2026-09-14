@@ -13,7 +13,7 @@ class InvoicesRepository extends BaseRepository
         parent::__construct($model);
     }
 
-    public function getInvoices($queryStrings)
+    public function getInvoices($queryStrings, $perPage = null)
     {
         return $this->model->orderBy('date', 'desc')
             ->whereHas('project', function ($query) use ($queryStrings) {
@@ -27,7 +27,7 @@ class InvoicesRepository extends BaseRepository
                 }
             })
             ->with('project.customer')
-            ->paginate($this->_paginate);
+            ->paginate($perPage ?: $this->_paginate);
     }
 
     public function createInvoice($invoiceData)

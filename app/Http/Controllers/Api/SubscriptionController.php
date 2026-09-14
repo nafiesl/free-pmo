@@ -22,7 +22,7 @@ class SubscriptionController extends Controller
             $subscriptionQuery->where('vendor_id', $request->vendor_id);
         }
 
-        return response()->json($subscriptionQuery->paginate(25), 200);
+        return response()->json($subscriptionQuery->paginate($this->perPage($request)), 200);
     }
 
     public function show(Subscription $subscription)

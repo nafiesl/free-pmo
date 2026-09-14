@@ -220,4 +220,70 @@ class ManageSubscriptionsTest extends TestCase
 
         $this->seeStatusCode(403);
     }
+
+    /** @test */
+    public function subscription_list_defaults_to_25_items_per_page()
+    {
+        $user = $this->createUser('admin');
+        factory(Subscription::class, 30)->create();
+
+        $this->getJson(route('api.subscriptions.index'), [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $response = json_decode($this->response->getContent(), true);
+        $this->assertEquals(25, $response['per_page']);
+        $this->assertCount(25, $response['data']);
+        $this->assertEquals(30, $response['total']);
+    }
+
+    /** @test */
+    public function subscription_list_respects_per_page_query()
+    {
+        $user = $this->createUser('admin');
+        factory(Subscription::class, 30)->create();
+
+        $this->getJson(route('api.subscriptions.index', ['per_page' => 300]), [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $response = json_decode($this->response->getContent(), true);
+        $this->assertEquals(300, $response['per_page']);
+        $this->assertCount(30, $response['data']);
+    }
+
+    /** @test */
+    public function subscription_list_caps_per_page_at_300()
+    {
+        $user = $this->createUser('admin');
+        factory(Subscription::class, 5)->create();
+
+        $this->getJson(route('api.subscriptions.index', ['per_page' => 500]), [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $response = json_decode($this->response->getContent(), true);
+        $this->assertEquals(300, $response['per_page']);
+        $this->assertCount(5, $response['data']);
+    }
+
+    /** @test */
+    public function subscription_list_uses_small_per_page()
+    {
+        $user = $this->createUser('admin');
+        factory(Subscription::class, 10)->create();
+
+        $this->getJson(route('api.subscriptions.index', ['per_page' => 3]), [
+            'Authorization' => 'Bearer '.$user->api_token,
+        ]);
+
+        $this->seeStatusCode(200);
+        $response = json_decode($this->response->getContent(), true);
+        $this->assertEquals(3, $response['per_page']);
+        $this->assertCount(3, $response['data']);
+        $this->assertEquals(10, $response['total']);
+    }
 }

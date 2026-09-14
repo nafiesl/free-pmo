@@ -8,6 +8,7 @@ use App\Entities\Projects\Project;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -47,5 +48,24 @@ class Controller extends BaseController
             __('customer.customer') => Customer::orderBy('name')->pluck('name', 'id')->all(),
             __('vendor.vendor') => Vendor::orderBy('name')->pluck('name', 'id')->all(),
         ];
+    }
+
+    /**
+     * Resolve the number of items per page from the "per_page" query string.
+     *
+     * Defaults to 25, and is capped at 300 to prevent oversized responses.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return int
+     */
+    public function perPage(Request $request)
+    {
+        $perPage = (int) $request->get('per_page', 25);
+
+        if ($perPage < 1) {
+            $perPage = 25;
+        }
+
+        return min($perPage, 300);
     }
 }

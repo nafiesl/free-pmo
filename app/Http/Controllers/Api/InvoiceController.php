@@ -18,7 +18,10 @@ class InvoiceController extends Controller
 
     public function index(Request $request)
     {
-        $invoices = $this->repo->getInvoices($request->only('q', 'project_id'));
+        $invoices = $this->repo->getInvoices(
+            $request->only('q', 'project_id'),
+            $this->perPage($request)
+        );
 
         return response()->json($invoices, 200);
     }
